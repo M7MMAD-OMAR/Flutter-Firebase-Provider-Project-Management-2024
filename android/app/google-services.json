@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "526714468929",
+    "project_id": "project-management-muhmad-omar",
+    "storage_bucket": "project-management-muhmad-omar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526714468929:android:60c0042604382ad6ba24c0",
+        "android_client_info": {
+          "package_name": "com.asalib.project_management_muhmad_omar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjbfbS6M2o55iavgpdG-jXwuIZ8QTPZDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
