@@ -43,7 +43,36 @@ dependencies:
   firebase_auth: ^4.2.10
   firebase_core: ^2.7.1
   http_proxy: ^1.2.1
-
+  google_fonts: ^4.0.3
+  http: ^0.13.5
+  awesome_dialog: ^3.1.0
+  email_validator: ^2.1.17
+  cloud_firestore: ^4.4.4
+  google_sign_in: ^6.0.2
+  get: ^4.6.6
+  responsive_builder: ^0.4.3
+  font_awesome_flutter: ^10.2.1
+  flutter_shapes: ^0.3.0
+  flutter_feather_icons: ^2.0.0+1
+  tcard: ^1.3.5
+  fl_chart: ^0.68.0
+  flutter_slidable: ^3.1.0
+  table_calendar: ^3.0.8
+  glassmorphism: ^3.0.0
+  flutter_lints: ^3.0.0
+  image_picker: ^0.8.7+5
+  video_player: ^2.6.0
+  rx_future: ^1.0.3
+  android_alarm_manager_plus: ^2.1.2
+  shared_preferences: ^2.1.1
+  either_dart: ^0.4.0
+  iconsax: ^0.0.8
+  focused_menu: ^1.0.5
+  searchbar_animation: ^0.0.4
+  rxdart: ^0.27.7
+  animated_pie_chart: ^0.0.2
+  day_night_time_picker: ^1.2.0+2
+  sizer: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -58,7 +87,10 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
+flutter_icons:
+  android: "launcher_icon"
+  ios: false
+  image_path: "assets/icon/logo.png"
 # The following section is specific to Flutter packages.
 flutter:
 
@@ -98,5 +130,7 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
+    - assets/
     - src/providers/
-
+    - assets/icon/
+    - assets/lang/
