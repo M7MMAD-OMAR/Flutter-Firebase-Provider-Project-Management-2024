@@ -15,51 +15,6 @@ A new Flutter project.
 10- providers.dart — This file contains all the providers for your application.
 11- routes.dart — This file contains all the routes for your application.
 
+## Links
 
-
-
-**src**
-
-This directory contains all the code of the application.
-
-**constants**
-
-This directory contains all the application level constants. A separate file is created for each type as shown in the example below:
-
-constants/
-|- analytics.dart
-|- api-names.dart
-|- constants.dart
-|- endpoints.dart
-|- preferences.dart
-
-**models**
-This directory contains files each with a custom class of an object widely used throughout the app
-
-models/
-|- models-name
-providers
-This directory contains state-management of your application, to connect the reactive data of your application with the UI.
-
-providers/
-|- name-provider.dart
-screens
-This directory contains all the screens of your application. Each screen is located in a separate folder making it easy to combine a group of files related to that particular screen. All the screen-specific widgets will be placed in widgets the directory as shown in the example below:
-
-screen/
-|- screen-name
-|- screen-name.dart
-|- widgets
-|- widget-name.dart
-utils
-It contains the common file(s) and utilities used in a project. The folder structure is as follows:
-
-utils/
-|- validator
-|- form-validator.dart
-widgets
-It contains the common widgets that are shared across multiple screens. For example, Button, TextField, etc.
-
-widgets/
-|- name_widget.dart
-
+- [App Structure](https://medium.com/@patthipati/code-organization-with-provider-state-management-for-flutter-ae2a77b63718) 
