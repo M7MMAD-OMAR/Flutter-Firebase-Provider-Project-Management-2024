@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_screen/home_screen.dart';
-
 class Routes {
   Routes._();
 
@@ -11,7 +9,7 @@ class Routes {
 
   // route list
   static final dynamic routes = <String, WidgetBuilder>{
-    homeScreen: (BuildContext context) => const HomeScreen(),
+    // homeScreen: (BuildContext context) => const HomeScreen(),
     // authScreen: (BuildContext context) => const AuthScreen(),
   };
 }
