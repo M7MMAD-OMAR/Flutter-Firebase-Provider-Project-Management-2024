@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mytest/models/team/Project_sub_task_Model.dart';
-import 'package:mytest/models/tops/top_model.dart';
-
 import '../../constants/back_constants.dart';
+import '../tops/top_model.dart';
+import 'Project_sub_task_Model.dart';
 
 class WaitingSubTaskModel with TopModel {
   WaitingSubTaskModel({

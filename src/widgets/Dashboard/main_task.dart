@@ -21,7 +21,7 @@ import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
 import '../../controllers/statusController.dart';
 import '../../controllers/topController.dart';
-import '../../models/User/User_model.dart';
+import '../../models/User/user_model.dart';
 import '../../models/statusmodel.dart';
 import '../../models/team/project_main_task_model.dart';
 import 'package:intl/intl.dart';
@@ -245,12 +245,12 @@ class _brogressState extends State<brogress> {
               opacity: getOpacity(widget.taskModel.importance),
               child: Container(
                 decoration: BoxDecoration(
-                  color: HexColor.fromHex(widget.taskModel.hexcolor)
+                  color: HexColor.fromHex(widget.taskModel.hexColor)
                       .withOpacity(0.9),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: HexColor.fromHex(widget.taskModel
-                        .hexcolor), // Set the second color for the border
+                        .hexColor), // Set the second color for the border
                     width: 6, // Adjust the width of the border as needed
                   ),
                 ),
@@ -393,12 +393,12 @@ class _brogressState extends State<brogress> {
               opacity: getOpacity(widget.taskModel.importance),
               child: Container(
                 decoration: BoxDecoration(
-                  color: HexColor.fromHex(widget.taskModel.hexcolor)
+                  color: HexColor.fromHex(widget.taskModel.hexColor)
                       .withOpacity(0.5),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: HexColor.fromHex(widget.taskModel
-                        .hexcolor), // Set the second color for the border
+                        .hexColor), // Set the second color for the border
                     width: 5, // Adjust the width of the border as needed
                   ),
                 ),

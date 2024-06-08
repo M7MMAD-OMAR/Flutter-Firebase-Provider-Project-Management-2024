@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:mytest/constants/constants.dart';
-
 import '../../constants/back_constants.dart';
-import '../../Utils/back_utils.dart';
-import '../team/Task_model.dart';
+import '../../constants/constants.dart';
+import '../../utils/back_utils.dart';
+import '../team/task_model.dart';
 
 //الكلاس الخاصة بالمهمة الخاصة بالمستخدم
 class UserTaskModel extends TaskClass {
@@ -47,7 +46,7 @@ class UserTaskModel extends TaskClass {
     setName = nameParameter;
     setDescription = descriptionParameter;
     setStatusId = statusIdParameter;
-    setimportance = importanceParameter;
+    setImportance = importanceParameter;
     setCreatedAt = createdAtParameter;
     setUpdatedAt = updatedAtParameter;
     setStartDate = startDateParameter;
@@ -78,7 +77,7 @@ class UserTaskModel extends TaskClass {
     setName = nameParameter;
     setDescription = descriptionParameter;
     setStatusId = statusIdParameter;
-    setimportance = importanceParameter;
+    setImportance = importanceParameter;
     setCreatedAt = createdAtParameter;
     setUpdatedAt = updatedAtParameter;
     startDate = startDateParameter;
@@ -119,7 +118,7 @@ class UserTaskModel extends TaskClass {
     required DateTime endDateParameter,
     required String colorParameter,
   }) {
-    hexcolor = colorParameter;
+    hexColor = colorParameter;
     id = idParameter;
     name = nameParameter;
     description = descriptionParameter;
@@ -237,7 +236,7 @@ class UserTaskModel extends TaskClass {
   }
 
   @override
-  set setimportance(int importanceParameter) {
+  set setImportance(int importanceParameter) {
     //الشروط التي تنطبق على الأهمية
     Exception exception;
     //الأهمية لا يمكن أن تكون أقل من صفر أو تساويه
@@ -261,7 +260,7 @@ class UserTaskModel extends TaskClass {
       exception = Exception(Constants.task_color_empty_error_key.tr);
       throw exception;
     }
-    hexcolor = hexcolorParameter;
+    hexColor = hexcolorParameter;
   }
 
   @override
@@ -379,7 +378,7 @@ class UserTaskModel extends TaskClass {
   @override
   Map<String, dynamic> toFirestore() {
     return {
-      colorK: hexcolor,
+      colorK: hexColor,
       nameK: name,
       idK: id,
       descriptionK: description,

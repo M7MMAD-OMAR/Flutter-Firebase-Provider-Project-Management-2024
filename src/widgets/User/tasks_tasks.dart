@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/controllers/topController.dart';
-import 'package:mytest/models/User/User_task_Model.dart';
+import 'package:mytest/models/User/user_task_model.dart';
 import 'package:mytest/services/auth_service.dart';
 import 'package:mytest/widgets/User/task_widget.dart';
 
@@ -265,7 +265,7 @@ class _FatherTasksState extends State<FatherTasks> {
                             return CardTask(
                               userTaskCategoryId: widget.categoryModel.id,
                               onPrimary: Colors.white,
-                              primary: HexColor.fromHex(list[index].hexcolor),
+                              primary: HexColor.fromHex(list[index].hexColor),
                               task: list[index],
                               userFatherId: widget.documentReference,
                             );

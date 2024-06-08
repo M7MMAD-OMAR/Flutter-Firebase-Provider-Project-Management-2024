@@ -14,8 +14,8 @@ import 'package:mytest/controllers/topController.dart';
 import 'package:mytest/controllers/userController.dart';
 import 'package:mytest/controllers/user_task_controller.dart';
 import 'package:mytest/models/team/project_main_task_model.dart';
-import 'package:mytest/models/team/TeamMembers_model.dart';
-import 'package:mytest/models/team/waitingSubTasksModel.dart';
+import 'package:mytest/models/team/team_members_model.dart';
+import 'package:mytest/models/team/waiting_sub_tasks_model.dart';
 import 'package:mytest/services/collectionsrefrences.dart';
 import 'package:mytest/services/types.dart';
 import 'package:mytest/widgets/Dashboard/subTask.dart';
@@ -28,13 +28,13 @@ import '../../controllers/project_main_task_controller.dart';
 import '../../controllers/statusController.dart';
 import '../../controllers/teamController.dart';
 import '../../controllers/waitingSubTasks.dart';
-import '../../models/User/User_model.dart';
-import '../../models/User/User_task_Model.dart';
+import '../../models/User/user_model.dart';
+import '../../models/User/user_task_model.dart';
 import '../../models/statusmodel.dart';
 import '../../models/team/manger_model.dart';
 import '../../models/team/project_model.dart';
-import '../../models/team/Project_sub_task_Model.dart';
-import '../../models/team/Team_model.dart';
+import '../../models/team/project_sub_task_model.dart';
+import '../../models/team/team_model.dart';
 
 import '../../services/auth_service.dart';
 import '../../services/notification_service.dart';
@@ -334,7 +334,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                           return SubTaskCard(
                             task: list[index],
                             onPrimary: Colors.white,
-                            primary: HexColor.fromHex(list[index].hexcolor),
+                            primary: HexColor.fromHex(list[index].hexColor),
                           );
                         },
                         itemCount: list.length,

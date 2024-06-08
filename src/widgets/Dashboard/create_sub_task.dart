@@ -14,9 +14,9 @@ import '../../controllers/categoryController.dart';
 import '../../controllers/projectController.dart';
 import '../../controllers/teamController.dart';
 import '../../controllers/user_task_controller.dart';
-import '../../models/User/User_model.dart';
-import '../../models/team/Project_sub_task_Model.dart';
-import '../../models/team/Team_model.dart';
+import '../../models/User/user_model.dart';
+import '../../models/team/project_sub_task_model.dart';
+import '../../models/team/team_model.dart';
 import '../BottomSheets/bottom_sheet_holder.dart';
 import '../Forms/form_input_with _label.dart';
 import '../Snackbar/custom_snackber.dart';
@@ -79,7 +79,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
       dueDate = widget.userTaskModel!.endDate!;
       selectedDashboardOption = importancelist.singleWhere(
           (element) => element == widget.userTaskModel!.importance);
-      color = widget.userTaskModel!.hexcolor;
+      color = widget.userTaskModel!.hexColor;
       formattedStartDate = formatDateTime(startDate);
       formattedDueDate = formatDateTime(dueDate);
     } else {

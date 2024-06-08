@@ -11,12 +11,12 @@ import '../../controllers/categoryController.dart';
 import '../../controllers/statusController.dart';
 import '../../controllers/topController.dart';
 import '../../controllers/user_task_controller.dart';
-import '../../models/User/User_task_Model.dart';
+import '../../models/User/user_task_model.dart';
 import '../../models/statusmodel.dart';
 import '../../models/task/user_task_category_model.dart';
 import '../../models/team/project_main_task_model.dart';
 import '../../models/team/project_model.dart';
-import '../../models/team/TeamMembers_model.dart';
+import '../../models/team/team_members_model.dart';
 
 import '../../services/collectionsrefrences.dart';
 import '../BottomSheets/bottom_sheet_holder.dart';
@@ -79,7 +79,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
       dueDate = widget.projectMainTaskModel!.endDate!;
       selectedDashboardOption = importancelist.singleWhere(
           (element) => element == widget.projectMainTaskModel!.importance);
-      color = widget.projectMainTaskModel!.hexcolor;
+      color = widget.projectMainTaskModel!.hexColor;
       formattedStartDate = formatDateTime(startDate);
       formattedDueDate = formatDateTime(dueDate);
     } else {

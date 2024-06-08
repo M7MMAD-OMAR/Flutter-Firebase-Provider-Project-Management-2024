@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:mytest/constants/constants.dart';
-
 import '../../constants/back_constants.dart';
-import '../../Utils/back_utils.dart';
+import '../../constants/constants.dart';
+import '../../utils/back_utils.dart';
 import '../tops/var_top_model.dart';
 
 class TeamModel extends VarTopModel {

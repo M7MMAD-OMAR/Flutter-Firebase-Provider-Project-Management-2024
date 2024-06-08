@@ -14,8 +14,8 @@ import 'package:mytest/controllers/team_member_controller.dart';
 
 import 'package:mytest/controllers/user_task_controller.dart';
 import 'package:mytest/models/statusmodel.dart';
-import 'package:mytest/models/team/Project_sub_task_Model.dart';
-import 'package:mytest/models/team/TeamMembers_model.dart';
+import 'package:mytest/models/team/project_sub_task_model.dart';
+import 'package:mytest/models/team/team_members_model.dart';
 import 'package:mytest/services/auth_service.dart';
 import 'package:mytest/widgets/Dashboard/create_sub_task.dart';
 import '../../BottomSheets/bottom_sheets.dart';
@@ -27,14 +27,14 @@ import '../../controllers/teamController.dart';
 import '../../controllers/topController.dart';
 import '../../controllers/userController.dart';
 import '../../controllers/waitingSubTasks.dart';
-import '../../models/User/User_model.dart';
+import '../../models/User/user_model.dart';
 import 'package:intl/intl.dart';
 
 import '../../models/team/manger_model.dart';
 import '../../models/team/project_main_task_model.dart';
 import '../../models/team/project_model.dart';
-import '../../models/team/Team_model.dart';
-import '../../models/team/waitingSubTasksModel.dart';
+import '../../models/team/team_model.dart';
+import '../../models/team/waiting_sub_tasks_model.dart';
 
 import '../../services/collectionsrefrences.dart';
 import '../../services/notification_service.dart';

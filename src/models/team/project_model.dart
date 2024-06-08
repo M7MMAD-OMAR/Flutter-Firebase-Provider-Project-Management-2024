@@ -1,3 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get/get.dart';
+
+import '../../constants/back_constants.dart';
 import '../../constants/constants.dart';
 import '../../utils/back_utils.dart';
 import '../tops/var2_top_model.dart';

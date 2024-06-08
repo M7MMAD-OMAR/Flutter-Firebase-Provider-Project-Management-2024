@@ -6,7 +6,7 @@ import 'package:mytest/widgets/calender/today_task.dart';
 import '../../Screens/Profile/profile_overview.dart';
 import '../../Values/values.dart';
 import '../../controllers/userController.dart';
-import '../../models/User/User_model.dart';
+import '../../models/User/user_model.dart';
 import '../../services/auth_service.dart';
 import '../../services/notification_service.dart';
 import '../calender/widgets/circle_gradient_icon.dart';

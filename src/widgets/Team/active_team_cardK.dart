@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/Screens/Profile/team_details.dart';
 import 'package:mytest/constants/constants.dart';
-import 'package:mytest/models/team/Team_model.dart';
+import 'package:mytest/models/team/team_model.dart';
 
 import '../../Values/values.dart';
 

@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:mytest/constants/constants.dart';
-
 import '../../constants/back_constants.dart';
-import '../../Utils/back_utils.dart';
-import 'Task_model.dart';
+import '../../constants/constants.dart';
+import '../../utils/back_utils.dart';
+import 'task_model.dart';
 
 //الكلاس الخاص بالمهمة الفرعية في البروجيكت
 // why used Datetime instead of this.
@@ -48,7 +47,7 @@ class ProjectSubTaskModel extends TaskClass {
     setName = nameParameter;
     setDescription = descriptionParameter;
     setStatusId = statusIdParameter;
-    setimportance = importanceParameter;
+    setImportance = importanceParameter;
     setCreatedAt = createdAtParameter;
     setUpdatedAt = updatedAtParameter;
     setStartDate = startDateParameter;
@@ -90,7 +89,7 @@ class ProjectSubTaskModel extends TaskClass {
     required String hexColorParameter,
   }) {
     projectId = projectIdParameter;
-    hexcolor = hexColorParameter;
+    hexColor = hexColorParameter;
     mainTaskId = mainTaskIdParameter;
     id = idParameter;
     name = nameParameter;
@@ -113,7 +112,7 @@ class ProjectSubTaskModel extends TaskClass {
       exception = Exception(Constants.project_sub_task_color_empty_error_key);
       throw exception;
     }
-    hexcolor = hexcolorParameter;
+    hexColor = hexcolorParameter;
   }
 
   //الدوكيومنت اي دي الخاص بالشخص الذي سيتم اسناد المهمة له
@@ -227,7 +226,7 @@ class ProjectSubTaskModel extends TaskClass {
   }
 
   @override
-  set setimportance(int importanceParameter) {
+  set setImportance(int importanceParameter) {
     //تتراوح قيمة الأهمية بين ال1 وال5
     //الشروط التي تنطبق على الأهمية
     Exception exception;
@@ -386,7 +385,7 @@ class ProjectSubTaskModel extends TaskClass {
   @override
   Map<String, dynamic> toFirestore() {
     return {
-      colorK: hexcolor,
+      colorK: hexColor,
       nameK: name,
       idK: id,
       descriptionK: description,

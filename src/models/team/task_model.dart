@@ -3,9 +3,9 @@ import '../tops/var2_top_model.dart';
 abstract class TaskClass extends Var2TopModel {
   late int importance;
 
-  set setimportance(int importance);
+  set setImportance(int importance);
 
-  late String hexcolor;
+  late String hexColor;
 
   set setHexColor(String color);
 

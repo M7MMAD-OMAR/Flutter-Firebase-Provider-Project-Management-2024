@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mytest/constants/constants.dart';
 import 'package:mytest/controllers/team_member_controller.dart';
 import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/models/team/Team_model.dart';
+import 'package:mytest/models/User/user_model.dart';
+import 'package:mytest/models/team/team_model.dart';
 import 'package:mytest/widgets/Forms/search_box2.dart';
 
 import 'package:mytest/widgets/inactive_employee_card.dart';
@@ -15,8 +15,8 @@ import '../../Screens/Dashboard/search_bar_animation.dart';
 import '../../Screens/Profile/profile_overview.dart';
 import '../../Values/values.dart';
 
-import '../../models/User/User_task_Model.dart';
-import '../../models/team/TeamMembers_model.dart';
+import '../../models/User/user_task_model.dart';
+import '../../models/team/team_members_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
 

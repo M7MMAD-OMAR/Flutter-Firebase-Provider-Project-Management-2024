@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../constants/constants.dart';
 import '../../constants/back_constants.dart';
 import '../../utils/back_utils.dart';
-import 'Task_model.dart';
+import 'task_model.dart';
 //TODO use the firebase time
 
 //الكلاس الخاص بالمهمة الأساسية في البروجيكت
@@ -41,7 +41,7 @@ class ProjectMainTaskModel extends TaskClass {
     setName = nameParameter;
     setDescription = descriptionParameter;
     setStatusId = statusIdParameter;
-    setimportance = importanceParameter;
+    setImportance = importanceParameter;
     setCreatedAt = createdAtParameter;
     setUpdatedAt = updatedAtParameter;
     setStartDate = startDateParameter;
@@ -75,7 +75,7 @@ class ProjectMainTaskModel extends TaskClass {
     required DateTime endDateParameter,
     required String hexColorParameter,
   }) {
-    hexcolor = hexColorParameter;
+    hexColor = hexColorParameter;
     projectId = projectIdParameter;
     id = idParameter;
     description = descriptionParameter;
@@ -98,7 +98,7 @@ class ProjectMainTaskModel extends TaskClass {
       exception = Exception(Constants.main_task_color_empty_key);
       throw exception;
     }
-    hexcolor = hexcolorParameter;
+    hexColor = hexcolorParameter;
   }
 
   @override
@@ -162,7 +162,7 @@ class ProjectMainTaskModel extends TaskClass {
   }
 
   @override
-  set setimportance(int importanceParameter) {
+  set setImportance(int importanceParameter) {
     //تتراوح قيمة الأهمية بين ال1 وال5
     //الشروط التي تنطبق على الأهمية
     Exception exception;
@@ -299,7 +299,7 @@ class ProjectMainTaskModel extends TaskClass {
   @override
   Map<String, dynamic> toFirestore() {
     return {
-      colorK: hexcolor,
+      colorK: hexColor,
       nameK: name,
       idK: id,
       descriptionK: description,
