@@ -1,7 +1,8 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/widgets/Shapes/background_hexagon.dart';
-import 'dart:math' as math;
+import 'package:project_management_muhmad_omar/widgets/Shapes/background_hexagon.dart';
 
 class SliderCaptionedImage extends StatelessWidget {
   final int index;

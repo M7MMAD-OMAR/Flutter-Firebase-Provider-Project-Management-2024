@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Projects/layout_list_tile.dart';
-import 'package:taskez/widgets/Projects/project_detail_appbar.dart';
-import 'package:taskez/widgets/Projects/project_task_card.dart';
-import 'package:taskez/widgets/Shapes/app_settings_icon.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/layout_list_tile.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_detail_appbar.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_task_card.dart';
+import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets.dart';
 
 // ignore: must_be_immutable
 class ProjectDetails extends StatelessWidget {

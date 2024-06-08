@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Constants/constants.dart';
-import 'package:taskez/Data/data_model.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Dashboard/in_bottomsheet_subtitle.dart';
-import 'package:taskez/widgets/Navigation/app_header.dart';
-import 'package:taskez/widgets/Projects/project_card_vertical.dart';
-import 'package:taskez/widgets/Team/more_team_details_sheet.dart';
-import 'package:taskez/widgets/table_calendar.dart';
+import 'package:project_management_muhmad_omar/Constants/constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/utils/data_model.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/in_bottomsheet_subtitle.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_card_vertical.dart';
+import 'package:project_management_muhmad_omar/widgets/Team/more_team_details_sheet.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets.dart';
+import 'package:project_management_muhmad_omar/widgets/table_calendar.dart';
 
 import 'my_team.dart';
 

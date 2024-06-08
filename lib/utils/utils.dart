@@ -1,4 +1,4 @@
-part of values;
+part of '../constants/values.dart';
 
 class Utils {
   static final double screenWidth = Get.width;
@@ -8,7 +8,7 @@ class Utils {
 class SineCurve extends Curve {
   final double count;
 
-  SineCurve({this.count = 3});
+  const SineCurve({this.count = 3});
 
   // t = x
   @override

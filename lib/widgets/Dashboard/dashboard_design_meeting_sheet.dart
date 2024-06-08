@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/BottomSheets/bottom_sheet_holder.dart';
-import 'package:taskez/widgets/Dashboard/sheet_goto_calendar.dart';
-import 'package:taskez/widgets/Forms/form_input_unlabelled.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/BottomSheets/bottom_sheet_holder.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/sheet_goto_calendar.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_unlabelled.dart';
+import 'package:project_management_muhmad_omar/widgets/add_sub_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets.dart';
 
-import '../add_sub_icon.dart';
 import 'dashboard_meeting_details.dart';
 import 'filled_selectable_container.dart';
 import 'in_bottomsheet_subtitle.dart';
 
 class DashboardDesignMeetingSheet extends StatelessWidget {
-  DashboardDesignMeetingSheet({Key? key}) : super(key: key);
+  const DashboardDesignMeetingSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _meetingNameController = new TextEditingController();
+    final meetingNameController = new TextEditingController();
 
     return SingleChildScrollView(
       child: Column(children: [
         AppSpaces.verticalSpace10,
-        BottomSheetHolder(),
+        const BottomSheetHolder(),
         AppSpaces.verticalSpace10,
         Padding(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Row(
@@ -46,7 +46,7 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
                       placeholder: "Design Meeting",
                       keyboardType: "text",
                       autofocus: true,
-                      controller: _meetingNameController,
+                      controller: meetingNameController,
                       obscureText: false,
                     ),
                   ),
@@ -68,9 +68,9 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
                 )
               ]),
               AppSpaces.verticalSpace20,
-              InBottomSheetSubtitle(title: "INVITES"),
+              const InBottomSheetSubtitle(title: "INVITES"),
               AppSpaces.verticalSpace10,
-              FilledSelectableContainer(),
+              const FilledSelectableContainer(),
               AppSpaces.verticalSpace20,
               Align(
                 alignment: Alignment.centerRight,
@@ -87,7 +87,7 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
 
   void _addMeetingDetails() {
     showAppBottomSheet(
-      DashboardMeetingDetails(),
+      const DashboardMeetingDetails(),
       isScrollControlled: true,
       popAndShow: true,
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/AppLogo/app_logo.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/AppLogo/app_logo.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
 
 import 'Onboarding/onboarding_start.dart';
 

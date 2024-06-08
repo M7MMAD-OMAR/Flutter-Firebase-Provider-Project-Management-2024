@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:taskez/Constants/constants.dart';
-import 'package:taskez/Screens/Chat/new_group.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Chat/add_chat_icon.dart';
-import 'package:taskez/widgets/Chat/badged_title.dart';
-import 'package:taskez/widgets/Chat/selection_tab.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Forms/search_box.dart';
-import 'package:taskez/widgets/Navigation/app_header.dart';
+import 'package:project_management_muhmad_omar/Constants/constants.dart';
+import 'package:project_management_muhmad_omar/Screens/Chat/new_group.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Chat/add_chat_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/Chat/badged_title.dart';
+import 'package:project_management_muhmad_omar/widgets/Chat/selection_tab.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/search_box.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
+
 import 'new_message_screen.dart';
 
 class ChatScreen extends StatelessWidget {

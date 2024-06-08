@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Screens/Chat/chat_screen.dart';
-import 'package:taskez/Screens/Profile/profile_overview.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/BottomSheets/dashboard_settings_sheet.dart';
-import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
-import 'package:taskez/widgets/Navigation/dasboard_header.dart';
-import 'package:taskez/widgets/Shapes/app_settings_icon.dart';
+import 'package:project_management_muhmad_omar/Screens/Chat/chat_screen.dart';
+import 'package:project_management_muhmad_omar/Screens/Profile/profile_overview.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/BottomSheets/dashboard_settings_sheet.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/dasboard_header.dart';
+import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets.dart';
 
 import 'DashboardTabScreens/overview.dart';
 import 'DashboardTabScreens/productivity.dart';

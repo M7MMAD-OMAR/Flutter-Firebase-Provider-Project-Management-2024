@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Projects/project_detail.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Projects/project_badge.dart';
+import 'package:project_management_muhmad_omar/Screens/Projects/project_detail.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_badge.dart';
 
 class ProjectCardVertical extends StatelessWidget {
   final String projectName;

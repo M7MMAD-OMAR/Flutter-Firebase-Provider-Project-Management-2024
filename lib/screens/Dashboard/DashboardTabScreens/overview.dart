@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taskez/Data/data_model.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Dashboard/overview_task_container.dart';
-import 'package:taskez/widgets/Dashboard/task_progress_card.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/utils/data_model.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/overview_task_container.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/task_progress_card.dart';
 import 'package:tcard/tcard.dart';
 
 class DashboardOverview extends StatelessWidget {

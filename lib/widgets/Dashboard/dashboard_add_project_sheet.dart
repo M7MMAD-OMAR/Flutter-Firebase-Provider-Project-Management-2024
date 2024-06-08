@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/BottomSheets/bottom_sheet_holder.dart';
-import 'package:taskez/widgets/Buttons/rect_primary_button.dart';
-import 'package:taskez/widgets/Chat/badged_title.dart';
-import 'package:taskez/widgets/Forms/form_input_unlabelled.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/BottomSheets/bottom_sheet_holder.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/rect_primary_button.dart';
+import 'package:project_management_muhmad_omar/widgets/Chat/badged_title.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_unlabelled.dart';
+import 'package:project_management_muhmad_omar/widgets/add_sub_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets.dart';
 
-import '../add_sub_icon.dart';
 import 'dashboard_design_meeting_sheet.dart';
 import 'in_bottomsheet_subtitle.dart';
 
 class DashboardAddProjectSheet extends StatelessWidget {
-  DashboardAddProjectSheet({Key? key}) : super(key: key);
+  const DashboardAddProjectSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _settingsButtonTrigger = ValueNotifier(0);
-    final _projectNameController = new TextEditingController();
+    final settingsButtonTrigger = ValueNotifier(0);
+    final projectNameController = new TextEditingController();
 
     return SingleChildScrollView(
       child: Column(children: [
@@ -49,7 +49,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
                       placeholder: "Project Name ....",
                       autofocus: true,
                       keyboardType: "text",
-                      controller: _projectNameController,
+                      controller: projectNameController,
                       obscureText: false,
                     ),
                   ),
@@ -72,7 +72,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
                           buttonText: "List",
                           icon: Icons.checklist,
                           itemIndex: 0,
-                          notifier: _settingsButtonTrigger),
+                          notifier: settingsButtonTrigger),
                     ),
                     Expanded(
                       flex: 1,
@@ -80,7 +80,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
                           buttonText: "Board",
                           icon: Icons.checklist,
                           itemIndex: 1,
-                          notifier: _settingsButtonTrigger),
+                          notifier: settingsButtonTrigger),
                     )
                   ])),
               AppSpaces.verticalSpace20,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_buttons.dart';
-import 'package:taskez/widgets/Buttons/text_button.dart';
-import 'package:taskez/widgets/Onboarding/toggle_option.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/text_button.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/toggle_option.dart';
 
 import 'bottom_sheet_holder.dart';
 

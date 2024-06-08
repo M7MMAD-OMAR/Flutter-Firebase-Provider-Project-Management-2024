@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_management_muhmad_omar/utils/my_task.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:taskez/Data/my_task.dart';
+
 import 'Shapes/roundedborder_with_icon.dart';
 
 const kBlueCircleForCalendar = BoxDecoration(
-  color: const Color(0xFF246CFD),
+  color: Color(0xFF246CFD),
   shape: BoxShape.circle,
 );
 
 class CalendarView extends StatefulWidget {
+  const CalendarView({super.key});
+
   @override
   _CalendarViewState createState() => _CalendarViewState();
 }

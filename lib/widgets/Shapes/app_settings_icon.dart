@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskez/widgets/Shapes/settings_strip.dart';
+import 'package:project_management_muhmad_omar/widgets/Shapes/settings_strip.dart';
 
 class AppSettingsIcon extends StatelessWidget {
   final VoidCallback? callback;

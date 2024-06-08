@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:flutter/gestures.dart';
+
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class BarChartSample1 extends StatefulWidget {
   final List<Color> availableColors = [
@@ -16,13 +17,15 @@ class BarChartSample1 extends StatefulWidget {
     Colors.redAccent,
   ];
 
+  BarChartSample1({super.key});
+
   @override
   State<StatefulWidget> createState() => BarChartSample1State();
 }
 
 class BarChartSample1State extends State<BarChartSample1> {
   final Color barBackgroundColor = const Color(0xFFA06AFA);
-  static const Color mainColor = const Color(0xFFFAA3FF);
+  static const Color mainColor = Color(0xFFFAA3FF);
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex = -1;
@@ -144,53 +147,53 @@ class BarChartSample1State extends State<BarChartSample1> {
     return BarChartData(
       barTouchData: BarTouchData(
         touchTooltipData: BarTouchTooltipData(
-            tooltipBgColor: Colors.blueGrey,
+            // tooltipBgColor: Colors.blueGrey,
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
-              String weekDay;
-              switch (group.x.toInt()) {
-                case 0:
-                  weekDay = 'Monday';
-                  break;
-                case 1:
-                  weekDay = 'Tuesday';
-                  break;
-                case 2:
-                  weekDay = 'Wednesday';
-                  break;
-                case 3:
-                  weekDay = 'Thursday';
-                  break;
-                case 4:
-                  weekDay = 'Friday';
-                  break;
-                case 5:
-                  weekDay = 'Saturday';
-                  break;
-                case 6:
-                  weekDay = 'Sunday';
-                  break;
-                default:
-                  throw Error();
-              }
-              return BarTooltipItem(
-                weekDay + '\n',
-                TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+          String weekDay;
+          switch (group.x.toInt()) {
+            case 0:
+              weekDay = 'Monday';
+              break;
+            case 1:
+              weekDay = 'Tuesday';
+              break;
+            case 2:
+              weekDay = 'Wednesday';
+              break;
+            case 3:
+              weekDay = 'Thursday';
+              break;
+            case 4:
+              weekDay = 'Friday';
+              break;
+            case 5:
+              weekDay = 'Saturday';
+              break;
+            case 6:
+              weekDay = 'Sunday';
+              break;
+            default:
+              throw Error();
+          }
+          return BarTooltipItem(
+            weekDay + '\n',
+            TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+            children: <TextSpan>[
+              TextSpan(
+                text: (rod.toY - 1).toString(),
+                style: TextStyle(
+                  color: Colors.yellow,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
                 ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: (rod.toY - 1).toString(),
-                    style: TextStyle(
-                      color: Colors.yellow,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              );
-            }),
+              ),
+            ],
+          );
+        }),
         touchCallback: (
           event,
           barTouchResponse,
@@ -206,12 +209,12 @@ class BarChartSample1State extends State<BarChartSample1> {
           });
         },
       ),
-      gridData: FlGridData(
+      gridData: const FlGridData(
         show: false,
       ),
       titlesData: FlTitlesData(
         show: false,
-        topTitles: AxisTitles(
+        topTitles: const AxisTitles(
           sideTitles: SideTitles(
             showTitles: false,
           ),
@@ -222,21 +225,21 @@ class BarChartSample1State extends State<BarChartSample1> {
             getTitlesWidget: (double value, TitleMeta meta) {
               switch (value.toInt()) {
                 case 0:
-                  return _BarChartTitle('M');
+                  return const _BarChartTitle('M');
                 case 1:
-                  return _BarChartTitle('T');
+                  return const _BarChartTitle('T');
                 case 2:
-                  return _BarChartTitle('W');
+                  return const _BarChartTitle('W');
                 case 3:
-                  return _BarChartTitle('T');
+                  return const _BarChartTitle('T');
                 case 4:
-                  return _BarChartTitle('F');
+                  return const _BarChartTitle('F');
                 case 5:
-                  return _BarChartTitle('S');
+                  return const _BarChartTitle('S');
                 case 6:
-                  return _BarChartTitle('S');
+                  return const _BarChartTitle('S');
                 default:
-                  return _BarChartTitle('');
+                  return const _BarChartTitle('');
               }
             },
           ),

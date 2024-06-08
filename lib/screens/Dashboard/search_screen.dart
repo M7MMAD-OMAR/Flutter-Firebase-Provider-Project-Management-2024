@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
-import 'package:taskez/widgets/Forms/search_box.dart';
-import 'package:taskez/widgets/Search/task_card.dart';
-import 'package:taskez/widgets/Shapes/app_settings_icon.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/search_box.dart';
+import 'package:project_management_muhmad_omar/widgets/Search/task_card.dart';
+import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.dart';
 
 class SearchScreen extends StatelessWidget {
   SearchScreen({Key? key}) : super(key: key);

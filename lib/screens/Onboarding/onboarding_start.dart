@@ -1,15 +1,15 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Onboarding/onboarding_carousel.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Onboarding/background_image.dart';
-import 'package:taskez/widgets/Onboarding/bubble.dart';
-import 'package:taskez/widgets/Onboarding/loading_stickers.dart';
-import 'dart:math' as math;
-
-import 'package:taskez/widgets/Shapes/background_hexagon.dart';
+import 'package:project_management_muhmad_omar/Screens/Onboarding/onboarding_carousel.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/background_image.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/bubble.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/loading_stickers.dart';
+import 'package:project_management_muhmad_omar/widgets/Shapes/background_hexagon.dart';
 
 class OnboardingStart extends StatelessWidget {
   @override

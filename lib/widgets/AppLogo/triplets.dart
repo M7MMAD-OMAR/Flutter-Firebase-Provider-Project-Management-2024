@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:taskez/widgets/AppLogo/triplets_container.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+import 'package:project_management_muhmad_omar/widgets/AppLogo/triplets_container.dart';
 
 class TripletsLogo extends StatelessWidget {
   @override

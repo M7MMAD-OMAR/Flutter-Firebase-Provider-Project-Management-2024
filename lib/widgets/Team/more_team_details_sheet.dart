@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/BottomSheets/bottom_sheet_holder.dart';
-import 'package:taskez/widgets/Forms/form_input_with%20_label.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/BottomSheets/bottom_sheet_holder.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
 
 import '../container_label.dart';
 

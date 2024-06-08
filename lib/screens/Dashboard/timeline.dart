@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Constants/constants.dart';
-import 'package:taskez/Screens/Dashboard/dashboard.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Dashboard/bottomNavigationItem.dart';
-import 'package:taskez/widgets/Dashboard/dashboard_add_icon.dart';
-import 'package:taskez/widgets/Dashboard/dashboard_add_sheet.dart';
+import 'package:project_management_muhmad_omar/Constants/constants.dart';
+import 'package:project_management_muhmad_omar/Screens/Dashboard/dashboard.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/bottomNavigationItem.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_sheet.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets.dart';
 
 class Timeline extends StatefulWidget {
   Timeline({Key? key}) : super(key: key);

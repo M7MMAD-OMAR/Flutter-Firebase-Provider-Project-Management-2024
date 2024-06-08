@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/dummy/green_done_icon.dart';
-import 'package:taskez/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/green_done_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 class ProjectTaskInActiveCard extends StatelessWidget {
   final String header;

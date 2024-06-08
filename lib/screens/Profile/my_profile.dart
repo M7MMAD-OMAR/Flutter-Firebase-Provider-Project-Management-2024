@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Profile/edit_profile.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Navigation/default_back.dart';
-import 'package:taskez/widgets/Onboarding/toggle_option.dart';
-import 'package:taskez/widgets/Profile/profile_text_option.dart';
-import 'package:taskez/widgets/Profile/text_outlined_button.dart';
-import 'package:taskez/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/Screens/Profile/edit_profile.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/default_back.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/toggle_option.dart';
+import 'package:project_management_muhmad_omar/widgets/Profile/profile_text_option.dart';
+import 'package:project_management_muhmad_omar/widgets/Profile/text_outlined_button.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 class ProfilePage extends StatefulWidget {
   @override

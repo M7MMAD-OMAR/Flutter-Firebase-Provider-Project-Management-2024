@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Projects/project_badge.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_badge.dart';
 
 class ProjectDetailAppBar extends StatelessWidget {
   final String color;

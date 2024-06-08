@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Profile/my_profile.dart';
-import 'package:taskez/Screens/Profile/my_team.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_progress_button.dart';
-import 'package:taskez/widgets/Buttons/progress_card_close_button.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Profile/badged_container.dart';
-import 'package:taskez/widgets/Profile/text_outlined_button.dart';
-import 'package:taskez/widgets/container_label.dart';
-import 'package:taskez/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/Screens/Profile/my_profile.dart';
+import 'package:project_management_muhmad_omar/Screens/Profile/my_team.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/progress_card_close_button.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Profile/badged_container.dart';
+import 'package:project_management_muhmad_omar/widgets/Profile/text_outlined_button.dart';
+import 'package:project_management_muhmad_omar/widgets/container_label.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 import 'profile_notification_settings.dart';
 

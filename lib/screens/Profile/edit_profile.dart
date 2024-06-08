@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_progress_button.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Forms/form_input_with%20_label.dart';
-import 'package:taskez/widgets/Navigation/app_header.dart';
-import 'package:taskez/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 class EditProfilePage extends StatelessWidget {
   EditProfilePage({Key? key}) : super(key: key);

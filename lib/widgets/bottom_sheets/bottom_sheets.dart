@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/BottomSheets/project_detail_sheet.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/BottomSheets/project_detail_sheet.dart';
 
 class TaskezBottomSheet {
   // static const MethodChannel _channel = MethodChannel('taskezBottomSheet');

@@ -2,36 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Screens/Task/set_assignees.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/BottomSheets/bottom_sheet_holder.dart';
-import 'package:taskez/widgets/Dashboard/sheet_goto_calendar.dart';
-import 'package:taskez/widgets/Forms/form_input_unlabelled.dart';
-import 'package:taskez/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/Screens/Task/set_assignees.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/BottomSheets/bottom_sheet_holder.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/sheet_goto_calendar.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_unlabelled.dart';
+import 'package:project_management_muhmad_omar/widgets/add_sub_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
-import '../add_sub_icon.dart';
 import 'dashboard_add_project_sheet.dart';
 
 // ignore: must_be_immutable
 class CreateTaskBottomSheet extends StatelessWidget {
-  CreateTaskBottomSheet({Key? key}) : super(key: key);
+  CreateTaskBottomSheet({super.key});
 
-  TextEditingController _taskNameController = new TextEditingController();
+  final TextEditingController _taskNameController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(children: [
         AppSpaces.verticalSpace10,
-        BottomSheetHolder(),
+        const BottomSheetHolder(),
         AppSpaces.verticalSpace10,
         Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              Icon(Icons.contacts, color: Colors.white),
+              const Icon(Icons.contacts, color: Colors.white),
               AppSpaces.horizontalSpace10,
               Text("Unity Dashboard  ",
                   style: GoogleFonts.lato(

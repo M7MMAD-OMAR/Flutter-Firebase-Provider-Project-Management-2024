@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_progress_button.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Navigation/default_back.dart';
-import 'package:taskez/widgets/Onboarding/gradient_color_ball.dart';
-import 'package:taskez/widgets/container_label.dart';
-import 'package:taskez/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/default_back.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/gradient_color_ball.dart';
+import 'package:project_management_muhmad_omar/widgets/container_label.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 import 'choose_plan.dart';
 

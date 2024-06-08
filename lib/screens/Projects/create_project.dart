@@ -2,19 +2,19 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/BottomSheets/bottom_sheets.dart';
-import 'package:taskez/Data/data_model.dart';
-import 'package:taskez/Screens/Chat/messaging_screen.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Chat/post_bottom_widget.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Dashboard/in_bottomsheet_subtitle.dart';
-import 'package:taskez/widgets/Dashboard/sheet_goto_calendar.dart';
-import 'package:taskez/widgets/Navigation/back_button.dart';
-import 'package:taskez/widgets/Notification/notification_card.dart';
-import 'package:taskez/widgets/Projects/project_badge.dart';
-import 'package:taskez/widgets/Projects/project_selectable_container.dart';
-import 'package:taskez/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/Screens/Chat/messaging_screen.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/utils/data_model.dart';
+import 'package:project_management_muhmad_omar/widgets/Chat/post_bottom_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/in_bottomsheet_subtitle.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/sheet_goto_calendar.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/back_button.dart';
+import 'package:project_management_muhmad_omar/widgets/Notification/notification_card.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_badge.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_selectable_container.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 class CreateProjectScreen extends StatelessWidget {
   const CreateProjectScreen({Key? key}) : super(key: key);

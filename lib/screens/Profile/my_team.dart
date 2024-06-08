@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:taskez/Constants/constants.dart';
-import 'package:taskez/Data/data_model.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Navigation/app_header.dart';
-import 'package:taskez/widgets/Projects/project_card_vertical.dart';
-import 'package:taskez/widgets/add_sub_icon.dart';
-import 'package:taskez/widgets/container_label.dart';
+import 'package:project_management_muhmad_omar/Constants/constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/utils/data_model.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_card_vertical.dart';
+import 'package:project_management_muhmad_omar/widgets/add_sub_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/container_label.dart';
 
 import 'team_details.dart';
 

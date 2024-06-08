@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Auth/new_workspace.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Forms/form_input_with%20_label.dart';
-import 'package:taskez/widgets/Navigation/back.dart';
+import 'package:project_management_muhmad_omar/Screens/Auth/new_workspace.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/back.dart';
 
 class Login extends StatefulWidget {
   final String email;

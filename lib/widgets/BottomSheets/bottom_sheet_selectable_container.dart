@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Dashboard/in_bottomsheet_subtitle.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/in_bottomsheet_subtitle.dart';
 
 class LabelledSelectableContainer extends StatelessWidget {
   final String label;

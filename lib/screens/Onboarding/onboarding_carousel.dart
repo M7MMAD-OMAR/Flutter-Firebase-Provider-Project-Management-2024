@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Auth/email_address.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Onboarding/image_outlined_button.dart';
-import 'package:taskez/widgets/Onboarding/slider_captioned_image.dart';
+import 'package:project_management_muhmad_omar/Screens/Auth/email_address.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/image_outlined_button.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/slider_captioned_image.dart';
 
 class OnboardingCarousel extends StatefulWidget {
   @override

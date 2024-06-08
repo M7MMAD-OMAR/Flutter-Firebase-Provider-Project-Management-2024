@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Dashboard/task_container_image.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/task_container_image.dart';
 
 class OverviewTaskContainer extends StatelessWidget {
   final Color backgroundColor;

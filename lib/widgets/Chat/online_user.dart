@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Chat/messaging_screen.dart';
-import 'package:taskez/Values/values.dart';
+import 'package:project_management_muhmad_omar/Screens/Chat/messaging_screen.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 import 'online_user_profile.dart';
 

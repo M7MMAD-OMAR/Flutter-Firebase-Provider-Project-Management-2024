@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shapes/flutter_shapes.dart';
-import 'package:taskez/Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class BackgroundHexagon extends CustomPainter {
   @override

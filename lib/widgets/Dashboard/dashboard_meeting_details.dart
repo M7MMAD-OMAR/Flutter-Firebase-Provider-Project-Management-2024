@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Screens/Projects/set_members.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/BottomSheets/bottom_sheet_holder.dart';
-import 'package:taskez/widgets/BottomSheets/bottom_sheet_selectable_container.dart';
-import 'package:taskez/widgets/Buttons/primary_buttons.dart';
-import 'package:taskez/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/Screens/Projects/set_members.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/BottomSheets/bottom_sheet_holder.dart';
+import 'package:project_management_muhmad_omar/widgets/BottomSheets/bottom_sheet_selectable_container.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 import 'in_bottomsheet_subtitle.dart';
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Chat/online_user.dart';
-import 'package:taskez/widgets/Chat/post_bottom_widget.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Navigation/app_header.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Chat/online_user.dart';
+import 'package:project_management_muhmad_omar/widgets/Chat/post_bottom_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
 
 class MessagingScreen extends StatelessWidget {
   final String userName;

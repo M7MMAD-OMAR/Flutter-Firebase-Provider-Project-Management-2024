@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:taskez/Values/values.dart';
-
-import 'package:taskez/widgets/Search/active_task_card.dart';
-import 'package:taskez/widgets/Search/inactive_task_card.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Search/active_task_card.dart';
+import 'package:project_management_muhmad_omar/widgets/Search/inactive_task_card.dart';
 
 class SearchTaskCard extends StatelessWidget {
   final bool activated;

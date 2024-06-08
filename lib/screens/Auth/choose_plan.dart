@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:taskez/Screens/Dashboard/timeline.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_progress_button.dart';
-import 'package:taskez/widgets/DarkBackground/darkRadialBackground.dart';
-import 'package:taskez/widgets/Navigation/default_back.dart';
-import 'package:taskez/widgets/Onboarding/plan_card.dart';
-import 'package:taskez/widgets/Onboarding/toggle_option.dart';
+import 'package:project_management_muhmad_omar/Screens/Dashboard/timeline.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button.dart';
+import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/default_back.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/plan_card.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/toggle_option.dart';
 
 class ChoosePlan extends StatelessWidget {
   ChoosePlan({super.key});

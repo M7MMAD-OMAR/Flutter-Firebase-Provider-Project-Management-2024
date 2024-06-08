@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:taskez/Data/data_model.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/Buttons/primary_tab_buttons.dart';
-import 'package:taskez/widgets/Chat/add_chat_icon.dart';
-import 'package:taskez/widgets/Navigation/app_header.dart';
-import 'package:taskez/widgets/Projects/project_card_horizontal.dart';
-import 'package:taskez/widgets/Projects/project_card_vertical.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/utils/data_model.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons.dart';
+import 'package:project_management_muhmad_omar/widgets/Chat/add_chat_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_card_horizontal.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_card_vertical.dart';
 
 class ProjectScreen extends StatelessWidget {
   ProjectScreen({Key? key}) : super(key: key);
@@ -16,8 +16,8 @@ class ProjectScreen extends StatelessWidget {
     final _settingsButtonTrigger = ValueNotifier(0);
     final _switchGridLayout = ValueNotifier(false);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.only(right: 20, left: 20),
+      const Padding(
+        padding: EdgeInsets.only(right: 20, left: 20),
         child: SafeArea(
           child: TaskezAppHeader(
             title: "Projects",

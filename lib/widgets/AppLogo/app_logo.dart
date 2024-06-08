@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taskez/Values/values.dart';
-import 'package:taskez/widgets/AppLogo/triplets.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/AppLogo/triplets.dart';
 
 class AppLogo extends StatelessWidget {
   @override
