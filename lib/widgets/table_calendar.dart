@@ -61,7 +61,7 @@ class _CalendarViewState extends State<CalendarView> {
         focusedDay: _focusedDay,
         calendarFormat: _calendarFormat,
         daysOfWeekStyle:
-            DaysOfWeekStyle(weekdayStyle: TextStyle(color: Colors.grey)),
+            const DaysOfWeekStyle(weekdayStyle: TextStyle(color: Colors.grey)),
         headerStyle: HeaderStyle(
             titleCentered: true,
             titleTextStyle: GoogleFonts.lato(
@@ -69,20 +69,20 @@ class _CalendarViewState extends State<CalendarView> {
                 fontWeight: FontWeight.bold,
                 fontSize: 20),
             formatButtonVisible: false,
-            leftChevronIcon: RoundedBorderWithIcon(
+            leftChevronIcon: const RoundedBorderWithIcon(
               icon: Icons.arrow_back,
               width: 30,
               height: 30,
             ),
-            rightChevronIcon: RoundedBorderWithIcon(
+            rightChevronIcon: const RoundedBorderWithIcon(
               icon: Icons.arrow_forward,
               width: 30,
               height: 30,
             )),
         calendarStyle: CalendarStyle(
-            weekendTextStyle: TextStyle(color: Colors.grey),
-            defaultTextStyle: TextStyle(color: Colors.white),
-            outsideTextStyle: TextStyle(color: Colors.white),
+            weekendTextStyle: const TextStyle(color: Colors.grey),
+            defaultTextStyle: const TextStyle(color: Colors.white),
+            outsideTextStyle: const TextStyle(color: Colors.white),
             markerDecoration:
                 kBlueCircleForCalendar.copyWith(color: const Color(0xCC448AFF)),
             markerSize: 5,

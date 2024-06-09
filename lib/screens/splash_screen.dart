@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/widgets/AppLogo/app_logo.dart';
-import 'package:project_management_muhmad_omar/widgets/DarkBackground/darkRadialBackground.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-import 'Onboarding/onboarding_start.dart';
+import 'onboarding_screen/onboarding_start.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   final Shader linearGradient = LinearGradient(
     begin: FractionalOffset.topCenter,
     colors: <Color>[HexColor.fromHex("#a7b2fd"), HexColor.fromHex("#c1a0fd")],
-  ).createShader(Rect.fromLTWH(0.0, 0.0, 30.0, 40.0));
+  ).createShader(const Rect.fromLTWH(0.0, 0.0, 30.0, 40.0));
 
   @override
   Widget build(BuildContext context) {
@@ -34,21 +35,19 @@ class _SplashScreenState extends State<SplashScreen> {
           color: HexColor.fromHex("#181a1f"),
           position: "topLeft",
         ),
-        Positioned(left: 140, child: AppLogo()),
+        // const Positioned(left: 140, child: AppLogo()), TODO
         Center(
-            child: Container(
-          child: RichText(
-            text: TextSpan(
-              text: 'Task',
-              style: GoogleFonts.lato(fontSize: 40),
-              children: <TextSpan>[
-                TextSpan(
-                    text: 'ez',
-                    style: TextStyle(
-                        foreground: Paint()..shader = linearGradient,
-                        fontWeight: FontWeight.bold)),
-              ],
-            ),
+            child: RichText(
+          text: TextSpan(
+            text: 'Task',
+            style: GoogleFonts.lato(fontSize: 40),
+            children: <TextSpan>[
+              TextSpan(
+                  text: 'ez',
+                  style: TextStyle(
+                      foreground: Paint()..shader = linearGradient,
+                      fontWeight: FontWeight.bold)),
+            ],
           ),
         ))
         // DarkRadialBackground(

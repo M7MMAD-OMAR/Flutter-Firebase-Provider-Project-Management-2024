@@ -147,7 +147,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/
-    - src/providers/
+    - lib/providers/
     - assets/icon/
     - assets/lang/
     - assets/memoji/

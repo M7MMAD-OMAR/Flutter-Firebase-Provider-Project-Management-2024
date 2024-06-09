@@ -1,4 +1,4 @@
-part of values;
+part of 'values.dart';
 
 class BoxDecorationStyles {
   static final BoxDecoration fadingGlory = BoxDecoration(
@@ -7,11 +7,11 @@ class BoxDecorationStyles {
         end: Alignment.bottomRight,
         colors: [
           HexColor.fromHex("625B8B"),
-          Color.fromRGBO(98, 99, 102, 1),
+          const Color.fromRGBO(98, 99, 102, 1),
           HexColor.fromHex("#181a1f"),
           HexColor.fromHex("#181a1f")
         ]),
-    borderRadius: BorderRadius.only(
+    borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20), topRight: Radius.circular(20)),
     //border: Border.all(color: Colors.red, width: 5)
   );
