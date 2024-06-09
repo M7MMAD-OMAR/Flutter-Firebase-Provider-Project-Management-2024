@@ -7,8 +7,7 @@ class OnlineUserProfile extends StatelessWidget {
   final String imageBackground;
 
   const OnlineUserProfile(
-      {Key? key, required this.image, required this.imageBackground})
-      : super(key: key);
+      {super.key, required this.image, required this.imageBackground});
 
   @override
   Widget build(BuildContext context) {

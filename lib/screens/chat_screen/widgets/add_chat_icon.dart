@@ -8,11 +8,11 @@ class AppAddIcon extends StatelessWidget {
   final double? scale;
 
   const AppAddIcon({
-    Key? key,
+    super.key,
     this.page,
     this.scale,
     this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class AppAddIcon extends StatelessWidget {
               color: color ?? Colors.transparent,
               border: Border.all(
                   width: 2, color: color ?? HexColor.fromHex("616575"))),
-          child: Icon(Icons.add, color: Colors.white)),
+          child: const Icon(Icons.add, color: Colors.white)),
     );
   }
 }
