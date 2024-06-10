@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/email_address.dart';
+import 'package:project_management_muhmad_omar/screens/auth_screen/email_address_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/image_outlined_button.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/slider_captioned_image.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-class OnboardingCarousel extends StatefulWidget {
-  const OnboardingCarousel({super.key});
+class OnboardingCarouselScreen extends StatefulWidget {
+  const OnboardingCarouselScreen({super.key});
 
   @override
-  _OnboardingCarouselState createState() => _OnboardingCarouselState();
+  OnboardingCarouselScreenState createState() =>
+      OnboardingCarouselScreenState();
 }
 
-class _OnboardingCarouselState extends State<OnboardingCarousel> {
+class OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;

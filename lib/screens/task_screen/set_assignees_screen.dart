@@ -12,7 +12,7 @@ class SetAssigneesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _searchController = new TextEditingController();
+    final searchController = TextEditingController();
     final dynamic data = AppData.employeeData;
     List<Widget> cards = List.generate(
         AppData.employeeData.length,
@@ -31,8 +31,8 @@ class SetAssigneesScreen extends StatelessWidget {
       ),
       SafeArea(
         child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 20, left: 20),
+          const Padding(
+            padding: EdgeInsets.only(right: 20, left: 20),
             child: TaskezAppHeader(
               title: "Set Assignees",
               widget: AppPrimaryButton(
@@ -42,7 +42,7 @@ class SetAssigneesScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 40),
+          const SizedBox(height: 40),
           Expanded(
               flex: 1,
               child: Container(
@@ -60,7 +60,7 @@ class SetAssigneesScreen extends StatelessWidget {
                                   children: [
                                     SearchBox(
                                         placeholder: 'Search',
-                                        controller: _searchController),
+                                        controller: searchController),
                                     AppSpaces.verticalSpace20,
                                     Expanded(
                                         child: MediaQuery.removePadding(

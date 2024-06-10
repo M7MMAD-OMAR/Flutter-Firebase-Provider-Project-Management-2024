@@ -8,13 +8,13 @@ import 'package:project_management_muhmad_omar/utils/data_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
 
-class ProjectScreen extends StatelessWidget {
-  ProjectScreen({Key? key}) : super(key: key);
+class DashboardProjectScreen extends StatelessWidget {
+  const DashboardProjectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _settingsButtonTrigger = ValueNotifier(0);
-    final _switchGridLayout = ValueNotifier(false);
+    final settingsButtonTrigger = ValueNotifier(0);
+    final switchGridLayout = ValueNotifier(false);
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const Padding(
         padding: EdgeInsets.only(right: 20, left: 20),
@@ -36,27 +36,27 @@ class ProjectScreen extends StatelessWidget {
               PrimaryTabButton(
                   buttonText: "Favorites",
                   itemIndex: 0,
-                  notifier: _settingsButtonTrigger),
+                  notifier: settingsButtonTrigger),
               PrimaryTabButton(
                   buttonText: "Recent",
                   itemIndex: 1,
-                  notifier: _settingsButtonTrigger),
+                  notifier: settingsButtonTrigger),
               PrimaryTabButton(
                   buttonText: "All",
                   itemIndex: 2,
-                  notifier: _settingsButtonTrigger)
+                  notifier: settingsButtonTrigger)
             ],
           ),
           Container(
               alignment: Alignment.centerRight,
               child: InkWell(
                   onTap: () {
-                    _switchGridLayout.value = !_switchGridLayout.value;
+                    switchGridLayout.value = !switchGridLayout.value;
                   },
                   child: ValueListenableBuilder(
-                      valueListenable: _switchGridLayout,
+                      valueListenable: switchGridLayout,
                       builder: (BuildContext context, _, __) {
-                        return _switchGridLayout.value
+                        return switchGridLayout.value
                             ? const Icon(FeatherIcons.clipboard,
                                 color: Colors.white, size: 30)
                             : const Icon(FeatherIcons.grid,
@@ -72,16 +72,16 @@ class ProjectScreen extends StatelessWidget {
             context: context,
             removeTop: true,
             child: ValueListenableBuilder(
-              valueListenable: _switchGridLayout,
+              valueListenable: switchGridLayout,
               builder: (BuildContext context, _, __) {
                 return GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: _switchGridLayout.value ? 2 : 1,
+                    crossAxisCount: switchGridLayout.value ? 2 : 1,
                     mainAxisSpacing: 10,
-                    mainAxisExtent: _switchGridLayout.value ? 220 : 125,
+                    mainAxisExtent: switchGridLayout.value ? 220 : 125,
                     crossAxisSpacing: 10,
                   ),
-                  itemBuilder: (_, index) => _switchGridLayout.value
+                  itemBuilder: (_, index) => switchGridLayout.value
                       ? ProjectCardVertical(
                           projectName: AppData.productData[index]
                               ['projectName'],

@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/new_workspace.dart';
+import 'package:project_management_muhmad_omar/screens/auth_screen/new_workspace_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/back.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-class Login extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   final String email;
 
-  const Login({super.key, required this.email});
+  const LoginScreen({super.key, required this.email});
 
   @override
-  LoginState createState() => LoginState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class LoginState extends State<Login> {
+class LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passController = TextEditingController();
   bool obscureText = false;
 
@@ -70,7 +70,7 @@ class LoginState extends State<Login> {
               height: 60,
               child: ElevatedButton(
                   onPressed: () {
-                    Get.to(() => const NewWorkSpace());
+                    Get.to(() => const NewWorkSpaceScreen());
                   },
                   style: ButtonStyles.blueRounded,
                   child: Text('Sign In',

@@ -8,8 +8,8 @@ import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_
 import 'package:project_management_muhmad_omar/widgets/Navigation/default_back.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-class ChoosePlan extends StatelessWidget {
-  const ChoosePlan({super.key});
+class ChoosePlanScreen extends StatelessWidget {
+  const ChoosePlanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

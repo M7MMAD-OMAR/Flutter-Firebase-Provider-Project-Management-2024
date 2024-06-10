@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/Constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/chat_screen/new_group.dart';
+import 'package:project_management_muhmad_omar/screens/chat_screen/new_group_screen.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/widgets/add_chat_icon.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/widgets/badged_title.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/widgets/selection_tab.dart';

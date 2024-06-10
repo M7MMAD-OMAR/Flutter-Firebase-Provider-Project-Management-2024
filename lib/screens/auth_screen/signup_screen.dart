@@ -5,18 +5,18 @@ import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_
 import 'package:project_management_muhmad_omar/widgets/Navigation/back.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-import 'login.dart';
+import 'login_screen.dart';
 
-class SignUp extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   final String email;
 
-  const SignUp({super.key, required this.email});
+  const SignUpScreen({super.key, required this.email});
 
   @override
-  _SignUpState createState() => _SignUpState();
+  SignUpScreenState createState() => SignUpScreenState();
 }
 
-class _SignUpState extends State<SignUp> {
+class SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   bool obscureText = false;
@@ -80,7 +80,7 @@ class _SignUpState extends State<SignUp> {
                   height: 60,
                   child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => Login(email: widget.email));
+                        Get.to(() => LoginScreen(email: widget.email));
                       },
                       style: ButtonStyles.blueRounded,
                       child: Text('Sign Up',

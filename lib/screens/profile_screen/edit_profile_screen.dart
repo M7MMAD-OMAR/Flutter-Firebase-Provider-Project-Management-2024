@@ -8,17 +8,17 @@ import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dar
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
-class EditProfilePage extends StatelessWidget {
-  EditProfilePage({Key? key}) : super(key: key);
+class EditProfileScreen extends StatelessWidget {
+  const EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final String tabSpace = "\t\t\t";
-    final _nameController = new TextEditingController();
-    final _passController = new TextEditingController();
-    final _emailController = new TextEditingController();
-    final _roleController = new TextEditingController();
-    final _aboutController = new TextEditingController();
+    const String tabSpace = "\t\t\t";
+    final nameController = TextEditingController();
+    final passController = TextEditingController();
+    final emailController = TextEditingController();
+    final roleController = TextEditingController();
+    final aboutController = TextEditingController();
     return Scaffold(
         body: Stack(children: [
       DarkRadialBackground(
@@ -62,35 +62,35 @@ class EditProfilePage extends StatelessWidget {
             LabelledFormInput(
                 placeholder: "Blake Gordon",
                 keyboardType: "text",
-                controller: _nameController,
+                controller: nameController,
                 obscureText: false,
                 label: "Your Name"),
             AppSpaces.verticalSpace20,
             LabelledFormInput(
                 placeholder: "blake@gmail.com",
                 keyboardType: "text",
-                controller: _emailController,
+                controller: emailController,
                 obscureText: true,
                 label: "Your Email"),
             AppSpaces.verticalSpace20,
             LabelledFormInput(
                 placeholder: "HikLHjD@&1?>",
                 keyboardType: "text",
-                controller: _passController,
+                controller: passController,
                 obscureText: true,
                 label: "Your Password"),
             AppSpaces.verticalSpace20,
             LabelledFormInput(
                 placeholder: "Visual Designer",
                 keyboardType: "text",
-                controller: _roleController,
+                controller: roleController,
                 obscureText: true,
                 label: "Role"),
             AppSpaces.verticalSpace20,
             LabelledFormInput(
                 placeholder: "Design & Cat Person",
                 keyboardType: "text",
-                controller: _aboutController,
+                controller: aboutController,
                 obscureText: true,
                 label: "About Me"),
           ]))))

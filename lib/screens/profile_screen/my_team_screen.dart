@@ -8,10 +8,10 @@ import 'package:project_management_muhmad_omar/widgets/add_sub_icon.dart';
 import 'package:project_management_muhmad_omar/widgets/container_label.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-import 'team_details.dart';
+import 'team_details_screen.dart';
 
-class MyTeams extends StatelessWidget {
-  const MyTeams({Key? key}) : super(key: key);
+class MyTeamScreen extends StatelessWidget {
+  const MyTeamScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +143,7 @@ class TeamStory extends StatelessWidget {
         AppSpaces.verticalSpace10,
         InkWell(
           onTap: () {
-            Get.to(() => TeamDetails(title: teamTitle));
+            Get.to(() => TeamDetailsScreen(title: teamTitle));
           },
           child: Transform.scale(
               alignment: Alignment.centerLeft,

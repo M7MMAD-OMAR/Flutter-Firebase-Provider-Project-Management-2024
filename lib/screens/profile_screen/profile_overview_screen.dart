@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/profile_screen/my_profile.dart';
-import 'package:project_management_muhmad_omar/screens/profile_screen/my_team.dart';
+import 'package:project_management_muhmad_omar/screens/profile_screen/my_profile_screen.dart';
+import 'package:project_management_muhmad_omar/screens/profile_screen/my_team_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile_screen/widgets/badged_container.dart';
 import 'package:project_management_muhmad_omar/screens/profile_screen/widgets/text_outlined_button.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button.dart';
@@ -11,10 +11,10 @@ import 'package:project_management_muhmad_omar/widgets/container_label.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
-import 'profile_notification_settings.dart';
+import 'profile_notification_settings_screen.dart';
 
-class ProfileOverview extends StatelessWidget {
-  const ProfileOverview({Key? key}) : super(key: key);
+class ProfileOverviewScreen extends StatelessWidget {
+  const ProfileOverviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class ProfileOverview extends StatelessWidget {
                 width: 150,
                 content: "View Profile",
                 onPressed: () {
-                  Get.to(() => ProfilePage());
+                  Get.to(() => MyProfileScreen());
                 },
               ),
             ),
@@ -110,7 +110,7 @@ class ProfileOverview extends StatelessWidget {
             BadgedContainer(
               label: "Do not disturb",
               callback: () {
-                Get.to(() => const ProfileNotificationSettings());
+                Get.to(() => const ProfileNotificationSettingsScreen());
               },
               value: "Off",
               badgeColor: "FDA5FF",
@@ -126,7 +126,7 @@ class ProfileOverview extends StatelessWidget {
                   value: "8",
                   badgeColor: "FDA5FF",
                   callback: () {
-                    Get.to(() => const MyTeams());
+                    Get.to(() => const MyTeamScreen());
                   },
                 ),
               ),

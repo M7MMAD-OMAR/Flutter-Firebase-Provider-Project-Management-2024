@@ -4,8 +4,8 @@ import 'package:project_management_muhmad_omar/screens/chat_screen/widgets/add_c
 import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-class Projects extends StatelessWidget {
-  const Projects({Key? key}) : super(key: key);
+class ProjectsScreen extends StatelessWidget {
+  const ProjectsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,8 @@ class Projects extends StatelessWidget {
         color: HexColor.fromHex("#181a1f"),
         position: "topLeft",
       ),
-      Padding(
-          padding: const EdgeInsets.only(right: 20, left: 20),
+      const Padding(
+          padding: EdgeInsets.only(right: 20, left: 20),
           child: SafeArea(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

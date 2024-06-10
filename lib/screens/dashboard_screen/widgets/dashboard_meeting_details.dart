@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/projects_screen/set_members.dart';
+import 'package:project_management_muhmad_omar/screens/projects_screen/select_members_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_selectable_container.dart';

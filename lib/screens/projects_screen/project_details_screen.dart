@@ -9,20 +9,25 @@ import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-class ProjectDetails extends StatelessWidget {
+class ProjectDetailsScreen extends StatefulWidget {
   final String color;
   final String projectName;
   final String category;
 
-  ProjectDetails(
-      {Key? key,
+  const ProjectDetailsScreen(
+      {super.key,
       required this.color,
       required this.projectName,
-      required this.category})
-      : super(key: key);
+      required this.category});
 
-  ValueNotifier<int> _settingsButtonTrigger = ValueNotifier(0);
-  ValueNotifier<int> _layoutButtonTrigger = ValueNotifier(0);
+  @override
+  State<ProjectDetailsScreen> createState() => _ProjectDetailsScreenState();
+}
+
+class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
+  final ValueNotifier<int> _settingsButtonTrigger = ValueNotifier(0);
+
+  final ValueNotifier<int> _layoutButtonTrigger = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +45,12 @@ class ProjectDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ProjectDetailAppBar(
-                      category: category,
-                      color: color,
+                      category: widget.category,
+                      color: widget.color,
                       iconTapped: (() {
                         showSettingsBottomSheet();
                       }),
-                      projectName: projectName,
+                      projectName: widget.projectName,
                     ),
                     AppSpaces.verticalSpace20,
                     Row(

@@ -6,8 +6,8 @@ import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dar
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 import 'package:project_management_muhmad_omar/widgets/table_calendar.dart';
 
-class TaskDueDate extends StatelessWidget {
-  const TaskDueDate({Key? key}) : super(key: key);
+class TaskDueDateScreen extends StatelessWidget {
+  const TaskDueDateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class TaskDueDate extends StatelessWidget {
               padding: EdgeInsets.only(right: 20, left: 20),
               child: TaskezAppHeader(title: "Due Date", widget: SizedBox()),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Expanded(
                 flex: 1,
                 child: Container(
@@ -41,7 +41,7 @@ class TaskDueDate extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      CalendarView(),
+                                      const CalendarView(),
                                       AppSpaces.verticalSpace20,
                                       Container(
                                           width: double.infinity,
@@ -80,7 +80,7 @@ class TaskDueDate extends StatelessWidget {
       Positioned(
           bottom: 50,
           child: Container(
-            padding: EdgeInsets.only(left: 40, right: 20),
+            padding: const EdgeInsets.only(left: 40, right: 20),
             width: Utils.getScreenWidth(context),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

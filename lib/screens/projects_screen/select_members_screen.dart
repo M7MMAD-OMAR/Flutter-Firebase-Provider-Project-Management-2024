@@ -8,11 +8,11 @@ import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radi
 import 'package:project_management_muhmad_omar/widgets/employee_card.dart';
 
 class SelectMembersScreen extends StatelessWidget {
-  SelectMembersScreen({Key? key}) : super(key: key);
+  const SelectMembersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _searchController = new TextEditingController();
+    final searchController = new TextEditingController();
     final dynamic data = AppData.employeeData;
     List<Widget> cards = List.generate(
         AppData.employeeData.length,
@@ -62,7 +62,7 @@ class SelectMembersScreen extends StatelessWidget {
                                     children: [
                                       SearchBox(
                                         placeholder: 'Search',
-                                        controller: _searchController,
+                                        controller: searchController,
                                       ),
                                       AppSpaces.verticalSpace20,
                                       Expanded(

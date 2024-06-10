@@ -8,7 +8,7 @@ import 'package:project_management_muhmad_omar/widgets/Navigation/back.dart';
 import 'package:project_management_muhmad_omar/widgets/Shapes/background_hexagon.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-import 'signup.dart';
+import 'signup_screen.dart';
 
 class EmailAddressScreen extends StatefulWidget {
   const EmailAddressScreen({super.key});
@@ -59,7 +59,7 @@ class EmailAddressScreenState extends State<EmailAddressScreen> {
             height: 60,
             child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() => SignUp(email: _emailController.text));
+                  Get.to(() => SignUpScreen(email: _emailController.text));
                 },
                 style: ButtonStyles.blueRounded,
                 child: Row(

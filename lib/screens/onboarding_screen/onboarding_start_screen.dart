@@ -3,14 +3,16 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel.dart';
+import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/background_image.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/bubble.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/loading_stickers.dart';
 import 'package:project_management_muhmad_omar/widgets/Shapes/background_hexagon.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-class OnboardingStart extends StatelessWidget {
+class OnboardingStartScreen extends StatelessWidget {
+  const OnboardingStartScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +92,7 @@ class OnboardingStart extends StatelessWidget {
               angle: -math.pi / 4,
               child: InkWell(
                 onTap: () {
-                  Get.to(() => const OnboardingCarousel());
+                  Get.to(() => const OnboardingCarouselScreen());
                 },
                 child: Container(
                     width: 200,
@@ -121,8 +123,8 @@ class OnboardingStart extends StatelessWidget {
                         text: 'Task Management ',
                         style: GoogleFonts.lato(
                             fontSize: 18, color: HexColor.fromHex("FDA5FF")),
-                        children: <TextSpan>[
-                          const TextSpan(
+                        children: const <TextSpan>[
+                          TextSpan(
                             text: '🙌',
                           ),
                         ],
@@ -134,17 +136,17 @@ class OnboardingStart extends StatelessWidget {
                             fontSize: 35,
                             fontWeight: FontWeight.bold)),
                     AppSpaces.verticalSpace20,
-                    Container(
+                    SizedBox(
                       width: 180,
                       height: 60,
                       child: ElevatedButton(
                           onPressed: () {
-                            Get.to(() => const OnboardingCarousel());
+                            Get.to(() => const OnboardingCarouselScreen());
                           },
                           style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(
+                              backgroundColor: WidgetStateProperty.all<Color>(
                                   HexColor.fromHex("246CFE")),
-                              shape: MaterialStateProperty.all<
+                              shape: WidgetStateProperty.all<
                                       RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50.0),

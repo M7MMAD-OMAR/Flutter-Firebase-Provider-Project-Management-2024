@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/widgets/online_user.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/notifications.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_projects_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/notifications_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_screen.dart';
 import 'package:project_management_muhmad_omar/utils/data_model.dart';
 
 String tabSpace = "\t\t\t";
 
 final List<Widget> dashBoardScreens = [
-  Dashboard(),
-  ProjectScreen(),
+  DashboardScreen(),
+  DashboardProjectScreen(),
   const NotificationScreen(),
   SearchScreen()
 ];

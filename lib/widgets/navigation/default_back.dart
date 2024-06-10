@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/profile_screen/edit_profile.dart';
+import 'package:project_management_muhmad_omar/screens/profile_screen/edit_profile_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile_screen/widgets/text_outlined_button.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
@@ -37,7 +37,7 @@ class DefaultNav extends StatelessWidget {
             width: 75,
             content: "Edit",
             onPressed: () {
-              Get.to(() => EditProfilePage());
+              Get.to(() => EditProfileScreen());
             },
           );
         } else {

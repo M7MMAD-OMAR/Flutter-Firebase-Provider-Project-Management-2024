@@ -17,7 +17,7 @@ import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radi
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 class CreateProjectScreen extends StatelessWidget {
-  const CreateProjectScreen({Key? key}) : super(key: key);
+  const CreateProjectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

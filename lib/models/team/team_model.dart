@@ -4,26 +4,16 @@ import '../../Utils/back_utils.dart';
 import '../tops/basic_model.dart';
 
 class TeamModel extends BasicModel {
-
   late String imageUrl;
-
 
   late String managerId;
 
   TeamModel({
-
-
     required String idParameter,
-
-
     required String managerIdParameter,
-
     required String nameParameter,
-
     required String imageUrlParameter,
-
     required DateTime createdAtParameter,
-
     required DateTime updatedAtParameter,
   }) {
     setId = idParameter;
@@ -36,16 +26,10 @@ class TeamModel extends BasicModel {
 
   TeamModel.firestoreConstructor({
     required String idParameter,
-
-
     required String mangerIdParameter,
-
     required String nameParameter,
-
     required String imageUrlParameter,
-
     required DateTime createdAtParameter,
-
     required DateTime updatedAtParameter,
   }) {
     id = idParameter;
@@ -82,17 +66,15 @@ class TeamModel extends BasicModel {
   set setName(String name) {
     Exception exception;
 
-
     if (name.isEmpty) {
       throw Exception("اسم الفريق لا يمكن أن يكون فارغاً");
     }
     if (name.length < 3) {
-      throw Exception(
-          "
-      }
+      throw Exception("اسم الفريق لايمكن أن يكون أقل من 3 حروف");
+    }
 
-          this.name = name;
-      }
+    this.name = name;
+  }
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
@@ -123,10 +105,10 @@ class TeamModel extends BasicModel {
     updatedAt = updatedAtParameter;
   }
 
-
   factory TeamModel.fromFirestore(
-      DocumentSnapshot<Map<String, dynamic>> snapshot,
-      SnapshotOptions? options,) {
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
     final data = snapshot.data()!;
 
     return TeamModel.firestoreConstructor(
@@ -138,7 +120,6 @@ class TeamModel extends BasicModel {
       updatedAtParameter: data['updatedAt'].toDate(),
     );
   }
-
 
   @override
   Map<String, dynamic> toFirestore() {

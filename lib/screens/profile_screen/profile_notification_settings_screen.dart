@@ -8,8 +8,8 @@ import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dar
 import 'package:project_management_muhmad_omar/widgets/container_label.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-class ProfileNotificationSettings extends StatelessWidget {
-  const ProfileNotificationSettings({Key? key}) : super(key: key);
+class ProfileNotificationSettingsScreen extends StatelessWidget {
+  const ProfileNotificationSettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

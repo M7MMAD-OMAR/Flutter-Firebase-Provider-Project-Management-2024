@@ -17,7 +17,7 @@ class AuthScreen extends StatelessWidget {
         child: Consumer<User?>(
           builder: (context, user, _) {
             if (user == null || !user.emailVerified && !user.isAnonymous) {
-              return OnboardingStart();
+              return const OnboardingStartScreen();
             } else if (user.isAnonymous ||
                 (user.emailVerified && !user.isAnonymous)) {
               return const TimelineScreen();

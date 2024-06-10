@@ -5,8 +5,8 @@ import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/
 import 'package:project_management_muhmad_omar/utils/data_model.dart';
 import 'package:tcard/tcard.dart';
 
-class DashboardOverview extends StatelessWidget {
-  const DashboardOverview({super.key});
+class DashboardOverviewScreen extends StatelessWidget {
+  const DashboardOverviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/labelled_option.dart';
-import 'package:project_management_muhmad_omar/screens/projects_screen/create_project.dart';
-import 'package:project_management_muhmad_omar/screens/projects_screen/set_members.dart';
-import 'package:project_management_muhmad_omar/screens/task_screen/task_due_date.dart';
+import 'package:project_management_muhmad_omar/screens/projects_screen/create_project_screen.dart';
+import 'package:project_management_muhmad_omar/screens/projects_screen/select_members_screen.dart';
+import 'package:project_management_muhmad_omar/screens/task_screen/task_due_date_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
@@ -39,7 +39,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
           label: 'Create Event',
           icon: Icons.fiber_smart_record,
           callback: () {
-            Get.to(() => TaskDueDate());
+            Get.to(() => TaskDueDateScreen());
           }),
     ]);
   }

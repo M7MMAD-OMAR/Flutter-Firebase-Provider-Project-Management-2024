@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:project_management_muhmad_omar/Constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/bottomNavigationItem.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/dashboard_add_icon.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/dashboard_add_sheet.dart';
@@ -10,16 +10,16 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
 class TimelineScreen extends StatefulWidget {
-  const TimelineScreen({Key? key}) : super(key: key);
+  const TimelineScreen({super.key});
 
   @override
-  _TimelineScreenState createState() => _TimelineScreenState();
+  TimelineScreenState createState() => TimelineScreenState();
 }
 
-class _TimelineScreenState extends State<TimelineScreen> {
+class TimelineScreenState extends State<TimelineScreen> {
   ValueNotifier<int> bottomNavigatorTrigger = ValueNotifier(0);
 
-  StatelessWidget currentScreen = Dashboard();
+  StatelessWidget currentScreen = DashboardScreen();
 
   final PageStorageBucket bucket = PageStorageBucket();
 

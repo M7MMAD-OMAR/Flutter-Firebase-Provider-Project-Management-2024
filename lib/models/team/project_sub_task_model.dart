@@ -3,37 +3,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../Utils/back_utils.dart';
 import 'task_model.dart';
 
-
 class ProjectSubTaskModel extends TaskClass {
   ProjectSubTaskModel({
-
-
     required String projectIdParameter,
-
-
     required String mainTaskIdParameter,
-
     required String descriptionParameter,
-
-
     required String idParameter,
-
     required String nameParameter,
-
-
     required String statusIdParameter,
-
     required int importanceParameter,
-
     required DateTime createdAtParameter,
-
     required DateTime updatedAtParameter,
-
     required DateTime startDateParameter,
-
     required DateTime endDateParameter,
-
-
     required String assignedToParameter,
     required String hexColorParameter,
   }) {
@@ -53,34 +35,17 @@ class ProjectSubTaskModel extends TaskClass {
   }
 
   ProjectSubTaskModel.firestoreConstructor({
-
-
     required String projectIdParameter,
-
-
     required String mainTaskIdParameter,
-
     String? descriptionParameter,
-
-
     required String idParameter,
-
     required String nameParameter,
-
-
     required String statusIdParameter,
-
     required int importanceParameter,
-
     required DateTime createdAtParameter,
-
     required DateTime updatedAtParameter,
-
     required DateTime startDateParameter,
-
     required DateTime endDateParameter,
-
-
     required String assignedToParameter,
     required String hexColorParameter,
   }) {
@@ -109,7 +74,6 @@ class ProjectSubTaskModel extends TaskClass {
     hexcolor = hexcolorParameter;
   }
 
-
   set setAssignedTo(String assignedToParameter) {
     if (assignedToParameter.isEmpty) {
       throw Exception("لايمكن أن يكون الشخص المسند له المهمة فارغا");
@@ -119,7 +83,6 @@ class ProjectSubTaskModel extends TaskClass {
   }
 
   late String mainTaskId;
-
 
   set setMainTaskId(String mainTaskIdParameter) {
     if (mainTaskIdParameter.isEmpty) {
@@ -131,12 +94,10 @@ class ProjectSubTaskModel extends TaskClass {
 
   late String projectId;
 
-
   set setprojectId(String projectIdParameter) {
     if (projectIdParameter.isEmpty) {
       throw Exception("لايمكن أن يكون المعرف فارغا");
     }
-
 
     projectId = projectIdParameter;
   }
@@ -247,7 +208,6 @@ class ProjectSubTaskModel extends TaskClass {
           "لا يمكن أن يكون تاريخ نهاية المهمة المهمة الفرعية قبل تاريخ بدايتها");
     }
 
-
     if ((endDateParameter).isAtSameMomentAs(getStartDate)) {
       throw Exception(
         "لا يمكن أن يكون تاريخ ووقت نهاية وبدايتها متساويين",
@@ -257,14 +217,15 @@ class ProjectSubTaskModel extends TaskClass {
     Duration diff = endDateParameter.difference(startDate);
     if (diff.inMinutes < 5) {
       throw Exception(
-          "
-      }
-          endDate = firebaseTime(endDateParameter);
+          "لايمكن أن يكون تاريخ ووقت نهاية المهمة المهمة الفرعية أقل من 5");
     }
+    endDate = firebaseTime(endDateParameter);
+  }
 
   factory ProjectSubTaskModel.fromFirestore(
-      DocumentSnapshot<Map<String, dynamic>> snapshot,
-      SnapshotOptions? options,) {
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options,
+  ) {
     final data = snapshot.data()!;
     return ProjectSubTaskModel.firestoreConstructor(
       hexColorParameter: data['color'],
@@ -283,7 +244,9 @@ class ProjectSubTaskModel extends TaskClass {
     );
   }
 
-  factory ProjectSubTaskModel.fromJson(Map<String, dynamic> data,) {
+  factory ProjectSubTaskModel.fromJson(
+    Map<String, dynamic> data,
+  ) {
     return ProjectSubTaskModel.firestoreConstructor(
       hexColorParameter: data['color'],
       nameParameter: data['name'],

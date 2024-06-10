@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/projects_screen/project_detail.dart';
+import 'package:project_management_muhmad_omar/screens/projects_screen/project_details_screen.dart';
 import 'package:project_management_muhmad_omar/screens/projects_screen/widgets/project_badge.dart';
 
 class ProjectCardHorizontal extends StatelessWidget {
@@ -24,7 +24,7 @@ class ProjectCardHorizontal extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ProjectDetails(
+        Get.to(() => ProjectDetailsScreen(
               category: category,
               projectName: projectName,
               color: color,

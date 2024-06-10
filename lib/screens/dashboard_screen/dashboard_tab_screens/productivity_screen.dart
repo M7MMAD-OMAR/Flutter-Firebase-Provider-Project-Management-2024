@@ -3,8 +3,8 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/daily_goal_card.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/productivity_chart.dart';
 
-class DashboardProductivity extends StatelessWidget {
-  const DashboardProductivity({Key? key}) : super(key: key);
+class DashboardProductivityScreen extends StatelessWidget {
+  const DashboardProductivityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class DashboardProductivity extends StatelessWidget {
       children: [
         DailyGoalCard(),
         AppSpaces.verticalSpace20,
-        const ProductivityChart()
+        ProductivityChart()
       ],
     );
   }

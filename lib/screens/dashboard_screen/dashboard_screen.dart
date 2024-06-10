@@ -3,18 +3,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/chat_screen.dart';
-import 'package:project_management_muhmad_omar/screens/profile_screen/profile_overview.dart';
+import 'package:project_management_muhmad_omar/screens/profile_screen/profile_overview_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/dasboard_header.dart';
 import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/dashboard_settings_sheet.dart';
 
-import 'dashboard_tab_screens/overview.dart';
-import 'dashboard_tab_screens/productivity.dart';
+import 'dashboard_tab_screens/overview_screen.dart';
+import 'dashboard_tab_screens/productivity_screen.dart';
 
-class Dashboard extends StatelessWidget {
-  Dashboard({super.key});
+class DashboardScreen extends StatelessWidget {
+  DashboardScreen({super.key});
 
   final ValueNotifier<bool> _totalTaskTrigger = ValueNotifier(true);
   final ValueNotifier<bool> _totalDueTrigger = ValueNotifier(false);
@@ -37,7 +37,7 @@ class Dashboard extends StatelessWidget {
                 page: ChatScreen(),
                 title: "Dashboard",
                 onImageTapped: () {
-                  Get.to(() => const ProfileOverview());
+                  Get.to(() => const ProfileOverviewScreen());
                 },
               ),
               AppSpaces.verticalSpace20,
@@ -81,8 +81,8 @@ class Dashboard extends StatelessWidget {
                   valueListenable: _buttonTrigger,
                   builder: (BuildContext context, _, __) {
                     return _buttonTrigger.value == 0
-                        ? const DashboardOverview()
-                        : const DashboardProductivity();
+                        ? const DashboardOverviewScreen()
+                        : const DashboardProductivityScreen();
                   })
             ]),
           ),

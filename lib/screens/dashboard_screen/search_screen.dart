@@ -7,14 +7,14 @@ import 'package:project_management_muhmad_omar/widgets/Search/task_card.dart';
 import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.dart';
 
 class SearchScreen extends StatelessWidget {
-  SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _searchController = new TextEditingController();
-    final _settingsButtonTrigger = ValueNotifier(0);
+    final searchController = TextEditingController();
+    final settingsButtonTrigger = ValueNotifier(0);
     return Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: SafeArea(
           child: Column(children: [
             Row(
@@ -29,7 +29,7 @@ class SearchScreen extends StatelessWidget {
                         BoxDecoration(borderRadius: BorderRadius.circular(10)),
                     child: SearchBox(
                         placeholder: 'Search Dashboard',
-                        controller: _searchController),
+                        controller: searchController),
                   ),
                 ),
                 Expanded(
@@ -54,15 +54,15 @@ class SearchScreen extends StatelessWidget {
                   PrimaryTabButton(
                       buttonText: "Task",
                       itemIndex: 0,
-                      notifier: _settingsButtonTrigger),
+                      notifier: settingsButtonTrigger),
                   PrimaryTabButton(
                       buttonText: "Mention",
                       itemIndex: 1,
-                      notifier: _settingsButtonTrigger),
+                      notifier: settingsButtonTrigger),
                   PrimaryTabButton(
                       buttonText: "Files",
                       itemIndex: 2,
-                      notifier: _settingsButtonTrigger)
+                      notifier: settingsButtonTrigger)
                 ],
               ),
               Container(

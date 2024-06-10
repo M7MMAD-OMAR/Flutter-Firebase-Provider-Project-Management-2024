@@ -12,16 +12,16 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 import 'package:project_management_muhmad_omar/widgets/table_calendar.dart';
 
-import 'my_team.dart';
+import 'my_team_screen.dart';
 
-class TeamDetails extends StatelessWidget {
+class TeamDetailsScreen extends StatelessWidget {
   final String title;
 
-  TeamDetails({Key? key, required this.title}) : super(key: key);
+  const TeamDetailsScreen({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    final _settingsButtonTrigger = ValueNotifier(0);
+    final settingsButtonTrigger = ValueNotifier(0);
 
     return Scaffold(
         body: Stack(children: [
@@ -58,11 +58,11 @@ class TeamDetails extends StatelessWidget {
                     PrimaryTabButton(
                         buttonText: "Overview",
                         itemIndex: 0,
-                        notifier: _settingsButtonTrigger),
+                        notifier: settingsButtonTrigger),
                     PrimaryTabButton(
                         buttonText: "Calendar",
                         itemIndex: 1,
-                        notifier: _settingsButtonTrigger),
+                        notifier: settingsButtonTrigger),
                   ],
                 ),
                 AppSpaces.verticalSpace40,
@@ -76,9 +76,9 @@ class TeamDetails extends StatelessWidget {
                         GoogleFonts.lato(fontSize: 15, color: Colors.white70)),
                 AppSpaces.verticalSpace40,
                 ValueListenableBuilder(
-                    valueListenable: _settingsButtonTrigger,
+                    valueListenable: settingsButtonTrigger,
                     builder: (BuildContext context, _, __) {
-                      return _settingsButtonTrigger.value == 0
+                      return settingsButtonTrigger.value == 0
                           ? Expanded(child: TeamProjectOverview())
                           : CalendarView();
                     })
