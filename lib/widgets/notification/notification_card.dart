@@ -41,7 +41,6 @@ class NotificationCard extends StatelessWidget {
           AppSpaces.verticalSpace20,
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Stack(
                 children: [

@@ -30,7 +30,6 @@ class InactiveEmployeeCard extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
             color: AppColors.primaryBackgroundColor,
-            // border: Border.all(color: AppColors.primaryBackgroundColor, width: 4),
             borderRadius: BorderRadius.circular(16)),
         child: Row(children: [
           ProfileDummy(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/gradient_color_ball.dart';
@@ -119,7 +118,7 @@ class NewWorkSpace extends StatelessWidget {
             bottom: 50,
             child: Container(
               padding: const EdgeInsets.only(left: 40, right: 20),
-              width: Utils.screenWidth,
+              width: Utils.getScreenWidth(context),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

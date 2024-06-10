@@ -38,9 +38,7 @@ class MyApp extends StatelessWidget {
             systemOverlayStyle: SystemUiOverlayStyle.light,
           ),
         ),
-        // theme: appTheme(),
         home: const SplashScreen(),
-        // routes: Routes.routes,
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
-// ignore: must_be_immutable
 class ToggleLabelOption extends StatelessWidget {
   final String label;
   ValueNotifier<bool>? notifierValue;
@@ -28,7 +27,6 @@ class ToggleLabelOption extends StatelessWidget {
             builder: (BuildContext context, _, __) {
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: this.margin ?? 8.0),
-                // 8.0 as default margin.
                 child: MergeSemantics(
                     child: ListTile(
                         title: Row(
@@ -51,7 +49,6 @@ class ToggleLabelOption extends StatelessWidget {
               );
             }),
         Divider(height: 1, color: HexColor.fromHex("353742"))
-        // Divider(height: 1, color: HexColor.fromHex("616575"))
       ],
     );
   }

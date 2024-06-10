@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
@@ -31,8 +30,8 @@ class EmailAddressScreenState extends State<EmailAddressScreen> {
         position: "topLeft",
       ),
       Positioned(
-          top: Utils.screenHeight / 2,
-          left: Utils.screenWidth,
+          top: Utils.getScreenHeight(context) / 2,
+          left: Utils.getScreenWidth(context),
           child: Transform.rotate(
               angle: -math.pi / 2,
               child: CustomPaint(painter: BackgroundHexagon()))),
@@ -57,7 +56,6 @@ class EmailAddressScreenState extends State<EmailAddressScreen> {
               label: "Your Email"),
           const SizedBox(height: 40),
           SizedBox(
-            //width: 180,
             height: 60,
             child: ElevatedButton(
                 onPressed: () {

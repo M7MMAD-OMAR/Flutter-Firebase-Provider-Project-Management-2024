@@ -13,7 +13,6 @@ class BoxDecorationStyles {
         ]),
     borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-    //border: Border.all(color: Colors.red, width: 5)
   );
 
   static final BoxDecoration fadingInnerDecor = BoxDecoration(

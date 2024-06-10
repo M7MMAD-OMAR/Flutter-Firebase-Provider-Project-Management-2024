@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/chat_screen.dart';
@@ -14,7 +13,6 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/dashboard_s
 import 'dashboard_tab_screens/overview.dart';
 import 'dashboard_tab_screens/productivity.dart';
 
-// ignore: must_be_immutable
 class Dashboard extends StatelessWidget {
   Dashboard({super.key});
 
@@ -50,7 +48,6 @@ class Dashboard extends StatelessWidget {
                       fontWeight: FontWeight.bold)),
               AppSpaces.verticalSpace20,
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                //tab indicators
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

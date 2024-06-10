@@ -13,12 +13,11 @@ class BackgroundHexagon extends CustomPainter {
         center: Offset.zero,
         angle: 0);
 
-    shapes.drawType(ShapeType.Hexagon); // enum
+    shapes.drawType(ShapeType.Hexagon);
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     return false;
   }
 }

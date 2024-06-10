@@ -1,8 +1,13 @@
 part of '../constants/values.dart';
 
 class Utils {
-  static final double screenWidth = Get.width;
-  static final double screenHeight = Get.width;
+  static double getScreenWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
+
+  static double getScreenHeight(BuildContext context) {
+    return MediaQuery.of(context).size.height;
+  }
 }
 
 class SineCurve extends Curve {
@@ -10,11 +15,10 @@ class SineCurve extends Curve {
 
   const SineCurve({this.count = 3});
 
-  // t = x
   @override
   double transformInternal(double t) {
     var val = sin(count * 2 * pi * t) * 0.5 + 0.5;
-    return val; //f(x)
+    return val;
   }
 }
 
@@ -22,13 +26,14 @@ Widget buildStackedImages(
     {TextDirection direction = TextDirection.rtl,
     String? numberOfMembers,
     bool? addMore}) {
-  final double size = 50;
-  final double xShift = 20;
+  const double size = 50;
+  const double xShift = 20;
 
   Container lastContainer = Container(
       width: 40,
       height: 40,
-      decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+      decoration:
+          const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
       child: Center(
         child: Text(numberOfMembers!,
             style: GoogleFonts.lato(
@@ -42,7 +47,7 @@ Widget buildStackedImages(
       height: 40,
       decoration: BoxDecoration(
           color: AppColors.primaryAccentColor, shape: BoxShape.circle),
-      child: Icon(Icons.add, color: Colors.white));
+      child: const Icon(Icons.add, color: Colors.white));
 
   final items = List.generate(
       4,
@@ -57,7 +62,7 @@ Widget buildStackedImages(
     items: [
       ...items,
       lastContainer,
-      (addMore != null) ? iconContainer : SizedBox()
+      (addMore != null) ? iconContainer : const SizedBox()
     ],
     size: size,
     xShift: xShift,

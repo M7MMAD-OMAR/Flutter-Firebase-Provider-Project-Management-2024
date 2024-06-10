@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/email_address.dart';
@@ -49,17 +48,14 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
             value: SystemUiOverlayStyle.light,
             child: Stack(children: [
               Container(
-                // height: double.infinity,
-                // width: double.infinity,
                 child: DarkRadialBackground(
                   color: HexColor.fromHex("#181a1f"),
                   position: "bottomRight",
                 ),
               ),
-              //Buttons positioned below
               Column(children: [
                 Container(
-                    height: Utils.screenHeight * 1.3,
+                    height: Utils.getScreenHeight(context) * 1.3,
                     child: PageView(
                         physics: ClampingScrollPhysics(),
                         controller: _pageController,

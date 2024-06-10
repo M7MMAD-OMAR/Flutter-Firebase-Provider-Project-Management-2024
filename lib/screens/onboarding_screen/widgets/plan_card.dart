@@ -86,7 +86,6 @@ class PlanCard extends StatelessWidget {
                                 child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
-                                    //mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                   SizedBox(height: 45),
                                   Text("🎉", style: TextStyle(fontSize: 40)),

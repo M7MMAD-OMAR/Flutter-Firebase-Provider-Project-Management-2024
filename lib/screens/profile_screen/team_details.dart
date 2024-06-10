@@ -43,7 +43,7 @@ class TeamDetails extends StatelessWidget {
                             Padding(
                               padding: MediaQuery.of(context).viewInsets,
                               child: Container(
-                                  height: Utils.screenHeight * 0.9,
+                                  height: Utils.getScreenHeight(context) * 0.9,
                                   child: MoreTeamDetailsSheet()),
                             ),
                             isScrollControlled: true,
@@ -52,7 +52,6 @@ class TeamDetails extends StatelessWidget {
                         child: Icon(Icons.more_horiz,
                             size: 30, color: Colors.white))),
                 AppSpaces.verticalSpace40,
-                //tab indicators
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -66,7 +65,6 @@ class TeamDetails extends StatelessWidget {
                         notifier: _settingsButtonTrigger),
                   ],
                 ),
-
                 AppSpaces.verticalSpace40,
                 TeamStory(
                     teamTitle: title, numberOfMembers: "12", noImages: "8"),
@@ -98,11 +96,8 @@ class TeamProjectOverview extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //change
         crossAxisCount: 2,
         mainAxisSpacing: 10,
-
-        //change height 125
         mainAxisExtent: 220,
         crossAxisSpacing: 10,
       ),

@@ -36,15 +36,12 @@ class FilledSelectableContainer extends StatelessWidget {
                 ],
               ),
             ),
-            const Row(
-                //mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Icon(Icons.edit, color: Colors.white, size: 20),
-                  //AppSpaces.horizontalSpace10,
-                  IconButton(
-                      onPressed: null,
-                      icon: Icon(Icons.add, color: Colors.white, size: 25))
-                ])
+            const Row(children: [
+              Icon(Icons.edit, color: Colors.white, size: 20),
+              IconButton(
+                  onPressed: null,
+                  icon: Icon(Icons.add, color: Colors.white, size: 25))
+            ])
           ]),
           Transform.scale(
               alignment: Alignment.topLeft,

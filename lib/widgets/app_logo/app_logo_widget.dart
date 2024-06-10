@@ -11,15 +11,14 @@ class AppLogo extends StatelessWidget {
       RotatedBox(
         quarterTurns: 3,
         child: CustomPaint(
-          size: Size(Utils.screenWidth, (Utils.screenWidth).toDouble()),
-          //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+          size: Size(Utils.getScreenWidth(context),
+              (Utils.getScreenWidth(context)).toDouble()),
           painter: RPSCustomPainter(),
-          // child: Icon(Icons.ac_unit_outlined, color: Colors.white),
         ),
       ),
       Positioned(
-          top: Utils.screenHeight / 1.4,
-          left: Utils.screenWidth / 4,
+          top: Utils.getScreenHeight(context) / 1.4,
+          left: Utils.getScreenWidth(context) / 4,
           child: Container(
               decoration: BoxDecoration(
                   shape: BoxShape.circle, color: HexColor.fromHex("#84c16c")),
@@ -27,8 +26,8 @@ class AppLogo extends StatelessWidget {
               height: 50,
               child: const Icon(Icons.done, color: Colors.white))),
       Positioned(
-          top: Utils.screenHeight / 1.25,
-          left: Utils.screenWidth / 11,
+          top: Utils.getScreenHeight(context) / 1.25,
+          left: Utils.getScreenWidth(context) / 11,
           child: TripletsLogo())
     ]);
   }

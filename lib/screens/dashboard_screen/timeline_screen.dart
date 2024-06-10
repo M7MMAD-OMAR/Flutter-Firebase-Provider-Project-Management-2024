@@ -9,14 +9,14 @@ import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-class Timeline extends StatefulWidget {
-  Timeline({Key? key}) : super(key: key);
+class TimelineScreen extends StatefulWidget {
+  const TimelineScreen({Key? key}) : super(key: key);
 
   @override
-  _TimelineState createState() => _TimelineState();
+  _TimelineScreenState createState() => _TimelineScreenState();
 }
 
-class _TimelineState extends State<Timeline> {
+class _TimelineScreenState extends State<TimelineScreen> {
   ValueNotifier<int> bottomNavigatorTrigger = ValueNotifier(0);
 
   StatelessWidget currentScreen = Dashboard();
@@ -68,7 +68,7 @@ class _TimelineState extends State<Timeline> {
                   DashboardAddButton(
                     iconTapped: (() {
                       showAppBottomSheet(Container(
-                          height: Utils.screenHeight * 0.8,
+                          height: Utils.getScreenHeight(context) * 0.8,
                           child: DashboardAddBottomSheet()));
                     }),
                   ),

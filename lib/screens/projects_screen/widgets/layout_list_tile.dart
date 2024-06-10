@@ -19,7 +19,7 @@ class LayoutListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Utils.screenWidth - 80,
+      width: Utils.getScreenWidth(context) - 80,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
         child: Row(
@@ -36,11 +36,9 @@ class LayoutListTile extends StatelessWidget {
               builder: (BuildContext context, _, __) {
                 return Theme(
                   data: ThemeData(
-                    //here change to your color
                     unselectedWidgetColor: Colors.white,
                   ),
                   child: Radio(
-                    // overlayColor:  unselectedWi,
                     value: notifier.value,
                     groupValue: index,
                     onChanged: ((value) {

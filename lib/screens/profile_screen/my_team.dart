@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/Constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/projects_screen/widgets/project_card_vertical.dart';
@@ -43,15 +42,12 @@ class MyTeams extends StatelessWidget {
                     numberOfMembers: "12",
                     noImages: "8"),
                 Container(
-                  height: Utils.screenHeight / 2,
+                  height: Utils.getScreenHeight(context) / 2,
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      //change
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
-
-                      //change height 125
                       mainAxisExtent: 220,
                       crossAxisSpacing: 10,
                     ),
@@ -71,15 +67,12 @@ class MyTeams extends StatelessWidget {
                 const TeamStory(
                     teamTitle: "Design", numberOfMembers: "12", noImages: "8"),
                 Container(
-                  height: Utils.screenHeight / 2,
+                  height: Utils.getScreenHeight(context) / 2,
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      //change
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
-
-                      //change height 125
                       mainAxisExtent: 220,
                       crossAxisSpacing: 10,
                     ),
@@ -101,15 +94,12 @@ class MyTeams extends StatelessWidget {
                     numberOfMembers: "12",
                     noImages: "8"),
                 Container(
-                  height: Utils.screenHeight / 2,
+                  height: Utils.getScreenHeight(context) / 2,
                   child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      //change
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
-
-                      //change height 125
                       mainAxisExtent: 220,
                       crossAxisSpacing: 10,
                     ),

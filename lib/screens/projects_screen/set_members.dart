@@ -72,7 +72,6 @@ class SelectMembersScreen extends StatelessWidget {
                                         child: ListView(children: [...cards]),
                                       ))
                                     ])))))),
-            //AppSpaces.verticalSpace20,
             AppPrimaryButton(
                 buttonHeight: 50,
                 buttonWidth: 150,

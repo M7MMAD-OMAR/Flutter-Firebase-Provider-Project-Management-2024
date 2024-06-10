@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel.dart';
@@ -20,16 +19,14 @@ class OnboardingStart extends StatelessWidget {
           color: HexColor.fromHex("#181a1f"),
           position: "topLeft",
         ),
-
         Positioned(
-            top: Utils.screenHeight,
+            top: Utils.getScreenHeight(context),
             left: 0,
             child: Transform.rotate(
                 angle: -math.pi / 2,
                 child: CustomPaint(painter: BackgroundHexagon()))),
-        //images
         Positioned(
-            top: Utils.screenHeight * 0.7,
+            top: Utils.getScreenHeight(context) * 0.7,
             right: 100,
             child: BackgroundImage(
                 scale: 1.0,
@@ -38,10 +35,9 @@ class OnboardingStart extends StatelessWidget {
                   HexColor.fromHex("92ECEC"),
                   HexColor.fromHex("92ECEC")
                 ])),
-
         Positioned(
-            top: Utils.screenHeight * 0.50,
-            left: Utils.screenWidth * 0.12,
+            top: Utils.getScreenHeight(context) * 0.50,
+            left: Utils.getScreenWidth(context) * 0.12,
             child: BackgroundImage(
                 scale: 0.5,
                 image: "assets/head_cut.png",
@@ -49,9 +45,8 @@ class OnboardingStart extends StatelessWidget {
                   HexColor.fromHex("FD9871"),
                   HexColor.fromHex("F7D092")
                 ])),
-
         Positioned(
-            top: Utils.screenHeight * 0.30,
+            top: Utils.getScreenHeight(context) * 0.30,
             right: 70,
             child: BackgroundImage(
                 scale: 0.4,
@@ -60,44 +55,37 @@ class OnboardingStart extends StatelessWidget {
                   HexColor.fromHex("#a7b2fd"),
                   HexColor.fromHex("#c1a0fd")
                 ])),
-
-        //end of images
-
-        //Bubble
         Positioned(
             top: 80, left: 50, child: Bubble(1.0, HexColor.fromHex("A06AF9"))),
-
         Positioned(
             top: 130,
             left: 130,
             child: Bubble(0.6, HexColor.fromHex("FDA5FF"))),
-        //end bubble
-
         Positioned(
-            top: Utils.screenHeight * 0.12,
-            left: Utils.screenWidth * 0.45,
+            top: Utils.getScreenHeight(context) * 0.12,
+            left: Utils.getScreenWidth(context) * 0.45,
             child: LoadingSticker(gradients: [
               HexColor.fromHex("#F3EEAE"),
               HexColor.fromHex("F3EFAB"),
               HexColor.fromHex("#4A88FE")
             ])),
         Positioned(
-            top: Utils.screenHeight * 0.50,
-            left: Utils.screenWidth * 0.22,
+            top: Utils.getScreenHeight(context) * 0.50,
+            left: Utils.getScreenWidth(context) * 0.22,
             child: LoadingSticker(gradients: [
               HexColor.fromHex("#a7b2fd"),
               HexColor.fromHex("#c1a0fd")
             ])),
         Positioned(
-            top: Utils.screenHeight * 0.7,
-            left: Utils.screenWidth * 0.6,
+            top: Utils.getScreenHeight(context) * 0.7,
+            left: Utils.getScreenWidth(context) * 0.6,
             child: LoadingSticker(gradients: [
               HexColor.fromHex("#a7b2fd"),
               HexColor.fromHex("#c1a0fd")
             ])),
         Positioned(
-            top: Utils.screenHeight * 1.3,
-            left: Utils.screenWidth * 0.83,
+            top: Utils.getScreenHeight(context) * 1.3,
+            left: Utils.getScreenWidth(context) * 0.83,
             child: Transform.rotate(
               angle: -math.pi / 4,
               child: InkWell(
@@ -119,7 +107,6 @@ class OnboardingStart extends StatelessWidget {
                     )),
               ),
             )),
-
         Positioned(
             bottom: 150,
             left: 40,

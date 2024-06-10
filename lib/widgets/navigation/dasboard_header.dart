@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
@@ -34,7 +33,6 @@ class DashboardNav extends StatelessWidget {
           child: Stack(children: <Widget>[
             Icon(icon, color: Colors.white, size: 30),
             Positioned(
-              // draw a red marble
               top: 0.0,
               right: 0.0,
               child: Container(

@@ -62,12 +62,11 @@ class MessagingScreen extends StatelessWidget {
           ),
         ),
       ),
-      //Chat
       Positioned(
           top: 80,
           child: SizedBox(
-              width: Utils.screenWidth,
-              height: Utils.screenHeight * 2,
+              width: Utils.getScreenWidth(context),
+              height: Utils.getScreenHeight(context) * 2,
               child: ListView(children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,7 +105,6 @@ class MessagingScreen extends StatelessWidget {
                           Container(
                               alignment: Alignment.centerLeft,
                               width: 250,
-                              //height: 50,
                               padding: const EdgeInsets.only(
                                   left: 20, right: 20, top: 15, bottom: 15),
                               decoration: BoxDecoration(
@@ -123,7 +121,6 @@ class MessagingScreen extends StatelessWidget {
                           Container(
                               alignment: Alignment.centerLeft,
                               width: 250,
-                              //height: 50,
                               padding: const EdgeInsets.only(
                                   left: 20, right: 20, top: 15, bottom: 15),
                               decoration: BoxDecoration(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/projects_screen/project_detail.dart';
@@ -32,9 +31,6 @@ class ProjectCardVertical extends StatelessWidget {
             ));
       },
       child: Container(
-          // width: 150,
-
-          //margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
               color: HexColor.fromHex("20222A"),

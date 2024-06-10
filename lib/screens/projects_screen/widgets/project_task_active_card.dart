@@ -105,7 +105,6 @@ class ProjectTaskActiveCard extends StatelessWidget {
                                   color: HexColor.fromHex("EA9EEE")))
                         ])
                   ]),
-                  // replace with image
                   ProfileDummy(
                       color: HexColor.fromHex(backgroundColor),
                       dummyType: ProfileDummyType.Image,

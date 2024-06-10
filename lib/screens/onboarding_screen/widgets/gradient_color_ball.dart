@@ -22,7 +22,7 @@ class GradientColorBall extends StatelessWidget {
       child: ValueListenableBuilder(
           valueListenable: valueChanger,
           builder: (BuildContext context, _, __) {
-            var size = ((Utils.screenWidth - 46) / 5) - 5;
+            var size = ((Utils.getScreenWidth(context) - 46) / 5) - 5;
             return Container(
               width: size,
               height: size,

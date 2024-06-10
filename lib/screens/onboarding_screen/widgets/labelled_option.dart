@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
-// ignore: must_be_immutable
 class LabelledOption extends StatelessWidget {
   final String label;
   final String? link;
@@ -57,9 +56,7 @@ class LabelledOption extends StatelessWidget {
                         : SizedBox()),
           )),
         ),
-
         Divider(height: 1, color: HexColor.fromHex("353742"))
-        // Divider(height: 1, color: HexColor.fromHex("616575"))
       ],
     );
   }

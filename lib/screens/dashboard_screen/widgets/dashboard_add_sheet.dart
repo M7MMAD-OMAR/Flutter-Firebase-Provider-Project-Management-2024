@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/labelled_option.dart';
 import 'package:project_management_muhmad_omar/screens/projects_screen/create_project.dart';

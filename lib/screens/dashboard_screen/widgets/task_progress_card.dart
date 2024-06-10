@@ -27,7 +27,7 @@ class TaskProgressCard extends StatelessWidget {
             const BoxShadow(
               color: Colors.black12,
               blurRadius: 4,
-              offset: const Offset(4, 8), // Shadow position
+              offset: const Offset(4, 8),
             ),
           ],
           borderRadius: BorderRadius.circular(20),

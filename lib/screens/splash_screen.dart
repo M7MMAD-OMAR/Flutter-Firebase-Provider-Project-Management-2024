@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-import 'onboarding_screen/onboarding_start.dart';
+import 'onboarding_screen/onboarding_start_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -35,7 +34,6 @@ class SplashScreenState extends State<SplashScreen> {
           color: HexColor.fromHex("#181a1f"),
           position: "topLeft",
         ),
-        // const Positioned(left: 140, child: AppLogo()), TODO
         Center(
             child: RichText(
           text: TextSpan(
@@ -50,10 +48,6 @@ class SplashScreenState extends State<SplashScreen> {
             ],
           ),
         ))
-        // DarkRadialBackground(
-        //   color: Colors.transparent,
-        //   position: "bottomRight",
-        // ),
       ]),
     );
   }

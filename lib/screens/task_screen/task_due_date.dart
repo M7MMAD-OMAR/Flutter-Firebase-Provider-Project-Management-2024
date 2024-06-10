@@ -81,7 +81,7 @@ class TaskDueDate extends StatelessWidget {
           bottom: 50,
           child: Container(
             padding: EdgeInsets.only(left: 40, right: 20),
-            width: Utils.screenWidth,
+            width: Utils.getScreenWidth(context),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

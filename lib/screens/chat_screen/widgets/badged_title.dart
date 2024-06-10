@@ -23,7 +23,6 @@ class BadgedTitle extends StatelessWidget {
       Container(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8.0),
           decoration: BoxDecoration(
-              //color: HexColor.fromHex(color),
               border: Border.all(color: HexColor.fromHex(color), width: 1),
               borderRadius: BorderRadius.circular(50.0)),
           child: Text("$number members",

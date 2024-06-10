@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
-// ignore: must_be_immutable
 class ProfileTextOption extends StatelessWidget {
   final String label;
 
@@ -22,8 +21,7 @@ class ProfileTextOption extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: this.margin ?? 10.0), // 8.0 as default margin.
+            padding: EdgeInsets.symmetric(vertical: this.margin ?? 10.0),
             child: ListTile(
                 title: Row(
                   children: [
@@ -36,7 +34,6 @@ class ProfileTextOption extends StatelessWidget {
                 trailing: SizedBox()),
           ),
           Divider(height: 1, color: HexColor.fromHex("353742"))
-          // Divider(height: 1, color: HexColor.fromHex("616575"))
         ],
       ),
     );

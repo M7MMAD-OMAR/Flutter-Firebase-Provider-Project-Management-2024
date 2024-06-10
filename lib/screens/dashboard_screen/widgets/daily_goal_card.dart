@@ -18,7 +18,6 @@ class DailyGoalCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //left side
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

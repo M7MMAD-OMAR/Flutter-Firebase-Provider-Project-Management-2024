@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,12 +29,10 @@ class UnlabelledFormInput extends StatelessWidget {
       onTap: () {},
       keyboardType:
           keyboardType == "text" ? TextInputType.text : TextInputType.number,
-      //initialValue: initialValue,
       obscureText:
           placeholder == 'Password' || placeholder == 'Choose a password'
               ? true
               : false,
-
       decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(
             horizontal: 0,

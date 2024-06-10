@@ -7,7 +7,6 @@ class TripletsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: 30,
-        // height: 30,
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
           buildBar(0.3, false),
           buildBar(0.6, false),

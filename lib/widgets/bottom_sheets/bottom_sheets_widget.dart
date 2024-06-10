@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/project_detail_sheet.dart';
 
-class MyBottomSheetWidget {
-  // static const MethodChannel _channel = MethodChannel('taskezBottomSheet');
-}
+class MyBottomSheetWidget {}
 
 showSettingsBottomSheet() =>
     showAppBottomSheet(const ProjectDetailBottomSheet());

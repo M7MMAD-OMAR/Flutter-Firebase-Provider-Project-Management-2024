@@ -51,14 +51,12 @@ class CreateProjectScreen extends StatelessWidget {
         color: HexColor.fromHex("#181a1f"),
         position: "topLeft",
       ),
-
-      // listView
       Positioned(
           top: 80,
           child: Container(
               padding: const EdgeInsets.all(20),
-              width: Utils.screenWidth,
-              height: Utils.screenHeight * 2,
+              width: Utils.getScreenWidth(context),
+              height: Utils.getScreenHeight(context) * 2,
               child: ListView(children: [
                 Text("Onboarding\n Screens",
                     style: GoogleFonts.lato(
@@ -152,7 +150,6 @@ class CreateProjectScreen extends StatelessWidget {
                 AppSpaces.verticalSpace40,
                 ...notificationCards
               ]))),
-
       Positioned(
         top: 0,
         child: Container(
@@ -160,7 +157,7 @@ class CreateProjectScreen extends StatelessWidget {
             child: new BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 20),
               child: Container(
-                width: Utils.screenWidth,
+                width: Utils.getScreenWidth(context),
                 padding: const EdgeInsets.all(20),
                 height: 120.0,
                 decoration: new BoxDecoration(
@@ -213,7 +210,6 @@ class CreateProjectScreen extends StatelessWidget {
           ),
         ),
       ),
-      //last widget
       const PostBottomWidget(label: "Post your comments...")
     ]));
   }

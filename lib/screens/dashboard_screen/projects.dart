@@ -30,7 +30,6 @@ class ProjectScreen extends StatelessWidget {
         padding: const EdgeInsets.only(right: 20, left: 20),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          //tab indicators
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -53,7 +52,6 @@ class ProjectScreen extends StatelessWidget {
               child: InkWell(
                   onTap: () {
                     _switchGridLayout.value = !_switchGridLayout.value;
-                    // _showDashboardSettings(context);
                   },
                   child: ValueListenableBuilder(
                       valueListenable: _switchGridLayout,
@@ -78,11 +76,8 @@ class ProjectScreen extends StatelessWidget {
               builder: (BuildContext context, _, __) {
                 return GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    //change
                     crossAxisCount: _switchGridLayout.value ? 2 : 1,
                     mainAxisSpacing: 10,
-
-                    //change height 125
                     mainAxisExtent: _switchGridLayout.value ? 220 : 125,
                     crossAxisSpacing: 10,
                   ),

@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,24 +31,19 @@ class LabelledFormInput extends StatelessWidget {
         Text(label.toUpperCase(),
             textAlign: TextAlign.left,
             style: GoogleFonts.lato(
-                fontSize: 12,
-                //fontWeight: FontWeight.bold,
-                color: HexColor.fromHex("3C3E49"))),
+                fontSize: 12, color: HexColor.fromHex("3C3E49"))),
         TextFormField(
           controller: controller,
-
           style: GoogleFonts.lato(
               fontWeight: FontWeight.bold, fontSize: 18, color: Colors.white),
           onTap: () {},
           keyboardType: keyboardType == "text"
               ? TextInputType.text
               : TextInputType.number,
-          //initialValue: initialValue,
           obscureText:
               placeholder == 'Password' || placeholder == 'Choose a password'
                   ? true
                   : false,
-
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 0,
@@ -63,7 +56,6 @@ class LabelledFormInput extends StatelessWidget {
                         obscureText
                             ? FontAwesomeIcons.eye
                             : FontAwesomeIcons.eyeSlash,
-                        //size: 15.0,
                         color: HexColor.fromHex("3C3E49"),
                       ))
                   : InkWell(

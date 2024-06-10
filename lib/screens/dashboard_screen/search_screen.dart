@@ -48,7 +48,6 @@ class SearchScreen extends StatelessWidget {
             ),
             AppSpaces.verticalSpace10,
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              //tab indicators
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -67,10 +66,7 @@ class SearchScreen extends StatelessWidget {
                 ],
               ),
               Container(
-                  alignment: Alignment.centerRight,
-                  child: AppSettingsIcon(
-                      // callback: ((),{_showDashboardSettings(context);}),
-                      ))
+                  alignment: Alignment.centerRight, child: AppSettingsIcon())
             ]),
             AppSpaces.verticalSpace20,
             Expanded(

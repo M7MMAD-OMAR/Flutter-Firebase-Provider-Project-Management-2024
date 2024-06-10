@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/plan_card.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/toggle_option.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button.dart';
@@ -75,7 +74,7 @@ class ChoosePlan extends StatelessWidget {
                                   style: AppTextStyles.header2),
                               AppSpaces.verticalSpace10,
                               SizedBox(
-                                width: Utils.screenWidth * 0.8,
+                                width: Utils.getScreenWidth(context) * 0.8,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -111,7 +110,7 @@ class ChoosePlan extends StatelessWidget {
           bottom: 50,
           child: Container(
             padding: const EdgeInsets.only(left: 40, right: 20),
-            width: Utils.screenWidth,
+            width: Utils.getScreenWidth(context),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -124,7 +123,7 @@ class ChoosePlan extends StatelessWidget {
                       width: 120,
                       label: "Done",
                       callback: () {
-                        Get.to(() => Timeline());
+                        Get.to(() => TimelineScreen());
                       })
                 ]),
           ))

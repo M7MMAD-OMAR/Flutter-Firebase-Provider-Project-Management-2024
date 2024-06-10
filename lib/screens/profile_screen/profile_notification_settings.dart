@@ -41,7 +41,7 @@ class ProfileNotificationSettings extends StatelessWidget {
             AppSpaces.verticalSpace40,
             Container(
                 width: double.infinity,
-                height: Utils.screenHeight * 0.9,
+                height: Utils.getScreenHeight(context) * 0.9,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: AppColors.primaryBackgroundColor),

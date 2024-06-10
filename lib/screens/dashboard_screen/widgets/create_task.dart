@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/sheet_goto_calendar.dart';
@@ -13,7 +12,6 @@ import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart'
 
 import 'dashboard_add_project_sheet.dart';
 
-// ignore: must_be_immutable
 class CreateTaskBottomSheet extends StatelessWidget {
   CreateTaskBottomSheet({super.key});
 
@@ -91,12 +89,10 @@ class CreateTaskBottomSheet extends StatelessWidget {
                 label: 'Due Date',
               )
             ]),
-            // Spacer(),
             AppSpaces.verticalSpace20,
-
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Container(
-                width: Utils.screenWidth * 0.6,
+                width: Utils.getScreenWidth(context) * 0.6,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

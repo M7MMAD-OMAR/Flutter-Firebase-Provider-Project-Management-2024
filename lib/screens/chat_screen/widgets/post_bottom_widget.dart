@@ -16,7 +16,7 @@ class PostBottomWidget extends StatelessWidget {
         bottom: 0,
         child: Container(
             padding: const EdgeInsets.only(left: 20),
-            width: Utils.screenWidth,
+            width: Utils.getScreenWidth(context),
             height: 120,
             decoration: BoxDecoration(
                 color: AppColors.primaryBackgroundColor,

@@ -9,7 +9,6 @@ import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
-// ignore: must_be_immutable
 class ProjectDetails extends StatelessWidget {
   final String color;
   final String projectName;
@@ -52,7 +51,6 @@ class ProjectDetails extends StatelessWidget {
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          //tab indicators
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -70,7 +68,6 @@ class ProjectDetails extends StatelessWidget {
                                   notifier: _settingsButtonTrigger)
                             ],
                           ),
-
                           Container(
                               alignment: Alignment.centerRight,
                               child: AppSettingsIcon(
