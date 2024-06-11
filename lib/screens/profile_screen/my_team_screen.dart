@@ -143,7 +143,12 @@ class TeamStory extends StatelessWidget {
         AppSpaces.verticalSpace10,
         InkWell(
           onTap: () {
-            Get.to(() => TeamDetailsScreen(title: teamTitle));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TeamDetailsScreen(title: teamTitle),
+              ),
+            );
           },
           child: Transform.scale(
               alignment: Alignment.centerLeft,

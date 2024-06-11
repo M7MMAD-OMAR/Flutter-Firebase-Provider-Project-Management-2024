@@ -11,24 +11,25 @@ class DashboardNav extends StatelessWidget {
   final VoidCallback? onImageTapped;
   final String notificationCount;
 
-  DashboardNav(
-      {Key? key,
+  const DashboardNav(
+      {super.key,
       required this.title,
       required this.icon,
       required this.image,
       required this.notificationCount,
       this.page,
-      this.onImageTapped})
-      : super(key: key);
+      this.onImageTapped});
 
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Text(this.title, style: AppTextStyles.header2),
+      Text(title, style: AppTextStyles.header2),
       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
         InkWell(
           onTap: () {
-            if (page != null) Get.to(() => page!);
+            if (page != null) {
+              Navigator.push(context, MaterialPageRoute(builder: (_) => page!));
+            }
           },
           child: Stack(children: <Widget>[
             Icon(icon, color: Colors.white, size: 30),
@@ -36,7 +37,7 @@ class DashboardNav extends StatelessWidget {
               top: 0.0,
               right: 0.0,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle, color: HexColor.fromHex("FF9B76")),
                 alignment: Alignment.center,
@@ -46,7 +47,7 @@ class DashboardNav extends StatelessWidget {
             )
           ]),
         ),
-        SizedBox(width: 40),
+        const SizedBox(width: 40),
         InkWell(
           onTap: onImageTapped,
           child: ProfileDummy(

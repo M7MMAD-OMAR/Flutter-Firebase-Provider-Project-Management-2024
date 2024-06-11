@@ -3,13 +3,13 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/sheet_goto_calendar.dart';
-import 'package:project_management_muhmad_omar/screens/task_screen/set_assignees_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Forms/form_input_unlabelled.dart';
 import 'package:project_management_muhmad_omar/widgets/add_sub_icon.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
+import '../../../routes.dart';
 import 'dashboard_add_project_sheet.dart';
 
 class CreateTaskBottomSheet extends StatelessWidget {
@@ -34,7 +34,7 @@ class CreateTaskBottomSheet extends StatelessWidget {
               Text("Unity Dashboard  ",
                   style: GoogleFonts.lato(
                       color: Colors.white, fontWeight: FontWeight.w700)),
-              Icon(Icons.expand_more, color: Colors.white),
+              const Icon(Icons.expand_more, color: Colors.white),
             ]),
             AppSpaces.verticalSpace20,
             Row(
@@ -64,7 +64,7 @@ class CreateTaskBottomSheet extends StatelessWidget {
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               InkWell(
                 onTap: () {
-                  Get.to(() => SetAssigneesScreen());
+                  Navigator.pushNamed(context, Routes.selectAssigneesScreen);
                 },
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +75,7 @@ class CreateTaskBottomSheet extends StatelessWidget {
                           scale: 1.5,
                           image: "assets/man-head.png"),
                       AppSpaces.horizontalSpace10,
-                      CircularCardLabel(
+                      const CircularCardLabel(
                         label: 'Assigned to',
                         value: 'Dereck Boyle',
                         color: Colors.white,
@@ -96,18 +96,19 @@ class CreateTaskBottomSheet extends StatelessWidget {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      BottomSheetIcon(icon: Icons.local_offer_outlined),
+                      const BottomSheetIcon(icon: Icons.local_offer_outlined),
                       Transform.rotate(
                           angle: 195.2,
-                          child: BottomSheetIcon(icon: Icons.attach_file)),
-                      BottomSheetIcon(icon: FeatherIcons.flag),
-                      BottomSheetIcon(icon: FeatherIcons.image)
+                          child:
+                              const BottomSheetIcon(icon: Icons.attach_file)),
+                      const BottomSheetIcon(icon: FeatherIcons.flag),
+                      const BottomSheetIcon(icon: FeatherIcons.image)
                     ]),
               ),
               AddSubIcon(
                 scale: 0.8,
                 color: AppColors.primaryAccentColor,
-                callback: _addProject,
+                callback: () => _addProject(context),
               ),
             ])
           ]),
@@ -116,9 +117,10 @@ class CreateTaskBottomSheet extends StatelessWidget {
     );
   }
 
-  void _addProject() {
+  void _addProject(BuildContext context) {
     showAppBottomSheet(
-      DashboardAddProjectSheet(),
+      context,
+      const DashboardAddProjectSheet(),
       isScrollControlled: true,
       popAndShow: true,
     );
@@ -130,8 +132,8 @@ class BottomSheetIcon extends StatelessWidget {
 
   const BottomSheetIcon({
     required this.icon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

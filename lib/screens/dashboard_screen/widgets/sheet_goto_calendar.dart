@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/task_screen/task_due_date_screen.dart';
+
+import '../../../routes.dart';
 
 class SheetGoToCalendarWidget extends StatelessWidget {
   final String label;
@@ -10,30 +11,28 @@ class SheetGoToCalendarWidget extends StatelessWidget {
   final Color textAccentColor;
 
   const SheetGoToCalendarWidget({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
     required this.cardBackgroundColor,
     required this.textAccentColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => TaskDueDateScreen());
+        Navigator.pushNamed(context, Routes.taskDueDateScreen);
       },
-      child: Container(
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          CircularCalendarCard(color: cardBackgroundColor),
-          AppSpaces.horizontalSpace10,
-          CircularCardLabel(
-            label: label,
-            value: value,
-            color: textAccentColor,
-          )
-        ]),
-      ),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        CircularCalendarCard(color: cardBackgroundColor),
+        AppSpaces.horizontalSpace10,
+        CircularCardLabel(
+          label: label,
+          value: value,
+          color: textAccentColor,
+        )
+      ]),
     );
   }
 }
@@ -43,8 +42,8 @@ class CircularCalendarCard extends StatelessWidget {
 
   const CircularCalendarCard({
     required this.color,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +51,7 @@ class CircularCalendarCard extends StatelessWidget {
         width: 40 * 1.5,
         height: 40 * 1.5,
         decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-        child: Icon(Icons.calendar_today, color: Colors.white));
+        child: const Icon(Icons.calendar_today, color: Colors.white));
   }
 }
 
@@ -62,11 +61,11 @@ class CircularCardLabel extends StatelessWidget {
   final Color? color;
 
   const CircularCardLabel({
-    Key? key,
+    super.key,
     this.label,
     this.color,
     this.value,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

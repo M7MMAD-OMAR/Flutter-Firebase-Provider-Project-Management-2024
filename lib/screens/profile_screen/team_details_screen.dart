@@ -30,7 +30,7 @@ class TeamDetailsScreen extends StatelessWidget {
         position: "topLeft",
       ),
       Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: SafeArea(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,16 +40,17 @@ class TeamDetailsScreen extends StatelessWidget {
                     widget: InkWell(
                         onTap: () {
                           showAppBottomSheet(
+                            context,
                             Padding(
                               padding: MediaQuery.of(context).viewInsets,
-                              child: Container(
+                              child: SizedBox(
                                   height: Utils.getScreenHeight(context) * 0.9,
-                                  child: MoreTeamDetailsSheet()),
+                                  child: const MoreTeamDetailsSheet()),
                             ),
                             isScrollControlled: true,
                           );
                         },
-                        child: Icon(Icons.more_horiz,
+                        child: const Icon(Icons.more_horiz,
                             size: 30, color: Colors.white))),
                 AppSpaces.verticalSpace40,
                 Row(
@@ -79,8 +80,8 @@ class TeamDetailsScreen extends StatelessWidget {
                     valueListenable: settingsButtonTrigger,
                     builder: (BuildContext context, _, __) {
                       return settingsButtonTrigger.value == 0
-                          ? Expanded(child: TeamProjectOverview())
-                          : CalendarView();
+                          ? const Expanded(child: TeamProjectOverview())
+                          : const CalendarView();
                     })
               ])))
     ]));
@@ -95,7 +96,7 @@ class TeamProjectOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         mainAxisExtent: 220,

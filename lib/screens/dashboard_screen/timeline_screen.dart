@@ -44,9 +44,9 @@ class TimelineScreenState extends State<TimelineScreen> {
         bottomNavigationBar: Container(
             width: double.infinity,
             height: 90,
-            padding: EdgeInsets.only(top: 10, right: 30, left: 30),
+            padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
                   topRight: Radius.circular(20),
                 ),
@@ -59,25 +59,27 @@ class TimelineScreenState extends State<TimelineScreen> {
                       itemIndex: 0,
                       notifier: bottomNavigatorTrigger,
                       icon: Icons.widgets),
-                  Spacer(),
+                  const Spacer(),
                   BottomNavigationItem(
                       itemIndex: 1,
                       notifier: bottomNavigatorTrigger,
                       icon: FeatherIcons.clipboard),
-                  Spacer(),
+                  const Spacer(),
                   DashboardAddButton(
                     iconTapped: (() {
-                      showAppBottomSheet(Container(
-                          height: Utils.getScreenHeight(context) * 0.8,
-                          child: DashboardAddBottomSheet()));
+                      showAppBottomSheet(
+                          context,
+                          SizedBox(
+                              height: Utils.getScreenHeight(context) * 0.8,
+                              child: const DashboardAddBottomSheet()));
                     }),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   BottomNavigationItem(
                       itemIndex: 2,
                       notifier: bottomNavigatorTrigger,
                       icon: FeatherIcons.bell),
-                  Spacer(),
+                  const Spacer(),
                   BottomNavigationItem(
                       itemIndex: 3,
                       notifier: bottomNavigatorTrigger,

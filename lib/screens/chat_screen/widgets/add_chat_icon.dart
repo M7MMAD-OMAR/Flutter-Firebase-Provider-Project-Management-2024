@@ -17,7 +17,14 @@ class AppAddIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (page != null) Get.to(() => page!);
+        if (page != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => page!,
+            ),
+          );
+        }
       },
       child: Container(
           width: 50 * (scale == null ? 1.0 : scale!),

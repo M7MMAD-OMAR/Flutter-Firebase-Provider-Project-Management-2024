@@ -8,7 +8,7 @@ import 'package:project_management_muhmad_omar/widgets/container_label.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
-import 'choose_plan_screen.dart';
+import '../../routes.dart';
 
 class NewWorkSpaceScreen extends StatelessWidget {
   const NewWorkSpaceScreen({super.key});
@@ -131,7 +131,7 @@ class NewWorkSpaceScreen extends StatelessWidget {
                       width: 120,
                       label: "Next",
                       callback: () {
-                        Get.to(() => const ChoosePlanScreen());
+                        Navigator.pushNamed(context, Routes.choosePlanScreen);
                       },
                     )
                   ]),

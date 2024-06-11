@@ -77,7 +77,7 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
                 child: AddSubIcon(
                   scale: 0.8,
                   color: AppColors.primaryAccentColor,
-                  callback: _addMeetingDetails,
+                  callback: () => _addMeetingDetails(context),
                 ),
               ),
             ]))
@@ -85,8 +85,9 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
     );
   }
 
-  void _addMeetingDetails() {
+  void _addMeetingDetails(BuildContext context) {
     showAppBottomSheet(
+      context,
       const DashboardMeetingDetails(),
       isScrollControlled: true,
       popAndShow: true,

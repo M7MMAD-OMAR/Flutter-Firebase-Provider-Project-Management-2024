@@ -3,21 +3,22 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/toggle_option.dart';
-import 'package:project_management_muhmad_omar/screens/profile_screen/edit_profile_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile_screen/widgets/profile_text_option.dart';
 import 'package:project_management_muhmad_omar/screens/profile_screen/widgets/text_outlined_button.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/default_back.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
+import '../../routes.dart';
+
 class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({super.key});
 
   @override
-  _MyProfileScreenState createState() => _MyProfileScreenState();
+  MyProfileScreenState createState() => MyProfileScreenState();
 }
 
-class _MyProfileScreenState extends State<MyProfileScreen> {
+class MyProfileScreenState extends State<MyProfileScreen> {
   final ValueNotifier<bool> totalTaskNotifier = ValueNotifier(true);
   final String tabSpace = "\t\t";
 
@@ -37,7 +38,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               children: [
                 DefaultNav(
                     title: "$tabSpace Profile", type: ProfileDummyType.Button),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 ProfileDummy(
                     color: HexColor.fromHex("94F0F1"),
                     dummyType: ProfileDummyType.Image,
@@ -60,7 +61,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       width: 75,
                       content: "Edit",
                       onPressed: () {
-                        Get.to(() => EditProfileScreen());
+                        Navigator.pushNamed(context, Routes.editProfileScreen);
                       }),
                 ),
                 AppSpaces.verticalSpace20,

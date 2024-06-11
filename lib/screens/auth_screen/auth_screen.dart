@@ -12,7 +12,8 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamProvider<User?>.value(
-        value: AuthService.firebaseAuth.authStateChanges(),
+        value:
+            Provider.of<AuthService>(context).firebaseAuth.authStateChanges(),
         initialData: null,
         child: Consumer<User?>(
           builder: (context, user, _) {

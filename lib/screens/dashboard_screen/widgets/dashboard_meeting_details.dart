@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/projects_screen/select_members_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_selectable_container.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
+import '../../../routes.dart';
 import '../../../screens/dashboard_screen/widgets/in_bottomsheet_subtitle.dart';
 
 class DashboardMeetingDetails extends StatelessWidget {
-  const DashboardMeetingDetails({Key? key}) : super(key: key);
+  const DashboardMeetingDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class DashboardMeetingDetails extends StatelessWidget {
               buttonWidth: 180,
               buttonText: "Create New Team",
               callback: () {
-                Get.to(() => SelectMembersScreen());
+                Navigator.pushNamed(context, Routes.selectMembersScreen);
               }),
           AppSpaces.verticalSpace20,
         ]),

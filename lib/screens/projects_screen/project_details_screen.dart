@@ -48,7 +48,7 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
                       category: widget.category,
                       color: widget.color,
                       iconTapped: (() {
-                        showSettingsBottomSheet();
+                        showSettingsBottomSheet(context);
                       }),
                       projectName: widget.projectName,
                     ),

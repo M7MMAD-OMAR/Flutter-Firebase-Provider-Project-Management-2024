@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
-
-import 'onboarding_screen/onboarding_start_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,8 +15,9 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // التنقل إلى شاشة OnboardingStartScreen بعد 3 ثواني
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(() => OnboardingStartScreen());
+      Navigator.pushNamed(context, Routes.onboardingStartScreen);
     });
   }
 

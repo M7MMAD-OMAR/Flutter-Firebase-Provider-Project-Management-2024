@@ -12,26 +12,30 @@ class ProjectCardVertical extends StatelessWidget {
   final String color;
 
   const ProjectCardVertical(
-      {Key? key,
+      {super.key,
       required this.projectName,
       required this.category,
       required this.ratingsUpperNumber,
       required this.ratingsLowerNumber,
-      required this.color})
-      : super(key: key);
+      required this.color});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ProjectDetailsScreen(
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProjectDetailsScreen(
               category: category,
               projectName: projectName,
               color: color,
-            ));
+            ),
+          ),
+        );
       },
       child: Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
               color: HexColor.fromHex("20222A"),
               borderRadius: BorderRadius.circular(20)),
@@ -44,7 +48,7 @@ class ProjectCardVertical extends StatelessWidget {
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.w600)),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Text(category,
                 style: GoogleFonts.lato(color: HexColor.fromHex("626677"))),
             Expanded(
@@ -66,7 +70,8 @@ class ProjectCardVertical extends StatelessWidget {
                                 darken(HexColor.fromHex(color)),
                                 HexColor.fromHex(color)
                               ])))),
-                          Expanded(flex: ratingsLowerNumber, child: SizedBox())
+                          Expanded(
+                              flex: ratingsLowerNumber, child: const SizedBox())
                         ])),
                   ),
                   AppSpaces.horizontalSpace10,

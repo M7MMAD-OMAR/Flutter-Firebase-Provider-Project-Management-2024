@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/chat_screen.dart';
-import 'package:project_management_muhmad_omar/screens/profile_screen/profile_overview_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/dasboard_header.dart';
 import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.dart';
@@ -34,10 +34,10 @@ class DashboardScreen extends StatelessWidget {
                 icon: FontAwesomeIcons.comment,
                 image: "assets/man-head.png",
                 notificationCount: "2",
-                page: ChatScreen(),
+                page: const ChatScreen(),
                 title: "Dashboard",
                 onImageTapped: () {
-                  Get.to(() => const ProfileOverviewScreen());
+                  Navigator.pushNamed(context, Routes.profileOverviewScreen);
                 },
               ),
               AppSpaces.verticalSpace20,
@@ -66,6 +66,7 @@ class DashboardScreen extends StatelessWidget {
                     child: AppSettingsIcon(
                       callback: () {
                         showAppBottomSheet(
+                          context,
                           DashboardSettingsBottomSheet(
                             totalTaskNotifier: _totalTaskTrigger,
                             totalDueNotifier: _totalDueTrigger,

@@ -64,8 +64,6 @@ class UserModel extends BasicModel {
 
   @override
   set setName(String name) {
-    Exception exception;
-
     if (name.isEmpty) {
       throw Exception("الاسم يجب أن يكون غير فارغ");
     }
@@ -80,8 +78,6 @@ class UserModel extends BasicModel {
   }
 
   set setUserName(String? userName) {
-    Exception exception;
-
     if (userName == null) {
       this.userName = userName;
       return;
@@ -99,7 +95,6 @@ class UserModel extends BasicModel {
   }
 
   set setImageUrl(String imageUrl) {
-    Exception exception;
     if (imageUrl.isEmpty) {
       throw Exception("لايمكن أن تكون الصورة فارغة");
     }

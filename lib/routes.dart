@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/auth_screen.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/choose_plan_screen.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/email_address_screen.dart';
+import 'package:project_management_muhmad_omar/screens/auth_screen/login_screen.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/new_workspace_screen.dart';
+import 'package:project_management_muhmad_omar/screens/auth_screen/signup_screen.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/chat_screen.dart';
+import 'package:project_management_muhmad_omar/screens/chat_screen/messaging_screen.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/new_group_screen.dart';
 import 'package:project_management_muhmad_omar/screens/chat_screen/new_message_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_projects_screen.dart';
@@ -20,7 +23,9 @@ import 'package:project_management_muhmad_omar/screens/profile_screen/my_profile
 import 'package:project_management_muhmad_omar/screens/profile_screen/my_team_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile_screen/profile_notification_settings_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile_screen/profile_overview_screen.dart';
+import 'package:project_management_muhmad_omar/screens/profile_screen/team_details_screen.dart';
 import 'package:project_management_muhmad_omar/screens/projects_screen/create_project_screen.dart';
+import 'package:project_management_muhmad_omar/screens/projects_screen/project_details_screen.dart';
 import 'package:project_management_muhmad_omar/screens/projects_screen/projects_screen.dart';
 import 'package:project_management_muhmad_omar/screens/projects_screen/select_members_screen.dart';
 import 'package:project_management_muhmad_omar/screens/splash_screen.dart';
@@ -72,14 +77,17 @@ class Routes {
 
   static final dynamic routes = <String, WidgetBuilder>{
     authScreen: (BuildContext context) => const AuthScreen(),
-    // loginScreen: (BuildContext context) => const Login(email: ,),
-    // signupScreen: (BuildContext context) => const SignUp(email: email),
+    loginScreen: (BuildContext context) => const LoginScreen(
+          email: '',
+        ),
+    signupScreen: (BuildContext context) => const SignUpScreen(email: ''),
     choosePlanScreen: (BuildContext context) => const ChoosePlanScreen(),
     emailAddressScreen: (BuildContext context) => const EmailAddressScreen(),
     splashScreen: (BuildContext context) => const SplashScreen(),
     newWorkspaceScreen: (BuildContext context) => const NewWorkSpaceScreen(),
     chatScreen: (BuildContext context) => const ChatScreen(),
-    // massagingScreen: (BuildContext context) => const MessagingScreen(userName: userName, color: color, image: image),
+    massagingScreen: (BuildContext context) =>
+        const MessagingScreen(userName: '', color: '', image: ''),
     newGroupScreen: (BuildContext context) => const NewGroupScreen(),
     newMessageScreen: (BuildContext context) => const NewMessageScreen(),
     dashboardScreen: (BuildContext context) => DashboardScreen(),
@@ -102,9 +110,15 @@ class Routes {
         const ProfileNotificationSettingsScreen(),
     profileOverviewScreen: (BuildContext context) =>
         const ProfileOverviewScreen(),
-    // teamDetailsScreen: (BuildContext context) => const TeamDetailsScreen(title: '',),
+    teamDetailsScreen: (BuildContext context) => const TeamDetailsScreen(
+          title: '',
+        ),
     createProjectScreen: (BuildContext context) => const CreateProjectScreen(),
-    // projectDetailsScreen: (BuildContext context) => const ProjectDetailsScreen(color: '', projectName: '', category: '',),
+    projectDetailsScreen: (BuildContext context) => const ProjectDetailsScreen(
+          color: '',
+          projectName: '',
+          category: '',
+        ),
     projectsScreen: (BuildContext context) => const ProjectsScreen(),
     selectMembersScreen: (BuildContext context) => const SelectMembersScreen(),
     selectAssigneesScreen: (BuildContext context) => SetAssigneesScreen(),

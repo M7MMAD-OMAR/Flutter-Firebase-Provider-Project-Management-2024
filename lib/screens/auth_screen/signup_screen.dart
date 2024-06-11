@@ -80,7 +80,13 @@ class SignUpScreenState extends State<SignUpScreen> {
                   height: 60,
                   child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => LoginScreen(email: widget.email));
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                LoginScreen(email: widget.email),
+                          ),
+                        );
                       },
                       style: ButtonStyles.blueRounded,
                       child: Text('Sign Up',

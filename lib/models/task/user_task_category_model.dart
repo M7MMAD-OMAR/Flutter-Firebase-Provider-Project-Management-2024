@@ -40,7 +40,6 @@ class UserTaskCategoryModel extends BasicModel {
   late String hexColor;
 
   set setHexColor(String hexColorParameter) {
-    Exception exception;
     if (hexColorParameter.isEmpty) {
       throw Exception("لايمكن أن يكون لون الصنف فارغ");
     }
@@ -53,8 +52,6 @@ class UserTaskCategoryModel extends BasicModel {
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    Exception exception;
-
     DateTime now = firebaseTime(DateTime.now());
     createdAtParameter = firebaseTime(createdAtParameter);
     if (createdAtParameter.isBefore(now)) {
@@ -69,7 +66,6 @@ class UserTaskCategoryModel extends BasicModel {
 
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
-    Exception exception;
     updatedAtParameter = firebaseTime(updatedAtParameter);
 
     if (updatedAtParameter.isBefore(createdAt)) {
@@ -80,8 +76,6 @@ class UserTaskCategoryModel extends BasicModel {
 
   @override
   set setId(String idParameter) {
-    Exception exception;
-
     if (idParameter.isEmpty) {
       throw Exception("لايمكن أن يكون المعرف الخاص بالمهمة فارغا");
     }
@@ -90,8 +84,6 @@ class UserTaskCategoryModel extends BasicModel {
 
   @override
   set setName(String nameParameter) {
-    Exception exception;
-
     if (nameParameter.isEmpty) {
       throw Exception("لايمكن أن يكون اسم الصنف فارغا");
     }

@@ -11,33 +11,36 @@ class SelectionTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text(title,
-              style: GoogleFonts.lato(
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-                color: HexColor.fromHex("616575"),
-              )),
-          InkWell(
-            onTap: () {
-              Get.to(() => page!);
-            },
-            child: CircularBorder(
-                color: HexColor.fromHex("616575"),
-                width: 1,
-                size: 20,
-                icon: Icon(Icons.add,
-                    size: 15, color: HexColor.fromHex("616575"))),
-          ),
-        ]),
-        AppSpaces.verticalSpace20,
-        Divider(
-          height: 2,
-          color: HexColor.fromHex("616575"),
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(title,
+            style: GoogleFonts.lato(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: HexColor.fromHex("616575"),
+            )),
+        InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => page!,
+              ),
+            );
+          },
+          child: CircularBorder(
+              color: HexColor.fromHex("616575"),
+              width: 1,
+              size: 20,
+              icon:
+                  Icon(Icons.add, size: 15, color: HexColor.fromHex("616575"))),
         ),
       ]),
-    );
+      AppSpaces.verticalSpace20,
+      Divider(
+        height: 2,
+        color: HexColor.fromHex("616575"),
+      ),
+    ]);
   }
 }

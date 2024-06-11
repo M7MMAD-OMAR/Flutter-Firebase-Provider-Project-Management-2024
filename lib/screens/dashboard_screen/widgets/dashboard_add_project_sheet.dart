@@ -114,7 +114,7 @@ class DashboardAddProjectSheet extends StatelessWidget {
                 AddSubIcon(
                   scale: 0.8,
                   color: AppColors.primaryAccentColor,
-                  callback: _addMeeting,
+                  callback: () => _addMeeting(context),
                 ),
               ]),
             ]))
@@ -122,8 +122,9 @@ class DashboardAddProjectSheet extends StatelessWidget {
     );
   }
 
-  void _addMeeting() {
+  void _addMeeting(BuildContext context) {
     showAppBottomSheet(
+      context,
       const DashboardDesignMeetingSheet(),
       isScrollControlled: true,
       popAndShow: true,

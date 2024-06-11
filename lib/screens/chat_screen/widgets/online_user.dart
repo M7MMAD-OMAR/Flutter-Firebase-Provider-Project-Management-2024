@@ -22,8 +22,13 @@ class OnlineUser extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0),
       child: InkWell(
         onTap: () {
-          Get.to(() => MessagingScreen(
-              userName: userName, image: image, color: imageBackground));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (_) => MessagingScreen(
+                      userName: userName,
+                      image: image,
+                      color: imageBackground)));
         },
         child: Row(children: [
           OnlineUserProfile(

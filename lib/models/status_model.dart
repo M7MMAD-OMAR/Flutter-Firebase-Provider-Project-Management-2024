@@ -29,8 +29,6 @@ class StatusModel extends BasicModel {
 
   @override
   set setCreatedAt(DateTime? createdAtParameter) {
-    Exception exception;
-
     if (createdAtParameter == null) {
       throw Exception("created Time Can not be null ");
     }
@@ -49,9 +47,6 @@ class StatusModel extends BasicModel {
 
   @override
   set setId(String idParameter) {
-    print("${idParameter}id parameter");
-    Exception exception;
-
     if (idParameter.isEmpty) {
       throw Exception("status id cannot be empty");
     }
@@ -60,8 +55,6 @@ class StatusModel extends BasicModel {
 
   @override
   set setName(String nameParameter) {
-    Exception exception;
-
     if (nameParameter.isEmpty) {
       throw Exception("status Name cannot be Empty");
     }
@@ -74,7 +67,6 @@ class StatusModel extends BasicModel {
 
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
-    Exception exception;
     updatedAtParameter = firebaseTime(updatedAtParameter);
 
     if (updatedAtParameter.isBefore(createdAt)) {

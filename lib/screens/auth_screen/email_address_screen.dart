@@ -59,7 +59,13 @@ class EmailAddressScreenState extends State<EmailAddressScreen> {
             height: 60,
             child: ElevatedButton(
                 onPressed: () {
-                  Get.to(() => SignUpScreen(email: _emailController.text));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          SignUpScreen(email: _emailController.text),
+                    ),
+                  );
                 },
                 style: ButtonStyles.blueRounded,
                 child: Row(

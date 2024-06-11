@@ -11,12 +11,11 @@ class ToggleLabelOption extends StatelessWidget {
   final double? margin;
 
   ToggleLabelOption(
-      {Key? key,
+      {super.key,
       required this.notifierValue,
       required this.label,
       required this.icon,
-      this.margin})
-      : super(key: key);
+      this.margin});
 
   @override
   Widget build(BuildContext context) {

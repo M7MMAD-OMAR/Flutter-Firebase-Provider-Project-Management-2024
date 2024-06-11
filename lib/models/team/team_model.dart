@@ -45,7 +45,6 @@ class TeamModel extends BasicModel {
   }
 
   set setImageUrl(String imageUrl) {
-    Exception exception;
     if (imageUrl.isEmpty) {
       throw Exception("لا يمكن أن يكون رابط صورة الفريق فارغاً");
     }
@@ -54,8 +53,6 @@ class TeamModel extends BasicModel {
 
   @override
   set setId(String id) {
-    Exception exception;
-
     if (id.isEmpty) {
       throw Exception("المعرف لايمكن أن يكون فارغا");
     }
@@ -64,8 +61,6 @@ class TeamModel extends BasicModel {
 
   @override
   set setName(String name) {
-    Exception exception;
-
     if (name.isEmpty) {
       throw Exception("اسم الفريق لا يمكن أن يكون فارغاً");
     }
@@ -78,8 +73,6 @@ class TeamModel extends BasicModel {
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    Exception exception;
-
     createdAtParameter = firebaseTime(createdAtParameter);
     DateTime now = firebaseTime(DateTime.now());
 
@@ -96,7 +89,6 @@ class TeamModel extends BasicModel {
 
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
-    Exception exception;
     updatedAtParameter = firebaseTime(updatedAtParameter);
 
     if (updatedAtParameter.isBefore(createdAt)) {

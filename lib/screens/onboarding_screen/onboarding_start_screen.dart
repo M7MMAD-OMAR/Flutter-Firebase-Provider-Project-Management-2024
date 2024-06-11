@@ -3,12 +3,13 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/background_image.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/bubble.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/loading_stickers.dart';
 import 'package:project_management_muhmad_omar/widgets/Shapes/background_hexagon.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
+
+import '../../routes.dart';
 
 class OnboardingStartScreen extends StatelessWidget {
   const OnboardingStartScreen({super.key});
@@ -92,7 +93,7 @@ class OnboardingStartScreen extends StatelessWidget {
               angle: -math.pi / 4,
               child: InkWell(
                 onTap: () {
-                  Get.to(() => const OnboardingCarouselScreen());
+                  Navigator.pushNamed(context, Routes.onboardingCarouselScreen);
                 },
                 child: Container(
                     width: 200,
@@ -112,7 +113,7 @@ class OnboardingStartScreen extends StatelessWidget {
         Positioned(
             bottom: 150,
             left: 40,
-            child: Container(
+            child: SizedBox(
               width: 300,
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,7 +142,8 @@ class OnboardingStartScreen extends StatelessWidget {
                       height: 60,
                       child: ElevatedButton(
                           onPressed: () {
-                            Get.to(() => const OnboardingCarouselScreen());
+                            Navigator.pushNamed(
+                                context, Routes.onboardingCarouselScreen);
                           },
                           style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(

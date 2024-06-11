@@ -199,7 +199,7 @@ class CreateProjectScreen extends StatelessWidget {
                                 color: Colors.white,
                                 iconSize: 30,
                                 onPressed: () {
-                                  showSettingsBottomSheet();
+                                  showSettingsBottomSheet(context);
                                 },
                               )
                             ]))

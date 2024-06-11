@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/new_workspace_screen.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/back.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
@@ -70,7 +70,7 @@ class LoginScreenState extends State<LoginScreen> {
               height: 60,
               child: ElevatedButton(
                   onPressed: () {
-                    Get.to(() => const NewWorkSpaceScreen());
+                    Navigator.pushNamed(context, Routes.newWorkspaceScreen);
                   },
                   style: ButtonStyles.blueRounded,
                   child: Text('Sign In',

@@ -59,7 +59,6 @@ class ProjectModel extends DetailedModel {
   late String imageUrl;
 
   set setImageUrl(String imageUrl) {
-    Exception exception;
     if (imageUrl.isEmpty) {
       throw Exception("الشرط الأول لايمكن أن يكون فارغ");
     }
@@ -85,8 +84,6 @@ class ProjectModel extends DetailedModel {
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    Exception exception;
-
     DateTime now = firebaseTime(DateTime.now());
     createdAtParameter = firebaseTime(createdAtParameter);
 
@@ -102,7 +99,6 @@ class ProjectModel extends DetailedModel {
 
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
-    Exception exception;
     updatedAtParameter = firebaseTime(updatedAtParameter);
 
     if (updatedAtParameter.isBefore(createdAt)) {
@@ -118,8 +114,6 @@ class ProjectModel extends DetailedModel {
 
   @override
   set setId(String idParameter) {
-    Exception exception;
-
     if (idParameter.isEmpty) {
       throw Exception("لايمكن للمعرف أن يكون فارغ");
     }
@@ -128,8 +122,6 @@ class ProjectModel extends DetailedModel {
 
   @override
   set setName(String nameParameter) {
-    Exception exception;
-
     if (nameParameter.isEmpty) {
       throw Exception("لايمكن لاسم المشروع أن يكون فارغ");
     }
@@ -146,8 +138,6 @@ class ProjectModel extends DetailedModel {
 
   @override
   set setStartDate(DateTime? startDateParameter) {
-    Exception exception;
-
     if (startDateParameter == null) {
       throw Exception("لا يمكن أن يكون وقت بداية المشروع عديم القيمة");
     }
@@ -164,8 +154,6 @@ class ProjectModel extends DetailedModel {
 
   @override
   set setEndDate(DateTime? endDateParameter) {
-    Exception exception;
-
     if (endDateParameter == null) {
       throw Exception("لا يمكن أن يكون تاريخ نهاية المشروع عديم القيمة");
     }

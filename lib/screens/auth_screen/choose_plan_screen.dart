@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/plan_card.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/widgets/toggle_option.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button.dart';
@@ -123,7 +123,7 @@ class ChoosePlanScreen extends StatelessWidget {
                       width: 120,
                       label: "Done",
                       callback: () {
-                        Get.to(() => TimelineScreen());
+                        Navigator.pushNamed(context, Routes.timelineScreen);
                       })
                 ]),
           ))
