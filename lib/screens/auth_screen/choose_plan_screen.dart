@@ -45,9 +45,14 @@ class ChoosePlanScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AppSpaces.verticalSpace10,
-                              Text('Choose Plan', style: AppTextStyles.header2),
+                              Text(
+                                  textAlign: TextAlign.right,
+                                  'Choose Plan',
+                                  style: AppTextStyles.header2),
                               AppSpaces.verticalSpace10,
-                              Text('Unlock all features with Premium Plan',
+                              Text(
+                                  textAlign: TextAlign.right,
+                                  'Unlock all features with Premium Plan',
                                   style: GoogleFonts.lato(
                                       fontSize: 14,
                                       color: HexColor.fromHex("666A7A"))),
@@ -70,7 +75,9 @@ class ChoosePlanScreen extends StatelessWidget {
                                         subHeader: "\$19/mo")
                                   ]),
                               AppSpaces.verticalSpace20,
-                              Text('Enable Features',
+                              Text(
+                                  textAlign: TextAlign.right,
+                                  'Enable Features',
                                   style: AppTextStyles.header2),
                               AppSpaces.verticalSpace10,
                               SizedBox(
@@ -114,7 +121,9 @@ class ChoosePlanScreen extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Back',
+                  Text(
+                      textAlign: TextAlign.right,
+                      'Back',
                       style: GoogleFonts.lato(
                           color: HexColor.fromHex("616575"),
                           fontSize: 16,

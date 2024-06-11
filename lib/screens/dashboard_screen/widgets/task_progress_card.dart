@@ -54,7 +54,9 @@ class TaskProgressCard extends StatelessWidget {
                       style: GoogleFonts.lato(
                           fontWeight: FontWeight.bold, fontSize: 22)),
                   AppSpaces.verticalSpace10,
-                  Text('$rating is completed',
+                  Text(
+                      textAlign: TextAlign.right,
+                      '$rating is completed',
                       style: GoogleFonts.lato(
                           fontWeight: FontWeight.w500, fontSize: 16)),
                   const SizedBox(
@@ -83,7 +85,9 @@ class TaskProgressCard extends StatelessWidget {
                             const Expanded(flex: 1, child: SizedBox())
                           ])),
                       const Spacer(),
-                      Text("$progressFigure%",
+                      Text(
+                          textAlign: TextAlign.right,
+                          "$progressFigure%",
                           style: GoogleFonts.lato(fontWeight: FontWeight.bold))
                     ],
                   )

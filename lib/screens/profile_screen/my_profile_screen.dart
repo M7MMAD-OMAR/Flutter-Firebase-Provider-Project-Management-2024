@@ -40,19 +40,25 @@ class MyProfileScreenState extends State<MyProfileScreen> {
                     title: "$tabSpace Profile", type: ProfileDummyType.Button),
                 const SizedBox(height: 30),
                 ProfileDummy(
-                    color: HexColor.fromHex("94F0F1"),
-                    dummyType: ProfileDummyType.Image,
-                    scale: 4.0,
-                    image: "assets/man-head.png"),
+                  color: HexColor.fromHex("94F0F1"),
+                  dummyType: ProfileDummyType.Image,
+                  scale: 4.0,
+                  image: "assets/man-head.png",
+                  imageType: ImageType.Assets,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Blake Gordon",
+                  child: Text(
+                      textAlign: TextAlign.right,
+                      "Blake Gordon",
                       style: GoogleFonts.lato(
                           color: Colors.white,
                           fontSize: 40,
                           fontWeight: FontWeight.bold)),
                 ),
-                Text("blake@email.com",
+                Text(
+                    textAlign: TextAlign.right,
+                    "blake@email.com",
                     style: GoogleFonts.lato(
                         color: HexColor.fromHex("B0FFE1"), fontSize: 17)),
                 Padding(

@@ -30,20 +30,26 @@ class ProfileOverviewScreen extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: ProfileDummy(
-                  color: HexColor.fromHex("94F0F1"),
-                  dummyType: ProfileDummyType.Image,
-                  scale: 3.0,
-                  image: "assets/man-head.png"),
+                color: HexColor.fromHex("94F0F1"),
+                dummyType: ProfileDummyType.Image,
+                scale: 3.0,
+                image: "assets/man-head.png",
+                imageType: ImageType.Assets,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text("Blake Gordon",
+              child: Text(
+                  textAlign: TextAlign.right,
+                  "Blake Gordon",
                   style: GoogleFonts.lato(
                       color: Colors.white,
                       fontSize: 40,
                       fontWeight: FontWeight.bold)),
             ),
-            Text("blake@email.com",
+            Text(
+                textAlign: TextAlign.right,
+                "blake@email.com",
                 style: GoogleFonts.lato(
                     color: HexColor.fromHex("B0FFE1"), fontSize: 17)),
             Padding(
@@ -73,21 +79,27 @@ class ProfileOverviewScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ProfileDummy(
-                              color: HexColor.fromHex("94F0F1"),
-                              dummyType: ProfileDummyType.Image,
-                              scale: 1.20,
-                              image: "assets/man-head.png"),
+                            color: HexColor.fromHex("94F0F1"),
+                            dummyType: ProfileDummyType.Image,
+                            scale: 1.20,
+                            image: "assets/man-head.png",
+                            imageType: ImageType.Assets,
+                          ),
                           AppSpaces.horizontalSpace20,
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("UI8 Design",
+                                Text(
+                                    textAlign: TextAlign.right,
+                                    "UI8 Design",
                                     style: GoogleFonts.lato(
                                         color: Colors.white,
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold)),
                                 const SizedBox(height: 5),
-                                Text("hello@ui8.net",
+                                Text(
+                                    textAlign: TextAlign.right,
+                                    "hello@ui8.net",
                                     style: GoogleFonts.lato(
                                         fontWeight: FontWeight.bold,
                                         color: HexColor.fromHex("5E6272")))
@@ -147,7 +159,9 @@ class ProfileOverviewScreen extends StatelessWidget {
                     color: HexColor.fromHex("FF968E"),
                     borderRadius: BorderRadius.circular(10)),
                 child: Center(
-                  child: Text("Log Out",
+                  child: Text(
+                      textAlign: TextAlign.right,
+                      "Log Out",
                       style: GoogleFonts.lato(
                           color: Colors.white,
                           fontSize: 16,

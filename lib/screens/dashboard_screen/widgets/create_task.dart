@@ -31,7 +31,9 @@ class CreateTaskBottomSheet extends StatelessWidget {
             Row(children: [
               const Icon(Icons.contacts, color: Colors.white),
               AppSpaces.horizontalSpace10,
-              Text("Unity Dashboard  ",
+              Text(
+                  textAlign: TextAlign.right,
+                  "Unity Dashboard  ",
                   style: GoogleFonts.lato(
                       color: Colors.white, fontWeight: FontWeight.w700)),
               const Icon(Icons.expand_more, color: Colors.white),
@@ -70,10 +72,12 @@ class CreateTaskBottomSheet extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ProfileDummy(
-                          color: HexColor.fromHex("94F0F1"),
-                          dummyType: ProfileDummyType.Image,
-                          scale: 1.5,
-                          image: "assets/man-head.png"),
+                        color: HexColor.fromHex("94F0F1"),
+                        dummyType: ProfileDummyType.Image,
+                        scale: 1.5,
+                        image: "assets/man-head.png",
+                        imageType: ImageType.Assets,
+                      ),
                       AppSpaces.horizontalSpace10,
                       const CircularCardLabel(
                         label: 'Assigned to',

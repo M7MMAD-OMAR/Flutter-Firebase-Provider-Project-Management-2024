@@ -51,10 +51,12 @@ class DashboardNav extends StatelessWidget {
         InkWell(
           onTap: onImageTapped,
           child: ProfileDummy(
-              color: HexColor.fromHex("93F0F0"),
-              dummyType: ProfileDummyType.Image,
-              image: this.image,
-              scale: 1.2),
+            color: HexColor.fromHex("93F0F0"),
+            dummyType: ProfileDummyType.Image,
+            image: image,
+            scale: 1.2,
+            imageType: ImageType.Assets,
+          ),
         )
       ])
     ]);

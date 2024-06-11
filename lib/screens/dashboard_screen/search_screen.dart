@@ -35,10 +35,11 @@ class SearchScreen extends StatelessWidget {
                 Expanded(
                     flex: 1,
                     child: Container(
-                      padding: EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.only(top: 20),
                       height: 60,
-                      child: Text("Cancel",
+                      child: Text(
                           textAlign: TextAlign.right,
+                          "إلغاء",
                           style: GoogleFonts.lato(
                               color: HexColor.fromHex("616575"),
                               fontSize: 16,
@@ -52,15 +53,15 @@ class SearchScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   PrimaryTabButton(
-                      buttonText: "Task",
+                      buttonText: "المهام",
                       itemIndex: 0,
                       notifier: settingsButtonTrigger),
                   PrimaryTabButton(
-                      buttonText: "Mention",
+                      buttonText: "الإشارات",
                       itemIndex: 1,
                       notifier: settingsButtonTrigger),
                   PrimaryTabButton(
-                      buttonText: "Files",
+                      buttonText: "الملفات",
                       itemIndex: 2,
                       notifier: settingsButtonTrigger)
                 ],
@@ -73,7 +74,7 @@ class SearchScreen extends StatelessWidget {
               child: ListView(children: [
                 SearchTaskCard(
                     activated: false,
-                    header: "Unity Dashboard",
+                    header: "لوحة المعلومات",
                     subHeader: "in UI Design Kit",
                     date: "Dec 2"),
                 SearchTaskCard(

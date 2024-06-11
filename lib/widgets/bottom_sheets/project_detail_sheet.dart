@@ -17,7 +17,9 @@ class ProjectDetailBottomSheet extends StatelessWidget {
         const BottomSheetHolder(),
         AppSpaces.verticalSpace10,
         ListTile(
-          title: Text("PROJECT SETTINGS",
+          title: Text(
+              textAlign: TextAlign.right,
+              "PROJECT SETTINGS",
               style: GoogleFonts.lato(fontSize: 12, color: Colors.white30)),
         ),
         Expanded(

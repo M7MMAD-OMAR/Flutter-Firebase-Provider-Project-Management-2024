@@ -24,10 +24,12 @@ class DashboardMeetingDetails extends StatelessWidget {
           Align(
             alignment: Alignment.center,
             child: ProfileDummy(
-                color: HexColor.fromHex("9F69F9"),
-                dummyType: ProfileDummyType.Image,
-                scale: 2.5,
-                image: "assets/plant.png"),
+              color: HexColor.fromHex("9F69F9"),
+              dummyType: ProfileDummyType.Image,
+              scale: 2.5,
+              image: "assets/plant.png",
+              imageType: ImageType.Assets,
+            ),
           ),
           AppSpaces.verticalSpace10,
           InBottomSheetSubtitle(

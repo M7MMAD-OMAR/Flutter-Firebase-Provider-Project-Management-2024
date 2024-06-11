@@ -3,10 +3,11 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button.dart';
-import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/app_header.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
+
+import '../../widgets/forms/labelled_form_input_widget.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -44,55 +45,72 @@ class EditProfileScreen extends StatelessWidget {
             Stack(
               children: [
                 ProfileDummy(
-                    color: HexColor.fromHex("94F0F1"),
-                    dummyType: ProfileDummyType.Image,
-                    scale: 3.0,
-                    image: "assets/man-head.png"),
+                  color: HexColor.fromHex("94F0F1"),
+                  dummyType: ProfileDummyType.Image,
+                  scale: 3.0,
+                  image: "assets/man-head.png",
+                  imageType: ImageType.Assets,
+                ),
                 Container(
                     width: 120,
                     height: 120,
                     decoration: BoxDecoration(
                         color: AppColors.primaryAccentColor.withOpacity(0.75),
                         shape: BoxShape.circle),
-                    child: Icon(FeatherIcons.camera,
+                    child: const Icon(FeatherIcons.camera,
                         color: Colors.white, size: 20))
               ],
             ),
             AppSpaces.verticalSpace20,
-            LabelledFormInput(
-                placeholder: "Blake Gordon",
-                keyboardType: "text",
-                controller: nameController,
-                obscureText: false,
-                label: "Your Name"),
+            LabelledFormInputWidget(
+              placeholder: "Blake Gordon",
+              keyboardType: "text",
+              controller: nameController,
+              obscureText: false,
+              label: "Your Name",
+              autovalidateMode: null,
+              readOnly: false,
+            ),
             AppSpaces.verticalSpace20,
-            LabelledFormInput(
-                placeholder: "blake@gmail.com",
-                keyboardType: "text",
-                controller: emailController,
-                obscureText: true,
-                label: "Your Email"),
+            LabelledFormInputWidget(
+              placeholder: "blake@gmail.com",
+              keyboardType: "text",
+              controller: emailController,
+              obscureText: true,
+              label: "Your Email",
+              autovalidateMode: null,
+              readOnly: false,
+            ),
             AppSpaces.verticalSpace20,
-            LabelledFormInput(
-                placeholder: "HikLHjD@&1?>",
-                keyboardType: "text",
-                controller: passController,
-                obscureText: true,
-                label: "Your Password"),
+            LabelledFormInputWidget(
+              placeholder: "HikLHjD@&1?>",
+              keyboardType: "text",
+              controller: passController,
+              obscureText: true,
+              label: "Your Password",
+              autovalidateMode: null,
+              readOnly: false,
+            ),
             AppSpaces.verticalSpace20,
-            LabelledFormInput(
-                placeholder: "Visual Designer",
-                keyboardType: "text",
-                controller: roleController,
-                obscureText: true,
-                label: "Role"),
+            LabelledFormInputWidget(
+              placeholder: "Visual Designer",
+              keyboardType: "text",
+              controller: roleController,
+              obscureText: true,
+              label: "Role",
+              autovalidateMode: null,
+              readOnly: false,
+            ),
             AppSpaces.verticalSpace20,
-            LabelledFormInput(
-                placeholder: "Design & Cat Person",
-                keyboardType: "text",
-                controller: aboutController,
-                obscureText: true,
-                label: "About Me"),
+            LabelledFormInputWidget(
+              placeholder: "Design & Cat Person",
+              keyboardType: "text",
+              controller: aboutController,
+              obscureText: true,
+              label: "About Me",
+              autovalidateMode: null,
+              readOnly: false,
+            ),
           ]))))
     ]));
   }

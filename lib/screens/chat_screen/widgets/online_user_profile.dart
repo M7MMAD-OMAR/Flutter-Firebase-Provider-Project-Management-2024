@@ -14,10 +14,12 @@ class OnlineUserProfile extends StatelessWidget {
     return Stack(
       children: [
         ProfileDummy(
-            dummyType: ProfileDummyType.Image,
-            scale: 1,
-            image: image,
-            color: HexColor.fromHex(imageBackground)),
+          dummyType: ProfileDummyType.Image,
+          scale: 1,
+          image: image,
+          color: HexColor.fromHex(imageBackground),
+          imageType: ImageType.Assets,
+        ),
         Positioned(
             top: 0,
             right: 0,

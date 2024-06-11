@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
-import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/back.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
+
+import '../../widgets/forms/labelled_form_input_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   final String email;
@@ -35,7 +36,9 @@ class LoginScreenState extends State<LoginScreen> {
           children: [
             const NavigationBack(),
             const SizedBox(height: 40),
-            Text('Login',
+            Text(
+                textAlign: TextAlign.right,
+                'Login',
                 style: GoogleFonts.lato(
                     color: Colors.white,
                     fontSize: 40,
@@ -58,12 +61,15 @@ class LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const SizedBox(height: 30),
-            LabelledFormInput(
-                placeholder: "Password",
-                keyboardType: "text",
-                controller: _passController,
-                obscureText: obscureText,
-                label: "Your Password"),
+            LabelledFormInputWidget(
+              placeholder: "Password",
+              keyboardType: "text",
+              controller: _passController,
+              obscureText: obscureText,
+              label: "Your Password",
+              autovalidateMode: null,
+              readOnly: false,
+            ),
             const SizedBox(height: 40),
             SizedBox(
               width: double.infinity,
@@ -73,7 +79,9 @@ class LoginScreenState extends State<LoginScreen> {
                     Navigator.pushNamed(context, Routes.newWorkspaceScreen);
                   },
                   style: ButtonStyles.blueRounded,
-                  child: Text('Sign In',
+                  child: Text(
+                      textAlign: TextAlign.right,
+                      'Sign In',
                       style:
                           GoogleFonts.lato(fontSize: 20, color: Colors.white))),
             )

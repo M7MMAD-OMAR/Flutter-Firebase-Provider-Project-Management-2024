@@ -46,7 +46,9 @@ class BarChartSample1State extends State<BarChartSample1> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Completed in the last 7 Days",
+                  Text(
+                      textAlign: TextAlign.right,
+                      "Completed in the last 7 Days",
                       style: GoogleFonts.lato(
                           color: HexColor.fromHex("616575"), fontSize: 13)),
                   IconButton(
@@ -77,13 +79,17 @@ class BarChartSample1State extends State<BarChartSample1> {
               ),
               AppSpaces.verticalSpace10,
               Row(children: [
-                Text('108 Tasks',
+                Text(
+                    textAlign: TextAlign.right,
+                    '108 Tasks',
                     style: GoogleFonts.lato(
                       fontWeight: FontWeight.bold,
                       color: mainColor,
                     )),
                 AppSpaces.horizontalSpace20,
-                Text('6 Projects',
+                Text(
+                    textAlign: TextAlign.right,
+                    '6 Projects',
                     style: GoogleFonts.lato(
                       fontWeight: FontWeight.bold,
                       color: barBackgroundColor,

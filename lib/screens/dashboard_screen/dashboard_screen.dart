@@ -41,7 +41,9 @@ class DashboardScreen extends StatelessWidget {
                 },
               ),
               AppSpaces.verticalSpace20,
-              Text("Hello,\nDereck Doyle 👋",
+              Text(
+                  textAlign: TextAlign.right,
+                  "Hello,\nDereck Doyle 👋",
                   style: GoogleFonts.lato(
                       color: Colors.white,
                       fontSize: 40,

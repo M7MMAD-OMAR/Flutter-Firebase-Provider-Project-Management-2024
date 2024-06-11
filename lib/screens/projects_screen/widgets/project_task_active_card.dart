@@ -106,10 +106,12 @@ class ProjectTaskActiveCard extends StatelessWidget {
                         ])
                   ]),
                   ProfileDummy(
-                      color: HexColor.fromHex(backgroundColor),
-                      dummyType: ProfileDummyType.Image,
-                      image: this.image,
-                      scale: 1.0),
+                    color: HexColor.fromHex(backgroundColor),
+                    dummyType: ProfileDummyType.Image,
+                    image: this.image,
+                    scale: 1.0,
+                    imageType: ImageType.Assets,
+                  ),
                 ])),
       ),
     );

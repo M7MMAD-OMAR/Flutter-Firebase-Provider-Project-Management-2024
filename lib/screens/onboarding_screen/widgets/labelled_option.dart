@@ -33,7 +33,9 @@ class LabelledOption extends StatelessWidget {
                 title: Row(
                   children: [
                     Icon(icon, color: Colors.white, size: 24),
-                    Text("       $label",
+                    Text(
+                        textAlign: TextAlign.right,
+                        "       $label",
                         style: GoogleFonts.lato(
                           fontSize: 18,
                           color: (color != null) ? color! : Colors.white,

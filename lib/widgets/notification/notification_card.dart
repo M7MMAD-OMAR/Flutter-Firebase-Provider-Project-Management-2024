@@ -34,7 +34,9 @@ class NotificationCard extends StatelessWidget {
         padding: EdgeInsets.only(top: 10),
         height: 160,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text('$userName mentioned you in $mention',
+          Text(
+              textAlign: TextAlign.right,
+              '$userName mentioned you in $mention',
               style: GoogleFonts.lato(
                   color: HexColor.fromHex("666A7B"),
                   fontWeight: FontWeight.w500)),
@@ -45,10 +47,12 @@ class NotificationCard extends StatelessWidget {
               Stack(
                 children: [
                   ProfileDummy(
-                      dummyType: ProfileDummyType.Image,
-                      scale: 1.5,
-                      image: image,
-                      color: HexColor.fromHex(imageBackground)),
+                    dummyType: ProfileDummyType.Image,
+                    scale: 1.5,
+                    image: image,
+                    color: HexColor.fromHex(imageBackground),
+                    imageType: ImageType.Assets,
+                  ),
                   userOnline
                       ? Positioned(
                           top: 0,
@@ -112,7 +116,7 @@ class NotificationCard extends StatelessWidget {
                                   ],
                                 ),
                               )
-                            : Text('$message',
+                            : Text(message,
                                 style: GoogleFonts.lato(
                                   fontSize: 16,
                                   color: HexColor.fromHex("666A7B"),

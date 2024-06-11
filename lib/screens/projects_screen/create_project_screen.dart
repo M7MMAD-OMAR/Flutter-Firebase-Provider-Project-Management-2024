@@ -58,7 +58,9 @@ class CreateProjectScreen extends StatelessWidget {
               width: Utils.getScreenWidth(context),
               height: Utils.getScreenHeight(context) * 2,
               child: ListView(children: [
-                Text("Onboarding\n Screens",
+                Text(
+                    textAlign: TextAlign.right,
+                    "Onboarding\n Screens",
                     style: GoogleFonts.lato(
                         fontSize: 40,
                         color: Colors.white,
@@ -74,10 +76,12 @@ class CreateProjectScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 ProfileDummy(
-                                    color: HexColor.fromHex("94F0F1"),
-                                    dummyType: ProfileDummyType.Image,
-                                    scale: 1.5,
-                                    image: "assets/man-head.png"),
+                                  color: HexColor.fromHex("94F0F1"),
+                                  dummyType: ProfileDummyType.Image,
+                                  scale: 1.5,
+                                  image: "assets/man-head.png",
+                                  imageType: ImageType.Assets,
+                                ),
                                 AppSpaces.horizontalSpace10,
                                 const CircularCardLabel(
                                   label: 'Assigned to',
@@ -101,13 +105,17 @@ class CreateProjectScreen extends StatelessWidget {
                         Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Unity Dashboard",
+                              Text(
+                                  textAlign: TextAlign.right,
+                                  "Unity Dashboard",
                                   style: GoogleFonts.lato(
                                       color: Colors.white,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600)),
                               const SizedBox(height: 5),
-                              Text("Task List",
+                              Text(
+                                  textAlign: TextAlign.right,
+                                  "Task List",
                                   style: GoogleFonts.lato(
                                       color: HexColor.fromHex("626677"))),
                             ])

@@ -43,16 +43,22 @@ class NewWorkSpaceScreen extends StatelessWidget {
                           padding: const EdgeInsets.all(20.0),
                           child: Column(children: [
                             ProfileDummy(
-                                color: HexColor.fromHex("9F69F9"),
-                                dummyType: ProfileDummyType.Image,
-                                scale: 2.5,
-                                image: "assets/plant.png"),
+                              color: HexColor.fromHex("9F69F9"),
+                              dummyType: ProfileDummyType.Image,
+                              scale: 2.5,
+                              image: "assets/plant.png",
+                              imageType: ImageType.Assets,
+                            ),
                             AppSpaces.verticalSpace10,
-                            Text('Stuart\'s Workspace',
+                            Text(
+                                textAlign: TextAlign.right,
+                                'Stuart\'s Workspace',
                                 style: GoogleFonts.lato(
                                     fontSize: 30, color: Colors.white)),
                             AppSpaces.verticalSpace10,
-                            Text('Tap the logo to upload a new image.',
+                            Text(
+                                textAlign: TextAlign.right,
+                                'Tap the logo to upload a new image.',
                                 style: GoogleFonts.lato(
                                     fontSize: 14,
                                     color: HexColor.fromHex("666A7A"))),
@@ -65,7 +71,9 @@ class NewWorkSpaceScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('11 - 25',
+                                    Text(
+                                        textAlign: TextAlign.right,
+                                        '11 - 25',
                                         style: GoogleFonts.lato(
                                             color: Colors.white, fontSize: 20)),
                                     const RotatedBox(
@@ -84,7 +92,9 @@ class NewWorkSpaceScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('Email Address',
+                                    Text(
+                                        textAlign: TextAlign.right,
+                                        'Email Address',
                                         style: GoogleFonts.lato(
                                             color: Colors.blue, fontSize: 17)),
                                     const Icon(Icons.add,
@@ -122,7 +132,9 @@ class NewWorkSpaceScreen extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Skip',
+                    Text(
+                        textAlign: TextAlign.right,
+                        'Skip',
                         style: GoogleFonts.lato(
                             color: HexColor.fromHex("616575"),
                             fontSize: 16,

@@ -56,6 +56,7 @@ class ActiveEmployeeCard extends StatelessWidget {
                         scale: 0.85,
                         color: color,
                         image: employeeImage,
+                        imageType: ImageType.Assets,
                       ),
                       AppSpaces.horizontalSpace20,
                       Column(

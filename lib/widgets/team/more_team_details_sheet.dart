@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with%20_label.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder.dart';
 
 import '../container_label.dart';
+import '../forms/labelled_form_input_widget.dart';
 
 class MoreTeamDetailsSheet extends StatelessWidget {
   const MoreTeamDetailsSheet({super.key});
@@ -21,20 +21,26 @@ class MoreTeamDetailsSheet extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LabelledFormInput(
-                placeholder: "Blake Gordon",
-                keyboardType: "text",
-                value: "Blake Gordon",
-                controller: workSpaceNameController,
-                obscureText: false,
-                label: "WorkSpace"),
+            LabelledFormInputWidget(
+              placeholder: "Blake Gordon",
+              keyboardType: "text",
+              value: "Blake Gordon",
+              controller: workSpaceNameController,
+              obscureText: false,
+              label: "WorkSpace",
+              autovalidateMode: null,
+              readOnly: false,
+            ),
             AppSpaces.verticalSpace20,
-            LabelledFormInput(
-                placeholder: "Marketing",
-                keyboardType: "text",
-                controller: teamNameController,
-                obscureText: true,
-                label: "TEAM NAME"),
+            LabelledFormInputWidget(
+              placeholder: "Marketing",
+              keyboardType: "text",
+              controller: teamNameController,
+              obscureText: true,
+              label: "TEAM NAME",
+              autovalidateMode: null,
+              readOnly: false,
+            ),
             AppSpaces.verticalSpace20,
             const ContainerLabel(label: "Members"),
             AppSpaces.verticalSpace10,

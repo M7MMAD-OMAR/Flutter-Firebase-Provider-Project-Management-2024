@@ -17,21 +17,24 @@ class DefaultNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      AppBackButton(),
-      Text(this.title,
-          style: GoogleFonts.lato(fontSize: 20, color: Colors.white)),
+      const AppBackButton(),
+      Text(title, style: GoogleFonts.lato(fontSize: 20, color: Colors.white)),
       Builder(builder: (context) {
         if (type == ProfileDummyType.Icon) {
           return ProfileDummy(
-              color: HexColor.fromHex("93F0F0"),
-              dummyType: ProfileDummyType.Image,
-              image: "assets/man-head.png",
-              scale: 1.2);
+            color: HexColor.fromHex("93F0F0"),
+            dummyType: ProfileDummyType.Image,
+            image: "assets/man-head.png",
+            scale: 1.2,
+            imageType: ImageType.Assets,
+          );
         } else if (type == ProfileDummyType.Image) {
           return ProfileDummy(
-              color: HexColor.fromHex("9F69F9"),
-              dummyType: ProfileDummyType.Icon,
-              scale: 1.0);
+            color: HexColor.fromHex("9F69F9"),
+            dummyType: ProfileDummyType.Icon,
+            scale: 1.0,
+            imageType: ImageType.Assets,
+          );
         } else if (type == ProfileDummyType.Button) {
           return OutlinedButtonWithText(
             width: 75,

@@ -88,7 +88,10 @@ class PlanCard extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     children: [
                                   SizedBox(height: 45),
-                                  Text("🎉", style: TextStyle(fontSize: 40)),
+                                  Text(
+                                      textAlign: TextAlign.right,
+                                      "🎉",
+                                      style: TextStyle(fontSize: 40)),
                                   AppSpaces.verticalSpace20,
                                   Text(header,
                                       style: GoogleFonts.lato(

@@ -75,7 +75,9 @@ class ProjectCardVertical extends StatelessWidget {
                         ])),
                   ),
                   AppSpaces.horizontalSpace10,
-                  Text("$ratingsUpperNumber/$ratingsLowerNumber",
+                  Text(
+                      textAlign: TextAlign.right,
+                      "$ratingsUpperNumber/$ratingsLowerNumber",
                       style: GoogleFonts.lato(color: Colors.white))
                 ]))
           ])),

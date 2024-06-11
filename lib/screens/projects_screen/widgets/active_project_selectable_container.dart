@@ -39,7 +39,9 @@ class ActiveProjectSelectableContainer extends StatelessWidget {
                   child: const Center(
                       child: Icon(Icons.done, size: 10, color: Colors.white))),
               AppSpaces.horizontalSpace20,
-              Text("$header🎉",
+              Text(
+                  textAlign: TextAlign.right,
+                  "$header🎉",
                   style: GoogleFonts.lato(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,

@@ -49,7 +49,9 @@ class RectPrimaryButtonWithIcon extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (icon != null) Icon(icon!, color: Colors.white),
-                      Text("   $buttonText",
+                      Text(
+                          textAlign: TextAlign.right,
+                          "   $buttonText",
                           style: GoogleFonts.lato(
                               fontSize: 14, color: Colors.white)),
                     ],

@@ -25,7 +25,9 @@ class BadgedTitle extends StatelessWidget {
           decoration: BoxDecoration(
               border: Border.all(color: HexColor.fromHex(color), width: 1),
               borderRadius: BorderRadius.circular(50.0)),
-          child: Text("$number members",
+          child: Text(
+              textAlign: TextAlign.right,
+              "$number members",
               style: GoogleFonts.lato(
                   color: HexColor.fromHex(color),
                   fontWeight: FontWeight.w500,

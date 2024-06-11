@@ -68,7 +68,9 @@ class ProjectCardHorizontal extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: HexColor.fromHex(color),
                           borderRadius: BorderRadius.circular(20)),
-                      child: Text("$ratingsUpperNumber/$ratingsLowerNumber",
+                      child: Text(
+                          textAlign: TextAlign.right,
+                          "$ratingsUpperNumber/$ratingsLowerNumber",
                           style: GoogleFonts.lato(
                               fontWeight: FontWeight.bold,
                               color: (category == "Development"

@@ -52,10 +52,12 @@ Widget buildStackedImages(
   final items = List.generate(
       4,
       (index) => ProfileDummy(
-          color: AppData.groupBackgroundColors[index],
-          dummyType: ProfileDummyType.Image,
-          image: AppData.profileImages[index],
-          scale: 1.0));
+            color: AppData.groupBackgroundColors[index],
+            dummyType: ProfileDummyType.Image,
+            image: AppData.profileImages[index],
+            scale: 1.0,
+            imageType: ImageType.Assets,
+          ));
 
   return StackedWidgets(
     direction: direction,

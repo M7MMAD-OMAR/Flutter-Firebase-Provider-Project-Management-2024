@@ -93,7 +93,9 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
                             collapsedIconColor: Colors.white,
                             iconColor: Colors.white,
                             textColor: Colors.white,
-                            title: Text("IDEAS (3)",
+                            title: Text(
+                                textAlign: TextAlign.right,
+                                "IDEAS (3)",
                                 style: GoogleFonts.lato(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
@@ -125,7 +127,9 @@ class _ProjectDetailsScreenState extends State<ProjectDetailsScreen> {
                             collapsedIconColor: Colors.white,
                             iconColor: Colors.white,
                             textColor: Colors.white,
-                            title: Text("DESIGN (12)",
+                            title: Text(
+                                textAlign: TextAlign.right,
+                                "DESIGN (12)",
                                 style: GoogleFonts.lato(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,

@@ -105,7 +105,9 @@ class DashboardAddProjectSheet extends StatelessWidget {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Row(
                   children: [
-                    Text("Public to Design Team  ",
+                    Text(
+                        textAlign: TextAlign.right,
+                        "Public to Design Team  ",
                         style: GoogleFonts.lato(
                             color: Colors.white, fontWeight: FontWeight.w700)),
                     const Icon(Icons.expand_more, color: Colors.white),

@@ -85,7 +85,9 @@ class TaskDueDateScreen extends StatelessWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Cancel',
+                  Text(
+                      textAlign: TextAlign.right,
+                      'Cancel',
                       style: GoogleFonts.lato(
                           color: HexColor.fromHex("F49189"),
                           fontSize: 18,

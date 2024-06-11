@@ -11,6 +11,7 @@ import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radi
 
 import '../../routes.dart';
 
+/// This: صفحة البداية التي يظهر بها صورى الأشخاص الثلاث وزر أبدا الىن
 class OnboardingStartScreen extends StatelessWidget {
   const OnboardingStartScreen({super.key});
 
@@ -28,8 +29,10 @@ class OnboardingStartScreen extends StatelessWidget {
             child: Transform.rotate(
                 angle: -math.pi / 2,
                 child: CustomPaint(painter: BackgroundHexagon()))),
+
+        // Man Image
         Positioned(
-            top: Utils.getScreenHeight(context) * 0.7,
+            top: Utils.getScreenHeight(context) * 0.35,
             right: 100,
             child: BackgroundImage(
                 scale: 1.0,
@@ -38,8 +41,10 @@ class OnboardingStartScreen extends StatelessWidget {
                   HexColor.fromHex("92ECEC"),
                   HexColor.fromHex("92ECEC")
                 ])),
+
+        // Girl Image
         Positioned(
-            top: Utils.getScreenHeight(context) * 0.50,
+            top: Utils.getScreenHeight(context) * 0.25,
             left: Utils.getScreenWidth(context) * 0.12,
             child: BackgroundImage(
                 scale: 0.5,
@@ -48,8 +53,10 @@ class OnboardingStartScreen extends StatelessWidget {
                   HexColor.fromHex("FD9871"),
                   HexColor.fromHex("F7D092")
                 ])),
+
+        // Girl Image
         Positioned(
-            top: Utils.getScreenHeight(context) * 0.30,
+            top: Utils.getScreenHeight(context) * 0.20,
             right: 70,
             child: BackgroundImage(
                 scale: 0.4,
@@ -58,8 +65,10 @@ class OnboardingStartScreen extends StatelessWidget {
                   HexColor.fromHex("#a7b2fd"),
                   HexColor.fromHex("#c1a0fd")
                 ])),
+        // Circle
         Positioned(
             top: 80, left: 50, child: Bubble(1.0, HexColor.fromHex("A06AF9"))),
+        // Circle
         Positioned(
             top: 130,
             left: 130,
@@ -73,14 +82,14 @@ class OnboardingStartScreen extends StatelessWidget {
               HexColor.fromHex("#4A88FE")
             ])),
         Positioned(
-            top: Utils.getScreenHeight(context) * 0.50,
+            top: Utils.getScreenHeight(context) * 0.45,
             left: Utils.getScreenWidth(context) * 0.22,
             child: LoadingSticker(gradients: [
               HexColor.fromHex("#a7b2fd"),
               HexColor.fromHex("#c1a0fd")
             ])),
         Positioned(
-            top: Utils.getScreenHeight(context) * 0.7,
+            top: Utils.getScreenHeight(context) * 0.9,
             left: Utils.getScreenWidth(context) * 0.6,
             child: LoadingSticker(gradients: [
               HexColor.fromHex("#a7b2fd"),
@@ -111,19 +120,20 @@ class OnboardingStartScreen extends StatelessWidget {
               ),
             )),
         Positioned(
-            bottom: 150,
-            left: 40,
+            bottom: 100,
+            right: 40,
             child: SizedBox(
               width: 300,
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  // mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     RichText(
+                      textAlign: TextAlign.right,
                       text: TextSpan(
-                        text: 'Task Management ',
+                        text: 'تطبيق إدارة المهام ',
                         style: GoogleFonts.lato(
-                            fontSize: 18, color: HexColor.fromHex("FDA5FF")),
+                            fontSize: 20, color: HexColor.fromHex("FDA5FF")),
                         children: const <TextSpan>[
                           TextSpan(
                             text: '🙌',
@@ -131,12 +141,16 @@ class OnboardingStartScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Text('Lets create\na space\nfor your workflows.',
+                    Text(
+                        textAlign: TextAlign.right,
+                        'يتيح إنشاء \n مساحة عمل \n للمشاريع الخاص بك',
                         style: GoogleFonts.lato(
                             color: Colors.white,
                             fontSize: 35,
                             fontWeight: FontWeight.bold)),
                     AppSpaces.verticalSpace20,
+
+                    // Get Started button
                     SizedBox(
                       width: 180,
                       height: 60,
@@ -155,7 +169,9 @@ class OnboardingStartScreen extends StatelessWidget {
                                       side: BorderSide(
                                           color: HexColor.fromHex("246CFE"))))),
                           child: Center(
-                              child: Text('Get Started',
+                              child: Text(
+                                  textAlign: TextAlign.right,
+                                  'ابدأ الآن',
                                   style: GoogleFonts.lato(
                                       fontSize: 20, color: Colors.white)))),
                     )

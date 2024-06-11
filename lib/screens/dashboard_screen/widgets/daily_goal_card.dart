@@ -21,7 +21,9 @@ class DailyGoalCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Daily Goal',
+                  Text(
+                      textAlign: TextAlign.right,
+                      'Daily Goal',
                       style: GoogleFonts.lato(
                           color: HexColor.fromHex("616575"),
                           fontSize: 17,
@@ -38,14 +40,18 @@ class DailyGoalCard extends StatelessWidget {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0))),
                           child: Center(
-                            child: Text('3/5',
+                            child: Text(
+                                textAlign: TextAlign.right,
+                                '3/5',
                                 style: GoogleFonts.lato(
                                   color: Colors.white,
                                   fontSize: 16,
                                 )),
                           )),
                       AppSpaces.horizontalSpace10,
-                      Text('Tasks',
+                      Text(
+                          textAlign: TextAlign.right,
+                          'Tasks',
                           style: GoogleFonts.lato(
                               color: Colors.white,
                               fontSize: 17,
@@ -53,7 +59,9 @@ class DailyGoalCard extends StatelessWidget {
                     ],
                   ),
                   AppSpaces.verticalSpace10,
-                  Text('You marked 3/5 tasks\nare done 🎉',
+                  Text(
+                      textAlign: TextAlign.right,
+                      'You marked 3/5 tasks\nare done 🎉',
                       style: GoogleFonts.lato(
                           color: HexColor.fromHex("616575"),
                           fontSize: 17,
@@ -73,7 +81,9 @@ class DailyGoalCard extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50.0),
                                     side: BorderSide(
                                         color: HexColor.fromHex("C25FFF"))))),
-                        child: Text('All Task',
+                        child: Text(
+                            textAlign: TextAlign.right,
+                            'All Task',
                             style: GoogleFonts.lato(
                                 fontSize: 17,
                                 fontWeight: FontWeight.bold,

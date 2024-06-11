@@ -25,7 +25,7 @@ class NewMessageScreen extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.only(right: 20, left: 20),
               child: TaskezAppHeader(
-                title: "New Message",
+                title: "رسالة جديدة",
                 widget: SizedBox(),
               ),
             ),
@@ -55,13 +55,14 @@ class NewMessageScreen extends StatelessWidget {
                                           Expanded(
                                             flex: 3,
                                             child: SearchBox(
-                                                placeholder: 'Search Members',
+                                                placeholder: 'البحث عن الأعضاء',
                                                 controller: searchController),
                                           ),
                                           Expanded(
                                               flex: 1,
-                                              child: Text("Cancel",
+                                              child: Text(
                                                   textAlign: TextAlign.right,
+                                                  "إلغاء",
                                                   style: GoogleFonts.lato(
                                                       color: HexColor.fromHex(
                                                           "616575"),
@@ -71,7 +72,9 @@ class NewMessageScreen extends StatelessWidget {
                                         ],
                                       ),
                                       AppSpaces.verticalSpace20,
-                                      Text("SUGGESTED",
+                                      Text(
+                                          textAlign: TextAlign.right,
+                                          "SUGGESTED",
                                           style: GoogleFonts.lato(
                                             fontSize: 11,
                                             fontWeight: FontWeight.w500,

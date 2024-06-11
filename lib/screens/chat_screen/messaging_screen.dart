@@ -84,7 +84,9 @@ class MessagingScreen extends StatelessWidget {
                             color: AppColors.primaryBackgroundColor,
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          child: Text("Hi man, how are you doing?",
+                          child: Text(
+                              textAlign: TextAlign.right,
+                              "Hi man, how are you doing?",
                               style: GoogleFonts.lato(color: Colors.white))),
                     )
                   ],
@@ -114,7 +116,9 @@ class MessagingScreen extends StatelessWidget {
                                     topRight: Radius.circular(50),
                                     bottomRight: Radius.circular(50)),
                               ),
-                              child: Text("Just one question 😂",
+                              child: Text(
+                                  textAlign: TextAlign.right,
+                                  "Just one question 😂",
                                   style:
                                       GoogleFonts.lato(color: Colors.white))),
                           AppSpaces.verticalSpace10,
