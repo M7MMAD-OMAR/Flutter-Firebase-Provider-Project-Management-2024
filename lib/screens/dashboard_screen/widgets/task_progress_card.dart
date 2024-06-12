@@ -10,24 +10,23 @@ class TaskProgressCard extends StatelessWidget {
   final String progressFigure;
   final int percentageGap;
 
-  TaskProgressCard(
-      {Key? key,
+  const TaskProgressCard(
+      {super.key,
       required this.rating,
       required this.cardTitle,
       required this.progressFigure,
-      required this.percentageGap})
-      : super(key: key);
+      required this.percentageGap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         height: 150,
         decoration: BoxDecoration(
-          boxShadow: [
-            const BoxShadow(
+          boxShadow: const [
+            BoxShadow(
               color: Colors.black12,
               blurRadius: 4,
-              offset: const Offset(4, 8),
+              offset: Offset(4, 8),
             ),
           ],
           borderRadius: BorderRadius.circular(20),

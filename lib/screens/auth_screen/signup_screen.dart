@@ -2,23 +2,17 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:either_dart/either.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/back.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
-import 'package:provider/provider.dart';
 
 import '../../Utils/back_utils.dart';
-import '../../models/User/user_model.dart';
 import '../../providers/user_provider/user_provider.dart';
-import '../../services/auth_service.dart';
-import '../../services/collections_refrences.dart';
-import '../../widgets/dummy/profile_dummy.dart';
 import '../../widgets/forms/labelled_form_input_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -317,94 +311,96 @@ class SignUpScreenState extends State<SignUpScreen> {
 
                           child: ElevatedButton(
                             onPressed: () async {
-                              if (formKey.currentState!.validate()) {
-                                try {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return const Center(
-                                            child: CircularProgressIndicator());
-                                      });
-                                  User? user = Provider.of<AuthService>(context)
-                                      .firebaseAuth
-                                      .currentUser;
-                                  if (user != null) {
-                                    await Provider.of<AuthService>(context)
-                                        .firebaseAuth
-                                        .signOut();
-                                  }
-                                  if (selectedImagePath != null) {
-                                    String? imagePathNetWork = "";
-                                    final resOfUpload =
-                                        await uploadImageToStorge(
-                                            selectedImagePath:
-                                                selectedImagePath!,
-                                            imageName: name,
-                                            folder: "Users");
-                                    resOfUpload.fold((left) {
-                                      SnackBar(
-                                          content: Text("${left.toString()} "));
-                                      // return;
-                                    }, (right) {
-                                      right.then((value) async {
-                                        imagePathNetWork = value;
-                                        UserModel userModel = UserModel(
-                                          emailParameter: widget.email,
-                                          userNameParameter: userName.isEmpty
-                                              ? null
-                                              : userName,
-                                          nameParameter: name,
-                                          imageUrlParameter: imagePathNetWork!,
-                                          idParameter: usersRef.doc().id,
-                                          createdAtParameter: DateTime.now(),
-                                          updatedAtParameter: DateTime.now(),
-                                        );
-                                        // await AuthService()
-                                        //     .createUserWithEmailAndPassword(
-                                        //         userModel: userModel,
-                                        //         email: widget.email,
-                                        //         password: password);
-                                        //    Navigator.of(context).pop();
-                                      });
-                                    });
-                                  } else {
-                                    UserModel userModel = UserModel(
-                                      emailParameter: widget.email,
-                                      nameParameter: name,
-                                      userNameParameter:
-                                          userName.isEmpty ? null : userName,
-                                      imageUrlParameter: "",
-                                      idParameter: usersRef.doc().id,
-                                      createdAtParameter: DateTime.now(),
-                                      updatedAtParameter: DateTime.now(),
-                                    );
-                                    // var authserviceDone = await AuthService()
-                                    //     .createUserWithEmailAndPassword(
-                                    //         userModel: userModel,
-                                    //         email: widget.email,
-                                    //         password: password);
-                                    // authserviceDone.fold((left) {
-                                    //   SnackBar(content:
-                                    //       Text("${left.toString()} "));
-                                    //   Navigator.of(context).pop();
-                                    // },
-                                    //     (right) =>
-                                    // {
-                                    //   Navigator.of(context).pop(),
-                                    //   SnackBar(content:
-                                    //   Text(
-                                    //       "Welcome in our team \n Plans to do team happy in you ")
-                                    //   ),
-                                    //   Navigator.pushNamed(context, Routes.emailAddressScreen)
-                                    //
-                                    // }
-                                    // );
-                                  }
-                                } on Exception catch (e) {
-                                  Navigator.of(context).pop();
-                                  SnackBar(content: Text(e.toString()));
-                                }
-                              }
+                              Navigator.pushNamed(
+                                  context, Routes.dashboardScreen);
+                              // if (formKey.currentState!.validate()) {
+                              //   try {
+                              //     showDialog(
+                              //         context: context,
+                              //         builder: (context) {
+                              //           return const Center(
+                              //               child: CircularProgressIndicator());
+                              //         });
+                              //     User? user = Provider.of<AuthService>(context)
+                              //         .firebaseAuth
+                              //         .currentUser;
+                              //     if (user != null) {
+                              //       await Provider.of<AuthService>(context)
+                              //           .firebaseAuth
+                              //           .signOut();
+                              //     }
+                              //     if (selectedImagePath != null) {
+                              //       String? imagePathNetWork = "";
+                              //       final resOfUpload =
+                              //           await uploadImageToStorge(
+                              //               selectedImagePath:
+                              //                   selectedImagePath!,
+                              //               imageName: name,
+                              //               folder: "Users");
+                              //       resOfUpload.fold((left) {
+                              //         SnackBar(
+                              //             content: Text("${left.toString()} "));
+                              //         // return;
+                              //       }, (right) {
+                              //         right.then((value) async {
+                              //           imagePathNetWork = value;
+                              //           UserModel userModel = UserModel(
+                              //             emailParameter: widget.email,
+                              //             userNameParameter: userName.isEmpty
+                              //                 ? null
+                              //                 : userName,
+                              //             nameParameter: name,
+                              //             imageUrlParameter: imagePathNetWork!,
+                              //             idParameter: usersRef.doc().id,
+                              //             createdAtParameter: DateTime.now(),
+                              //             updatedAtParameter: DateTime.now(),
+                              //           );
+                              //           // await AuthService()
+                              //           //     .createUserWithEmailAndPassword(
+                              //           //         userModel: userModel,
+                              //           //         email: widget.email,
+                              //           //         password: password);
+                              //           //    Navigator.of(context).pop();
+                              //         });
+                              //       });
+                              //     } else {
+                              //       UserModel userModel = UserModel(
+                              //         emailParameter: widget.email,
+                              //         nameParameter: name,
+                              //         userNameParameter:
+                              //             userName.isEmpty ? null : userName,
+                              //         imageUrlParameter: "",
+                              //         idParameter: usersRef.doc().id,
+                              //         createdAtParameter: DateTime.now(),
+                              //         updatedAtParameter: DateTime.now(),
+                              //       );
+                              //       // var authserviceDone = await AuthService()
+                              //       //     .createUserWithEmailAndPassword(
+                              //       //         userModel: userModel,
+                              //       //         email: widget.email,
+                              //       //         password: password);
+                              //       // authserviceDone.fold((left) {
+                              //       //   SnackBar(content:
+                              //       //       Text("${left.toString()} "));
+                              //       //   Navigator.of(context).pop();
+                              //       // },
+                              //       //     (right) =>
+                              //       // {
+                              //       //   Navigator.of(context).pop(),
+                              //       //   SnackBar(content:
+                              //       //   Text(
+                              //       //       "Welcome in our team \n Plans to do team happy in you ")
+                              //       //   ),
+                              //       //   Navigator.pushNamed(context, Routes.emailAddressScreen)
+                              //       //
+                              //       // }
+                              //       // );
+                              //     }
+                              //   } on Exception catch (e) {
+                              //     Navigator.of(context).pop();
+                              //     SnackBar(content: Text(e.toString()));
+                              //   }
+                              // }
                             },
                             style: ButtonStyles.blueRounded,
                             child: Text(

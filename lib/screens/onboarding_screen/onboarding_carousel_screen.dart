@@ -86,6 +86,7 @@ class OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                     ),
                   ),
                 ),
+                // Buttons
                 Padding(
                   padding: const EdgeInsets.only(
                       left: 20.0, right: 20.0, bottom: 20.0),
@@ -123,7 +124,7 @@ class OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                               children: [
                                 const Icon(Icons.email, color: Colors.white),
                                 Text(
-                                  'المتابعة بواسطة البريد الإلكتورني  ',
+                                  '   المتابعة بواسطة البريد الإلكتورني',
                                   style: GoogleFonts.lato(
                                       fontSize: 20, color: Colors.white),
                                 ),
@@ -135,13 +136,17 @@ class OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(
+                              const Expanded(
                                   child: OutlinedButtonWithImage(
                                       imageUrl: "assets/google_icon.png")),
                               const SizedBox(width: 20),
                               Expanded(
                                   child: OutlinedButtonWithImage(
-                                      imageUrl: "assets/facebook_icon.png"))
+                                      callback: () {
+                                        Navigator.pushNamed(
+                                            context, Routes.dashboardScreen);
+                                      },
+                                      imageUrl: "assets/anonymos.png"))
                             ]),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
