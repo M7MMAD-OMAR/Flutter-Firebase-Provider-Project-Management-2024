@@ -20,78 +20,96 @@ class TaskProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 150,
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 4,
-              offset: Offset(4, 8),
-            ),
-          ],
-          borderRadius: BorderRadius.circular(20),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              ...progressCardGradientList,
-            ],
+      height: 150,
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 4,
+            offset: Offset(4, 8),
           ),
+        ],
+        borderRadius: BorderRadius.circular(20),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            ...progressCardGradientList,
+          ],
         ),
-        child: Stack(children: [
+      ),
+      child: Stack(
+        children: [
           const Positioned(
-              top: 10, right: 10, child: ProgressCardCloseButton()),
+            top: 10,
+            right: 10,
+            child: ProgressCardCloseButton(),
+          ),
           Positioned(
-              top: 30,
-              bottom: 20,
-              right: 10,
-              left: 20,
+            top: 15,
+            bottom: 20,
+            right: 10,
+            left: 12,
+            child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(cardTitle,
-                      style: GoogleFonts.lato(
-                          fontWeight: FontWeight.bold, fontSize: 22)),
+                  Text(
+                    cardTitle,
+                    style: GoogleFonts.lato(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    ),
+                  ),
                   AppSpaces.verticalSpace10,
                   Text(
-                      textAlign: TextAlign.right,
-                      '$rating is completed',
-                      style: GoogleFonts.lato(
-                          fontWeight: FontWeight.w500, fontSize: 16)),
-                  const SizedBox(
-                    height: 10,
+                    '$rating مكتمل',
+                    style: GoogleFonts.lato(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                    ),
                   ),
+                  const SizedBox(height: 5),
                   Row(
                     children: [
                       Container(
-                          width: 220,
-                          height: 10,
-                          decoration: const BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                              color: Colors.white),
-                          child: Row(children: [
+                        width: 220,
+                        height: 7,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          children: [
                             Expanded(
-                                flex: percentageGap,
-                                child: Container(
-                                    decoration: const BoxDecoration(
+                              flex: percentageGap,
+                              child: Container(
+                                decoration: const BoxDecoration(
                                   color: Colors.black,
                                   borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(20.0),
                                     bottomLeft: Radius.circular(20.0),
                                   ),
-                                ))),
-                            const Expanded(flex: 1, child: SizedBox())
-                          ])),
+                                ),
+                              ),
+                            ),
+                            const Expanded(flex: 1, child: SizedBox()),
+                          ],
+                        ),
+                      ),
                       const Spacer(),
                       Text(
-                          textAlign: TextAlign.right,
-                          "$progressFigure%",
-                          style: GoogleFonts.lato(fontWeight: FontWeight.bold))
+                        "$progressFigure%",
+                        style: GoogleFonts.lato(fontWeight: FontWeight.bold),
+                      ),
                     ],
-                  )
+                  ),
                 ],
-              ))
-        ]));
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

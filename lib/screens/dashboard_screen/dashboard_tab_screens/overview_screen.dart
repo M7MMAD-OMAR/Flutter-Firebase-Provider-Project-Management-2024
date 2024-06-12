@@ -23,7 +23,7 @@ class DashboardOverviewScreen extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 150,
           child: TCard(
             cards: cards,
@@ -33,17 +33,17 @@ class DashboardOverviewScreen extends StatelessWidget {
         Column(
           children: [
             OverviewTaskContainer(
-                cardTitle: "Total Task",
+                cardTitle: "إجمالي المهام",
                 numberOfItems: "16",
                 imageUrl: "assets/orange_pencil.png",
                 backgroundColor: HexColor.fromHex("EFA17D")),
             OverviewTaskContainer(
-                cardTitle: "Completed",
+                cardTitle: "المهام المنتهية",
                 numberOfItems: "32",
                 imageUrl: "assets/green_pencil.png",
                 backgroundColor: HexColor.fromHex("7FBC69")),
             OverviewTaskContainer(
-                cardTitle: "Total Projects",
+                cardTitle: "إجمالي المشاريع",
                 numberOfItems: "8",
                 imageUrl: "assets/cone.png",
                 backgroundColor: HexColor.fromHex("EDA7FA")),

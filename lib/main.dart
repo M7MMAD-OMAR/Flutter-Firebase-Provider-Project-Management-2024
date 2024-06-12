@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       providers: Providers.providers,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Project Management',
+        title: 'إدارة المشاريع',
         theme: ThemeData(
           brightness: Brightness.light,
           appBarTheme: const AppBarTheme(

@@ -9,6 +9,7 @@ import 'package:project_management_muhmad_omar/widgets/Navigation/dasboard_heade
 import 'package:project_management_muhmad_omar/widgets/Shapes/app_settings_icon.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/dashboard_settings_sheet.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background.dart';
 
 import 'dashboard_tab_screens/overview_screen.dart';
 import 'dashboard_tab_screens/productivity_screen.dart';
@@ -24,71 +25,95 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              DashboardNav(
-                icon: FontAwesomeIcons.comment,
-                image: "assets/man-head.png",
-                notificationCount: "2",
-                page: const ChatScreen(),
-                title: "Dashboard",
-                onImageTapped: () {
-                  Navigator.pushNamed(context, Routes.profileOverviewScreen);
-                },
-              ),
-              AppSpaces.verticalSpace20,
-              Text(
-                  textAlign: TextAlign.right,
-                  "Hello,\nDereck Doyle 👋",
-                  style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold)),
-              AppSpaces.verticalSpace20,
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+    return Scaffold(
+      body: Stack(
+        children: [
+          DarkRadialBackground(
+            color: HexColor.fromHex("#181a1f"),
+            position: "topLeft",
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SafeArea(
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PrimaryTabButton(
-                        buttonText: "Overview",
-                        itemIndex: 0,
-                        notifier: _buttonTrigger),
-                    PrimaryTabButton(
-                        buttonText: "Productivity",
-                        itemIndex: 1,
-                        notifier: _buttonTrigger)
+                    DashboardNav(
+                      icon: FontAwesomeIcons.comment,
+                      image: "assets/man-head.png",
+                      notificationCount: "2",
+                      page: const ChatScreen(),
+                      title: "لوحة القيادة",
+                      onImageTapped: () {
+                        Navigator.pushNamed(
+                            context, Routes.profileOverviewScreen);
+                      },
+                    ),
+                    AppSpaces.verticalSpace20,
+                    Text(
+                      "مرحبا 👋",
+                      textAlign: TextAlign.right,
+                      style: GoogleFonts.lato(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    AppSpaces.verticalSpace20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            PrimaryTabButton(
+                              buttonText: "نظره عامه",
+                              itemIndex: 0,
+                              notifier: _buttonTrigger,
+                            ),
+                            PrimaryTabButton(
+                              buttonText: "الانتاجيه",
+                              itemIndex: 1,
+                              notifier: _buttonTrigger,
+                            ),
+                          ],
+                        ),
+                        Container(
+                          alignment: Alignment.centerRight,
+                          child: AppSettingsIcon(
+                            callback: () {
+                              showAppBottomSheet(
+                                context,
+                                DashboardSettingsBottomSheet(
+                                  totalTaskNotifier: _totalTaskTrigger,
+                                  totalDueNotifier: _totalDueTrigger,
+                                  workingOnNotifier: _workingOnTrigger,
+                                  totalCompletedNotifier:
+                                      _totalCompletedTrigger,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    AppSpaces.verticalSpace20,
+                    ValueListenableBuilder(
+                      valueListenable: _buttonTrigger,
+                      builder: (BuildContext context, _, __) {
+                        return _buttonTrigger.value == 0
+                            ? const DashboardOverviewScreen()
+                            : const DashboardProductivityScreen();
+                      },
+                    ),
                   ],
                 ),
-                Container(
-                    alignment: Alignment.centerRight,
-                    child: AppSettingsIcon(
-                      callback: () {
-                        showAppBottomSheet(
-                          context,
-                          DashboardSettingsBottomSheet(
-                            totalTaskNotifier: _totalTaskTrigger,
-                            totalDueNotifier: _totalDueTrigger,
-                            workingOnNotifier: _workingOnTrigger,
-                            totalCompletedNotifier: _totalCompletedTrigger,
-                          ),
-                        );
-                      },
-                    ))
-              ]),
-              AppSpaces.verticalSpace20,
-              ValueListenableBuilder(
-                  valueListenable: _buttonTrigger,
-                  builder: (BuildContext context, _, __) {
-                    return _buttonTrigger.value == 0
-                        ? const DashboardOverviewScreen()
-                        : const DashboardProductivityScreen();
-                  })
-            ]),
+              ),
+            ),
           ),
-        ));
+        ],
+      ),
+    );
   }
 }

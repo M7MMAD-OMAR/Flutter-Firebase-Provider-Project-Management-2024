@@ -38,7 +38,7 @@ class LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 40),
             Text(
                 textAlign: TextAlign.right,
-                'Login',
+                'تسجيل الدخول',
                 style: GoogleFonts.lato(
                     color: Colors.white,
                     fontSize: 40,
@@ -46,7 +46,7 @@ class LoginScreenState extends State<LoginScreen> {
             AppSpaces.verticalSpace20,
             RichText(
               text: TextSpan(
-                text: 'Using  ',
+                text: 'باستخدام  ',
                 style: GoogleFonts.lato(color: HexColor.fromHex("676979")),
                 children: <TextSpan>[
                   TextSpan(
@@ -54,7 +54,7 @@ class LoginScreenState extends State<LoginScreen> {
                       style: const TextStyle(
                           color: Colors.white70, fontWeight: FontWeight.bold)),
                   TextSpan(
-                      text: "  to login.",
+                      text: "  لتسجيل الدخول.",
                       style:
                           GoogleFonts.lato(color: HexColor.fromHex("676979"))),
                 ],
@@ -62,11 +62,11 @@ class LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 30),
             LabelledFormInputWidget(
-              placeholder: "Password",
+              placeholder: "كلمة المرور",
               keyboardType: "text",
               controller: _passController,
               obscureText: obscureText,
-              label: "Your Password",
+              label: "كلمة المرور",
               autovalidateMode: null,
               readOnly: false,
             ),
@@ -81,7 +81,7 @@ class LoginScreenState extends State<LoginScreen> {
                   style: ButtonStyles.blueRounded,
                   child: Text(
                       textAlign: TextAlign.right,
-                      'Sign In',
+                      'تسجيل الدخول',
                       style:
                           GoogleFonts.lato(fontSize: 20, color: Colors.white))),
             )

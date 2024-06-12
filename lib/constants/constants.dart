@@ -11,9 +11,9 @@ String tabSpace = "\t\t\t";
 
 final List<Widget> dashBoardScreens = [
   DashboardScreen(),
-  DashboardProjectScreen(),
+  const DashboardProjectScreen(),
   const NotificationScreen(),
-  SearchScreen()
+  const SearchScreen()
 ];
 
 List<Color> progressCardGradientList = [
