@@ -2,18 +2,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_start_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:provider/provider.dart';
+
+import '../../providers/my_auth_provider.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<MyAuthProvider>(context);
+
     return Scaffold(
       body: StreamProvider<User?>.value(
-        value:
-            Provider.of<AuthService>(context).firebaseAuth.authStateChanges(),
+        value: auth.firebaseAuth.authStateChanges(),
         initialData: null,
         child: Consumer<User?>(
           builder: (context, user, _) {
