@@ -1,21 +1,19 @@
 // ignore_for_file: avoid_print
 
-import 'package:either_dart/either.dart';
+import 'dart:math' as math;
 
+import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'dart:math' as math;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:mytest/constants/app_constans.dart';
-
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
 
 import '../../Values/values.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
-
 import '../../widgets/Navigation/back.dart';
 import '../../widgets/Shapes/background_hexagon.dart';
 import '../Dashboard/timeline.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 
 import '../../Screens/Profile/edit_profile.dart';
 import '../../Values/values.dart';

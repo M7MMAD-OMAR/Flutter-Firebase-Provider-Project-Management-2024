@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mytest/widgets/AppLogo/triplets.dart';
+import 'package:project_management_muhmad_omar/widgets/AppLogo/triplets.dart';
 
 import '../../Values/values.dart';
 

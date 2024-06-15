@@ -1,17 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/Screens/Dashboard/projects.dart';
-import 'package:mytest/Screens/Dashboard/selectMyTeams.dart';
-import 'package:mytest/Screens/Dashboard/select_team.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/manger_controller.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/models/team/Manger_model.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
+import 'package:project_management_muhmad_omar/Screens/Dashboard/projects.dart';
+import 'package:project_management_muhmad_omar/Screens/Dashboard/selectMyTeams.dart';
+import 'package:project_management_muhmad_omar/Screens/Dashboard/select_team.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
+
 // the Developer karem saad (KaremSD) 
 import '../../Values/values.dart';
 import '../../controllers/userController.dart';

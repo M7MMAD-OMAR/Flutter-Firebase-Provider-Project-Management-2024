@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/manger_controller.dart';
-import 'package:mytest/controllers/teamController.dart';
-import 'package:mytest/controllers/team_member_controller.dart';
-import 'package:mytest/controllers/topController.dart';
-import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/models/team/waitingMamber.dart';
-import 'package:mytest/services/collectionsrefrences.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
+import 'package:project_management_muhmad_omar/services/collectionsrefrences.dart';
 
 import '../constants/back_constants.dart';
 import '../models/User/User_model.dart';

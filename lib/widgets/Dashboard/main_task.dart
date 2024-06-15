@@ -2,16 +2,17 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
+
+// import 'package:flutter_glow/flutter_glow.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/constants/back_constants.dart';
-import 'package:mytest/controllers/manger_controller.dart';
-import 'package:mytest/controllers/project_sub_task_controller.dart';
-import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/models/team/Manger_model.dart';
-import 'package:mytest/widgets/Dashboard/subTasks.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/subTasks.dart';
 
 import '../../BottomSheets/bottom_sheets.dart';
 import '../../Values/values.dart';
@@ -584,16 +585,17 @@ Widget _buildStatus(int importance) {
       final opacity = isFilledStar
           ? minOpacity + (importance - 1) * opacityStep
           : 1.0; // Set opacity to 1.0 for empty stars
+      return Text("jj");
 
-      return GlowContainer(
-        glowColor: isFilledStar
-            ? Colors.yellow.withOpacity(opacity)
-            : Colors.transparent,
-        child: Icon(
-          isFilledStar ? Icons.star_rate_rounded : Icons.star_border_rounded,
-          color: Colors.yellow.withOpacity(opacity),
-        ),
-      );
+      // return GlowContainer(
+      //   glowColor: isFilledStar
+      //       ? Colors.yellow.withOpacity(opacity)
+      //       : Colors.transparent,
+      //   child: Icon(
+      //     isFilledStar ? Icons.star_rate_rounded : Icons.star_border_rounded,
+      //     color: Colors.yellow.withOpacity(opacity),
+      //   ),
+      // );
     }),
   );
 }
@@ -650,24 +652,24 @@ class TaskWidget extends StatelessWidget {
 
     return Row(
       children: [
-        GlowContainer(
-          glowColor: color.withOpacity(0.7),
-          child: Icon(
-            icon,
-            color: color,
-          ),
-        ),
+        // GlowContainer(
+        //   glowColor: color.withOpacity(0.7),
+        //   child: Icon(
+        //     icon,
+        //     color: color,
+        //   ),
+        // ),
         SizedBox(width: 8),
-        GlowContainer(
-          glowColor: color.withOpacity(0.7),
-          child: Text(
-            statusText,
-            style: TextStyle(
-              color: color,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+        // GlowContainer(
+        //   glowColor: color.withOpacity(0.7),
+        //   child: Text(
+        //     statusText,
+        //     style: TextStyle(
+        //       color: color,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

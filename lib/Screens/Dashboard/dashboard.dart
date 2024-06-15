@@ -1,21 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 
-import '../../BottomSheets/bottom_sheets.dart';
 import '../../Values/values.dart';
 import '../../services/auth_service.dart';
 import '../../services/notification_service.dart';
-import '../../widgets/BottomSheets/dashboard_settings_sheet.dart';
 import '../../widgets/Buttons/primary_tab_buttons.dart';
 import '../../widgets/Navigation/dasboard_header.dart';
-import '../../widgets/Shapes/app_settings_icon.dart';
 import '../Profile/profile_overview.dart';
 import 'DashboardTabScreens/overview.dart';
 import 'DashboardTabScreens/productivity.dart';

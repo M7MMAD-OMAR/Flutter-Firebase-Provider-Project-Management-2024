@@ -2,23 +2,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/controllers/languageController.dart';
-import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/services/notification_service.dart';
-import 'package:mytest/widgets/Buttons/primary_buttons.dart';
+import 'package:project_management_muhmad_omar/controllers/languageController.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/services/notification_service.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons.dart';
 
 import '../../Values/values.dart';
-import 'package:flutter_glow/flutter_glow.dart';
+// import 'package:flutter_glow/flutter_glow.dart';
 import '../../constants/app_constans.dart';
-
 import '../../widgets/Buttons/progress_card_close_button.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
-
 import '../../widgets/Forms/form_input_with _label.dart';
 import '../../widgets/Profile/box.dart';
 import '../../widgets/Profile/text_outlined_button.dart';
@@ -141,22 +138,22 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                             fontSize: Utils.screenWidth * 0.06),
                       ),
                       style: ListTileStyle.drawer,
-                      trailing: GlowSwitch(
-                        onChanged: (value) async {
-                          controller.isSelected.value =
-                              await FcmNotifications.getNotificationStatus();
-
-                          await FcmNotifications.setNotificationStatus(
-                              !controller.isSelected.value);
-                          controller.update();
-
-                          print("status");
-                          print(await FcmNotifications.getNotificationStatus());
-                        },
-                        value: !controller.isSelected.value,
-                        activeColor: Colors.blueAccent.withOpacity(0.6),
-                        blurRadius: 4,
-                      ),
+                      // trailing: GlowSwitch(
+                      //   onChanged: (value) async {
+                      //     controller.isSelected.value =
+                      //         await FcmNotifications.getNotificationStatus();
+                      //
+                      //     await FcmNotifications.setNotificationStatus(
+                      //         !controller.isSelected.value);
+                      //     controller.update();
+                      //
+                      //     print("status");
+                      //     print(await FcmNotifications.getNotificationStatus());
+                      //   },
+                      //   value: !controller.isSelected.value,
+                      //   activeColor: Colors.blueAccent.withOpacity(0.6),
+                      //   blurRadius: 4,
+                      // ),
                     );
                   },
                 ),

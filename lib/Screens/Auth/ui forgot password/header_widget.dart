@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytest/Screens/Auth/ui%20forgot%20password/size_config.dart';
+import 'package:project_management_muhmad_omar/Screens/Auth/ui%20forgot%20password/size_config.dart';
 
 import 'icon_to_back.dart';
 

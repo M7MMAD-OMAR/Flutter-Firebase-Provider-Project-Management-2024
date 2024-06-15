@@ -1,18 +1,17 @@
+import 'dart:developer' as dev;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:either_dart/either.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-import 'dart:developer' as dev;
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
-
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mytest/constants/app_constans.dart';
-
-import 'package:mytest/utils/back_utils.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/utils/back_utils.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
 
 import '../constants/back_constants.dart';
 import '../controllers/topController.dart';
@@ -205,24 +204,24 @@ class AuthService extends GetxController {
   }
 
   //* it works
-  EitherException<UserCredential> signInWithFacebook(
-      /* {required void Function() updateFcmToken}
-     */
-      ) async {
-    try {
-      var facebookAuthCredential = await getFacebookCredential();
-      // Once signed in, return the UserCredential
-
-      UserCredential userCredential =
-          await firebaseAuth.signInWithCredential(facebookAuthCredential);
-      await noUserMakeOne(userCredential: userCredential);
-      await updatFcmToken();
-      //  authFormType = AuthFormType.facbook;
-      return Right(userCredential);
-    } on Exception catch (e) {
-      return Left(e);
-    }
-  }
+  // EitherException<UserCredential> signInWithFacebook(
+  //     /* {required void Function() updateFcmToken}
+  //    */
+  //     ) async {
+  //   try {
+  //     var facebookAuthCredential = await getFacebookCredential();
+  //     // Once signed in, return the UserCredential
+  //
+  //     UserCredential userCredential =
+  //         await firebaseAuth.signInWithCredential(facebookAuthCredential);
+  //     await noUserMakeOne(userCredential: userCredential);
+  //     await updatFcmToken();
+  //     //  authFormType = AuthFormType.facbook;
+  //     return Right(userCredential);
+  //   } on Exception catch (e) {
+  //     return Left(e);
+  //   }
+  // }
 
   Future<void> noUserMakeOne({required UserCredential userCredential}) async {
     dev.log("check not here");
@@ -258,16 +257,16 @@ class AuthService extends GetxController {
     }
   }
 
-  Future<OAuthCredential> getFacebookCredential() async {
-// Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth.instance
-        .login(permissions: ["public_profile", "email"]);
-
-    // Create a credential from the access token
-    final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.token);
-    return facebookAuthCredential;
-  }
+//   Future<OAuthCredential> getFacebookCredential() async {
+// // Trigger the sign-in flow
+//     final LoginResult loginResult = await FacebookAuth.instance
+//         .login(permissions: ["public_profile", "email"]);
+//
+//     // Create a credential from the access token
+//     final OAuthCredential facebookAuthCredential =
+//         FacebookAuthProvider.credential(loginResult.accessToken!.token);
+//     return facebookAuthCredential;
+//   }
 
   //* it works
   AuthCredential getEmailCredential(
@@ -299,10 +298,10 @@ class AuthService extends GetxController {
     return credential;
   }
 
-  Future<void> convertAnonymousToFacebook() async {
-    OAuthCredential oAuthCredential = await getFacebookCredential();
-    await convertAnonymousToPermanent(credential: oAuthCredential);
-  }
+  // Future<void> convertAnonymousToFacebook() async {
+  //   OAuthCredential oAuthCredential = await getFacebookCredential();
+  //   await convertAnonymousToPermanent(credential: oAuthCredential);
+  // }
 
   //* it works
   Future<void> convertAnonymousToGoogle() async {

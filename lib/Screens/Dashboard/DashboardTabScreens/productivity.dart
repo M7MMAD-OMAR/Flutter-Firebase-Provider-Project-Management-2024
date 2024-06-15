@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytest/constants/back_constants.dart';
-import 'package:mytest/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 
-import 'package:tcard/tcard.dart';
 import '../../../Values/values.dart';
 import '../../../constants/app_constans.dart';
 import '../../../services/auth_service.dart';
 import '../../../widgets/Dashboard/daily_goal_card.dart';
 import '../../../widgets/Dashboard/productivity_chart.dart';
-import '../../../widgets/Dashboard/task_progress_card.dart';
 
 class DashboardProductivity extends StatefulWidget {
   const DashboardProductivity({Key? key}) : super(key: key);

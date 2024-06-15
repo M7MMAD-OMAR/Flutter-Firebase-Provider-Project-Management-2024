@@ -4,10 +4,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytest/Screens/Auth/authPage.dart';
-import 'package:mytest/services/Notifications_Sender.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/services/notification_service.dart';
+import 'package:project_management_muhmad_omar/Screens/Auth/authPage.dart';
+import 'package:project_management_muhmad_omar/services/Notifications_Sender.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/services/notification_service.dart';
 import 'package:sizer/sizer.dart';
 
 import 'Utils/messages.dart';

@@ -770,5 +770,4 @@ class AppConstants {
   static const String no_main_tasks_found_key = "No_Main_tasks_found";
 
   static const String manager_teams_key = "Manager_Teams";
-// ignore_for_file: constant_identifier_names
 }

@@ -1,23 +1,18 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/constants/back_constants.dart';
-import 'package:mytest/controllers/teamController.dart';
-import 'package:mytest/controllers/topController.dart';
-import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/models/team/Manger_model.dart';
-import 'package:mytest/models/team/Team_model.dart';
-import 'package:mytest/services/collectionsrefrences.dart';
-import 'package:mytest/utils/back_utils.dart';
-import 'package:mytest/widgets/Buttons/primary_buttons.dart';
-import 'package:mytest/widgets/Buttons/primary_tab_buttons.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/services/collectionsrefrences.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
 
 import '../../Values/values.dart';
 import '../../controllers/team_member_controller.dart';

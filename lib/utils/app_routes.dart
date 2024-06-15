@@ -1,8 +1,8 @@
 // import 'package:get/get.dart';
-// import 'package:mytest/Screens/Auth/choose_plan.dart';
-// import 'package:mytest/Screens/Auth/email_address.dart';
-// import 'package:mytest/pages/auth/auth_page.dart';
-// import 'package:mytest/pages/home2.dart';
+// import 'package:project_management_muhmad_omar/Screens/Auth/choose_plan.dart';
+// import 'package:project_management_muhmad_omar/Screens/Auth/email_address.dart';
+// import 'package:project_management_muhmad_omar/pages/auth/auth_page.dart';
+// import 'package:project_management_muhmad_omar/pages/home2.dart';
 
 // import '../Screens/Auth/login.dart';
 // import '../Screens/Auth/new_workspace.dart';

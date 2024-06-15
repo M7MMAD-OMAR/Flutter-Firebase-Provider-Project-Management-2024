@@ -1,33 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:mytest/controllers/teamController.dart';
-import 'package:mytest/controllers/team_member_controller.dart';
-import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/models/User/User_model.dart';
-
-import 'package:mytest/models/team/TeamMembers_model.dart';
-import 'package:mytest/models/team/Team_model.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/widgets/Team/active_team_cardK.dart';
+import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/widgets/Team/active_team_cardK.dart';
 
 import '../../Values/values.dart';
 import '../../models/team/Manger_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
-
 import '../../widgets/Navigation/app_header.dart';
-
 import '../../widgets/dummy/profile_dummy.dart';
-
 import '../Profile/profile_overview.dart';
-
 import '../Profile/team_details.dart';
-import '../Projects/addUserToTeamScreenController.dart';
 
 class SelectTeamScreen extends StatefulWidget {
   const SelectTeamScreen({

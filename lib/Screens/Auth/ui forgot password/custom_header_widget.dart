@@ -1,8 +1,7 @@
 // This widget will draw header section of all page. Wich you will get with the project source code.
 
 import 'package:flutter/material.dart';
-import 'package:mytest/Screens/Auth/ui%20forgot%20password/size_config.dart';
-
+import 'package:project_management_muhmad_omar/Screens/Auth/ui%20forgot%20password/size_config.dart';
 
 class CustomHeaderWidget extends StatelessWidget {
   const CustomHeaderWidget({

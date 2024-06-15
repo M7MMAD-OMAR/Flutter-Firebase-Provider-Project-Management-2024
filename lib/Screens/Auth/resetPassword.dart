@@ -1,16 +1,12 @@
 // ignore_for_file: avoid_print
 
+import 'dart:math' as math;
+
 import 'package:email_validator/email_validator.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:math' as math;
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/constants/back_constants.dart';
-import 'package:mytest/controllers/topController.dart';
-import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/services/collectionsrefrences.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 
 import '../../Values/values.dart';
 import '../../components/sqaure_Button.dart';
@@ -21,7 +17,6 @@ import '../../widgets/Navigation/back.dart';
 import '../../widgets/Shapes/background_hexagon.dart';
 import '../../widgets/Snackbar/custom_snackber.dart';
 import '../Dashboard/timeline.dart';
-import 'signup.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({

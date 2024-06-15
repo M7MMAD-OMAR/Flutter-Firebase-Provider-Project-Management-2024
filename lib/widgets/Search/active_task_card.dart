@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 
 import '../../Values/values.dart';
 import '../dummy/profile_dummy.dart';

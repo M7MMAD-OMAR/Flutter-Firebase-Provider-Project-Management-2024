@@ -1,40 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:mytest/Screens/Profile/team_details.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/projectController.dart';
-import 'package:mytest/controllers/teamController.dart';
-import 'package:mytest/controllers/team_member_controller.dart';
-import 'package:mytest/models/team/Project_model.dart';
-
-import 'package:mytest/models/team/TeamMembers_model.dart';
-import 'package:mytest/models/team/Team_model.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/widgets/Dashboard/dashboard_meeting_details.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
-import 'package:mytest/widgets/Team/active_team_cardK.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details.dart';
 
 import '../../Values/values.dart';
-import '../../controllers/manger_controller.dart';
 import '../../controllers/userController.dart';
 import '../../models/User/User_model.dart';
-import '../../models/team/Manger_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Buttons/primary_buttons.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
-
 import '../../widgets/Navigation/app_header.dart';
-
 import '../../widgets/dummy/profile_dummy.dart';
-
 import '../Profile/profile_overview.dart';
-
 import '../Projects/addTeamToCreateProjectScre.dart';
 import '../Projects/addUserToTeamScreenController.dart';
 
@@ -330,6 +314,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                   if (memberSnapshot.hasData) {
                                     final membersCount =
                                         memberSnapshot.data!.docs.length;
+                                    return Text("jj");
                                     // for (var element in teamInfos) {
                                     //   element.membersNumber = membersCount;
                                     // }
@@ -338,121 +323,121 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                     //     sortOption: selectedSortOption,
                                     //     ascending: sortAscending);
 
-                                    return Padding(
-                                      padding: const EdgeInsets.all(3),
-                                      child: Slidable(
-                                        endActionPane: ActionPane(
-                                            extentRatio: .30,
-                                            motion: const StretchMotion(),
-                                            children: [
-                                              SlidableAction(
-                                                label:
-                                                    AppConstants.delete_key.tr,
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                                backgroundColor: Colors.red,
-                                                icon: FontAwesomeIcons.trash,
-                                                onPressed: (context) async {
-                                                  try {
-                                                    print("prdasdas");
-                                                    // showDialogMethod(context);
-
-                                                    List<ProjectModel>
-                                                        projects =
-                                                        await ProjectController()
-                                                            .getProjectsOfTeamKarem(
-                                                                teamId:
-                                                                    team.id);
-                                                    List<String> projectsIds =
-                                                        <String>[];
-                                                    for (var element
-                                                        in projects) {
-                                                      projectsIds
-                                                          .add(element.id);
-                                                    }
-                                                    await TeamController()
-                                                        .deleteTeam(
-                                                            id: team.id,
-                                                            projectIds:
-                                                                projectsIds);
-
-                                                    print("delete");
-                                                    CustomSnackBar.showSuccess(
-                                                        AppConstants
-                                                            .team_deleted_successfully_key
-                                                            .tr);
-                                                  } on Exception catch (e) {
-                                                    Navigator.of(context).pop();
-                                                    CustomSnackBar.showError(
-                                                        e.toString());
-                                                    // TODO
-                                                  }
-                                                },
-                                              ),
-                                            ]),
-                                        startActionPane: ActionPane(
-                                            extentRatio: .30,
-                                            motion: const StretchMotion(),
-                                            children: [
-                                              SlidableAction(
-                                                label:
-                                                    AppConstants.details_key.tr,
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                                backgroundColor: Colors.blue,
-                                                icon:
-                                                    FontAwesomeIcons.tableList,
-                                                onPressed: (context) async {
-                                                  showDialogMethod(context);
-                                                  ManagerModel? userAsManger =
-                                                      await ManagerController()
-                                                          .getMangerWhereUserIs(
-                                                              userId: AuthService
-                                                                  .instance
-                                                                  .firebaseAuth
-                                                                  .currentUser!
-                                                                  .uid);
-
-                                                  Get.key.currentState!.pop();
-
-                                                  Get.to(() => TeamDetails(
-                                                      title: team.name!,
-                                                      team: team,
-                                                      userAsManager:
-                                                          userAsManger));
-                                                  print("projects");
-                                                },
-                                              ),
-                                            ]),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                            horizontal: Utils.screenWidth *
-                                                0.02, // Adjust the percentage as needed
-                                          ),
-                                          child: ActiveTeamCard(
-                                            imageType: ImageType.Network,
-                                            onTap: () {
-                                              if (widget.title !=
-                                                  AppConstants
-                                                      .manager_teams_key.tr) {
-                                                print("objectsasa");
-                                                addTeamToCreatProjectScreen
-                                                    .addUser(team);
-                                                print("objectssdadsdasa");
-
-                                                addTeamToCreatProjectScreen
-                                                    .update();
-                                                Get.close(1);
-                                              }
-                                            },
-                                            team: team,
-                                            numberOfMembers: membersCount,
-                                            teamName: team.name!,
-                                            teamImage: team.imageUrl,
-                                          ),
-                                        ),
-                                      ),
-                                    );
+                                    // return Padding(
+                                    //   padding: const EdgeInsets.all(3),
+                                    //   child: Slidable(
+                                    //     endActionPane: ActionPane(
+                                    //         extentRatio: .30,
+                                    //         motion: const StretchMotion(),
+                                    //         children: [
+                                    //           SlidableAction(
+                                    //             label:
+                                    //                 AppConstants.delete_key.tr,
+                                    //             borderRadius:
+                                    //                 BorderRadius.circular(30),
+                                    //             backgroundColor: Colors.red,
+                                    //             icon: FontAwesomeIcons.trash,
+                                    //             onPressed: (context) async {
+                                    //               try {
+                                    //                 print("prdasdas");
+                                    //                 // showDialogMethod(context);
+                                    //
+                                    //                 List<ProjectModel>
+                                    //                     projects =
+                                    //                     await ProjectController()
+                                    //                         .getProjectsOfTeamKarem(
+                                    //                             teamId:
+                                    //                                 team.id);
+                                    //                 List<String> projectsIds =
+                                    //                     <String>[];
+                                    //                 for (var element
+                                    //                     in projects) {
+                                    //                   projectsIds
+                                    //                       .add(element.id);
+                                    //                 }
+                                    //                 await TeamController()
+                                    //                     .deleteTeam(
+                                    //                         id: team.id,
+                                    //                         projectIds:
+                                    //                             projectsIds);
+                                    //
+                                    //                 print("delete");
+                                    //                 CustomSnackBar.showSuccess(
+                                    //                     AppConstants
+                                    //                         .team_deleted_successfully_key
+                                    //                         .tr);
+                                    //               } on Exception catch (e) {
+                                    //                 Navigator.of(context).pop();
+                                    //                 CustomSnackBar.showError(
+                                    //                     e.toString());
+                                    //                 // TODO
+                                    //               }
+                                    //             },
+                                    //           ),
+                                    //         ]),
+                                    //     startActionPane: ActionPane(
+                                    //         extentRatio: .30,
+                                    //         motion: const StretchMotion(),
+                                    //         children: [
+                                    //           SlidableAction(
+                                    //             label:
+                                    //                 AppConstants.details_key.tr,
+                                    //             borderRadius:
+                                    //                 BorderRadius.circular(30),
+                                    //             backgroundColor: Colors.blue,
+                                    //             icon:
+                                    //                 FontAwesomeIcons.tableList,
+                                    //             onPressed: (context) async {
+                                    //               showDialogMethod(context);
+                                    //               ManagerModel? userAsManger =
+                                    //                   await ManagerController()
+                                    //                       .getMangerWhereUserIs(
+                                    //                           userId: AuthService
+                                    //                               .instance
+                                    //                               .firebaseAuth
+                                    //                               .currentUser!
+                                    //                               .uid);
+                                    //
+                                    //               Get.key.currentState!.pop();
+                                    //
+                                    //               Get.to(() => TeamDetails(
+                                    //                   title: team.name!,
+                                    //                   team: team,
+                                    //                   userAsManager:
+                                    //                       userAsManger));
+                                    //               print("projects");
+                                    //             },
+                                    //           ),
+                                    //         ]),
+                                    //     child: Padding(
+                                    //       padding: EdgeInsets.symmetric(
+                                    //         horizontal: Utils.screenWidth *
+                                    //             0.02, // Adjust the percentage as needed
+                                    //       ),
+                                    //       child: ActiveTeamCard(
+                                    //         imageType: ImageType.Network,
+                                    //         onTap: () {
+                                    //           if (widget.title !=
+                                    //               AppConstants
+                                    //                   .manager_teams_key.tr) {
+                                    //             print("objectsasa");
+                                    //             addTeamToCreatProjectScreen
+                                    //                 .addUser(team);
+                                    //             print("objectssdadsdasa");
+                                    //
+                                    //             addTeamToCreatProjectScreen
+                                    //                 .update();
+                                    //             Get.close(1);
+                                    //           }
+                                    //         },
+                                    //         team: team,
+                                    //         numberOfMembers: membersCount,
+                                    //         teamName: team.name!,
+                                    //         teamImage: team.imageUrl,
+                                    //       ),
+                                    //     ),
+                                    //   ),
+                                    // );
                                   } else if (memberSnapshot.hasError) {
                                     return Text(
                                       '${AppConstants.error_key.tr} ${memberSnapshot.error}',

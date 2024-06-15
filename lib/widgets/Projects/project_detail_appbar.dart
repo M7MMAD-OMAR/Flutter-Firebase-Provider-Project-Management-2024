@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/widgets/Projects/project_badge.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_badge.dart';
 
 import '../../Values/values.dart';
 

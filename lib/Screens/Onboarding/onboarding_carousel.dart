@@ -1,19 +1,18 @@
+import 'dart:developer' as dev;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/Screens/Auth/login.dart';
-import 'package:mytest/components/sqaure_Button.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
-import 'dart:developer' as dev;
+import 'package:project_management_muhmad_omar/Screens/Auth/login.dart';
+import 'package:project_management_muhmad_omar/components/sqaure_Button.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
 
 import '../../Values/values.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
-import '../../widgets/Onboarding/image_outlined_button.dart';
 import '../../widgets/Onboarding/slider_captioned_image.dart';
-
 import '../Dashboard/timeline.dart';
 
 class OnboardingCarousel extends StatefulWidget {

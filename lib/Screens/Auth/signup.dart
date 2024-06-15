@@ -1,19 +1,21 @@
+import 'dart:developer' as dev;
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mytest/Screens/Auth/verify_email_address.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/constants/back_constants.dart';
-import 'package:mytest/controllers/topController.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/services/collectionsrefrences.dart';
-import 'package:mytest/utils/back_utils.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
-import 'dart:developer' as dev;
+import 'package:project_management_muhmad_omar/Screens/Auth/verify_email_address.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/services/collectionsrefrences.dart';
+import 'package:project_management_muhmad_omar/utils/back_utils.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
+
 import '../../Values/values.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
 import '../../widgets/Dashboard/dashboard_meeting_details.dart';

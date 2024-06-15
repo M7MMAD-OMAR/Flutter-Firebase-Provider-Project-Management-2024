@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
+import 'package:intl/intl.dart';
+// import 'package:flutter_glow/flutter_glow.dart';
 import 'package:sizer/sizer.dart';
 
 import '../core/res/color.dart';
-import 'package:intl/intl.dart';
 
 class TaskWidgetCalender extends StatelessWidget {
   final String name;
@@ -25,14 +25,14 @@ class TaskWidgetCalender extends StatelessWidget {
             children: [
               SizedBox(
                 width: 20.w,
-                child: GlowText(
-                  DateFormat('dd/MM/yy h:mma').format(startDate),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    // Colors.grey[800]
-                    fontSize: 15,
-                  ),
-                ),
+                // child: GlowText(
+                //   DateFormat('dd/MM/yy h:mma').format(startDate),
+                //   style: const TextStyle(
+                //     color: Colors.white,
+                //     // Colors.grey[800]
+                //     fontSize: 15,
+                //   ),
+                // ),
               ),
               Container(
                 width: 70.w,
@@ -54,7 +54,7 @@ class TaskWidgetCalender extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name!,
+                      name,
                       style: const TextStyle(
                         fontSize: 18,
                         color: Colors.white,

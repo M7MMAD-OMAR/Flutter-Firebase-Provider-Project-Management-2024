@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mytest">
+        package="com.asalib.project_management_muhmad_omar">
         <!-- this is for the notifications and background -->
        <uses-permission android:name="android.permission.WAKE_LOCK" />
        <uses-permission android:name="android.permission.INTERNET"/>

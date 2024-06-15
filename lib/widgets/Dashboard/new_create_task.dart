@@ -1,17 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:mytest/constants/back_constants.dart';
-import 'package:mytest/controllers/statusController.dart';
-import 'package:mytest/models/User/User_task_Model.dart';
-import 'package:mytest/models/statusmodel.dart';
-import 'package:mytest/models/team/Project_main_task_Model.dart';
-import 'package:mytest/models/team/Project_model.dart';
-import 'package:mytest/models/team/Project_sub_task_Model.dart';
-import 'package:mytest/services/collectionsrefrences.dart';
-import 'package:mytest/widgets/Dashboard/select_color_dialog.dart';
-import '../../BottomSheets/bottom_sheets.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog.dart';
+
 import '../../Values/values.dart';
 import '../../controllers/categoryController.dart';
 import '../../controllers/projectController.dart';
@@ -20,14 +11,11 @@ import '../../controllers/project_sub_task_controller.dart';
 import '../../controllers/team_member_controller.dart';
 import '../../controllers/userController.dart';
 import '../../controllers/user_task_controller.dart';
-import '../../models/task/UserTaskCategory_model.dart';
 import '../../models/team/TeamMembers_model.dart';
-
 import '../BottomSheets/bottom_sheet_holder.dart';
 import '../Forms/form_input_with _label.dart';
 import '../User/new_sheet_goto_calender.dart';
 import '../add_sub_icon.dart';
-import 'dashboard_add_project_sheet.dart';
 
 // ignore: must_be_immutable
 class NewCreateTaskBottomSheet extends StatefulWidget {

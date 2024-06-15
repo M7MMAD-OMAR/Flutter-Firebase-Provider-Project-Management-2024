@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
-// import 'package:mytest/widgets/Team/active_team_cardK.dart';
-// import 'package:mytest/widgets/Team/inActive_team_cardK.dart';
+// import 'package:project_management_muhmad_omar/widgets/Team/active_team_cardK.dart';
+// import 'package:project_management_muhmad_omar/widgets/Team/inActive_team_cardK.dart';
 
 // import '../active_employee_card.dart';
 // import '../inactive_employee_card.dart';

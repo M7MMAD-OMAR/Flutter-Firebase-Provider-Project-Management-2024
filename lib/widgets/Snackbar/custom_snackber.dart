@@ -1,10 +1,10 @@
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytest/Values/values.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/widgets/Buttons/primary_buttons.dart';
-import 'package:mytest/widgets/dummy/profile_dummy.dart';
+import 'package:project_management_muhmad_omar/Values/values.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy.dart';
 
 import '../../constants/app_constans.dart';
 import '../Forms/form_input_with _label.dart';

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:mytest/widgets/AppLogo/triplets_container.dart';
+import 'package:flutter/material.dart';
+import 'package:project_management_muhmad_omar/widgets/AppLogo/triplets_container.dart';
 
 class TripletsLogo extends StatelessWidget {
   const TripletsLogo({super.key});

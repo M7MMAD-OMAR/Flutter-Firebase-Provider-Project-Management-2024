@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
 
 class DashboardMeetingDetailsScreenController extends GetxController {
   RxList<UserModel> users = <UserModel>[].obs;

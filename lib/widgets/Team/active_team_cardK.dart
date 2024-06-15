@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/Screens/Profile/team_details.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 
 import '../../Values/values.dart';
-
-import '../dummy/green_done_icon.dart';
 import '../dummy/profile_dummy.dart';
 
 class ActiveTeamCard extends StatelessWidget {

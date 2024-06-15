@@ -1,14 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-
-import 'package:get/instance_manager.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/manger_controller.dart';
-import 'package:mytest/controllers/team_member_controller.dart';
-
-import 'package:mytest/controllers/topController.dart';
-import 'package:mytest/models/team/Manger_model.dart';
-import 'package:mytest/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
 
 import '../constants/back_constants.dart';
 import '../models/team/Project_model.dart';
@@ -136,7 +133,7 @@ class TeamController extends TopController {
     DocumentSnapshot? documentSnapshot = await getDocSnapShotWhere(
         collectionReference: teamsRef, field: idK, value: id);
     print("Team controller  " + documentSnapshot!.id);
-    return documentSnapshot!.data() as TeamModel;
+    return documentSnapshot.data() as TeamModel;
   }
 
   // Future<TeamModel> getTeamByName({required String name}) async {

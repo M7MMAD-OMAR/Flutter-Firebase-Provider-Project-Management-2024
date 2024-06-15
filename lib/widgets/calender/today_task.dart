@@ -1,13 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
+// import 'package:flutter_glow/flutter_glow.dart';
 import 'package:intl/intl.dart';
-import 'package:mytest/Values/values.dart' as val;
-import 'package:mytest/controllers/project_sub_task_controller.dart';
-import 'package:mytest/services/auth_service.dart';
-
-import 'package:mytest/widgets/calender/widgets/circle_gradient_icon.dart';
-import 'package:mytest/widgets/calender/widgets/task.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/widgets/calender/widgets/circle_gradient_icon.dart';
+import 'package:project_management_muhmad_omar/widgets/calender/widgets/task.dart';
 
 import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
@@ -120,17 +118,17 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  const GlowText(
-                    "User Tasks",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white38
-                      //  Colors.grey[800]
-                      ,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  // const GlowText(
+                  //   "User Tasks",
+                  //   style: TextStyle(
+                  //     fontSize: 30,
+                  //     fontWeight: FontWeight.w500,
+                  //     color: Colors.white38
+                  //     //  Colors.grey[800]
+                  //     ,
+                  //   ),
+                  //   textAlign: TextAlign.center,
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -158,20 +156,20 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                         );
                       }
                       if (snapshot.hasError) {
-                        return GlowText(
-                          removeException(snapshot.error.toString()),
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return GlowText(
+                        //   removeException(snapshot.error.toString()),
+                        //   style: const TextStyle(
+                        //       fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       if (!snapshot.hasData) {
-                        return const GlowText(
-                          "no personal tasks",
-                          style:
-                              TextStyle(fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return const GlowText(
+                        //   "no personal tasks",
+                        //   style:
+                        //       TextStyle(fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       return const CircularProgressIndicator();
                     },
@@ -179,17 +177,17 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const GlowText(
-                    "sub tasks",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white38
-                      // Colors.grey[800]
-                      ,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  // const GlowText(
+                  //   "sub tasks",
+                  //   style: TextStyle(
+                  //     fontSize: 30,
+                  //     fontWeight: FontWeight.w500,
+                  //     color: Colors.white38
+                  //     // Colors.grey[800]
+                  //     ,
+                  //   ),
+                  //   textAlign: TextAlign.center,
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -217,20 +215,20 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                         );
                       }
                       if (snapshot.hasError) {
-                        return GlowText(
-                          removeException(snapshot.error.toString()),
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return GlowText(
+                        // removeException(snapshot.error.toString()),
+                        // style: const TextStyle(
+                        //     fontSize: 24, color: Colors.redAccent),
+                        // textAlign: TextAlign.center,
+                        // );
                       }
                       if (!snapshot.hasData) {
-                        return const GlowText(
-                          "no sub tasks assigned to me",
-                          style:
-                              TextStyle(fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return const GlowText(
+                        //   "no sub tasks assigned to me",
+                        //   style:
+                        //       TextStyle(fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       return const CircularProgressIndicator();
                     },
@@ -238,17 +236,17 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const GlowText(
-                    "Main Tasks for projects iam a member into",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white38
-                      // Colors.grey[800]
-                      ,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  // const GlowText(
+                  //   "Main Tasks for projects iam a member into",
+                  //   style: TextStyle(
+                  //     fontSize: 30,
+                  //     fontWeight: FontWeight.w500,
+                  //     color: Colors.white38
+                  //     // Colors.grey[800]
+                  //     ,
+                  //   ),
+                  //   textAlign: TextAlign.center,
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -276,20 +274,20 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                         );
                       }
                       if (snapshot.hasError) {
-                        return GlowText(
-                          removeException(snapshot.error.toString()),
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return GlowText(
+                        //   removeException(snapshot.error.toString()),
+                        //   style: const TextStyle(
+                        //       fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       if (!snapshot.hasData) {
-                        return const GlowText(
-                          "no Main tasks for projects iam a member into",
-                          style:
-                              TextStyle(fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return const GlowText(
+                        //   "no Main tasks for projects iam a member into",
+                        //   style:
+                        //       TextStyle(fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       return const CircularProgressIndicator();
                     },
@@ -297,17 +295,17 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const GlowText(
-                    "Main Tasks for projects iam a manager of it",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white38
-                      // Colors.grey[800]
-                      ,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  // const GlowText(
+                  //   "Main Tasks for projects iam a manager of it",
+                  //   style: TextStyle(
+                  //     fontSize: 30,
+                  //     fontWeight: FontWeight.w500,
+                  //     color: Colors.white38
+                  //     // Colors.grey[800]
+                  //     ,
+                  //   ),
+                  //   textAlign: TextAlign.center,
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -335,20 +333,20 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                         );
                       }
                       if (snapshot.hasError) {
-                        return GlowText(
-                          removeException(snapshot.error.toString()),
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return GlowText(
+                        //   removeException(snapshot.error.toString()),
+                        //   style: const TextStyle(
+                        //       fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       if (!snapshot.hasData) {
-                        return const GlowText(
-                          "no Main tasks for projects iam a member into",
-                          style:
-                              TextStyle(fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return const GlowText(
+                        //   "no Main tasks for projects iam a member into",
+                        //   style:
+                        //       TextStyle(fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       return const CircularProgressIndicator();
                     },
@@ -356,17 +354,17 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const GlowText(
-                    "projects iam a member of it",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white38
-                      // Colors.grey[800]
-                      ,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  // const GlowText(
+                  //   "projects iam a member of it",
+                  //   style: TextStyle(
+                  //     fontSize: 30,
+                  //     fontWeight: FontWeight.w500,
+                  //     color: Colors.white38
+                  //     // Colors.grey[800]
+                  //     ,
+                  //   ),
+                  //   textAlign: TextAlign.center,
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -395,20 +393,20 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                         );
                       }
                       if (snapshot.hasError) {
-                        return GlowText(
-                          removeException(snapshot.error.toString()),
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return GlowText(
+                        //   removeException(snapshot.error.toString()),
+                        //   style: const TextStyle(
+                        //       fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       if (!snapshot.hasData) {
-                        return const GlowText(
-                          "no projects iam a member of it",
-                          style:
-                              TextStyle(fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return const GlowText(
+                        //   "no projects iam a member of it",
+                        //   style:
+                        //       TextStyle(fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       return const CircularProgressIndicator();
                     },
@@ -416,17 +414,17 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const GlowText(
-                    "projects iam a manager of it",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white38
-                      // Colors.grey[800]
-                      ,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
+                  // const GlowText(
+                  //   "projects iam a manager of it",
+                  //   style: TextStyle(
+                  //     fontSize: 30,
+                  //     fontWeight: FontWeight.w500,
+                  //     color: Colors.white38
+                  //     // Colors.grey[800]
+                  //     ,
+                  //   ),
+                  //   textAlign: TextAlign.center,
+                  // ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -455,20 +453,20 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                         );
                       }
                       if (snapshot.hasError) {
-                        return GlowText(
-                          removeException(snapshot.error.toString()),
-                          style: const TextStyle(
-                              fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return GlowText(
+                        //   removeException(snapshot.error.toString()),
+                        //   style: const TextStyle(
+                        //       fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
                       if (!snapshot.hasData) {
-                        return const GlowText(
-                          "projects iam a manager of it",
-                          style:
-                              TextStyle(fontSize: 24, color: Colors.redAccent),
-                          textAlign: TextAlign.center,
-                        );
+                        // return const GlowText(
+                        //   "projects iam a manager of it",
+                        //   style:
+                        //       TextStyle(fontSize: 24, color: Colors.redAccent),
+                        //   textAlign: TextAlign.center,
+                        // );
                       }
 
                       return CircularProgressIndicator();
@@ -491,14 +489,14 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GlowText(
-              DateFormat("MMMM, dd").format(todaysDate),
-              style: const TextStyle(
-                color: Colors.white,
-                // Colors.grey[800]
-                fontSize: 30,
-              ),
-            ),
+            // GlowText(
+            //   DateFormat("MMMM, dd").format(todaysDate),
+            //   style: const TextStyle(
+            //     color: Colors.white,
+            //     // Colors.grey[800]
+            //     fontSize: 30,
+            //   ),
+            // ),
             const SizedBox(
               height: 5,
             ),

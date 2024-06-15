@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/widgets/Dashboard/dashboard_meeting_details.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details.dart';
 
 import '../Screens/Projects/addUserToTeamScreenController.dart';
 import '../Values/values.dart';

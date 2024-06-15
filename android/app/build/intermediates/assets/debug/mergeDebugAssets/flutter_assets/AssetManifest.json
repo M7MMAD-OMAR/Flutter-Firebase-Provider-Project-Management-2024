@@ -1,1 +1,191 @@
-{"assets/category.png":["assets/category.png"],"assets/cone.png":["assets/cone.png"],"assets/defaultGroup.png":["assets/defaultGroup.png"],"assets/dummy-profile.png":["assets/dummy-profile.png"],"assets/facebook_icon.png":["assets/facebook_icon.png"],"assets/girl_smile-R.png":["assets/girl_smile-R.png"],"assets/girl_smile.png":["assets/girl_smile.png"],"assets/google_icon.png":["assets/google_icon.png"],"assets/green_pencil.png":["assets/green_pencil.png"],"assets/head_cut-R.png":["assets/head_cut-R.png"],"assets/head_cut.png":["assets/head_cut.png"],"assets/icon/arabic.png":["assets/icon/arabic.png"],"assets/icon/english.png":["assets/icon/english.png"],"assets/icon/envelope.png":["assets/icon/envelope.png"],"assets/icon/logo.png":["assets/icon/logo.png"],"assets/karem.jpg":["assets/karem.jpg"],"assets/karem2.png":["assets/karem2.png"],"assets/karem2R.png":["assets/karem2R.png"],"assets/lang/ar.json":["assets/lang/ar.json"],"assets/lang/en.json":["assets/lang/en.json"],"assets/man-head-R.png":["assets/man-head-R.png"],"assets/man-head.png":["assets/man-head.png"],"assets/orange_pencil.png":["assets/orange_pencil.png"],"assets/plant.png":["assets/plant.png"],"assets/project.png":["assets/project.png"],"assets/projectImage.jpg":["assets/projectImage.jpg"],"assets/projectImage2.jpeg":["assets/projectImage2.jpeg"],"assets/slider-background-1.png":["assets/slider-background-1.png"],"assets/slider-background-2.png":["assets/slider-background-2.png"],"assets/slider-background-3.png":["assets/slider-background-3.png"],"assets/small-logo.png":["assets/small-logo.png"],"assets/task_done.png":["assets/task_done.png"],"assets/team.png":["assets/team.png"],"assets/working_on.png":["assets/working_on.png"],"lib/images/KAREM.jpg":["lib/images/KAREM.jpg"],"lib/images/anonymos.png":["lib/images/anonymos.png"],"lib/images/google.png":["lib/images/google.png"],"lib/images/google2.png":["lib/images/google2.png"],"lib/images/logo.png":["lib/images/logo.png"],"packages/awesome_dialog/assets/flare/error.flr":["packages/awesome_dialog/assets/flare/error.flr"],"packages/awesome_dialog/assets/flare/info.flr":["packages/awesome_dialog/assets/flare/info.flr"],"packages/awesome_dialog/assets/flare/info2.flr":["packages/awesome_dialog/assets/flare/info2.flr"],"packages/awesome_dialog/assets/flare/info_without_loop.flr":["packages/awesome_dialog/assets/flare/info_without_loop.flr"],"packages/awesome_dialog/assets/flare/question.flr":["packages/awesome_dialog/assets/flare/question.flr"],"packages/awesome_dialog/assets/flare/succes.flr":["packages/awesome_dialog/assets/flare/succes.flr"],"packages/awesome_dialog/assets/flare/succes_without_loop.flr":["packages/awesome_dialog/assets/flare/succes_without_loop.flr"],"packages/awesome_dialog/assets/flare/warning.flr":["packages/awesome_dialog/assets/flare/warning.flr"],"packages/awesome_dialog/assets/flare/warning_without_loop.flr":["packages/awesome_dialog/assets/flare/warning_without_loop.flr"],"packages/awesome_dialog/assets/rive/error.riv":["packages/awesome_dialog/assets/rive/error.riv"],"packages/awesome_dialog/assets/rive/info.riv":["packages/awesome_dialog/assets/rive/info.riv"],"packages/awesome_dialog/assets/rive/info_reverse.riv":["packages/awesome_dialog/assets/rive/info_reverse.riv"],"packages/awesome_dialog/assets/rive/question.riv":["packages/awesome_dialog/assets/rive/question.riv"],"packages/awesome_dialog/assets/rive/success.riv":["packages/awesome_dialog/assets/rive/success.riv"],"packages/awesome_dialog/assets/rive/warning.riv":["packages/awesome_dialog/assets/rive/warning.riv"],"packages/awesome_notifications/test/assets/images/test_image.png":["packages/awesome_notifications/test/assets/images/test_image.png"],"packages/cupertino_icons/assets/CupertinoIcons.ttf":["packages/cupertino_icons/assets/CupertinoIcons.ttf"],"packages/day_night_time_picker/assets/moon.png":["packages/day_night_time_picker/assets/moon.png"],"packages/day_night_time_picker/assets/sun.png":["packages/day_night_time_picker/assets/sun.png"],"packages/flutter_feather_icons/fonts/feather.ttf":["packages/flutter_feather_icons/fonts/feather.ttf"],"packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf":["packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf"],"packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf":["packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf"],"packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf":["packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf"],"packages/iconsax/lib/assets/fonts/iconsax.ttf":["packages/iconsax/lib/assets/fonts/iconsax.ttf"]}
+{
+  "assets/category.png": [
+    "assets/category.png"
+  ],
+  "assets/cone.png": [
+    "assets/cone.png"
+  ],
+  "assets/defaultGroup.png": [
+    "assets/defaultGroup.png"
+  ],
+  "assets/dummy-profile.png": [
+    "assets/dummy-profile.png"
+  ],
+  "assets/facebook_icon.png": [
+    "assets/facebook_icon.png"
+  ],
+  "assets/girl_smile-R.png": [
+    "assets/girl_smile-R.png"
+  ],
+  "assets/girl_smile.png": [
+    "assets/girl_smile.png"
+  ],
+  "assets/google_icon.png": [
+    "assets/google_icon.png"
+  ],
+  "assets/green_pencil.png": [
+    "assets/green_pencil.png"
+  ],
+  "assets/head_cut-R.png": [
+    "assets/head_cut-R.png"
+  ],
+  "assets/head_cut.png": [
+    "assets/head_cut.png"
+  ],
+  "assets/icon/arabic.png": [
+    "assets/icon/arabic.png"
+  ],
+  "assets/icon/english.png": [
+    "assets/icon/english.png"
+  ],
+  "assets/icon/envelope.png": [
+    "assets/icon/envelope.png"
+  ],
+  "assets/icon/logo.png": [
+    "assets/icon/logo.png"
+  ],
+  "assets/karem.jpg": [
+    "assets/karem.jpg"
+  ],
+  "assets/karem2.png": [
+    "assets/karem2.png"
+  ],
+  "assets/karem2R.png": [
+    "assets/karem2R.png"
+  ],
+  "assets/lang/ar.json": [
+    "assets/lang/ar.json"
+  ],
+  "assets/lang/en.json": [
+    "assets/lang/en.json"
+  ],
+  "assets/man-head-R.png": [
+    "assets/man-head-R.png"
+  ],
+  "assets/man-head.png": [
+    "assets/man-head.png"
+  ],
+  "assets/orange_pencil.png": [
+    "assets/orange_pencil.png"
+  ],
+  "assets/plant.png": [
+    "assets/plant.png"
+  ],
+  "assets/project.png": [
+    "assets/project.png"
+  ],
+  "assets/projectImage.jpg": [
+    "assets/projectImage.jpg"
+  ],
+  "assets/projectImage2.jpeg": [
+    "assets/projectImage2.jpeg"
+  ],
+  "assets/slider-background-1.png": [
+    "assets/slider-background-1.png"
+  ],
+  "assets/slider-background-2.png": [
+    "assets/slider-background-2.png"
+  ],
+  "assets/slider-background-3.png": [
+    "assets/slider-background-3.png"
+  ],
+  "assets/small-logo.png": [
+    "assets/small-logo.png"
+  ],
+  "assets/task_done.png": [
+    "assets/task_done.png"
+  ],
+  "assets/team.png": [
+    "assets/team.png"
+  ],
+  "assets/working_on.png": [
+    "assets/working_on.png"
+  ],
+  "lib/images/KAREM.jpg": [
+    "lib/images/KAREM.jpg"
+  ],
+  "lib/images/anonymos.png": [
+    "lib/images/anonymos.png"
+  ],
+  "lib/images/google.png": [
+    "lib/images/google.png"
+  ],
+  "lib/images/google2.png": [
+    "lib/images/google2.png"
+  ],
+  "lib/images/logo.png": [
+    "lib/images/logo.png"
+  ],
+  "packages/awesome_dialog/assets/flare/error.flr": [
+    "packages/awesome_dialog/assets/flare/error.flr"
+  ],
+  "packages/awesome_dialog/assets/flare/info.flr": [
+    "packages/awesome_dialog/assets/flare/info.flr"
+  ],
+  "packages/awesome_dialog/assets/flare/info2.flr": [
+    "packages/awesome_dialog/assets/flare/info2.flr"
+  ],
+  "packages/awesome_dialog/assets/flare/info_without_loop.flr": [
+    "packages/awesome_dialog/assets/flare/info_without_loop.flr"
+  ],
+  "packages/awesome_dialog/assets/flare/question.flr": [
+    "packages/awesome_dialog/assets/flare/question.flr"
+  ],
+  "packages/awesome_dialog/assets/flare/succes.flr": [
+    "packages/awesome_dialog/assets/flare/succes.flr"
+  ],
+  "packages/awesome_dialog/assets/flare/succes_without_loop.flr": [
+    "packages/awesome_dialog/assets/flare/succes_without_loop.flr"
+  ],
+  "packages/awesome_dialog/assets/flare/warning.flr": [
+    "packages/awesome_dialog/assets/flare/warning.flr"
+  ],
+  "packages/awesome_dialog/assets/flare/warning_without_loop.flr": [
+    "packages/awesome_dialog/assets/flare/warning_without_loop.flr"
+  ],
+  "packages/awesome_dialog/assets/rive/error.riv": [
+    "packages/awesome_dialog/assets/rive/error.riv"
+  ],
+  "packages/awesome_dialog/assets/rive/info.riv": [
+    "packages/awesome_dialog/assets/rive/info.riv"
+  ],
+  "packages/awesome_dialog/assets/rive/info_reverse.riv": [
+    "packages/awesome_dialog/assets/rive/info_reverse.riv"
+  ],
+  "packages/awesome_dialog/assets/rive/question.riv": [
+    "packages/awesome_dialog/assets/rive/question.riv"
+  ],
+  "packages/awesome_dialog/assets/rive/success.riv": [
+    "packages/awesome_dialog/assets/rive/success.riv"
+  ],
+  "packages/awesome_dialog/assets/rive/warning.riv": [
+    "packages/awesome_dialog/assets/rive/warning.riv"
+  ],
+  "packages/awesome_notifications/test/assets/images/test_image.png": [
+    "packages/awesome_notifications/test/assets/images/test_image.png"
+  ],
+  "packages/cupertino_icons/assets/CupertinoIcons.ttf": [
+    "packages/cupertino_icons/assets/CupertinoIcons.ttf"
+  ],
+  "packages/day_night_time_picker/assets/moon.png": [
+    "packages/day_night_time_picker/assets/moon.png"
+  ],
+  "packages/day_night_time_picker/assets/sun.png": [
+    "packages/day_night_time_picker/assets/sun.png"
+  ],
+  "packages/flutter_feather_icons/fonts/feather.ttf": [
+    "packages/flutter_feather_icons/fonts/feather.ttf"
+  ],
+  "packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf": [
+    "packages/font_awesome_flutter/lib/fonts/fa-brands-400.ttf"
+  ],
+  "packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf": [
+    "packages/font_awesome_flutter/lib/fonts/fa-regular-400.ttf"
+  ],
+  "packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf": [
+    "packages/font_awesome_flutter/lib/fonts/fa-solid-900.ttf"
+  ],
+  "packages/iconsax/lib/assets/fonts/iconsax.ttf": [
+    "packages/iconsax/lib/assets/fonts/iconsax.ttf"
+  ]
+}

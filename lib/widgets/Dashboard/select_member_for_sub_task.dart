@@ -2,29 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/team_member_controller.dart';
-import 'package:mytest/controllers/userController.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/models/team/Team_model.dart';
-import 'package:mytest/widgets/Forms/search_box2.dart';
-
-import 'package:mytest/widgets/inactive_employee_card.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 
 import '../../Screens/Dashboard/search_bar_animation.dart';
-import '../../Screens/Profile/profile_overview.dart';
 import '../../Values/values.dart';
-
-import '../../models/User/User_task_Model.dart';
 import '../../models/team/TeamMembers_model.dart';
-import '../../services/notification_service.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
-
 import '../../widgets/Navigation/app_header.dart';
-
-import '../../widgets/dummy/profile_dummy.dart';
 import '../Buttons/primary_progress_button.dart';
-import '../Navigation/app_header2.dart';
 import '../User/employee_card_sub_task.dart';
 
 // class Search extends GetxController {

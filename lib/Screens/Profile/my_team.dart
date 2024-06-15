@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/constants/back_constants.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/models/team/Manger_model.dart';
-import 'package:mytest/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 
 import '../../Values/values.dart';
-import '../../constants/constants.dart';
-import '../../widgets/DarkBackground/darkRadialBackground.dart';
-import '../../widgets/Navigation/app_header.dart';
-import '../../widgets/Projects/project_card_vertical.dart';
-import '../../widgets/add_sub_icon.dart';
 import '../../widgets/container_label.dart';
 import 'team_details.dart';
 

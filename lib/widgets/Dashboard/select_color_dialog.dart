@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/widgets/Onboarding/gradient_color_ball.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/widgets/Onboarding/gradient_color_ball.dart';
 
 import '../../Values/values.dart';
 import '../Buttons/primary_progress_button.dart';

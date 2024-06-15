@@ -2,20 +2,19 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/statusController.dart';
-import 'package:mytest/controllers/taskController.dart';
-import 'package:mytest/controllers/teamController.dart';
-import 'package:mytest/controllers/team_member_controller.dart';
-import 'package:mytest/models/statusmodel.dart';
-import 'package:mytest/models/team/Team_model.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/statusController.dart';
+import 'package:project_management_muhmad_omar/controllers/taskController.dart';
+import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/models/statusmodel.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+
+import '../Utils/back_utils.dart';
 import '../constants/back_constants.dart';
 import '../models/team/Manger_model.dart';
 import '../models/team/Project_model.dart';
 import '../services/collectionsrefrences.dart';
-import '../Utils/back_utils.dart';
 import 'manger_controller.dart';
 
 class ProjectController extends ProjectAndTaskController {
@@ -243,7 +242,7 @@ class ProjectController extends ProjectAndTaskController {
     }
 
     Stream<QuerySnapshot> projectsStream = queryWhereStream(
-        reference: projectsRef, field: managerIdK, value: managerModel!.id);
+        reference: projectsRef, field: managerIdK, value: managerModel.id);
     yield* projectsStream.cast<QuerySnapshot<ProjectModel>>();
   }
 
@@ -379,7 +378,7 @@ class ProjectController extends ProjectAndTaskController {
 
     for (var projectModel in list) {
       if (projectModel!.startDate.isAfter(startOfDay) &&
-          projectModel.startDate!.isBefore(endOfDay)) {
+          projectModel.startDate.isBefore(endOfDay)) {
         if (!projectsInTheDay.contains(projectModel.id)) {
           projectsInTheDay.add(projectModel.id);
         }
@@ -442,7 +441,7 @@ class ProjectController extends ProjectAndTaskController {
     for (TeamModel team in teams) {
       getProjectsOfTeamStream(teamId: team.id).listen(
         (event) {
-          List<QueryDocumentSnapshot<ProjectModel>> list = event!.docs;
+          List<QueryDocumentSnapshot<ProjectModel>> list = event.docs;
           for (var element in list) {
             projects.add(element.data().id);
           }

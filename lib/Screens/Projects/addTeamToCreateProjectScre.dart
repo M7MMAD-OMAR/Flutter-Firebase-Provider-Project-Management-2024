@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/models/team/Team_model.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 
 class AddTeamToCreatProjectScreen extends GetxController {
   RxList<TeamModel> teams = <TeamModel>[].obs;

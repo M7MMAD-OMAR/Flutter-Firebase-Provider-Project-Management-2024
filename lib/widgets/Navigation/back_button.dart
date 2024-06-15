@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mytest/Screens/Dashboard/timeline.dart';
-import 'package:mytest/Values/values.dart';
-import 'package:mytest/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/Screens/Dashboard/timeline.dart';
 
 import '../Shapes/roundedborder_with_icon.dart';
 

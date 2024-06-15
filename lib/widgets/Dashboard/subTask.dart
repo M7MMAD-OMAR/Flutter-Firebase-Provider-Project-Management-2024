@@ -1,24 +1,21 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
+// import 'package:flutter_glow/flutter_glow.dart';
 import 'package:get/get.dart';
-import 'package:mytest/Values/values.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/categoryController.dart';
-import 'package:mytest/controllers/project_sub_task_controller.dart';
-import 'package:mytest/controllers/statusController.dart';
-import 'package:mytest/controllers/team_member_controller.dart';
-// the Developer karem saad (KaremSD)
-import 'package:mytest/controllers/user_task_controller.dart';
-import 'package:mytest/models/statusmodel.dart';
-import 'package:mytest/models/team/Project_sub_task_Model.dart';
-import 'package:mytest/models/team/TeamMembers_model.dart';
-import 'package:mytest/services/auth_service.dart';
-import 'package:mytest/widgets/Dashboard/create_sub_task.dart';
-import 'package:mytest/widgets/User/tasks_tasks.dart';
+import 'package:intl/intl.dart';
+import 'package:project_management_muhmad_omar/Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/statusController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/models/statusmodel.dart';
+import 'package:project_management_muhmad_omar/models/team/Project_sub_task_Model.dart';
+import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/create_sub_task.dart';
+
 import '../../BottomSheets/bottom_sheets.dart';
 import '../../constants/back_constants.dart';
 import '../../controllers/manger_controller.dart';
@@ -29,23 +26,16 @@ import '../../controllers/topController.dart';
 import '../../controllers/userController.dart';
 import '../../controllers/waitingSubTasks.dart';
 import '../../models/User/User_model.dart';
-import '../../models/User/User_task_Model.dart';
-import 'package:intl/intl.dart';
-
-import '../../models/task/UserTaskCategory_model.dart';
 import '../../models/team/Manger_model.dart';
 import '../../models/team/Project_main_task_Model.dart';
 import '../../models/team/Project_model.dart';
 import '../../models/team/Team_model.dart';
 import '../../models/team/waitingSubTasksModel.dart';
-
 import '../../services/collectionsrefrences.dart';
 import '../../services/notification_service.dart';
 import '../../services/types.dart';
-import '../Dashboard/create_user_task.dart';
 import '../Snackbar/custom_snackber.dart';
 import '../User/focused_menu_item.dart';
-import '../User/inactive_employee_card_sub_task.dart';
 
 enum TaskStatus {
   notDone,
@@ -579,46 +569,46 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                     name = userModel.name ?? "";
                                     bio = userModel.bio ?? "";
                                     image = userModel.imageUrl;
-                                    return GlowContainer(
-                                      borderRadius: BorderRadius.circular(25),
-                                      glowColor: Colors.lightBlueAccent,
-                                      child: InactiveEmployeeCardSubTask(
-                                        onTap: () {},
-                                        bio: userModel.bio!,
-                                        color: Colors.white,
-                                        userImage: userModel.imageUrl,
-                                        userName: userModel.userName!,
-                                      ),
-                                    );
+                                    // return GlowContainer(
+                                    //   borderRadius: BorderRadius.circular(25),
+                                    //   glowColor: Colors.lightBlueAccent,
+                                    //   child: InactiveEmployeeCardSubTask(
+                                    //     onTap: () {},
+                                    //     bio: userModel.bio!,
+                                    //     color: Colors.white,
+                                    //     userImage: userModel.imageUrl,
+                                    //     userName: userModel.userName!,
+                                    //   ),
+                                    // );
                                   }
 
                                   if (!snapshot.hasData) {
-                                    return image != null
-                                        ? GlowContainer(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            glowColor: Colors.lightBlueAccent,
-                                            child: InactiveEmployeeCardSubTask(
-                                              onTap: () {},
-                                              bio: bio,
-                                              color: Colors.white,
-                                              userImage: image!,
-                                              userName: name,
-                                            ),
-                                          )
-                                        : GlowContainer(
-                                            borderRadius:
-                                                BorderRadius.circular(25),
-                                            glowColor: Colors.lightBlueAccent,
-                                            child: InactiveEmployeeCardSubTask(
-                                              onTap: () {},
-                                              bio: bio,
-                                              color: Colors.white,
-                                              userImage: "",
-                                              showicon: true,
-                                              userName: name,
-                                            ),
-                                          );
+                                    // return image != null
+                                    //     ? GlowContainer(
+                                    //         borderRadius:
+                                    //             BorderRadius.circular(25),
+                                    //         glowColor: Colors.lightBlueAccent,
+                                    //         child: InactiveEmployeeCardSubTask(
+                                    //           onTap: () {},
+                                    //           bio: bio,
+                                    //           color: Colors.white,
+                                    //           userImage: image!,
+                                    //           userName: name,
+                                    //         ),
+                                    //       )
+                                    //     : GlowContainer(
+                                    //         borderRadius:
+                                    //             BorderRadius.circular(25),
+                                    //         glowColor: Colors.lightBlueAccent,
+                                    //         child: InactiveEmployeeCardSubTask(
+                                    //           onTap: () {},
+                                    //           bio: bio,
+                                    //           color: Colors.white,
+                                    //           userImage: "",
+                                    //           showicon: true,
+                                    //           userName: name,
+                                    //         ),
+                                    //       );
                                   }
                                   return const CircularProgressIndicator
                                       .adaptive();
@@ -722,17 +712,17 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                 }
                                 if (snapshot.hasData) {
                                   UserModel userModel = snapshot.data!.data()!;
-                                  return GlowContainer(
-                                    borderRadius: BorderRadius.circular(25),
-                                    glowColor: Colors.lightBlueAccent,
-                                    child: InactiveEmployeeCardSubTask(
-                                      onTap: () {},
-                                      bio: userModel.bio!,
-                                      color: Colors.white,
-                                      userImage: userModel.imageUrl,
-                                      userName: userModel.userName!,
-                                    ),
-                                  );
+                                  // return GlowContainer(
+                                  //   borderRadius: BorderRadius.circular(25),
+                                  //   glowColor: Colors.lightBlueAccent,
+                                  //   child: InactiveEmployeeCardSubTask(
+                                  //     onTap: () {},
+                                  //     bio: userModel.bio!,
+                                  //     color: Colors.white,
+                                  //     userImage: userModel.imageUrl,
+                                  //     userName: userModel.userName!,
+                                  //   ),
+                                  // );
                                 }
                                 return const CircularProgressIndicator
                                     .adaptive();
@@ -840,16 +830,17 @@ class _SubTaskCardState extends State<SubTaskCard> {
         final opacity = isFilledStar
             ? minOpacity + (importance - 1) * opacityStep
             : 1.0; // Set opacity to 1.0 for empty stars
+        return Text("jj");
 
-        return GlowContainer(
-          glowColor: isFilledStar
-              ? Colors.yellow.withOpacity(opacity)
-              : Colors.transparent,
-          child: Icon(
-            isFilledStar ? Icons.star_rate_rounded : Icons.star_border_rounded,
-            color: Colors.yellow.withOpacity(opacity),
-          ),
-        );
+        // return GlowContainer(
+        //   glowColor: isFilledStar
+        //       ? Colors.yellow.withOpacity(opacity)
+        //       : Colors.transparent,
+        //   child: Icon(
+        //     isFilledStar ? Icons.star_rate_rounded : Icons.star_border_rounded,
+        //     color: Colors.yellow.withOpacity(opacity),
+        //   ),
+        // );
       }),
     );
   }

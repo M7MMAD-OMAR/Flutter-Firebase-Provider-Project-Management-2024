@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/widgets/Projects/project_badge.dart';
 import 'package:intl/intl.dart';
-import 'package:mytest/widgets/User/focused_menu_item.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_badge.dart';
+
 import '../../Values/values.dart';
 
 class ProjectCardHorizontal extends StatelessWidget {

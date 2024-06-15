@@ -2,6 +2,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
+import 'dart:developer' as dev;
 import 'dart:io';
 import 'dart:math';
 
@@ -10,25 +11,22 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project_management_muhmad_omar/Screens/Projects/searchForMembers.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
+import 'package:project_management_muhmad_omar/services/collectionsrefrences.dart';
+import 'package:project_management_muhmad_omar/utils/back_utils.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
 
-import 'package:mytest/Screens/Projects/searchForMembers.dart';
-import 'package:mytest/constants/app_constans.dart';
-import 'package:mytest/controllers/manger_controller.dart';
-import 'package:mytest/controllers/teamController.dart';
-import 'package:mytest/controllers/waitingMamberController.dart';
-import 'package:mytest/models/User/User_model.dart';
-import 'package:mytest/models/team/Manger_model.dart';
-import 'package:mytest/models/team/Team_model.dart';
-import 'package:mytest/models/team/waitingMamber.dart';
-import 'package:mytest/services/collectionsrefrences.dart';
-import 'package:mytest/utils/back_utils.dart';
-import 'package:mytest/widgets/Snackbar/custom_snackber.dart';
-import 'dart:developer' as dev;
 import '../../Screens/Projects/addUserToTeamScreenController.dart';
-
 import '../../Values/values.dart';
 import '../../services/auth_service.dart';
 import '../BottomSheets/bottom_sheet_holder.dart';
@@ -36,7 +34,6 @@ import '../BottomSheets/bottom_sheet_selectable_container.dart';
 import '../Buttons/primary_buttons.dart';
 import '../Forms/form_input_with _label.dart';
 import '../dummy/profile_dummy.dart';
-
 import 'in_bottomsheet_subtitle.dart';
 
 class DashboardMeetingDetails extends StatefulWidget {

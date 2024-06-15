@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mytest/constants/back_constants.dart';
-import 'package:mytest/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 
 import '../../Values/values.dart';
 import '../../constants/app_constans.dart';
