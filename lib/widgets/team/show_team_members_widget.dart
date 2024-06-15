@@ -20,10 +20,10 @@ import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_
 import 'package:project_management_muhmad_omar/widgets/active_employee_card_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../../models/team/TeamMembers_model.dart';
 import '../../widgets/Buttons/primary_buttons_widget.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
 
@@ -224,8 +224,6 @@ class ShowTeamMembers extends StatelessWidget {
                                                           .data!.size,
                                                       itemBuilder:
                                                           (context, index) {
-                                                        print(snapshotUsers
-                                                            .data!.size);
                                                         return Padding(
                                                           padding:
                                                               const EdgeInsets
@@ -251,10 +249,8 @@ class ShowTeamMembers extends StatelessWidget {
                                                                               backgroundColor: Colors.red,
                                                                               borderRadius: BorderRadius.circular(16),
                                                                               onPressed: (context) {
-                                                                                print("object deete");
                                                                                 CustomDialog.showConfirmDeleteDialog(
                                                                                     onDelete: () async {
-                                                                                      print("delete member");
                                                                                       await TeamMemberController().deleteMember(id: snapshotTeamMembers.data!.docs[index].data().id);
                                                                                       Get.back();
                                                                                     },
@@ -275,8 +271,6 @@ class ShowTeamMembers extends StatelessWidget {
                                                                                 showDialogMethod(context);
                                                                                 await WaitingMamberController().deleteWaitingMamberDoc(waitingMemberId: snapShotWatingUsers.data!.docs[index].data().id);
                                                                                 Get.key.currentState!.pop();
-                                                                                print(snapShotWatingUsers.data!.docs[index].data().userId);
-                                                                                print("object dlete waitiing member");
                                                                               },
                                                                               label: AppConstants.delete_key.tr,
                                                                               icon: FontAwesomeIcons.trash,

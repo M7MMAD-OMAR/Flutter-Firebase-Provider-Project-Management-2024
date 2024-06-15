@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/search_bar_animation_screen.dart';
-import 'package:project_management_muhmad_omar/constants/app_constans.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
+
 import '../../controllers/categoryController.dart';
 import '../../models/task/UserTaskCategory_model.dart';
 import '../../services/auth_service.dart';
@@ -181,7 +181,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
                   if (taskCount > 0) {
                     if (search.isNotEmpty) {
-                      print(search + "helli");
                       for (var element in snapshot.data!.docs) {
                         UserTaskCategoryModel taskModel = element.data();
                         if (taskModel.name!.toLowerCase().contains(search)) {

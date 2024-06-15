@@ -9,7 +9,8 @@ import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_member_for_sub_task_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import '../../controllers/categoryController.dart';
 import '../../controllers/projectController.dart';
 import '../../controllers/teamController.dart';
@@ -17,7 +18,6 @@ import '../../controllers/user_task_controller.dart';
 import '../../models/User/User_model.dart';
 import '../../models/team/Project_sub_task_Model.dart';
 import '../../models/team/Team_model.dart';
-import '../BottomSheets/bottom_sheet_holder_widget.dart';
 import '../Forms/form_input_with _label_widget.dart';
 import '../Snackbar/custom_snackber_widget.dart';
 import '../User/inactive_employee_card_sub_task_widget.dart';
@@ -91,10 +91,10 @@ class _CreateSubTaskState extends State<CreateSubTask> {
   String formattedDueDate = "";
   Future onChanged(String value) async {
     name = value;
-    print("hellli");
+
     if (name.isNotEmpty) {
       isTaked = await widget.checkExist(name: name);
-      print(isTaked);
+
       setState(() {
         isTaked;
       });
@@ -111,8 +111,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
 
   onSelectedUserChanged({required UserModel? userModel}) {
     setState(() {
-      print(userModel!.userName);
-      assignedToUserId = userModel.id;
+      assignedToUserId = userModel?.id;
     });
   }
 
@@ -159,14 +158,13 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                           ));
                         },
                         color: Colors.white,
-                        userImage: userModel!.imageUrl!,
+                        userImage: userModel!.imageUrl,
                         userName: userModel.userName ?? "no user name",
                         bio: userModel.bio ?? "no bio",
                       );
                     }
                     return InkWell(
                       onTap: () {
-                        print("object");
                         // ProjectModel? projectModel = await ProjectController()
                         //     .getProjectById(id: widget.projectId);
                         // TeamModel teamModel = await TeamController()
@@ -201,10 +199,9 @@ class _CreateSubTaskState extends State<CreateSubTask> {
               if (assignedToUserId == null)
                 InkWell(
                   onTap: () async {
-                    print(widget.projectId);
                     ProjectModel? projectModel = await ProjectController()
                         .getProjectById(id: widget.projectId);
-                    print(projectModel!.teamId!);
+
                     TeamModel teamModel = await TeamController()
                         .getTeamById(id: projectModel!.teamId!);
                         // the Developer karem saad (KaremSD)
@@ -429,7 +426,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print(selectedDay.toString() + "the selected day");
+
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
@@ -497,8 +494,8 @@ class BottomSheetIcon extends StatelessWidget {
 //                                     }
 //                                     return TeamStory(
 //                                         onTap: () {
-//                                           print("objectsdsad");
-                                          
+//
+
 //                                           Get.to(() =>
 //                                               ShowTeamMembers(teamModel: team));
 //                                         },

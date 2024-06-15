@@ -75,8 +75,6 @@ class UserTaskController extends ProjectAndTaskController {
     List<Object?>? list = await getListDataWhere(
         collectionReference: usersTasksRef, field: userIdK, value: userId);
     List<UserTaskModel> listOfUserTasks = list!.cast<UserTaskModel>();
-    print(listOfUserTasks);
-    print("hello from task getter");
     return listOfUserTasks;
   }
 
@@ -409,7 +407,6 @@ class UserTaskController extends ProjectAndTaskController {
 
       for (var element in list) {
         UserTaskModel task = element.data();
-        print(task.startDate.hour + task.endDate!.hour);
         if (task.startDate.isAfter(startOfDay) &&
             task.startDate.isBefore(endOfDay)) {
           tasksFinal.add(task.id);
@@ -442,7 +439,7 @@ class UserTaskController extends ProjectAndTaskController {
 
   //   final endOfDay =
   //       startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
-  //   print(date.toString() + startOfDay.toString() + endOfDay.toString());
+  //
   //   // yield* getUserTasksBetweenTowTimesStream(
   //   //     firstDate: startOfDay,
   //   //     secondDate: endOfDay,
@@ -452,7 +449,7 @@ class UserTaskController extends ProjectAndTaskController {
   //     List<QueryDocumentSnapshot<UserTaskModel>> list = event.docs;
   //     for (var element in list) {
   //       UserTaskModel task = element.data();
-  //       print(task.startDate.hour + task.endDate!.hour);
+  //
   //       if (task.startDate.isAfter(startOfDay) &&
   //           task.startDate.isBefore(endOfDay)) {
 
@@ -675,7 +672,6 @@ class UserTaskController extends ProjectAndTaskController {
           userTaskModel.endDate!.isAfter(existingTask.startDate)) {
         overlapped = true;
         over += 1;
-        print(overlapped);
       }
     }
     final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
@@ -736,7 +732,6 @@ class UserTaskController extends ProjectAndTaskController {
       return;
     }
     if (data.containsKey(startDateK)) {
-      print(data[startDateK]);
       bool overlapped = false;
       int over = 0;
 
@@ -777,7 +772,6 @@ class UserTaskController extends ProjectAndTaskController {
             },
             navigatorKey: _navigatorKey);
       } else {
-        print(data[nameK]);
         await updateTask(
           reference: usersTasksRef,
           data: data,
@@ -791,7 +785,6 @@ class UserTaskController extends ProjectAndTaskController {
         Get.key.currentState!.pop();
       }
     } else {
-      print(data[nameK]);
 
       await updateTask(
         reference: usersTasksRef,

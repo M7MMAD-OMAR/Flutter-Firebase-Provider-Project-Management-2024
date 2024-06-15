@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/widgets/Projects/project_badge_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class ProjectCardHorizontal extends StatelessWidget {
   final String projectName;

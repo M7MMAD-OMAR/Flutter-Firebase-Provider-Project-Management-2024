@@ -24,7 +24,7 @@ class UserController extends TopController {
   Future<List<UserModel>> getAllUsers() async {
     List<Object?>? list = await getAllListDataForRef(refrence: usersRef);
     List<UserModel> users = list!.cast<UserModel>();
-    print(users);
+
     return list.cast<UserModel>();
   }
 

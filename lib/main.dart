@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_management_muhmad_omar/Screens/Auth/auth_page_screen.dart';
+import 'package:project_management_muhmad_omar/screens/auth_screen/auth_page_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notification_service.dart';
 import 'package:project_management_muhmad_omar/services/notifications_sender_services.dart';
@@ -41,7 +41,6 @@ Future<void> main() async {
 
 @pragma('vm:entry-point')
 Future<void> fcmHandler() async {
-  print("object");
   FirebaseMessaging.onMessage.listen(FcmNotifications.handleMessageJson);
   FirebaseMessaging.onMessageOpenedApp
       .listen(FcmNotifications.handleMessageJson);

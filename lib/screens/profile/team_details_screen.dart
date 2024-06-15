@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
@@ -15,14 +16,13 @@ import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/show_team_members_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
 import '../../constants/constants.dart';
 import '../../controllers/statusController.dart';
-import '../../controllers/teamController.dart';
-import '../../models/statusmodel.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/models/statusmodel.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../widgets/Dashboard/in_bottomsheet_subtitle_widget.dart';
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../../widgets/Projects/project_card_vertical_widget.dart';
@@ -119,8 +119,6 @@ class TeamDetails extends StatelessWidget {
                                 return TeamStory(
                                     userAsManager: userAsManager,
                                     onTap: () {
-                                      print("objectsdsad");
-
                                       Get.to(() => ShowTeamMembers(
                                             teamModel: team!,
                                             userAsManager: userAsManager,
@@ -136,7 +134,7 @@ class TeamDetails extends StatelessWidget {
                                 //   numberOfMembers: 0.toString(),
                                 //   users: <UserModel>[],
                                 //   onTap: () {
-                                //     print("dasdasd");
+                                //
                                 //   },
                                 // );
                               }
@@ -158,7 +156,6 @@ class TeamDetails extends StatelessWidget {
                                     return TeamStory(
                                         userAsManager: userAsManager,
                                         onTap: () {
-                                          print("objectsdsad");
                                           Get.to(() => ShowTeamMembers(
                                                 teamModel: team!,
                                                 userAsManager: userAsManager,

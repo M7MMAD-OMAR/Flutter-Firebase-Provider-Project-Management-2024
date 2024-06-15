@@ -1,10 +1,12 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 
-import '../../Values/values.dart';
 import '../../constants/app_constans.dart';
 import '../../services/auth_service.dart';
 
@@ -184,9 +186,9 @@ class dailygoal extends StatelessWidget {
             //   child: ElevatedButton(
             //     onPressed: () {},
             //     style: ButtonStyle(
-            //       backgroundColor: MaterialStateProperty.all<Color>(
+            //       backgroundColor: WidgetStateProperty.all<Color>(
             //           HexColor.fromHex("C25FFF")),
-            //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             //         RoundedRectangleBorder(
             //           borderRadius: BorderRadius.circular(50.0),
             //           side: BorderSide(

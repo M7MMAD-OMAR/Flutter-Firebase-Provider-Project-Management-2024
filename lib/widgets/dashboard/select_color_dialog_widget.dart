@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/widgets/Onboarding/gradient_color_ball_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../Buttons/primary_progress_button_widget.dart';
 
 class ColorSelectionDialog extends StatefulWidget {
@@ -85,8 +85,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
               callback: () {
                 // Do something with the selected color
                 String selectedColor = getSelectedColor();
-                print('Selected color index: ${selectedColorIndex.value}');
-                print('Selected color: $selectedColor');
+
                 widget.onSelectedColorChanged(getSelectedColor());
                 Navigator.of(context).pop();
               },

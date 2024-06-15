@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../../constants/constants.dart';
 import '../dummy/green_done_icon_widget.dart';
 
@@ -25,7 +25,6 @@ class PlanCard extends StatelessWidget {
       child: InkWell(
           onTap: () {
             notifierValue.value = selectedIndex;
-            print(notifierValue.value);
           },
           child: ValueListenableBuilder(
               valueListenable: notifierValue,

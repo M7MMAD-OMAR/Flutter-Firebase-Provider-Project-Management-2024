@@ -7,6 +7,7 @@ import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
+import 'package:project_management_muhmad_omar/services/types_services.dart';
 
 import '../constants/back_constants.dart';
 import '../models/User/User_model.dart';
@@ -14,7 +15,6 @@ import '../models/team/TeamMembers_model.dart';
 import '../models/team/Team_model.dart';
 import '../services/auth_service.dart';
 import '../services/notification_service.dart';
-import '../services/types.dart';
 
 class WaitingMamberController extends TopController {
   //جبلي هل الشخص يلي لسع مو قبلان دعوة الانضمام
@@ -112,10 +112,8 @@ class WaitingMamberController extends TopController {
   }
 
   Future<void> acceptTeamInvite({required String waitingMemberId}) async {
-    print("step1");
     await teamInviteHandler(
         waitingMemberId: waitingMemberId, isAccepted: true, memberMessage: '');
-    print("step done");
   }
 
   Future<void> declineTeamInvite({
@@ -142,14 +140,11 @@ class WaitingMamberController extends TopController {
     UserController userController = Get.put(UserController());
     //to get the team model so we get the manager model and then get the manager user profile to sned the notification
     TeamController teamController = Get.put(TeamController());
-    print("step2");
+
     WaitingMemberModel waitingMember =
         await getWaitingMemberById(watingmemberId: waitingMemberId);
 
-    print("step3");
     deleteWaitingMamberDoc(waitingMemberId: waitingMemberId);
-
-    print("step4");
 
     if (isAccepted) {
       //to add the invited member to the team
@@ -165,21 +160,16 @@ class WaitingMamberController extends TopController {
       );
       await teamMemberController.addMember(teamMemberModel: teamMemberModel);
     }
-    print("step5");
 
     TeamModel teamModel =
         await teamController.getTeamById(id: waitingMember.teamId);
-    print("step6");
 
     UserModel manager = await userController.getUserWhereMangerIs(
         mangerId: teamModel.managerId);
-    print("step7");
 
     //to get the user name to tell the manager about his name in the notification
     UserModel member = await userController.getUserById(
         id: AuthService.instance.firebaseAuth.currentUser!.uid);
-
-    print("step8");
 
     FcmNotifications fcmNotifications = Get.put(FcmNotifications());
     await fcmNotifications.sendNotification(
@@ -188,7 +178,6 @@ class WaitingMamberController extends TopController {
         body:
             "${member.name} $status ${AppConstants.invite_to_team_key.tr} ${teamModel.name} $memberMessage",
         type: NotificationType.notification);
-    print("step9");
   }
 
 //حذفو بعد الرفض او القبول والانضمام

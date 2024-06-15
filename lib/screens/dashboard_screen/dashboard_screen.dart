@@ -3,21 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_tab_screens/overview_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_tab_screens/productivity_screen.dart';
 
-import '../../Values/values.dart';
 import '../../services/auth_service.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Buttons/primary_tab_buttons_widget.dart';
 import '../../widgets/Navigation/dasboard_header_widget.dart';
 import '../Profile/profile_overview_screen.dart';
-import 'DashboardTabScreens/overview_screen.dart';
-import 'DashboardTabScreens/productivity_screen.dart';
 
 // ignore: must_be_immutable
 class Dashboard extends StatelessWidget {
   Dashboard({Key? key}) : super(key: key);
+
   // final ValueNotifier<bool> _totalTaskTrigger = ValueNotifier(true);
   // final ValueNotifier<bool> _totalDueTrigger = ValueNotifier(false);
   // final ValueNotifier<bool> _totalCompletedTrigger = ValueNotifier(true);
@@ -44,7 +45,6 @@ class Dashboard extends StatelessWidget {
                   Get.to(() => ProfileOverview(
                         isSelected: fcmStutas,
                       ));
-                  print(AuthService.instance.firebaseAuth.currentUser!.email);
                 },
               ),
               AppSpaces.verticalSpace20,
@@ -89,7 +89,7 @@ class Dashboard extends StatelessWidget {
                 valueListenable: _buttonTrigger,
                 builder: (BuildContext context, _, __) {
                   return _buttonTrigger.value == 0
-                      ? DashboardOverview()
+                      ? const DashboardOverview()
                       : const DashboardProductivity();
                 },
               )

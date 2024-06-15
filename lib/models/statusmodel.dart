@@ -65,7 +65,6 @@ class StatusModel extends VarTopModel {
 
   @override
   set setId(String idParameter) {
-    print("${idParameter}id parameter");
     Exception exception;
     //لا يمكن أن يكون الاي دي الخاص بالدوكيومنت عديم القيمة
     if (idParameter.isEmpty) {

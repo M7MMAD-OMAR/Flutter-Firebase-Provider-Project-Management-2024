@@ -180,12 +180,12 @@ class FcmNotifications extends GetxService {
     //even if you are only sending String,String
     Map<String, String> datapayload =
         Map<String, String>.from(message.data.cast<String, String>());
-    print(message.data);
+
     //the buttons to show to the user depending on the type of the notification
     List<NotificationActionButton>? buttons;
 
     //get the notification type from message and convert it to NotificationType
-    print(datapayload["type"]!);
+
     NotificationType type =
         NotificationType.values.byName(datapayload["type"]!);
     //we send the type to getButtonsByNotificationType function that checks the type and returns the
@@ -203,14 +203,12 @@ class FcmNotifications extends GetxService {
   static Future<void> handleMessageJson(RemoteMessage message) async {
     //we are converting the data which come from firestore as String,dynamic map
     //even if you are only sending String,String
-    //  print(message.data["data"]);
+    //
 
 //TODO return habiby 
     if (await getNotificationStatus() == true) {
-      print("recieved successfully");
-      print(message.data);
       Map<String, dynamic> s = jsonDecode(message.data["data"]);
-      print(s);
+
       await NotificationController.showNotificationJson(s["notification"]);
     }
   }
@@ -224,7 +222,7 @@ class FcmNotifications extends GetxService {
     //all notifications must have a button to just mark the notification as read
 
     //the key field allows us to handle the button click how we like with a function whatever
-    print(type);
+
     switch (type) {
       case NotificationType.teamInvite:
         buttons.addAll([

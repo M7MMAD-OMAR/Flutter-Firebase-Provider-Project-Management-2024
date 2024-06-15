@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
         AnimationController(vsync: this, duration: const Duration(seconds: 2))
           ..forward();
     animation = CurvedAnimation(parent: _controller, curve: Curves.linear);
-    Timer(const Duration(seconds: 3), () => Get.offNamed(LanguagePage.id));
+    Timer(const Duration(seconds: 3), () => Get.offNamed(LanguageScreen.id));
   }
 
   @override

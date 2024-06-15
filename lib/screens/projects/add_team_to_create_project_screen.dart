@@ -5,11 +5,10 @@ class AddTeamToCreatProjectScreen extends GetxController {
   RxList<TeamModel> teams = <TeamModel>[].obs;
 
   void addUser(TeamModel user) {
-    print("add team ");
     bool found = false;
     // for (var element in teams) {
     //   if (user.id == element.id) {
-    //     print("add team2 ");
+    //
 // the Developer karem saad (KaremSD) 
     //     found = true;
     //     break;
@@ -19,7 +18,7 @@ class AddTeamToCreatProjectScreen extends GetxController {
     // if (found) {
     //   CustomSnackBar.showError("This User Already added");
     // } else {
-    //   print("add team 3");
+    //
 
     //   teams.add(user);
     //   update();

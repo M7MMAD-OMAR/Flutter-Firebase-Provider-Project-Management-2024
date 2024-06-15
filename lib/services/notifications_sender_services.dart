@@ -201,7 +201,6 @@ Future<void> checkTaskToSendNotification() async {
         value: FirebaseAuth.instance.currentUser!.uid,
       ) ==
       false) {
-    print("hello");
     return;
   }
   StatusModel statusDoneModel =
@@ -224,10 +223,7 @@ Future<void> checkTaskToSendNotification() async {
         taskStartdate.month == now.month &&
         taskStartdate.year == now.year) {
       DateTime firebaseNow = firebaseTime(DateTime.now());
-      print("start date" +
-          taskStartdate.toString() +
-          "end date" +
-          taskEnddate.toString());
+
       if (taskStartdate.isAtSameMomentAs(firebaseNow) &&
           element.statusId == statusNotStartedModel.id) {
         await userTaskController.updateUserTask(
@@ -325,10 +321,7 @@ void checkAuth(int x, Map<String, dynamic> map) async {
         await checkSubTasksToSendNotification();
         await checkProjectsToSendNotificationToManager();
         await checkProjectsToSendNotificationToMember();
-        print("logged in");
-      } else {
-        print("not logged in");
-      }
+      } else {}
     },
   );
 }
@@ -482,10 +475,7 @@ checkProjectMainTasksToSendNotifications(
             taskStartdate.month == now.month &&
             taskStartdate.year == now.year) {
           DateTime firebaseNow = firebaseTime(DateTime.now());
-          print("start date" +
-              taskStartdate.toString() +
-              "end date" +
-              taskEnddate.toString());
+
           if (taskStartdate.isAtSameMomentAs(firebaseNow) &&
               element.statusId == statusNotStartedModel.id) {
             if (manager) {
@@ -576,7 +566,7 @@ checkSubTasksToSendNotification() async {
           taskStartdate.month == now.month &&
           taskStartdate.year == now.year) {
         DateTime firebaseNow = firebaseTime(DateTime.now());
-        print("start date ${taskStartdate} end date$taskEnddate");
+
         if (taskStartdate.isAtSameMomentAs(firebaseNow) &&
             element.statusId == statusNotStartedModel.id) {
           await projectSubTaskController.updateSubTask(

@@ -5,7 +5,7 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 
 import '../../Screens/Profile/edit_profile_screen.dart';
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../Profile/text_outlined_button_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
 import 'back_button.dart';

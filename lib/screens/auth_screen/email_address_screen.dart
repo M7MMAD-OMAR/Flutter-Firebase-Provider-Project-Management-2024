@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:math' as math;
 
 import 'package:email_validator/email_validator.dart';
@@ -9,17 +7,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../services/auth_service.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+
 import '../../widgets/Forms/form_input_with _label_widget.dart';
 import '../../widgets/Navigation/back_widget.dart';
 import '../../widgets/Shapes/background_hexagon_widget.dart';
 import '../../widgets/Snackbar/custom_snackber_widget.dart';
 import '../../widgets/sqaure_button_widget.dart';
-import '../Dashboard/timeline_screen.dart';
+
 import 'signup_screen.dart';
 
 class EmailAddressScreen extends StatefulWidget {
@@ -149,7 +149,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                 );
                               } else {
                                 Navigator.of(context).pop();
-                                print("sign up");
+
                                 Get.to(
                                   () => SignUp(email: email),
                                 );

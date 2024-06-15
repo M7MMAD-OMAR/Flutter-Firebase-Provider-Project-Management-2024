@@ -8,15 +8,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/subTasks_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
-import '../../constants/constants.dart';
 import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
 import '../../controllers/statusController.dart';
@@ -114,7 +113,6 @@ class _brogressState extends State<brogress> {
   }
 
   ismanagerStream() async {
-    print("1234");
     ProjectModel? projectModel = await ProjectController()
         .getProjectById(id: widget.taskModel.projectId);
     Stream<DocumentSnapshot<ManagerModel>> managerModelStream =
@@ -132,14 +130,11 @@ class _brogressState extends State<brogress> {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
         if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
-          print(user.id +
-              "/////" +
-              AuthService.instance.firebaseAuth.currentUser!.uid);
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
         }
-        print(updatedIsManager);
+
         // Update the state and trigger a rebuild
 
         isManager.value = updatedIsManager;
@@ -154,15 +149,12 @@ class _brogressState extends State<brogress> {
     return Obx(() => isManager.value
         ? FocusedMenu(
             onClick: () {
-              print(widget.taskModel.projectId);
-              print("hello pls go");
               Get.to(() => SubTaskScreen(
                     projectId: widget.taskModel.projectId,
                     mainTaskId: widget.taskModel.id,
                   ));
             },
             deleteButton: () async {
-              print(1);
               ProjectMainTaskController userTaskController =
                   Get.put(ProjectMainTaskController());
               await userTaskController.deleteProjectMainTask(
@@ -212,7 +204,6 @@ class _brogressState extends State<brogress> {
                     }
 
                     try {
-                      print("edit main task working");
                       await ProjectMainTaskController().updateMainTask(
                           isfromback: false,
                           data: {
@@ -225,7 +216,6 @@ class _brogressState extends State<brogress> {
                           },
                           id: widget.taskModel.id);
                     } catch (e) {
-                      print("edit main task error");
                       CustomSnackBar.showError(e.toString());
                     }
                   },
@@ -291,7 +281,6 @@ class _brogressState extends State<brogress> {
                                               DocumentSnapshot<StatusModel>>
                                           snapshot) {
                                     if (snapshot.hasData) {
-                                      print(snapshot.data);
                                       StatusModel statusModel =
                                           snapshot.data!.data() as StatusModel;
                                       taskStatus = statusModel.name!;
@@ -375,8 +364,6 @@ class _brogressState extends State<brogress> {
           )
         : InkWell(
             onTap: () {
-              print(widget.taskModel.projectId);
-              print("hello pls go");
               Get.to(SubTaskScreen(
                 projectId: widget.taskModel.projectId,
                 mainTaskId: widget.taskModel.id,
@@ -437,7 +424,6 @@ class _brogressState extends State<brogress> {
                                               DocumentSnapshot<StatusModel>>
                                           snapshot) {
                                     if (snapshot.hasData) {
-                                      print(snapshot.data);
                                       StatusModel statusModel =
                                           snapshot.data!.data() as StatusModel;
                                       taskStatus = statusModel.name!;
@@ -550,7 +536,7 @@ class _brogressState extends State<brogress> {
 
   String formatDateTime(DateTime dateTime) {
     DateTime now = DateTime.now();
-    print(dateTime);
+
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {

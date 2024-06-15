@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project_management_muhmad_omar/widgets/language_widget.dart';
 
-import '../components/language_widget.dart';
 import '../constants/app_constans.dart';
 import '../controllers/languageController.dart';
 
-class LanguagePage extends StatelessWidget {
-  const LanguagePage({super.key});
+class LanguageScreen extends StatelessWidget {
+  const LanguageScreen({super.key});
+
   static const String id = "/LanguagePage";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,4 +69,4 @@ class LanguagePage extends StatelessWidget {
     );
   }
 }
-// the Developer karem saad (KaremSD) 
+// the Developer karem saad (KaremSD)

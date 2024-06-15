@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 
-import '../../Values/values.dart';
 import '../../controllers/categoryController.dart';
 import '../../controllers/user_task_controller.dart';
 import '../../models/team/Project_main_task_Model.dart';
 import '../../models/team/Project_model.dart';
 import '../../models/team/TeamMembers_model.dart';
-import '../BottomSheets/bottom_sheet_holder_widget.dart';
 import '../Forms/form_input_with _label_widget.dart';
 import '../User/new_sheet_goto_calender_widget.dart';
 import '../add_sub_icon_widget.dart';
@@ -55,6 +55,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
   int? selectedDashboardOption;
   List<TeamMemberModel> membersList = [];
   String? teamMemberId;
+
   @override
   void initState() {
     super.initState();
@@ -80,6 +81,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
 
   String formattedStartDate = "";
   String formattedDueDate = "";
+
   void onChanged(String value) async {
     name = value;
     if (await widget.checkExist()) {
@@ -103,6 +105,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
   bool isTaked = false;
   String name = "";
   String desc = "";
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -117,7 +120,8 @@ class _CreateMainTaskState extends State<CreateMainTask> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(AppConstants.importance_key.tr, style: AppTextStyles.header2),
+                Text(AppConstants.importance_key.tr,
+                    style: AppTextStyles.header2),
                 AppSpaces.horizontalSpace10,
                 DropdownButton<String>(
                   icon: const Icon(Icons.label_important_outline_rounded),
@@ -173,7 +177,8 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                       }
                       if (value.isNotEmpty) {
                         if (isTaked) {
-                          return AppConstants.please_use_another_taskName_key.tr;
+                          return AppConstants
+                              .please_use_another_taskName_key.tr;
                         }
                       }
                       return null;
@@ -237,7 +242,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                 cardBackgroundColor: HexColor.fromHex("BA67A3"),
                 textAccentColor: HexColor.fromHex("BA67A3"),
                 value: formattedDueDate,
-                label:AppConstants.end_date_key.tr,
+                label: AppConstants.end_date_key.tr,
               )
             ]),
             // Spacer(),
@@ -272,7 +277,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return  "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
+      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }
@@ -296,7 +301,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print("${selectedDay}the selected day");
+
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
@@ -312,60 +317,61 @@ class _CreateMainTaskState extends State<CreateMainTask> {
       taskName: name,
     );
   }
-  // void _addUserTask() async {
-  //   if (startDate.isAfter(dueDate) || startDate.isAtSameMomentAs(dueDate)) {
-  //     CustomSnackBar.showError("start date cannot be after end date");
-  //     return;
-  //   }
-  //   if (widget.isEditMode == false) {
-  //     try {
-  //       StatusController statusController = Get.put(StatusController());
-  //       StatusModel statusModel =
-  //           await statusController.getStatusByName(status: statusNotDone);
-  //       DocumentReference? taskfatherid;
-  //       if (widget.fatherTaskModel != null) {
-  //         DocumentSnapshot documentReference =
-  //             await statusController.getDocById(
-  //                 reference: usersTasksRef, id: widget.fatherTaskModel!.id);
-  //         taskfatherid = documentReference.reference;
-  //       }
-  //       UserTaskModel userTaskModel = UserTaskModel(
-  //           hexColorParameter: color,
-  //           userIdParameter: firebaseAuth.currentUser!.uid,
-  //           folderIdParameter: widget.userTaskCategoryModel.id,
-  //           taskFatherIdParameter: taskfatherid,
-  //           descriptionParameter: desc,
-  //           idParameter: usersTasksRef.doc().id,
-  //           nameParameter: name,
-  //           statusIdParameter: statusModel.id,
-  //           importanceParameter: selectedDashboardOption!,
-  //           createdAtParameter: DateTime.now(),
-  //           updatedAtParameter: DateTime.now(),
-  //           startDateParameter: startDate,
-  //           endDateParameter: dueDate);
-  //       await userTaskController.addUserTask(userTaskModel: userTaskModel);
-  //       CustomSnackBar.showSuccess("task ${name} added successfully");
-  //       Get.key.currentState!.pop();
-  //     } catch (e) {
-  //       CustomSnackBar.showError(e.toString());
-  //     }
-  //   } else {
-  //     await userTaskController.updateUserTask(data: {
-  //       nameK: name,
-  //       descriptionK: desc,
-  //       colorK: color,
-  //       importanceK: selectedDashboardOption,
-  //       startDateK: startDate,
-  //       endDateK: dueDate
-  //     }, id: widget.userTaskModel!.id);
-  //     CustomSnackBar.showSuccess("task ${name} Updated successfully");
-  //     Get.key.currentState!.pop();
-  //   }
-  // }
+// void _addUserTask() async {
+//   if (startDate.isAfter(dueDate) || startDate.isAtSameMomentAs(dueDate)) {
+//     CustomSnackBar.showError("start date cannot be after end date");
+//     return;
+//   }
+//   if (widget.isEditMode == false) {
+//     try {
+//       StatusController statusController = Get.put(StatusController());
+//       StatusModel statusModel =
+//           await statusController.getStatusByName(status: statusNotDone);
+//       DocumentReference? taskfatherid;
+//       if (widget.fatherTaskModel != null) {
+//         DocumentSnapshot documentReference =
+//             await statusController.getDocById(
+//                 reference: usersTasksRef, id: widget.fatherTaskModel!.id);
+//         taskfatherid = documentReference.reference;
+//       }
+//       UserTaskModel userTaskModel = UserTaskModel(
+//           hexColorParameter: color,
+//           userIdParameter: firebaseAuth.currentUser!.uid,
+//           folderIdParameter: widget.userTaskCategoryModel.id,
+//           taskFatherIdParameter: taskfatherid,
+//           descriptionParameter: desc,
+//           idParameter: usersTasksRef.doc().id,
+//           nameParameter: name,
+//           statusIdParameter: statusModel.id,
+//           importanceParameter: selectedDashboardOption!,
+//           createdAtParameter: DateTime.now(),
+//           updatedAtParameter: DateTime.now(),
+//           startDateParameter: startDate,
+//           endDateParameter: dueDate);
+//       await userTaskController.addUserTask(userTaskModel: userTaskModel);
+//       CustomSnackBar.showSuccess("task ${name} added successfully");
+//       Get.key.currentState!.pop();
+//     } catch (e) {
+//       CustomSnackBar.showError(e.toString());
+//     }
+//   } else {
+//     await userTaskController.updateUserTask(data: {
+//       nameK: name,
+//       descriptionK: desc,
+//       colorK: color,
+//       importanceK: selectedDashboardOption,
+//       startDateK: startDate,
+//       endDateK: dueDate
+//     }, id: widget.userTaskModel!.id);
+//     CustomSnackBar.showSuccess("task ${name} Updated successfully");
+//     Get.key.currentState!.pop();
+//   }
+// }
 }
 
 class BottomSheetIcon extends StatelessWidget {
   final IconData icon;
+
   const BottomSheetIcon({
     required this.icon,
     Key? key,

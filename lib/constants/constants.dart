@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
-import '../Screens/Dashboard/category_screen.dart';
-import '../Screens/Dashboard/dashboard_screen.dart';
-import '../Screens/Dashboard/invitions_screen.dart';
-import '../Screens/Dashboard/notifications_screen.dart';
-import '../Screens/Dashboard/projects_screen.dart';
-import '../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/category_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/invitions_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects_screen.dart';
 
 String tabSpace = "\t\t\t";
 

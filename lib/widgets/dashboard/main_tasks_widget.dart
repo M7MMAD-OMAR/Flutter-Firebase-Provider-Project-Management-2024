@@ -4,17 +4,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/search_bar_animation_screen.dart';
+
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_main_task_Model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
 import '../../controllers/categoryController.dart';
 import '../../controllers/manger_controller.dart';
 import '../../controllers/projectController.dart';
@@ -43,6 +44,7 @@ enum TaskSortOption {
   // Add more sorting options if needed
 }
 
+// ignore: must_be_immutable
 class MainTaskScreen extends StatefulWidget {
   MainTaskScreen({Key? key, required this.projectId}) : super(key: key);
   // ProjectModel projectModel;
@@ -98,7 +100,6 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
   }
 
   ismanagerStream() async {
-    print("1234");
     ProjectModel? projectModel =
         await ProjectController().getProjectById(id: widget.projectId);
     Stream<DocumentSnapshot<ManagerModel>> managerModelStream =
@@ -117,13 +118,10 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
         bool updatedIsManager;
         if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
-          print(user.id +
-              "/////" +
-              AuthService.instance.firebaseAuth.currentUser!.uid);
         } else {
           updatedIsManager = true;
         }
-        print(updatedIsManager);
+
         isManager.value = updatedIsManager;
       });
     });

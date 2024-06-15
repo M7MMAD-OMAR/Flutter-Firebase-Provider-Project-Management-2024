@@ -10,12 +10,12 @@ import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../../controllers/userController.dart';
 import '../../models/User/User_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Buttons/primary_buttons_widget.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';
 import '../Profile/profile_overview_screen.dart';
@@ -41,7 +41,6 @@ class TeamInfo {
       bool ascending = true}) {
     switch (sortOption) {
       case TeamSortOption.name:
-        print("objectsadsdsssssssssssss");
         teams.sort((a, b) => a.name!.compareTo(b.name!));
         break;
       case TeamSortOption.createDate:
@@ -109,7 +108,6 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
   bool sortAscending = true; // Variable for sort order
   void toggleSortOrder() {
     setState(() {
-      print("sdsdsd");
       sortAscending = !sortAscending; // Toggle the sort order
     });
   }
@@ -256,7 +254,6 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                             .toList();
                         switch (selectedSortOption) {
                           case TeamSortOption.name:
-                            print("objectsadsdsssssssssssss");
                             teams.sort((a, b) => a.name!.compareTo(b.name!));
                             break;
                           case TeamSortOption.createDate:
@@ -339,7 +336,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                     //             icon: FontAwesomeIcons.trash,
                                     //             onPressed: (context) async {
                                     //               try {
-                                    //                 print("prdasdas");
+                                    //
                                     //                 // showDialogMethod(context);
                                     //
                                     //                 List<ProjectModel>
@@ -361,7 +358,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                     //                         projectIds:
                                     //                             projectsIds);
                                     //
-                                    //                 print("delete");
+                                    //
                                     //                 CustomSnackBar.showSuccess(
                                     //                     AppConstants
                                     //                         .team_deleted_successfully_key
@@ -405,7 +402,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                     //                   team: team,
                                     //                   userAsManager:
                                     //                       userAsManger));
-                                    //               print("projects");
+                                    //
                                     //             },
                                     //           ),
                                     //         ]),
@@ -420,10 +417,10 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                     //           if (widget.title !=
                                     //               AppConstants
                                     //                   .manager_teams_key.tr) {
-                                    //             print("objectsasa");
+                                    //
                                     //             addTeamToCreatProjectScreen
                                     //                 .addUser(team);
-                                    //             print("objectssdadsdasa");
+                                    //
                                     //
                                     //             addTeamToCreatProjectScreen
                                     //                 .update();

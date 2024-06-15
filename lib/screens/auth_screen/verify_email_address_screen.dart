@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_
 
 import 'dart:math' as math;
 
@@ -9,14 +9,15 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 
-import '../../Values/values.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
+
 import '../../widgets/Navigation/back_widget.dart';
 import '../../widgets/Shapes/background_hexagon_widget.dart';
-import '../Dashboard/timeline_screen.dart';
 
 class VerifyEmailAddressScreen extends StatefulWidget {
   const VerifyEmailAddressScreen({super.key});

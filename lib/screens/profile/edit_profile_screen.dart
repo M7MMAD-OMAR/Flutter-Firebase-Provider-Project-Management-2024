@@ -1,27 +1,22 @@
-// ignore_for_file: avoid_print
-
-import 'dart:developer' as dev;
-
-import 'package:either_dart/either.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:project_management_muhmad_omar/Screens/Onboarding/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/Screens/Profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../../widgets/Buttons/primary_progress_button_widget.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import '../../widgets/Forms/form_input_with _label_widget.dart';
 import '../../widgets/Navigation/app_header_widget.dart';
@@ -55,7 +50,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     // TODO: implement initState
-    // the Developer karem saad (KaremSD) 
+    // the Developer karem saad (KaremSD)
     super.initState();
     name = widget.user!.name!;
     nameController.text = widget.user!.name!;
@@ -97,13 +92,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             try {
                               bool pop = false;
                               bool changes = false;
-                              print(name.trim());
+
                               if (formKey.currentState!.validate()) {
                                 showDialogMethod(context);
 
                                 if (selectedImagePath != null) {
                                   showDialogMethod(context);
-                                  print("start");
+
                                   final resOfUpload = await uploadImageToStorge(
                                       selectedImagePath: selectedImagePath!,
                                       imageName: AuthService.instance
@@ -161,13 +156,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   emailupdate.fold((left) async {
                                     CustomSnackBar.showError(left.toString());
                                   }, (right) async {
-                                    print(email);
-                                    print(emailController.text);
-                                    print("email");
                                     await UserController().updateUser(
                                         data: {emailK: email},
                                         id: widget.user!.id);
-                                    print("email2");
+
                                     pop = true;
                                     Navigator.of(context).pop();
                                     CustomSnackBar.showSuccess(AppConstants

@@ -2,9 +2,9 @@
 // import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
 
-// import '../../Values/values.dart';
+// import 'package:project_management_muhmad_omar/constants/values.dart';
 // import '../../widgets/Buttons/primary_progress_button_widget.dart';
-// import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 // import '../../widgets/Navigation/default_back_widget.dart';
 // import '../../widgets/Onboarding/gradient_color_ball_widget.dart';
 // import '../../widgets/container_label_widget.dart';

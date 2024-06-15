@@ -11,10 +11,11 @@ import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/active_team_cardK_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../models/team/Manger_model.dart';
 import '../../services/notification_service.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';
 import '../Profile/profile_overview_screen.dart';
@@ -114,7 +115,7 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                                     return ActiveTeamCard(
                                       imageType: ImageType.Network,
                                       onTap: () {
-                                        //print("object");
+                                        //
                                         Get.to(() => TeamDetails(
                                               userAsManager:
                                                   widget.managerModel,

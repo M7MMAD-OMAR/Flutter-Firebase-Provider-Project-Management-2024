@@ -4,11 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import '../../controllers/categoryController.dart';
 import '../../controllers/user_task_controller.dart';
 import '../../models/team/Task_model.dart';
-import '../BottomSheets/bottom_sheet_holder_widget.dart';
 import '../Forms/form_input_with _label_widget.dart';
 import '../User/new_sheet_goto_calender_widget.dart';
 import '../add_sub_icon_widget.dart';
@@ -81,7 +81,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
       desc = widget.userTaskModel!.description!;
       startDate = widget.userTaskModel!.startDate;
       dueDate = widget.userTaskModel!.endDate!;
-      print(startDate.toString());
+
       selectedDashboardOption = importancelist.singleWhere(
           (element) => element == widget.userTaskModel!.importance);
       color = widget.userTaskModel!.hexcolor;
@@ -98,11 +98,10 @@ class _CreateUserTaskState extends State<CreateUserTask> {
   String formattedDueDate = "";
   Future onChanged(String value) async {
     name = value;
-    print("hellli");
+
     if (name.isNotEmpty) {
       isTaked = await widget.checkExist(name: name);
 
-      print(isTaked);
       setState(() {
         isTaked;
       });
@@ -171,7 +170,6 @@ class _CreateUserTaskState extends State<CreateUserTask> {
                         value: checkboxController.isChecked.value,
                         onChanged: (value) {
                           checkboxController.toggleCheckbox();
-                          print(checkboxController.isChecked.value);
                         },
                       ),
                     ),
@@ -333,7 +331,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print(selectedDay.toString() + "the selected day");
+
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
@@ -341,7 +339,6 @@ class _CreateUserTaskState extends State<CreateUserTask> {
 
   Future _addUserTask() async {
     if (formKey.currentState!.validate()) {
-      print("late");
       if (widget.isUserTask == true &&
           widget.isEditMode == false &&
           checkboxController.isChecked.value == true) {
@@ -415,8 +412,8 @@ class BottomSheetIcon extends StatelessWidget {
 //                                     }
 //                                     return TeamStory(
 //                                         onTap: () {
-//                                           print("objectsdsad");
-                                          
+//
+
 //                                           Get.to(() =>
 //                                               ShowTeamMembers(teamModel: team));
 //                                         },

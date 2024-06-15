@@ -4,9 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
@@ -14,12 +14,11 @@ import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_main_task_Model.dart';
 import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingSubTasksModel.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
-import 'package:project_management_muhmad_omar/services/types.dart';
+import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/subTask_widget.dart';
-
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import '../../controllers/manger_controller.dart';
 import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
@@ -52,9 +51,11 @@ enum TaskSortOption {
 class SubTaskScreen extends StatefulWidget {
   SubTaskScreen({Key? key, required this.mainTaskId, required this.projectId})
       : super(key: key);
+
   // ProjectModel projectModel;
   String mainTaskId;
   String projectId;
+
   @override
   State<SubTaskScreen> createState() => _SubTaskScreenState();
 }
@@ -92,7 +93,6 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
   }
 
   ismanagerStream() async {
-    print("1234");
     ProjectModel? projectModel =
         await ProjectController().getProjectById(id: widget.projectId);
     Stream<DocumentSnapshot<ManagerModel>> managerModelStream =
@@ -110,17 +110,11 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
         if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
-          print(user.id +
-              "/////" +
-              AuthService.instance.firebaseAuth.currentUser!.uid);
           updatedIsManager = false;
         } else {
-          print(user.id +
-              "/////" +
-              AuthService.instance.firebaseAuth.currentUser!.uid);
           updatedIsManager = true;
         }
-        print(updatedIsManager);
+
         // Update the state and trigger a rebuild
         isManager.value = updatedIsManager;
       });
@@ -378,7 +372,6 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
   }
 
   void _createTask2() {
-    print(widget.projectId);
     showAppBottomSheet(
         popAndShow: false,
         CreateSubTask(
@@ -414,9 +407,10 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                 status: statusNotStarted);
             ProjectModel? projectModel =
                 await ProjectController().getProjectById(id: widget.projectId);
-            print(projectModel!.teamId!);
-            String s = projectModel.teamId!;
-            TeamModel teamModel = await TeamController().getTeamById(id: s);
+
+            String? s = projectModel?.teamId!;
+            TeamModel teamModel =
+                await TeamController().getTeamById(id: s ?? "");
             TeamMemberModel teamMemberModel = await TeamMemberController()
                 .getMemberByTeamIdAndUserId(
                     teamId: teamModel.id, userId: userIdAssignedTo);
@@ -444,7 +438,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                 projectSubTaskModel: projectSubTaskModel);
             WatingSubTasksController waitingSubTaskController =
                 Get.put(WatingSubTasksController());
-            print(teamMemberModel.id + "team member");
+
             bool overlapped = false;
             int over = 0;
             List<ProjectSubTaskModel> list = await ProjectSubTaskController()
@@ -475,7 +469,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                         title: AppConstants.you_have_a_task_key.tr,
                         data: {"id": waitingid},
                         body:
-                            "the project ${projectModel.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
+                            "the project ${projectModel?.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
                         type: NotificationType.taskRecieved);
                     CustomSnackBar.showSuccess(
                         "${AppConstants.task_key.tr} ${taskName}  ${AppConstants.sent_to_member_successfully_key.tr}");
@@ -496,7 +490,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                   title: AppConstants.you_have_a_task_key.tr,
                   data: {"id": waitingid},
                   body:
-                      " ${projectModel.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
+                      " ${projectModel?.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
                   type: NotificationType.taskRecieved);
               CustomSnackBar.showSuccess(
                   "${AppConstants.task_key.tr} ${taskName} ${AppConstants.sent_to_member_successfully_key.tr}");

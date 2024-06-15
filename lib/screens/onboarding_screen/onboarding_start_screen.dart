@@ -5,8 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 
-import '../../Values/values.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
+
 import '../../widgets/Onboarding/background_image_widget.dart';
 import '../../widgets/Onboarding/bubble_widget.dart';
 import '../../widgets/Onboarding/loading_stickers_widget.dart';
@@ -226,11 +227,10 @@ class OnboardingStart extends StatelessWidget {
                         Get.to(() => const OnboardingCarousel());
                       },
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
+                        backgroundColor: WidgetStateProperty.all<Color>(
                           HexColor.fromHex("246CFE"),
                         ),
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50.0),
                             side: BorderSide(

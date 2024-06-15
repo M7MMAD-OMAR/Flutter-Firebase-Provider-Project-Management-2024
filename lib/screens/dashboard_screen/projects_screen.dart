@@ -6,10 +6,10 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/select_team_screen.dart';
 import 'package:project_management_muhmad_omar/Screens/Projects/edit_project_screen.dart';
 import 'package:project_management_muhmad_omar/Screens/Projects/project_screen_screen.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
@@ -18,12 +18,12 @@ import 'package:project_management_muhmad_omar/models/statusmodel.dart';
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/User/focused_menu_item_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
 import '../../constants/app_constans.dart';
 import '../../widgets/Buttons/primary_tab_buttons_widget.dart';
 import '../../widgets/Dashboard/main_tasks_widget.dart';
@@ -316,8 +316,6 @@ class _ProjectScreenState extends State<ProjectScreen> {
                         stream: controller.getProjectsStream(),
                         builder: (context, snapshotProject) {
                           if (snapshotProject.hasError) {
-                            print(
-                                snapshotProject.error.toString().substring(11));
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/sheet_goto_calendar_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
-import '../BottomSheets/bottom_sheet_holder_widget.dart';
 import '../Forms/form_input_unlabelled_widget.dart';
 import '../add_sub_icon_widget.dart';
 import 'dashboard_meeting_details_widget.dart';
@@ -91,7 +91,7 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
 
   void _addMeetingDetails() {
     showAppBottomSheet(
-      DashboardMeetingDetails(),
+      const DashboardMeetingDetails(),
       isScrollControlled: true,
       popAndShow: true,
     );

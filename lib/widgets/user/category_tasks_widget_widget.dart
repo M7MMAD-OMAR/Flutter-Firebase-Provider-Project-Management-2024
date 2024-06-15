@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/User/User_task_Model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/User/task_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Screens/Dashboard/search_bar_animation_screen.dart';
-import '../../Values/values.dart';
 import '../../constants/app_constans.dart';
 import '../../constants/back_constants.dart';
 import '../../controllers/categoryController.dart';
@@ -106,7 +106,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
               editingController: editingController,
               onChanged: (String value) {
                 setState(() {
-                  // print(search);
+                  //
                   search = value;
                 });
               },
@@ -122,7 +122,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
               //     editingController: editingController,
               //     onChanged: (String value) {
               //       setState(() {
-              //         // print(search);
+              //         //
               //         search = value;
               //       });
               //     },
@@ -246,7 +246,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                             break;
                           // Add cases for more sorting options if needed
                         }
-                        // print(sortAscending.toString() + "ascending");
+                        //
                         if (!sortAscending) {
                           list = list.reversed
                               .toList(); // Reverse the list for descending order

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/widgets/Projects/project_task_active_card_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Projects/project_task_inactive_card_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class ProjectTaskCard extends StatelessWidget {
   final bool activated;

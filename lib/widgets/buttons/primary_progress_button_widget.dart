@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class PrimaryProgressButton extends StatelessWidget {
   final String label;
@@ -28,8 +28,8 @@ class PrimaryProgressButton extends StatelessWidget {
         onPressed: callback,
         style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all<Color>(HexColor.fromHex("246CFE")),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              WidgetStateProperty.all<Color>(HexColor.fromHex("246CFE")),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
               side: BorderSide(

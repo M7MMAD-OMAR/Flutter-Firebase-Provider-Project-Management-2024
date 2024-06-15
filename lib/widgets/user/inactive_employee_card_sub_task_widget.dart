@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../dummy/profile_dummy_widget.dart';
 
+// ignore: must_be_immutable
 class InactiveEmployeeCardSubTask extends StatelessWidget {
   final String userName;
   final String userImage;

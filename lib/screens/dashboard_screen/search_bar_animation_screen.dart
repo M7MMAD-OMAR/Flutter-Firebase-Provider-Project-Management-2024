@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:searchbar_animation/searchbar_animation.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class MySearchBarWidget extends StatelessWidget {
   final TextEditingController editingController;

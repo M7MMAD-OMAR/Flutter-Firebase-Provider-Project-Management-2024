@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/Screens/Projects/create_project_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
-import '../BottomSheets/bottom_sheet_holder_widget.dart';
 import '../Onboarding/labelled_option_widget.dart';
 import 'create_category_widget.dart';
 import 'dashboard_meeting_details_widget.dart';
@@ -79,9 +79,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
       ManagerModel? managerModel = await ManagerController()
           .getMangerWhereUserIs(
               userId: AuthService.instance.firebaseAuth.currentUser!.uid);
-      if (managerModel == null) {
-        print("object");
-      }
+      if (managerModel == null) {}
       showAppBottomSheet(
         CreateProject(
           managerModel: managerModel,

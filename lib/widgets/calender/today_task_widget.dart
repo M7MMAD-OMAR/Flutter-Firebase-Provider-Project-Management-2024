@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_glow/flutter_glow.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/calender/widgets/circle_gradient_icon_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/calender/widgets/task.dart';
+import 'package:project_management_muhmad_omar/widgets/calender/widgets/task_widget_widget.dart';
 
 import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
@@ -71,7 +70,6 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
     setState(() {
       selectedDate;
     });
-    print(selectedDate);
   }
 
   @override

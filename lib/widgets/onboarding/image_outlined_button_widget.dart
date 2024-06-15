@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class OutlinedButtonWithImage extends StatelessWidget {
   final String imageUrl;

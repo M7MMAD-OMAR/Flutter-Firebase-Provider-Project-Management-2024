@@ -103,11 +103,10 @@ class AuthService extends GetxController {
     } on Exception catch (e) {
       if (e.toString() ==
           "[firebase_auth/requires-recent-login] This operation is sensitive and requires recent authentication. Log in again before retrying this request.") {
-        print(202);
         return Left(
             Exception(AppConstants.sensitive_change_password_process_key.tr));
       }
-      print(e.toString());
+
       return Left(e);
     }
   }
@@ -307,7 +306,6 @@ class AuthService extends GetxController {
   Future<void> convertAnonymousToGoogle() async {
     OAuthCredential credential = await getGooglecredential();
 
-    print("get credential done");
     await convertAnonymousToPermanent(
       credential: credential,
       //authFormTypeParameter: AuthFormType.google
@@ -353,7 +351,6 @@ class AuthService extends GetxController {
       switch (e.code) {
         case "provider-already-linked":
           if (kDebugMode) {
-            print("The provider has already been linked to the user.");
             CustomSnackBar.showError(
               AppConstants
                   .The_provider_has_already_been_linked_to_the_user_key.tr,
@@ -362,7 +359,6 @@ class AuthService extends GetxController {
           break;
         case "invalid-credential":
           if (kDebugMode) {
-            print("The provider's credential is not valid.");
             CustomSnackBar.showError(
               AppConstants.The_providers_credential_is_not_valid_key.tr,
             );
@@ -370,8 +366,6 @@ class AuthService extends GetxController {
           break;
         case "credential-already-in-use":
           if (kDebugMode) {
-            print("The account corresponding to the credential already exists, "
-                "or is already linked to a Firebase User.");
             CustomSnackBar.showError(
               AppConstants
                   .The_account_corresponding_to_the_credential_already_exists_or_is_already_linked_to_a_Firebase_User_key
@@ -381,9 +375,7 @@ class AuthService extends GetxController {
           break;
         // See the API reference for the full list of error codes.
         default:
-          if (kDebugMode) {
-            print("Unknown error.");
-          }
+          if (kDebugMode) {}
       }
     }
   }
@@ -402,7 +394,6 @@ class AuthService extends GetxController {
       await updatFcmToken();
       return Right(userCredential);
     } on Exception catch (e) {
-      print(e);
       return Left(e);
     }
     //authFormType = AuthFormType.google;

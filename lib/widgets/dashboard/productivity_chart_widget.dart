@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'bar_chart_widget.dart';
 
 class ProductivityChart extends StatelessWidget {

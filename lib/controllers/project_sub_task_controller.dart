@@ -22,8 +22,8 @@ import '../models/team/Project_model.dart';
 import '../models/team/Team_model.dart';
 import '../services/auth_service.dart';
 import '../services/notification_service.dart';
-import '../services/types.dart';
-import '../widgets/Snackbar/custom_snackber_widget.dart';
+import '../services/types_services.dart';
+import '../widgets/snackbar/custom_snackber_widget.dart';
 
 class ProjectSubTaskController extends ProjectAndTaskController {
   Future<List<ProjectSubTaskModel>> getMemberSubTasks(
@@ -46,10 +46,10 @@ class ProjectSubTaskController extends ProjectAndTaskController {
       getProjectSubTasksForAUserStartInADayStream({
     required DateTime date,
   }) async* {
-    print("sub task");
     final startOfDay = DateTime(date.year, date.month, date.day);
-    final endOfDay =
-        startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
+    final endOfDay = startOfDay
+        .add(const Duration(days: 1))
+        .subtract(const Duration(seconds: 1));
 
     List<String> subTasksIds = [];
     StreamSubscription<QuerySnapshot<TeamMemberModel>> memberSubscription;
@@ -65,7 +65,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
       for (var subTask in list) {
         if (subTask.startDate.isAfter(startOfDay) &&
             subTask.startDate.isBefore(endOfDay)) {
-          print("hello sub task");
           subTasksIds.add(subTask.id);
         }
       }
@@ -596,7 +595,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
   }
 
   Future<void> deleteProjectSubTask({required String id}) async {
-    print(id);
     WriteBatch batch = fireStore.batch();
     DocumentSnapshot? documentSnapshot = await getDocSnapShotWhere(
         collectionReference: projectSubTasksRef, field: idK, value: id);
@@ -634,7 +632,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
         throw Exception(
             "sub task start and end date should be between start and end date of the main task");
       }
-      print(data[startDateK]);
+
       bool overlapped = false;
       int over = 0;
       List<ProjectSubTaskModel> list =
@@ -675,7 +673,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
           },
         );
       } else {
-        print(data[nameK]);
         DocumentSnapshot snapshot =
             await getDocById(reference: projectSubTasksRef, id: id);
         ProjectSubTaskModel subTaskModel =
@@ -693,7 +690,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
         Get.key.currentState!.pop();
       }
     } else {
-      print(data[nameK]);
       DocumentSnapshot snapshot =
           await getDocById(reference: projectSubTasksRef, id: id);
       ProjectSubTaskModel subTaskModel = snapshot.data() as ProjectSubTaskModel;

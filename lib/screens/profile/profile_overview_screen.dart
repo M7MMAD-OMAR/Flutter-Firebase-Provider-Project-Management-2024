@@ -7,26 +7,25 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/controllers/languageController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
+import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 // import 'package:flutter_glow/flutter_glow.dart';
 import '../../constants/app_constans.dart';
 import '../../widgets/Buttons/progress_card_close_button_widget.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../widgets/Forms/form_input_with _label_widget.dart';
 import '../../widgets/Profile/box_widget.dart';
 import '../../widgets/Profile/text_outlined_button_widget.dart';
 import '../../widgets/Snackbar/custom_snackber_widget.dart';
 import '../../widgets/container_label_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';
-import '../Dashboard/timeline_screen.dart';
-import '../Onboarding/onboarding_carousel_screen.dart';
 import 'my_profile_screen.dart';
 
-// ignore: must_be_immutable
 class ProfileOverview extends StatefulWidget {
   ProfileOverview({Key? key, required this.isSelected}) : super(key: key);
   late bool isSelected;
@@ -147,8 +146,8 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                       //         !controller.isSelected.value);
                       //     controller.update();
                       //
-                      //     print("status");
-                      //     print(await FcmNotifications.getNotificationStatus());
+                      //
+                      //
                       //   },
                       //   value: !controller.isSelected.value,
                       //   activeColor: Colors.blueAccent.withOpacity(0.6),
@@ -173,7 +172,6 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                               AppConstants.languages[0].countryCode,
                             ));
                             localizationController.setSelectIndex(index: 0);
-                            print(0);
                           },
                           iconColor: Colors.white,
                           iconpath: "assets/icon/arabic.png",
@@ -192,7 +190,6 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                               AppConstants.languages[1].countryCode,
                             ));
                             localizationController.setSelectIndex(index: 1);
-                            print(1);
                           },
                           iconColor: null,
                           iconpath: "assets/icon/english.png",
@@ -225,8 +222,6 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                               Navigator.of(context).pop();
                               //  CustomSnackBar.showSuccess("its going good");
                               Get.to(() => const Timeline());
-                              print(AuthService
-                                  .instance.firebaseAuth.currentUser!.uid);
                             } on Exception catch (e) {
                               Navigator.of(context).pop();
                               CustomSnackBar.showError(e.toString());
@@ -244,7 +239,6 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                         child: Box(
                           callback: () {
                             showPasswordAndEmailDialog(context);
-                            print("lll");
                           },
                           iconColor: null,
                           iconpath: "assets/icon/envelope.png",
@@ -266,32 +260,31 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                         0.15, // Adjust the percentage as needed
 
                     decoration: BoxDecoration(
-                        color: HexColor.fromHex("FF968E"),
-                        borderRadius: BorderRadius.circular(12)),
-                    child: Center(
-                      child: Text(AppConstants.log_out_key.tr,
-                          style: GoogleFonts.lato(
-                              color: Colors.white,
-                              fontSize: Utils.screenWidth * 0.07,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                )
-              ],
+                            color: HexColor.fromHex("FF968E"),
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Center(
+                          child: Text(AppConstants.log_out_key.tr,
+                              style: GoogleFonts.lato(
+                                  color: Colors.white,
+                                  fontSize: Utils.screenWidth * 0.07,
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-      Positioned(
-          top: 50,
-          left: 20,
-          child: Transform.scale(
-              scale: 1.2,
-              child: ProgressCardCloseButton(onPressed: () {
-                print("object");
-                Get.back();
-              })))
-    ]));
+          Positioned(
+              top: 50,
+              left: 20,
+              child: Transform.scale(
+                  scale: 1.2,
+                  child: ProgressCardCloseButton(onPressed: () {
+                    Get.back();
+                  })))
+        ]));
   }
 }
 

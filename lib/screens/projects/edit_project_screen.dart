@@ -1,13 +1,13 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/select_my_teams_screen.dart';
+
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
@@ -16,23 +16,20 @@ import 'package:project_management_muhmad_omar/controllers/team_member_controlle
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import '../../constants/back_constants.dart';
-import '../../controllers/categoryController.dart';
-import '../../controllers/statusController.dart';
-import '../../controllers/topController.dart';
+
 import '../../controllers/userController.dart';
-import '../../controllers/user_task_controller.dart';
+
 import '../../models/User/User_model.dart';
-import '../../models/User/User_task_Model.dart';
-import '../../models/statusmodel.dart';
-import '../../models/task/UserTaskCategory_model.dart';
+
 import '../../models/team/TeamMembers_model.dart';
 import '../../services/collections_refrences.dart';
-import '../../widgets/BottomSheets/bottom_sheet_holder_widget.dart';
+
 import '../../widgets/Forms/form_input_with _label_widget.dart';
 import '../../widgets/Snackbar/custom_snackber_widget.dart';
 import '../../widgets/Team/show_team_members_widget.dart';
@@ -242,9 +239,7 @@ class _EditProjectState extends State<EditProject> {
                         }
 
                         if (snapshotMembers.hasData) {
-                          print("objectsdsad");
                           if (snapshotMembers.data!.docs.isNotEmpty) {
-                            print("objectsdsadxczxczxcxzczxc");
                             for (var member in snapshotMembers.data!.docs) {
                               listIds.add(member.data().userId);
                             }
@@ -254,9 +249,7 @@ class _EditProjectState extends State<EditProject> {
                               addMore: true,
                               numberOfMembers: 0.toString(),
                               users: <UserModel>[],
-                              onTap: () {
-                                print("dasdasd");
-                              },
+                              onTap: () {},
                             );
                           }
                           return StreamBuilder<QuerySnapshot<UserModel>>(
@@ -320,7 +313,6 @@ class _EditProjectState extends State<EditProject> {
                           name = value;
                           //     });
 
-                          print("dasdasd");
                           if (await projectController.existByTow(
                                   reference: projectsRef,
                                   value: name,
@@ -329,11 +321,11 @@ class _EditProjectState extends State<EditProject> {
                                   value2: widget.projectModel.managerId) &&
                               name != widget.projectModel.name) {
                             controller.updateIsTaked(true);
-                            print(stx.isTaked.value);
+
                             //   controller.isTaked.value = true;
                           } else {
                             controller.updateIsTaked(false);
-                            print(stx.isTaked.value);
+
                             // controller.isTaked.value = false;
                           }
                         },
@@ -360,7 +352,7 @@ class _EditProjectState extends State<EditProject> {
                 },
                 onChanged: (p0) {
                   // setState(() {
-                  print(p0);
+
                   desc = p0;
                   //});
                 },
@@ -406,13 +398,11 @@ class _EditProjectState extends State<EditProject> {
                   scale: 1,
                   color: AppColors.primaryAccentColor,
                   callback: () async {
-                    print("fdasfasd");
                     if (formKey.currentState!.validate()) {
                       showDialogMethod(context);
                       await updateProjecr();
                       Navigator.of(context).pop();
                     }
-                    print("sadsda");
                   },
                 ),
               ])
@@ -446,7 +436,7 @@ class _EditProjectState extends State<EditProject> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print("${selectedDay}the selected day");
+
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
@@ -459,25 +449,17 @@ class _EditProjectState extends State<EditProject> {
     if (startDate != widget.projectModel.startDate ||
         dueDate != widget.projectModel.endDate) {
       if (startDate.isAfter(dueDate) || startDate.isAtSameMomentAs(dueDate)) {
-        print("step 1");
         CustomSnackBar.showError(
             "start date cannot be After end date Or in tha same Time");
         return;
       }
     }
 
-    print("step2");
-
     try {
-      print(name);
-      print(desc);
-      print(dueDate);
-      print(startDate);
       if (name != widget.projectModel.name ||
           desc != widget.projectModel.description ||
           startDate != widget.projectModel.startDate ||
           dueDate != widget.projectModel.endDate) {
-        print("creteing");
         await ProjectController().updateProject(
             managerModel: widget.userAsManager,
             oldProject: widget.projectModel,
@@ -494,7 +476,6 @@ class _EditProjectState extends State<EditProject> {
         CustomSnackBar.showError("No Chages to Update");
       }
     } catch (e) {
-      print("error");
       CustomSnackBar.showError(e.toString());
     }
   }

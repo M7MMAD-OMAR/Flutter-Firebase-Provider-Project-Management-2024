@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/User/category_tasks_widget_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/User/colured_category_badge_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
-import '../../Values/values.dart';
 import '../../controllers/categoryController.dart';
 import '../../controllers/user_task_controller.dart';
 import '../../models/task/UserTaskCategory_model.dart';
@@ -63,7 +63,6 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
         Get.to(() => CategoryTasks(
               categoryModel: widget.userTaskCategoryModel,
             ));
-        print("clicked");
       },
       deleteButton: () async {
         await userTaskCategoryController
@@ -103,7 +102,6 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
                     .asBroadcastStream(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    print("this is not it");
                     return StreamBuilder(
                       stream: userTaskController
                           .getCategoryTasksForAStatusStream(
@@ -112,14 +110,13 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
                           .asBroadcastStream(),
                       builder: (context, snapshot2) {
                         if (snapshot2.hasData) {
-                          print("this is not it");
                           first = snapshot.data!.size;
                           second = snapshot2.data!.size;
                           percento = (snapshot.data!.size != 0
                               ? ((snapshot2.data!.size / snapshot.data!.size) *
                                   1000)
                               : 0);
-                          print(percento);
+
                           return Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -158,7 +155,7 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
                                 ),
                               ),
                               AppSpaces.horizontalSpace10,
-                              Text(first.toString() + "/" + second.toString(),
+                              Text("$first/$second",
                                   style: GoogleFonts.lato(color: Colors.white))
                             ],
                           );

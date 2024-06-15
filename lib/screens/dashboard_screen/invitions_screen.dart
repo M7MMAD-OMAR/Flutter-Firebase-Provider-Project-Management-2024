@@ -20,7 +20,7 @@ import 'package:project_management_muhmad_omar/models/team/waitingSubTasksModel.
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../../models/team/Project_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Buttons/primary_tab_buttons_widget.dart';
@@ -28,7 +28,7 @@ import '../../widgets/Navigation/app_header_widget.dart';
 import '../../widgets/Search/active_task_card_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';
 import '../Profile/profile_overview_screen.dart';
-import 'DashboardTabScreens/box_screen.dart';
+import 'dashboard_tab_screens/box_screen.dart';
 
 class Invitions extends StatelessWidget {
   Invitions({Key? key}) : super(key: key);
@@ -95,7 +95,6 @@ class Invitions extends StatelessWidget {
                                     boxController.selectTab(0);
                                     settingsButtonTrigger.value =
                                         controller.selectedTabIndex.value;
-                                    print("0");
                                   },
                                   buttonText: AppConstants.task_in_box_key.tr,
                                   itemIndex: 0,
@@ -105,7 +104,6 @@ class Invitions extends StatelessWidget {
                                     boxController.selectTab(1);
                                     settingsButtonTrigger.value =
                                         controller.selectedTabIndex.value;
-                                    print(1);
                                   },
                                   buttonText:
                                       AppConstants.join_requests_in_box_key.tr,
@@ -269,8 +267,7 @@ class Invitions extends StatelessWidget {
                                             snapshotOfWaitngSubTasks.data!.docs
                                                 .map((doc) => doc.data())
                                                 .toList();
-                                        print(
-                                            "numbers ${listWaitingSubTasks.length}");
+
                                         if (snapshotOfWaitngSubTasks
                                             .data!.docs.isEmpty) {
                                           return Column(
@@ -285,9 +282,9 @@ class Invitions extends StatelessWidget {
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                  horizontal: Utils
-                                                          .screenWidth *
-                                                      0.1, // Adjust the percentage as needed
+                                                  horizontal:
+                                                      Utils.screenWidth * 0.1,
+                                                  // Adjust the percentage as needed
                                                   vertical:
                                                       Utils.screenHeight * 0.05,
                                                 ),
@@ -412,7 +409,6 @@ class Invitions extends StatelessWidget {
                             return const Center(
                                 child: CircularProgressIndicator());
                           })
-                      //: Container(),
                       : StreamBuilder<QuerySnapshot<WaitingMemberModel>>(
                           stream: WaitingMamberController()
                               .getWaitingMembersInUserIdStream(
@@ -501,8 +497,9 @@ class Invitions extends StatelessWidget {
                                             ),
                                             Padding(
                                               padding: EdgeInsets.symmetric(
-                                                horizontal: Utils.screenWidth *
-                                                    0.1, // Adjust the percentage as needed
+                                                horizontal:
+                                                    Utils.screenWidth * 0.1,
+                                                // Adjust the percentage as needed
                                                 vertical:
                                                     Utils.screenHeight * 0.05,
                                               ),
@@ -547,9 +544,10 @@ class Invitions extends StatelessWidget {
                                                     Padding(
                                                       padding:
                                                           EdgeInsets.symmetric(
-                                                        horizontal: Utils
-                                                                .screenWidth *
-                                                            0.1, // Adjust the percentage as needed
+                                                        horizontal:
+                                                            Utils.screenWidth *
+                                                                0.1,
+                                                        // Adjust the percentage as needed
                                                         vertical:
                                                             Utils.screenHeight *
                                                                 0.05,
@@ -587,7 +585,6 @@ class Invitions extends StatelessWidget {
                                                                       .id);
                                                       Get.key.currentState!
                                                           .pop();
-                                                      print("end");
                                                     },
                                                     onPressedStart: (p0) async {
                                                       showDialogMethod(context);
@@ -599,7 +596,6 @@ class Invitions extends StatelessWidget {
                                                                       .id);
                                                       // Navigator.of(context)
                                                       //     .pop();
-                                                      print("start");
                                                     },
                                                     header: teamModel.name!,
                                                     //  header: "Team Name",

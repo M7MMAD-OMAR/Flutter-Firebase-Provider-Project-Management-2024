@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_management_muhmad_omar/Screens/Auth/ui%20forgot%20password/size_config_widget.dart';
+import 'package:project_management_muhmad_omar/screens/auth_screen/forgot_password_screen/widgets/size_config_widget.dart';
 
 class HorizontalSpace extends StatelessWidget {
   const HorizontalSpace(this.value, {super.key});

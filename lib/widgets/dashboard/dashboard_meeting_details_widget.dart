@@ -1,5 +1,5 @@
 ////////////////
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_
 
 import 'dart:async';
 import 'dart:developer' as dev;
@@ -25,12 +25,12 @@ import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_selectable_container_widget.dart';
 
 import '../../Screens/Projects/add_user_to_team_screen.dart';
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../../services/auth_service.dart';
-import '../BottomSheets/bottom_sheet_holder_widget.dart';
-import '../BottomSheets/bottom_sheet_selectable_container_widget.dart';
 import '../Buttons/primary_buttons_widget.dart';
 import '../Forms/form_input_with _label_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
@@ -113,7 +113,6 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   void clearUsers() {
     userController.users.clear();
-    print("object");
   }
 
   @override
@@ -230,7 +229,6 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
                           onTap: () {
-                            print("object");
                             Get.to(() => SearchForMembers(
                                   newTeam: true,
                                   users: DashboardMeetingDetails.users,
@@ -319,9 +317,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                             } on Exception catch (e) {
                               CustomSnackBar.showError(e.toString());
                             }
-                          } else {
-                            print("Not vadsd");
-                          }
+                          } else {}
                         },
                       ),
                       AppSpaces.verticalSpace20,
@@ -353,17 +349,15 @@ EitherException<Future<String?>> uploadImageToStorge({
     TaskSnapshot snapshot = await uploadTask;
     if (snapshot.state == TaskState.success) {
       final String downloadURL = await reference.getDownloadURL();
-      print('Image download URL: $downloadURL');
+
       // Handle the completion of the upload
-      print('Upload complete');
+
       return Right(Future.value(downloadURL)); // Return Right for success case
     } else {
-      print('Image upload failed');
       return Left(
           Exception('Image upload failed')); // Return Left for failure case
     }
   } catch (error) {
-    print('Image upload error: $error');
     return Left(Exception(
         'Image upload error: ${error.toString()}}')); // Return Left for any exception/error
   }

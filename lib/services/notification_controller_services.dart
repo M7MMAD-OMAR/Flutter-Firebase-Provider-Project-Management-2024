@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -103,14 +104,8 @@ class NotificationController {
         ),
       );
       if (response.statusCode == 200) {
-        print('FCM notification sent successfully.');
-      } else {
-        print(
-            'Failed to send FCM notification. Status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      print(e);
-    }
+      } else {}
+    } catch (e) {}
   }
 
   @pragma('vm:entry-point')
@@ -136,12 +131,13 @@ class NotificationController {
     required Map<String, String> data,
   }) async {
     if (title.isEmpty || body.isEmpty) {
-      print(
-          'Unable to send FCM message, check if one of the following is empty fcmTokens,title,body.');
+      if (kDebugMode) {
+        print(
+            'Unable to send FCM message, check if one of the following is empty fcmTokens,title,body.');
+      }
       return;
     }
     try {
-      print(data);
       final response = await http.post(
         Uri.parse('https://fcm.googleapis.com/fcm/send'),
         headers: <String, String>{
@@ -156,14 +152,8 @@ class NotificationController {
         ),
       );
       if (response.statusCode == 200) {
-        print('FCM notification sent successfully.');
-      } else {
-        print(
-            'Failed to send FCM notification. Status code: ${response.statusCode}');
-      }
-    } catch (e) {
-      print(e);
-    }
+      } else {}
+    } catch (e) {}
   }
 
   @pragma('vm:entry-point')
@@ -318,7 +308,7 @@ class NotificationController {
     //       NotificationActionButton(key: key, label: label).fromMap(element)!;
     //   ss.add(s);
     // }
-    // print(ss);
+    //
     // await AwesomeNotifications().createNotification(
     //   content: NotificationContent(
     //     id: data["content"]["id"],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_management_muhmad_omar/widgets/AppLogo/triplets_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/logo/triplets_widget.dart';
 
 class AppLogo extends StatelessWidget {
   const AppLogo({super.key});

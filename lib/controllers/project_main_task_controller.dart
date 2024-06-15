@@ -348,7 +348,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     for (var element in mainTaskIds) {
       ProjectMainTaskModel mainTask = await getProjectMainTaskById(id: element);
       if (mainTask.startDate.isAfter(startOfDay) &&
-          mainTask.startDate!.isBefore(endOfDay)) {
+          mainTask.startDate.isBefore(endOfDay)) {
         if (!finalIds.contains(mainTask.id)) {
           finalIds.add(mainTask.id);
         }
@@ -389,7 +389,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     for (var MainTaskelement in MainTasksall) {
       ProjectMainTaskModel mainTask = MainTaskelement;
       if (mainTask.startDate.isAfter(startOfDay) &&
-          mainTask.startDate!.isBefore(endOfDay)) {
+          mainTask.startDate.isBefore(endOfDay)) {
         if (!idList.contains(mainTask.id)) {
           idList.add(mainTask.id);
         }
@@ -435,7 +435,6 @@ class ProjectMainTaskController extends ProjectAndTaskController {
           projectMainTaskModel.endDate!.isAfter(existingTask.startDate)) {
         overlapped = true;
         over += 1;
-        print(overlapped);
       }
     }
     if (overlapped) {
@@ -513,7 +512,6 @@ class ProjectMainTaskController extends ProjectAndTaskController {
       {required Map<String, dynamic> data,
       required String id,
       required bool isfromback}) async {
-    print("filering2");
     DocumentSnapshot snapshot =
         await getDocById(reference: projectMainTasksRef, id: id);
     ProjectMainTaskModel projectMainTaskModel =
@@ -537,12 +535,12 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         throw Exception(
             "main task start and end date should be between start and end date of the project");
       }
-      print(data[startDateK]);
+
       bool overlapped = false;
       int over = 0;
       List<ProjectMainTaskModel> list =
           await getProjectMainTasks(projectId: projectMainTaskModel.projectId);
-      print("filering");
+
       list.removeWhere((element) => element.id == id);
       for (ProjectMainTaskModel existingTask in list) {
         if (data[startDateK].isBefore(existingTask.endDate) &&
@@ -577,8 +575,6 @@ class ProjectMainTaskController extends ProjectAndTaskController {
             },
             navigatorKey: _navigatorKey);
       } else {
-        print("update working");
-        print(data[nameK]);
         await updateTask(
             reference: projectSubTasksRef,
             data: data,
@@ -592,8 +588,6 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         Get.key.currentState!.pop();
       }
     } else {
-      print("update working");
-
       await updateTask(
           reference: projectSubTasksRef,
           data: data,

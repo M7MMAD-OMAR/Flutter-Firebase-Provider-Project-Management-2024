@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/projects_screen.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/select_my_teams_screen.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/select_team_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 
-// the Developer karem saad (KaremSD) 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
 import '../../controllers/userController.dart';
 import '../../services/auth_service.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../widgets/Navigation/default_back_widget.dart';
 import '../../widgets/Profile/profile_text_option_widget.dart';
 import '../../widgets/Profile/text_outlined_button_widget.dart';
@@ -179,7 +178,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       //       imageUrl: widget.user.imageUrl,
                       //       bio: widget.user.bio,
                       //     );
-                      //     print("to nour");
+                      //
                       //   },
                       //   label: '$tabSpace ${AppConstants.all_task_key.tr}',
                       //   icon: Icons.check_circle_outline,

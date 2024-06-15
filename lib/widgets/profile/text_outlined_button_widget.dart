@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class OutlinedButtonWithText extends StatelessWidget {
   final String content;
@@ -18,9 +18,8 @@ class OutlinedButtonWithText extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(HexColor.fromHex("181A1F")),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          backgroundColor: WidgetStateProperty.all(HexColor.fromHex("181A1F")),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
               side: BorderSide(color: HexColor.fromHex("246EFE"), width: 2),

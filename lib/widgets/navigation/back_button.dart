@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/timeline_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 
 import '../Shapes/roundedborder_with_icon_widget.dart';
 
@@ -27,7 +27,6 @@ class AppBackButton extends StatelessWidget {
             // }
             Get.offAll(() => const Timeline());
           }
-          print(1);
         },
         child: const RoundedBorderWithIcon(icon: Icons.arrow_back),
       ),

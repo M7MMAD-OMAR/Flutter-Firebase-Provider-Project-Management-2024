@@ -1,8 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class BottomNavigationItem extends StatelessWidget {
   final IconData icon;
@@ -22,7 +21,6 @@ class BottomNavigationItem extends StatelessWidget {
       flex: 1,
       child: InkWell(
         onTap: () {
-          print("dsdsdsdasd");
           notifier.value = itemIndex;
         },
         child: ValueListenableBuilder(

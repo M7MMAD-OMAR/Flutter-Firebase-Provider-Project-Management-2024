@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+
+// ignore: unused_import
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 
 import '../Screens/Projects/add_user_to_team_screen.dart';
-import '../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'dummy/profile_dummy_widget.dart';
 
 class InactiveEmployeeCard extends StatelessWidget {

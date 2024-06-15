@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,6 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:project_management_muhmad_omar/Screens/Dashboard/select_my_teams_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
@@ -15,17 +14,19 @@ import 'package:project_management_muhmad_omar/controllers/team_member_controlle
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import '../../constants/back_constants.dart';
 import '../../controllers/statusController.dart';
 import '../../models/User/User_task_Model.dart';
 import '../../models/statusmodel.dart';
 import '../../models/team/TeamMembers_model.dart';
 import '../../services/collections_refrences.dart';
-import '../../widgets/BottomSheets/bottom_sheet_holder_widget.dart';
+
 import '../../widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import '../../widgets/Forms/form_input_with _label_widget.dart';
 import '../../widgets/Snackbar/custom_snackber_widget.dart';
@@ -227,7 +228,6 @@ class _CreateProjectState extends State<CreateProject> {
                                       Get.to(() => SelectMyTeamScreen(
                                           title:
                                               AppConstants.choose_team_key.tr));
-                                      print("object2");
                                     },
                                     teams: <TeamModel?>[]);
                               } else {
@@ -253,7 +253,6 @@ class _CreateProjectState extends State<CreateProject> {
                                       Get.to(() => SelectMyTeamScreen(
                                           title:
                                               AppConstants.choose_team_key.tr));
-                                      print("object2");
                                     },
                                     teams: snapshot.data?.docs
                                         .map((doc) => doc.data())
@@ -302,7 +301,6 @@ class _CreateProjectState extends State<CreateProject> {
                           name = value;
                         });
                         if (widget.managerModel != null) {
-                          print("dasdasd");
                           if (await projectController.existByTow(
                               reference: projectsRef,
                               value: name,
@@ -390,7 +388,6 @@ class _CreateProjectState extends State<CreateProject> {
                   scale: 1,
                   color: AppColors.primaryAccentColor,
                   callback: () async {
-                    print("fdasfasd");
                     if (formKey.currentState!.validate()) {
                       if (addTeamToCreatProjectScreen.teams.isNotEmpty) {
                         showDialogMethod(context);
@@ -401,7 +398,6 @@ class _CreateProjectState extends State<CreateProject> {
                             AppConstants.choose_team_first_for_project_key.tr);
                       }
                     }
-                    print("sadsda");
                   },
                 ),
               ])
@@ -435,7 +431,7 @@ class _CreateProjectState extends State<CreateProject> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print("${selectedDay}the selected day");
+
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
@@ -451,20 +447,18 @@ class _CreateProjectState extends State<CreateProject> {
             DateTime.now().add(const Duration(minutes: 2)),
           ),
         )) {
-      print("step 1");
       CustomSnackBar.showError(AppConstants
           .start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key
           .tr);
       return;
     }
-    print("step2");
+
     if (widget.isEditMode == false) {
       try {
-        print("creteing");
         StatusController statusController = Get.put(StatusController());
         StatusModel statusModel =
             await statusController.getStatusByName(status: statusNotDone);
-        print(statusModel.createdAt);
+
         // if (widget.managerModel == null) {
         //   widget.managerModel = ManagerModel(
         //       idParameter: managersRef.doc().id,
@@ -486,7 +480,7 @@ class _CreateProjectState extends State<CreateProject> {
           );
           resOfUpload.fold((left) {
             Navigator.of(context).pop();
-            print(left.toString());
+
             CustomSnackBar.showError("${left.toString()} ");
             return;
           }, (right) async {
@@ -504,7 +498,7 @@ class _CreateProjectState extends State<CreateProject> {
                   updatedAtParameter: DateTime.now(),
                   startDateParameter: startDate,
                   endDateParameter: dueDate);
-              print("creteing3");
+
               await projectController.addProject(projectModel: projectModel);
               if (mounted) {
                 Navigator.of(context).pop();
@@ -526,7 +520,7 @@ class _CreateProjectState extends State<CreateProject> {
               updatedAtParameter: DateTime.now(),
               startDateParameter: startDate,
               endDateParameter: dueDate);
-          print("creteing3");
+
           await projectController.addProject(projectModel: projectModel);
           Navigator.of(context).pop();
           CustomSnackBar.showSuccess(
@@ -534,8 +528,6 @@ class _CreateProjectState extends State<CreateProject> {
         }
         //  Get.key.currentState!.pop();
       } catch (e) {
-        print("error");
-        print(e.toString());
         CustomSnackBar.showError(e.toString());
       }
     } else {

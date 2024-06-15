@@ -14,10 +14,10 @@ import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 
-import '../../Values/values.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import '../../controllers/team_member_controller.dart';
 import '../../models/team/TeamMembers_model.dart';
-import '../BottomSheets/bottom_sheet_holder_widget.dart';
 import '../Buttons/primary_progress_button_widget.dart';
 import '../Dashboard/dashboard_meeting_details_widget.dart';
 import '../Forms/form_input_with _label_widget.dart';
@@ -189,7 +189,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                       return null;
                     },
                     onChanged: (value) {
-                      //  print("object");
+                      //
 
                       name = value;
                     },
@@ -226,7 +226,6 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                                   teamModel: widget.teamModel,
                                   userAsManager: widget.userAsManager,
                                 ));
-                            print("dasdasd");
                           },
                         );
                       }
@@ -240,7 +239,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                       //     numberOfMembers: 0.toString(),
                       //     users: <UserModel>[],
                       //     onTap: () {
-                      //       print("dasdasd");
+                      //
                       //     },
                       //   );
                       // }
@@ -283,7 +282,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                         name = name.trim();
                         if (selectedImagePath != null) {
                           showDialogMethod(context);
-                          print("start");
+
                           final resOfUpload = await uploadImageToStorge(
                               selectedImagePath: selectedImagePath!,
                               imageName: widget.teamModel.name!,

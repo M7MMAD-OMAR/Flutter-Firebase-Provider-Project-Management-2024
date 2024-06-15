@@ -45,7 +45,6 @@ class ManagerController extends TopController {
     ManagerModel? managerModel;
     managerModel = await getMangerWhereUserIs(userId: userId);
     if (managerModel != null) {
-      print("find manger");
       return managerModel;
     }
     managerModel = ManagerModel(
@@ -160,7 +159,6 @@ class ManagerController extends TopController {
     //جلب جميع البروجكتات يلي مشترك فيها واحد من التيمات يلي الها المانجر هاد
     List<DocumentSnapshot?> listProjects = [];
     for (var team in teams) {
-      print("it passed");
       List<DocumentSnapshot?>? projectDos = await getDocsSnapShotWhere(
           collectionReference: projectsRef, field: teamIdK, value: team!.id);
       listProjects.addAll(projectDos);

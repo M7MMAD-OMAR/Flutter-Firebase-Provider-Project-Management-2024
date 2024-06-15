@@ -6,18 +6,19 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:project_management_muhmad_omar/Screens/Auth/verify_email_address_screen.dart';
+
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/screens/auth_screen/verify_email_address_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../../Values/values.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
 import '../../widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import '../../widgets/Forms/form_input_with _label_widget.dart';
 import '../../widgets/Navigation/back_widget.dart';

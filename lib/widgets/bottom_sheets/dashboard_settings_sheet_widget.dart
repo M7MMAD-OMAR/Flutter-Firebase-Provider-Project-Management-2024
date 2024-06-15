@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../Values/values.dart';
+// ignore: unused_import
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../Buttons/primary_buttons_widget.dart';
 import '../Buttons/text_button_widget.dart';
 import '../Onboarding/toggle_option_widget.dart';

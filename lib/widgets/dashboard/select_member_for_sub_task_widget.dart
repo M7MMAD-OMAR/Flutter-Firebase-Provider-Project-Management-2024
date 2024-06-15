@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../../Screens/Dashboard/search_bar_animation_screen.dart';
-import '../../Values/values.dart';
 import '../../models/team/TeamMembers_model.dart';
-import '../../widgets/DarkBackground/dark_radial_background_widget.dart';
+
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../Buttons/primary_progress_button_widget.dart';
 import '../User/employee_card_sub_task_widget.dart';
@@ -51,9 +52,8 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
   @override
   void initState() {
     if (widget.userModel != null) {
-      print(widget.userModel!.userName);
       selectedUserNotifier.value = widget.userModel;
-      print(selectedUserNotifier.value!.userName);
+
       // s.selectedUser.value = widget.userModel;
     }
     super.initState();
@@ -82,7 +82,6 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                       editingController: searchController,
                       onChanged: (String value) {
                         setState(() {
-                          print(search);
                           search = value;
                         });
                       },
@@ -176,7 +175,6 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                             List<UserModel> users = [];
                                             if (taskCount > 0) {
                                               if (search.isNotEmpty) {
-                                                print(search + "helli");
                                                 snapshotUsers.data!.docs
                                                     .forEach((element) {
                                                   UserModel taskModel =
@@ -372,7 +370,6 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                     height: Utils.screenHeight2 * 0.07,
                     label: AppConstants.done_key.tr,
                     callback: () {
-                      print(selectedUserNotifier.value!.name);
                       if (selectedUserNotifier.value != null) {
                         widget.onSelectedUserChanged(
                             userModel: selectedUserNotifier.value!);

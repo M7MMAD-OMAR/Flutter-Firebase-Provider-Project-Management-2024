@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_glow/flutter_glow.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:project_management_muhmad_omar/Values/values.dart';
+
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
@@ -15,8 +16,8 @@ import 'package:project_management_muhmad_omar/models/team/Project_sub_task_Mode
 import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/create_sub_task_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../BottomSheets/bottom_sheets_widget.dart';
 import '../../constants/back_constants.dart';
 import '../../controllers/manger_controller.dart';
 import '../../controllers/projectController.dart';
@@ -128,7 +129,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
   //   } else {
   //     isManager = true;
   //   }
-  //   print(isManager);
+  //
   // }
   @override
   void initState() {
@@ -154,14 +155,11 @@ class _SubTaskCardState extends State<SubTaskCard> {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
         if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
-          print(user.id +
-              "/////" +
-              AuthService.instance.firebaseAuth.currentUser!.uid);
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
         }
-        print(updatedIsManager);
+
         // Update the state and trigger a rebuild
         isManager.value = updatedIsManager;
       });
@@ -191,11 +189,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
     taskStatus = " ";
     return Obx(() => isManager.value
         ? FocusedMenu(
-            onClick: () {
-              print("hello");
-            },
+            onClick: () {},
             deleteButton: () async {
-              print(1);
               ProjectSubTaskController userTaskController =
                   Get.put(ProjectSubTaskController());
               await userTaskController.deleteProjectSubTask(id: widget.task.id);
@@ -248,8 +243,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                             memberId: projectSubTaskModel.assignedTo);
                     ProjectModel? projectModel = await ProjectController()
                         .getProjectById(id: projectSubTaskModel.projectId);
-                    print(projectModel!.teamId!);
-                    String s = projectModel.teamId!;
+
+                    String s = projectModel!.teamId!;
                     TeamModel teamModel =
                         await TeamController().getTeamById(id: s);
                     TeamMemberModel newteamMemberModel =
@@ -342,14 +337,14 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                   title: "you have a task ",
                                   data: {"id": waitingid},
                                   body:
-                                      "the project ${projectModel.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
+                                      "the project ${projectModel?.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
                                   type: NotificationType.taskRecieved);
                               await fcmNotifications.sendNotificationAsJson(
                                   fcmTokens: userModelOldAssigned.tokenFcm,
                                   title:
                                       "the task ${updatedprojectSubTaskModel.name} have benn unassigned",
                                   body:
-                                      "the project ${projectModel.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
+                                      "the project ${projectModel?.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
                                   type: NotificationType.notification);
                               CustomSnackBar.showSuccess(
                                   "task ${taskName} sended to member successfully");
@@ -640,7 +635,6 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                     AsyncSnapshot<DocumentSnapshot<StatusModel>>
                                         snapshot) {
                                   if (snapshot.hasData) {
-                                    print(snapshot.data);
                                     statusModel =
                                         snapshot.data!.data() as StatusModel;
                                     taskStatus = statusModel!.name!;
@@ -753,7 +747,6 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                   AsyncSnapshot<DocumentSnapshot<StatusModel>>
                                       snapshot) {
                                 if (snapshot.hasData) {
-                                  print(snapshot.data);
                                   statusModel =
                                       snapshot.data!.data() as StatusModel;
                                   taskStatus = statusModel!.name!;
@@ -869,7 +862,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
 
   String formatDateTime(DateTime dateTime) {
     DateTime now = DateTime.now();
-    print(dateTime);
+
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
