@@ -82,7 +82,6 @@ class StatusController extends TopController {
       throw exception;
     }
 
-    // the Developer karem saad (KaremSD) 
     await updateNonRelationalFields(
         reference: teamMembersRef,
         data: data,

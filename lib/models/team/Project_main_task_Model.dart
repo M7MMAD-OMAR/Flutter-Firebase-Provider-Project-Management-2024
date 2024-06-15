@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 
-import '../../Utils/back_utils.dart';
-import '../../constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/utils/back_utils.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'Task_model.dart';
 //TODO use the firebase time
 

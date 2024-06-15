@@ -6,7 +6,7 @@ import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import '../../widgets/container_label_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/container_label_widget.dart';
 import 'team_details_screen.dart';
 
 class TeamStory extends StatelessWidget {

@@ -19,10 +19,10 @@ import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../../widgets/Dashboard/dashboard_meeting_details_widget.dart';
-import '../../widgets/Forms/form_input_with _label_widget.dart';
-import '../../widgets/Navigation/back_widget.dart';
-import '../../widgets/dummy/profile_dummy_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dashboard/dashboard_meeting_details_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with _label_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/back_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 
 class SignUp extends StatefulWidget {
   final String email;

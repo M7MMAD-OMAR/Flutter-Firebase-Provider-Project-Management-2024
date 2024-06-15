@@ -4,11 +4,11 @@
 // import 'package:project_management_muhmad_omar/Screens/Dashboard/timeline_screen.dart';
 
 // import 'package:project_management_muhmad_omar/constants/values.dart';
-// import '../../widgets/Buttons/primary_progress_button_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button_widget.dart';
 // import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
-// import '../../widgets/Navigation/default_back_widget.dart';
-// import '../../widgets/Onboarding/plan_card_widget.dart';
-// import '../../widgets/Onboarding/toggle_option_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/Navigation/default_back_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/Onboarding/plan_card_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/Onboarding/toggle_option_widget.dart';
 
 // class ChoosePlan extends StatelessWidget {
 //   const ChoosePlan({super.key});

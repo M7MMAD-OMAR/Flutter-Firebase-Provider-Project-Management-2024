@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names
-
 import '../models/lang/lang.dart';
 
 class AppConstants {
@@ -114,6 +112,7 @@ class AppConstants {
 
   static const String there_is_no_user_logging_in_or_sign_up_key =
       "There_is_No_user_in_the_App";
+
   // static const String there_is_no_user_in_the_app_key =
   //     "There_is_No_user_in_the_App";
   static const String the_email_in_its_way_to_you_key =
@@ -157,6 +156,7 @@ class AppConstants {
   static const String no_projects_you_are_in_key = "No_Projects_you_Are_In";
   static const String by_team_key = "by_team";
   static const String status_key = "status";
+
   // the Developer karem saad
   static const String projects_key = "projects";
   static const String member_key = "member";
@@ -408,6 +408,7 @@ class AppConstants {
       waiting_team_member_updating_time_before_create_error_key =
       "waiting_team_member_updating_time_before_create_error";
   static const String name_not_empty_key = "name_not_empty";
+
   // the Developer karem saad
   static const String name_min_length_key = "name_min_length";
   static const String name_letters_only_key = "name_letters_only";

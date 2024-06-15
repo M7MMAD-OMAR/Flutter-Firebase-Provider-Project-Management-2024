@@ -21,21 +21,21 @@ import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
-import '../../constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 
-import '../../controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
 
-import '../../models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 
-import '../../models/team/TeamMembers_model.dart';
-import '../../services/collections_refrences.dart';
+import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
-import '../../widgets/Forms/form_input_with _label_widget.dart';
-import '../../widgets/Snackbar/custom_snackber_widget.dart';
-import '../../widgets/Team/show_team_members_widget.dart';
-import '../../widgets/User/new_sheet_goto_calender_widget.dart';
-import '../../widgets/add_sub_icon_widget.dart';
-import '../../widgets/dummy/profile_dummy_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with _label_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Team/show_team_members_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/User/new_sheet_goto_calender_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/add_sub_icon_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 import 'add_team_to_create_project_screen.dart';
 
 class STX extends GetxController {
@@ -500,4 +500,3 @@ class BottomSheetIcon extends StatelessWidget {
     );
   }
 }
-// the Developer karem saad (KaremSD) 

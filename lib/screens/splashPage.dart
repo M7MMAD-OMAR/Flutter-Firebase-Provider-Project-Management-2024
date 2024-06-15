@@ -8,7 +8,7 @@ import 'language_screen.dart';
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
   static const String id = "/SplashScreen";
-// the Developer karem saad (KaremSD) 
+
   @override
   _SplashPageState createState() => _SplashPageState();
 }
@@ -16,7 +16,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController _controller;
-  GlobalKey<ScaffoldState> _globalKey = GlobalKey();
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey();
 
   @override
   dispose() {
@@ -40,7 +40,6 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       key: _globalKey,
       backgroundColor: Colors.white,
       body: Column(
-        //crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ScaleTransition(

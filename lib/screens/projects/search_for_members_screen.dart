@@ -15,7 +15,7 @@ import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_
 import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_widget.dart';
 
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import '../../services/auth_service.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import '../../services/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import '../../widgets/Navigation/app_header_widget.dart';

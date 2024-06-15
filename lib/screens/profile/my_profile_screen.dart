@@ -12,13 +12,13 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
-import '../../controllers/userController.dart';
-import '../../services/auth_service.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
-import '../../widgets/Navigation/default_back_widget.dart';
-import '../../widgets/Profile/profile_text_option_widget.dart';
-import '../../widgets/Profile/text_outlined_button_widget.dart';
-import '../../widgets/dummy/profile_dummy_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/default_back_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Profile/profile_text_option_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Profile/text_outlined_button_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 import 'edit_profile_screen.dart';
 
 class ProfilePage extends StatefulWidget {

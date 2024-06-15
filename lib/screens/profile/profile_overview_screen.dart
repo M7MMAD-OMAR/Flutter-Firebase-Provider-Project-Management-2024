@@ -15,11 +15,11 @@ import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons_w
 
 import 'package:project_management_muhmad_omar/constants/values.dart';
 // import 'package:flutter_glow/flutter_glow.dart';
-import '../../constants/app_constans.dart';
-import '../../widgets/Buttons/progress_card_close_button_widget.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/progress_card_close_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
-import '../../widgets/Forms/form_input_with _label_widget.dart';
-import '../../widgets/Profile/box_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with _label_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Profile/box_widget.dart';
 import '../../widgets/Profile/text_outlined_button_widget.dart';
 import '../../widgets/Snackbar/custom_snackber_widget.dart';
 import '../../widgets/container_label_widget.dart';

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../constants/app_constans.dart';
-import '../../constants/back_constants.dart';
-import '../../Utils/back_utils.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import '../tops/Var2TopModel.dart';
 
 class ProjectModel extends Var2TopModel {

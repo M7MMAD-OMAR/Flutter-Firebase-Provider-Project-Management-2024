@@ -2,9 +2,9 @@
 // import 'package:email_validator/email_validator.dart';
 // import 'package:project_management_muhmad_omar/services/Oldauth_service.dart';
 
-// import '../../constants/back_constants.dart';
-// import '../../Utils/back_utils.dart';
-// import '../../services/auth_service.dart';
+// import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+// import 'package:project_management_muhmad_omar/utils/back_utils.dart';
+// import 'package:project_management_muhmad_omar/services/auth_service.dart';
 // import '../tops/VarTopModel.dart';
 
 // class UserModel extends VarTopModel {
@@ -262,9 +262,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 
-import '../../Utils/back_utils.dart';
-import '../../constants/back_constants.dart';
-import '../../services/auth_service.dart';
+import 'package:project_management_muhmad_omar/utils/back_utils.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import '../tops/VarTopModel.dart';
 
 class UserModel extends VarTopModel {

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/projectController.dart';
-import '../../models/team/Project_model.dart';
-import '../../services/auth_service.dart';
+import 'package:project_management_muhmad_omar/controllers/projectController.dart';
+import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
 
 class ProjectScreenController extends GetxController {
   RxInt selectedTab = 0.obs;

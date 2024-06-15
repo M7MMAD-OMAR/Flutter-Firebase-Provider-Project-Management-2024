@@ -24,11 +24,11 @@ import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_
 import 'package:project_management_muhmad_omar/widgets/User/focused_menu_item_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../constants/app_constans.dart';
-import '../../widgets/Buttons/primary_tab_buttons_widget.dart';
-import '../../widgets/Dashboard/main_tasks_widget.dart';
-import '../../widgets/Navigation/app_header_widget.dart';
-import '../../widgets/Projects/project_card_horizontal_widget.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/main_tasks_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/app_header_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_card_horizontal_widget.dart';
 import '../../widgets/Projects/project_card_vertical_widget.dart';
 
 enum ProjecSortOption {

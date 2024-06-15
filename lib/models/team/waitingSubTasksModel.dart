@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_sub_task_Model.dart';
 import 'package:project_management_muhmad_omar/models/tops/TopModel_model.dart';
 
-import '../../constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 
 class WaitingSubTaskModel with TopModel {
   WaitingSubTaskModel({

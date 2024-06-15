@@ -18,16 +18,16 @@ import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/show_team_members_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../constants/constants.dart';
-import '../../controllers/statusController.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
+import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/models/statusmodel.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
-import '../../widgets/Dashboard/in_bottomsheet_subtitle_widget.dart';
-import '../../widgets/Navigation/app_header_widget.dart';
-import '../../widgets/Projects/project_card_vertical_widget.dart';
-import '../../widgets/Team/more_team_details_sheet_widget.dart';
-import '../../widgets/table_calendar_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/in_bottomsheet_subtitle_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Navigation/app_header_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_card_vertical_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Team/more_team_details_sheet_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/table_calendar_widget.dart';
 import 'my_team_screen.dart';
 
 class TeamDetails extends StatelessWidget {
@@ -360,4 +360,3 @@ class TeamProjectOverview extends StatelessWidget {
         });
   }
 }
-// the Developer karem saad (KaremSD) 
