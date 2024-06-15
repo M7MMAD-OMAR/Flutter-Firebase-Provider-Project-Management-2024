@@ -36,6 +36,7 @@ class _EditUserCategoryState extends State<EditUserCategory> {
   void initState() {
     super.initState();
     color = widget.category.hexColor;
+    // Assign icon and name in the initState using constant values if possible
     icon = IconData(widget.category.iconCodePoint,
         fontFamily: widget.category.fontfamily);
     name = widget.category.name!;
