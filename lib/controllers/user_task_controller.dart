@@ -6,11 +6,11 @@ import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/controllers/taskController.dart';
 import 'package:project_management_muhmad_omar/models/User/User_task_Model.dart';
-import 'package:project_management_muhmad_omar/services/collectionsrefrences.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';
 import '../services/auth_service.dart';
-import '../widgets/Snackbar/custom_snackber.dart';
+import '../widgets/Snackbar/custom_snackber_widget.dart';
 
 class UserTaskController extends ProjectAndTaskController {
   Future<List<UserTaskModel>> getAllUsersTasks() async {

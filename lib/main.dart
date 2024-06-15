@@ -1,21 +1,22 @@
 
 import 'dart:async';
+
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_management_muhmad_omar/Screens/Auth/authPage.dart';
-import 'package:project_management_muhmad_omar/services/Notifications_Sender.dart';
+import 'package:project_management_muhmad_omar/Screens/Auth/auth_page_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notification_service.dart';
+import 'package:project_management_muhmad_omar/services/notifications_sender_services.dart';
 import 'package:sizer/sizer.dart';
 
 import 'Utils/messages.dart';
-import 'firebase_options.dart';
-import 'utils/dep.dart' as dep;
 import 'constants/app_constans.dart';
 import 'controllers/languageController.dart';
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
+import 'firebase_options.dart';
+import 'utils/dep.dart' as dep;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

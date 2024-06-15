@@ -1,35 +1,35 @@
 // import 'package:get/get.dart';
-// import 'package:project_management_muhmad_omar/Screens/Auth/choose_plan.dart';
-// import 'package:project_management_muhmad_omar/Screens/Auth/email_address.dart';
+// import 'package:project_management_muhmad_omar/Screens/Auth/choose_plan_screen.dart';
+// import 'package:project_management_muhmad_omar/Screens/Auth/email_address_screen.dart';
 // import 'package:project_management_muhmad_omar/pages/auth/auth_page.dart';
 // import 'package:project_management_muhmad_omar/pages/home2.dart';
 
-// import '../Screens/Auth/login.dart';
-// import '../Screens/Auth/new_workspace.dart';
-// import '../Screens/Auth/signup.dart';
-// import '../Screens/Dashboard/DashboardTabScreens/overview.dart';
-// import '../Screens/Dashboard/DashboardTabScreens/productivity.dart';
-// import '../Screens/Dashboard/dashboard.dart';
-// import '../Screens/Dashboard/category.dart';
-// import '../Screens/Dashboard/projects.dart';
+// import '../Screens/Auth/login_screen.dart';
+// import '../Screens/Auth/new_workspace_screen.dart';
+// import '../Screens/Auth/signup_screen.dart';
+// import '../Screens/Dashboard/DashboardTabScreens/overview_screen.dart';
+// import '../Screens/Dashboard/DashboardTabScreens/productivity_screen.dart';
+// import '../Screens/Dashboard/dashboard_screen.dart';
+// import '../Screens/Dashboard/category_screen.dart';
+// import '../Screens/Dashboard/projects_screen.dart';
 // import '../Screens/Dashboard/search_screen.dart';
-// import '../Screens/Dashboard/timeline.dart';
+// import '../Screens/Dashboard/timeline_screen.dart';
 // import '../Screens/Onboarding/onboarding_carousel2.dart';
-// import '../Screens/Onboarding/onboarding_start.dart';
-// import '../Screens/Profile/edit_profile.dart';
-// import '../Screens/Profile/my_profile.dart';
-// import '../Screens/Profile/my_team.dart';
+// import '../Screens/Onboarding/onboarding_start_screen.dart';
+// import '../Screens/Profile/edit_profile_screen.dart';
+// import '../Screens/Profile/my_profile_screen.dart';
+// import '../Screens/Profile/my_team_screen.dart';
 // import '../Screens/Profile/profile_notification_settings.dart';
-// import '../Screens/Profile/profile_overview.dart';
-// import '../Screens/Profile/team_details.dart';
+// import '../Screens/Profile/profile_overview_screen.dart';
+// import '../Screens/Profile/team_details_screen.dart';
 // import '../Screens/Projects/create_project.dart';
 // import '../Screens/Projects/project_detail.dart';
-// import '../Screens/Projects/projects.dart';
+// import '../Screens/Projects/projects_screen.dart';
 // import '../Screens/Projects/set_members.dart';
 // import '../Screens/Task/set_assignees.dart';
-// import '../Screens/Task/task_due_date.dart';
+// import '../Screens/Task/task_due_date_screen.dart';
 // import '../Screens/splash_screen.dart';
-// import '../pages/languageScreen.dart';
+// import '../pages/language_screen.dart';
 
 // class RouteHelper {
 //   static List<GetPage> routes = [

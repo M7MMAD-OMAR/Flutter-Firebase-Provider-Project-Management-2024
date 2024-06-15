@@ -6,7 +6,7 @@ import 'package:project_management_muhmad_omar/controllers/team_member_controlle
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
-import 'package:project_management_muhmad_omar/services/collectionsrefrences.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';
 import '../models/User/User_model.dart';

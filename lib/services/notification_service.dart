@@ -6,7 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
-import 'package:project_management_muhmad_omar/services/types.dart';
+import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controllers/project_sub_task_controller.dart';
@@ -15,7 +15,7 @@ import '../controllers/user_task_controller.dart';
 import '../controllers/waitingMamberController.dart';
 import '../controllers/waitingSubTasks.dart';
 import '../models/statusmodel.dart';
-import 'notification_controller.dart';
+import 'notification_controller_services.dart';
 
 class FcmNotifications extends GetxService {
   static const String key = 'notification_status';

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../Screens/Dashboard/category.dart';
-import '../Screens/Dashboard/dashboard.dart';
-import '../Screens/Dashboard/invitions.dart';
-import '../Screens/Dashboard/notifications.dart';
-import '../Screens/Dashboard/projects.dart';
-
+import '../Screens/Dashboard/category_screen.dart';
+import '../Screens/Dashboard/dashboard_screen.dart';
+import '../Screens/Dashboard/invitions_screen.dart';
+import '../Screens/Dashboard/notifications_screen.dart';
+import '../Screens/Dashboard/projects_screen.dart';
 import '../Values/values.dart';
 
 String tabSpace = "\t\t\t";
