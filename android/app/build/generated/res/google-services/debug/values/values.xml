@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gcm_defaultSenderId" translatable="false">526714468929</string>
+    <string name="google_api_key" translatable="false">AIzaSyDjbfbS6M2o55iavgpdG-jXwuIZ8QTPZDw</string>
+    <string name="google_app_id" translatable="false">1:526714468929:android:60c0042604382ad6ba24c0</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDjbfbS6M2o55iavgpdG-jXwuIZ8QTPZDw</string>
+    <string name="google_storage_bucket" translatable="false">project-management-muhmad-omar.appspot.com</string>
+    <string name="project_id" translatable="false">project-management-muhmad-omar</string>
+</resources>
