@@ -72,7 +72,7 @@ class Assets {
   static const String chatAddChatIconWidget =
       'lib/widgets/chat/add_chat_icon_widget.dart';
   static const String constantsAppColors = 'lib/constants/app_colors.dart';
-  static const String constantsAppConstans = 'lib/constants/app_constans.dart';
+  static const String constantsAppConstans = 'lib/constants/app_constants.dart';
   static const String constantsBackConstants =
       'lib/constants/back_constants.dart';
   static const String constantsBoxDecorationStyles =

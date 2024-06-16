@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
@@ -13,11 +13,11 @@ import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/widgets/profile/profile_text_option_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/profile/text_outlined_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/default_back_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/profile/profile_text_option_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/profile/text_outlined_button_widget.dart';
 
 import 'edit_profile_screen.dart';
 

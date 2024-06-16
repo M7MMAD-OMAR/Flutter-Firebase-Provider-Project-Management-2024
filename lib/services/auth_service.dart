@@ -8,7 +8,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
@@ -30,10 +30,6 @@ class AuthService extends GetxController {
 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   EitherException<bool> updateEmail({required String email}) async {
     final user = firebaseAuth.currentUser;

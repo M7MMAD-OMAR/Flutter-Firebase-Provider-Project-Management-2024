@@ -14,7 +14,7 @@ import 'package:project_management_muhmad_omar/models/team/project_sub_task_mode
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
-import '../constants/app_constans.dart';
+import '../constants/app_constants.dart';
 import '../constants/back_constants.dart';
 import '../models/status_model.dart';
 import '../models/team/project_model.dart';

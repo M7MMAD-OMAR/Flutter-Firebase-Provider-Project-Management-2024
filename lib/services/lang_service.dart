@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constants/app_constans.dart';
+import '../constants/app_constants.dart';
 import '../models/lang/lang_model.dart';
 
 class LangService {

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 
 import '../../screens/profile/edit_profile_screen.dart';
-import '../profile/text_outlined_button_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
+import '../profile/text_outlined_button_widget.dart';
 import 'back_button.dart';
   
 class DefaultNav extends StatelessWidget {

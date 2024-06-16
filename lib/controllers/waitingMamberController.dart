@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';

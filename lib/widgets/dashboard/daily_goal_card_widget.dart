@@ -7,7 +7,7 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 
-import '../../constants/app_constans.dart';
+import '../../constants/app_constants.dart';
 import '../../services/auth_service.dart';
 
 class DailyGoalCard extends StatefulWidget {

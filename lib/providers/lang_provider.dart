@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
 
 import '../models/lang/lang_model.dart';
+import '../services/lang_service.dart';
 
 class LangProvider with ChangeNotifier {
-  Locale _locale;
-  final List<LanguageModel> languages;
-  final Map<String, dynamic> dir;
+  final LangService localizationService;
 
-  LangProvider(
-      {required this.languages,
-      required this.dir,
-      required Locale initialLocale})
-      : _locale = initialLocale;
+  LangProvider({required this.localizationService}) {
+    _loadCurrentLanguage();
+  }
 
-  Locale get locale => _locale;
+  Locale get locale => localizationService.locale;
 
-  void setLocale(Locale newLocale) {
-    _locale = newLocale;
+  int get selectedIndex => localizationService.selectedIndex;
+
+  List<LanguageModel> get languages => localizationService.languages;
+
+  Future<void> _loadCurrentLanguage() async {
+    await localizationService.loadCurrentLanguage();
+    notifyListeners();
+  }
+
+  Future<void> setLanguage(Locale locale) async {
+    await localizationService.setLanguage(locale: locale);
+    notifyListeners();
+  }
+
+  void setSelectIndex(int index) {
+    localizationService.setSelectIndex(index: index);
     notifyListeners();
   }
 }

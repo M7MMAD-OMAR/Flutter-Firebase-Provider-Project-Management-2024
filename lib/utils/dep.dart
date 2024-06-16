@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constants/app_constans.dart';
+import '../constants/app_constants.dart';
 import '../controllers/languageController.dart';
 import '../models/lang/lang_model.dart';
 
