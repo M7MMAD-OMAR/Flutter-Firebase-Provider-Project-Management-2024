@@ -1,10 +1,10 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:google_fonts/google_fonts.dart';
-// import 'package:project_management_muhmad_omar/Screens/Dashboard/timeline_screen.dart';
+// import 'package:project_management_muhmad_omar/screens/Dashboard/timeline_screen.dart';
 
 // import 'package:project_management_muhmad_omar/constants/values.dart';
-// import 'package:project_management_muhmad_omar/widgets/Buttons/primary_progress_button_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/buttons/primary_progress_button_widget.dart';
 // import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 // import 'package:project_management_muhmad_omar/widgets/navigation/default_back_widget.dart';
 // import 'package:project_management_muhmad_omar/widgets/Onboarding/plan_card_widget.dart';

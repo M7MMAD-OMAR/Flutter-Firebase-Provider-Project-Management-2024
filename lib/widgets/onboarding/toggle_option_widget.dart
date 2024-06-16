@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
-// ignore: must_be_immutable
 class ToggleLabelOption extends StatelessWidget {
   final String label;
   ValueNotifier<bool>? notifierValue;

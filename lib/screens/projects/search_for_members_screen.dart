@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/Screens/Projects/search_for_member_screen.dart';
+import 'package:project_management_muhmad_omar/screens/Projects/search_for_member_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
@@ -17,10 +17,10 @@ import 'package:project_management_muhmad_omar/widgets/forms/search_box2_widget.
 import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-import '../../services/notification_service.dart';
-import '../../widgets/dummy/profile_dummy_widget.dart';
-import '../../widgets/navigation/app_header_widget.dart';
-import '../Profile/profile_overview_screen.dart';
+import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
+import '../profile/profile_overview_screen.dart';
 import 'add_user_to_team_screen.dart';
 
 class SearchForMembers extends StatefulWidget {

@@ -4,7 +4,6 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import '../../controllers/languageController.dart';
 import '../../models/lang/lang_model.dart';
 
-// ignore: must_be_immutable
 class Box extends StatelessWidget {
   final String label;
   final String value;

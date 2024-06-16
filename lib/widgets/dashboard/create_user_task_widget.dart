@@ -21,7 +21,6 @@ class CheckboxController extends GetxController {
   }
 }
 
-// ignore: must_be_immutable
 class CreateUserTask extends StatefulWidget {
   CreateUserTask(
       {required this.addTask,

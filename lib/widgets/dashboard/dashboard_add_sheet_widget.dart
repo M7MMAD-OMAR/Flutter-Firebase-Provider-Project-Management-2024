@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_management_muhmad_omar/Screens/Projects/create_project_screen.dart';
+import 'package:project_management_muhmad_omar/screens/Projects/create_project_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';

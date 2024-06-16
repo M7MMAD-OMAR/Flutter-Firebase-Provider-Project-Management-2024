@@ -39,7 +39,6 @@ class STX extends GetxController {
   }
 }
 
-// ignore: must_be_immutable
 class EditProject extends StatefulWidget {
   EditProject({
     required this.userAsManager,

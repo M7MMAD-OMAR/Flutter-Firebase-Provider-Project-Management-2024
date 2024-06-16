@@ -22,12 +22,12 @@ import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../../models/team/project_model.dart';
-import '../../services/notification_service.dart';
-import '../../widgets/Buttons/primary_tab_buttons_widget.dart';
-import '../../widgets/Search/active_task_card_widget.dart';
+import '../../services/notifications/notification_service.dart';
+import '../../widgets/buttons/primary_tab_buttons_widget.dart';
+import '../../widgets/search/active_task_card_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';
 import '../../widgets/navigation/app_header_widget.dart';
-import '../Profile/profile_overview_screen.dart';
+import '../profile/profile_overview_screen.dart';
 import 'dashboard_tab_screens/box_screen.dart';
 
 class Invitions extends StatelessWidget {

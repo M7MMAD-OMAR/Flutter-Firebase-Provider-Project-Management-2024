@@ -15,7 +15,6 @@ import '../forms/form_input_with_label_widget.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import 'icon_selection_widget.dart';
 
-// ignore: must_be_immutable
 class CreateUserCategory extends StatefulWidget {
   CreateUserCategory({
     Key? key,

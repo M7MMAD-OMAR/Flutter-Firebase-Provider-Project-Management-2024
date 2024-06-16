@@ -6,15 +6,15 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/statusController.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
+import 'package:project_management_muhmad_omar/controllers/waitingSubTasks.dart';
+import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../controllers/project_sub_task_controller.dart';
-import '../controllers/statusController.dart';
-import '../controllers/user_task_controller.dart';
-import '../controllers/waitingMamberController.dart';
-import '../controllers/waitingSubTasks.dart';
-import '../models/status_model.dart';
 import 'notification_controller_services.dart';
 
 class FcmNotifications extends GetxService {
@@ -119,7 +119,7 @@ class FcmNotifications extends GetxService {
       displayOnBackground: true,
       // customSound: 'resource://raw/${getSoundByType(notificationType: type)}',
     );
-    // the Developer karem saad 
+
     return content;
   }
 
@@ -205,7 +205,6 @@ class FcmNotifications extends GetxService {
     //even if you are only sending String,String
     //
 
-//TODO return habiby 
     if (await getNotificationStatus() == true) {
       Map<String, dynamic> s = jsonDecode(message.data["data"]);
 

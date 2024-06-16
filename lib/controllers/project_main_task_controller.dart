@@ -111,7 +111,6 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         status: status);
   }
 
-// the Developer karem saad (KaremSD)
   Future<double> getPercentOfMainTasksInAProjectForAStatusBetweenTowStartTime({
     required String status,
     required String projectId,

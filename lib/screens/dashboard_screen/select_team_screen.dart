@@ -13,19 +13,19 @@ import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/active_team_cardK_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../../models/team/manger_model.dart';
-import '../../services/notification_service.dart';
-import '../../widgets/dummy/profile_dummy_widget.dart';
-import '../../widgets/navigation/app_header_widget.dart';
-import '../Profile/profile_overview_screen.dart';
-import '../Profile/team_details_screen.dart';
+import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
+import '../profile/profile_overview_screen.dart';
+import '../profile/team_details_screen.dart';
 
 class SelectTeamScreen extends StatefulWidget {
   const SelectTeamScreen({
-    Key? key,
+    super.key,
     required this.title,
     required this.managerModel,
-  }) : super(key: key);
+  });
   final ManagerModel? managerModel;
   final String title;
   @override

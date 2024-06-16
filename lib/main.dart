@@ -4,17 +4,16 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:http_proxy/http_proxy.dart';
+import 'package:project_management_muhmad_omar/providers.dart';
+import 'package:project_management_muhmad_omar/providers/lang_provider.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/auth_page_screen.dart';
-import 'package:project_management_muhmad_omar/services/notification_service.dart';
+import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import 'constants/app_constans.dart';
-import 'controllers/languageController.dart';
 import 'firebase_options.dart';
 import 'utils/dep.dart' as dep;
-import 'utils/messages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -63,17 +62,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Sizer(
-      builder: (context, orientation, deviceType) =>
-          GetBuilder<LocalizationController>(builder: (localizationController) {
-        return GetMaterialApp(
-          locale: localizationController.locale,
-          translations: Messages(languages: languages),
-          fallbackLocale:
-              Locale(AppConstants.languageCode[1], AppConstants.countryCode[1]),
-          debugShowCheckedModeBanner: false,
-          home: const AuthPage(),
+      builder: (context, orientation, deviceType) {
+        return MultiProvider(
+          providers: Providers.providers,
+          child: Consumer<LangProvider>(
+            builder: (context, localizationController, child) {
+              return MaterialApp(
+                locale: localizationController.locale,
+                supportedLocales: const [
+                  Locale('en', 'US'),
+                  Locale('ar', 'SY'),
+                ],
+                debugShowCheckedModeBanner: false,
+                home: const AuthPage(),
+              );
+            },
+          ),
         );
-      }),
+      },
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../Screens/Task/task_due_date_screen.dart';
+import '../../screens/Task/task_due_date_screen.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class SheetGoToCalendarWidget extends StatelessWidget {

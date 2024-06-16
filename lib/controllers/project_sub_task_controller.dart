@@ -21,7 +21,7 @@ import '../models/team/project_model.dart';
 import '../models/team/teamModel.dart';
 import '../models/user/user_model.dart';
 import '../services/auth_service.dart';
-import '../services/notification_service.dart';
+import '../services/notifications/notification_service.dart';
 import '../services/types_services.dart';
 import '../widgets/snackbar/custom_snackber_widget.dart';
 

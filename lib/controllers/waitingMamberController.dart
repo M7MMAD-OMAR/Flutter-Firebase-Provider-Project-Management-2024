@@ -14,7 +14,7 @@ import '../models/team/teamModel.dart';
 import '../models/team/team_members_model.dart';
 import '../models/user/user_model.dart';
 import '../services/auth_service.dart';
-import '../services/notification_service.dart';
+import '../services/notifications/notification_service.dart';
 
 class WaitingMamberController extends TopController {
   //جبلي هل الشخص يلي لسع مو قبلان دعوة الانضمام

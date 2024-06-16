@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
-// ignore: must_be_immutable
 class LabelledFormInput extends StatelessWidget {
   final AutovalidateMode? autovalidateMode;
   final void Function(String)? onChanged;

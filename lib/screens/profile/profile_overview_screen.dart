@@ -13,8 +13,8 @@ import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/services/notification_service.dart';
-import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons_widget.dart';
+import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
+import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/progress_card_close_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/container_label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';

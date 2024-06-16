@@ -8,7 +8,7 @@ import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects
 String tabSpace = "\t\t\t";
 
 final List<Widget> dashBoardScreens = [
-  Dashboard(),
+  DashboardScreen(),
   ProjectScreen(),
   CategoryScreen(),
   Invitions()
@@ -24,4 +24,3 @@ List<Color> progressCardGradientList = [
 ];
 
 
-// the Developer karem saad 

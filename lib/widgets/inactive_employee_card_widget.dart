@@ -6,7 +6,7 @@ import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 // ignore: unused_import
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 
-import '../Screens/Projects/add_user_to_team_screen.dart';
+import '../screens/Projects/add_user_to_team_screen.dart';
 import 'dummy/profile_dummy_widget.dart';
 
 class InactiveEmployeeCard extends StatelessWidget {
@@ -68,4 +68,3 @@ class InactiveEmployeeCard extends StatelessWidget {
     );
   }
 }
-// the Developer karem saad (KaremSD)

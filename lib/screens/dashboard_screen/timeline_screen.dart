@@ -10,7 +10,7 @@ import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/bottom_navigation_item_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_icon_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_sheet_widget.dart';
-import '../Profile/profile_overview_screen.dart';
+import '../profile/profile_overview_screen.dart';
 import '../Projects/add_team_to_create_project_screen.dart';
 import '../Projects/add_user_to_team_screen.dart';
 import 'dashboard_screen.dart';
@@ -32,7 +32,7 @@ class _TimelineState extends State<Timeline> {
       Get.put(DashboardMeetingDetailsScreenController());
         ProfileOverviewController profileOverviewController =
       Get.put(ProfileOverviewController(), permanent: true);
-  StatelessWidget currentScreen = Dashboard();
+  StatelessWidget currentScreen = DashboardScreen();
 
   final PageStorageBucket bucket = PageStorageBucket();
   @override

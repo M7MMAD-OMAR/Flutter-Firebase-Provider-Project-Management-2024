@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 
 import '../../constants/app_constans.dart';

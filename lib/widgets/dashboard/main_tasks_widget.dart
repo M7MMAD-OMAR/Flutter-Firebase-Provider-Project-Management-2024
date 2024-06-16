@@ -39,7 +39,6 @@ enum TaskSortOption {
   // Add more sorting options if needed
 }
 
-// ignore: must_be_immutable
 class MainTaskScreen extends StatefulWidget {
   MainTaskScreen({Key? key, required this.projectId}) : super(key: key);
 

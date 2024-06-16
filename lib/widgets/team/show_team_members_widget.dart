@@ -6,7 +6,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/Screens/Projects/search_for_members_screen.dart';
+import 'package:project_management_muhmad_omar/screens/Projects/search_for_members_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
@@ -23,7 +23,7 @@ import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_wi
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../../models/team/team_members_model.dart';
-import '../../widgets/Buttons/primary_buttons_widget.dart';
+import '../../widgets/buttons/primary_buttons_widget.dart';
 import '../../widgets/navigation/app_header_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
 

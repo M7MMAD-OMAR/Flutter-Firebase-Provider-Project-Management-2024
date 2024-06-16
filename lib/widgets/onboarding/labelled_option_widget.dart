@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
-// ignore: must_be_immutable
 class LabelledOption extends StatelessWidget {
   final String label;
   final String? link;

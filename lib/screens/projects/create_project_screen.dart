@@ -34,7 +34,6 @@ import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calen
 
 import 'add_team_to_create_project_screen.dart';
 
-// ignore: must_be_immutable
 class CreateProject extends StatefulWidget {
   CreateProject({
     required this.managerModel,

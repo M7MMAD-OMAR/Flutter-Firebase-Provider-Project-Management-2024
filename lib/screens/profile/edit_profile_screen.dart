@@ -12,7 +12,7 @@ import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_progress_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dashboard/dashboard_meeting_details_widget.dart';

@@ -1,11 +1,9 @@
 import 'dart:async';
 
-// import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
-
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class BarChartSample1 extends StatefulWidget {
@@ -20,8 +18,10 @@ class BarChartSample1 extends StatefulWidget {
 
   BarChartSample1(
       {super.key, required this.percentages, required this.message});
+
   final List<double> percentages;
   final String message;
+
   @override
   State<StatefulWidget> createState() => BarChartSample1State();
 }
@@ -73,13 +73,9 @@ class BarChartSample1State extends State<BarChartSample1> {
                 ],
               ),
               AppSpaces.verticalSpace10,
-              Expanded(
+              const Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                  // child: BarChart(
-                  //   isPlaying ? randomData() : mainBarData(),
-                  //   swapAnimationDuration: animDuration,
-                  // ),
+                  padding: EdgeInsets.symmetric(horizontal: 2.0),
                 ),
               ),
               AppSpaces.verticalSpace10,
@@ -98,225 +94,6 @@ class BarChartSample1State extends State<BarChartSample1> {
     );
   }
 
-  // BarChartGroupData makeGroupData(
-  //   int x,
-  //   double y, {
-  //   bool isTouched = false,
-  //   Color barColor = mainColor,
-  //   double width = 6,
-  //   List<int> showTooltips = const [],
-  // }) {
-  //   return BarChartGroupData(
-  //     x: x,
-  //     barRods: [
-  //       BarChartRodData(
-  //         toY: isTouched ? y + 1 : y,
-  //         color: isTouched ? Colors.yellow : barColor,
-  //         width: width,
-  //         backDrawRodData: BackgroundBarChartRodData(
-  //           show: true,
-  //           toY: 100, // Set the toY value of the project bar to 100
-  //           color: HexColor.fromHex("3A3D49"),
-  //         ),
-  //       ),
-  //     ],
-  //     showingTooltipIndicators: showTooltips,
-  //   );
-  // }
-  //
-  // List<BarChartGroupData> showingGroups() {
-  //   return List.generate(widget.percentages.length, (i) {
-  //     return makeGroupData(i, widget.percentages[i],
-  //         isTouched: i == touchedIndex);
-  //   });
-  // }
-
-  // BarChartData mainBarData() {
-  //   final DateTime now = DateTime.now();
-  //   final DateTime today = DateTime(now.day);
-  //   return BarChartData(
-  //     barTouchData: BarTouchData(
-  //       touchTooltipData: BarTouchTooltipData(
-  //           tooltipBgColor: Colors.blueGrey,
-  //           getTooltipItem: (group, groupIndex, rod, rodIndex) {
-  //             String weekDay;
-  //             switch (group.x.toInt()) {
-  //               case 0:
-  //                 weekDay = DateFormat('EEEE/d/M')
-  //                     .format(DateTime.now().subtract(const Duration(days: 6)));
-  //                 break;
-  //               case 1:
-  //                 weekDay = DateFormat('EEEE/d/M')
-  //                     .format(DateTime.now().subtract(const Duration(days: 5)));
-  //                 break;
-  //               case 2:
-  //                 weekDay = DateFormat('EEEE/d/M')
-  //                     .format(DateTime.now().subtract(const Duration(days: 4)));
-  //                 break;
-  //               case 3:
-  //                 weekDay = DateFormat('EEEE/d/M')
-  //                     .format(DateTime.now().subtract(const Duration(days: 3)));
-  //                 break;
-  //               case 4:
-  //                 weekDay = DateFormat('EEEE/d/M')
-  //                     .format(DateTime.now().subtract(const Duration(days: 2)));
-  //
-  //                 break;
-  //               case 5:
-  //                 weekDay = DateFormat('EEEE/d/M')
-  //                     .format(DateTime.now().subtract(const Duration(days: 1)));
-  //                 break;
-  //               case 6:
-  //                 weekDay = DateFormat('EEEE d/M').format(DateTime.now());
-  //
-  //                 break;
-  //               default:
-  //                 throw Error();
-  //             }
-  //             return BarTooltipItem(
-  //               '$weekDay\n',
-  //               const TextStyle(
-  //                 color: Colors.white,
-  //                 fontWeight: FontWeight.bold,
-  //                 fontSize: 18,
-  //               ),
-  //               children: <TextSpan>[
-  //                 // the Developer karem saad (KaremSD)
-  //                 TextSpan(
-  //                   text: (rod.toY - 1).toString(),
-  //                   style: TextStyle(
-  //                     color: Colors.yellow,
-  //                     fontSize: Utils.screenWidth * 0.03,
-  //                     fontWeight: FontWeight.w500,
-  //                   ),
-  //                 ),
-  //               ],
-  //             );
-  //           }),
-  //       touchCallback: (
-  //         event,
-  //         barTouchResponse,
-  //       ) {
-  //         setState(() {
-  //           if (barTouchResponse?.spot != null &&
-  //               event is! PointerUpEvent &&
-  //               event is! PointerExitEvent) {
-  //             touchedIndex = barTouchResponse?.spot?.touchedBarGroupIndex ?? 0;
-  //           } else {
-  //             touchedIndex = -1;
-  //           }
-  //         });
-  //       },
-  //     ),
-  //     gridData: FlGridData(
-  //       show: false,
-  //     ),
-  //     titlesData: FlTitlesData(
-  //       show: false,
-  //       topTitles: AxisTitles(
-  //         sideTitles: SideTitles(
-  //           showTitles: false,
-  //         ),
-  //       ),
-  //       bottomTitles: AxisTitles(
-  //         sideTitles: SideTitles(
-  //           showTitles: false,
-  //           getTitlesWidget: (double value, TitleMeta meta) {
-  //             switch (value.toInt()) {
-  //               case 0:
-  //                 return _BarChartTitle(DateFormat('E').format(
-  //                     DateTime.now().subtract(const Duration(days: 6))));
-  //               case 1:
-  //                 return _BarChartTitle(DateFormat('E').format(
-  //                     DateTime.now().subtract(const Duration(days: 5))));
-  //               case 2:
-  //                 return _BarChartTitle(DateFormat('E').format(
-  //                     DateTime.now().subtract(const Duration(days: 4))));
-  //               case 3:
-  //                 return _BarChartTitle(DateFormat('E').format(
-  //                     DateTime.now().subtract(const Duration(days: 3))));
-  //               case 4:
-  //                 return _BarChartTitle(DateFormat('E').format(
-  //                     DateTime.now().subtract(const Duration(days: 2))));
-  //               case 5:
-  //                 return _BarChartTitle(DateFormat('E').format(
-  //                     DateTime.now().subtract(const Duration(days: 1))));
-  //               case 6:
-  //                 return _BarChartTitle(DateFormat('E').format(DateTime.now()));
-  //               default:
-  //                 return const _BarChartTitle('');
-  //             }
-  //           },
-  //         ),
-  //       ),
-  //       leftTitles: AxisTitles(
-  //           sideTitles: SideTitles(
-  //         showTitles: false,
-  //       )),
-  //     ),
-  //     borderData: FlBorderData(
-  //       show: false,
-  //     ),
-  //     barGroups: showingGroups(),
-  //   );
-  // }
-
-  // BarChartData randomData() {
-  //   return BarChartData(
-  //     gridData: FlGridData(
-  //       show: false,
-  //     ),
-  //     barTouchData: BarTouchData(
-  //       enabled: false,
-  //     ),
-  //     titlesData: FlTitlesData(
-  //       show: false,
-  //       topTitles: AxisTitles(
-  //         sideTitles: SideTitles(
-  //           showTitles: false,
-  //         ),
-  //       ),
-  //       bottomTitles: AxisTitles(
-  //         sideTitles: SideTitles(
-  //           showTitles: false,
-  //           getTitlesWidget: (double value, TitleMeta meta) {
-  //             switch (value.toInt()) {
-  //               case 0:
-  //                 return const _BarChartTitle('M');
-  //               case 1:
-  //                 return const _BarChartTitle('T');
-  //               case 2:
-  //                 return const _BarChartTitle('W');
-  //               case 3:
-  //                 return const _BarChartTitle('T');
-  //               case 4:
-  //                 return const _BarChartTitle('F');
-  //               case 5:
-  //                 return const _BarChartTitle('S');
-  //               case 6:
-  //                 return const _BarChartTitle('S');
-  //               default:
-  //                 return const _BarChartTitle('');
-  //             }
-  //           },
-  //         ),
-  //       ),
-  //       leftTitles: AxisTitles(
-  //           sideTitles: SideTitles(
-  //         showTitles: false,
-  //       )),
-  //     ),
-  //     borderData: FlBorderData(
-  //       show: false,
-  //     ),
-  //     barGroups: List.generate(widget.percentages.length, (i) {
-  //       return makeGroupData(i, Random().nextInt(15).toDouble() + 6,
-  //           barColor: widget.availableColors[
-  //               Random().nextInt(widget.availableColors.length)]);
-  //     }),
-  //   );
-  // }
-
   Future<dynamic> refreshState() async {
     setState(() {});
     await Future<dynamic>.delayed(
@@ -329,6 +106,7 @@ class BarChartSample1State extends State<BarChartSample1> {
 
 class _BarChartTitle extends StatelessWidget {
   final String title;
+
   const _BarChartTitle(
     this.title,
   );

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-import '../constants/back_constants.dart';
+import '../../constants/back_constants.dart';
 import 'notification_service.dart';
 
 class NotificationController {

@@ -5,7 +5,6 @@ import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 
 import '../dummy/profile_dummy_widget.dart';
 
-// ignore: must_be_immutable
 class InactiveEmployeeCardSubTask extends StatelessWidget {
   final String userName;
   final String userImage;
