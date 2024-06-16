@@ -6,7 +6,6 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -16,12 +15,11 @@ import 'package:project_management_muhmad_omar/screens/auth_screen/verify_email_
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
-import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
-
-import 'package:project_management_muhmad_omar/widgets/dashboard/dashboard_meeting_details_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with _label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/back_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dashboard/dashboard_meeting_details_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 
 class SignUp extends StatefulWidget {
@@ -399,7 +397,7 @@ class _SignUpState extends State<SignUp> {
                                               AppConstants
                                                   .welcome_in_our_team_Plans_to_do_team_happy_in_you_key
                                                   .tr,
-                                              // "Welcome in our team \n Plans to do team happy in you "
+                                              // "Welcome in our team \n Project Management team happy in you "
                                             ),
                                             Get.to(() =>
                                                 const VerifyEmailAddressScreen())

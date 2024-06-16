@@ -3,15 +3,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
-
-import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+
 import '../../models/task/UserTaskCategory_model.dart';
-import '../Forms/form_input_with _label_widget.dart';
-import '../Snackbar/custom_snackber_widget.dart';
 import '../add_sub_icon_widget.dart';
+import '../forms/form_input_with _label_widget.dart';
+import '../snackbar/custom_snackber_widget.dart';
 import 'icon_selection_widget.dart';
 
 class EditUserCategory extends StatefulWidget {
@@ -37,8 +37,8 @@ class _EditUserCategoryState extends State<EditUserCategory> {
     super.initState();
     color = widget.category.hexColor;
     // Assign icon and name in the initState using constant values if possible
-    icon = IconData(widget.category.iconCodePoint,
-        fontFamily: widget.category.fontfamily);
+    // icon = IconData(widget.category.iconCodePoint,
+    //     fontFamily: widget.category.fontfamily);
     name = widget.category.name!;
     _taskNameController.text = name;
   }

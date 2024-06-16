@@ -3,13 +3,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/models/task/UserTaskCategory_model.dart';
 import 'package:project_management_muhmad_omar/widgets/User/category_tasks_widget_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/User/colured_category_badge_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../controllers/categoryController.dart';
-import '../../controllers/user_task_controller.dart';
-import '../../models/task/UserTaskCategory_model.dart';
 import '../Dashboard/edit_category_widget.dart';
 import 'focused_menu_item_widget.dart';
 
@@ -31,6 +31,7 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
   int first = 0;
   int second = 0;
   double percento = 0;
+
   //Stream _streamZip = StreamZip([]);
 
   @override
@@ -41,7 +42,7 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
     //UserTaskController userTaskController = Get.put(UserTaskController());
   }
 
-  @override 
+  @override
   Widget build(BuildContext context) {
     UserTaskController userTaskController = Get.find();
 
@@ -54,10 +55,11 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
     // ]).asBroadcastStream();
     int iconCodePoint = widget.userTaskCategoryModel.iconCodePoint;
     String? fontFamily = widget.userTaskCategoryModel.fontfamily;
-    Icon icon = Icon(
-      IconData(iconCodePoint, fontFamily: fontFamily),
-      color: Colors.white,
-    );
+
+    // Icon icon = Icon(
+    //   IconData(iconCodePoint, fontFamily: fontFamily),
+    //   color: Colors.white,
+    // );
     return FocusedMenu(
       onClick: () {
         Get.to(() => CategoryTasks(
@@ -84,7 +86,8 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ColouredCategoryBadge(
-                color: widget.userTaskCategoryModel.hexColor, icon: (icon)),
+                color: widget.userTaskCategoryModel.hexColor,
+                icon: const Icon(Icons.home)),
             AppSpaces.verticalSpace20,
             Text(
               widget.userTaskCategoryModel.name!,

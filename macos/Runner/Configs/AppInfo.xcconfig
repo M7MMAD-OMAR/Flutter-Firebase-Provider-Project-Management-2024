@@ -11,4 +11,4 @@ PRODUCT_NAME = mytest
 PRODUCT_BUNDLE_IDENTIFIER = com.asalib.project_management_muhmad_omar
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 com.asalib. All rights reserved.
