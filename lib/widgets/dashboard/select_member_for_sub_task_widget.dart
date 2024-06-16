@@ -29,12 +29,12 @@ class SearchForMembersSubTask extends StatefulWidget {
   final TeamModel? teamModel;
   final Function({required UserModel? userModel}) onSelectedUserChanged;
 
-  SearchForMembersSubTask({
+  const SearchForMembersSubTask({
     required this.userModel,
-    Key? key,
+    super.key,
     this.teamModel,
     required this.onSelectedUserChanged,
-  }) : super(key: key);
+  });
 
   @override
   State<SearchForMembersSubTask> createState() =>
@@ -123,9 +123,9 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                               QueryDocumentSnapshot<
                                                   TeamMemberModel>> list =
                                           snapshotMembers.data!.docs;
-                                      list.forEach((element) {
+                                      for (var element in list) {
                                         listIds.add(element.data().userId);
-                                      });
+                                      }
                                       if (listIds.isEmpty) {
                                         return Column(
                                           mainAxisAlignment:
@@ -175,8 +175,9 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                             List<UserModel> users = [];
                                             if (taskCount > 0) {
                                               if (search.isNotEmpty) {
-                                                snapshotUsers.data!.docs
-                                                    .forEach((element) {
+                                                for (var element
+                                                    in snapshotUsers
+                                                        .data!.docs) {
                                                   UserModel taskModel =
                                                       element.data();
                                                   if (taskModel.userName!
@@ -184,15 +185,16 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                                       .contains(search)) {
                                                     users.add(taskModel);
                                                   }
-                                                });
+                                                }
                                               } else {
-                                                snapshotUsers.data!.docs
-                                                    .forEach((element) {
+                                                for (var element
+                                                    in snapshotUsers
+                                                        .data!.docs) {
                                                   UserModel taskCategoryModel =
                                                       element.data();
 
                                                   users.add(taskCategoryModel);
-                                                });
+                                                }
                                               }
                                               selectedUserNotifier.value ??=
                                                   users.first;
@@ -202,8 +204,9 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                                     selectedUserNotifier,
                                                 builder: (context, value, _) {
                                                   return ListView.separated(
-                                                    padding: EdgeInsets.only(
-                                                        bottom: 20),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            bottom: 20),
                                                     itemBuilder:
                                                         (context, index) {
                                                       return GestureDetector(
@@ -235,7 +238,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                                     },
                                                     separatorBuilder:
                                                         (context, index) {
-                                                      return SizedBox(
+                                                      return const SizedBox(
                                                         height: 10,
                                                       );
                                                     },

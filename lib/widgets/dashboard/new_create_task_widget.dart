@@ -237,21 +237,21 @@ class _NewCreateTaskBottomSheetState extends State<NewCreateTaskBottomSheet> {
   void handleColorChanged(String selectedColor) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      this.color = selectedColor;
+      color = selectedColor;
     });
   }
 
   void handleDueDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      this.startDate = selectedDay;
+      startDate = selectedDay;
     });
   }
 
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      this.dueDate = selectedDay;
+      dueDate = selectedDay;
     });
   }
 

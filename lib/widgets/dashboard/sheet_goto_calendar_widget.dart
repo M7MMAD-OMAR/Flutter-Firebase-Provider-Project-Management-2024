@@ -11,12 +11,12 @@ class SheetGoToCalendarWidget extends StatelessWidget {
   final Color cardBackgroundColor;
   final Color textAccentColor;
   const SheetGoToCalendarWidget({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
     required this.cardBackgroundColor,
     required this.textAccentColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

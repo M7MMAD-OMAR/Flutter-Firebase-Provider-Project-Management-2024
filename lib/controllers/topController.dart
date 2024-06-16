@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:project_management_muhmad_omar/models/tops/TopModel_model.dart';
+import 'package:project_management_muhmad_omar/models/tops/top_model.dart';
 
 import '../utils/back_utils.dart';
 import '../constants/back_constants.dart';

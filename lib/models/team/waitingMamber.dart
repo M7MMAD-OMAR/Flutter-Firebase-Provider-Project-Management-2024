@@ -4,7 +4,7 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
-import '../tops/TopModel_model.dart';
+import '../tops/top_model.dart';
 
 class WaitingMemberModel with TopModel {
   WaitingMemberModel({

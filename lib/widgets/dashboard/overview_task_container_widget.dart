@@ -10,15 +10,15 @@ class OverviewTaskContainer extends StatelessWidget {
   final String numberOfItems;
   final String cardTitle;
   final VoidCallback? onButtonClick;
-  OverviewTaskContainer(
-      {Key? key,
+
+  const OverviewTaskContainer(
+      {super.key,
       required this.imageUrl,
       required this.backgroundColor,
       required this.cardTitle,
       // the Developer karem saad (KaremSD)
       this.onButtonClick,
-      required this.numberOfItems})
-      : super(key: key);
+      required this.numberOfItems});
 
   @override
   Widget build(BuildContext context) {

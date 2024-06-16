@@ -4,32 +4,27 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_main_task_Model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
-import '../../controllers/categoryController.dart';
 import '../../controllers/manger_controller.dart';
 import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
 import '../../controllers/statusController.dart';
 import '../../controllers/userController.dart';
 import '../../models/User/User_model.dart';
-import '../../models/User/User_task_Model.dart';
 import '../../models/statusmodel.dart';
 import '../../models/team/Manger_model.dart';
 import '../../models/team/Project_model.dart';
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../Snackbar/custom_snackber_widget.dart';
-import 'create_main_task_widget.dart';
 import 'create_user_task_widget.dart';
 import 'dashboard_add_icon_widget.dart';
 import 'main_task_widget.dart';
@@ -47,8 +42,10 @@ enum TaskSortOption {
 // ignore: must_be_immutable
 class MainTaskScreen extends StatefulWidget {
   MainTaskScreen({Key? key, required this.projectId}) : super(key: key);
+
   // ProjectModel projectModel;
   String projectId;
+
   @override
   State<MainTaskScreen> createState() => _MainTaskScreenState();
 }

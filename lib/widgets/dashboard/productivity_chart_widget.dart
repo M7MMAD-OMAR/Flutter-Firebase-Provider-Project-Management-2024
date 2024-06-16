@@ -5,8 +5,7 @@ import 'bar_chart_widget.dart';
 
 class ProductivityChart extends StatelessWidget {
   const ProductivityChart(
-      {Key? key, required this.percentages, required this.message})
-      : super(key: key);
+      {super.key, required this.percentages, required this.message});
   final List<double> percentages;
   final String message;
   @override

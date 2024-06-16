@@ -48,7 +48,7 @@ enum TaskStatus {
 class TaskWidget extends StatelessWidget {
   final TaskStatus status;
 
-  const TaskWidget({required this.status, Key? key}) : super(key: key);
+  const TaskWidget({required this.status, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -98,12 +98,12 @@ class TaskWidget extends StatelessWidget {
 }
 
 class SubTaskCard extends StatefulWidget {
-  SubTaskCard({
+  const SubTaskCard({
     required this.task,
     required this.primary,
     required this.onPrimary,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final ProjectSubTaskModel task;
   final Color primary;
   final Color onPrimary;
