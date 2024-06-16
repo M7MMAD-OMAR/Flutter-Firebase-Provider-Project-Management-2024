@@ -4,26 +4,26 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:project_management_muhmad_omar/Screens/Profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
+import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
-
-import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_progress_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dashboard/dashboard_meeting_details_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/forms/form_input_with _label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 
 class EditProfilePage extends StatefulWidget {
   final UserModel? user;
+
   const EditProfilePage({Key? key, required this.user}) : super(key: key);
 
   @override
@@ -47,6 +47,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   final passController = TextEditingController();
   final emailController = TextEditingController();
   final bioController = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -178,8 +179,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 }
                                 if (!pop) {
                                   Navigator.of(context).pop();
-                                  Get.off(
-                                      () => ProfilePage(user: widget.user!));
+                                  Get.off(() =>
+                                      MyProfileScreen(user: widget.user!));
                                 }
                                 if (changes) {
                                   CustomSnackBar.showSuccess(
@@ -195,8 +196,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               CustomSnackBar.showError(e.toString());
                             }
                           },
-                          width: Utils.screenWidth *
-                              0.2, // Adjust the percentage as needed
+                          width: Utils.screenWidth * 0.2,
+                          // Adjust the percentage as needed
                           height: Utils.screenHeight * 0.1,
                           label: AppConstants.save_key.tr,
                           textStyle: GoogleFonts.lato(
@@ -393,6 +394,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   }
 
   String? selectedImagePath;
+
   void _showImagePickerDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -508,5 +510,3 @@ class _EditProfilePageState extends State<EditProfilePage> {
 //     }
 //   }
 // }
-
-

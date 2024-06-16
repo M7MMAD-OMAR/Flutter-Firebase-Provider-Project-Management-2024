@@ -4,30 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/languageController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
+import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_buttons_widget.dart';
-
-import 'package:project_management_muhmad_omar/constants/values.dart';
-// import 'package:flutter_glow/flutter_glow.dart';
-import 'package:project_management_muhmad_omar/constants/app_constans.dart';
-import 'package:project_management_muhmad_omar/widgets/Buttons/progress_card_close_button_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/buttons/progress_card_close_button_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/container_label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with _label_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/Profile/box_widget.dart';
-import '../../widgets/Profile/text_outlined_button_widget.dart';
-import '../../widgets/Snackbar/custom_snackber_widget.dart';
-import '../../widgets/container_label_widget.dart';
-import '../../widgets/dummy/profile_dummy_widget.dart';
-import 'my_profile_screen.dart';
+import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/forms/form_input_with _label_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/profile/box_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/profile/text_outlined_button_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 class ProfileOverview extends StatefulWidget {
-  ProfileOverview({Key? key, required this.isSelected}) : super(key: key);
+  ProfileOverview({super.key, required this.isSelected});
   late bool isSelected;
 
   @override
@@ -35,13 +33,6 @@ class ProfileOverview extends StatefulWidget {
 }
 
 class _ProfileOverviewState extends State<ProfileOverview> {
-  @override
-  void initState() {
-    setvalue();
-    // TODO: implement initState
-    super.initState();
-  }
-
   ProfileOverviewController profileOverviewController =
       Get.put(ProfileOverviewController(), permanent: true);
 
@@ -111,8 +102,8 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                               width: 150,
                               content: AppConstants.view_profile_key.tr,
                               onPressed: () {
-                                Get.to(() =>
-                                    ProfilePage(user: snapshot.data!.data()!));
+                                Get.to(() => MyProfileScreen(
+                                    user: snapshot.data!.data()!));
                               },
                             ),
                           ),
@@ -260,31 +251,31 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                         0.15, // Adjust the percentage as needed
 
                     decoration: BoxDecoration(
-                            color: HexColor.fromHex("FF968E"),
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Center(
-                          child: Text(AppConstants.log_out_key.tr,
-                              style: GoogleFonts.lato(
-                                  color: Colors.white,
-                                  fontSize: Utils.screenWidth * 0.07,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
+                        color: HexColor.fromHex("FF968E"),
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Center(
+                      child: Text(AppConstants.log_out_key.tr,
+                          style: GoogleFonts.lato(
+                              color: Colors.white,
+                              fontSize: Utils.screenWidth * 0.07,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
-          Positioned(
-              top: 50,
-              left: 20,
-              child: Transform.scale(
-                  scale: 1.2,
-                  child: ProgressCardCloseButton(onPressed: () {
-                    Get.back();
-                  })))
-        ]));
+        ),
+      ),
+      Positioned(
+          top: 50,
+          left: 20,
+          child: Transform.scale(
+              scale: 1.2,
+              child: ProgressCardCloseButton(onPressed: () {
+                Get.back();
+              })))
+    ]));
   }
 }
 
