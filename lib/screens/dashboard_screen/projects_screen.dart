@@ -16,17 +16,17 @@ import 'package:project_management_muhmad_omar/controllers/projectController.dar
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
-import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
-import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
-import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/main_tasks_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Projects/project_card_horizontal_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/focused_menu_item_widget.dart';
 
 import '../../widgets/Projects/project_card_vertical_widget.dart';

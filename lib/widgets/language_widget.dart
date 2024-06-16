@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../constants/app_constans.dart';
 import '../controllers/languageController.dart';
-import '../models/lang/lang.dart';
+import '../models/lang/lang_model.dart';
 
 class LanguageWidget extends StatelessWidget {
   final LanguageModel languageModel;

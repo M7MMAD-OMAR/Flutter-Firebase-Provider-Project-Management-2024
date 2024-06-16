@@ -9,10 +9,10 @@ import 'package:project_management_muhmad_omar/widgets/calender/widgets/task_wid
 import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
 import '../../controllers/user_task_controller.dart';
-import '../../models/team/Project_main_task_Model.dart';
-import '../../models/team/Project_model.dart';
-import '../../models/team/Project_sub_task_Model.dart';
-import '../../models/user/User_task_Model.dart';
+import '../../models/team/project_main_task_model.dart';
+import '../../models/team/project_model.dart';
+import '../../models/team/project_sub_task_model.dart';
+import '../../models/user/user_task_Model.dart';
 import '../Navigation/app_header_widget.dart';
 import 'core/res/color.dart';
 

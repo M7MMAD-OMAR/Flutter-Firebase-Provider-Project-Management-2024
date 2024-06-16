@@ -7,17 +7,17 @@ import 'package:project_management_muhmad_omar/controllers/projectController.dar
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
-import 'package:project_management_muhmad_omar/models/team/waitingSubTasksModel.dart';
+import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';
-import '../models/team/Project_model.dart';
-import '../models/team/Project_sub_task_Model.dart';
+import '../models/team/project_model.dart';
+import '../models/team/project_sub_task_model.dart';
 import '../models/user/user_model.dart';
 import '../services/notification_service.dart';
 import '../services/types_services.dart';
-import '../widgets/Snackbar/custom_snackber_widget.dart';
+import '../widgets/snackbar/custom_snackber_widget.dart';
 import 'manger_controller.dart';
 
 class WatingSubTasksController extends TopController {

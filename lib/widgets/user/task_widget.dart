@@ -13,11 +13,11 @@ import 'package:project_management_muhmad_omar/widgets/user/tasks_tasks_widget.d
 
 import '../../constants/back_constants.dart';
 import '../../controllers/topController.dart';
-import '../../models/task/UserTaskCategory_model.dart';
-import '../../models/user/User_task_Model.dart';
+import '../../models/task/user_task_category_model.dart';
+import '../../models/user/user_task_Model.dart';
 import '../../services/collections_refrences.dart';
 import '../Dashboard/create_user_task_widget.dart';
-import '../Snackbar/custom_snackber_widget.dart';
+import '../snackbar/custom_snackber_widget.dart';
 import 'focused_menu_item_widget.dart';
 
 enum TaskStatus { notDone, inProgress, done, notStarted }

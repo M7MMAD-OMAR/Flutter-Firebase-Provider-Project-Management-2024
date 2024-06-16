@@ -5,13 +5,13 @@ import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
+import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 
 import '../constants/back_constants.dart';
-import '../models/team/TeamMembers_model.dart';
-import '../models/team/Team_model.dart';
+import '../models/team/team_members_model.dart';
+import '../models/team/team_model.dart';
 import '../models/user/user_model.dart';
 import '../services/auth_service.dart';
 import '../services/notification_service.dart';

@@ -6,16 +6,16 @@ import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/app_constans.dart';
 import '../constants/back_constants.dart';
-import '../models/team/Project_main_task_Model.dart';
-import '../models/team/Project_model.dart';
-import '../models/team/Project_sub_task_Model.dart';
-import '../widgets/Snackbar/custom_snackber_widget.dart';
+import '../models/team/project_main_task_model.dart';
+import '../models/team/project_model.dart';
+import '../models/team/project_sub_task_model.dart';
+import '../widgets/snackbar/custom_snackber_widget.dart';
 import 'taskController.dart';
 
 class ProjectMainTaskController extends ProjectAndTaskController {

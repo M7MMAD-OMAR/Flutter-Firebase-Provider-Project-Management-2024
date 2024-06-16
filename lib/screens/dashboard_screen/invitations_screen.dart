@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../../controllers/projectController.dart';
-import '../../models/team/Project_model.dart';
+import '../../models/team/project_model.dart';
 import '../../services/auth_service.dart';
 
 class InvitationScreenController extends GetxController {

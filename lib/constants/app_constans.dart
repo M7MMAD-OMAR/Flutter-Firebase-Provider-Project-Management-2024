@@ -1,4 +1,4 @@
-import '../models/lang/lang.dart';
+import '../models/lang/lang_model.dart';
 
 class AppConstants {
   static const String countryCode = 'country_code';

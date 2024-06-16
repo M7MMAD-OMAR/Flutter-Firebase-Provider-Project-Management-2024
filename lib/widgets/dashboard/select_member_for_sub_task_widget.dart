@@ -11,7 +11,7 @@ import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../../models/team/TeamMembers_model.dart';
+import '../../models/team/team_members_model.dart';
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../Buttons/primary_progress_button_widget.dart';
 import '../user/employee_card_sub_task_widget.dart';

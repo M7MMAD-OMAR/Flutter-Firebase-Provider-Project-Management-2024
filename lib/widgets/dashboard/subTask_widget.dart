@@ -10,8 +10,8 @@ import 'package:project_management_muhmad_omar/controllers/project_sub_task_cont
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
-import 'package:project_management_muhmad_omar/models/team/Project_sub_task_Model.dart';
-import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/create_sub_task_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
@@ -24,16 +24,16 @@ import '../../controllers/teamController.dart';
 import '../../controllers/topController.dart';
 import '../../controllers/userController.dart';
 import '../../controllers/waitingSubTasks.dart';
-import '../../models/team/Manger_model.dart';
-import '../../models/team/Project_main_task_Model.dart';
-import '../../models/team/Project_model.dart';
-import '../../models/team/Team_model.dart';
-import '../../models/team/waitingSubTasksModel.dart';
+import '../../models/team/manger_model.dart';
+import '../../models/team/project_main_task_model.dart';
+import '../../models/team/project_model.dart';
+import '../../models/team/team_model.dart';
+import '../../models/team/waiting_sub_tasks_model.dart';
 import '../../models/user/user_model.dart';
 import '../../services/collections_refrences.dart';
 import '../../services/notification_service.dart';
 import '../../services/types_services.dart';
-import '../Snackbar/custom_snackber_widget.dart';
+import '../snackbar/custom_snackber_widget.dart';
 import '../user/focused_menu_item_widget.dart';
 
 enum TaskStatus {

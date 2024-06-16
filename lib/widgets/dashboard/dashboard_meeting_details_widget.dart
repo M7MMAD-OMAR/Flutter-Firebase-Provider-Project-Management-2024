@@ -19,21 +19,21 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
-import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
-import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
-import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
+import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
-import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_selectable_container_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../../Screens/Projects/add_user_to_team_screen.dart';
 import '../../services/auth_service.dart';
 import '../Buttons/primary_buttons_widget.dart';
-import '../Forms/form_input_with _label_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
+import '../forms/form_input_with _label_widget.dart';
 import 'in_bottomsheet_subtitle_widget.dart';
 
 class DashboardMeetingDetails extends StatefulWidget {

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/app_constans.dart';
-import '../models/lang/lang.dart';
+import '../models/lang/lang_model.dart';
 
 class LocalizationController extends GetxController implements GetxService {
   final SharedPreferences sharedPreferences;

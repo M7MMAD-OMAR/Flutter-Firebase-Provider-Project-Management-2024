@@ -12,16 +12,16 @@ import 'package:project_management_muhmad_omar/controllers/team_member_controlle
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
 import 'package:project_management_muhmad_omar/controllers/waitingSubTasks.dart';
-import 'package:project_management_muhmad_omar/models/team/Project_main_task_Model.dart';
-import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
-import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
-import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
-import 'package:project_management_muhmad_omar/models/team/waitingSubTasksModel.dart';
+import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
+import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-import '../../models/team/Project_model.dart';
+import '../../models/team/project_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Buttons/primary_tab_buttons_widget.dart';
 import '../../widgets/Navigation/app_header_widget.dart';

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 
 import '../Screens/Projects/add_team_to_create_project_screen.dart';

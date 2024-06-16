@@ -4,12 +4,12 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
-import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 
 import '../constants/back_constants.dart';
-import '../models/team/Project_model.dart';
-import '../models/team/Team_model.dart';
+import '../models/team/project_model.dart';
+import '../models/team/team_model.dart';
 import '../models/tops/top_model.dart';
 import '../services/collections_refrences.dart';
 //import 'package:rxdart/rxdart.dart';

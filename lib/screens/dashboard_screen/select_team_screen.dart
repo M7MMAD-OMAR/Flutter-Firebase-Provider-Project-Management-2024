@@ -6,14 +6,14 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
-import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/active_team_cardK_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../../models/team/Manger_model.dart';
+import '../../models/team/manger_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';

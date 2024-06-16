@@ -12,7 +12,7 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/subTasks_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
@@ -21,12 +21,12 @@ import '../../controllers/project_main_task_controller.dart';
 import '../../controllers/statusController.dart';
 import '../../controllers/topController.dart';
 import '../../models/status_model.dart';
-import '../../models/team/Project_main_task_Model.dart';
-import '../../models/team/Project_model.dart';
+import '../../models/team/project_main_task_model.dart';
+import '../../models/team/project_model.dart';
 import '../../models/user/user_model.dart';
 import '../../services/auth_service.dart';
 import '../../services/collections_refrences.dart';
-import '../Snackbar/custom_snackber_widget.dart';
+import '../snackbar/custom_snackber_widget.dart';
 import '../user/focused_menu_item_widget.dart';
 import 'create_user_task_widget.dart';
 

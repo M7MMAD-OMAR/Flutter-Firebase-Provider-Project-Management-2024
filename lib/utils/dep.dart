@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/app_constans.dart';
 import '../controllers/languageController.dart';
-import '../models/lang/lang.dart';
+import '../models/lang/lang_model.dart';
 
 Future<Map<String, Map<String, String>>> init() async {
   final sharedPreference = await SharedPreferences.getInstance();

@@ -4,7 +4,7 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
-import '../team/Task_model.dart';
+import '../team/task_model.dart';
 
 //الكلاس الخاصة بالمهمة الخاصة بالمستخدم
 class UserTaskModel extends TaskClass {

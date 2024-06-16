@@ -9,15 +9,13 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
-
-import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
-
 import 'package:project_management_muhmad_omar/widgets/Navigation/back_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Shapes/background_hexagon_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 class VerifyEmailAddressScreen extends StatefulWidget {
   const VerifyEmailAddressScreen({super.key});
