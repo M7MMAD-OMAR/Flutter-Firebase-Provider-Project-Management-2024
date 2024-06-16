@@ -9,7 +9,7 @@ import 'package:project_management_muhmad_omar/controllers/user_task_controller.
 import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/widgets/Navigation/app_header_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/category_card_vertical_widget.dart';
 
 enum CategorySortOption {

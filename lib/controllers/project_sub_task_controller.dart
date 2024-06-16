@@ -18,7 +18,7 @@ import '../constants/app_constans.dart';
 import '../constants/back_constants.dart';
 import '../models/status_model.dart';
 import '../models/team/project_model.dart';
-import '../models/team/team_model.dart';
+import '../models/team/teamModel.dart';
 import '../models/user/user_model.dart';
 import '../services/auth_service.dart';
 import '../services/notification_service.dart';

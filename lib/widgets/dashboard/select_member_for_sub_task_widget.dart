@@ -6,22 +6,15 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 
-import '../../models/team/team_members_model.dart';
-import '../../widgets/Navigation/app_header_widget.dart';
 import '../Buttons/primary_progress_button_widget.dart';
 import '../user/employee_card_sub_task_widget.dart';
-
-// class Search extends GetxController {
-//   final selectedUser = Rx<UserModel?>(null);
-//   updateSelectedUser(UserModel user) {
-//     selectedUser.value = user;
-//   }
-// }
 
 class SearchForMembersSubTask extends StatefulWidget {
   final UserModel? userModel;
@@ -46,14 +39,11 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
   final searchController = TextEditingController();
   final ValueNotifier<UserModel?> selectedUserNotifier =
       ValueNotifier<UserModel?>(null);
-  // Search s = Get.put(Search());
 
   @override
   void initState() {
     if (widget.userModel != null) {
       selectedUserNotifier.value = widget.userModel;
-
-      // s.selectedUser.value = widget.userModel;
     }
     super.initState();
   }
@@ -130,17 +120,15 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: [
-                                            //
                                             Icon(
                                               Icons.search_off,
-                                              //   Icons.heart_broken_outlined,
                                               color: Colors.red,
                                               size: Utils.screenWidth * 0.27,
                                             ),
                                             Padding(
                                               padding: EdgeInsets.symmetric(
-                                                horizontal: Utils.screenWidth *
-                                                    0.1, // Adjust the percentage as needed
+                                                horizontal:
+                                                    Utils.screenWidth * 0.1,
                                                 vertical:
                                                     Utils.screenHeight * 0.03,
                                               ),
@@ -261,18 +249,15 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              //
                                               Icon(
                                                 Icons.search_off,
-                                                //   Icons.heart_broken_outlined,
                                                 color: Colors.red,
                                                 size: Utils.screenWidth * 0.27,
                                               ),
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                  horizontal: Utils
-                                                          .screenWidth *
-                                                      0.1, // Adjust the percentage as needed
+                                                  horizontal:
+                                                      Utils.screenWidth * 0.1,
                                                   vertical:
                                                       Utils.screenHeight * 0.05,
                                                 ),
@@ -311,17 +296,14 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
-                                        //
                                         Icon(
                                           Icons.search_off,
-                                          //   Icons.heart_broken_outlined,
                                           color: Colors.red,
                                           size: Utils.screenWidth * 0.27,
                                         ),
                                         Padding(
                                           padding: EdgeInsets.symmetric(
-                                            horizontal: Utils.screenWidth *
-                                                0.1, // Adjust the percentage as needed
+                                            horizontal: Utils.screenWidth * 0.1,
                                             vertical: Utils.screenHeight * 0.05,
                                           ),
                                           child: Center(

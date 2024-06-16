@@ -1,11 +1,9 @@
-// ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
-
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
 // ignore: must_be_immutable
@@ -21,8 +19,7 @@ class LabelledFormInput extends StatelessWidget {
   bool obscureText;
   final bool readOnly;
   final TextEditingController controller;
-  LabelledFormInput(
-      {Key? key,
+  LabelledFormInput({super.key,
       required this.autovalidateMode,
       this.onClear,
       this.onChanged,
@@ -33,8 +30,7 @@ class LabelledFormInput extends StatelessWidget {
       required this.controller,
       this.obscureText = false,
       required this.label,
-      this.value})
-      : super(key: key);
+      this.value});
 
   @override
   Widget build(BuildContext context) {

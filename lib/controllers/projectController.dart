@@ -7,7 +7,7 @@ import 'package:project_management_muhmad_omar/controllers/statusController.dart
 import 'package:project_management_muhmad_omar/controllers/taskController.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
-import 'package:project_management_muhmad_omar/models/team/team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 
 import '../constants/back_constants.dart';

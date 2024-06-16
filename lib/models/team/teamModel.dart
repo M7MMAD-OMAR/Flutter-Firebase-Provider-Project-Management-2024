@@ -7,26 +7,16 @@ import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import '../tops/VarTopModel.dart';
 
 class TeamModel extends VarTopModel {
-  //الصورة سوف تكون اختيارية حيث يمكن للمستخدم اختيار صورة للبروفايل الخاص به وفي حال لم يختار سوف  يوضع له صورة افتراضية
   late String imageUrl;
-  //forgin kay from MangerModel
-  // الايدي الخاص بقائد الفريق  لايمكن ان يكون فارغ لانه لايوجد قائد بدون فريق
+
   late String managerId;
 
   TeamModel({
-    //الاي دي الخاص بالفريق
-    //primary key
     required String idParameter,
-    //الاي دي الخاص بمدير الفريق
-    //foreign key
     required String managerIdParameter,
-    //اسم الفريق
     required String nameParameter,
-    //صورة الفريق
     required String imageUrlParameter,
-    //تاريخ إنشاء الفريق
     required DateTime createdAtParameter,
-    //تاريخ تحديث معلومات الفريق
     required DateTime updatedAtParameter,
   }) {
     setId = idParameter;
@@ -36,18 +26,13 @@ class TeamModel extends VarTopModel {
     setCreatedAt = createdAtParameter;
     setUpdatedAt = updatedAtParameter;
   }
+
   TeamModel.firestoreConstructor({
     required String idParameter,
-    //الاي دي الخاص بمدير الفريق
-    //foreign key
     required String mangerIdParameter,
-    //اسم الفريق
     required String nameParameter,
-    //صورة الفريق
     required String imageUrlParameter,
-    //تاريخ إنشاء الفريق
     required DateTime createdAtParameter,
-    //تاريخ تحديث معلومات الفريق
     required DateTime updatedAtParameter,
   }) {
     id = idParameter;
@@ -59,13 +44,11 @@ class TeamModel extends VarTopModel {
   }
 
   set setmangerId(String mangerId) {
-    //وهون مجرد ماكان موجود معناها الايدي محقق للشروط
     managerId = mangerId;
   }
 
   set setImageUrl(String imageUrl) {
     if (imageUrl.isEmpty) {
-      //لا يمكن أن يكون رابط صورة الفريق فارغاً
       throw Exception(AppConstants.team_image_empty_error_key.tr);
     }
     this.imageUrl = imageUrl;
@@ -73,7 +56,6 @@ class TeamModel extends VarTopModel {
 
   @override
   set setId(String id) {
-    //اي دي  الدوكيومنت الخاص بالفريق لا يمكن أن يكون فارغاً
     if (id.isEmpty) {
       throw Exception(AppConstants.team_id_empty_error_key.tr);
     }
@@ -82,30 +64,25 @@ class TeamModel extends VarTopModel {
 
   @override
   set setName(String name) {
-    //هذه الخاصية تستخدم لوضع قيمة لاسم الفئة وضمان ان هذه القيمة يتم ادخالها حسب الشروط الموضوعة في التطبيق
-
     if (name.isEmpty) {
-      //اسم الفريق لا يمكن أن يكون فارغاً
       throw Exception(AppConstants.team_name_empty_error_key.tr);
     }
     if (name.length < 3) {
-      //لايمكن ان يكون اسم الفريق مؤلفاً من اقل من ثلاث محارف
       throw Exception(AppConstants.team_name_min_length_error_key.tr);
     }
-    //في حال مرروره على جميع الشروط وعدم رمي اكسيبشن فذلك يعني تحقيقه للشروط المطلوبة وعندها سيتم وضع القيمة
+
     this.name = name;
   }
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    //يأخذ الوقت ويجري عليه التعديلات الخاصة بوقت الفايربيز لتجري عمليات الوقت عليه بدون حدوث
     createdAtParameter = firebaseTime(createdAtParameter);
     DateTime now = firebaseTime(DateTime.now());
-    //تاريخ إضافة  الدوكيومنت الخاص بالفريق لا يمكن أن يكون بعد الوقت الحالي
+
     if (createdAtParameter.isAfter(now)) {
       throw Exception(AppConstants.team_creating_time_future_error_key.tr);
     }
-    //تاريخ إضافة الدوكيومنت الخاص بالفريق لا يمكن أن يكون قبل الوقت الحالي
+
     if (firebaseTime(createdAtParameter).isBefore(now)) {
       throw Exception(AppConstants.team_creating_time_past_error_key.tr);
     }
@@ -115,7 +92,7 @@ class TeamModel extends VarTopModel {
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
     updatedAtParameter = firebaseTime(updatedAtParameter);
-    //تاريخ تحديث الدوكيومنت الخاص بالفريق لا يمكن أن يكون قبل تاريخ الإنشاء
+
     if (updatedAtParameter.isBefore(createdAt)) {
       throw Exception(
           AppConstants.team_updating_time_before_creation_error_key.tr);
@@ -123,7 +100,6 @@ class TeamModel extends VarTopModel {
     updatedAt = updatedAtParameter;
   }
 
-// لاخذ الداتا القادمة من الجيسون وتحويلها  إلى داتا مودل
   factory TeamModel.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
@@ -139,7 +115,7 @@ class TeamModel extends VarTopModel {
       updatedAtParameter: data[updatedAtK].toDate(),
     );
   }
-  // لترحيل بيانات المودل إلى الداتا بيز بالشكل المطلوب كجيسين
+
   @override
   Map<String, dynamic> toFirestore() {
     final Map<String, dynamic> data = <String, dynamic>{};

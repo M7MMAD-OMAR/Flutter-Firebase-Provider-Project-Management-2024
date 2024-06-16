@@ -20,7 +20,7 @@ import 'package:project_management_muhmad_omar/controllers/manger_controller.dar
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
-import 'package:project_management_muhmad_omar/models/team/team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
@@ -33,7 +33,7 @@ import '../../Screens/Projects/add_user_to_team_screen.dart';
 import '../../services/auth_service.dart';
 import '../Buttons/primary_buttons_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
-import '../forms/form_input_with _label_widget.dart';
+import '../forms/form_input_with_label_widget.dart';
 import 'in_bottomsheet_subtitle_widget.dart';
 
 class DashboardMeetingDetails extends StatefulWidget {

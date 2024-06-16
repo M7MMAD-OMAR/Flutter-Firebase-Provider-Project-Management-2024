@@ -13,8 +13,8 @@ import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
 import 'package:project_management_muhmad_omar/controllers/waitingSubTasks.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
+import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
-import 'package:project_management_muhmad_omar/models/team/team_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
@@ -24,9 +24,9 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 import '../../models/team/project_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Buttons/primary_tab_buttons_widget.dart';
-import '../../widgets/Navigation/app_header_widget.dart';
 import '../../widgets/Search/active_task_card_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';
+import '../../widgets/navigation/app_header_widget.dart';
 import '../Profile/profile_overview_screen.dart';
 import 'dashboard_tab_screens/box_screen.dart';
 

@@ -27,7 +27,7 @@ import '../../controllers/waitingSubTasks.dart';
 import '../../models/team/manger_model.dart';
 import '../../models/team/project_main_task_model.dart';
 import '../../models/team/project_model.dart';
-import '../../models/team/team_model.dart';
+import '../../models/team/teamModel.dart';
 import '../../models/team/waiting_sub_tasks_model.dart';
 import '../../models/user/user_model.dart';
 import '../../services/collections_refrences.dart';

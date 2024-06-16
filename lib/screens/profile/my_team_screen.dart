@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
-import 'package:project_management_muhmad_omar/models/team/team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/widgets/container_label_widget.dart';
 

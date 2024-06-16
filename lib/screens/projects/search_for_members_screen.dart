@@ -7,7 +7,7 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
-import 'package:project_management_muhmad_omar/models/team/team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
@@ -18,8 +18,8 @@ import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_wi
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../../services/notification_service.dart';
-import '../../widgets/Navigation/app_header_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';
+import '../../widgets/navigation/app_header_widget.dart';
 import '../Profile/profile_overview_screen.dart';
 import 'add_user_to_team_screen.dart';
 

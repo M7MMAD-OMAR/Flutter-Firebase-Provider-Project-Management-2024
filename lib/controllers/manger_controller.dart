@@ -5,7 +5,7 @@ import 'package:project_management_muhmad_omar/controllers/topController.dart';
 
 import '../constants/back_constants.dart';
 import '../models/team/manger_model.dart';
-import '../models/team/team_model.dart';
+import '../models/team/teamModel.dart';
 import '../services/collections_refrences.dart';
 import 'teamController.dart';
 

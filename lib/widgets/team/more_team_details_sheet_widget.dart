@@ -10,7 +10,7 @@ import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
-import 'package:project_management_muhmad_omar/models/team/team_model.dart';
+import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
@@ -22,7 +22,7 @@ import '../Buttons/primary_progress_button_widget.dart';
 import '../Dashboard/dashboard_meeting_details_widget.dart';
 import '../container_label_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
-import '../forms/form_input_with _label_widget.dart';
+import '../forms/form_input_with_label_widget.dart';
 import 'show_team_members_widget.dart';
 
 class MoreTeamDetailsSheet extends StatefulWidget {
