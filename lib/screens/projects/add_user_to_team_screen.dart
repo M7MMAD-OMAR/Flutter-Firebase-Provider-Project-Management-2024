@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 
 class DashboardMeetingDetailsScreenController extends GetxController {

@@ -4,38 +4,31 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
-
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
-import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
-
-import 'package:project_management_muhmad_omar/utils/back_utils.dart';
-
-import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
-import 'package:project_management_muhmad_omar/constants/back_constants.dart';
-
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
-
-import 'package:project_management_muhmad_omar/models/User/User_model.dart';
-
 import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
+import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
-
+import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Forms/form_input_with _label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/show_team_members_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/User/new_sheet_goto_calender_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/add_sub_icon_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calender_widget.dart';
+
 import 'add_team_to_create_project_screen.dart';
 
 class STX extends GetxController {

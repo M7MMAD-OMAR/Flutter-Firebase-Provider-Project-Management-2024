@@ -6,16 +6,15 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
 import '../../models/team/TeamMembers_model.dart';
-
 import '../../widgets/Navigation/app_header_widget.dart';
 import '../Buttons/primary_progress_button_widget.dart';
-import '../User/employee_card_sub_task_widget.dart';
+import '../user/employee_card_sub_task_widget.dart';
 
 // class Search extends GetxController {
 //   final selectedUser = Rx<UserModel?>(null);

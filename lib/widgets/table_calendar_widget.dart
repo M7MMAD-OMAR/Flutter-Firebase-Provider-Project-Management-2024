@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../models/my_task.dart';
+import '../models/my_task_model.dart';
 import 'Shapes/roundedborder_with_icon_widget.dart';
 
 const kBlueCircleForCalendar = BoxDecoration(

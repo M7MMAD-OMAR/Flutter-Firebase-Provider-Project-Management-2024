@@ -20,14 +20,14 @@ import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
 import '../../controllers/statusController.dart';
 import '../../controllers/topController.dart';
-import '../../models/User/User_model.dart';
-import '../../models/statusmodel.dart';
+import '../../models/status_model.dart';
 import '../../models/team/Project_main_task_Model.dart';
 import '../../models/team/Project_model.dart';
+import '../../models/user/user_model.dart';
 import '../../services/auth_service.dart';
 import '../../services/collections_refrences.dart';
 import '../Snackbar/custom_snackber_widget.dart';
-import '../User/focused_menu_item_widget.dart';
+import '../user/focused_menu_item_widget.dart';
 import 'create_user_task_widget.dart';
 
 class MainTaskProgressCard extends StatefulWidget {

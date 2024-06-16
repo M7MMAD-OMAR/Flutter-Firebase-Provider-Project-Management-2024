@@ -2,18 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
-
 import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 import 'package:project_management_muhmad_omar/models/task/UserTaskCategory_model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/app_header_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/User/category_card_vertical_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/add_sub_icon_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/user/category_card_vertical_widget.dart';
 
 enum CategorySortOption {
   name,

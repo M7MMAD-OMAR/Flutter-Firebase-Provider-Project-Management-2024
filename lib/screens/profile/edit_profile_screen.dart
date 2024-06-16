@@ -8,7 +8,7 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
@@ -50,8 +50,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    // the Developer karem saad (KaremSD)
     super.initState();
     name = widget.user!.name!;
     nameController.text = widget.user!.name!;
@@ -77,8 +75,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           SafeArea(
             child: Padding(
               padding: EdgeInsets.only(
-                  right: Utils.screenWidth *
-                      0.04, // Adjust the percentage as needed
+                  right: Utils.screenWidth * 0.04,
                   left: Utils.screenWidth * 0.04,
                   top: Utils.screenHeight * 0.05),
               child: SingleChildScrollView(
@@ -134,8 +131,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                       data: {userNameK: userName},
                                       id: widget.user!.id);
                                   changes = true;
-                                  // UserName field has been updated
-                                  // Perform the necessary action
                                 }
 
                                 if (bio.isNotEmpty &&
@@ -144,8 +139,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   await UserController().updateUser(
                                       data: {bioK: bio}, id: widget.user!.id);
                                   changes = true;
-                                  // Bio field has been updated
-                                  // Perform the necessary action
                                 }
 
                                 if (email.isNotEmpty &&
@@ -164,18 +157,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     pop = true;
                                     Navigator.of(context).pop();
                                     CustomSnackBar.showSuccess(AppConstants
-                                            .email_updated_successfully_key.tr
-                                        //"Email updated successfully ..Please Login adgin and verify the new Email "
-                                        );
+                                        .email_updated_successfully_key.tr);
                                     AuthService.instance.logOut();
                                     changes = true;
                                     Get.offAll(
                                         () => const OnboardingCarousel());
                                     return;
                                   });
-
-                                  // Email field has been updated
-                                  // Perform the necessary action
                                 }
                                 if (!pop) {
                                   Navigator.of(context).pop();
@@ -186,10 +174,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   CustomSnackBar.showSuccess(
                                       AppConstants.updated_successfully_key.tr);
                                 }
-                                // else {
-                                //   CustomSnackBar.showError(
-                                //       "No Any Changes happend to update");
-                                // }
                               }
                             } on Exception catch (e) {
                               Navigator.of(context).pop();
@@ -197,7 +181,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             }
                           },
                           width: Utils.screenWidth * 0.2,
-                          // Adjust the percentage as needed
                           height: Utils.screenHeight * 0.1,
                           label: AppConstants.save_key.tr,
                           textStyle: GoogleFonts.lato(
@@ -402,7 +385,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
         return AlertDialog(
           title: Text(
             AppConstants.choose_an_image_key.tr,
-            //'Choose an Image'
           ),
           content: SingleChildScrollView(
             child: ListBody(
@@ -435,10 +417,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
         );
       },
     ).then((value) {
-      if (value == null) {
-        // Handle the case where the user did not choose a photo
-        // Display a message or perform any required actions
-      }
+      if (value == null) {}
     });
   }
 
@@ -453,60 +432,3 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 }
-//   String? selectedImagePath;
-
-//   void _showImagePickerDialog(BuildContext context) {
-//     showDialog(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           title: const Text('Choose an Image'),
-//           content: SingleChildScrollView(
-//             child: ListBody(
-//               children: <Widget>[
-//                 GestureDetector(
-//                   child: const Text('Camera'),
-//                   onTap: () {
-//                     _getImage(ImageSource.camera);
-//                     Navigator.of(context).pop();
-//                   },
-//                 ),
-//                 const Padding(padding: EdgeInsets.all(8.0)),
-//                 GestureDetector(
-//                   child: const Text('Gallery'),
-//                   onTap: () {
-//                     _getImage(ImageSource.gallery);
-//                     Navigator.of(context).pop();
-//                   },
-//                 ),
-//                 const Padding(padding: EdgeInsets.all(8.0)),
-//                 GestureDetector(
-//                   child: const Text('Cancel'),
-//                   onTap: () {
-//                     Navigator.of(context).pop();
-//                   },
-//                 ),
-//               ],
-//             ),
-//           ),
-//         );
-//       },
-//     ).then((value) {
-//       if (value == null) {
-//         // Handle the case where the user did not choose a photo
-//         // Display a message or perform any required actions
-//       }
-//     });
-//   }
-
-//   void _getImage(ImageSource source) async {
-//     final picker = ImagePicker();
-//     final pickedFile = await picker.pickImage(source: source);
-
-//     if (pickedFile != null) {
-//       setState(() {
-//         selectedImagePath = pickedFile.path;
-//       });
-//     }
-//   }
-// }

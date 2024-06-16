@@ -6,7 +6,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
@@ -16,7 +15,7 @@ import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber_
 import '../constants/back_constants.dart';
 import '../controllers/topController.dart';
 import '../controllers/userController.dart';
-import '../models/User/User_model.dart';
+import '../models/user/user_model.dart';
 import 'collections_refrences.dart';
 
 typedef EitherException<T> = Future<Either<Exception, T>>;

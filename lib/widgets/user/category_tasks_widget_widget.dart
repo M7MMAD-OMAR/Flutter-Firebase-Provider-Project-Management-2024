@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/models/User/User_task_Model.dart';
+import 'package:project_management_muhmad_omar/models/user/User_task_Model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/widgets/User/task_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/user/task_widget.dart';
 
 import '../../constants/app_constans.dart';
 import '../../constants/back_constants.dart';
@@ -15,12 +15,11 @@ import '../../controllers/categoryController.dart';
 import '../../controllers/statusController.dart';
 import '../../controllers/topController.dart';
 import '../../controllers/user_task_controller.dart';
-import '../../models/statusmodel.dart';
+import '../../models/status_model.dart';
 import '../../models/task/UserTaskCategory_model.dart';
 import '../../services/collections_refrences.dart';
 import '../Dashboard/create_user_task_widget.dart';
 import '../Dashboard/dashboard_add_icon_widget.dart';
-import '../Navigation/app_header2_widget.dart';
 import '../Navigation/app_header_widget.dart';
 import '../Snackbar/custom_snackber_widget.dart';
 

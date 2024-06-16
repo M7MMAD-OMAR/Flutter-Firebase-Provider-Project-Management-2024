@@ -2,16 +2,14 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/models/statusmodel.dart';
+import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_sub_task_Model.dart';
 import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
@@ -26,17 +24,17 @@ import '../../controllers/teamController.dart';
 import '../../controllers/topController.dart';
 import '../../controllers/userController.dart';
 import '../../controllers/waitingSubTasks.dart';
-import '../../models/User/User_model.dart';
 import '../../models/team/Manger_model.dart';
 import '../../models/team/Project_main_task_Model.dart';
 import '../../models/team/Project_model.dart';
 import '../../models/team/Team_model.dart';
 import '../../models/team/waitingSubTasksModel.dart';
+import '../../models/user/user_model.dart';
 import '../../services/collections_refrences.dart';
 import '../../services/notification_service.dart';
 import '../../services/types_services.dart';
 import '../Snackbar/custom_snackber_widget.dart';
-import '../User/focused_menu_item_widget.dart';
+import '../user/focused_menu_item_widget.dart';
 
 enum TaskStatus {
   notDone,

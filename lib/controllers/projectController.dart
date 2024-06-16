@@ -6,15 +6,15 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/taskController.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/models/statusmodel.dart';
+import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 
-import '../utils/back_utils.dart';
 import '../constants/back_constants.dart';
 import '../models/team/Manger_model.dart';
 import '../models/team/Project_model.dart';
 import '../services/collections_refrences.dart';
+import '../utils/back_utils.dart';
 import 'manger_controller.dart';
 
 class ProjectController extends ProjectAndTaskController {

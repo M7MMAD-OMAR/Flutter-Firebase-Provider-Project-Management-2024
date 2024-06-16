@@ -5,14 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_tab_screens/overview_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_tab_screens/productivity_screen.dart';
-
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Buttons/primary_tab_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Navigation/dasboard_header_widget.dart';
+
 import '../Profile/profile_overview_screen.dart';
 
 // ignore: must_be_immutable

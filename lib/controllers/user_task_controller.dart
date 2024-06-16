@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/controllers/taskController.dart';
-import 'package:project_management_muhmad_omar/models/User/User_task_Model.dart';
+import 'package:project_management_muhmad_omar/models/user/User_task_Model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';

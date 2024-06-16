@@ -19,18 +19,19 @@ import 'package:project_management_muhmad_omar/services/collections_refrences.da
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/subTask_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
+
 import '../../controllers/manger_controller.dart';
 import '../../controllers/projectController.dart';
 import '../../controllers/project_main_task_controller.dart';
 import '../../controllers/statusController.dart';
 import '../../controllers/teamController.dart';
 import '../../controllers/waitingSubTasks.dart';
-import '../../models/User/User_model.dart';
-import '../../models/statusmodel.dart';
+import '../../models/status_model.dart';
 import '../../models/team/Manger_model.dart';
 import '../../models/team/Project_model.dart';
 import '../../models/team/Project_sub_task_Model.dart';
 import '../../models/team/Team_model.dart';
+import '../../models/user/user_model.dart';
 import '../../services/auth_service.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Navigation/app_header_widget.dart';

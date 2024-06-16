@@ -14,7 +14,7 @@ import '../controllers/statusController.dart';
 import '../controllers/user_task_controller.dart';
 import '../controllers/waitingMamberController.dart';
 import '../controllers/waitingSubTasks.dart';
-import '../models/statusmodel.dart';
+import '../models/status_model.dart';
 import 'notification_controller_services.dart';
 
 class FcmNotifications extends GetxService {

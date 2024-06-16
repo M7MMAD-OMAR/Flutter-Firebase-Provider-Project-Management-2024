@@ -12,9 +12,9 @@ import 'package:project_management_muhmad_omar/models/team/waitingSubTasksModel.
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';
-import '../models/User/User_model.dart';
 import '../models/team/Project_model.dart';
 import '../models/team/Project_sub_task_Model.dart';
+import '../models/user/user_model.dart';
 import '../services/notification_service.dart';
 import '../services/types_services.dart';
 import '../widgets/Snackbar/custom_snackber_widget.dart';

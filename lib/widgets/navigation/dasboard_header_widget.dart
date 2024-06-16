@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../Screens/Profile/profile_overview_screen.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+
+import '../../Screens/Profile/profile_overview_screen.dart';
 import '../../controllers/userController.dart';
-import '../../models/User/User_model.dart';
+import '../../models/user/user_model.dart';
 import '../../services/auth_service.dart';
 import '../../services/notification_service.dart';
 import '../dummy/profile_dummy_widget.dart';

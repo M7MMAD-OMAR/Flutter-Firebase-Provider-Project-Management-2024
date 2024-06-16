@@ -16,10 +16,10 @@ import 'package:project_management_muhmad_omar/services/collections_refrences.da
 
 import '../constants/app_constans.dart';
 import '../constants/back_constants.dart';
-import '../models/User/User_model.dart';
-import '../models/statusmodel.dart';
+import '../models/status_model.dart';
 import '../models/team/Project_model.dart';
 import '../models/team/Team_model.dart';
+import '../models/user/user_model.dart';
 import '../services/auth_service.dart';
 import '../services/notification_service.dart';
 import '../services/types_services.dart';

@@ -4,27 +4,26 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_member_for_sub_task_widget.dart';
-
-import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+
 import '../../controllers/categoryController.dart';
 import '../../controllers/projectController.dart';
 import '../../controllers/teamController.dart';
 import '../../controllers/user_task_controller.dart';
-import '../../models/User/User_model.dart';
 import '../../models/team/Project_sub_task_Model.dart';
 import '../../models/team/Team_model.dart';
+import '../../models/user/user_model.dart';
 import '../Forms/form_input_with _label_widget.dart';
 import '../Snackbar/custom_snackber_widget.dart';
-import '../User/inactive_employee_card_sub_task_widget.dart';
-import '../User/new_sheet_goto_calender_widget.dart';
 import '../add_sub_icon_widget.dart';
+import '../user/inactive_employee_card_sub_task_widget.dart';
+import '../user/new_sheet_goto_calender_widget.dart';
 
-// ignore: must_be_immutable
 class CreateSubTask extends StatefulWidget {
   CreateSubTask({
     required this.addTask,
@@ -64,6 +63,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
     5,
   ];
   int? selectedDashboardOption;
+
   @override
   void initState() {
     super.initState();
@@ -89,6 +89,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
 
   String formattedStartDate = "";
   String formattedDueDate = "";
+
   Future onChanged(String value) async {
     name = value;
 
@@ -125,6 +126,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
   bool isTaked = false;
   String name = "";
   String desc = "";
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -164,15 +166,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                       );
                     }
                     return InkWell(
-                      onTap: () {
-                        // ProjectModel? projectModel = await ProjectController()
-                        //     .getProjectById(id: widget.projectId);
-                        // TeamModel teamModel = await TeamController()
-                        //     .getTeamOfProject(project: projectModel!);
-                        // Get.to(SearchForMembersSubTask(
-                        //   teamModel: teamModel,
-                        // ));
-                      },
+                      onTap: () {},
                       child: Container(
                         width: double.infinity,
                         height: 80,
@@ -195,7 +189,6 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     );
                   },
                 ),
-
               if (assignedToUserId == null)
                 InkWell(
                   onTap: () async {
@@ -204,7 +197,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
 
                     TeamModel teamModel = await TeamController()
                         .getTeamById(id: projectModel!.teamId!);
-                        // the Developer karem saad (KaremSD)
+
                     Get.to(() => SearchForMembersSubTask(
                           onSelectedUserChanged: onSelectedUserChanged,
                           userModel: null,
@@ -258,7 +251,6 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                 ],
               ),
               AppSpaces.verticalSpace10,
-
               AppSpaces.verticalSpace10,
               Row(
                 children: [
@@ -362,7 +354,6 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   label: AppConstants.end_date_key.tr,
                 )
               ]),
-              // Spacer(),
               AppSpaces.verticalSpace20,
               AppSpaces.verticalSpace20,
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -410,14 +401,12 @@ class _CreateSubTaskState extends State<CreateSubTask> {
 
   void handleColorChanged(String selectedColor) {
     setState(() {
-      // Update the selectedDay variable in the first screen
       this.color = selectedColor;
     });
   }
 
   void handleDueDayChanged(DateTime selectedDay) {
     setState(() {
-      // Update the selectedDay variable in the first screen
       dueDate = selectedDay;
       formattedDueDate = formatDateTime(dueDate);
     });
@@ -425,29 +414,15 @@ class _CreateSubTaskState extends State<CreateSubTask> {
 
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
-      // Update the selectedDay variable in the first screen
-
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
   }
-
-  // void _addUserTask() async {
-  //   if (formKey.currentState!.validate()) {
-  //     await widget.addTask(
-  //       color: color,
-  //       desc: desc,
-  //       dueDate: dueDate,
-  //       priority: selectedDashboardOption!,
-  //       startDate: startDate,
-  //       taskName: name,
-  //     );
-  //   }
-  // }
 }
 
 class BottomSheetIcon extends StatelessWidget {
   final IconData icon;
+
   const BottomSheetIcon({
     required this.icon,
     Key? key,
@@ -465,49 +440,3 @@ class BottomSheetIcon extends StatelessWidget {
     );
   }
 }
-// StreamBuilder<QuerySnapshot<TeamMemberModel>>(
-//                             stream: TeamMemberController()
-//                                 .getMembersInTeamIdStream(teamId: team.id),
-//                             builder: (context, snapshotMembers) {
-//                               List<String> listIds = [];
-//                               if (snapshotMembers.connectionState ==
-//                                   ConnectionState.waiting) {
-//                                 return CircularProgressIndicator();
-//                               }
-//                               for (var member in snapshotMembers.data!.docs) {
-//                                 listIds.add(member.data().userId);
-//                               }
-//                               return StreamBuilder<QuerySnapshot<UserModel>>(
-//                                   stream: UserController()
-//                                       .getUsersWhereInIdsStream(
-//                                           usersId: listIds),
-//                                   builder: (context, snapshotUsers) {
-//                                     if (snapshotUsers.connectionState ==
-//                                         ConnectionState.waiting) {
-//                                       return CircularProgressIndicator();
-//                                     }
-
-//                                     List<UserModel> users = [];
-//                                     for (var element
-//                                         in snapshotUsers.data!.docs) {
-//                                       users.add(element.data());
-//                                     }
-//                                     return TeamStory(
-//                                         onTap: () {
-//
-
-//                                           Get.to(() =>
-//                                               ShowTeamMembers(teamModel: team));
-//                                         },
-//                                         teamModel: team,
-//                                         users: users,
-//                                         teamTitle:
-//                                             snapshotTeam.data!.data()!.name!,
-//                                         numberOfMembers: snapshotUsers
-//                                             .data!.docs.length
-//                                             .toString(),
-//                                         noImages: snapshotUsers
-//                                             .data!.docs.length
-//                                             .toString());
-//                                   });
-//                             }),

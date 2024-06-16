@@ -5,12 +5,12 @@ import 'package:project_management_muhmad_omar/controllers/statusController.dart
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/models/tops/Var2TopModel.dart';
 
-import '../utils/back_utils.dart';
 import '../constants/back_constants.dart';
-import '../models/statusmodel.dart';
+import '../models/status_model.dart';
 import '../models/team/Task_model.dart';
 import '../models/tops/top_model.dart';
 import '../services/collections_refrences.dart';
+import '../utils/back_utils.dart';
 
 class ProjectAndTaskController extends TopController {
   Future<List<Object?>?> getTasksForStatus<t extends TopModel>({

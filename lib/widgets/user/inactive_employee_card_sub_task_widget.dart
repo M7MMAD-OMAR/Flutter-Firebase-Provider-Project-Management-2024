@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/models/User/User_model.dart';
-
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+
 import '../dummy/profile_dummy_widget.dart';
 
 // ignore: must_be_immutable

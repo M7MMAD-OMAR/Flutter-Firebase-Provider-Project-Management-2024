@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:project_management_muhmad_omar/models/User/User_model.dart';
-import 'package:project_management_muhmad_omar/models/User/User_task_Model.dart';
-import 'package:project_management_muhmad_omar/models/statusmodel.dart';
+import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/task/UserTaskCategory_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_main_task_Model.dart';
@@ -11,6 +9,8 @@ import 'package:project_management_muhmad_omar/models/team/TeamMembers_model.dar
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingSubTasksModel.dart';
+import 'package:project_management_muhmad_omar/models/user/User_task_Model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 
 FirebaseFirestore fireStore = FirebaseFirestore.instance;
 final CollectionReference<UserModel> usersRef =

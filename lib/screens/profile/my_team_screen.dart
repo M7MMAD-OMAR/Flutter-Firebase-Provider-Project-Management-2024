@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
-import 'package:project_management_muhmad_omar/models/User/User_model.dart';
+import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
-
-import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/widgets/container_label_widget.dart';
+
 import 'team_details_screen.dart';
 
 class TeamStory extends StatelessWidget {
@@ -17,8 +17,9 @@ class TeamStory extends StatelessWidget {
   final ManagerModel? userAsManager;
   final List<UserModel> users;
   final VoidCallback? onTap;
+
   const TeamStory(
-      {Key? key,
+      {super.key,
       required this.userAsManager,
       required this.onTap,
       required this.teamModel,
@@ -26,8 +27,7 @@ class TeamStory extends StatelessWidget {
       required this.teamTitle,
       required this.numberOfMembers,
       required this.noImages,
-      required})
-      : super(key: key);
+      required});
 
   @override
   Widget build(BuildContext context) {
