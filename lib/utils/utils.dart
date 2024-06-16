@@ -11,7 +11,6 @@ class SineCurve extends Curve {
 
   const SineCurve({this.count = 3});
 
-  // t = x
   @override
   double transformInternal(double t) {
     var val = sin(count * 2 * pi * t) * 0.5 + 0.5;
@@ -64,7 +63,6 @@ Widget buildStackedImagesOfTeams(
     direction: direction,
     items: [
       ...items,
-      //  lastContainer,
       addMore ? iconContainer : const SizedBox(),
     ],
     size: size,

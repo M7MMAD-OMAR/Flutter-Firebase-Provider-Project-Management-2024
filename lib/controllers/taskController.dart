@@ -250,14 +250,11 @@ class ProjectAndTaskController extends TopController {
     required String value,
     required int importance,
   }) async {
-    Exception exception;
     if (importance < 1) {
-      exception = Exception(AppConstants.importance_min_value_error_key);
-      throw exception;
+      throw Exception(AppConstants.importance_min_value_error_key);
     }
     if (importance > 5) {
-      exception = Exception(AppConstants.importance_max_value_error_key);
-      throw exception;
+      throw Exception(AppConstants.importance_max_value_error_key);
     }
     return await getListDataWhereAndWhere(
       collectionReference: reference,
@@ -275,14 +272,11 @@ class ProjectAndTaskController extends TopController {
     required String value,
     required int importance,
   }) {
-    Exception exception;
     if (importance < 1) {
-      exception = Exception(AppConstants.importance_min_value_error_key);
-      throw exception;
+      throw Exception(AppConstants.importance_min_value_error_key);
     }
     if (importance > 5) {
-      exception = Exception(AppConstants.importance_max_value_error_key);
-      throw exception;
+      throw Exception(AppConstants.importance_max_value_error_key);
     }
     return queryWhereAndWhereStream(
       reference: reference,
@@ -642,9 +636,7 @@ class ProjectAndTaskController extends TopController {
       value: value,
       field2: nameK,
       value2: taskModel.name,
-    )) {
-      throw exception;
-    }
+    )) {}
 
     await addDoc(reference: reference, model: taskModel);
   }
@@ -662,9 +654,7 @@ class ProjectAndTaskController extends TopController {
       value: value,
       field2: nameK,
       value2: taskModel.name,
-    )) {
-      throw exception;
-    }
+    )) {}
     DocumentSnapshot? documentSnapshot = await getDocSnapShotWhere(
       collectionReference: statusesRef,
       field: nameK,

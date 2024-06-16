@@ -86,30 +86,30 @@
 //   RegExp regEx2 = RegExp(r'[^\w\d\u0600-\u06FF\s]');
 //   @override
 //   set setName(String name) {
-//     Exception exception;
+//
 
 //     //هذه الخاصية تستخدم لوضع قيمة لاسم المستخدم وضمان ان هذه القيمة يتم ادخالها حسب الشروط الموضوعة في التطبيق
 
 //     if (name.isEmpty) {
 //       //الشرط الأول لايمكن ان يكون فارغ
-//       exception = Exception("Name cannot be Empty");
-//       throw exception;
+//       throw Exception("Name cannot be Empty");
+//
 //     }
 //     if (name.length <= 3) {
 //       //لايمكن ان يكون الاسم مألف من اقل من ثلاث محارف
-//       exception = Exception("Name cannot be less than 3 characters");
-//       throw exception;
+//       throw Exception("Name cannot be less than 3 characters");
+//
 //     }
 //     if (regEx.hasMatch(name) || regEx2.hasMatch(name)) {
-//       exception = Exception('name can include letters only ');
-//       throw exception;
+//       throw Exception('name can include letters only ');
+//
 //     }
 
 //     this.name = name;
 //   }
 
 //   set setUserName(String? userName) {
-//     Exception exception;
+//
 //     //لا يمكن أن يكون اليوزرنيم عديم القيمة
 //     if (userName == null) {
 //       this.userName = userName;
@@ -117,28 +117,28 @@
 //     }
 //     if (userName.isEmpty) {
 //       //لا يمكن أن يكون اليوزرنيم فارغاً
-//       exception = Exception("username cannot be Empty");
-//       throw exception;
+//       throw Exception("username cannot be Empty");
+//
 //     }
 //     if (userName.length <= 3) {
 //       //لايمكن ان يكون اليوزرنيم مألف من اقل من ثلاث محارف
-//       exception = Exception("username cannot be less than 3 characters");
-//       throw exception;
+//       throw Exception("username cannot be less than 3 characters");
+//
 //     }
 //     if (userName.length >= 20) {
 //       //لايمكن ان يكون اليوزرنيم مألف من اقل من ثلاث محارف
-//       exception = Exception("username cannot be more than 20 characters");
-//       throw exception;
+//       throw Exception("username cannot be more than 20 characters");
+//
 //     }
 //     this.userName = userName;
 //   }
 
 //   set setImageUrl(String imageUrl) {
-//     Exception exception;
+//
 //     if (imageUrl.isEmpty) {
 //       //لا يمكن أن يكون رابط صورة المستخدم فارغاً
-//       exception = Exception("imageUrl cannot be Empty");
-//       throw exception;
+//       throw Exception("imageUrl cannot be Empty");
+//
 //     }
 //     this.imageUrl = imageUrl;
 //   }
@@ -174,18 +174,18 @@
 
 //   @override
 //   set setId(String id) {
-//     Exception exception;
+//
 //     //لا يمكن أن يكون الاي دي الخاص باليوزر فارغ
 //     if (id.isEmpty) {
-//       exception = Exception("user id cannot be empty");
-//       throw exception;
+//       throw Exception("user id cannot be empty");
+//
 //     }
 //     this.id = id;
 //   }
 
 //   @override
 //   set setCreatedAt(DateTime createdAtParameter) {
-//     Exception exception;
+//
 //     //يأخذ الوقت ويجري عليه التعديلات الخاصة بوقت الفايربيز لتجري عمليات الوقت عليه بدون حدوث
 //     // اي خطأ في اعدادات الوقت المدخل ثم يرجعه
 //     createdAtParameter = firebaseTime(createdAtParameter);
@@ -193,26 +193,26 @@
 //     //تاريخ إضافة اليوزر لا يمكن أن يكون بعد الوقت الحالي
 //     createdAtParameter = firebaseTime(createdAtParameter);
 //     if (createdAtParameter.isAfter(now)) {
-//       exception = Exception("user creating time cannot be in the future");
-//       throw exception;
+//       throw Exception("user creating time cannot be in the future");
+//
 //     }
 //     //تاريخ إضافة اليوزر لا يمكن أن يكون قبل الوقت الحالي
 //     if (createdAtParameter.isBefore(now)) {
-//       exception = Exception("user creating time cannot be in the past");
-//       throw exception;
+//       throw Exception("user creating time cannot be in the past");
+//
 //     }
 //     createdAt = createdAtParameter;
 //   }
 
 //   @override
 //   set setUpdatedAt(DateTime updatedAtParameter) {
-//     Exception exception;
+//
 //     updatedAtParameter = firebaseTime(updatedAtParameter);
 //     //تاريخ تحديث بيانات اليوزر لا يمكن أن يكون قبل تاريخ إنشائه
 //     if (updatedAtParameter.isBefore(createdAt)) {
-//       exception = Exception(
+//       throw Exception(
 //           "user account updating time cannot be before creating time");
-//       throw exception;
+//
 //     }
 //     updatedAt = updatedAtParameter;
 //   }
@@ -346,30 +346,24 @@ class UserModel extends VarTopModel {
   RegExp regEx2 = RegExp(r'[^\w\d\u0600-\u06FF\s]');
   @override
   set setName(String name) {
-    Exception exception;
-
     //هذه الخاصية تستخدم لوضع قيمة لاسم المستخدم وضمان ان هذه القيمة يتم ادخالها حسب الشروط الموضوعة في التطبيق
 
     if (name.isEmpty) {
       //الشرط الأول لايمكن ان يكون فارغ
-      exception = Exception(AppConstants.name_not_empty_key.tr);
-      throw exception;
+      throw Exception(AppConstants.name_not_empty_key.tr);
     }
     if (name.length <= 3) {
       //لايمكن ان يكون الاسم مألف من اقل من ثلاث محارف
-      exception = Exception(AppConstants.name_min_length_key.tr);
-      throw exception;
+      throw Exception(AppConstants.name_min_length_key.tr);
     }
     if (regEx.hasMatch(name) || regEx2.hasMatch(name)) {
-      exception = Exception(AppConstants.name_letters_only_key.tr);
-      throw exception;
+      throw Exception(AppConstants.name_letters_only_key.tr);
     }
 
     this.name = name;
   }
 
   set setUserName(String? userName) {
-    Exception exception;
     //لا يمكن أن يكون اليوزرنيم عديم القيمة
     if (userName == null) {
       this.userName = userName;
@@ -377,28 +371,23 @@ class UserModel extends VarTopModel {
     }
     if (userName.isEmpty) {
       //لا يمكن أن يكون اليوزرنيم فارغاً
-      exception = Exception(AppConstants.username_not_empty_key.tr);
-      throw exception;
+      throw Exception(AppConstants.username_not_empty_key.tr);
     }
     if (userName.length < 3) {
       //لايمكن ان يكون اليوزرنيم مألف من اقل من ثلاث محارف
-      exception = Exception(AppConstants.username_min_length_key.tr);
-      throw exception;
+      throw Exception(AppConstants.username_min_length_key.tr);
     }
     if (userName.length >= 20) {
       //لايمكن ان يكون اليوزرنيم مألف من اكثر من ثلاث محارف
-      exception = Exception(AppConstants.username_max_length_key.tr);
-      throw exception;
+      throw Exception(AppConstants.username_max_length_key.tr);
     }
     this.userName = userName;
   }
 
   set setImageUrl(String imageUrl) {
-    Exception exception;
     if (imageUrl.isEmpty) {
       //لا يمكن أن يكون رابط صورة المستخدم فارغاً
-      exception = Exception(AppConstants.user_imageUrl_empty_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_imageUrl_empty_key.tr);
     }
     this.imageUrl = imageUrl;
   }
@@ -434,18 +423,15 @@ class UserModel extends VarTopModel {
 
   @override
   set setId(String id) {
-    Exception exception;
     //لا يمكن أن يكون الاي دي الخاص باليوزر فارغ
     if (id.isEmpty) {
-      exception = Exception(AppConstants.user_id_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_id_empty_error_key.tr);
     }
     this.id = id;
   }
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    Exception exception;
     //يأخذ الوقت ويجري عليه التعديلات الخاصة بوقت الفايربيز لتجري عمليات الوقت عليه بدون حدوث
     // اي خطأ في اعدادات الوقت المدخل ثم يرجعه
     createdAtParameter = firebaseTime(createdAtParameter);
@@ -453,27 +439,22 @@ class UserModel extends VarTopModel {
     //تاريخ إضافة اليوزر لا يمكن أن يكون بعد الوقت الحالي
     createdAtParameter = firebaseTime(createdAtParameter);
     if (createdAtParameter.isAfter(now)) {
-      exception =
-          Exception(AppConstants.user_creating_time_future_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_creating_time_future_error_key.tr);
     }
     //تاريخ إضافة اليوزر لا يمكن أن يكون قبل الوقت الحالي
     if (createdAtParameter.isBefore(now)) {
-      exception = Exception(AppConstants.user_creating_time_past_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_creating_time_past_error_key.tr);
     }
     createdAt = createdAtParameter;
   }
 
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
-    Exception exception;
     updatedAtParameter = firebaseTime(updatedAtParameter);
     //تاريخ تحديث بيانات اليوزر لا يمكن أن يكون قبل تاريخ إنشائه
     if (updatedAtParameter.isBefore(createdAt)) {
-      exception = Exception(
+      throw Exception(
           AppConstants.user_account_updating_time_before_creating_error_key.tr);
-      throw exception;
     }
     updatedAt = updatedAtParameter;
   }

@@ -81,7 +81,6 @@ class WaitingMamberController extends TopController {
 
   Future<void> addWaitingMamber(
       {required WaitingMemberModel waitingMemberModel}) async {
-    Exception exception;
     if (await existInTowPlaces(
         firstCollectionReference: usersRef,
         firstFiled: idK,
@@ -91,9 +90,7 @@ class WaitingMamberController extends TopController {
         secondValue: waitingMemberModel.teamId)) {
       if (waitingMemberModel.userId ==
           AuthService.instance.firebaseAuth.currentUser!.uid) {
-        exception =
-            Exception(AppConstants.manager_cannot_be_member_error_key.tr);
-        throw exception;
+        throw Exception(AppConstants.manager_cannot_be_member_error_key.tr);
       }
       if (await existByTow(
           reference: watingMamberRef,
@@ -101,13 +98,11 @@ class WaitingMamberController extends TopController {
           field: userIdK,
           value2: waitingMemberModel.teamId,
           field2: teamIdK)) {
-        exception = Exception(AppConstants.member_already_invited_key.tr);
-        throw exception;
+        throw Exception(AppConstants.member_already_invited_key.tr);
       }
       addDoc(reference: watingMamberRef, model: waitingMemberModel);
     } else {
-      exception = Exception(AppConstants.team_user_not_found_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_user_not_found_error_key.tr);
     }
   }
 

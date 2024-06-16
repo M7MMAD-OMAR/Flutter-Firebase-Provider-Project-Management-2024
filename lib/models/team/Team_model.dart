@@ -64,41 +64,33 @@ class TeamModel extends VarTopModel {
   }
 
   set setImageUrl(String imageUrl) {
-    Exception exception;
     if (imageUrl.isEmpty) {
       //لا يمكن أن يكون رابط صورة الفريق فارغاً
-      exception = Exception(AppConstants.team_image_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_image_empty_error_key.tr);
     }
     this.imageUrl = imageUrl;
   }
 
   @override
   set setId(String id) {
-    Exception exception;
     //اي دي  الدوكيومنت الخاص بالفريق لا يمكن أن يكون فارغاً
     if (id.isEmpty) {
-      exception = Exception(AppConstants.team_id_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_id_empty_error_key.tr);
     }
     this.id = id;
   }
 
   @override
   set setName(String name) {
-    Exception exception;
-
     //هذه الخاصية تستخدم لوضع قيمة لاسم الفئة وضمان ان هذه القيمة يتم ادخالها حسب الشروط الموضوعة في التطبيق
 
     if (name.isEmpty) {
       //اسم الفريق لا يمكن أن يكون فارغاً
-      exception = Exception(AppConstants.team_name_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_name_empty_error_key.tr);
     }
     if (name.length < 3) {
       //لايمكن ان يكون اسم الفريق مؤلفاً من اقل من ثلاث محارف
-      exception = Exception(AppConstants.team_name_min_length_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_name_min_length_error_key.tr);
     }
     //في حال مرروره على جميع الشروط وعدم رمي اكسيبشن فذلك يعني تحقيقه للشروط المطلوبة وعندها سيتم وضع القيمة
     this.name = name;
@@ -106,33 +98,27 @@ class TeamModel extends VarTopModel {
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    Exception exception;
     //يأخذ الوقت ويجري عليه التعديلات الخاصة بوقت الفايربيز لتجري عمليات الوقت عليه بدون حدوث
     createdAtParameter = firebaseTime(createdAtParameter);
     DateTime now = firebaseTime(DateTime.now());
     //تاريخ إضافة  الدوكيومنت الخاص بالفريق لا يمكن أن يكون بعد الوقت الحالي
     if (createdAtParameter.isAfter(now)) {
-      exception =
-          Exception(AppConstants.team_creating_time_future_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_creating_time_future_error_key.tr);
     }
     //تاريخ إضافة الدوكيومنت الخاص بالفريق لا يمكن أن يكون قبل الوقت الحالي
     if (firebaseTime(createdAtParameter).isBefore(now)) {
-      exception = Exception(AppConstants.team_creating_time_past_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_creating_time_past_error_key.tr);
     }
     createdAt = firebaseTime(createdAtParameter);
   }
 
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
-    Exception exception;
     updatedAtParameter = firebaseTime(updatedAtParameter);
     //تاريخ تحديث الدوكيومنت الخاص بالفريق لا يمكن أن يكون قبل تاريخ الإنشاء
     if (updatedAtParameter.isBefore(createdAt)) {
-      exception = Exception(
+      throw Exception(
           AppConstants.team_updating_time_before_creation_error_key.tr);
-      throw exception;
     }
     updatedAt = updatedAtParameter;
   }

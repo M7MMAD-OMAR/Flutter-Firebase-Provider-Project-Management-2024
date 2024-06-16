@@ -189,32 +189,6 @@ class NotificationController {
           criticalAlerts: true,
           soundSource: 'resource://raw/pikachu',
         ),
-        // NotificationChannel(
-        //   channelKey: 'highchannel',
-        //   channelName: 'highchannel',
-        //   channelDescription: 'Notification channel for basic tests',
-        //   defaultColor: const Color(0xFF9D50DD),
-        //   ledColor: Colors.white,
-        //   importance: NotificationImportance.Max,
-        //   channelShowBadge: true,
-        //   onlyAlertOnce: true,
-        //   playSound: true,
-        //   criticalAlerts: true,
-        //   soundSource: 'resource://raw/pikachu',
-        // ),
-        // NotificationChannel(
-        //   channelKey: 'miscellaneous',
-        //   channelName: 'miscellaneous',
-        //   channelDescription: 'Notification channel for basic tests',
-        //   defaultColor: const Color(0xFF9D50DD),
-        //   ledColor: Colors.white,
-        //   importance: NotificationImportance.Max,
-        //   channelShowBadge: true,
-        //   onlyAlertOnce: true,
-        //   playSound: true,
-        //   criticalAlerts: true,
-        //   soundSource: 'resource://raw/pikachu',
-        // ),
       ],
     );
     return channels;
@@ -301,27 +275,6 @@ class NotificationController {
 
   @pragma('vm:entry-point')
   static Future<void> showNotificationJson(Map<String, dynamic> data) async {
-    // List<dynamic> buttonMap = data["actionButtons"];
-    // List<NotificationActionButton> ss = [];
-    // for (var element in buttonMap) {
-    //   NotificationActionButton s =
-    //       NotificationActionButton(key: key, label: label).fromMap(element)!;
-    //   ss.add(s);
-    // }
-    //
-    // await AwesomeNotifications().createNotification(
-    //   content: NotificationContent(
-    //     id: data["content"]["id"],
-    //     channelKey: 'high_importance_channel',
-    //     title: data["content"]["title"],
-    //     body: data["content"]["body"],
-    //     payload: Map.from(data["content"]["payload"]) ?? null,
-    //     wakeUpScreen: true,
-    //     displayOnBackground: true,
-    //     displayOnForeground: true,
-    //   ),
-    //   actionButtons: ss,
-    // );
     await AwesomeNotifications().createNotificationFromJsonData(data);
   }
 }

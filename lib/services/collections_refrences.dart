@@ -12,17 +12,6 @@ import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingSubTasksModel.dart';
 
-//لا يمكن عمل الكوليكشن ريفرنس كونستانت
-//لأن القيمة المرجعة من الفاير بيس متغيرة ليست ثابتة من عندي
-//تم وضع الريفرينس بملف مستقل لأنه سيتم استخدامها كثيراً في المستقبل لذلك لتجنب التكرار وضعناها هنا
-//الكولكشن الخاصة بالمستخدمين
-//نستخدم
-//(with converter )
-//من أجل تسهيل عملية إرسال الموديلات واستقبالها فبدلاً من استقبالها على شكل
-//json
-//نقوم باستقبالها على شكل الموديل الذي نريد العمل عليه
-//ومن هنا نكون قد وفرنا في وقت كتابة كود التحويل من السناب شوت  داتا إلى الدالة الخاصة بتحويل الجسون في الموديل
-//وعند عمليات الحذف والإضافة والتحديث ماعلينا سوا تمرير نسخة من الموديل
 FirebaseFirestore fireStore = FirebaseFirestore.instance;
 final CollectionReference<UserModel> usersRef =
     fireStore.collection("users").withConverter<UserModel>(
@@ -30,7 +19,7 @@ final CollectionReference<UserModel> usersRef =
               UserModel.fromFireStore(snapshot, options),
           toFirestore: (value, options) => value.toFirestore(),
         );
-//الكولكشن الخاصة بتصنيفات المهام الخاصة بالمستخدمين
+
 final CollectionReference userTaskCategoryRef = fireStore
     .collection("users_tasks_categories")
     .withConverter<UserTaskCategoryModel>(

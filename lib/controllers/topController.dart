@@ -652,9 +652,9 @@ class TopController extends GetxController {
   //   }
 
   //   if (data.containsKey(idK)) {
-  //     Exception exception = Exception(
+  //     throw  Exception(
   //         "id cannot be updated ...this method only for Update Non-Relational fields");
-  //     throw exception;
+  //
   //   }
   //   data['updatedAt'] = firebaseTime(DateTime.now());
   //   reference.doc(id).update(data);
@@ -727,9 +727,8 @@ class TopController extends GetxController {
       }
     }
     if (data.containsKey("id")) {
-      Exception exception = Exception(
+      throw Exception(
           "id cannot be updated ...this method only for Update Non-Relational fields");
-      throw exception;
     }
     data['updatedAt'] = firebaseTime(DateTime.now());
     reference.doc(id).update(data);

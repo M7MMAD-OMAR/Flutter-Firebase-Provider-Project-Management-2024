@@ -87,11 +87,9 @@ class ProjectModel extends Var2TopModel {
   final _regex = RegExp(r'^[\p{P}\p{S}\p{N}]+$');
   late String imageUrl;
   set setImageUrl(String imageUrl) {
-    Exception exception;
     if (imageUrl.isEmpty) {
       //الشرط الأول لايمكن ان يكون فارغ
-      exception = Exception(AppConstants.project_imageUrl_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_imageUrl_empty_error_key.tr);
     }
     this.imageUrl = imageUrl;
   }
@@ -120,31 +118,27 @@ class ProjectModel extends Var2TopModel {
   @override
   set setCreatedAt(DateTime createdAtParameter) {
     //الشروط الخاصة بتاريخ ووقت إضافة الدوكيومنت الخاص بالمشروع
-    Exception exception;
 
     DateTime now = firebaseTime(DateTime.now());
     createdAtParameter = firebaseTime(createdAtParameter);
     //تاريخ إضافة الدوكيومنت الخاص بالمشروع لا يمكن أن يكون بعد الوقت الحالي
     if (createdAtParameter.isAfter(now)) {
-      exception = Exception(AppConstants.project_creating_time_future_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_creating_time_future_error_key.tr);
     }
     //تاريخ إضافة الدوكيومنت الخاص بالمشروع لا يمكن أن يكون قبل الوقت الحالي
     if (createdAtParameter.isBefore(now)) {
-      exception = Exception(AppConstants.project_creating_time_past_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_creating_time_past_error_key.tr);
     }
     createdAt = createdAtParameter;
   }
 
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
-    Exception exception;
     updatedAtParameter = firebaseTime(updatedAtParameter);
     //تاريخ تحديث الدوكيومنت الخاص بالمشروع لا يمكن أن يكون قبل تاريخ الإنشاء
     if (updatedAtParameter.isBefore(createdAt)) {
-      exception = Exception(AppConstants.project_updating_before_creating_error_key.tr);
-      throw exception;
+      throw Exception(
+          AppConstants.project_updating_before_creating_error_key.tr);
     }
     updatedAt = updatedAtParameter;
   }
@@ -156,40 +150,33 @@ class ProjectModel extends Var2TopModel {
 
   @override
   set setId(String idParameter) {
-    Exception exception;
     //لا يمكن أن يكون اي دي الدوكيومنت الخاص بالمشروع فارغ
     if (idParameter.isEmpty) {
-      exception = Exception(AppConstants.project_id_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_id_empty_error_key.tr);
     }
     id = idParameter;
   }
 
   @override
   set setName(String nameParameter) {
-    Exception exception;
     //هذه الخاصية تستخدم لوضع قيمة لاسم المستخدم وضمان ان هذه القيمة يتم ادخالها حسب الشروط الموضوعة في التطبيق
     //لا يمكن أن ان يكون اسم المشروع فارغاً
     if (nameParameter.isEmpty) {
-      exception = Exception(AppConstants.project_name_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_name_empty_error_key.tr);
     }
     //لايمكن ان يكون اسم المشروع مؤلف من اقل من ثلاث محارف
     if (nameParameter.length <= 3) {
-      exception = Exception(AppConstants.project_name_length_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_name_length_error_key.tr);
     }
 
     //لايمكن ان يحوي اسم المشروع اي ارقام او محارف خاصة فقطط احرف
     if (_regex.hasMatch(nameParameter)) {
-      exception =
-          Exception(AppConstants.project_name_format_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_name_format_error_key.tr);
     }
     //TODO: write the function taskExist
     // if (projectexist(nameParameter)) {
-    //   exception = Exception("project main task already been added");
-    //   throw exception;
+    //   throw Exception("project main task already been added");
+    //
     // }
     //في حال مرروره على جميع الشروط وعدم رمي اكسيبشن فذلك يعني تحقيقه للشروط المطلوبة وعندها سيتم وضع القيمة
     name = nameParameter;
@@ -197,20 +184,16 @@ class ProjectModel extends Var2TopModel {
 
   @override
   set setStartDate(DateTime? startDateParameter) {
-    Exception exception;
     //لا يمكن أن يكون وقت بداية المشروع عديم القيمة
     if (startDateParameter == null) {
-      exception = Exception(AppConstants.project_start_date_null_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_start_date_null_error_key.tr);
     }
 
     startDateParameter = firebaseTime(startDateParameter);
     DateTime now = firebaseTime(DateTime.now());
     //لا يمكن أن يكون تاريخ بداية المشروع قبل الوقت الحالي
     if (startDateParameter.isBefore(now)) {
-      exception =
-          Exception(AppConstants.project_start_date_past_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_start_date_past_error_key.tr);
     }
 
     startDate = firebaseTime(startDateParameter);
@@ -223,30 +206,23 @@ class ProjectModel extends Var2TopModel {
 
   @override
   set setEndDate(DateTime? endDateParameter) {
-    Exception exception;
     //لا يمكن أن يكون تاريخ نهاية المشروع عديم القيمة
     if (endDateParameter == null) {
-      exception = Exception(AppConstants.project_end_date_null_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_end_date_null_error_key.tr);
     }
     endDateParameter = firebaseTime(endDateParameter);
     //لا يمكن أن يكون تاريخ نهاية المشروع قبل تاريخ بداية المشروع
     if (endDateParameter.isBefore(getStartDate)) {
-      exception = Exception(AppConstants.project_end_time_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_end_time_error_key.tr);
     }
     //لا يمكن أن يكون تاريخ نهاية المشروع بنفس وقت تاريخ بداية المشروع
     if (getStartDate.isAtSameMomentAs(endDateParameter)) {
-      exception = Exception(
-          AppConstants.project_end_time_same_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_end_time_same_error_key.tr);
     }
     //لا يمكن أن يكون الفرق بين تاريخ بداية المشروع ونهايته أقل منن 5 دقائق
     Duration diff = endDateParameter.difference(getStartDate);
     if (diff.inMinutes < 5) {
-      exception = Exception(
-         AppConstants.project_time_difference_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.project_time_difference_error_key.tr);
     }
     endDate = endDateParameter;
   }

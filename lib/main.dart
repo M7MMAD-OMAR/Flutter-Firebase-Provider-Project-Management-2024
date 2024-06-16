@@ -1,41 +1,44 @@
-
 import 'dart:async';
+import 'dart:io';
 
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http_proxy/http_proxy.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/auth_page_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notification_service.dart';
-import 'package:project_management_muhmad_omar/services/notifications_sender_services.dart';
 import 'package:sizer/sizer.dart';
 
-import 'Utils/messages.dart';
 import 'constants/app_constans.dart';
 import 'controllers/languageController.dart';
 import 'firebase_options.dart';
 import 'utils/dep.dart' as dep;
+import 'utils/messages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  if (Firebase.apps.isEmpty) {
-    await Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform)
-        .then((value) => Get.put(AuthService()));
-  }
-  await AndroidAlarmManager.initialize();
-  const int helloAlarmID = 0;
-  await AndroidAlarmManager.periodic(
-      const Duration(seconds: 45), helloAlarmID, checkAuth,
-      wakeup: true, rescheduleOnReboot: true);
-  await fcmHandler();
-  Map<String, Map<String, String>> _languages = await dep.init();
-
+  // if (Firebase.apps.isEmpty) {
+  //   await Firebase.initializeApp(
+  //           options: DefaultFirebaseOptions.currentPlatform)
+  //       .then((value) => Get.put(AuthService()));
+  // }
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // await AndroidAlarmManager.initialize();
+  // const int helloAlarmID = 0;
+  // await AndroidAlarmManager.periodic(
+  //     const Duration(seconds: 45), helloAlarmID, checkAuth,
+  //     wakeup: true, rescheduleOnReboot: true);
+  // await fcmHandler();
+  Map<String, Map<String, String>> languages = await dep.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  HttpProxy httpProxy = await HttpProxy.createHttpProxy();
+  HttpOverrides.global = httpProxy;
   runApp(MyApp(
-    languages: _languages,
+    languages: languages,
   ));
 }
 
@@ -54,7 +57,9 @@ Future<void> fcmHandler() async {
 
 class MyApp extends StatelessWidget {
   final Map<String, Map<String, String>> languages;
+
   const MyApp({super.key, required this.languages});
+
   @override
   Widget build(BuildContext context) {
     return Sizer(

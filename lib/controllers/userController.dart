@@ -163,8 +163,7 @@ class UserController extends TopController {
     //     nameException: Exception("user name already been taken"));
     // // await updateFields(reference: usersRef, data: data, id: id);
     if (data.containsKey(idK)) {
-      Exception exception = Exception(AppConstants.userId_update_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.userId_update_error_key.tr);
     }
     data[updatedAtK] = firebaseTime(DateTime.now());
     usersRef.doc(id).update(data);

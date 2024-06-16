@@ -52,10 +52,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
         .subtract(const Duration(seconds: 1));
 
     List<String> subTasksIds = [];
-    StreamSubscription<QuerySnapshot<TeamMemberModel>> memberSubscription;
-    Stream<QuerySnapshot<TeamMemberModel>> teamMemberList =
-        TeamMemberController()
-            .getMemberWhereUserIsStream(userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+
     List<TeamMemberModel> listMemberUser = await TeamMemberController()
         .getMemberWhereUserIs(userId: AuthService.instance.firebaseAuth.currentUser!.uid);
 

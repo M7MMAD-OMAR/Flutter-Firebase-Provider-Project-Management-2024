@@ -90,7 +90,6 @@ class TaskCategoryController extends TopController {
 
   // اضافة نوع جديد للمهام والتأكد قبل الاضافة من وجود هذا  المستخدم الذي نضيف له هذا النوع بقاعدة البيانات
   Future<void> addCategory(UserTaskCategoryModel taskCategoryModel) async {
-    Exception exception;
     bool? exist = await existByOne(
         collectionReference: usersRef,
         field: idK,
@@ -102,16 +101,14 @@ class TaskCategoryController extends TopController {
           value: taskCategoryModel.name,
           field2: userIdK,
           value2: taskCategoryModel.userId)) {
-        exception =
-            Exception(AppConstants.Sorry_but_there_is_Anthor_Category_with_the_same_name_key.tr);
-        throw exception;
+        throw Exception(AppConstants
+            .Sorry_but_there_is_Anthor_Category_with_the_same_name_key.tr);
       }
       addDoc(reference: userTaskCategoryRef, model: taskCategoryModel);
       dev.log("message");
       return;
     }
-    exception = Exception(AppConstants.Sorry_the_user_id_cannot_be_found_key.tr);
-    throw exception;
+    throw Exception(AppConstants.Sorry_the_user_id_cannot_be_found_key.tr);
   }
 
 //تحديث نوع المهام

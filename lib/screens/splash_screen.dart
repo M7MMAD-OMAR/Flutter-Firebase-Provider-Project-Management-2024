@@ -9,7 +9,7 @@ import 'package:project_management_muhmad_omar/widgets/logo/app_logo_widget.dart
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
   static String id = "SplashScreen";
-// the Developer karem saad 
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -53,10 +53,6 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
         ))
-        // DarkRadialBackground(
-        //   color: Colors.transparent,
-        //   position: "bottomRight",
-        // ),
       ]),
     );
   }

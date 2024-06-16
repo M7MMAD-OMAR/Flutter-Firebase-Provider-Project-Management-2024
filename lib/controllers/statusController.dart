@@ -37,13 +37,12 @@ class StatusController extends TopController {
   }
 
   Future<void> addStatus(StatusModel statusModel) async {
-    Exception exception;
     bool exist = await existByOne(
         collectionReference: statusesRef,
         value: statusModel.name,
         field: nameK);
     if (exist) {
-      throw exception = Exception(AppConstants.status_name_already_added_key.tr);
+      throw Exception(AppConstants.status_name_already_added_key.tr);
     }
     await addDoc(model: statusModel, reference: statusesRef);
   }
@@ -57,7 +56,6 @@ class StatusController extends TopController {
   }
 
   Future<void> updateStatus(StatusModel statusModel) async {
-    Exception exception;
     DocumentSnapshot? snapshot = await getDocSnapShotWhereAndNotWhere(
       collectionReference: statusesRef,
       field: nameK,
@@ -69,17 +67,14 @@ class StatusController extends TopController {
       await addDoc(model: statusModel, reference: statusesRef);
       return;
     } else {
-      exception = Exception(AppConstants.status_name_already_added_key.tr);
-      throw exception;
+      throw Exception(AppConstants.status_name_already_added_key.tr);
     }
   }
 
   Future<void> updateStatus2(
       {required id, required Map<String, dynamic> data}) async {
-    Exception exception;
     if (data.containsKey(id)) {
-      exception = Exception(AppConstants.status_id_update_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.status_id_update_error_key.tr);
     }
 
     await updateNonRelationalFields(

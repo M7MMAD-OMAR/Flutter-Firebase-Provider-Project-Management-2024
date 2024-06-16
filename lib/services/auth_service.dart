@@ -6,7 +6,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
-// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project_management_muhmad_omar/constants/app_constans.dart';
@@ -28,38 +28,14 @@ Future<String> getFcmToken() async {
 class AuthService extends GetxController {
   UserController userController = Get.put(UserController());
   static AuthService instance = Get.find();
-  // late Rx<User?> _user;
+
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   @override
   void onReady() {
     super.onReady();
-    //   _user = Rx<User?>(firebaseAuth.currentUser);
-    // _user.bindStream(firebaseAuth.userChanges());
-    //  ever(_user, _initialScreen);
   }
 
-  // _initialScreen(User? user) {
-  //   if (user == null) {
-  //     dev.log("user is null");
-  //     Get.offAll(() => const OnboardingStart());
-  //     return;
-  //   }
-  //   if (user.isAnonymous) {
-  //     Get.offAll(() => const Timeline());
-  //     return;
-  //   }
-  //   if (user.emailVerified && !user.isAnonymous) {
-  //     Get.offAll(() => Timeline);
-  //     return;
-  //   }
-  //   if (!user.emailVerified && !user.isAnonymous) {
-  //     Get.offAll(() => const VerifyEmailAddressScreen());
-  //     return;
-  //   }
-  // }
-
-//? do you want to use this or the second one??
   EitherException<bool> updateEmail({required String email}) async {
     final user = firebaseAuth.currentUser;
     try {
@@ -72,15 +48,6 @@ class AuthService extends GetxController {
     }
     return Left(Exception(AppConstants.please_enter_valid_email_key.tr));
   }
-//? do you want to use this or the first  one?
-//  Future<bool> updateEmail2({required String email}) async {
-//     final user = firebaseAuth.currentUser;
-//     if (EmailValidator.validate(email)) {
-//       await user?.updateEmail(email);
-//       return true;
-//     }
-//     return false;
-//   }
 
   EitherException<bool> updatePassword({required String newPassword}) async {
     final user = firebaseAuth.currentUser;
@@ -124,7 +91,6 @@ class AuthService extends GetxController {
     } on Exception catch (e) {
       return Left(e);
     }
-    // authFormType = AuthFormType.signUpWithotVerifiedEmail;
   }
 
   EitherException<bool> sendVerifiectionEmail() async {
@@ -151,7 +117,6 @@ class AuthService extends GetxController {
   }
 
   EitherException<bool> checkEmailVerifction() async {
-    //Call after send email verifiction
     User? user = firebaseAuth.currentUser;
     try {
       if (user != null) {
@@ -174,7 +139,7 @@ class AuthService extends GetxController {
   Future<void> resetPassword({required String email}) async {
     await firebaseAuth.sendPasswordResetEmail(email: email);
   }
-// the Developer karem saad 
+
   Future<UserCredential> sigInWithEmailAndPassword({
     required String email,
     required String password,
@@ -183,12 +148,7 @@ class AuthService extends GetxController {
     UserCredential userCredential = await firebaseAuth
         .signInWithEmailAndPassword(email: email, password: password);
 
-// just now for tesr
-
-//
     await updatFcmToken();
-
-    //authFormType = AuthFormType.email;
 
     return userCredential;
   }
@@ -202,35 +162,12 @@ class AuthService extends GetxController {
     dev.log("message");
   }
 
-  //* it works
-  // EitherException<UserCredential> signInWithFacebook(
-  //     /* {required void Function() updateFcmToken}
-  //    */
-  //     ) async {
-  //   try {
-  //     var facebookAuthCredential = await getFacebookCredential();
-  //     // Once signed in, return the UserCredential
-  //
-  //     UserCredential userCredential =
-  //         await firebaseAuth.signInWithCredential(facebookAuthCredential);
-  //     await noUserMakeOne(userCredential: userCredential);
-  //     await updatFcmToken();
-  //     //  authFormType = AuthFormType.facbook;
-  //     return Right(userCredential);
-  //   } on Exception catch (e) {
-  //     return Left(e);
-  //   }
-  // }
-
   Future<void> noUserMakeOne({required UserCredential userCredential}) async {
     dev.log("check not here");
     TopController topController = TopController();
     if (userCredential.user!.isAnonymous) {
       UserModel userModel = UserModel(
           nameParameter: "Anynonmous",
-          //! رح نبدل مسار هل الصورة بعدين بمسار صورة الانونميس من الفايربيز ستورج
-          //! لازم نناقش حالة انو بالفروت نحنا بدنا نعرض الصورة من الشبكة وبركي فات المستخدم حب يعدل صورتو وهو ماكان عندو نت نحنا شو بدنا نعمل ؟
-          //! عنا خيار انو الصور نحفظها وقت بدو يعدلها ونتحقق من الاتصال بالانترنت إذا كان في مناخدها ومنرفعها ضغري ومنعرضها إذا لا الصور بتنخفظ بالجهاز  وبتنعرض هي الصورة من الاسيت لبين ماينوصل النت
           imageUrlParameter: defaultUserImageProfile,
           idParameter: userCredential.user!.uid,
           createdAtParameter: DateTime.now(),
@@ -256,11 +193,6 @@ class AuthService extends GetxController {
     }
   }
 
-//   Future<OAuthCredential> getFacebookCredential() async {
-// // Trigger the sign-in flow
-//     final LoginResult loginResult = await FacebookAuth.instance
-//         .login(permissions: ["public_profile", "email"]);
-//
 //     // Create a credential from the access token
 //     final OAuthCredential facebookAuthCredential =
 //         FacebookAuthProvider.credential(loginResult.accessToken!.token);
@@ -407,7 +339,7 @@ class AuthService extends GetxController {
       dev.log("Right");
       return Right(credential);
     } on Exception catch (e) {
-      dev.log("left  ${e}");
+      dev.log("left  $e");
       return Left(e);
     }
     //  authFormType = AuthFormType.anonymous;
@@ -425,85 +357,3 @@ class AuthService extends GetxController {
     dev.log("remove");
   }
 }
-
-/*
-
-الميثود تبع التوكين أخي 
-وقت بدك تسجل دخول بحساب لازم تحفظ التوكن كمان احتياطاً شوف إذا الاي دي موجود أو لا تبع الفاير بيس اوث اذا مانو موجود سوي حساب 
-  void signInUser() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-    UserCredential userCredential = await FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-            email: userEmailController.text, password: passwordController.text);
-    userController.updateUser(data: {
-      "tokenFcm": FieldValue.arrayUnion([await getFcmToken()]),
-    }, id: userCredential.user!.uid);
-    Navigator.pop(context);
-  }
-وقت بدك تسجل حساب أخي لازم تحفظ التوكين 
-void signUpUser() async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-
-    try {
-      if (confirmPasswordController.text == passwordController.text) {
-        UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: userEmailController.text,
-                password: passwordController.text)
-            .then((value) async {
-          String token = await getFcmToken();
-          UserModel userModel = UserModel(
-              nameParameter: "sung jin woo",
-              imageUrlParameter:
-                  "https://i.pinimg.com/originals/7e/29/17/7e29176ed998ad8d35cd1813dee93a7f.jpg",
-              tokenFcm: [token],
-              idParameter: value.user!.uid,
-              createdAtParameter: DateTime.now(),
-              updatedAtParameter: DateTime.now());
-          await userController.createUser(userModel: userModel);
-          return value;
-        });
-      } else {
-        errorMessage('password and confirm password not the same');
-      }
-      Get.back();
-    } on FirebaseAuthException catch (ex) {
-      Navigator.pop(context);
-
-      if (ex.code == 'user-not-found') {
-        errorMessage('Wrong Email');
-      }
-
-      if (ex.code == 'wrong-password') {
-        errorMessage('Wrong password');
-      } else {
-        errorMessage(ex.code);
-      }
-    }
-// the Developer karem saad 
-  }
-ووقت بتعمل signout 
-IconButton(
-            onPressed: () async {
-              userController.updateUser(data: {
-                "tokenFcm": FieldValue.arrayRemove([await getFcmToken()]),
-              }, id: firebaseAuth.currentUser!.uid);
-              await firebaseAuth.signOut();
-            },
-            icon: Icon(Icons.logout))
-
-*/

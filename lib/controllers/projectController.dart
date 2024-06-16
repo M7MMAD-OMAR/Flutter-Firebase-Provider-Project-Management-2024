@@ -32,28 +32,22 @@ class ProjectController extends ProjectAndTaskController {
       DateTime? newStartDate = data[startDateK] as DateTime;
       if (newStartDate.isAfter(projectModel!.endDate!)) {
         //"Cannot update the start date after the end of project date has passed"
-        Exception exception =
-            Exception(AppConstants.start_date_update_error_key);
-        throw exception;
+        throw Exception(AppConstants.start_date_update_error_key);
       }
       if (projectModel.endDate!.isBefore(firebaseTime(DateTime.now()))) {
-        Exception exception =
+        throw
             //"Cannot update the start date after the end of project date has passed"
             Exception(AppConstants.project_start_date_update_error_key);
-        throw exception;
       }
       if (await existByOne(
           collectionReference: projectMainTasksRef,
           field: projectIdK,
           value: projectModel.id)) {
-        Exception exception =
-            Exception(AppConstants.project_already_started_error_key);
-        throw exception;
+        throw Exception(AppConstants.project_already_started_error_key);
       }
     }
     if (data.containsKey(teamIdK)) {
-      Exception exception = Exception(AppConstants.team_id_update_error_key);
-      throw exception;
+      throw Exception(AppConstants.team_id_update_error_key);
     }
     ManagerController managerController = Get.put(ManagerController());
     ManagerModel? managerModel =
@@ -120,18 +114,14 @@ class ProjectController extends ProjectAndTaskController {
               .get();
 
           if (anotherProjects.docs.isNotEmpty) {
-            Exception exception =
-                Exception(AppConstants.team_project_overlap_error_key.tr);
-            throw exception;
+            throw Exception(AppConstants.team_project_overlap_error_key.tr);
           } else {
             await addDoc(reference: projectsRef, model: projectModel);
             return;
           }
         } else {
           //في حال كان المانجر موجود بالداتا بيز والمشروع الو فريق بس هل الفريق مالو بالداتا بيز او المدير تبع هل التيم غير مدير المشروع مابيسمحلو يضيف
-          Exception exception =
-              Exception(AppConstants.team_manager_error_key.tr);
-          throw exception;
+          throw Exception(AppConstants.team_manager_error_key.tr);
         }
       }
       {
@@ -141,9 +131,7 @@ class ProjectController extends ProjectAndTaskController {
       }
     } else {
       //في حال إعطاء ايدي لمانجر غير موجود بالداتا بيز اصلا
-      Exception exception =
-          Exception(AppConstants.manager_not_found_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.manager_not_found_error_key.tr);
     }
   }
 
@@ -618,28 +606,21 @@ class ProjectController extends ProjectAndTaskController {
     if (data.containsKey(startDateK)) {
       DateTime? newStartDate = data[startDateK] as DateTime;
       if (newStartDate.isAfter(oldProject.endDate!)) {
-        Exception exception =
-            Exception(AppConstants.start_date_update_error_key.tr);
-        throw exception;
+        throw Exception(AppConstants.start_date_update_error_key.tr);
       }
 
       if (oldProject.endDate!.isBefore(firebaseTime(DateTime.now()))) {
-        Exception exception =
-            Exception(AppConstants.project_start_date_update_error_key.tr);
-        throw exception;
+        throw Exception(AppConstants.project_start_date_update_error_key.tr);
       }
       if (await existByOne(
           collectionReference: projectMainTasksRef,
           field: projectIdK,
           value: id)) {
-        Exception exception =
-            Exception(AppConstants.project_already_started_error_key.tr);
-        throw exception;
+        throw Exception(AppConstants.project_already_started_error_key.tr);
       }
     }
     if (data.containsKey(teamIdK)) {
-      Exception exception = Exception(AppConstants.team_id_update_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_id_update_error_key.tr);
     }
 
     await updateRelationalFields(

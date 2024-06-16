@@ -51,13 +51,11 @@ class WaitingMemberModel with TopModel {
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
     //يأخذ الوقت ويجري عليه التعديلات الخاصة بوقت الفايربيز لتجري عمليات الوقت عليه بدون حدوث اي خطأ في اعدادات الوقت المدخل ثم يرجعه
-    Exception exception;
+
     updatedAtParameter = firebaseTime(updatedAtParameter);
     //تاريخ تحديث الدوكيومنت الخاص بالعضو ا يمكن أن يكون قبل تاريخ الإنشاء
     if (updatedAtParameter.isBefore(firebaseTime(createdAt))) {
-      exception =
-          Exception(AppConstants.waiting_team_member_updating_time_before_create_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.waiting_team_member_updating_time_before_create_error_key.tr);
     }
     updatedAt = updatedAtParameter;
   }

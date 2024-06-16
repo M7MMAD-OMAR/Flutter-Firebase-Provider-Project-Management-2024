@@ -106,11 +106,8 @@ class ProjectSubTaskModel extends TaskClass {
   late String assignedTo;
   @override
   set setHexColor(String hexcolorParameter) {
-    Exception exception;
     if (hexcolorParameter.isEmpty) {
-      exception =
-          Exception(AppConstants.project_sub_task_color_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_color_empty_error_key);
     }
     hexcolor = hexcolorParameter;
   }
@@ -118,12 +115,10 @@ class ProjectSubTaskModel extends TaskClass {
   //الدوكيومنت اي دي الخاص بالشخص الذي سيتم اسناد المهمة له
   set setAssignedTo(String assignedToParameter) {
     //الشروط الخاصة بالدوكيومنت آي دي الخاص  بالشخص الذي سيتم اسناد المهمة له
-    Exception exception;
+
     //لا يمكن أن يكون الدوكيومنت آي دي الخاص  بالشخص الذي سيتم اسناد المهمة له فارغاً
     if (assignedToParameter.isEmpty) {
-      exception =
-          Exception(AppConstants.team_member_assigned_id_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.team_member_assigned_id_empty_error_key);
     }
 
     assignedTo = assignedToParameter;
@@ -133,17 +128,16 @@ class ProjectSubTaskModel extends TaskClass {
   //الدوكيومنت آي دي الخاص بالمهمة الأساسية في المشروع التي تندرج بداخلها المهمة الفرعية
   set setMainTaskId(String mainTaskIdParameter) {
     //الشروط الخاصة بالدوكيومنت آي دي الخاص بالمهمة الأساسية
-    Exception exception;
+
     //لا يمكن أن يكون  آي دي الخاص بالمهمة الأساسية فارغاً
     if (mainTaskIdParameter.isEmpty) {
-      exception = Exception(AppConstants.sub_task_main_task_id_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.sub_task_main_task_id_empty_error_key);
     }
     //التأكد من وجود المهمة الأساسية
     //TODO make this function
     // if (!checkExist("project_main_tasks", mainTaskIdParameter)) {
-    //   exception = Exception("project Main Task id cannot be found");
-    //   throw exception;
+    //   throw Exception("project Main Task id cannot be found");
+    //
     // }
     mainTaskId = mainTaskIdParameter;
   }
@@ -152,11 +146,10 @@ class ProjectSubTaskModel extends TaskClass {
   //اي دي الدوكيومنت الخاص بالمشروع الذي يتضمن المهمة الفرعية
   set setprojectId(String projectIdParameter) {
     //قواعد إضافة الاي دي الخاص بالدوكيومنت الخاص بالبروجيكت الذي يحتوي المهمة
-    Exception exception;
+
     //لا يمكن لآي دي الدوكيومنت الخاص بالبروجيكت أن يكون فارغاُ
     if (projectIdParameter.isEmpty) {
-      exception = Exception(AppConstants.sub_task_project_id_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.sub_task_project_id_empty_error_key);
     }
 
     //التحقق من وجود المشروع في الداتا بيس
@@ -173,11 +166,10 @@ class ProjectSubTaskModel extends TaskClass {
   @override
   set setId(String idParameter) {
     //الشروط الخاصة بالدوكيومينت آي دي الخاص بالمهمة الفرعية
-    Exception exception;
+
     //لا يمكن أن يكون آي دي المهمة الفرعية للمشروع فارغاً
     if (idParameter.isEmpty) {
-      exception = Exception(AppConstants.project_sub_task_id_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_id_empty_error_key);
     }
     id = idParameter;
   }
@@ -190,16 +182,14 @@ class ProjectSubTaskModel extends TaskClass {
   @override
   set setName(String? nameParameter) {
     //الشروط الخاصة باسم المهمة الفرعية في المهمة الأساسية في البروجيكت
-    Exception exception;
+
     //لا يمكن أن يكون اسم المهمة الفرعية في المشروع بدون قيمة
     if (nameParameter == null) {
-      exception = Exception(AppConstants.project_sub_task_name_null_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_name_null_error_key);
     }
     //لا يمكن أن يكون اسم المهمة الفرعية في المشروع فارغاُ
     if (nameParameter.isEmpty) {
-      exception = Exception(AppConstants.project_sub_task_name_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_name_empty_error_key);
     }
     //TODO::don't forget to edit here
     name = nameParameter;
@@ -208,18 +198,16 @@ class ProjectSubTaskModel extends TaskClass {
   @override
   set setStatusId(String statusIdParameter) {
     //الشروط الخاصة بالدوكيومينت آي دي الخاص بالحالة
-    Exception exception;
+
     //يتم رفض الدوكيومينت آي دي الخاص بالحالة اذا فارغاً
     if (statusIdParameter.isEmpty) {
-      exception =
-          Exception(AppConstants.project_sub_task_status_id_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_status_id_empty_error_key);
     }
     //ميثود تقوم بالتحقق من صحة الاي دي الخاصة بالحالة
     //TODO complete this function that check if the id is valid
     // if (!checkExist("status", statusIdParameter)) {
-    //   exception = Exception("status id is not found");
-    //   throw exception;
+    //   throw Exception("status id is not found");
+    //
     // }
     statusId = statusIdParameter;
   }
@@ -228,39 +216,30 @@ class ProjectSubTaskModel extends TaskClass {
   set setimportance(int importanceParameter) {
     //تتراوح قيمة الأهمية بين ال1 وال5
     //الشروط التي تنطبق على الأهمية
-    Exception exception;
+
     //الأهمية لا يمكن أن تكون أقل من واحد
     if (importanceParameter < 1) {
-      exception =
-          Exception(AppConstants.project_sub_task_importance_min_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_importance_min_error_key);
     }
     //لا يمكن أن تكون للأهمية قيمة أكبر من 5
     if (importanceParameter > 5) {
-      exception =
-          Exception(AppConstants.project_sub_task_importance_max_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_importance_max_error_key);
     }
     importance = importanceParameter;
   }
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    Exception exception;
     createdAtParameter = firebaseTime(createdAtParameter);
     //الشروط الخاصة بتاريخ ووقت إضافة الدوكيومنت الخاص بالمهمة الفرعية
     DateTime now = firebaseTime(DateTime.now());
     createdAtParameter = firebaseTime(createdAtParameter);
     if (createdAtParameter.isAfter(now)) {
-      exception =
-          Exception(AppConstants.project_sub_task_create_time_future_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_create_time_future_error_key);
     }
     //تاريخ إضافة الدوكيومنت الخاص بالمهمة الفرعية لا يمكن أن يكون قبل الوقت الحالي
     if (firebaseTime(createdAtParameter).isBefore(now)) {
-      exception =
-          Exception(AppConstants.project_sub_task_create_time_past_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_create_time_past_error_key);
     }
     createdAt = firebaseTime(createdAtParameter);
   }
@@ -268,13 +247,12 @@ class ProjectSubTaskModel extends TaskClass {
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
     //الشروط الخاصة بال التاريخ والوقت لتحديث المهمة الفرعية في البروجيكت
-    Exception exception;
+
     updatedAtParameter = firebaseTime(updatedAtParameter);
     //لا يمكن أن يكون تاريخ التحديث قبل تاريخ إنشاء المهمة
     if (updatedAtParameter.isBefore(createdAt)) {
-      exception = Exception(
+      throw Exception(
           AppConstants.project_sub_task_update_time_before_creating_error_key);
-      throw exception;
     }
     updatedAt = firebaseTime(updatedAtParameter);
   }
@@ -282,20 +260,16 @@ class ProjectSubTaskModel extends TaskClass {
   @override
   set setStartDate(DateTime? startDateParameter) {
     //الشروط الخاصة بتاريخ ووقت البداية
-    Exception exception;
+
     //تاريخ بداية المهمة لا يمكن أن يكون عديم القيمة
     if (startDateParameter == null) {
-      exception =
-          Exception(AppConstants.project_sub_task_start_date_null_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_start_date_null_error_key);
     }
     startDateParameter = firebaseTime(startDateParameter);
     DateTime now = firebaseTime(DateTime.now());
     //تاريخ ووقت البداية البداية لا يمكن أن يكون قبل التاريخ والوقت الحالي
     if (startDateParameter.isBefore(now)) {
-      exception =
-          Exception(AppConstants.project_sub_task_start_date_past_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_start_date_past_error_key);
     }
 
     startDate = startDateParameter;
@@ -308,34 +282,27 @@ class ProjectSubTaskModel extends TaskClass {
   @override
   set setEndDate(DateTime? endDateParameter) {
     //الشروط الخاصة بتاريخ ووقت نهاية المهمة الفرعية في البروجكت
-    Exception exception;
+
     //لا يمكن أن يكون تاريخ ووقت نهاية المهمة الفرعية معدوم القيمة
     if (endDateParameter == null) {
-      exception =
-          Exception(AppConstants.project_sub_task_end_date_null_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_end_date_null_error_key);
     }
     endDateParameter = firebaseTime(endDateParameter);
     //لا يمكن أن يكون تاريخ نهاية المهمة المهمة الفرعية قبل تاريخ بدايتها
     if (endDateParameter.isBefore(startDate)) {
-      exception =
-          Exception(AppConstants.project_sub_task_start_after_end_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_start_after_end_error_key);
     }
     //لا يمكن أن يكون تاريخ ووقت نهاية وبدايتها متساويين
 
     if ((endDateParameter).isAtSameMomentAs(getStartDate)) {
-      exception = Exception(
+      throw Exception(
         AppConstants.project_sub_task_start_same_as_end_error_key,
       );
-      throw exception;
     }
     //لا يمكن أن يكون الفرق بين تاريخ بداية المهمة الفرعية ونهايتها أقل من 5 دقائق
     Duration diff = endDateParameter.difference(startDate);
     if (diff.inMinutes < 5) {
-      exception =
-          Exception(AppConstants.project_sub_task_time_difference_error_key);
-      throw exception;
+      throw Exception(AppConstants.project_sub_task_time_difference_error_key);
     }
     endDate = firebaseTime(endDateParameter);
   }

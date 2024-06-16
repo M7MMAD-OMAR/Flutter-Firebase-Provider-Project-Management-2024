@@ -86,7 +86,6 @@ class TeamMemberController extends TopController {
 
 //بركي العضو موجود وعم ضيفو مرة تانية
   Future<void> addMember({required TeamMemberModel teamMemberModel}) async {
-    Exception exception;
     if (await existInTowPlaces(
       firstCollectionReference: usersRef,
       firstFiled: idK,
@@ -101,22 +100,18 @@ class TeamMemberController extends TopController {
           field: teamMemberModel.userId,
           value2: teamIdK,
           field2: teamMemberModel.teamId)) {
-        exception = Exception(AppConstants.user_already_added_error_key.tr);
-        throw exception;
+        throw Exception(AppConstants.user_already_added_error_key.tr);
       }
       addDoc(reference: teamMembersRef, model: teamMemberModel);
     } else {
-      exception = Exception(AppConstants.team_user_not_found_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_user_not_found_error_key.tr);
     }
   }
 
   Future<void> updateMemeber(
       {required id, required Map<String, dynamic> data}) async {
-    Exception exception;
     if (data.containsKey(teamIdK) || data.containsKey(userIdK)) {
-      exception = Exception(AppConstants.team_user_id_update_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.team_user_id_update_error_key.tr);
     }
 
     await updateNonRelationalFields(

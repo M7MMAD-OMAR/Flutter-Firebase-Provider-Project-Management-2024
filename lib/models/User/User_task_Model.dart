@@ -140,11 +140,10 @@ class UserTaskModel extends TaskClass {
 
   set setUserId(String userIdParameter) {
     //قواعد إضافة الاي دي الخاص بالدوكيومنت الخاص بالمستخدم الذي يملك المهمة
-    Exception exception;
+
     //لا يمكن لآي دي الدوكيومنت الخاص بالمستخدم  أن يكون فارغ
     if (userIdParameter.isEmpty) {
-      exception = Exception(AppConstants.task_user_id_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.task_user_id_empty_error_key);
     }
     //التحقق من وجود المستخدم الذي يتم إسناد المهمة له
 
@@ -153,11 +152,10 @@ class UserTaskModel extends TaskClass {
 
   set setFolderId(String folderIdParameter) {
     //قواعد إضافة الاي دي الخاص بالدوكيومنت الخاص بالمستخدم الذي يملك المهمة
-    Exception exception;
+
     //لا يمكن لآي دي الدوكيومنت الخاص بالمستخدم أن يكون فارغ
     if (folderIdParameter.isEmpty) {
-      exception = Exception(AppConstants.user_task_category_id_empty_error_key);
-      throw exception;
+      throw Exception(AppConstants.user_task_category_id_empty_error_key);
     }
     //التحقق من وجود التصنيف الذي تندرج تحته المهمة
 
@@ -173,16 +171,14 @@ class UserTaskModel extends TaskClass {
   @override
   set setName(String? nameParameter) {
     //الشروط الخاصة باسم المهمة
-    Exception exception;
+
     //لا يمكن أن يكون اسم المهمة بدون قيمة
     if (nameParameter == null) {
-      exception = Exception(AppConstants.user_task_name_null_error_key);
-      throw exception;
+      throw Exception(AppConstants.user_task_name_null_error_key);
     }
     //لا يمكن ان يكون اسم المهمة فارغاً
     if (nameParameter.isEmpty) {
-      exception = Exception(AppConstants.user_task_name_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_task_name_empty_error_key.tr);
     }
     //لا يمكن ان يكون اسم المهمة مكرراً في نفس المجلد
     // () async {
@@ -193,8 +189,8 @@ class UserTaskModel extends TaskClass {
     //           field2: "name",
     //           value2: nameParameter) >
     //       1) {
-    //     exception = Exception("task already been added");
-    //     throw exception;
+    //     throw Exception("task already been added");
+    //
     //   }
     // }();
 
@@ -209,11 +205,10 @@ class UserTaskModel extends TaskClass {
   @override
   set setId(String idParameter) {
     //الشروط الخاصة بالدوكيومينت آي دي الخاص بالمهمة
-    Exception exception;
+
     //إذا كان الآي دي فارغ لا يتم قبوله
     if (idParameter.isEmpty) {
-      exception = Exception(AppConstants.user_task_id_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_task_id_empty_error_key.tr);
     }
     id = idParameter;
   }
@@ -221,11 +216,10 @@ class UserTaskModel extends TaskClass {
   @override
   set setStatusId(String statusIdParameter) {
     //الشروط الخاصة بالدوكيومينت آي دي الخاص بالحالة
-    Exception exception;
+
     //يتم رفض الدوكيومينت آي دي الخاص بالحالة اذا فارغاً
     if (statusIdParameter.isEmpty) {
-      exception = Exception(AppConstants.task_status_id_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.task_status_id_empty_error_key.tr);
     }
     statusId = statusIdParameter;
   }
@@ -233,46 +227,39 @@ class UserTaskModel extends TaskClass {
   @override
   set setimportance(int importanceParameter) {
     //الشروط التي تنطبق على الأهمية
-    Exception exception;
+
     //الأهمية لا يمكن أن تكون أقل من صفر أو تساويه
     if (importanceParameter <= 0) {
-      exception = Exception(AppConstants.importance_less_than_zero_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.importance_less_than_zero_error_key.tr);
     }
     //الأهمية لا يمكن أن تكون أكبر من 5 وهي مهم جداً
     if (importanceParameter > 5) {
-      exception = Exception(AppConstants.importance_greater_than_five_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.importance_greater_than_five_error_key.tr);
     }
     importance = importanceParameter;
   }
 
   @override
   set setHexColor(String hexcolorParameter) {
-    Exception exception;
     if (hexcolorParameter.isEmpty) {
-      exception = Exception(AppConstants.task_color_empty_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.task_color_empty_error_key.tr);
     }
     hexcolor = hexcolorParameter;
   }
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    Exception exception;
     //الشروط الخاصة بتاريخ ووقت إضافة الدوكيومنت الخاص بالمهمة
     createdAtParameter = firebaseTime(createdAtParameter);
     DateTime now = firebaseTime(DateTime.now());
 
     //تاريخ إضافة مهمة المستخدم لا يمكن أن يكون بعد الوقت الحالي
     if (createdAtParameter.isAfter(now)) {
-      exception = Exception(AppConstants.user_task_create_future_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_task_create_future_error_key.tr);
     }
     //تاريخ إضافة الدوكيومنت لا يمكن أن يكون قبل الوقت الحالي
     if (firebaseTime(createdAtParameter).isBefore(now)) {
-      exception = Exception(AppConstants.user_task_create_past_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_task_create_past_error_key.tr);
     }
     createdAt = firebaseTime(createdAtParameter);
   }
@@ -280,14 +267,11 @@ class UserTaskModel extends TaskClass {
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
     //الشروط الخاصة بال التاريخ والوقت لتحديث المهمة
-    Exception exception;
 
     updatedAtParameter = firebaseTime(updatedAtParameter);
     //تاريخ تحديث الدوكيومنت لا يمكن أن يكون قبل تاريخ إنشائه
     if (updatedAtParameter.isBefore(createdAt)) {
-      exception =
-          Exception(AppConstants.task_update_before_create_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.task_update_before_create_error_key.tr);
     }
     updatedAt = firebaseTime(updatedAtParameter);
   }
@@ -295,26 +279,22 @@ class UserTaskModel extends TaskClass {
   @override
   set setStartDate(DateTime? startDateParameter) {
     //الشروط الخاصة بتاريخ ووقت البداية
-    Exception exception;
 
     if (startDateParameter == null) {
       //متل أيا عاقل حتقول لحالك انو وقت البداية مالازم يكون عديم القيمة برابو أخي
-      exception = Exception(AppConstants.user_task_start_date_null_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_task_start_date_null_error_key.tr);
     }
     startDateParameter = firebaseTime(startDateParameter);
     DateTime now = firebaseTime(DateTime.now());
     //تاريخ ووقت البداية البداية لا يمكن أن يكون قبل التاريخ والوقت الحالي
     if (startDateParameter.isBefore(now)) {
-      exception =
-          Exception(AppConstants.user_task_start_date_past_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_task_start_date_past_error_key.tr);
     }
     //TODO check this line
     //التحقق من وجود مهمات بنفس الوقت لإبلاغ المستخدم عنها
     // if (dateduplicated(startDateParameter)) {
-    //   exception = Exception("start date can't be after end date");
-    //   throw exception;
+    //   throw Exception("start date can't be after end date");
+    //
     // }
 
     startDate = firebaseTime(startDateParameter);
@@ -323,29 +303,25 @@ class UserTaskModel extends TaskClass {
   @override
   set setEndDate(DateTime? endDateParameter) {
     //الشروط الخاصة بتاريخ ووقت انتهاء المهمة
-    Exception exception;
+
     //لا يمكن لتاريخ ووقت المهمة أن يكون عديم الوقت
     if (endDateParameter == null) {
-      exception = Exception(AppConstants.user_task_end_date_null_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_task_end_date_null_error_key.tr);
     }
     endDateParameter = firebaseTime(endDateParameter);
     //تاريخ ووقت نهاية المهمة لا يمكن أن يكون بنفس تاريخ ووقت بداية المهمة
     if (endDateParameter.isAtSameMomentAs(startDate)) {
-      exception = Exception(
+      throw Exception(
         AppConstants.user_task_start_end_date_same_time_error_key.tr,
       );
     }
     //لا يمكن أن يكون هناك فارق أقل من 5 دقائق بين بداية المهمة الأساسية ونهايتها
     if (differeInTime(getStartDate, endDateParameter).inMinutes < 5) {
-      exception = Exception(
-      AppConstants.task_time_difference_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.task_time_difference_error_key.tr);
     }
     //تاريخ انتهاء المهمة لا يمكن أن يكون قبل بداية المهمة
     if (endDateParameter.isBefore(startDate)) {
-      exception = Exception(AppConstants.user_task_end_date_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.user_task_end_date_error_key.tr);
     }
     endDate = firebaseTime(endDateParameter);
   }

@@ -49,10 +49,8 @@ class UserTaskCategoryModel extends VarTopModel {
 
   late String hexColor;
   set setHexColor(String hexColorParameter) {
-    Exception exception;
     if (hexColorParameter.isEmpty) {
-      exception = Exception(AppConstants.category_color_empty_key);
-      throw exception;
+      throw Exception(AppConstants.category_color_empty_key);
     }
     hexColor = hexColorParameter;
   }
@@ -66,22 +64,18 @@ class UserTaskCategoryModel extends VarTopModel {
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    Exception exception;
     //يأخذ الوقت ويجري عليه التعديلات الخاصة بوقت الفايربيز لتجري عمليات الوقت عليه بدون حدوث
     // اي خطأ في اعدادات الوقت المدخل ثم يرجعه
     //لا يمكن أن يكون تاريخ إنشاء الدوكمنت الخاص بتصنيف المستخدم قبل الوقت الحالي
     DateTime now = firebaseTime(DateTime.now());
     createdAtParameter = firebaseTime(createdAtParameter);
     if (createdAtParameter.isBefore(now)) {
-      exception = Exception(AppConstants.created_time_before_now_invalid_key);
-      throw exception;
+      throw Exception(AppConstants.created_time_before_now_invalid_key);
     }
     //لا يمكن أن يكون تاريخ إنشاء الدوكمنت الخاص بتصنيف المستخدم بعد الوقت الحالي
 
     if (createdAtParameter.isAfter(now)) {
-      exception =
-          Exception(AppConstants.created_time_not_in_future_invalid_key);
-      throw exception;
+      throw Exception(AppConstants.created_time_not_in_future_invalid_key);
     }
     createdAt = createdAtParameter;
   }
@@ -89,41 +83,33 @@ class UserTaskCategoryModel extends VarTopModel {
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
     //يأخذ الوقت ويجري عليه التعديلات الخاصة بوقت الفايربيز لتجري عمليات الوقت عليه بدون حدوث اي خطأ في اعدادات الوقت المدخل ثم يرجعه
-    Exception exception;
+
     updatedAtParameter = firebaseTime(updatedAtParameter);
     //لا يمكن أن يكون تاريخ تحديث الدوكمنت الخاص بتصنيف مهمة المستخدم قبل تاريخ الإنشاء
     if (updatedAtParameter.isBefore(createdAt)) {
-      exception =
-          Exception(AppConstants.updating_time_before_creating_invalid_key);
-      throw exception;
+      throw Exception(AppConstants.updating_time_before_creating_invalid_key);
     }
     updatedAt = updatedAtParameter;
   }
 
   @override
   set setId(String idParameter) {
-    Exception exception;
     //لا يمكن أن يكون اي دي دوكمنت الخاص بتصنيف المهمة فارغاً
     if (idParameter.isEmpty) {
-      exception = Exception(AppConstants.category_id_empty_key);
-      throw exception;
+      throw Exception(AppConstants.category_id_empty_key);
     }
     id = idParameter;
   }
 
   @override
   set setName(String nameParameter) {
-    Exception exception;
-
     //هذه الخاصية تستخدم لوضع قيمة لاسم الفئة وضمان ان هذه القيمة يتم ادخالها حسب الشروط الموضوعة في التطبيق
     //لا يمكن أن يكون اسم التصنيف فارغاً
     if (nameParameter.isEmpty) {
-      exception = Exception(AppConstants.name_empty_key);
-      throw exception;
+      throw Exception(AppConstants.name_empty_key);
     } //لايمكن ان يكون اسم التصنيف مؤلفاً من اقل من ثلاث محارف
     if (nameParameter.length <= 3) {
-      exception = Exception(AppConstants.name_length_invalid_key);
-      throw exception;
+      throw Exception(AppConstants.name_length_invalid_key);
     }
 
     //في حال مرروره على جميع الشروط وعدم رمي اكسيبشن فذلك يعني تحقيقه للشروط المطلوبة وعندها سيتم وضع القيمة

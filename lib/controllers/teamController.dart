@@ -22,9 +22,7 @@ class TeamController extends TopController {
         value: teamModel.managerId)) {
       await addDoc(reference: teamsRef, model: teamModel);
     } else {
-      Exception exception =
-          Exception(AppConstants.manager_not_found_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.manager_not_found_error_key.tr);
     }
   }
 
@@ -179,9 +177,7 @@ class TeamController extends TopController {
 
   Future<void> updateTeam(String id, Map<String, dynamic> data) async {
     if (data.containsKey(managerIdK)) {
-      Exception exception =
-          Exception(AppConstants.manager_id_update_error_key.tr);
-      throw exception;
+      throw Exception(AppConstants.manager_id_update_error_key.tr);
     }
     ManagerController managerController = Get.put(ManagerController());
     ManagerModel managerModel =

@@ -113,8 +113,6 @@ class AppConstants {
   static const String there_is_no_user_logging_in_or_sign_up_key =
       "There_is_No_user_in_the_App";
 
-  // static const String there_is_no_user_in_the_app_key =
-  //     "There_is_No_user_in_the_App";
   static const String the_email_in_its_way_to_you_key =
       "the_email_in_its_way_to_you";
   static const String There_is_No_User_Logging_in_Or_Sign_Up_key =
@@ -157,7 +155,6 @@ class AppConstants {
   static const String by_team_key = "by_team";
   static const String status_key = "status";
 
-  // the Developer karem saad
   static const String projects_key = "projects";
   static const String member_key = "member";
   static const String task_assigned_successfully_key =
@@ -409,7 +406,6 @@ class AppConstants {
       "waiting_team_member_updating_time_before_create_error";
   static const String name_not_empty_key = "name_not_empty";
 
-  // the Developer karem saad
   static const String name_min_length_key = "name_min_length";
   static const String name_letters_only_key = "name_letters_only";
   static const String username_not_empty_key = "username_not_empty";
