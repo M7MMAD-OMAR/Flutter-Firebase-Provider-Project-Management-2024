@@ -2,7 +2,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
@@ -119,10 +118,10 @@ class _FatherTasksState extends State<FatherTasks> {
             child: SafeArea(
               child: TaskezAppHeader(
                 title:
-                    "${AppConstants.task_key.tr} :${widget.fatherTaskModel.name?.toUpperCase()}  ${AppConstants.tasks_key.tr}",
+                    "${AppConstants.task_key.tr} :${widget.fatherTaskModel.name?.toUpperCase()}  المهام",
                 widget: MySearchBarWidget(
                   searchWord:
-                      "${widget.fatherTaskModel.name?.toUpperCase()} ${AppConstants.tasks_key.tr}",
+                      "${widget.fatherTaskModel.name?.toUpperCase()} المهام",
                   editingController: editingController,
                   onChanged: (String value) {
                     setState(() {
@@ -354,7 +353,7 @@ class _FatherTasksState extends State<FatherTasks> {
 
               UserTaskModel userTaskModel = UserTaskModel.firestoreConstructor(
                   colorParameter: color,
-                  userId: AuthService.instance.firebaseAuth.currentUser!.uid,
+                  userId: AuthProvider.instance.firebaseAuth.currentUser!.uid,
                   folderId: widget.categoryModel.id,
                   taskFatherId: null,
                   descriptionParameter: desc!,
@@ -409,7 +408,7 @@ class _FatherTasksState extends State<FatherTasks> {
               UserTaskModel userTaskModel = UserTaskModel(
                   hexColorParameter: color,
                   userIdParameter:
-                      AuthService.instance.firebaseAuth.currentUser!.uid,
+                      AuthProvider.instance.firebaseAuth.currentUser!.uid,
                   folderIdParameter: widget.categoryModel.id,
                   taskFatherIdParameter: taskfatherid,
                   descriptionParameter: desc!,

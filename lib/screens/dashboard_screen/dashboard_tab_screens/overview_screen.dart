@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
@@ -88,7 +87,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                 stream: userTaskController
                     .getUserTasksStream(
                       userId:
-                          AuthService.instance.firebaseAuth.currentUser!.uid,
+                          AuthProvider.instance.firebaseAuth.currentUser!.uid,
                     )
                     .asBroadcastStream(),
                 name: AppConstants.total_task_key.tr,
@@ -101,7 +100,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                     .getUserTasksStartInADayForAStatusStream(
                         date: DateTime.now(),
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid,
+                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         status: statusNotStarted)
                     .asBroadcastStream(),
                 name: AppConstants.to_do_today_key.tr,
@@ -113,7 +112,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                 stream: userTaskController
                     .getUserTasksForAStatusStream(
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid,
+                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         status: statusDoing)
                     .asBroadcastStream(),
                 name: AppConstants.working_on_key.tr,
@@ -125,7 +124,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                 stream: userTaskController
                     .getUserTasksForAStatusStream(
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid,
+                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         status: statusDone)
                     .asBroadcastStream(),
                 name: AppConstants.completed_tasks_key.tr,
@@ -137,7 +136,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                 stream: userTaskController
                     .getUserTasksForAStatusStream(
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid,
+                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         status: statusNotDone)
                     .asBroadcastStream(),
                 name: AppConstants.uncompleted_tasks_key.tr,
@@ -149,7 +148,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                 stream: taskCategoryController
                     .getUserCategoriesStream(
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid)
+                            AuthProvider.instance.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
                 name: AppConstants.total_categories_key.tr,
                 colorHex: "EDA7FA",
@@ -160,7 +159,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                 stream: projectController
                     .getProjectsOfUserStream(
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid)
+                            AuthProvider.instance.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
                 name: AppConstants.total_projects_key.tr,
                 colorHex: "EDA7FA",
@@ -171,7 +170,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                 stream: teamController
                     .getTeamsOfUserStream(
                         userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid)
+                            AuthProvider.instance.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
                 name: AppConstants.total_teams_key.tr,
                 colorHex: "EDA7FA",

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -18,8 +17,8 @@ import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radi
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 
-import '../Projects/add_team_to_create_project_screen.dart';
-import '../Projects/add_user_to_team_screen.dart';
+import '../Projects/add_team_to_create_project_provider.dart';
+import '../Projects/add_user_to_team_provider.dart';
 import '../profile/profile_overview_screen.dart';
 
 enum TeamSortOption {
@@ -144,7 +143,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
                           stream: UserController().getUserByIdStream(
-                              id: AuthService
+                              id: AuthProvider
                                   .instance.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -245,8 +244,8 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                 Expanded(
                   child: StreamBuilder<QuerySnapshot<TeamModel>?>(
                     stream: TeamController().getTeamsOfUserStream(
-                        userId:
-                            AuthService.instance.firebaseAuth.currentUser!.uid),
+                        userId: AuthProvider
+                            .instance.firebaseAuth.currentUser!.uid),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<TeamModel> teams = snapshot.data!.docs

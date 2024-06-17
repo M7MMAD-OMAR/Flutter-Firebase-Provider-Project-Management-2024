@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
@@ -177,7 +176,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
         fontfamilyParameter: icon.fontFamily,
         iconCodePointParameter: icon.codePoint,
         hexColorParameter: color,
-        userIdParameter: AuthService.instance.firebaseAuth.currentUser!.uid,
+        userIdParameter: AuthProvider.instance.firebaseAuth.currentUser!.uid,
         idParameter: usersTasksRef.doc().id,
         nameParameter: name,
         createdAtParameter: DateTime.now(),

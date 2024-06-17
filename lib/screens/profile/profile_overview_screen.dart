@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -60,7 +59,8 @@ class _ProfileOverviewState extends State<ProfileOverview> {
               children: [
                 StreamBuilder<DocumentSnapshot<UserModel>>(
                     stream: UserController().getUserByIdStream(
-                        id: AuthService.instance.firebaseAuth.currentUser!.uid),
+                        id: AuthProvider
+                            .instance.firebaseAuth.currentUser!.uid),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const CircularProgressIndicator();
@@ -87,7 +87,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                             ),
                           ),
                           Text(
-                            AuthService.instance.firebaseAuth.currentUser!
+                            AuthProvider.instance.firebaseAuth.currentUser!
                                     .isAnonymous
                                 ? AppConstants.sign_in_anonmouslly_key.tr
                                 : snapshot.data!.data()!.email!,
@@ -192,14 +192,14 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                 }),
                 AppSpaces.verticalSpace20,
                 Visibility(
-                    visible: AuthService
+                    visible: AuthProvider
                         .instance.firebaseAuth.currentUser!.isAnonymous,
                     child: ContainerLabel(
                       label: AppConstants.make_an_account_by_key.tr,
                     )),
                 AppSpaces.verticalSpace10,
                 Visibility(
-                  visible: AuthService
+                  visible: AuthProvider
                       .instance.firebaseAuth.currentUser!.isAnonymous,
                   child: Row(children: [
                     Expanded(
@@ -208,7 +208,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                           callback: () async {
                             try {
                               showDialogMethod(context);
-                              await AuthService.instance
+                              await AuthProvider.instance
                                   .convertAnonymousToGoogle();
                               Navigator.of(context).pop();
                               //  CustomSnackBar.showSuccess("its going good");
@@ -243,7 +243,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                 GestureDetector(
                   onTap: () async {
                     Get.offAll(() => const OnboardingCarousel());
-                    await AuthService.instance.logOut();
+                    await AuthProvider.instance.logOut();
                   },
                   child: Container(
                     width: double.infinity,
@@ -367,13 +367,14 @@ void showPasswordAndEmailDialog(BuildContext context) {
               try {
                 if (formKey.currentState!.validate()) {
                   showDialogMethod(context);
-                  await AuthService.instance.convertAnonymousToEmailandPassword(
-                      email: email, password: password);
+                  await AuthProvider.instance
+                      .convertAnonymousToEmailandPassword(
+                          email: email, password: password);
                   Navigator.of(context).pop();
                   Get.back();
                   Get.offAll(() => const OnboardingCarousel());
                   //اخر شي عدلتو وماجربتو
-                  await AuthService.instance.logOut();
+                  await AuthProvider.instance.logOut();
                 }
               } on Exception catch (e) {
                 Navigator.of(context).pop();

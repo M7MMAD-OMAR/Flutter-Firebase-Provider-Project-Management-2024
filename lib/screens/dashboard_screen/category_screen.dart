@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -167,7 +166,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             padding: EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
             child: StreamBuilder(
               stream: taskCategoryController.getUserCategoriesStream(
-                userId: AuthService.instance.firebaseAuth.currentUser!.uid,
+                userId: AuthProvider.instance.firebaseAuth.currentUser!.uid,
               ),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot<UserTaskCategoryModel>>

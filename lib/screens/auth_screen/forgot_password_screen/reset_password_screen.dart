@@ -1,10 +1,7 @@
-// ignore_for_file: avoid_
-
 import 'dart:math' as math;
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -102,7 +99,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             if (formKey.currentState!.validate()) {
                               try {
                                 showDialogMethod(context);
-                                await AuthService.instance
+                                await AuthProvider.instance
                                     .resetPassword(email: email);
                                 Get.key.currentState!.pop();
                                 CustomSnackBar.showSuccess(AppConstants
@@ -143,7 +140,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     });
 
                                 var authG =
-                                    await AuthService().signInWithGoogle();
+                                    await AuthProvider().signInWithGoogle();
                                 authG.fold((left) {
                                   Navigator.of(context).pop();
                                   CustomSnackBar.showError(left.toString());
@@ -189,7 +186,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     );
                                   },
                                 );
-                                await AuthService().anonymosSignInMethod();
+                                await AuthProvider().anonymosSignInMethod();
                                 Navigator.of(context).pop();
 
                                 //    dev.log("message");

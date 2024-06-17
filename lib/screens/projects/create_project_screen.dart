@@ -1,9 +1,6 @@
-// ignore_for_file: avoid_
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -32,14 +29,14 @@ import 'package:project_management_muhmad_omar/widgets/forms/form_input_with_lab
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calender_widget.dart';
 
-import 'add_team_to_create_project_screen.dart';
+import '../../providers/projects/add_team_to_create_project_provider.dart';
 
 class CreateProject extends StatefulWidget {
   CreateProject({
     required this.managerModel,
-    Key? key,
+    super.key,
     required this.isEditMode,
-  }) : super(key: key);
+  });
 
   final bool isEditMode;
   ManagerModel? managerModel;
@@ -51,6 +48,7 @@ class CreateProject extends StatefulWidget {
 
 class _CreateProjectState extends State<CreateProject> {
   String? selectedImagePath;
+
   void _showImagePickerDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -106,13 +104,14 @@ class _CreateProjectState extends State<CreateProject> {
     }
   }
 
-  final AddTeamToCreatProjectScreen addTeamToCreatProjectScreen =
-      Get.find<AddTeamToCreatProjectScreen>();
+  final AddTeamToCreatProjectProvider addTeamToCreatProjectScreen =
+      Get.find<AddTeamToCreatProjectProvider>();
   final TextEditingController _projectNameController = TextEditingController();
   final TextEditingController _projectDescController = TextEditingController();
   int? selectedDashboardOption;
   List<TeamMemberModel> membersList = [];
   String? teamMemberId;
+
   @override
   void initState() {
     super.initState();
@@ -129,6 +128,7 @@ class _CreateProjectState extends State<CreateProject> {
 
   String formattedStartDate = "";
   String formattedDueDate = "";
+
   void onChanged(String value) async {}
 
   DateTime startDate = DateTime.now();
@@ -143,6 +143,7 @@ class _CreateProjectState extends State<CreateProject> {
   bool noChangeOnTime = false;
   String name = "";
   String desc = "";
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -166,8 +167,8 @@ class _CreateProjectState extends State<CreateProject> {
                         : ImageType.File,
                     color: HexColor.fromHex("94F0F1"),
                     dummyType: ProfileDummyType.Image,
-                    scale: Utils.screenWidth *
-                        0.0077, // Adjust the percentage as needed
+                    scale: Utils.screenWidth * 0.0077,
+                    // Adjust the percentage as needed
                     image: selectedImagePath ?? "assets/projectImage.jpg",
                   ),
                   Visibility(
@@ -196,8 +197,8 @@ class _CreateProjectState extends State<CreateProject> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  GetBuilder<AddTeamToCreatProjectScreen>(
-                    init: AddTeamToCreatProjectScreen(),
+                  GetBuilder<AddTeamToCreatProjectProvider>(
+                    init: AddTeamToCreatProjectProvider(),
                     builder: (controller) => Text(
                       controller.teams.isEmpty
                           ? AppConstants.choose_team_key.tr
@@ -211,12 +212,12 @@ class _CreateProjectState extends State<CreateProject> {
                   ),
                   StreamBuilder<QuerySnapshot<TeamModel?>?>(
                       stream: TeamController().getTeamsOfUserStream(
-                          userId: AuthService
+                          userId: AuthProvider
                               .instance.firebaseAuth.currentUser!.uid),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
-                          return GetBuilder<AddTeamToCreatProjectScreen>(
-                            init: AddTeamToCreatProjectScreen(),
+                          return GetBuilder<AddTeamToCreatProjectProvider>(
+                            init: AddTeamToCreatProjectProvider(),
                             builder: (controller) {
                               if (controller.teams.isEmpty) {
                                 return buildStackedImagesOfTeams(
@@ -239,8 +240,8 @@ class _CreateProjectState extends State<CreateProject> {
                         }
 
                         if (snapshot.hasData) {
-                          return GetBuilder<AddTeamToCreatProjectScreen>(
-                            init: AddTeamToCreatProjectScreen(),
+                          return GetBuilder<AddTeamToCreatProjectProvider>(
+                            init: AddTeamToCreatProjectProvider(),
                             builder: (controller) {
                               if (controller.teams.isEmpty) {
                                 return buildStackedImagesOfTeams(
@@ -545,10 +546,11 @@ class _CreateProjectState extends State<CreateProject> {
 
 class BottomSheetIcon extends StatelessWidget {
   final IconData icon;
+
   const BottomSheetIcon({
     required this.icon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

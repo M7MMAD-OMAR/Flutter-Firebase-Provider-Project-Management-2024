@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
@@ -326,7 +325,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     List<String> finalIds = [];
     List<TeamMemberModel> list = await TeamMemberController()
         .getMemberWhereUserIs(
-            userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+            userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     for (var element in list) {
       TeamMemberModel teamMemberModel = element;
       memberId = teamMemberModel.id;
@@ -377,7 +376,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     List<ProjectMainTaskModel> MainTasksall = [];
     List<String> idList = [];
     List<ProjectModel?>? projects = await ProjectController().getProjectsOfUser(
-        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     for (var element in projects!) {
       List<ProjectMainTaskModel> mainTasks =
           await getProjectMainTasks(projectId: element!.id);

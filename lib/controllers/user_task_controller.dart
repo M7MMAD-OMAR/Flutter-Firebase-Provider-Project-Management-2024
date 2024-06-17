@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/controllers/taskController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
@@ -399,7 +398,7 @@ class UserTaskController extends ProjectAndTaskController {
     Completer<List<String>> completer = Completer<List<String>>();
 
     Stream<QuerySnapshot<UserTaskModel>> userTasksStream = getUserTasksStream(
-        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
 
     userTasksStream.listen((event) {
       List<QueryDocumentSnapshot<UserTaskModel>> list = event.docs;
@@ -666,7 +665,7 @@ class UserTaskController extends ProjectAndTaskController {
     bool overlapped = false;
     int over = 0;
     List<UserTaskModel> list = await getUserTasks(
-        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     for (UserTaskModel existingTask in list) {
       if (userTaskModel.startDate.isBefore(existingTask.endDate!) &&
           userTaskModel.endDate!.isAfter(existingTask.startDate)) {
@@ -736,7 +735,7 @@ class UserTaskController extends ProjectAndTaskController {
       int over = 0;
 
       List<UserTaskModel> list = await getUserTasks(
-          userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+          userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
       list.removeWhere((element) => element.id == id);
       for (UserTaskModel existingTask in list) {
         if (data[startDateK].isBefore(existingTask.endDate) &&

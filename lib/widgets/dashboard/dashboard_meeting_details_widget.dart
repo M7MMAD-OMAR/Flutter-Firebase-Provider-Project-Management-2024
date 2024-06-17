@@ -1,5 +1,5 @@
 ////////////////
-// ignore_for_file: avoid_
+
 
 import 'dart:async';
 import 'dart:developer' as dev;
@@ -10,7 +10,6 @@ import 'package:either_dart/either.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -29,7 +28,7 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_selectable_container_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-import '../../screens/Projects/add_user_to_team_screen.dart';
+import '../../screens/Projects/add_user_to_team_provider.dart';
 import '../../services/auth_service.dart';
 import '../Buttons/primary_buttons_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
@@ -263,7 +262,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                 ManagerModel managerModel =
                                     await ManagerController()
                                         .getManagerOrMakeOne(
-                                            userId: AuthService.instance
+                                            userId: AuthProvider.instance
                                                 .firebaseAuth.currentUser!.uid);
                                 if (selectedImagePath != null) {
                                   String? imagePathNetWork = "";

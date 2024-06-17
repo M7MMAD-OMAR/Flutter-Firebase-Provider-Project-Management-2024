@@ -2,27 +2,26 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
-import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
-import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
-import 'package:project_management_muhmad_omar/services/types_services.dart';
-
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 import 'package:project_management_muhmad_omar/firebase_options.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
+import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
+
 import '../auth_service.dart';
 import '../collections_refrences.dart';
 import 'notification_controller_services.dart';
@@ -305,13 +304,13 @@ Future<void> checkTaskToSendNotification() async {
 @pragma('vm:entry-point')
 void checkAuth(int x, Map<String, dynamic> map) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-      .then((value) => Get.put(/*() =>  */ AuthService()));
+      .then((value) => Get.put(/*() =>  */ AuthProvider()));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await NotificationController.initializeNotification();
-  AuthService authSXervice = Get.put(AuthService());
+  AuthProvider authSXervice = Get.put(AuthProvider());
   FirebaseAuth.instance.authStateChanges().listen(
     (User? user) async {
       if (user != null) {
@@ -404,14 +403,14 @@ checkProjectsToSendNotificationToMember() async {
   if (await TeamMemberController().existByOne(
           collectionReference: teamMembersRef,
           value: userIdK,
-          field: AuthService.instance.firebaseAuth.currentUser!.uid) ==
+          field: AuthProvider.instance.firebaseAuth.currentUser!.uid) ==
       false) {
     return;
   }
   List<ProjectModel?>? projectList = [];
 
   projectList = await ProjectController().getProjectsOfMemberWhereUserIs2(
-      userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+      userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
   await checkProjectsToSendNotification(
       ismanager: false, projectList: projectList);
 }
@@ -420,11 +419,11 @@ checkProjectMainTasksToSendNotificationToMembers() async {
   if (await TeamMemberController().existByOne(
           collectionReference: teamMembersRef,
           value: userIdK,
-          field: AuthService.instance.firebaseAuth.currentUser!.uid) ==
+          field: AuthProvider.instance.firebaseAuth.currentUser!.uid) ==
       true) {
     List<ProjectModel?>? projectList = [];
     projectList = await ProjectController().getProjectsOfMemberWhereUserIs2(
-        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     await checkProjectMainTasksToSendNotifications(
         manager: false, projectList: projectList);
   }
@@ -434,11 +433,11 @@ checkProjectMainTasksToSendNotificationToManager() async {
   if (await TeamMemberController().existByOne(
           collectionReference: managersRef,
           value: userIdK,
-          field: AuthService.instance.firebaseAuth.currentUser!.uid) ==
+          field: AuthProvider.instance.firebaseAuth.currentUser!.uid) ==
       true) {
     List<ProjectModel?>? projectList = [];
     projectList = await ProjectController().getProjectsOfUser(
-        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     await checkProjectMainTasksToSendNotifications(
         manager: true, projectList: projectList);
   }
@@ -535,7 +534,7 @@ checkSubTasksToSendNotification() async {
   if (await teamMemberController.existByOne(
           collectionReference: teamMembersRef,
           value: userIdK,
-          field: AuthService.instance.firebaseAuth.currentUser!.uid) ==
+          field: AuthProvider.instance.firebaseAuth.currentUser!.uid) ==
       true) {
     StatusModel statusDoneModel =
         await statusController.getStatusByName(status: statusDone);
@@ -548,7 +547,7 @@ checkSubTasksToSendNotification() async {
     List<ProjectSubTaskModel> allsubtasklist = [];
     List<TeamMemberModel> list =
         await teamMemberController.getMemberWhereUserIs(
-            userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+            userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     list.forEach((element) async {
       List<ProjectSubTaskModel> minisubtasklist = await projectSubTaskController
           .getMemberSubTasks(memberId: element.id);

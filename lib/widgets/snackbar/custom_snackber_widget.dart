@@ -1,6 +1,5 @@
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
@@ -115,7 +114,7 @@ class CustomDialog {
                 try {
                   if (formKey.currentState!.validate()) {
                     showDialogMethod(context);
-                    var updatePassword = AuthService.instance
+                    var updatePassword = AuthProvider.instance
                         .updatePassword(newPassword: password);
                     updatePassword.fold((left) {
                       Navigator.of(context).pop();

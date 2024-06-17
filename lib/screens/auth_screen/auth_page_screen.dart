@@ -11,7 +11,7 @@ class AuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<User?>(
-        stream: AuthService.instance.firebaseAuth.authStateChanges(),
+        stream: AuthProvider.instance.firebaseAuth.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(

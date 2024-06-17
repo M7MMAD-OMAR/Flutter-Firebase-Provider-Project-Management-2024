@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -49,7 +48,7 @@ class DashboardScreen extends StatelessWidget {
               AppSpaces.verticalSpace20,
               StreamBuilder<DocumentSnapshot<UserModel>>(
                   stream: UserController().getUserByIdStream(
-                      id: AuthService.instance.firebaseAuth.currentUser!.uid),
+                      id: AuthProvider.instance.firebaseAuth.currentUser!.uid),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();

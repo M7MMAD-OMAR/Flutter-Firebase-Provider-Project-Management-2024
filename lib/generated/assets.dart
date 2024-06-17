@@ -72,7 +72,8 @@ class Assets {
   static const String chatAddChatIconWidget =
       'lib/widgets/chat/add_chat_icon_widget.dart';
   static const String constantsAppColors = 'lib/constants/app_colors.dart';
-  static const String constantsAppConstans = 'lib/constants/app_constants.dart';
+  static const String constantsAppConstants =
+      'lib/constants/app_constants.dart';
   static const String constantsBackConstants =
       'lib/constants/back_constants.dart';
   static const String constantsBoxDecorationStyles =
@@ -189,8 +190,6 @@ class Assets {
       'lib/widgets/dashboard/subTask_widget.dart';
   static const String dashboardSubTasksWidget =
       'lib/widgets/dashboard/subTasks_widget.dart';
-  static const String dashboardTabScreensBoxScreen =
-      'lib/screens/dashboard_screen/dashboard_tab_screens/box_screen.dart';
   static const String dashboardTabScreensOverviewScreen =
       'lib/screens/dashboard_screen/dashboard_tab_screens/overview_screen.dart';
   static const String dashboardTabScreensProductivityScreen =
@@ -302,10 +301,10 @@ class Assets {
       'lib/widgets/profile/text_outlined_button_widget.dart';
   static const String projectsActiveProjectSelectableContainerWidget =
       'lib/widgets/projects/active_project_selectable_container_widget.dart';
-  static const String projectsAddTeamToCreateProjectScreen =
-      'lib/screens/projects/add_team_to_create_project_screen.dart';
-  static const String projectsAddUserToTeamScreen =
-      'lib/screens/projects/add_user_to_team_screen.dart';
+  static const String projectsAddTeamToCreateProjectProvider =
+      'lib/providers/projects/add_team_to_create_project_provider.dart';
+  static const String projectsAddUserToTeamProvider =
+      'lib/providers/projects/add_user_to_team_provider.dart';
   static const String projectsCreateProjectScreen =
       'lib/screens/projects/create_project_screen.dart';
   static const String projectsEditProjectScreen =
@@ -334,12 +333,17 @@ class Assets {
       'lib/widgets/projects/project_task_inactive_card_widget.dart';
   static const String projectsProjectsScreen =
       'lib/screens/projects/projects_screen.dart';
-  static const String projectsSearchForMemberScreen =
-      'lib/screens/projects/search_for_member_screen.dart';
+  static const String projectsSearchForMemberProvider =
+      'lib/providers/projects/search_for_member_provider.dart';
   static const String projectsSearchForMembersScreen =
       'lib/screens/projects/search_for_members_screen.dart';
   static const String projectsSetMembers =
       'lib/screens/projects/set_members.dart';
+  static const String projectsStxProvider =
+      'lib/providers/projects/stx_provider.dart';
+  static const String providersAuthProvider =
+      'lib/providers/auth_provider.dart';
+  static const String providersBoxProvider = 'lib/providers/box_provider.dart';
   static const String providersLangProvider =
       'lib/providers/lang_provider.dart';
   static const String resApp = 'lib/widgets/calender/core/res/app.dart';

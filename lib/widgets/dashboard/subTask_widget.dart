@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
@@ -152,7 +151,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthProvider.instance.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
@@ -233,8 +232,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                             .isAfter(mainTask.startDate) ||
                         !projectSubTaskModel.endDate!
                             .isBefore(mainTask.endDate!)) {
-                      throw Exception(AppConstants
-                          .sub_task_dates_between_main_task_dates_key.tr);
+                      throw Exception(
+                          "يجب أن تكون تواريخ بداية وانتهاء المهمة الفرعية بين تواريخ بداية وانتهاء المهمة الرئيسية");
                     }
                     TeamMemberModel memberModelold =
                         await TeamMemberController().getMemberById(

@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -54,7 +53,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
             secondDate: todayDate.add(
               const Duration(days: 1),
             ),
-            userId: AuthService.instance.firebaseAuth.currentUser!.uid),
+            userId: AuthProvider.instance.firebaseAuth.currentUser!.uid),
         builder: (context, allTasks) {
           if (allTasks.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -68,7 +67,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                   userTaskController.getUserTasksStartInADayForAStatusStream(
                       date: DateTime.now(),
                       userId:
-                          AuthService.instance.firebaseAuth.currentUser!.uid,
+                          AuthProvider.instance.firebaseAuth.currentUser!.uid,
                       status: statusDone),
               builder: (context, doneTasks) {
                 if (doneTasks.hasData) {
@@ -161,7 +160,7 @@ class dailygoal extends StatelessWidget {
                 ),
                 AppSpaces.horizontalSpace10,
                 Text(
-                  AppConstants.tasks_key.tr,
+                  "المهام",
                   style: GoogleFonts.lato(
                       color: Colors.white,
                       fontSize: Utils.screenWidth * 0.05,

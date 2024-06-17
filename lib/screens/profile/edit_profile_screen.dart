@@ -1,7 +1,6 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -99,7 +98,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
                                   final resOfUpload = await uploadImageToStorge(
                                       selectedImagePath: selectedImagePath!,
-                                      imageName: AuthService.instance
+                                      imageName: AuthProvider.instance
                                           .firebaseAuth.currentUser!.uid,
                                       folder: "Users");
                                   resOfUpload.fold((left) {
@@ -110,7 +109,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     right.then((value) async {
                                       String imageNetWork = value!;
                                       await UserController().updateUser(
-                                          id: AuthService.instance.firebaseAuth
+                                          id: AuthProvider.instance.firebaseAuth
                                               .currentUser!.uid,
                                           data: {imageUrlK: imageNetWork});
                                       Get.key.currentState!.pop();
@@ -144,7 +143,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 if (email.isNotEmpty &&
                                     email.trim() != widget.user!.email) {
                                   email = email.trim();
-                                  var emailupdate = await AuthService.instance
+                                  var emailupdate = await AuthProvider.instance
                                       .updateEmail(email: email);
 
                                   emailupdate.fold((left) async {
@@ -158,7 +157,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     Navigator.of(context).pop();
                                     CustomSnackBar.showSuccess(AppConstants
                                         .email_updated_successfully_key.tr);
-                                    AuthService.instance.logOut();
+                                    AuthProvider.instance.logOut();
                                     changes = true;
                                     Get.offAll(
                                         () => const OnboardingCarousel());
@@ -270,7 +269,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               label: AppConstants.your_name_key.tr),
                           AppSpaces.verticalSpace20,
                           Visibility(
-                            visible: !AuthService
+                            visible: !AuthProvider
                                 .instance.firebaseAuth.currentUser!.isAnonymous,
                             child: LabelledFormInput(
                                 onChanged: (value) {
@@ -297,7 +296,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           ),
                           AppSpaces.verticalSpace20,
                           Visibility(
-                            visible: !AuthService
+                            visible: !AuthProvider
                                 .instance.firebaseAuth.currentUser!.isAnonymous,
                             child: LabelledFormInput(
                                 validator: (value) {
@@ -352,7 +351,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         ],
                       ),
                       Visibility(
-                        visible: !AuthService
+                        visible: !AuthProvider
                             .instance.firebaseAuth.currentUser!.isAnonymous,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 25),

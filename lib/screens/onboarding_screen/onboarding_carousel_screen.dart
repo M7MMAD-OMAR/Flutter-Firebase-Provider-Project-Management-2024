@@ -2,7 +2,6 @@ import 'dart:developer' as dev;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -152,7 +151,7 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
                                             child: CircularProgressIndicator());
                                       });
                                   var authG =
-                                      await AuthService().signInWithGoogle();
+                                      await AuthProvider().signInWithGoogle();
                                   Navigator.of(context).pop();
                                   authG.fold((left) {
                                     CustomSnackBar.showError(left.toString());
@@ -172,7 +171,7 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
                                             child: CircularProgressIndicator());
                                       });
 
-                                  var anonymousSignIN = await AuthService()
+                                  var anonymousSignIN = await AuthProvider()
                                       .anonymosSignInMethod();
 
                                   Navigator.of(context).pop();

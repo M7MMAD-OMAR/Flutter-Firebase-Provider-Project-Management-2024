@@ -1,11 +1,8 @@
-// ignore_for_file: avoid_
-
 import 'dart:math' as math;
 
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -80,7 +77,7 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                       child: ElevatedButton(
                         onPressed: () async {
                           var verifyEmail =
-                              await AuthService().sendVerifiectionEmail();
+                              await AuthProvider().sendVerifiectionEmail();
                           verifyEmail.fold((left) {
                             CustomSnackBar.showError(left.toString());
                           },
@@ -118,7 +115,7 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            var verifed = AuthService().checkEmailVerifction();
+                            var verifed = AuthProvider().checkEmailVerifction();
                             verifed.fold((left) {
                               CustomSnackBar.showError(left.toString());
                             }, (right) {

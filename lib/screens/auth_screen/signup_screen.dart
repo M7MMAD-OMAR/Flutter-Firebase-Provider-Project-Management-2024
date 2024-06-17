@@ -3,7 +3,6 @@ import 'dart:developer' as dev;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -333,10 +332,10 @@ class _SignUpState extends State<SignUp> {
                                       return const Center(
                                           child: CircularProgressIndicator());
                                     });
-                                User? user = AuthService
+                                User? user = AuthProvider
                                     .instance.firebaseAuth.currentUser;
                                 if (user != null) {
-                                  await AuthService.instance.firebaseAuth
+                                  await AuthProvider.instance.firebaseAuth
                                       .signOut();
                                 }
                                 if (selectedImagePath != null) {
@@ -362,7 +361,7 @@ class _SignUpState extends State<SignUp> {
                                         createdAtParameter: DateTime.now(),
                                         updatedAtParameter: DateTime.now(),
                                       );
-                                      await AuthService()
+                                      await AuthProvider()
                                           .createUserWithEmailAndPassword(
                                               userModel: userModel,
                                               email: widget.email,
@@ -381,7 +380,7 @@ class _SignUpState extends State<SignUp> {
                                     createdAtParameter: DateTime.now(),
                                     updatedAtParameter: DateTime.now(),
                                   );
-                                  var authserviceDone = await AuthService()
+                                  var authserviceDone = await AuthProvider()
                                       .createUserWithEmailAndPassword(
                                           userModel: userModel,
                                           email: widget.email,

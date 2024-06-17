@@ -132,7 +132,8 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   ),
                   StreamBuilder<QuerySnapshot<UserTaskModel>>(
                     stream: UserTaskController().getUserTasksStartInADayStream(
-                        userId: AuthService.instance. firebaseAuth.currentUser!.uid,
+                        userId:
+                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         date: selectedDate),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
@@ -369,7 +370,8 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   StreamBuilder<QuerySnapshot<ProjectModel>>(
                     stream: ProjectController()
                         .getProjectsOfMemberWhereUserIsInADayStream(
-                            userId: AuthService.instance. firebaseAuth.currentUser!.uid,
+                            userId: AuthProvider
+                                .instance.firebaseAuth.currentUser!.uid,
                             date: selectedDate),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
@@ -429,7 +431,8 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   StreamBuilder<QuerySnapshot<ProjectModel>>(
                     stream: ProjectController()
                         .getProjectsOfManagerWhereUserIsInADayStream(
-                            userId: AuthService.instance.firebaseAuth.currentUser!.uid,
+                            userId: AuthProvider
+                                .instance.firebaseAuth.currentUser!.uid,
                             date: selectedDate),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {

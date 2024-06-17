@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -29,8 +28,7 @@ class OnboardingStart extends StatelessWidget {
           //الشكر المربع
           Positioned(
             top: Utils.screenHeight,
-            left: Utils.screenWidth *
-                AppConstants.dir[AppConstants.dir_key.tr]["square_shape_L"],
+            left: Utils.screenWidth * AppConstants.dir['ar']["square_shape_L"],
             child: Transform.rotate(
               angle: -math.pi / 2,
               child: CustomPaint(painter: BackgroundHexagon()),
@@ -39,11 +37,10 @@ class OnboardingStart extends StatelessWidget {
           //صورة ابو الطاقية الكبيرة
           Positioned(
             top: Utils.screenHeight * 0.7,
-            left: AppConstants.dir[AppConstants.dir_key.tr]["big_picture_L"],
+            left: AppConstants.dir['ar']["big_picture_L"],
             child: BackgroundImage(
               scale: 1.0,
-              image: AppConstants.dir_key.tr == 'ar'
-                  ? "assets/karem2R.png"
+              image: 'ar' == 'ar' ? "assets/karem2R.png"
                   : "assets/karem2.png",
               gradient: [
                 HexColor.fromHex("92ECEC"),
@@ -54,11 +51,10 @@ class OnboardingStart extends StatelessWidget {
           //صورة البنت يلي بالنص يلي لونها  برتقالي
           Positioned(
             top: Utils.screenHeight * 0.50,
-            left: Utils.screenWidth *
-                AppConstants.dir[AppConstants.dir_key.tr]["medium_picture_L"],
+            left: Utils.screenWidth * AppConstants.dir['ar']["medium_picture_L"],
             child: BackgroundImage(
               scale: 0.5,
-              image: AppConstants.dir_key.tr == 'ar'
+              image: 'ar' == 'ar'
                   ? "assets/head_cut-R.png"
                   : "assets/head_cut.png",
               gradient: [
@@ -70,10 +66,10 @@ class OnboardingStart extends StatelessWidget {
           //صورة البنت يلي لونها  موف يلي هيي اول صورة  بالسكرين
           Positioned(
             top: Utils.screenHeight * 0.30,
-            left: AppConstants.dir[AppConstants.dir_key.tr]["small_picture_L"],
+            left: AppConstants.dir['ar']["small_picture_L"],
             child: BackgroundImage(
               scale: 0.4,
-              image: AppConstants.dir_key.tr == 'ar'
+              image: 'ar' == 'ar'
                   ? "assets/girl_smile-R.png"
                   : "assets/girl_smile.png",
               gradient: [
@@ -89,21 +85,20 @@ class OnboardingStart extends StatelessWidget {
           //الفقاعة الموف الكبيرة
           Positioned(
             top: 80,
-            left: AppConstants.dir[AppConstants.dir_key.tr]["big_bubble_L"],
+            left: AppConstants.dir['ar']["big_bubble_L"],
             child: Bubble(1.0, HexColor.fromHex("A06AF9")),
           ),
           //الفقاعة الوردية الصغيررة
           Positioned(
             top: 130,
-            left: AppConstants.dir[AppConstants.dir_key.tr]["small_bubble_L"],
+            left: AppConstants.dir['ar']["small_bubble_L"],
             child: Bubble(0.6, HexColor.fromHex("FDA5FF")),
           ),
           //end bubble
           //الستكر الاول من فوق
           Positioned(
             top: Utils.screenHeight * 0.12,
-            left: Utils.screenWidth *
-                AppConstants.dir[AppConstants.dir_key.tr]["one_sticker_L"],
+            left: Utils.screenWidth * AppConstants.dir['ar']["one_sticker_L"],
             child: LoadingSticker(
               gradients: [
                 HexColor.fromHex("#F3EEAE"),
@@ -115,8 +110,7 @@ class OnboardingStart extends StatelessWidget {
           //الستكر يلي بنص  الثاني من  فوق
           Positioned(
             top: Utils.screenHeight * 0.50,
-            left: Utils.screenWidth *
-                AppConstants.dir[AppConstants.dir_key.tr]["two_sticker_L"],
+            left: Utils.screenWidth * AppConstants.dir['ar']["two_sticker_L"],
             child: LoadingSticker(
               gradients: [
                 HexColor.fromHex("#a7b2fd"),
@@ -127,10 +121,8 @@ class OnboardingStart extends StatelessWidget {
           //الستكر الاخيرة  يعني اول  وحدة من  تحت
           Positioned(
             top: Utils.screenHeight * 0.7,
-            left: Utils.screenWidth *
-                AppConstants.dir[AppConstants.dir_key.tr]["three_sticker_L"],
-            right: Utils.screenWidth *
-                AppConstants.dir[AppConstants.dir_key.tr]["three_sticker_R"],
+            left: Utils.screenWidth * AppConstants.dir['ar']["three_sticker_L"],
+            right: Utils.screenWidth * AppConstants.dir['ar']["three_sticker_R"],
             child: LoadingSticker(
               gradients: [
                 HexColor.fromHex("#a7b2fd"),
@@ -140,10 +132,8 @@ class OnboardingStart extends StatelessWidget {
           ),
           Positioned(
             top: Utils.screenHeight * 1.3,
-            right: Utils.screenWidth *
-                AppConstants.dir[AppConstants.dir_key.tr]["triangle_shape_R"],
-            left: Utils.screenWidth *
-                AppConstants.dir[AppConstants.dir_key.tr]["triangle_shape_L"],
+            right: Utils.screenWidth * AppConstants.dir['ar']["triangle_shape_R"],
+            left: Utils.screenWidth * AppConstants.dir['ar']["triangle_shape_L"],
             child: Transform.rotate(
               angle: -math.pi / 4,
               child: InkWell(
@@ -161,15 +151,14 @@ class OnboardingStart extends StatelessWidget {
                   child: Transform.rotate(
                     angle: math.pi / 4,
                     child: Container(
-                      alignment: AppConstants.dir_key.tr == 'ar'
-                          ? Alignment.topRight
+                      alignment:
+                          'ar' == 'ar' ? Alignment.topRight
                           : Alignment.topLeft,
                       padding: const EdgeInsets.only(
                         top: 85,
                       ),
                       child: Icon(
-                        AppConstants.dir_key.tr == 'ar'
-                            ? Icons.arrow_back
+                        'ar' == 'ar' ? Icons.arrow_back
                             : Icons.arrow_forward,
                         size: 40,
                       ),
@@ -187,8 +176,8 @@ class OnboardingStart extends StatelessWidget {
           ),
 
           Positioned(
-            bottom: AppConstants.dir[AppConstants.dir_key.tr]["get_started_B"],
-            left: AppConstants.dir[AppConstants.dir_key.tr]["get_started_L"],
+            bottom: AppConstants.dir['ar']["get_started_B"],
+            left: AppConstants.dir['ar']["get_started_L"],
             child: SizedBox(
               width: 300,
               child: Column(

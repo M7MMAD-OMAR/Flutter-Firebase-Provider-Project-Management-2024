@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/forgot_password_screen/widgets/size_config_widget.dart';
 
 import 'icon_to_back_widget.dart';

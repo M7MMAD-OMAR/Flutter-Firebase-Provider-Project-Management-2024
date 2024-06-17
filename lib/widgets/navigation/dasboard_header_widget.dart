@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
@@ -80,7 +79,7 @@ class DashboardNav extends StatelessWidget {
             },
             child: StreamBuilder<DocumentSnapshot<UserModel>>(
                 stream: UserController().getUserByIdStream(
-                    id: AuthService.instance.firebaseAuth.currentUser!.uid),
+                    id: AuthProvider.instance.firebaseAuth.currentUser!.uid),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();

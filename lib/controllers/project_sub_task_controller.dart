@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
@@ -54,7 +53,8 @@ class ProjectSubTaskController extends ProjectAndTaskController {
     List<String> subTasksIds = [];
 
     List<TeamMemberModel> listMemberUser = await TeamMemberController()
-        .getMemberWhereUserIs(userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+        .getMemberWhereUserIs(
+            userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
 
     for (var element in listMemberUser) {
       List<ProjectSubTaskModel> list =
@@ -725,7 +725,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
         mangerId: teamModel.managerId);
     //to get the user name to tell the manager about his name in the notification
     UserModel member = await userController.getUserById(
-        id: AuthService.instance.firebaseAuth.currentUser!.uid);
+        id: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     await fcmNotifications.sendNotification(
       fcmTokens: manager.tokenFcm,
       //"task $status"

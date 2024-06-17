@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/src/intl/date_format.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -22,17 +21,17 @@ import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../../models/team/project_model.dart';
+import '../../providers/box_provider.dart';
 import '../../services/notifications/notification_service.dart';
 import '../../widgets/buttons/primary_tab_buttons_widget.dart';
 import '../../widgets/dummy/profile_dummy_widget.dart';
 import '../../widgets/navigation/app_header_widget.dart';
 import '../../widgets/search/active_task_card_widget.dart';
 import '../profile/profile_overview_screen.dart';
-import 'dashboard_tab_screens/box_screen.dart';
 
 class Invitions extends StatelessWidget {
   Invitions({Key? key}) : super(key: key);
-  final BoxController boxController = Get.put(BoxController());
+  final BoxProvider boxController = Get.put(BoxProvider());
   @override
   Widget build(BuildContext context) {
     final settingsButtonTrigger = ValueNotifier(0);
@@ -40,8 +39,8 @@ class Invitions extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(20.0),
         child: SafeArea(
-          child: GetBuilder<BoxController>(
-            init: BoxController(),
+          child: GetBuilder<BoxProvider>(
+            init: BoxProvider(),
             builder: (controller) {
               return Column(children: [
                 TaskezAppHeader(
@@ -56,7 +55,7 @@ class Invitions extends StatelessWidget {
                     },
                     child: StreamBuilder<DocumentSnapshot<UserModel>>(
                         stream: UserController().getUserByIdStream(
-                            id: AuthService
+                            id: AuthProvider
                                 .instance.firebaseAuth.currentUser!.uid),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
@@ -120,7 +119,7 @@ class Invitions extends StatelessWidget {
                       ? StreamBuilder<QuerySnapshot<TeamMemberModel>>(
                           stream: TeamMemberController()
                               .getMemberWhereUserIsStream(
-                                  userId: AuthService
+                                  userId: AuthProvider
                                       .instance.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshotMembersforUser) {
                             if (snapshotMembersforUser.hasError) {
@@ -412,7 +411,7 @@ class Invitions extends StatelessWidget {
                       : StreamBuilder<QuerySnapshot<WaitingMemberModel>>(
                           stream: WaitingMamberController()
                               .getWaitingMembersInUserIdStream(
-                                  userId: AuthService
+                                  userId: AuthProvider
                                       .instance.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshotOfWaithingMembers) {
                             if (!snapshotOfWaithingMembers.hasData) {

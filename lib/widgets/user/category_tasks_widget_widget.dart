@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
@@ -100,8 +99,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
               child: TaskezAppHeader(
             title: widget.categoryModel.name!.toUpperCase(),
             widget: MySearchBarWidget(
-              searchWord: widget.categoryModel.name!.toUpperCase() +
-                  AppConstants.tasks_key.tr,
+              searchWord: widget.categoryModel.name!.toUpperCase() + "المهام",
               editingController: editingController,
               onChanged: (String value) {
                 setState(() {
@@ -348,7 +346,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
 
             UserTaskModel userTaskModel = UserTaskModel.firestoreConstructor(
                 colorParameter: color,
-                userId: AuthService.instance.firebaseAuth.currentUser!.uid,
+                userId: AuthProvider.instance.firebaseAuth.currentUser!.uid,
                 folderId: widget.categoryModel.id,
                 taskFatherId: null,
                 descriptionParameter: desc!,
@@ -399,7 +397,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
             UserTaskModel userTaskModel = UserTaskModel(
                 hexColorParameter: color,
                 userIdParameter:
-                    AuthService.instance.firebaseAuth.currentUser!.uid,
+                    AuthProvider.instance.firebaseAuth.currentUser!.uid,
                 folderIdParameter: widget.categoryModel.id,
                 taskFatherIdParameter: null,
                 descriptionParameter: desc!,

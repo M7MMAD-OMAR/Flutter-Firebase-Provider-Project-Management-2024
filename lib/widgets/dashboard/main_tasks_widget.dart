@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
@@ -112,7 +111,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthProvider.instance.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
         } else {
           updatedIsManager = true;

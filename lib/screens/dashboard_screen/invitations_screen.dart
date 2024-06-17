@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 
 import '../../controllers/projectController.dart';
 import '../../models/team/project_model.dart';
@@ -11,14 +10,14 @@ class InvitationScreenController extends GetxController {
   Stream<QuerySnapshot<ProjectModel?>> getInvitationStream() {
     if (selectedTab.value == 0) {
       return ProjectController().getProjectsOfMemberWhereUserIsStream(
-          userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+          userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     } else if (selectedTab.value == 1) {
       return ProjectController().getProjectsOfMemberWhereUserIsStream(
-          userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+          userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
     }
 
     return ProjectController().getProjectsOfUserStream(
-        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
 // Return an empty stream or another default stream if needed
   }
 

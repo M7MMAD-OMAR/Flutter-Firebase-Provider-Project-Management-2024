@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -330,7 +329,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                             index]
                                                                         .data()
                                                                         .imageUrl,
-                                                                    userName: AuthService.instance.firebaseAuth.currentUser!.uid ==
+                                                                    userName: AuthProvider.instance.firebaseAuth.currentUser!.uid ==
                                                                             snapshotUsers.data!.docs[index]
                                                                                 .data()
                                                                                 .id
@@ -367,7 +366,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                             userName: snapshotUsers.data!.docs[index].data().userName!,
                                                                             bio: snapshotUsers.data!.docs[index].data().bio);
                                                                       },
-                                                                      userName: AuthService.instance.firebaseAuth.currentUser!.uid == snapshotUsers.data!.docs[index].data().id
+                                                                      userName: AuthProvider.instance.firebaseAuth.currentUser!.uid == snapshotUsers.data!.docs[index].data().id
                                                                           ? AppConstants
                                                                               .you_key
                                                                               .tr

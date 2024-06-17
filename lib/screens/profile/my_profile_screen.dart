@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -58,7 +57,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   const SizedBox(height: 30),
                   StreamBuilder<DocumentSnapshot<UserModel>>(
                       stream: UserController().getUserByIdStream(
-                          id: AuthService
+                          id: AuthProvider
                               .instance.firebaseAuth.currentUser!.uid),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
@@ -84,7 +83,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               ),
                             ),
                             Text(
-                              AuthService.instance.firebaseAuth.currentUser!
+                              AuthProvider.instance.firebaseAuth.currentUser!
                                       .isAnonymous
                                   ? AppConstants.sign_in_anonmouslly_key.tr
                                   : snapshot.data!.data()!.email!,
@@ -148,7 +147,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           showDialogMethod(context);
                           ManagerModel? userAsManger = await ManagerController()
                               .getMangerWhereUserIs(
-                                  userId: AuthService
+                                  userId: AuthProvider
                                       .instance.firebaseAuth.currentUser!.uid);
                           if (mounted) {
                             Navigator.of(context).pop();

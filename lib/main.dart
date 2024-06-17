@@ -4,12 +4,10 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:http_proxy/http_proxy.dart';
 import 'package:project_management_muhmad_omar/providers.dart';
 import 'package:project_management_muhmad_omar/providers/lang_provider.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/auth_page_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,8 +21,7 @@ Future<void> main() async {
 
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform)
-        .then((value) => Get.put(AuthService()));
+        options: DefaultFirebaseOptions.currentPlatform);
   }
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 

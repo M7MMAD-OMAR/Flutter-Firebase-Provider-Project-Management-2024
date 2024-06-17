@@ -2,7 +2,6 @@ import 'dart:math' as math;
 
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
@@ -183,7 +182,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                     });
 
                                 var authG =
-                                    await AuthService().signInWithGoogle();
+                                    await AuthProvider().signInWithGoogle();
                                 authG.fold((left) {
                                   Navigator.of(context).pop();
                                   CustomSnackBar.showError(left.toString());
@@ -229,7 +228,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                     );
                                   },
                                 );
-                                await AuthService().anonymosSignInMethod();
+                                await AuthProvider().anonymosSignInMethod();
                                 Navigator.of(context).pop();
 
                                 //    dev.log("message");

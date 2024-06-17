@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_glow/flutter_glow.dart';
-import 'package:get/get.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -33,8 +33,7 @@ import 'create_user_task_widget.dart';
 class MainTaskProgressCard extends StatefulWidget {
   final ProjectMainTaskModel
       taskModel; // Update the type to ProjectMainTaskModel
-  const MainTaskProgressCard({Key? key, required this.taskModel})
-      : super(key: key);
+  const MainTaskProgressCard({super.key, required this.taskModel});
 
   @override
   State<MainTaskProgressCard> createState() => _MainTaskProgressCardState();
@@ -129,7 +128,7 @@ class _brogressState extends State<brogress> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthProvider.instance.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
@@ -298,7 +297,8 @@ class _brogressState extends State<brogress> {
                           ),
                           //AppSpaces.verticalSpace10,
                           Text(
-                            '${widget.completed.toInt()} ${AppConstants.out_of_key.tr} ${widget.all.toInt()} ${AppConstants.is_completed_key.tr}', // Use the rating property of taskModel
+                            '${widget.completed.toInt()} من أصل ${widget.all.toInt()} تم الانتهاء',
+                            // Use the rating property of taskModel
                             style: GoogleFonts.lato(
                               fontWeight: FontWeight.w500,
                               fontSize: Utils.screenWidth * 0.04,

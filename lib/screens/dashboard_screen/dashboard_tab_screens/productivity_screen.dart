@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
@@ -36,20 +35,20 @@ class _DashboardProductivityState extends State<DashboardProductivity> {
           message: AppConstants.task_key.tr,
           allStream: userTaskController.getUserTasksStartInADayForAStatusStream(
               date: DateTime.now(),
-              userId: AuthService.instance.firebaseAuth.currentUser!.uid,
+              userId: AuthProvider.instance.firebaseAuth.currentUser!.uid,
               status: statusDone),
           forStatusStram: userTaskController.getUserTasksBetweenTowTimesStream(
               firstDate: todayDate,
               secondDate: todayDate.add(
                 const Duration(days: 1),
               ),
-              userId: AuthService.instance.firebaseAuth.currentUser!.uid),
+              userId: AuthProvider.instance.firebaseAuth.currentUser!.uid),
         ),
         AppSpaces.verticalSpace20,
         StreamBuilder(
             stream: userTaskController
                 .getPercentagesForLastSevenDaysforaUserforAStatusStream(
-                    userId: AuthService.instance.firebaseAuth.currentUser!.uid,
+                    userId: AuthProvider.instance.firebaseAuth.currentUser!.uid,
                     startdate: DateTime.now(),
                     status: statusDone),
             builder: (context, snapshot) {

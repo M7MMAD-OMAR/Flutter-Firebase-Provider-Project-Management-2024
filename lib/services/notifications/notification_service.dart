@@ -3,7 +3,6 @@ import 'dart:math';
 
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
@@ -17,26 +16,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'notification_controller_services.dart';
 
-class FcmNotifications extends GetxService {
+class FcmNotifications {
   static const String key = 'notification_status';
 
   static Future<bool> getNotificationStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(key) ??
-        true; // Return true by default if the value is not set
+    return prefs.getBool(key) ?? true;
   }
 
   static Future<void> setNotificationStatus(bool status) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(key, status);
-  }
-
-  @override
-  void onInit() async {
-    // await fcmHandler();
-    super.onInit();
-
-    // await AwesomeNotifications().requestPermissionToSendNotifications();
   }
 
   @pragma('vm:entry-point')
@@ -117,7 +107,6 @@ class FcmNotifications extends GetxService {
       payload: data,
       displayOnForeground: true,
       displayOnBackground: true,
-      // customSound: 'resource://raw/${getSoundByType(notificationType: type)}',
     );
 
     return content;
@@ -176,21 +165,14 @@ class FcmNotifications extends GetxService {
   static Future<void> handleMessage(RemoteMessage message) async {
     FcmNotifications notifications = Get.put(FcmNotifications());
 
-    //we are converting the data which come from firestore as String,dynamic map
-    //even if you are only sending String,String
     Map<String, String> datapayload =
         Map<String, String>.from(message.data.cast<String, String>());
 
-    //the buttons to show to the user depending on the type of the notification
     List<NotificationActionButton>? buttons;
-
-    //get the notification type from message and convert it to NotificationType
 
     NotificationType type =
         NotificationType.values.byName(datapayload["type"]!);
-    //we send the type to getButtonsByNotificationType function that checks the type and returns the
-    //the appropriate buttons
-    // buttons = notifications.getButtonsByNotificationType(type: type);
+
     await notifications.showNotification(
       title: message.data["title"]!,
       body: message.data["body"]!!,
@@ -201,10 +183,6 @@ class FcmNotifications extends GetxService {
 
   @pragma('vm:entry-point')
   static Future<void> handleMessageJson(RemoteMessage message) async {
-    //we are converting the data which come from firestore as String,dynamic map
-    //even if you are only sending String,String
-    //
-
     if (await getNotificationStatus() == true) {
       Map<String, dynamic> s = jsonDecode(message.data["data"]);
 
@@ -215,12 +193,7 @@ class FcmNotifications extends GetxService {
   @pragma('vm:entry-point')
   static List<Map<String, dynamic>> getButtonsByNotificationType(
       {required NotificationType type}) {
-    //the buttons to show to the user depending on the type of the notification
     List<NotificationActionButton> buttons = [];
-
-    //all notifications must have a button to just mark the notification as read
-
-    //the key field allows us to handle the button click how we like with a function whatever
 
     switch (type) {
       case NotificationType.teamInvite:

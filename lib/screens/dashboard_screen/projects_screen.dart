@@ -3,7 +3,6 @@ import 'dart:developer' as dev;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -89,7 +88,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
 
   getUserAsManamger() async {
     userAsManager = await ManagerController().getMangerWhereUserIs(
-        userId: AuthService.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
   }
 
   @override
@@ -231,7 +230,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                               ManagerModel? managerModel =
                                   await ManagerController()
                                       .getMangerWhereUserIs(
-                                          userId: AuthService.instance
+                                          userId: AuthProvider.instance
                                               .firebaseAuth.currentUser!.uid);
                               // ignore: use_build_context_synchronously
                               Navigator.of(context).pop();

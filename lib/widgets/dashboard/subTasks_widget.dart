@@ -2,39 +2,38 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
-import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
-import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
-import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
-import 'package:project_management_muhmad_omar/services/types_services.dart';
-import 'package:project_management_muhmad_omar/widgets/Dashboard/subTask_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
-
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/controllers/waitingSubTasks.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
+import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
+import 'package:project_management_muhmad_omar/services/types_services.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/subTask_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
+
 import '../snackbar/custom_snackber_widget.dart';
 import 'create_sub_task_widget.dart';
 import 'dashboard_add_icon_widget.dart';
@@ -110,7 +109,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthService.instance.firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthProvider.instance.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
@@ -398,7 +397,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
             if (!startDate.isAfter(mainTask.startDate) ||
                 !dueDate.isBefore(mainTask.endDate!)) {
               CustomSnackBar.showError(
-                  AppConstants.sub_task_dates_between_main_task_dates_key.tr);
+                  "يجب أن تكون تواريخ بداية وانتهاء المهمة الفرعية بين تواريخ بداية وانتهاء المهمة الرئيسية");
               return;
             }
             UserModel userModel =

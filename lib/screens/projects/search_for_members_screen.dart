@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -9,7 +8,7 @@ import 'package:project_management_muhmad_omar/controllers/waitingMamberControll
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/screens/Projects/search_for_member_screen.dart';
+import 'package:project_management_muhmad_omar/screens/Projects/search_for_member_provider.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
@@ -20,8 +19,8 @@ import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_wi
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
+import '../../providers/projects/add_user_to_team_provider.dart';
 import '../profile/profile_overview_screen.dart';
-import 'add_user_to_team_screen.dart';
 
 class SearchForMembers extends StatefulWidget {
   final bool newTeam;
@@ -41,8 +40,8 @@ class _SearchForMembersState extends State<SearchForMembers> {
   final searchController = TextEditingController();
   final GlobalKey<_SearchForMembersState> searchForMembersKey =
       GlobalKey<_SearchForMembersState>();
-  final DashboardMeetingDetailsScreenController addWatingMemberController =
-      Get.find<DashboardMeetingDetailsScreenController>();
+  final DashboardMeetingDetailsProvider addWatingMemberController =
+      Get.find<DashboardMeetingDetailsProvider>();
 
   void clearSearch() {
     setState(() {
@@ -86,7 +85,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
                           stream: UserController().getUserByIdStream(
-                              id: AuthService
+                              id: AuthProvider
                                   .instance.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -219,7 +218,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                       //   searchController.text
                                                       .toLowerCase()) &&
                                               user.id !=
-                                                  AuthService
+                                                  AuthProvider
                                                       .instance
                                                       .firebaseAuth
                                                       .currentUser!

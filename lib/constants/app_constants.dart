@@ -54,8 +54,6 @@ class AppConstants {
     }
   };
 
-  static const String app_name_key = "app_name";
-  static const String tasks_key = "tasks";
   static const String categories_key = "categories";
   static const String assign_task_key = "assign_task";
   static const String task_name_key = "task_name";

@@ -1,9 +1,6 @@
-// ignore_for_file: avoid_
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
@@ -28,35 +25,29 @@ import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widge
 import 'package:project_management_muhmad_omar/widgets/forms/form_input_with_label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calender_widget.dart';
+import 'package:provider/provider.dart';
 
-import 'add_team_to_create_project_screen.dart';
-
-class STX extends GetxController {
-  RxBool isTaked = false.obs;
-  updateIsTaked(bool s) {
-    isTaked.value = s;
-    update();
-  }
-}
+import '../../providers/projects/add_team_to_create_project_provider.dart';
 
 class EditProject extends StatefulWidget {
   EditProject({
     required this.userAsManager,
     required this.teamModel,
     required this.projectModel,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   ProjectModel projectModel;
   TeamModel teamModel;
   ManagerModel userAsManager;
+
   @override
   State<EditProject> createState() => _EditProjectState();
 }
 
 class _EditProjectState extends State<EditProject> {
-  STX stx = Get.put(STX());
   String? selectedImagePath;
+
   void _showImagePickerDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -112,13 +103,14 @@ class _EditProjectState extends State<EditProject> {
     }
   }
 
-  final AddTeamToCreatProjectScreen addTeamToCreatProjectScreen =
-      Get.find<AddTeamToCreatProjectScreen>();
+  final addTeamToCreatProjectScreen =
+      Provider.of<AddTeamToCreatProjectProvider>(context);
   final TextEditingController _projectNameController = TextEditingController();
   final TextEditingController _projectDescController = TextEditingController();
   int? selectedDashboardOption;
   List<TeamMemberModel> membersList = [];
   String? teamMemberId;
+
   @override
   void initState() {
     super.initState();
@@ -143,6 +135,7 @@ class _EditProjectState extends State<EditProject> {
 
   String formattedStartDate = "";
   String formattedDueDate = "";
+
   void onChanged(String value) async {}
 
   DateTime startDate = DateTime.now();
@@ -155,6 +148,7 @@ class _EditProjectState extends State<EditProject> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String name = "";
   String desc = "";
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -278,8 +272,8 @@ class _EditProjectState extends State<EditProject> {
                 children: [
                   AppSpaces.horizontalSpace20,
                   Expanded(
-                    child: GetBuilder<STX>(
-                      init: STX(),
+                    child: GetBuilder<STXProvider>(
+                      init: STXProvider(),
                       builder: (controller) => LabelledFormInput(
                         ///  value: name,
                         validator: (value) {
@@ -475,10 +469,11 @@ class _EditProjectState extends State<EditProject> {
 
 class BottomSheetIcon extends StatelessWidget {
   final IconData icon;
+
   const BottomSheetIcon({
     required this.icon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

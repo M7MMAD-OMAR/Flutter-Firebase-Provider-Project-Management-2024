@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
@@ -89,7 +88,7 @@ class WaitingMamberController extends TopController {
         secondFiled: idK,
         secondValue: waitingMemberModel.teamId)) {
       if (waitingMemberModel.userId ==
-          AuthService.instance.firebaseAuth.currentUser!.uid) {
+          AuthProvider.instance.firebaseAuth.currentUser!.uid) {
         throw Exception(AppConstants.manager_cannot_be_member_error_key.tr);
       }
       if (await existByTow(
@@ -164,7 +163,7 @@ class WaitingMamberController extends TopController {
 
     //to get the user name to tell the manager about his name in the notification
     UserModel member = await userController.getUserById(
-        id: AuthService.instance.firebaseAuth.currentUser!.uid);
+        id: AuthProvider.instance.firebaseAuth.currentUser!.uid);
 
     FcmNotifications fcmNotifications = Get.put(FcmNotifications());
     await fcmNotifications.sendNotification(
