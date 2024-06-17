@@ -34,6 +34,7 @@ class TeamInfo {
   int? membersNumber;
 
   TeamInfo(this.team, this.membersNumber);
+
   static List<TeamModel> sortTeams(
       {required List<TeamModel> teams,
       required TeamSortOption sortOption,
@@ -71,7 +72,6 @@ class SelectMyTeamScreen extends StatefulWidget {
 }
 
 class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
-
   @override
   void initState() {
     userController.users.clear();
@@ -92,11 +92,11 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
   String _getSortOptionText(TeamSortOption option) {
     switch (option) {
       case TeamSortOption.name:
-        return AppConstants.name_key.tr;
+        return "الاسم";
       case TeamSortOption.updatedDate:
-        return AppConstants.updated_Date_key.tr;
+        return "تاريح التحديث";
       case TeamSortOption.createDate:
-        return AppConstants.created_date_key.tr;
+        return "تاريخ الإنشاء";
 
       // Add cases for more sorting options if needed
       default:
@@ -280,9 +280,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                 ),
                                 AppSpaces.verticalSpace10,
                                 Text(
-                                  AppConstants
-                                      .no_teams_found_add_team_to_get_started_key
-                                      .tr,
+                                  'لا توجد فرق، قم بإضافة فريق للبدء',
                                   style: GoogleFonts.poppins(
                                     textStyle: TextStyle(
                                       color: HexColor.fromHex("#999999"),
@@ -328,7 +326,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                     //         children: [
                                     //           SlidableAction(
                                     //             label:
-                                    //                 AppConstants.delete_key.tr,
+                                    //                 'حذف',
                                     //             borderRadius:
                                     //                 BorderRadius.circular(30),
                                     //             backgroundColor: Colors.red,
@@ -436,7 +434,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                     // );
                                   } else if (memberSnapshot.hasError) {
                                     return Text(
-                                      '${AppConstants.error_key.tr} ${memberSnapshot.error}',
+                                      'خطأ ${memberSnapshot.error}',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: Utils.screenWidth * 0.1,
@@ -495,7 +493,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                   buttonHeight: Utils.screenHeight *
                       0.12, // Adjust the percentage as needed
                   buttonWidth: Utils.screenWidth * 0.4,
-                  buttonText: AppConstants.create_new_team_key.tr,
+                  buttonText: 'إنشاء فريق جديد',
                   callback: () {
                     DashboardMeetingDetails.users = [];
                     Get.to(() => const DashboardMeetingDetails());

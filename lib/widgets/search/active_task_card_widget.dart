@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -35,7 +34,7 @@ class ActiveTaskCard extends StatelessWidget {
         motion: const StretchMotion(),
         children: [
           SlidableAction(
-            label: AppConstants.accept_key.tr,
+            label: 'قبول',
             borderRadius: BorderRadius.circular(20),
             backgroundColor: Colors.blue.shade300,
             icon: FontAwesomeIcons.userCheck,
@@ -48,7 +47,7 @@ class ActiveTaskCard extends StatelessWidget {
           motion: const StretchMotion(),
           children: [
             SlidableAction(
-              label: AppConstants.decline_key.tr,
+              label: 'رفض',
               borderRadius: BorderRadius.circular(20),
               icon: FontAwesomeIcons.userXmark,
               backgroundColor: Colors.red,

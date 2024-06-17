@@ -324,10 +324,9 @@ class _NewTaskDueDateState extends State<NewTaskDueDate> {
                                         );
                                       },
                                       child: ConditionText(
-                                        label: widget.title ==
-                                                AppConstants.start_date_key.tr
-                                            ? AppConstants.start_time_key.tr
-                                            : AppConstants.end_time_key.tr,
+                                        label: widget.title == 'تاريخ البدء'
+                                            ? "وقت البدء"
+                                            : "وقت الإنتهاء",
                                         color: HexColor.fromHex("BE5EF6"),
                                         value: DateFormat('h:mm a').format(t!),
                                       ),
@@ -349,7 +348,7 @@ class _NewTaskDueDateState extends State<NewTaskDueDate> {
                                         Get.back();
                                       },
                                       child: Text(
-                                        AppConstants.cancel_key.tr,
+                                        "إلغاء",
                                         style: GoogleFonts.lato(
                                           color: HexColor.fromHex("F49189"),
                                           fontSize: Utils.screenWidth * 0.05,
@@ -360,7 +359,7 @@ class _NewTaskDueDateState extends State<NewTaskDueDate> {
                                     PrimaryProgressButton(
                                       width: Get.width > 600 ? 110 : 120,
                                       height: Get.height > 500 ? 70 : 90,
-                                      label: AppConstants.done_key.tr,
+                                      label: 'تم',
                                       callback: () {
                                         //
                                         //

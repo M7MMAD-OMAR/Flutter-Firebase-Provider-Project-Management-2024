@@ -1,6 +1,3 @@
-////////////////
-
-
 import 'dart:async';
 import 'dart:developer' as dev;
 import 'dart:io';
@@ -37,6 +34,7 @@ import 'in_bottomsheet_subtitle_widget.dart';
 
 class DashboardMeetingDetails extends StatefulWidget {
   static List<UserModel?>? users = <UserModel?>[];
+
   const DashboardMeetingDetails({
     Key? key,
   }) : super(key: key);
@@ -49,17 +47,18 @@ class DashboardMeetingDetails extends StatefulWidget {
 class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
   String teamName = "";
   String? selectedImagePath;
+
   void _showImagePickerDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(AppConstants.choose_an_image_key.tr),
+          title: Text('اختر صورة'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: Text(AppConstants.camera_key.tr),
+                  child: Text('الكاميرا'),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -67,7 +66,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.gallery_key.tr),
+                  child: Text('المعرض'),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -76,7 +75,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
                   child: Text(
-                    AppConstants.cancel_key.tr,
+                    "إلغاء",
                   ),
                   onTap: () {
                     Navigator.of(context).pop();
@@ -88,10 +87,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
         );
       },
     ).then((value) {
-      if (value == null) {
-        // Handle the case where the user did not choose a photo
-        // Display a message or perform any required actions
-      }
+      if (value == null) {}
     });
   }
 
@@ -110,6 +106,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
   final DashboardMeetingDetailsScreenController userController =
       Get.find<DashboardMeetingDetailsScreenController>();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   void clearUsers() {
     userController.users.clear();
   }
@@ -159,8 +156,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                               Visibility(
                                 visible: selectedImagePath == null,
                                 child: Container(
-                                    width: Utils.screenWidth *
-                                        0.310, // Adjust the percentage as needed
+                                    width: Utils.screenWidth * 0.310,
                                     height: Utils.screenWidth * 0.310,
                                     decoration: BoxDecoration(
                                         color: AppColors.primaryAccentColor
@@ -175,9 +171,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                       }),
                       AppSpaces.verticalSpace10,
                       InBottomSheetSubtitle(
-                        title: teamName.isEmpty
-                            ? AppConstants.team_name_key.tr
-                            : teamName,
+                        title: teamName.isEmpty ? "اسم الفريق" : teamName,
                         alignment: Alignment.center,
                         textStyle: GoogleFonts.lato(
                           fontWeight: FontWeight.w600,
@@ -186,9 +180,8 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                         ),
                       ),
                       AppSpaces.verticalSpace10,
-                      InBottomSheetSubtitle(
-                        title:
-                            AppConstants.tap_the_logo_to_upload_new_file_key.tr,
+                      const InBottomSheetSubtitle(
+                        title: 'انقر على الشعار لتحميل صورة جديد',
                         alignment: Alignment.center,
                       ),
                       AppSpaces.verticalSpace20,
@@ -197,7 +190,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                         child: LabelledFormInput(
                             validator: (value) {
                               if (value!.isEmpty) {
-                                return AppConstants.team_name_not_empty_key.tr;
+                                return "اسم الفريق لا يمكن أن يكون فارغًا";
                               }
                               return null;
                             },
@@ -213,15 +206,13 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                             onChanged: (value) {
                               setState(() {
                                 teamName = value;
-                                // teamNameCobtroller.text = value;
                               });
                             },
-                            placeholder:
-                                AppConstants.enter_the_name_of_team_key.tr,
+                            placeholder: 'ادخل اسم الفريق',
                             keyboardType: "text",
                             controller: teamNameCobtroller,
                             obscureText: false,
-                            label: AppConstants.team_name_key.tr),
+                            label: "اسم الفريق"),
                       ),
                       AppSpaces.verticalSpace20,
                       Padding(
@@ -234,8 +225,8 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                 ));
                           },
                           child: LabelledSelectableContainer(
-                            label: AppConstants.members_key.tr,
-                            value: AppConstants.select_members_key.tr,
+                            label: "الأعضاء",
+                            value: 'اختر الأعضاء',
                             icon: Icons.add,
                             valueColor: AppColors.primaryAccentColor,
                           ),
@@ -249,14 +240,14 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                       AppPrimaryButton(
                         buttonHeight: 50,
                         buttonWidth: 180,
-                        buttonText: AppConstants.create_new_team_key.tr,
+                        buttonText: 'إنشاء فريق جديد',
                         callback: () async {
                           teamName = teamName.trim();
                           if (formKey.currentState!.validate()) {
                             try {
                               if (userController.users.isEmpty) {
                                 CustomSnackBar.showError(
-                                    AppConstants.choose_member_for_team_key.tr);
+                                    'الرجاء اختيار عضو واحد على الأقل لإنشاء فريق');
                               } else {
                                 showDialogMethod(context);
                                 ManagerModel managerModel =
@@ -292,7 +283,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                       Navigator.of(context).pop();
 
                                       CustomSnackBar.showSuccess(
-                                          "${AppConstants.create_team_key.tr} ${teamModel.name} ${AppConstants.completed_successfully_key.tr}");
+                                          " إنشاء فريق ${teamModel.name} تم الانتهاء بنجاح");
                                     });
                                   });
                                 } else {
@@ -307,7 +298,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                   Navigator.of(context).pop();
 
                                   CustomSnackBar.showSuccess(
-                                      "${AppConstants.create_team_key.tr} ${teamModel.name} ${AppConstants.completed_successfully_key.tr}");
+                                      "إنشاء فريق ${teamModel.name} تم الانتهاء بنجاح");
                                 }
 
                                 dev.log("message Ysss");
@@ -349,16 +340,12 @@ EitherException<Future<String?>> uploadImageToStorge({
     if (snapshot.state == TaskState.success) {
       final String downloadURL = await reference.getDownloadURL();
 
-      // Handle the completion of the upload
-
-      return Right(Future.value(downloadURL)); // Return Right for success case
+      return Right(Future.value(downloadURL));
     } else {
-      return Left(
-          Exception('Image upload failed')); // Return Left for failure case
+      return Left(Exception('Image upload failed'));
     }
   } catch (error) {
-    return Left(Exception(
-        'Image upload error: ${error.toString()}}')); // Return Left for any exception/error
+    return Left(Exception('Image upload error: ${error.toString()}}'));
   }
 }
 

@@ -113,8 +113,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
                     validator: (value) {
                       if (value!.isNotEmpty) {
                         if (isTaked) {
-                          return AppConstants
-                              .please_use_another_categoryName_key.tr;
+                          return 'يرجى استخدام اسم فئة آخر';
                         }
                       }
                       return null;
@@ -129,7 +128,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
                     label: "",
                     readOnly: false,
                     autovalidateMode: AutovalidateMode.always,
-                    placeholder: AppConstants.category_name_key.tr,
+                    placeholder: "اسم الفئة",
                     keyboardType: "text",
                     controller: _taskNameController,
                     obscureText: false,
@@ -183,8 +182,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
         updatedAtParameter: DateTime.now(),
       );
       await taskCategoryController.addCategory(userTaskModel);
-      CustomSnackBar.showSuccess(
-          "${AppConstants.category_key.tr} $name ${AppConstants.added_successfully_key.tr}");
+      CustomSnackBar.showSuccess("الفئة $name تمت الإضافة بنجاح");
 
       await Future.delayed(
           const Duration(seconds: 1)); // Delay closing the widget

@@ -54,12 +54,12 @@ class _CreateProjectState extends State<CreateProject> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(AppConstants.choose_an_image_key.tr),
+          title: Text('اختر صورة'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: Text(AppConstants.camera_key.tr),
+                  child: Text('الكاميرا'),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -67,7 +67,7 @@ class _CreateProjectState extends State<CreateProject> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.gallery_key.tr),
+                  child: Text('المعرض'),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -75,7 +75,7 @@ class _CreateProjectState extends State<CreateProject> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.cancel_key.tr),
+                  child: Text("إلغاء"),
                   onTap: () {
                     Navigator.of(context).pop();
                   },
@@ -201,7 +201,7 @@ class _CreateProjectState extends State<CreateProject> {
                     init: AddTeamToCreatProjectProvider(),
                     builder: (controller) => Text(
                       controller.teams.isEmpty
-                          ? AppConstants.choose_team_key.tr
+                          ? 'اختر الفريق'
                           : controller.teams.first.name!,
                       style: TextStyle(
                           color: Colors.white,
@@ -225,8 +225,7 @@ class _CreateProjectState extends State<CreateProject> {
                                     numberOfMembers: 0.toString(),
                                     onTap: () {
                                       Get.to(() => SelectMyTeamScreen(
-                                          title:
-                                              AppConstants.choose_team_key.tr));
+                                          title: 'اختر الفريق'));
                                     },
                                     teams: <TeamModel?>[]);
                               } else {
@@ -250,8 +249,7 @@ class _CreateProjectState extends State<CreateProject> {
                                         snapshot.data!.docs.length.toString(),
                                     onTap: () {
                                       Get.to(() => SelectMyTeamScreen(
-                                          title:
-                                              AppConstants.choose_team_key.tr));
+                                          title: 'اختر الفريق'));
                                     },
                                     teams: snapshot.data?.docs
                                         .map((doc) => doc.data())
@@ -279,12 +277,11 @@ class _CreateProjectState extends State<CreateProject> {
                     child: LabelledFormInput(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return AppConstants.name_can_not_be_empty_key.tr;
+                          return 'لا يمكن أن يكون الاسم فارغًا';
                         }
                         if (value.isNotEmpty) {
                           if (isTaked) {
-                            return AppConstants
-                                .please_use_another_project_name_key.tr;
+                            return 'يرجى استخدام اسم مشروع آخر';
                           }
                         }
                         return null;
@@ -320,10 +317,10 @@ class _CreateProjectState extends State<CreateProject> {
                           });
                         }
                       },
-                      label: AppConstants.name_key.tr,
+                      label: "الاسم",
                       readOnly: false,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
-                      placeholder: AppConstants.project_name_key.tr,
+                      placeholder: 'اسم المشروع',
                       keyboardType: "text",
                       controller: _projectNameController,
                       obscureText: false,
@@ -335,8 +332,7 @@ class _CreateProjectState extends State<CreateProject> {
               LabelledFormInput(
                 validator: (p0) {
                   if (p0!.isEmpty) {
-                    return AppConstants
-                        .description_cannot_be_empty_spaces_key.tr;
+                    return 'لا يمكن أن يكون الوصف مساحات فارغة';
                   }
                   return null;
                 },
@@ -351,10 +347,10 @@ class _CreateProjectState extends State<CreateProject> {
                     _projectDescController.text = "";
                   });
                 },
-                label: AppConstants.description_key.tr,
+                label: 'وصف',
                 readOnly: false,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                placeholder: AppConstants.project_description_key.tr,
+                placeholder: "وصف المشروع",
                 keyboardType: "text",
                 controller: _projectDescController,
                 obscureText: false,
@@ -367,7 +363,7 @@ class _CreateProjectState extends State<CreateProject> {
                   cardBackgroundColor: HexColor.fromHex("7DBA67"),
                   textAccentColor: HexColor.fromHex("A9F49C"),
                   value: formattedStartDate,
-                  label: AppConstants.start_date_key.tr,
+                  label: 'تاريخ البدء',
                 ),
                 NewSheetGoToCalendarWidget(
                   onSelectedDayChanged: handleDueDayChanged,
@@ -375,7 +371,7 @@ class _CreateProjectState extends State<CreateProject> {
                   cardBackgroundColor: HexColor.fromHex("BA67A3"),
                   textAccentColor: HexColor.fromHex("BA67A3"),
                   value: formattedDueDate,
-                  label: AppConstants.due_date_validation_key.tr,
+                  label: 'تاريخ الاستحقاق',
                 )
               ]),
               // Spacer(),
@@ -393,8 +389,7 @@ class _CreateProjectState extends State<CreateProject> {
                         await addProject();
                         Navigator.of(context).pop();
                       } else {
-                        CustomSnackBar.showError(
-                            AppConstants.choose_team_first_for_project_key.tr);
+                        CustomSnackBar.showError("اختر الفريق أولاً للمشروع");
                       }
                     }
                   },
@@ -413,7 +408,7 @@ class _CreateProjectState extends State<CreateProject> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
+      return "اليوم ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }
@@ -446,9 +441,8 @@ class _CreateProjectState extends State<CreateProject> {
             DateTime.now().add(const Duration(minutes: 2)),
           ),
         )) {
-      CustomSnackBar.showError(AppConstants
-          .start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key
-          .tr);
+      CustomSnackBar.showError(
+          'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء أو في نفس الوقت أو قبل التاريخ الحالي');
       return;
     }
 
@@ -475,7 +469,7 @@ class _CreateProjectState extends State<CreateProject> {
           final resOfUpload = await uploadImageToStorge(
             selectedImagePath: selectedImagePath!,
             imageName: name,
-            folder: AppConstants.projects_key.tr,
+            folder: 'المشاريع',
           );
           resOfUpload.fold((left) {
             Navigator.of(context).pop();
@@ -502,8 +496,7 @@ class _CreateProjectState extends State<CreateProject> {
               if (mounted) {
                 Navigator.of(context).pop();
               }
-              CustomSnackBar.showSuccess(
-                  "${AppConstants.create_project_key.tr} $name ${AppConstants.completed_successfully_key.tr}");
+              CustomSnackBar.showSuccess("إنشاء مشروع $name تم الانتهاء بنجاح");
             });
           });
         } else {
@@ -522,8 +515,7 @@ class _CreateProjectState extends State<CreateProject> {
 
           await projectController.addProject(projectModel: projectModel);
           Navigator.of(context).pop();
-          CustomSnackBar.showSuccess(
-              "${AppConstants.create_project_key.tr} $name ${AppConstants.completed_successfully_key.tr} ");
+          CustomSnackBar.showSuccess("إنشاء مشروع $name تم الانتهاء بنجاح");
         }
         //  Get.key.currentState!.pop();
       } catch (e) {

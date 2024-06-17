@@ -250,10 +250,10 @@ class ProjectAndTaskController extends TopController {
     required int importance,
   }) async {
     if (importance < 1) {
-      throw Exception(AppConstants.importance_min_value_error_key);
+      throw Exception('لا يمكن أن تكون الأهمية أقل من 1');
     }
     if (importance > 5) {
-      throw Exception(AppConstants.importance_max_value_error_key);
+      throw Exception('لا يمكن أن تكون الأهمية أكبر من 5');
     }
     return await getListDataWhereAndWhere(
       collectionReference: reference,
@@ -272,10 +272,10 @@ class ProjectAndTaskController extends TopController {
     required int importance,
   }) {
     if (importance < 1) {
-      throw Exception(AppConstants.importance_min_value_error_key);
+      throw Exception('لا يمكن أن تكون الأهمية أقل من 1');
     }
     if (importance > 5) {
-      throw Exception(AppConstants.importance_max_value_error_key);
+      throw Exception('لا يمكن أن تكون الأهمية أكبر من 5');
     }
     return queryWhereAndWhereStream(
       reference: reference,

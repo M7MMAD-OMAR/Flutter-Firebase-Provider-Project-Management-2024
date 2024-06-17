@@ -429,44 +429,6 @@ class UserTaskController extends ProjectAndTaskController {
         .cast<QuerySnapshot<UserTaskModel>>();
   }
 
-  // Stream<QuerySnapshot<UserTaskModel>> getUserTasksStartInADayStream({
-  //   required DateTime date,
-  //   required String userId,
-  // }) async* {
-
-  //   final startOfDay = DateTime(date.year, date.month, date.day);
-
-  //   final endOfDay =
-  //       startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
-  //
-  //   // yield* getUserTasksBetweenTowTimesStream(
-  //   //     firstDate: startOfDay,
-  //   //     secondDate: endOfDay,
-  //   //     userId: firebaseAuth.currentUser!.uid);
-  //   List<String> tasksFinal = [];
-  //   getUserTasksStream(userId: firebaseAuth.currentUser!.uid).listen((event) {
-  //     List<QueryDocumentSnapshot<UserTaskModel>> list = event.docs;
-  //     for (var element in list) {
-  //       UserTaskModel task = element.data();
-  //
-  //       if (task.startDate.isAfter(startOfDay) &&
-  //           task.startDate.isBefore(endOfDay)) {
-
-  //         tasksFinal.add(task.id);
-  //       }
-  //     }
-  //   });
-
-  //   if (tasksFinal.isEmpty) {
-  //     throw Exception("no user tasks");
-  //   }
-
-  //   yield* usersTasksRef
-  //       .where(idK, whereIn: tasksFinal)
-  //       .snapshots()
-  //       .cast<QuerySnapshot<UserTaskModel>>();
-  // }
-
   Stream<QuerySnapshot<UserTaskModel>> getUserTasksStartInADayForAStatusStream(
       {required DateTime date,
       required String userId,
@@ -599,55 +561,13 @@ class UserTaskController extends ProjectAndTaskController {
     return stream.cast<QuerySnapshot<UserTaskModel>>();
   }
 
-  // Future<void> addUserTask({required UserTaskModel userTaskModel}) async {
-  //   int numOfTasksInSameTime =
-  //       (await getTasksAndProjectBetweenTowTimesByTowFields(
-  //     reference: usersTasksRef,
-  //     firstField: userIdK,
-  //     firstValue: userTaskModel.userId,
-  //     secondField: folderIdK,
-  //     secondValue: userTaskModel.folderId,
-  //     firstDateField: startDateK,
-  //     firstDate: userTaskModel.startDate,
-  //     secondDateField: endDateK,
-  //     secondDate: userTaskModel.endDate!,
-  //   ))
-  //           .length;
-  //   if (numOfTasksInSameTime >= 1) {
-  //     Get.defaultDialog(
-  //       title: "Task Time Error",
-  //       middleText:
-  //           "There is $numOfTasksInSameTime That start in this time \n Would you Like To Add Task Any Way?",
-  //       onConfirm: () async {
-  //         await addTask(
-  //           reference: usersTasksRef,
-  //           field: folderIdK,
-  //           value: userTaskModel.folderId,
-  //           taskModel: userTaskModel,
-  //           exception: Exception("task already exist in Category"),
-  //         );
-  //       },
-  //       onCancel: () {
-  //         Get.back();
-  //       },
-  //     );
-  //   }
-  //   await addTask(
-  //     reference: usersTasksRef,
-  //     field: folderIdK,
-  //     value: userTaskModel.folderId,
-  //     taskModel: userTaskModel,
-  //     exception: Exception("task already exist in Category"),
-  //   );
-  // }
-
   Future<void> addUserLateTask({required UserTaskModel userTaskModel}) async {
     await addLateTask(
         taskModel: userTaskModel,
         field: folderIdK,
         value: userTaskModel.folderId,
         reference: usersTasksRef,
-        exception: Exception(AppConstants.user_task_already_added_key));
+        exception: Exception('مهمة المستخدم تمت إضافتها بالفعل'));
   }
 
   Future<void> deleteUserTask({required String id}) async {
@@ -676,24 +596,21 @@ class UserTaskController extends ProjectAndTaskController {
     final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
     if (overlapped) {
       Get.defaultDialog(
-          title: AppConstants.task_time_error_key,
-          middleText:
-              "${AppConstants.there_is_key.tr} $over ${AppConstants.task_start_prompt_key.tr}",
+          title: 'خطأ في وقت المهمة',
+          middleText: " هناك $over تبدأ في هذا الوقت هل تود إضافتها؟",
           onConfirm: () async {
             await addTask(
               reference: usersTasksRef,
               field: folderIdK,
               value: userTaskModel.folderId,
               taskModel: userTaskModel,
-              exception:
-                  Exception(AppConstants.task_already_exists_category_key.tr),
+              exception: Exception('المهمة موجودة بالفعل في الفئة'),
             );
             CustomSnackBar.showSuccess(
-                "${AppConstants.the_task_key.tr} ${userTaskModel.name} ${AppConstants.added_successfully_key.tr}");
+                "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
             Get.key.currentState!.pop();
           },
           onCancel: () {
-            // SystemNavigator.pop();
             _navigatorKey.currentState?.pop();
           },
           navigatorKey: _navigatorKey);
@@ -703,12 +620,12 @@ class UserTaskController extends ProjectAndTaskController {
         field: folderIdK,
         value: userTaskModel.folderId,
         taskModel: userTaskModel,
-        exception: Exception(AppConstants.task_already_exists_category_key.tr),
+        exception: Exception('المهمة موجودة بالفعل في الفئة'),
       );
       Get.key.currentState!.pop();
 
       CustomSnackBar.showSuccess(
-          "${AppConstants.the_task_key.tr} ${userTaskModel.name} ${AppConstants.added_successfully_key.tr}");
+          "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
     }
   }
 
@@ -726,7 +643,7 @@ class UserTaskController extends ProjectAndTaskController {
         id: id,
         field: folderIdK,
         value: userTaskModel.folderId,
-        exception: Exception(AppConstants.task_already_exists_category_key.tr),
+        exception: Exception('المهمة موجودة بالفعل في الفئة'),
       );
       return;
     }
@@ -748,9 +665,8 @@ class UserTaskController extends ProjectAndTaskController {
           GlobalKey<NavigatorState>();
       if (overlapped) {
         Get.defaultDialog(
-            title: AppConstants.task_time_error_key.tr,
-            middleText:
-                "${AppConstants.there_is_key.tr} $over ${AppConstants.task_start_prompt_key.tr}",
+            title: 'خطأ في وقت المهمة',
+            middleText: "هناك $overتبدأ في هذا الوقت هل تود إضافتها؟ ",
             onConfirm: () async {
               await updateTask(
                 reference: usersTasksRef,
@@ -758,15 +674,13 @@ class UserTaskController extends ProjectAndTaskController {
                 id: id,
                 field: folderIdK,
                 value: userTaskModel.folderId,
-                exception:
-                    Exception(AppConstants.task_already_exists_category_key.tr),
+                exception: Exception('المهمة موجودة بالفعل في الفئة'),
               );
               CustomSnackBar.showSuccess(
-                  "${AppConstants.task_key.reactive} ${data[nameK]} ${AppConstants.task_updated_successfully_key.tr}");
+                  "${AppConstants.task_key.reactive} ${data[nameK]} تم تحديث المهمة بنجاح");
               Get.key.currentState!.pop();
             },
             onCancel: () {
-              // SystemNavigator.pop();
               _navigatorKey.currentState?.pop();
             },
             navigatorKey: _navigatorKey);
@@ -777,24 +691,21 @@ class UserTaskController extends ProjectAndTaskController {
           id: id,
           field: folderIdK,
           value: userTaskModel.folderId,
-          exception: Exception(AppConstants.task_already_exists_category_key),
+          exception: Exception('المهمة موجودة بالفعل في الفئة'),
         );
-        CustomSnackBar.showSuccess(
-            "${AppConstants.task_key.tr} ${data[nameK]} ${AppConstants.task_updated_successfully_key.tr}");
+        CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم تحديث المهمة بنجاح");
         Get.key.currentState!.pop();
       }
     } else {
-
       await updateTask(
         reference: usersTasksRef,
         data: data,
         id: id,
         field: folderIdK,
         value: userTaskModel.folderId,
-        exception: Exception(AppConstants.task_already_exists_category_key.tr),
+        exception: Exception('المهمة موجودة بالفعل في الفئة'),
       );
-      CustomSnackBar.showSuccess(
-          "${AppConstants.task_key.tr} ${data[nameK]} ${AppConstants.task_updated_successfully_key.tr}");
+      CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم تحديث المهمة بنجاح");
       Get.key.currentState!.pop();
     }
   }

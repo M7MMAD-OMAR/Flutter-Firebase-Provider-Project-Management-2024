@@ -43,13 +43,11 @@ class ManagerModel with TopModel {
     createdAtParameter = firebaseTime(createdAtParameter);
 
     if (createdAtParameter.isBefore(now)) {
-      throw Exception(
-          AppConstants.manager_creating_time_before_now_invalid_key.tr);
+      throw Exception('لا يمكن أن يكون وقت إنشاء المدير في الماضي');
     }
 
     if (createdAtParameter.isAfter(now)) {
-      throw Exception(
-          AppConstants.manager_creating_time_not_in_future_invalid_key.tr);
+      throw Exception('لا يمكن أن يكون وقت إنشاء المدير في المستقبل');
     }
     createdAt = firebaseTime(createdAtParameter);
   }
@@ -57,7 +55,7 @@ class ManagerModel with TopModel {
   @override
   set setId(String idParameter) {
     if (idParameter.isEmpty) {
-      throw Exception(AppConstants.manager_id_empty_key.tr);
+      throw Exception('لا يمكن أن يكون معرف المدير فارغًا');
     }
 
     id = idParameter;
@@ -68,8 +66,7 @@ class ManagerModel with TopModel {
     updatedAtParameter = firebaseTime(updatedAtParameter);
 
     if (updatedAtParameter.isBefore(createdAt)) {
-      throw Exception(
-          AppConstants.updating_time_before_creating_invalid_key.tr);
+      throw Exception('لا يمكن أن يكون وقت التحديث قبل وقت الإنشاء');
     }
     updatedAt = updatedAtParameter;
   }

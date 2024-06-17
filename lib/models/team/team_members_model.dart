@@ -49,7 +49,7 @@ class TeamMemberModel with TopModel {
   @override
   set setId(String idParameter) {
     if (idParameter.isEmpty) {
-      throw Exception(AppConstants.team_member_id_empty_error_key.tr);
+      throw Exception('لا يمكن أن يكون معرّف عضو الفريق فارغًا');
     }
     id = idParameter;
   }
@@ -61,12 +61,11 @@ class TeamMemberModel with TopModel {
 
     createdAtParameter = firebaseTime(createdAtParameter);
     if (createdAtParameter.isAfter(now)) {
-      throw Exception(
-          AppConstants.team_member_creating_time_future_error_key.tr);
+      throw Exception('لا يمكن أن يكون وقت إنشاء عضو الفريق في المستقبل');
     }
 
     if (firebaseTime(createdAtParameter).isBefore(now)) {
-      throw Exception(AppConstants.team_member_creating_time_past_error_key.tr);
+      throw Exception('لا يمكن أن يكون وقت إنشاء عضو الفريق في الماضي');
     }
     createdAt = createdAtParameter;
   }
@@ -76,8 +75,7 @@ class TeamMemberModel with TopModel {
     updatedAtParameter = firebaseTime(updatedAtParameter);
 
     if (updatedAtParameter.isBefore(createdAt)) {
-      throw Exception(
-          AppConstants.team_member_updating_time_before_create_error_key.tr);
+      throw Exception('لا يمكن أن يكون وقت تحديث عضو الفريق قبل وقت الإنشاء');
     }
     updatedAt = updatedAtParameter;
   }

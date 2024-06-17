@@ -83,7 +83,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   child: Column(
                     children: [
                       TaskezAppHeader(
-                        title: "$tabSpace ${AppConstants.edit_profile_key.tr}",
+                        title: "$tabSpace تحرير الملف الشخصي",
                         widget: PrimaryProgressButton(
                           callback: () async {
                             try {
@@ -155,8 +155,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
                                     pop = true;
                                     Navigator.of(context).pop();
-                                    CustomSnackBar.showSuccess(AppConstants
-                                        .email_updated_successfully_key.tr);
+                                    CustomSnackBar.showSuccess(
+                                        'تم تحديث البريد الإلكتروني بنجاح..الرجاء تسجيل الدخول والتحقق من البريد الإلكتروني الجديد');
                                     AuthProvider.instance.logOut();
                                     changes = true;
                                     Get.offAll(
@@ -171,7 +171,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 }
                                 if (changes) {
                                   CustomSnackBar.showSuccess(
-                                      AppConstants.updated_successfully_key.tr);
+                                      "تم التحديث بنجاح");
                                 }
                               }
                             } on Exception catch (e) {
@@ -181,7 +181,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           },
                           width: Utils.screenWidth * 0.2,
                           height: Utils.screenHeight * 0.1,
-                          label: AppConstants.save_key.tr,
+                          label: " حفظ",
                           textStyle: GoogleFonts.lato(
                               color: Colors.white, fontWeight: FontWeight.bold),
                         ),
@@ -238,14 +238,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           LabelledFormInput(
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return AppConstants
-                                      .name_can_not_be_empty_key.tr;
+                                  return 'لا يمكن أن يكون الاسم فارغًا';
                                 }
                                 if (regExnumbers.hasMatch(value) ||
                                     regEx2.hasMatch(value)) {
-                                  return AppConstants
-                                      .the_name_can_not_contain_numbers_or_symbols_key
-                                      .tr;
+                                  return 'لا يمكن أن يحتوي الاسم على أرقام أو رموز';
                                 }
                                 return null;
                               },
@@ -266,7 +263,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               keyboardType: "text",
                               controller: nameController,
                               obscureText: false,
-                              label: AppConstants.your_name_key.tr),
+                              label: 'اسمك'),
                           AppSpaces.verticalSpace20,
                           Visibility(
                             visible: !AuthProvider
@@ -292,7 +289,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 keyboardType: "text",
                                 controller: userNameController,
                                 obscureText: false,
-                                label: AppConstants.your_username_key.tr),
+                                label: 'اسم المستخدم الخاص بك'),
                           ),
                           AppSpaces.verticalSpace20,
                           Visibility(
@@ -301,8 +298,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             child: LabelledFormInput(
                                 validator: (value) {
                                   if (!EmailValidator.validate(value!)) {
-                                    return AppConstants
-                                        .enter_valid_email_key.tr;
+                                    return 'أدخل بريد إلكتروني صالح';
                                   } else {
                                     return null;
                                   }
@@ -327,7 +323,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 keyboardType: "text",
                                 controller: emailController,
                                 obscureText: false,
-                                label: AppConstants.your_email_key.tr),
+                                label: 'بريدك الإلكتروني'),
                           ),
                           AppSpaces.verticalSpace20,
                           LabelledFormInput(
@@ -347,7 +343,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               keyboardType: "text",
                               controller: bioController,
                               obscureText: false,
-                              label: AppConstants.bio_key.tr),
+                              label: 'السيرة الذاتية'),
                         ],
                       ),
                       Visibility(
@@ -359,7 +355,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               callback: () {
                                 CustomDialog.showPasswordDialog(context);
                               },
-                              buttonText: AppConstants.change_password_key.tr,
+                              buttonText: 'تغيير كلمة المرور',
                               buttonHeight: 50,
                               buttonWidth: 175),
                         ),
@@ -383,13 +379,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            AppConstants.choose_an_image_key.tr,
+            'اختر صورة',
           ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: Text(AppConstants.camera_key.tr),
+                  child: Text('الكاميرا'),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -397,7 +393,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.gallery_key.tr),
+                  child: Text('المعرض'),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -405,7 +401,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.cancel_key.tr),
+                  child: Text("إلغاء"),
                   onTap: () {
                     Navigator.of(context).pop();
                   },

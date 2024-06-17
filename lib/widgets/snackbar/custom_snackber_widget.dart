@@ -20,7 +20,7 @@ class CustomSnackBar {
           offset: const Offset(0, 4),
         ),
       ],
-      AppConstants.success_key.tr,
+      " تم بنجاح ",
       message,
       backgroundColor: Colors.greenAccent.withOpacity(.65),
       colorText: Colors.white,
@@ -39,9 +39,9 @@ class CustomSnackBar {
           offset: const Offset(0, 4),
         ),
       ],
-      AppConstants.error_key.tr,
-      " $message ${AppConstants.please_Try_Again_key.tr} ",
-      // AppConstants.error_key.tr,
+      "خطأ",
+      " $message ......يرجى المحاولة مرة أخرى ",
+      // "خطأ",
       // //'Error',
       // "${AppConstants.SomeThing_Wrong_happened_key.tr} \n  $message ${AppConstants.please_Try_Again_key.tr} ",
       duration: const Duration(seconds: 20),
@@ -64,7 +64,7 @@ class CustomDialog {
     final RxBool obscureText = false.obs;
     Get.defaultDialog(
         backgroundColor: AppColors.primaryBackgroundColor,
-        title: AppConstants.enter_new_password_key.tr,
+        title: 'أدخل كلمة المرور الجديدة',
         titleStyle: const TextStyle(color: Colors.white),
         content: Form(
           key: formKey,
@@ -73,20 +73,16 @@ class CustomDialog {
               LabelledFormInput(
                   validator: (value) {
                     if (value!.isEmpty || value.length < 8) {
-                      return AppConstants
-                          .the_password_should_be_more_then_7_character_key.tr;
+                      return 'يجب أن تحتوي كلمة المرور على أكثر من 7 أحرف';
                     }
                     if (regExletters.hasMatch(value) == false) {
-                      return AppConstants
-                          .please_enter_at_least_one_small_character_key.tr;
+                      return 'يرجى إدخال حرف صغير واحد على الأقل';
                     }
                     if (regExnumbers.hasMatch(value) == false) {
-                      return AppConstants
-                          .please_enter_at_least_one_number_key.tr;
+                      return 'الرجاء إدخال رقم واحد على الأقل';
                     }
                     if (regExbigletters.hasMatch(value) == false) {
-                      return AppConstants
-                          .please_enter_at_least_one_big_character_key.tr;
+                      return 'الرجاء إدخال حرف كبير واحد على الأقل';
                     }
                     return null;
                   },
@@ -98,11 +94,11 @@ class CustomDialog {
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   readOnly: false,
-                  placeholder: AppConstants.password_key.tr,
+                  placeholder: 'كلمة المرور',
                   keyboardType: "text",
                   controller: passController.value,
                   obscureText: obscureText.value,
-                  label: AppConstants.your_password_key.tr),
+                  label: 'كلمة المرور الخاصة بك'),
               const SizedBox(height: 15),
             ],
           ),
@@ -122,9 +118,7 @@ class CustomDialog {
                       CustomSnackBar.showError(left.toString());
                     }, (right) {
                       Navigator.of(context).pop();
-                      //dev.log("Password Updated ");
-                      CustomSnackBar.showSuccess(
-                          AppConstants.password_updated_successfully_key.tr);
+                      CustomSnackBar.showSuccess('تم تحديث كلمة المرور بنجاح');
                       Get.back();
                     });
                   }
@@ -134,7 +128,7 @@ class CustomDialog {
                   CustomSnackBar.showError(e.toString());
                 }
               },
-              buttonText: AppConstants.change_password_key.tr,
+              buttonText: 'تغيير كلمة المرور',
               buttonHeight: 50,
               buttonWidth: 110),
         ));
@@ -175,7 +169,7 @@ class CustomDialog {
               Expanded(
                 child: Text(
                   overflow: TextOverflow.clip,
-                  bio ?? AppConstants.empty_bio_key.tr,
+                  bio ?? 'سيرة ذاتية فارغة',
                   style: const TextStyle(color: Colors.white),
                 ),
               ),
@@ -184,14 +178,14 @@ class CustomDialog {
           ),
           AppSpaces.verticalSpace10,
 
-          Row(
+          const Row(
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppSpaces.horizontalSpace20,
               Text(
-                AppConstants.bio_key.tr,
-                style: const TextStyle(
-                    color: Colors.grey, fontWeight: FontWeight.bold),
+                'السيرة الذاتية',
+                style:
+                    TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
               )
             ],
           ),
@@ -214,7 +208,7 @@ class CustomDialog {
             children: [
               AppSpaces.horizontalSpace20,
               Text(
-                " ${AppConstants.user_name_key.tr}",
+                " اسم المستخدم",
                 style: const TextStyle(
                     color: Colors.grey, fontWeight: FontWeight.bold),
               )
@@ -230,7 +224,7 @@ class CustomDialog {
             // Handle button action
             Get.back(); // Close the dialog
           },
-          child: Text(AppConstants.close_key.tr),
+          child: Text('إغلاق'),
         ),
       ],
     );
@@ -240,19 +234,19 @@ class CustomDialog {
       {required Text content, required VoidCallback onDelete}) {
     Get.defaultDialog(
         backgroundColor: Colors.white,
-        title: AppConstants.confirm_delete_key.tr,
+        title: "هل أنت متأكد من رغبتك في حذف هذه المهمة؟",
         titleStyle: const TextStyle(color: Colors.redAccent),
         content: content,
-        textConfirm: AppConstants.delete_key.tr,
-        textCancel: AppConstants.cancel_key.tr,
+        textConfirm: "حذف",
+        textCancel: "إلغاء",
         confirmTextColor: Colors.white.withOpacity(.5),
         confirm: ClipOval(
           child: MaterialButton(
             color: Colors.white.withOpacity(.5),
             onPressed: onDelete,
-            child: Text(
-              AppConstants.cancel_key.tr,
-              style: const TextStyle(color: Colors.red),
+            child: const Text(
+              "إلغاء",
+              style: TextStyle(color: Colors.red),
             ),
           ),
         ),
@@ -261,14 +255,11 @@ class CustomDialog {
           child: MaterialButton(
             color: Colors.white.withOpacity(.5),
             onPressed: () {
-              // Perform delete operation
-              // ...
-
               Get.back();
             },
-            child: Text(
-              AppConstants.cancel_key.tr,
-              style: const TextStyle(color: Colors.black),
+            child: const Text(
+              "إلغاء",
+              style: TextStyle(color: Colors.black),
             ),
           ),
         ));

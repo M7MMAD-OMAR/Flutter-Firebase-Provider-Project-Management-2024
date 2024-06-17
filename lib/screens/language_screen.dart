@@ -39,7 +39,7 @@ class LanguageScreen extends StatelessWidget {
                               ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Text(AppConstants.select_language_key),
+                                child: Text('اختار اللغة'),
                               ),
                               const SizedBox(
                                 height: 10,

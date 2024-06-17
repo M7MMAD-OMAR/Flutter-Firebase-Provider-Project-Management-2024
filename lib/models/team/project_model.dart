@@ -62,7 +62,7 @@ class ProjectModel extends Var2TopModel {
 
   set setImageUrl(String imageUrl) {
     if (imageUrl.isEmpty) {
-      throw Exception(AppConstants.project_imageUrl_empty_error_key.tr);
+      throw Exception('صورة المشروع لا يمكن أن تكون فارغة');
     }
     this.imageUrl = imageUrl;
   }
@@ -90,11 +90,11 @@ class ProjectModel extends Var2TopModel {
     createdAtParameter = firebaseTime(createdAtParameter);
 
     if (createdAtParameter.isAfter(now)) {
-      throw Exception(AppConstants.project_creating_time_future_error_key.tr);
+      throw Exception('وقت إنشاء المشروع لا يمكن أن يكون في المستقبل');
     }
 
     if (createdAtParameter.isBefore(now)) {
-      throw Exception(AppConstants.project_creating_time_past_error_key.tr);
+      throw Exception('وقت إنشاء المشروع لا يمكن أن يكون في الماضي');
     }
     createdAt = createdAtParameter;
   }
@@ -104,8 +104,7 @@ class ProjectModel extends Var2TopModel {
     updatedAtParameter = firebaseTime(updatedAtParameter);
 
     if (updatedAtParameter.isBefore(createdAt)) {
-      throw Exception(
-          AppConstants.project_updating_before_creating_error_key.tr);
+      throw Exception('وقت تحديث المشروع لا يمكن أن يكون قبل وقت الإنشاء');
     }
     updatedAt = updatedAtParameter;
   }
@@ -118,7 +117,7 @@ class ProjectModel extends Var2TopModel {
   @override
   set setId(String idParameter) {
     if (idParameter.isEmpty) {
-      throw Exception(AppConstants.project_id_empty_error_key.tr);
+      throw Exception('لا يمكن أن يكون معرف المشروع فارغًا');
     }
     id = idParameter;
   }
@@ -126,15 +125,15 @@ class ProjectModel extends Var2TopModel {
   @override
   set setName(String nameParameter) {
     if (nameParameter.isEmpty) {
-      throw Exception(AppConstants.project_name_empty_error_key.tr);
+      throw Exception('اسم المشروع لا يمكن أن يكون فارغًا');
     }
 
     if (nameParameter.length <= 3) {
-      throw Exception(AppConstants.project_name_length_error_key.tr);
+      throw Exception('اسم المشروع لا يمكن أن يكون أقل من 3 أحرف');
     }
 
     if (_regex.hasMatch(nameParameter)) {
-      throw Exception(AppConstants.project_name_format_error_key.tr);
+      throw Exception('اسم المشروع لا يمكن أن يحتوي على أحرف خاصة أو أرقام');
     }
 
     name = nameParameter;
@@ -143,14 +142,14 @@ class ProjectModel extends Var2TopModel {
   @override
   set setStartDate(DateTime? startDateParameter) {
     if (startDateParameter == null) {
-      throw Exception(AppConstants.project_start_date_null_error_key.tr);
+      throw Exception('لا يمكن أن يكون تاريخ بدء المشروع فارغًا');
     }
 
     startDateParameter = firebaseTime(startDateParameter);
     DateTime now = firebaseTime(DateTime.now());
 
     if (startDateParameter.isBefore(now)) {
-      throw Exception(AppConstants.project_start_date_past_error_key.tr);
+      throw Exception('تاريخ بدء المشروع يجب ألا يكون في الماضي');
     }
 
     startDate = firebaseTime(startDateParameter);
@@ -159,21 +158,23 @@ class ProjectModel extends Var2TopModel {
   @override
   set setEndDate(DateTime? endDateParameter) {
     if (endDateParameter == null) {
-      throw Exception(AppConstants.project_end_date_null_error_key.tr);
+      throw Exception('لا يمكن أن يكون تاريخ انتهاء المشروع فارغًا');
     }
     endDateParameter = firebaseTime(endDateParameter);
 
     if (endDateParameter.isBefore(getStartDate)) {
-      throw Exception(AppConstants.project_end_time_error_key.tr);
+      throw Exception('وقت انتهاء المشروع لا يمكن أن يكون قبل وقت البدء');
     }
 
     if (getStartDate.isAtSameMomentAs(endDateParameter)) {
-      throw Exception(AppConstants.project_end_time_same_error_key.tr);
+      throw Exception(
+          'وقت انتهاء المشروع لا يمكن أن يكون في نفس الوقت كوقت البدء');
     }
 
     Duration diff = endDateParameter.difference(getStartDate);
     if (diff.inMinutes < 5) {
-      throw Exception(AppConstants.project_time_difference_error_key.tr);
+      throw Exception(
+          'فرق الوقت بين وقت بدء المشروع ووقت الانتهاء لا يمكن أن يكون أقل من 5 دقائق');
     }
     endDate = endDateParameter;
   }

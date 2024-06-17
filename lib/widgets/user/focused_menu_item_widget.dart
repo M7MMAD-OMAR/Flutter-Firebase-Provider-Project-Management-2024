@@ -28,13 +28,13 @@ class FocusedMenu extends StatelessWidget {
           [
             FocusedMenuItem(
               backgroundColor: Colors.grey,
-              title: Text(AppConstants.edit_key.tr),
+              title: Text('تعديل'),
               trailingIcon: const Icon(Icons.edit),
               onPressed: editButton,
             ),
             FocusedMenuItem(
               title: Text(
-                AppConstants.delete_key.tr,
+                'حذف',
                 // ignore: prefer_const_constructors
                 style: TextStyle(color: Colors.white),
               ),

@@ -578,8 +578,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
       field: mainTaskIdK,
       value: projectsubTaskModel.mainTaskId,
       taskModel: projectsubTaskModel,
-      exception:
-          Exception(AppConstants.sub_task_already_exist_in_main_task_key.tr),
+      exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
     );
 //"task already exist in main task"
     // await addTask(
@@ -611,8 +610,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
           reference: projectSubTasksRef,
           data: data,
           id: id,
-          exception:
-              Exception(AppConstants.sub_task_already_exist_in_main_task_key),
+          exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
           field: mainTaskIdK,
           value: subTaskModel.mainTaskId);
       return;
@@ -645,9 +643,8 @@ class ProjectSubTaskController extends ProjectAndTaskController {
       //"Task Time Error"
       if (overlapped) {
         Get.defaultDialog(
-          title: AppConstants.task_time_error_key.tr,
-          middleText:
-              "${AppConstants.there_is_key.tr} ${over} ${AppConstants.task_start_prompt_key.tr}",
+          title: 'خطأ في وقت المهمة',
+          middleText: "هناك ${over} تبدأ في هذا الوقت هل تود إضافتها؟",
           onConfirm: () async {
             DocumentSnapshot snapshot =
                 await getDocById(reference: projectSubTasksRef, id: id);
@@ -657,12 +654,10 @@ class ProjectSubTaskController extends ProjectAndTaskController {
                 reference: projectSubTasksRef,
                 data: data,
                 id: id,
-                exception: Exception(
-                    AppConstants.sub_task_already_exist_in_main_task_key.tr),
+                exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
                 field: mainTaskIdK,
                 value: subTaskModel.mainTaskId);
-            CustomSnackBar.showSuccess(
-                "${AppConstants.task_key.tr} ${data[nameK]} ${AppConstants.updated_successfully_key.tr}");
+            CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
             Get.key.currentState!.pop();
           },
           onCancel: () {
@@ -678,12 +673,10 @@ class ProjectSubTaskController extends ProjectAndTaskController {
             reference: projectSubTasksRef,
             data: data,
             id: id,
-            exception:
-                Exception(AppConstants.sub_task_already_exist_in_main_task_key.tr),
+            exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
             field: mainTaskIdK,
             value: subTaskModel.mainTaskId);
-        CustomSnackBar.showSuccess(
-            "${AppConstants.task_key.tr} ${data[nameK]} ${AppConstants.updated_successfully_key.tr}");
+        CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
         Get.key.currentState!.pop();
       }
     } else {
@@ -694,12 +687,10 @@ class ProjectSubTaskController extends ProjectAndTaskController {
           reference: projectSubTasksRef,
           data: data,
           id: id,
-          exception:
-              Exception(AppConstants.sub_task_already_exist_in_main_task_key.tr),
+          exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
           field: mainTaskIdK,
           value: subTaskModel.mainTaskId);
-      CustomSnackBar.showSuccess(
-          "${AppConstants.task_key.tr} ${data[nameK]} ${AppConstants.updated_successfully_key.tr}");
+      CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
       Get.key.currentState!.pop();
     }
   }
@@ -729,9 +720,9 @@ class ProjectSubTaskController extends ProjectAndTaskController {
     await fcmNotifications.sendNotification(
       fcmTokens: manager.tokenFcm,
       //"task $status"
-      title: "${AppConstants.task_key.tr} $status",
+      title: "مهمة $status",
       body:
-          "${member.name} $status ${AppConstants.the_task_key.tr} ${projectSubTaskModel.name} ${projectSubTaskModel.projectId} ${AppConstants.in_project_key.tr} ${projectModel.name}",
+          "${member.name} $status المهمة ${projectSubTaskModel.name} ${projectSubTaskModel.projectId} في المشروع ${projectModel.name}",
       type: NotificationType.notification,
     );
   }

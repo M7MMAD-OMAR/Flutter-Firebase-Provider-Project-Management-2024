@@ -99,18 +99,19 @@ class TeamMemberController extends TopController {
           field: teamMemberModel.userId,
           value2: teamIdK,
           field2: teamMemberModel.teamId)) {
-        throw Exception(AppConstants.user_already_added_error_key.tr);
+        throw Exception('عذرًا، ولكن المستخدم تمت إضافته بالفعل إلى الفريق');
       }
       addDoc(reference: teamMembersRef, model: teamMemberModel);
     } else {
-      throw Exception(AppConstants.team_user_not_found_error_key.tr);
+      throw Exception(
+          'عذرًا، ولكن لم يتم العثور على الفريق أو المستخدم الخاص بهذا العضو');
     }
   }
 
   Future<void> updateMemeber(
       {required id, required Map<String, dynamic> data}) async {
     if (data.containsKey(teamIdK) || data.containsKey(userIdK)) {
-      throw Exception(AppConstants.team_user_id_update_error_key.tr);
+      throw Exception('لايمكن تحديث معرفة مستخدم الفريق');
     }
 
     await updateNonRelationalFields(

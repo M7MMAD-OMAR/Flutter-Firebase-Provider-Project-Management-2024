@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
@@ -48,7 +47,7 @@ class TeamModel extends VarTopModel {
 
   set setImageUrl(String imageUrl) {
     if (imageUrl.isEmpty) {
-      throw Exception(AppConstants.team_image_empty_error_key.tr);
+      throw Exception('صورة الفريق لا يمكن أن تكون فارغة');
     }
     this.imageUrl = imageUrl;
   }
@@ -56,7 +55,7 @@ class TeamModel extends VarTopModel {
   @override
   set setId(String id) {
     if (id.isEmpty) {
-      throw Exception(AppConstants.team_id_empty_error_key.tr);
+      throw Exception('لا يمكن أن يكون معرّف الفريق فارغًا');
     }
     this.id = id;
   }
@@ -64,10 +63,10 @@ class TeamModel extends VarTopModel {
   @override
   set setName(String name) {
     if (name.isEmpty) {
-      throw Exception(AppConstants.team_name_empty_error_key.tr);
+      throw Exception('اسم الفريق لا يمكن أن يكون فارغًا');
     }
     if (name.length < 3) {
-      throw Exception(AppConstants.team_name_min_length_error_key.tr);
+      throw Exception('اسم الفريق لا يمكن أن يكون أقل من 3 أحرف');
     }
 
     this.name = name;
@@ -79,11 +78,11 @@ class TeamModel extends VarTopModel {
     DateTime now = firebaseTime(DateTime.now());
 
     if (createdAtParameter.isAfter(now)) {
-      throw Exception(AppConstants.team_creating_time_future_error_key.tr);
+      throw Exception('وقت إنشاء الفريق لا يمكن أن يكون في المستقبل');
     }
 
     if (firebaseTime(createdAtParameter).isBefore(now)) {
-      throw Exception(AppConstants.team_creating_time_past_error_key.tr);
+      throw Exception('وقت إنشاء الفريق لا يمكن أن يكون في الماضي');
     }
     createdAt = firebaseTime(createdAtParameter);
   }
@@ -93,8 +92,7 @@ class TeamModel extends VarTopModel {
     updatedAtParameter = firebaseTime(updatedAtParameter);
 
     if (updatedAtParameter.isBefore(createdAt)) {
-      throw Exception(
-          AppConstants.team_updating_time_before_creation_error_key.tr);
+      throw Exception('وقت تحديث الفريق لا يمكن أن يكون قبل وقت الإنشاء');
     }
     updatedAt = updatedAtParameter;
   }

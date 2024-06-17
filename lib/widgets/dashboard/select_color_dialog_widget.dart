@@ -46,8 +46,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: HexColor.fromHex("#181a1f"),
-      title:
-          Text(AppConstants.choose_color_key.tr, style: AppTextStyles.header2),
+      title: Text('اختر اللون', style: AppTextStyles.header2),
       content: Wrap(
         alignment: WrapAlignment.start,
         children: List.generate(
@@ -70,7 +69,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
                 Get.back();
               },
               child: Text(
-                AppConstants.close_key.tr,
+                'إغلاق',
                 style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
                   fontSize: 16,
@@ -80,7 +79,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
             ),
             PrimaryProgressButton(
               width: Utils.screenWidth * 0.3,
-              label: AppConstants.oK_key.tr,
+              label: 'موافق',
               callback: () {
                 // Do something with the selected color
                 String selectedColor = getSelectedColor();

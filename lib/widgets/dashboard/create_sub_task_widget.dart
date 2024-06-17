@@ -177,7 +177,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                         ),
                         child: Center(
                           child: Text(
-                            AppConstants.please_select_a_member_key.tr,
+                            'الرجاء تحديد عضو',
                             style: GoogleFonts.lato(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
@@ -214,7 +214,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     ),
                     child: Center(
                       child: Text(
-                        AppConstants.please_select_a_member_key.tr,
+                        'الرجاء تحديد عضو',
                         style: GoogleFonts.lato(
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
@@ -227,8 +227,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppConstants.importance_key.tr,
-                      style: AppTextStyles.header2),
+                  Text('الأهمية', style: AppTextStyles.header2),
                   AppSpaces.horizontalSpace10,
                   DropdownButton<String>(
                     icon: const Icon(Icons.label_important_outline_rounded),
@@ -279,12 +278,11 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     child: LabelledFormInput(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return AppConstants.enter_name_key.tr;
+                          return 'الرجاء إدخال الاسم';
                         }
                         if (value.isNotEmpty) {
                           if (isTaked) {
-                            return AppConstants
-                                .please_use_another_taskName_key.tr;
+                            return 'يرجى استخدام اسم مهمة آخر';
                           }
                         }
                         return null;
@@ -298,10 +296,10 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                       onChanged: (String name) async {
                         await onChanged(name);
                       },
-                      label: AppConstants.name_key.tr,
+                      label: "الاسم",
                       readOnly: false,
                       autovalidateMode: AutovalidateMode.always,
-                      placeholder: "${AppConstants.task_name_key.tr} ....",
+                      placeholder: "اسم المهمة ....",
                       keyboardType: "text",
                       controller: _taskNameController,
                       obscureText: false,
@@ -313,8 +311,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
               LabelledFormInput(
                 validator: (p0) {
                   if (p0 == " ") {
-                    return AppConstants
-                        .description_cannot_be_empty_spaces_key.tr;
+                    return 'لا يمكن أن يكون الوصف مساحات فارغة';
                   }
                   return null;
                 },
@@ -327,10 +324,10 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     _taskDescController.text = "";
                   });
                 },
-                label: AppConstants.description_key.tr,
+                label: 'وصف',
                 readOnly: false,
                 autovalidateMode: AutovalidateMode.always,
-                placeholder: "${AppConstants.task_description_key.tr} ....",
+                placeholder: "وصف المهمة ....",
                 keyboardType: "text",
                 controller: _taskDescController,
                 obscureText: false,
@@ -343,7 +340,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   cardBackgroundColor: HexColor.fromHex("7DBA67"),
                   textAccentColor: HexColor.fromHex("A9F49C"),
                   value: formattedStartDate,
-                  label: AppConstants.start_date_key.tr,
+                  label: 'تاريخ البدء',
                 ),
                 NewSheetGoToCalendarWidget(
                   onSelectedDayChanged: handleDueDayChanged,
@@ -351,7 +348,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   cardBackgroundColor: HexColor.fromHex("BA67A3"),
                   textAccentColor: HexColor.fromHex("BA67A3"),
                   value: formattedDueDate,
-                  label: AppConstants.end_date_key.tr,
+                  label: 'تاريخ الانتهاء',
                 )
               ]),
               AppSpaces.verticalSpace20,
@@ -364,8 +361,8 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   callback: () {
                     if (formKey.currentState!.validate()) {
                       if (assignedToUserId == null) {
-                        CustomSnackBar.showError(AppConstants
-                            .please_choose_member_to_assign_task_key.tr);
+                        CustomSnackBar.showError(
+                            'الرجاء اختيار عضو لتكليف المهمة له');
                         return;
                       }
                       widget.addTask(
@@ -393,7 +390,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
+      return "اليوم ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }

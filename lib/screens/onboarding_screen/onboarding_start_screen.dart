@@ -20,12 +20,10 @@ class OnboardingStart extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          //لون خلفية الشاشة
           DarkRadialBackground(
             color: HexColor.fromHex("#181a1f"),
             position: "Lefttop",
           ),
-          //الشكر المربع
           Positioned(
             top: Utils.screenHeight,
             left: Utils.screenWidth * AppConstants.dir['ar']["square_shape_L"],
@@ -34,24 +32,22 @@ class OnboardingStart extends StatelessWidget {
               child: CustomPaint(painter: BackgroundHexagon()),
             ),
           ),
-          //صورة ابو الطاقية الكبيرة
           Positioned(
             top: Utils.screenHeight * 0.7,
             left: AppConstants.dir['ar']["big_picture_L"],
             child: BackgroundImage(
               scale: 1.0,
-              image: 'ar' == 'ar' ? "assets/karem2R.png"
-                  : "assets/karem2.png",
+              image: 'ar' == 'ar' ? "assets/karem2R.png" : "assets/karem2.png",
               gradient: [
                 HexColor.fromHex("92ECEC"),
                 HexColor.fromHex("92ECEC"),
               ],
             ),
           ),
-          //صورة البنت يلي بالنص يلي لونها  برتقالي
           Positioned(
             top: Utils.screenHeight * 0.50,
-            left: Utils.screenWidth * AppConstants.dir['ar']["medium_picture_L"],
+            left:
+                Utils.screenWidth * AppConstants.dir['ar']["medium_picture_L"],
             child: BackgroundImage(
               scale: 0.5,
               image: 'ar' == 'ar'
@@ -63,7 +59,6 @@ class OnboardingStart extends StatelessWidget {
               ],
             ),
           ),
-          //صورة البنت يلي لونها  موف يلي هيي اول صورة  بالسكرين
           Positioned(
             top: Utils.screenHeight * 0.30,
             left: AppConstants.dir['ar']["small_picture_L"],
@@ -78,24 +73,16 @@ class OnboardingStart extends StatelessWidget {
               ],
             ),
           ),
-
-          //end of images
-
-          //Bubble
-          //الفقاعة الموف الكبيرة
           Positioned(
             top: 80,
             left: AppConstants.dir['ar']["big_bubble_L"],
             child: Bubble(1.0, HexColor.fromHex("A06AF9")),
           ),
-          //الفقاعة الوردية الصغيررة
           Positioned(
             top: 130,
             left: AppConstants.dir['ar']["small_bubble_L"],
             child: Bubble(0.6, HexColor.fromHex("FDA5FF")),
           ),
-          //end bubble
-          //الستكر الاول من فوق
           Positioned(
             top: Utils.screenHeight * 0.12,
             left: Utils.screenWidth * AppConstants.dir['ar']["one_sticker_L"],
@@ -107,7 +94,6 @@ class OnboardingStart extends StatelessWidget {
               ],
             ),
           ),
-          //الستكر يلي بنص  الثاني من  فوق
           Positioned(
             top: Utils.screenHeight * 0.50,
             left: Utils.screenWidth * AppConstants.dir['ar']["two_sticker_L"],
@@ -118,11 +104,11 @@ class OnboardingStart extends StatelessWidget {
               ],
             ),
           ),
-          //الستكر الاخيرة  يعني اول  وحدة من  تحت
           Positioned(
             top: Utils.screenHeight * 0.7,
             left: Utils.screenWidth * AppConstants.dir['ar']["three_sticker_L"],
-            right: Utils.screenWidth * AppConstants.dir['ar']["three_sticker_R"],
+            right:
+                Utils.screenWidth * AppConstants.dir['ar']["three_sticker_R"],
             child: LoadingSticker(
               gradients: [
                 HexColor.fromHex("#a7b2fd"),
@@ -132,8 +118,10 @@ class OnboardingStart extends StatelessWidget {
           ),
           Positioned(
             top: Utils.screenHeight * 1.3,
-            right: Utils.screenWidth * AppConstants.dir['ar']["triangle_shape_R"],
-            left: Utils.screenWidth * AppConstants.dir['ar']["triangle_shape_L"],
+            right:
+                Utils.screenWidth * AppConstants.dir['ar']["triangle_shape_R"],
+            left:
+                Utils.screenWidth * AppConstants.dir['ar']["triangle_shape_L"],
             child: Transform.rotate(
               angle: -math.pi / 4,
               child: InkWell(
@@ -152,29 +140,20 @@ class OnboardingStart extends StatelessWidget {
                     angle: math.pi / 4,
                     child: Container(
                       alignment:
-                          'ar' == 'ar' ? Alignment.topRight
-                          : Alignment.topLeft,
+                          'ar' == 'ar' ? Alignment.topRight : Alignment.topLeft,
                       padding: const EdgeInsets.only(
                         top: 85,
                       ),
-                      child: Icon(
-                        'ar' == 'ar' ? Icons.arrow_back
-                            : Icons.arrow_forward,
+                      child: const Icon(
+                        'ar' == 'ar' ? Icons.arrow_back : Icons.arrow_forward,
                         size: 40,
                       ),
-                      // child: Icon(
-                      //   Localizations.localeOf(context).languageCode == 'ar'
-                      //       ? Icons.arrow_back
-                      //       : Icons.arrow_forward,
-                      //   size: 40,
-                      // ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-
           Positioned(
             bottom: AppConstants.dir['ar']["get_started_B"],
             left: AppConstants.dir['ar']["get_started_L"],
@@ -186,7 +165,7 @@ class OnboardingStart extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
-                      text: AppConstants.task_management_key.tr,
+                      text: 'إدارة المهام',
                       style: GoogleFonts.lato(
                         fontSize: 18,
                         color: HexColor.fromHex("FDA5FF"),
@@ -199,7 +178,7 @@ class OnboardingStart extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    AppConstants.lets_create_a_space_for_your_workflows_key.tr,
+                    'دعونا نخلق\nمساحة\nلسير العمل\nالخاص بك',
                     style: GoogleFonts.lato(
                       color: Colors.white,
                       fontSize: 35,
@@ -229,7 +208,7 @@ class OnboardingStart extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          AppConstants.get_started_key.tr,
+                          'ابدأ الإن',
                           style: GoogleFonts.lato(
                             fontSize: 20,
                             color: Colors.white,

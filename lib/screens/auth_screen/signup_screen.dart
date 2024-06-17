@@ -23,7 +23,9 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 
 class SignUp extends StatefulWidget {
   final String email;
+
   const SignUp({super.key, required this.email});
+
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -41,8 +43,6 @@ class _SignUpState extends State<SignUp> {
   String confirm = "";
 
   bool obscureText = false;
-
-  //يستخدم لجعل المستخدم قادر على إدخال احرف فقط اي بدون ارقام او محارف خاصة
 
   RegExp regExletters = RegExp(r"(?=.*[a-z])\w+");
   RegExp regExnumbers = RegExp(r"(?=.*[0-9])\w+");
@@ -70,8 +70,7 @@ class _SignUpState extends State<SignUp> {
                       const NavigationBack(),
                       const SizedBox(height: 40),
                       Text(
-                        AppConstants.sign_up_key.tr,
-                        //  'Sign Up',
+                        'إنشاء حساب',
                         style: GoogleFonts.lato(
                             color: Colors.white,
                             fontSize: 40,
@@ -80,8 +79,7 @@ class _SignUpState extends State<SignUp> {
                       AppSpaces.verticalSpace20,
                       RichText(
                         text: TextSpan(
-                          text: AppConstants.using_key.tr,
-                          //'Using  ',
+                          text: 'يستخدم ',
                           style: GoogleFonts.lato(
                             color: HexColor.fromHex("676979"),
                           ),
@@ -93,8 +91,7 @@ class _SignUpState extends State<SignUp> {
                                   fontWeight: FontWeight.bold),
                             ),
                             TextSpan(
-                              text: AppConstants.to_login_key.tr,
-                              // "  to login.",
+                              text: ' لإنشاء حساب ',
                               style: GoogleFonts.lato(
                                 color: HexColor.fromHex("676979"),
                               ),
@@ -128,8 +125,7 @@ class _SignUpState extends State<SignUp> {
                                     Visibility(
                                       visible: selectedImagePath == null,
                                       child: Container(
-                                          width: Utils.screenWidth *
-                                              0.310, // Adjust the percentage as needed
+                                          width: Utils.screenWidth * 0.310,
                                           height: Utils.screenWidth * 0.310,
                                           decoration: BoxDecoration(
                                               color: AppColors
@@ -147,22 +143,15 @@ class _SignUpState extends State<SignUp> {
                           ],
                         );
                       }),
-                      SizedBox(
-                          height: Utils.screenHeight *
-                              0.06), // Adjust the percentage as needed
+                      SizedBox(height: Utils.screenHeight * 0.06),
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return AppConstants
-                                  .the_name_can_not_be_empty_key.tr;
-                              //"The name can not be Empty";
+                              return 'لا يمكن أن يكون الاسم فارغًا';
                             }
                             if (regExnumbers.hasMatch(value) ||
                                 regEx2.hasMatch(value)) {
-                              return AppConstants
-                                  .the_name_can_not_contain_numbers_or_symbols_key
-                                  .tr;
-                              //"The name can not contain Numbers Or Symbols ";
+                              return 'لا يمكن أن يحتوي الاسم على أرقام أو رموز';
                             }
                             return null;
                           },
@@ -179,22 +168,17 @@ class _SignUpState extends State<SignUp> {
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           readOnly: false,
-                          placeholder: AppConstants.name_key.tr,
+                          placeholder: "الاسم",
                           keyboardType: "text",
                           controller: _nameController,
                           obscureText: false,
-                          label: AppConstants.your_name_key.tr),
-                      SizedBox(
-                          height: Utils.screenHeight *
-                              0.03), // Adjust the percentage as needed
-
+                          label: 'اسمك'),
+                      SizedBox(height: Utils.screenHeight * 0.03),
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isNotEmpty) {
                               if (isTakean) {
-                                return AppConstants
-                                    .please_use_another_userName_key.tr;
-                                //"Please use another userName";
+                                return 'يرجى استخدام اسم مستخدم آخر';
                               }
                             }
                             return null;
@@ -221,44 +205,28 @@ class _SignUpState extends State<SignUp> {
                                 isTakean = false;
                               });
                             }
-                            // setState(() {
-                            //   isTakean;
-                            // });
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           readOnly: false,
-                          placeholder: AppConstants.user_name_key.tr,
+                          placeholder: 'اسم المستخدم',
                           keyboardType: "text",
                           controller: _userNameController,
                           obscureText: false,
-                          label: AppConstants.your_username_key.tr),
-                      SizedBox(
-                          height: Utils.screenHeight *
-                              0.03), // Adjust the percentage as needed
-
+                          label: 'اسم المستخدم الخاص بك'),
+                      SizedBox(height: Utils.screenHeight * 0.03),
                       LabelledFormInput(
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return AppConstants
-                                  .the_password_should_be_more_then_7_character_key
-                                  .tr;
-                              //"The password should be more then 7 character";
+                              return 'يجب أن تحتوي كلمة المرور على أكثر من 7 أحرف';
                             }
                             if (regExletters.hasMatch(value) == false) {
-                              return AppConstants
-                                  .please_enter_at_least_one_small_character_key
-                                  .tr;
-                              //"please enter at least one small character";
+                              return 'يرجى إدخال حرف صغير واحد على الأقل';
                             }
                             if (regExnumbers.hasMatch(value) == false) {
-                              return AppConstants
-                                  .please_enter_at_least_one_number_key.tr;
-                              //"please enter at least one Number";
+                              return 'الرجاء إدخال رقم واحد على الأقل';
                             }
                             if (regExbigletters.hasMatch(value) == false) {
-                              return AppConstants
-                                  .please_enter_at_least_one_big_character_key
-                                  .tr;
+                              return 'الرجاء إدخال حرف كبير واحد على الأقل';
                             }
                             return null;
                           },
@@ -274,21 +242,16 @@ class _SignUpState extends State<SignUp> {
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           readOnly: false,
-                          placeholder: AppConstants.password_key.tr,
+                          placeholder: 'كلمة المرور',
                           keyboardType: "text",
                           controller: _passController,
                           obscureText: obscureText,
-                          label: AppConstants.your_password_key.tr),
-                      SizedBox(
-                          height: Utils.screenHeight *
-                              0.03), // Adjust the percentage as needed
-
+                          label: 'كلمة المرور الخاصة بك'),
+                      SizedBox(height: Utils.screenHeight * 0.03),
                       LabelledFormInput(
                           validator: (value) {
                             if (password.isNotEmpty && confirm != password) {
-                              return AppConstants
-                                  .the_password_did_not_match_key.tr;
-                              // "the password did not match";
+                              return 'كلمة المرور غير متطابقة';
                             }
                             return null;
                           },
@@ -296,10 +259,6 @@ class _SignUpState extends State<SignUp> {
                             setState(() {
                               obscureText = !obscureText;
                             });
-                            // setState(() {
-                            //   confirm = "";
-                            //   _confirmPassController.text = "";
-                            // });
                           },
                           onChanged: (value) {
                             setState(() {
@@ -308,20 +267,15 @@ class _SignUpState extends State<SignUp> {
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           readOnly: false,
-                          placeholder: AppConstants.confirm_key.tr,
+                          placeholder: 'تأكيد',
                           keyboardType: "text",
                           controller: _confirmPassController,
                           obscureText: obscureText,
-                          label: AppConstants.confirm_assword_key.tr),
-                      SizedBox(
-                          height: Utils.screenHeight *
-                              0.04), // Adjust the percentage as needed
-
+                          label: 'تأكيد كلمة المرور'),
+                      SizedBox(height: Utils.screenHeight * 0.04),
                       SizedBox(
                         width: double.infinity,
-                        height: Utils.screenHeight *
-                            0.15, // Adjust the percentage as needed
-
+                        height: Utils.screenHeight * 0.15,
                         child: ElevatedButton(
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
@@ -347,7 +301,6 @@ class _SignUpState extends State<SignUp> {
                                   resOfUpload.fold((left) {
                                     CustomSnackBar.showError(
                                         "${left.toString()} ");
-                                    // return;
                                   }, (right) {
                                     right.then((value) async {
                                       imagePathNetWork = value;
@@ -366,7 +319,6 @@ class _SignUpState extends State<SignUp> {
                                               userModel: userModel,
                                               email: widget.email,
                                               password: password);
-                                      //    Navigator.of(context).pop();
                                     });
                                   });
                                 } else {
@@ -393,10 +345,7 @@ class _SignUpState extends State<SignUp> {
                                       (right) => {
                                             Navigator.of(context).pop(),
                                             CustomSnackBar.showSuccess(
-                                              AppConstants
-                                                  .welcome_in_our_team_Plans_to_do_team_happy_in_you_key
-                                                  .tr,
-                                              // "Welcome in our team \n Project Management team happy in you "
+                                              'مرحبًا بك في فريقنا، يسعدنا وجودك',
                                             ),
                                             Get.to(() =>
                                                 const VerifyEmailAddressScreen())
@@ -411,8 +360,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           style: ButtonStyles.blueRounded,
                           child: Text(
-                            AppConstants.sign_up_key.tr,
-                            //'Sign Up',
+                            'إنشاء حساب',
                             style: GoogleFonts.lato(
                                 fontSize: Utils.screenWidth * 0.06,
                                 color: Colors.white),
@@ -429,20 +377,20 @@ class _SignUpState extends State<SignUp> {
   }
 
   String? selectedImagePath;
+
   void _showImagePickerDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(
-            AppConstants.choose_an_image_key.tr,
-            //'Choose an Image'
+            'اختر صورة',
           ),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: Text(AppConstants.camera_key.tr),
+                  child: Text('الكاميرا'),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -450,7 +398,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.gallery_key.tr),
+                  child: Text('المعرض'),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -458,7 +406,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.cancel_key.tr),
+                  child: Text("إلغاء"),
                   onTap: () {
                     Navigator.of(context).pop();
                   },
@@ -469,10 +417,7 @@ class _SignUpState extends State<SignUp> {
         );
       },
     ).then((value) {
-      if (value == null) {
-        // Handle the case where the user did not choose a photo
-        // Display a message or perform any required actions
-      }
+      if (value == null) {}
     });
   }
 

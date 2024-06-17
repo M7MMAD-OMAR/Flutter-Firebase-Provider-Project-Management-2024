@@ -35,8 +35,7 @@ class TeamStory extends StatelessWidget {
       children: [
         Text(teamTitle, style: AppTextStyles.header2.copyWith(fontSize: 35)),
         AppSpaces.verticalSpace10,
-        ContainerLabel(
-            label: "$numberOfMembers ${AppConstants.members_key.tr}"),
+        ContainerLabel(label: "$numberOfMembersالأعضاء "),
         AppSpaces.verticalSpace10,
         InkWell(
           onTap: () {

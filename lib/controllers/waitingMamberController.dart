@@ -89,7 +89,7 @@ class WaitingMamberController extends TopController {
         secondValue: waitingMemberModel.teamId)) {
       if (waitingMemberModel.userId ==
           AuthProvider.instance.firebaseAuth.currentUser!.uid) {
-        throw Exception(AppConstants.manager_cannot_be_member_error_key.tr);
+        throw Exception('لا يمكن أن يكون المدير عضوا');
       }
       if (await existByTow(
           reference: watingMamberRef,
@@ -97,11 +97,12 @@ class WaitingMamberController extends TopController {
           field: userIdK,
           value2: waitingMemberModel.teamId,
           field2: teamIdK)) {
-        throw Exception(AppConstants.member_already_invited_key.tr);
+        throw Exception('العضو تمت دعوته مسبقًا إلى الفريق');
       }
       addDoc(reference: watingMamberRef, model: waitingMemberModel);
     } else {
-      throw Exception(AppConstants.team_user_not_found_error_key.tr);
+      throw Exception(
+          'عذرًا، ولكن لم يتم العثور على الفريق أو المستخدم الخاص بهذا العضو');
     }
   }
 
@@ -114,7 +115,7 @@ class WaitingMamberController extends TopController {
     required String waitingMemberId,
     required String rejectingMessage,
   }) async {
-    String reasonforRejection = "${AppConstants.rejection_reason_key.tr} $rejectingMessage";
+    String reasonforRejection = "سبب الرفض $rejectingMessage";
     await teamInviteHandler(
       waitingMemberId: waitingMemberId,
       isAccepted: false,
@@ -127,9 +128,7 @@ class WaitingMamberController extends TopController {
     required bool isAccepted,
     required String memberMessage,
   }) async {
-   String status = isAccepted
-        ? AppConstants.accepted_key.tr
-        : AppConstants.rejected_key.tr;
+   String status = isAccepted ? 'قبولها' : 'رفضها';
     //user Controller to send the notification to the manager about whether the user acepted the invite or not
     UserController userController = Get.put(UserController());
     //to get the team model so we get the manager model and then get the manager user profile to sned the notification
@@ -168,9 +167,9 @@ class WaitingMamberController extends TopController {
     FcmNotifications fcmNotifications = Get.put(FcmNotifications());
     await fcmNotifications.sendNotification(
         fcmTokens: manager.tokenFcm,
-        title: "${AppConstants.invite_got_key.tr} $status",
+        title: " الدعوة تم $status",
         body:
-            "${member.name} $status ${AppConstants.invite_to_team_key.tr} ${teamModel.name} $memberMessage",
+            "${member.name} $status دعوتك للانضمام إلى الفريق ${teamModel.name} $memberMessage",
         type: NotificationType.notification);
   }
 

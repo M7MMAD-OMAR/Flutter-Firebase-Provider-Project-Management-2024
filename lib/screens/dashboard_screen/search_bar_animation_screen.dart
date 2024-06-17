@@ -21,7 +21,7 @@ class MySearchBarWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 7),
       child: SearchBarAnimation(
-        hintText: "${AppConstants.search_in_key.tr} $searchWord",
+        hintText: "البحث في $searchWord",
         searchBoxColour: HexColor.fromHex("616575"),
         searchBoxWidth: Get.width * 0.5,
         // isSearchBoxOnRightSide: isArabic,

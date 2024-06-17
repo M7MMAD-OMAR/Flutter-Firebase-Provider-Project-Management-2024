@@ -68,9 +68,9 @@ class LabelledFormInput extends StatelessWidget {
             ),
             suffixIcon: controller.text.isEmpty
                 ? null
-                : placeholder == AppConstants.password_key.tr ||
+                : placeholder == 'كلمة المرور' ||
                         placeholder == 'Choose a password' ||
-                        placeholder == AppConstants.confirm_key.tr
+                        placeholder == 'تأكيد'
                     ? InkWell(
                         onTap: onClear,
                         child: obscureText

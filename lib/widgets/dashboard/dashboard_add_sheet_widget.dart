@@ -31,19 +31,19 @@ class DashboardAddBottomSheet extends StatelessWidget {
         // ),
 
         LabelledOption(
-            label: AppConstants.create_project_key.tr,
+            label: 'إنشاء مشروع',
             icon: Icons.device_hub,
             callback: () async {
               await _createProject();
             }),
         LabelledOption(
-            label: AppConstants.create_team_key.tr,
+            label: 'إنشاء فريق',
             icon: Icons.people,
             callback: () {
               Get.to(() => const DashboardMeetingDetails());
             }),
         LabelledOption(
-            label: AppConstants.create_category_key.tr,
+            label: 'إنشاء فئة',
             icon: Icons.category,
             callback: () {
               showAppBottomSheet(

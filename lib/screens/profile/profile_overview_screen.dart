@@ -89,7 +89,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                           Text(
                             AuthProvider.instance.firebaseAuth.currentUser!
                                     .isAnonymous
-                                ? AppConstants.sign_in_anonmouslly_key.tr
+                                ? 'تسجيل الدخول بشكل مجهول'
                                 : snapshot.data!.data()!.email!,
                             style: GoogleFonts.lato(
                               color: HexColor.fromHex("B0FFE1"),
@@ -100,7 +100,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                             padding: const EdgeInsets.all(15.0),
                             child: OutlinedButtonWithText(
                               width: 150,
-                              content: AppConstants.view_profile_key.tr,
+                              content: 'الملف الشخصي',
                               onPressed: () {
                                 Get.to(() => MyProfileScreen(
                                     user: snapshot.data!.data()!));
@@ -122,7 +122,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                         size: Utils.screenWidth * 0.1,
                       ),
                       title: Text(
-                        AppConstants.receive_notification_key.tr,
+                        'استقبال الإشعارات',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: Utils.screenWidth * 0.06),
@@ -148,7 +148,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                   },
                 ),
                 AppSpaces.verticalSpace20,
-                ContainerLabel(label: AppConstants.select_language_key.tr),
+                ContainerLabel(label: 'اختار اللغة'),
                 AppSpaces.verticalSpace10,
                 GetBuilder<LocalizationController>(
                     builder: (localizationController) {
@@ -166,7 +166,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                           },
                           iconColor: Colors.white,
                           iconpath: "assets/icon/arabic.png",
-                          label: AppConstants.arabic_key.tr,
+                          label: 'العربية',
                           value: "3",
                           badgeColor: "FFDE72",
                         )),
@@ -195,7 +195,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                     visible: AuthProvider
                         .instance.firebaseAuth.currentUser!.isAnonymous,
                     child: ContainerLabel(
-                      label: AppConstants.make_an_account_by_key.tr,
+                      label: 'ترقية الحساب',
                     )),
                 AppSpaces.verticalSpace10,
                 Visibility(
@@ -220,7 +220,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                           },
                           iconColor: null,
                           iconpath: "lib/images/google2.png",
-                          label: AppConstants.google_key.tr,
+                          label: 'جوجل',
                           value: "3",
                           badgeColor: "FFDE72",
                         )),
@@ -233,7 +233,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                           },
                           iconColor: null,
                           iconpath: "assets/icon/envelope.png",
-                          label: AppConstants.email_key.tr,
+                          label: ' البريد ',
                           value: "3",
                           badgeColor: "FFDE72",
                         ))
@@ -254,7 +254,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                         color: HexColor.fromHex("FF968E"),
                         borderRadius: BorderRadius.circular(12)),
                     child: Center(
-                      child: Text(AppConstants.log_out_key.tr,
+                      child: Text('تسجيل خروج',
                           style: GoogleFonts.lato(
                               color: Colors.white,
                               fontSize: Utils.screenWidth * 0.07,
@@ -295,7 +295,7 @@ void showPasswordAndEmailDialog(BuildContext context) {
   final RxBool obscureText = false.obs;
   Get.defaultDialog(
       backgroundColor: AppColors.primaryBackgroundColor,
-      title: AppConstants.enter_email_password_key.tr,
+      title: 'ادخل كلمة السر & البريد الإلكتروني',
       titleStyle: const TextStyle(color: Colors.white),
       content: Form(
         key: formKey,
@@ -305,7 +305,7 @@ void showPasswordAndEmailDialog(BuildContext context) {
                 autovalidateMode: AutovalidateMode.disabled,
                 validator: (value) {
                   if (!EmailValidator.validate(value!)) {
-                    return AppConstants.enter_valid_email_key.tr;
+                    return 'يرجى إدخال بريد إلكتروني صالح';
                   } else {
                     return null;
                   }
@@ -318,28 +318,25 @@ void showPasswordAndEmailDialog(BuildContext context) {
                   email = value;
                 },
                 readOnly: false,
-                placeholder: AppConstants.email_key.tr,
+                placeholder: ' البريد ',
                 keyboardType: "text",
                 controller: emailController.value,
                 obscureText: obscureText.value,
-                label: AppConstants.your_email_key.tr),
+                label: 'بريدك الإلكتروني'),
             AppSpaces.verticalSpace20,
             LabelledFormInput(
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return AppConstants
-                        .the_password_should_be_more_then_7_character_key.tr;
+                    return 'يجب أن تحتوي كلمة المرور على أكثر من 7 أحرف';
                   }
                   if (regExletters.hasMatch(value) == false) {
-                    return AppConstants
-                        .please_enter_at_least_one_small_character_key.tr;
+                    return 'يرجى إدخال حرف صغير واحد على الأقل';
                   }
                   if (regExnumbers.hasMatch(value) == false) {
-                    return AppConstants.please_enter_at_least_one_number_key.tr;
+                    return 'الرجاء إدخال رقم واحد على الأقل';
                   }
                   if (regExbigletters.hasMatch(value) == false) {
-                    return AppConstants
-                        .please_enter_at_least_one_big_character_key.tr;
+                    return 'الرجاء إدخال حرف كبير واحد على الأقل';
                   }
                   return null;
                 },
@@ -351,11 +348,11 @@ void showPasswordAndEmailDialog(BuildContext context) {
                 },
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 readOnly: false,
-                placeholder: AppConstants.password_key.tr,
+                placeholder: 'كلمة المرور',
                 keyboardType: "text",
                 controller: passController.value,
                 obscureText: obscureText.value,
-                label: AppConstants.your_password_key.tr),
+                label: 'كلمة المرور الخاصة بك'),
             const SizedBox(height: 15),
           ],
         ),
@@ -381,7 +378,7 @@ void showPasswordAndEmailDialog(BuildContext context) {
                 CustomSnackBar.showError(e.toString());
               }
             },
-            buttonText: AppConstants.upgrade_account_key.tr,
+            buttonText: 'ترقية الحساب',
             buttonHeight:
                 Utils.screenHeight * 0.1, // Adjust the percentage as needed
             buttonWidth: Utils.screenWidth * 0.33),

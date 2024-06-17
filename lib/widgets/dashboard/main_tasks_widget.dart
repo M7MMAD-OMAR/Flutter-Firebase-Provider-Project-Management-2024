@@ -57,17 +57,17 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
   String _getSortOptionText(TaskSortOption option) {
     switch (option) {
       case TaskSortOption.name:
-        return AppConstants.name_key.tr;
+        return "الاسم";
       case TaskSortOption.updatedDate:
-        return AppConstants.updated_Date_key.tr;
+        return "تاريح التحديث";
       case TaskSortOption.createDate:
-        return AppConstants.created_date_key.tr;
+        return "تاريخ الإنشاء";
       case TaskSortOption.startDate:
-        return AppConstants.start_date_key.tr;
+        return 'تاريخ البدء';
       case TaskSortOption.endDate:
-        return AppConstants.end_date_key.tr;
+        return 'تاريخ الانتهاء';
       case TaskSortOption.importance:
-        return AppConstants.importance_key.tr;
+        return 'الأهمية';
       // Add cases for more sorting options if needed
       default:
         return '';
@@ -143,9 +143,9 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
         children: [
           SafeArea(
             child: TaskezAppHeader(
-              title: AppConstants.main_tasks_key.tr,
+              title: 'المهام الرئيسية',
               widget: MySearchBarWidget(
-                searchWord: AppConstants.main_tasks_key.tr,
+                searchWord: 'المهام الرئيسية',
                 editingController: editingController,
                 onChanged: (String value) {
                   setState(() {
@@ -364,7 +364,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
                             horizontal: Utils.screenWidth * 0.10, vertical: 10),
                         child: Center(
                           child: Text(
-                            AppConstants.no_main_tasks_found_key.tr,
+                            'لا توجد مهام رئيسية',
                             style: GoogleFonts.fjallaOne(
                               color: Colors.white,
                               fontSize: Utils.screenWidth * 0.1,
@@ -402,7 +402,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
           required taskName}) async {
         if (startDate.isAfter(dueDate) || startDate.isAtSameMomentAs(dueDate)) {
           CustomSnackBar.showError(
-              AppConstants.start_date_cannot_be_after_end_date_key.tr);
+              'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء');
           return;
         }
 

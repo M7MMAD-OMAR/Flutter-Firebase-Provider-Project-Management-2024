@@ -64,9 +64,9 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                     left: Utils.screenWidth * 0.04),
                 child: SafeArea(
                   child: TaskezAppHeader(
-                    title: AppConstants.search_members_key.tr,
+                    title: 'البحث عن عضو',
                     widget: MySearchBarWidget(
-                      searchWord: AppConstants.members_key.tr,
+                      searchWord: "الأعضاء",
                       editingController: searchController,
                       onChanged: (String value) {
                         setState(() {
@@ -133,9 +133,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                               ),
                                               child: Center(
                                                 child: Text(
-                                                  AppConstants
-                                                      .no_members_found_for_team_on_project_key
-                                                      .tr,
+                                                  'لم يتم العثور على أعضاء للفريق الذي يعمل على هذا المشروع',
                                                   style: GoogleFonts.fjallaOne(
                                                     color: Colors.white,
                                                     fontSize:
@@ -262,9 +260,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                                 ),
                                                 child: Center(
                                                   child: Text(
-                                                    AppConstants
-                                                        .no_members_found_for_team_on_project_key
-                                                        .tr,
+                                                    'لم يتم العثور على أعضاء للفريق الذي يعمل على هذا المشروع',
                                                     style:
                                                         GoogleFonts.fjallaOne(
                                                       color: Colors.white,
@@ -307,9 +303,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                           ),
                                           child: Center(
                                             child: Text(
-                                              AppConstants
-                                                  .no_members_found_for_team_on_project_key
-                                                  .tr,
+                                              'لم يتم العثور على أعضاء للفريق الذي يعمل على هذا المشروع',
                                               style: GoogleFonts.fjallaOne(
                                                 color: Colors.white,
                                                 fontSize:
@@ -340,7 +334,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                       Get.back();
                     },
                     child: Text(
-                      AppConstants.cancel_key.tr,
+                      "إلغاء",
                       style: GoogleFonts.lato(
                         color: HexColor.fromHex("F49189"),
                         fontSize: Utils.screenWidth * 0.04,
@@ -351,7 +345,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                   PrimaryProgressButton(
                     width: Utils.screenWidth * 0.25,
                     height: Utils.screenHeight2 * 0.07,
-                    label: AppConstants.done_key.tr,
+                    label: 'تم',
                     callback: () {
                       if (selectedUserNotifier.value != null) {
                         widget.onSelectedUserChanged(

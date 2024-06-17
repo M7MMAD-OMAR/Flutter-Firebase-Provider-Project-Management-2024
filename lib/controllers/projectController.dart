@@ -30,23 +30,22 @@ class ProjectController extends ProjectAndTaskController {
     if (data.containsKey(startDateK)) {
       DateTime? newStartDate = data[startDateK] as DateTime;
       if (newStartDate.isAfter(projectModel!.endDate!)) {
-        //"Cannot update the start date after the end of project date has passed"
-        throw Exception(AppConstants.start_date_update_error_key);
+        throw Exception(
+            'لا يمكن تحديث تاريخ بدء المشروع لأن الوقت الجديد لتاريخ البدء هو بعد تاريخ انتهاء المشروع');
       }
       if (projectModel.endDate!.isBefore(firebaseTime(DateTime.now()))) {
-        throw
-            //"Cannot update the start date after the end of project date has passed"
-            Exception(AppConstants.project_start_date_update_error_key);
+        throw Exception(
+            'لا يمكن تحديث تاريخ البدء بعد انتهاء تاريخ انتهاء المشروع');
       }
       if (await existByOne(
           collectionReference: projectMainTasksRef,
           field: projectIdK,
           value: projectModel.id)) {
-        throw Exception(AppConstants.project_already_started_error_key);
+        throw Exception('عذرًا، تم بدء التنفيذ في المشروع بالفعل');
       }
     }
     if (data.containsKey(teamIdK)) {
-      throw Exception(AppConstants.team_id_update_error_key);
+      throw Exception('عذرًا، لا يمكن تحديث معرّف الفريق');
     }
     ManagerController managerController = Get.put(ManagerController());
     ManagerModel? managerModel =
@@ -57,9 +56,8 @@ class ProjectController extends ProjectAndTaskController {
       id: id,
       fatherField: managerIdK,
       fatherValue: managerModel!.id,
-      nameException: Exception(AppConstants.already_existing_project_key),
+      nameException: Exception('هناك بالفعل مشروع بنفس الاسم'),
     );
-    //   await updateFields(reference: projectsRef, data: data, id: id);
   }
 
   Stream<QuerySnapshot<ProjectModel>> getAllManagersProjectsStream() {
@@ -89,20 +87,17 @@ class ProjectController extends ProjectAndTaskController {
   }
 
   Future<void> addProject({required ProjectModel projectModel}) async {
-    // الشرط الأول للتأكد من انو مدير هل المشروع موجود بالداتا بيز او لأ بجدول المانجرز
     if (await existByOne(
         collectionReference: managersRef,
         field: idK,
         value: projectModel.managerId)) {
       if (projectModel.teamId != null) {
-        //الشرط التاني انو اذا كان ضايف تتيم ضغري اول ماانشئ المشروع شوف انو هل التيم يلي ضفتو موجود بالداتا بيز اولا ويكون مدير المشروع هاد هو نفسو مدير هل التيم
         if (await existByTow(
             reference: teamsRef,
             field: idK,
             value: projectModel.teamId,
             field2: managerIdK,
             value2: projectModel.managerId)) {
-          //في حال تحقق الشرطين انو المانجر بالداتا بيز والفريق وموجود والمناجر نفسو للتنين بيضيف المشروع
           StatusModel statusModel =
               await StatusController().getStatusByName(status: statusDone);
 
@@ -113,28 +108,24 @@ class ProjectController extends ProjectAndTaskController {
               .get();
 
           if (anotherProjects.docs.isNotEmpty) {
-            throw Exception(AppConstants.team_project_overlap_error_key.tr);
+            throw Exception('خطأ تداخل مشروع الفريق');
           } else {
             await addDoc(reference: projectsRef, model: projectModel);
             return;
           }
         } else {
-          //في حال كان المانجر موجود بالداتا بيز والمشروع الو فريق بس هل الفريق مالو بالداتا بيز او المدير تبع هل التيم غير مدير المشروع مابيسمحلو يضيف
-          throw Exception(AppConstants.team_manager_error_key.tr);
+          throw Exception('عذرًا، هناك خطأ ما فيما يتعلق بالفريق أو المدير');
         }
       }
       {
-        //في حال موجود المانجر وتمام بس مافي فريق بيضيف ضغري لانو مسموح هل الشي
         await addDoc(reference: projectsRef, model: projectModel);
         return;
       }
     } else {
-      //في حال إعطاء ايدي لمانجر غير موجود بالداتا بيز اصلا
-      throw Exception(AppConstants.manager_not_found_error_key.tr);
+      throw Exception('عذرًا، مدير المشروع غير موجود');
     }
   }
 
-// لجلب المشروع الخاص بهل الفريق  إن وجد
   Future<ProjectModel?> getProjectOfTeam({required String teamId}) async {
     StatusModel statusModel =
         await StatusController().getStatusByName(status: statusNotDone);
@@ -155,7 +146,6 @@ class ProjectController extends ProjectAndTaskController {
     return projectDoc.cast<DocumentSnapshot<ProjectModel>>();
   }
 
-  //جلب جميع المشاريع الخاصة بهل المانجر
   Future<List<ProjectModel?>?> getProjectsOfManager(
       {required String mangerId}) async {
     List<Object?>? list = await getListDataWhere(
@@ -225,7 +215,7 @@ class ProjectController extends ProjectAndTaskController {
     ManagerModel? managerModel =
         await managerController.getMangerWhereUserIs(userId: userId);
     if (managerModel == null) {
-      throw Exception(AppConstants.make_project_first_error_key.tr);
+      throw Exception('آسف ، ولكن قم بإنشاء مشروع أولاً للبدء');
     }
 
     Stream<QuerySnapshot> projectsStream = queryWhereStream(
@@ -264,7 +254,6 @@ class ProjectController extends ProjectAndTaskController {
     return null;
   }
 
-//جلب المشروع بواسطة الايدي
   Future<ProjectModel?> getProjectById({required String id}) async {
     DocumentSnapshot projectDoc =
         await getDocById(reference: projectsRef, id: id);
@@ -293,23 +282,6 @@ class ProjectController extends ProjectAndTaskController {
         .snapshots()
         .cast<QuerySnapshot<ProjectModel>>();
   }
-
-//  Future<List<ProjectModel>> getProjectsWhereteamIn({required List<String> listteamsId}) async {
-//   QuerySnapshot<Object?> querySnapshot = await projectsRef
-//       .where(teamIdK, whereIn: listteamsId)
-//       .get()
-//       .catchError((error) {
-//
-//     return null;
-//   });
-
-//     List<ProjectModel> projects = querySnapshot.docs.map((doc) {
-//       return ProjectModel.fromFirestore(doc as DocumentSnapshot ,);
-//     }).toList();
-
-//     return projects;
-
-// }
 
   Stream<QuerySnapshot<ProjectModel>>
       getProjectsOfManagerWhereUserIsInADayStream({
@@ -378,30 +350,6 @@ class ProjectController extends ProjectAndTaskController {
 
     yield* getProjectsWhereIdsIN(listProjectsId: projectsInTheDay);
   }
-
-//olds
-  // Stream<QuerySnapshot<ProjectModel>>
-  //     getProjectsOfMemberWhereUserIsInADayStream(
-  //         {required String userId, required DateTime date}) async* {
-  //   final startOfDay = DateTime(date.year, date.month, date.day);
-  //   final endOfDay =
-  //       startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
-  //   List<String> prjectsInTheDay = [];
-  //   List<ProjectModel?> list =
-  //       await getProjectsOfMemberWhereUserIs2(userId: userId);
-  //   for (var projectModel in list) {
-  //     if (projectModel!.startDate.isAfter(startOfDay) &&
-  //         projectModel.endDate!.isBefore(endOfDay)) {
-  //       if (!prjectsInTheDay.contains(projectModel.id)) {
-  //         prjectsInTheDay.add(projectModel.id);
-  //       }
-  //     }
-  //   }
-  //   if (prjectsInTheDay.isEmpty) {
-  //     throw Exception("no  projects iam member of");
-  //   }
-  //   yield* getProjectsWhereIdsIN(listProjectsId: prjectsInTheDay);
-  // }
 
   Future<List<ProjectModel?>> getProjectsOfMemberWhereUserIs2(
       {required String userId}) async {
@@ -474,7 +422,6 @@ class ProjectController extends ProjectAndTaskController {
         .cast<QuerySnapshot<ProjectModel>>();
   }
 
-//عطيني كل المشاريع يلي مشترك فيها هل الزلمة كعضو
   Stream<QuerySnapshot<ProjectModel?>> getProjectsOfMemberWhereUserIsStream(
       {required String userId}) async* {
     TeamController teamController = TeamController();
@@ -488,7 +435,7 @@ class ProjectController extends ProjectAndTaskController {
         teamsId.add(team.id);
       }
     } else {
-      throw Exception(AppConstants.not_member_no_projects_error_key.tr);
+      throw Exception('لست عضوا في أي فريق ليكون لديك مشاريع');
     }
 
     yield* projectsRef
@@ -595,7 +542,6 @@ class ProjectController extends ProjectAndTaskController {
         secondDate: secondDate);
   }
 
-//تحديث معلومات المشروع والشروط الخاصة بهذا العمل
   Future<void> updateProject(
       {required String id,
       required ManagerModel managerModel,
@@ -605,21 +551,23 @@ class ProjectController extends ProjectAndTaskController {
     if (data.containsKey(startDateK)) {
       DateTime? newStartDate = data[startDateK] as DateTime;
       if (newStartDate.isAfter(oldProject.endDate!)) {
-        throw Exception(AppConstants.start_date_update_error_key.tr);
+        throw Exception(
+            'لا يمكن تحديث تاريخ بدء المشروع لأن الوقت الجديد لتاريخ البدء هو بعد تاريخ انتهاء المشروع');
       }
 
       if (oldProject.endDate!.isBefore(firebaseTime(DateTime.now()))) {
-        throw Exception(AppConstants.project_start_date_update_error_key.tr);
+        throw Exception(
+            'لا يمكن تحديث تاريخ البدء بعد انتهاء تاريخ انتهاء المشروع');
       }
       if (await existByOne(
           collectionReference: projectMainTasksRef,
           field: projectIdK,
           value: id)) {
-        throw Exception(AppConstants.project_already_started_error_key.tr);
+        throw Exception('عذرًا، تم بدء التنفيذ في المشروع بالفعل');
       }
     }
     if (data.containsKey(teamIdK)) {
-      throw Exception(AppConstants.team_id_update_error_key.tr);
+      throw Exception('عذرًا، لا يمكن تحديث معرّف الفريق');
     }
 
     await updateRelationalFields(
@@ -628,29 +576,25 @@ class ProjectController extends ProjectAndTaskController {
       id: id,
       fatherField: managerIdK,
       fatherValue: managerModel.id,
-      nameException: Exception(AppConstants.already_existing_project_key.tr),
+      nameException: Exception('هناك بالفعل مشروع بنفس الاسم'),
     );
-    //   await updateFields(reference: projectsRef, data: data, id: id);
   }
 
-//حذف المشروع وجميع المهام الرئيسية والفرعية الخاصة به
   Future<void> deleteProject(String id) async {
     WriteBatch batch = fireStore.batch();
-    DocumentSnapshot project =
-        //جلب هذا المشروع
-        await getDocById(reference: projectsRef, id: id);
+    DocumentSnapshot project = await getDocById(reference: projectsRef, id: id);
     ProjectModel projectModel = project.data() as ProjectModel;
-    //حذفه
+
     deleteDocUsingBatch(documentSnapshot: project, refbatch: batch);
-    //حذف الصورة الخاصة بالمشروع من الداتا بيز
+
     await firebaseStorage.refFromURL(projectModel.imageUrl).delete();
-    //جلب جميع المهام الرئيسة
+
     List<DocumentSnapshot> listMainTasks = await getDocsSnapShotWhere(
         collectionReference: projectMainTasksRef, field: projectIdK, value: id);
-    //جلب جميع المهام الفرعية
+
     List<DocumentSnapshot> listSubTasks = await getDocsSnapShotWhere(
         collectionReference: projectSubTasksRef, field: projectIdK, value: id);
-    //حذفهما
+
     deleteDocsUsingBatch(list: listMainTasks, refBatch: batch);
     deleteDocsUsingBatch(list: listSubTasks, refBatch: batch);
     batch.commit();

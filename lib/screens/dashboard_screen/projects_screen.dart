@@ -36,52 +36,51 @@ enum ProjecSortOption {
   updatedDate,
   stauts,
   teamName,
-
-  // Add more sorting options if needed
 }
 
 class ProjectScreen extends StatefulWidget {
-  ProjectScreen({
-    //required this.userAsManager,
-    Key? key,
-  }) : super(key: key);
+  const ProjectScreen({
+    super.key,
+  });
+
   @override
   State<ProjectScreen> createState() => _ProjectScreenState();
 }
 
 class _ProjectScreenState extends State<ProjectScreen> {
-  bool desc = false; // Track sorting option, initially false
+  bool desc = false;
   String? orderByField = nameK;
   ManagerModel? userAsManager;
   ProjecSortOption selectedSortOption = ProjecSortOption.name;
+
   String _getSortOptionText(ProjecSortOption option) {
     switch (option) {
       case ProjecSortOption.name:
-        return AppConstants.name_key.tr;
+        return "الاسم";
       case ProjecSortOption.updatedDate:
-        return AppConstants.updated_date_key.tr;
+        return "تاريح التحديث";
       case ProjecSortOption.createDate:
-        return AppConstants.created_date_key.tr;
+        return "تاريخ الإنشاء";
       case ProjecSortOption.stauts:
-        return AppConstants.status_key.tr;
+        return 'الحالة';
       case ProjecSortOption.teamName:
-        return AppConstants.team_name_key.tr;
-      // Add cases for more sorting options if needed
+        return "اسم الفريق";
+
       default:
         return '';
     }
   }
 
-  bool sortAscending = true; // Variable for sort order
+  bool sortAscending = true;
+
   void toggleSortOrder() {
     setState(() {
-      sortAscending = !sortAscending; // Toggle the sort order
+      sortAscending = !sortAscending;
     });
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getUserAsManamger();
   }
@@ -104,16 +103,13 @@ class _ProjectScreenState extends State<ProjectScreen> {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                right:
-                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
-                left:
-                    Utils.screenWidth * 0.03, // Adjust the percentage as needed
-                top: Utils.screenHeight *
-                    0.03, // Adjust the percentage as needed
+                right: Utils.screenWidth * 0.04,
+                left: Utils.screenWidth * 0.03,
+                top: Utils.screenHeight * 0.03,
               ),
               child: SafeArea(
                 child: TaskezAppHeader(
-                  title: AppConstants.projects_key.tr,
+                  title: 'المشاريع',
                   widget: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
@@ -125,15 +121,13 @@ class _ProjectScreenState extends State<ProjectScreen> {
                     ),
                     child: IconButton(
                       icon: Icon(
-                        size: Utils.screenWidth *
-                            0.05, // Adjust the percentage as needed
-
+                        size: Utils.screenWidth * 0.05,
                         sortAscending
                             ? Icons.arrow_upward
                             : Icons.arrow_downward,
                         color: Colors.white,
                       ),
-                      onPressed: toggleSortOrder, // Toggle the sort order
+                      onPressed: toggleSortOrder,
                     ),
                   ),
                 ),
@@ -142,10 +136,8 @@ class _ProjectScreenState extends State<ProjectScreen> {
             AppSpaces.verticalSpace20,
             Padding(
               padding: EdgeInsets.only(
-                right:
-                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
-                left:
-                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
+                right: Utils.screenWidth * 0.04,
+                left: Utils.screenWidth * 0.04,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,16 +150,12 @@ class _ProjectScreenState extends State<ProjectScreen> {
                         children: [
                           Container(
                             margin: EdgeInsets.only(
-                              right: Utils.screenWidth *
-                                  0.05, // Adjust the percentage as needed
-                              left: Utils.screenWidth *
-                                  0.05, // Adjust the percentage as needed
+                              right: Utils.screenWidth * 0.05,
+                              left: Utils.screenWidth * 0.05,
                             ),
                             padding: EdgeInsets.only(
-                              right: Utils.screenWidth *
-                                  0.04, // Adjust the 0percentage as needed
-                              left: Utils.screenWidth *
-                                  0.02, // Adjust the percentage as needed
+                              right: Utils.screenWidth * 0.04,
+                              left: Utils.screenWidth * 0.02,
                             ),
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -180,7 +168,6 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                   selectedSortOption = newValue!;
                                   settingsButtonTrigger.value =
                                       controller.selectedTab.value;
-                                  // Implement the sorting logic here
                                 });
                               },
                               items: ProjecSortOption.values
@@ -195,8 +182,6 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                   ),
                                 );
                               }).toList(),
-
-                              // Add extra styling
                               icon: Icon(
                                 Icons.arrow_drop_down,
                                 size: Utils.screenWidth * 0.08,
@@ -204,19 +189,13 @@ class _ProjectScreenState extends State<ProjectScreen> {
                               underline: const SizedBox(),
                             ),
                           ),
-                          // GestureDetector(
-                          //   onTap: () {
-                          //     _showOptions(context); // Show options menu
-                          //   },
-                          //   child: const Icon(Icons.more_vert, color: Colors.white),
-                          // ),
                           PrimaryTabButton(
                             callback: () {
                               controller.selectTab(0);
                               settingsButtonTrigger.value =
                                   controller.selectedTab.value;
                             },
-                            buttonText: AppConstants.all_key.tr,
+                            buttonText: "الكل",
                             itemIndex: 0,
                             notifier: settingsButtonTrigger,
                           ),
@@ -232,36 +211,25 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                       .getMangerWhereUserIs(
                                           userId: AuthProvider.instance
                                               .firebaseAuth.currentUser!.uid);
-                              // ignore: use_build_context_synchronously
+
                               Navigator.of(context).pop();
                               Get.to(() => SelectTeamScreen(
                                     managerModel: managerModel,
-                                    title: AppConstants.choose_team_key.tr,
+                                    title: 'اختر الفريق',
                                   ));
                               dev.log("Team Tap");
                               settingsButtonTrigger.value =
                                   controller.selectedTab.value;
-                              // controller.selectedTab(0);
                             },
-                            buttonText: AppConstants.by_team_key.tr,
+                            buttonText: 'بواسطة الفريق',
                             itemIndex: 1,
                             notifier: settingsButtonTrigger,
                           ),
                           PrimaryTabButton(
                             callback: () async {
-                              // ManagerModel? managerModel =
-                              //     await ManagerController()
-                              //         .getMangerWhereUserIs(
-                              //             userId: AuthService.instance
-                              //                 .firebaseAuth.currentUser!.uid);
-                              // if (managerModel == null) {
-                              //   CustomSnackBar.showError("You Are not Manager");
-                              //   // controller.selectTab(2);
-                              //   controller.selectTab(0);
-                              // }
                               controller.selectTab(2);
                             },
-                            buttonText: AppConstants.project_manager_key.tr,
+                            buttonText: "مدير المشروع",
                             itemIndex: 2,
                             notifier: settingsButtonTrigger,
                           ),
@@ -301,8 +269,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(
-                  right: Utils.screenWidth *
-                      0.04, // Adjust the percentage as needed
+                  right: Utils.screenWidth * 0.04,
                   left: Utils.screenWidth * 0.04,
                 ),
                 child: MediaQuery.removePadding(
@@ -318,17 +285,14 @@ class _ProjectScreenState extends State<ProjectScreen> {
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-//
                                 Icon(
                                   Icons.search_off,
-                                  //   Icons.heart_broken_outlined,
                                   color: Colors.red,
                                   size: Utils.screenWidth * 0.28,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: Utils.screenWidth *
-                                        0.1, // Adjust the percentage as needed
+                                    horizontal: Utils.screenWidth * 0.1,
                                     vertical: Utils.screenHeight * 0.05,
                                   ),
                                   child: Center(
@@ -368,13 +332,11 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                     ),
                                     AppSpaces.verticalSpace10,
                                     Text(
-                                      AppConstants
-                                          .no_projects_you_are_in_key.tr,
+                                      'لا توجد مشاريع أنت تديرها',
                                       style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
                                           color: HexColor.fromHex("#999999"),
-                                          fontSize: Utils.screenWidth *
-                                              0.05, // Adjust the percentage as needed
+                                          fontSize: Utils.screenWidth * 0.05,
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
@@ -382,7 +344,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                   ]),
                             );
                           }
-                          // Sort the list based on the selected sort option
+
                           switch (selectedSortOption) {
                             case ProjecSortOption.name:
                               list.sort((a, b) => a!.name!.compareTo(b!.name!));
@@ -403,11 +365,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
                               list.sort(
                                   (a, b) => b!.teamId!.compareTo(a!.teamId!));
                               break;
-                            // Add cases for more sorting options if needed
                           }
                           if (!sortAscending) {
-                            list = list.reversed
-                                .toList(); // Reverse the list for descending order
+                            list = list.reversed.toList();
                           }
                           return GridView.builder(
                             itemCount: list.length,
@@ -508,9 +468,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                             projects[index].id);
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showSuccess(
-                                                        AppConstants
-                                                            .project_deleted_successfully_key
-                                                            .tr);
+                                                        'تم حذف المشروع بنجاح');
                                                   } on Exception catch (e) {
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showError(
@@ -587,9 +545,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                             projects[index].id);
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showSuccess(
-                                                      AppConstants
-                                                          .delete_project_key
-                                                          .tr,
+                                                      'حذف مشروع',
                                                     );
                                                   } on Exception catch (e) {
                                                     Navigator.of(context).pop();

@@ -74,8 +74,7 @@ class TeamDetails extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TaskezAppHeader(
-                          title:
-                              "$tabSpace ${AppConstants.details_key.tr} ${AppConstants.team_key.tr}",
+                          title: "$tabSpace تفاصيل الفريق",
                           widget: Visibility(
                             visible: userAsManager != null &&
                                 team!.managerId == userAsManager!.id,
@@ -188,7 +187,7 @@ class TeamDetails extends StatelessWidget {
 
                               return InBottomSheetSubtitle(
                                   title:
-                                      " ${AppConstants.managed_by_key.tr} ${snapshot.data!.name} ${AppConstants.that_created_the_team_on_key.tr} ${snapshotTeam.data!.data()!.createdAt.month}/${snapshotTeam.data!.data()!.createdAt.day}  ${AppConstants.of_key.tr} ${snapshotTeam.data!.data()!.createdAt.year}",
+                                      " يدار بواسطة ${snapshot.data!.name} الذي أنشأ الفريق في ${snapshotTeam.data!.data()!.createdAt.month}/${snapshotTeam.data!.data()!.createdAt.day}  من ${snapshotTeam.data!.data()!.createdAt.year}",
                                   textStyle: GoogleFonts.lato(
                                       fontSize: Utils.screenHeight * 0.045,
                                       color: Colors.white70));
@@ -265,7 +264,7 @@ class TeamProjectOverview extends StatelessWidget {
                     ),
                     AppSpaces.verticalSpace10,
                     Text(
-                      "${AppConstants.no_projects_for_key.tr}  ${teamModel.name} ",
+                      "لا توجد مشاريع لـ  ${teamModel.name} ",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                           color: HexColor.fromHex("#999999"),

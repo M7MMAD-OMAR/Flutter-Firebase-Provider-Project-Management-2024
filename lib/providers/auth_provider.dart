@@ -12,6 +12,7 @@ import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../constants/back_constants.dart';
+import '../constants/values.dart';
 import '../controllers/topController.dart';
 import '../controllers/userController.dart';
 import '../models/user/user_model.dart';
@@ -36,7 +37,7 @@ class AuthProvider with ChangeNotifier {
     } on Exception catch (e) {
       return Left(e);
     }
-    return Left(Exception(AppConstants.please_enter_valid_email_key.tr));
+    return Left(Exception("يرجى إدخال بريد إلكتروني صحيح"));
   }
 
   EitherException<bool> updatePassword({required String newPassword}) async {
@@ -50,9 +51,7 @@ class AuthProvider with ChangeNotifier {
           regExnumbers.hasMatch(newPassword) == false ||
           regExbigletters.hasMatch(newPassword) == false) {
         return Left(Exception(
-          AppConstants
-              .please_the_password_should_contain_at_least_8_characters_and_big_letters_and_small_with_one_number_at_least_key
-              .tr,
+          "يرجى أن تحتوي كلمة المرور على 8 أحرف على الأقل وحروف كبيرة وحروف صغيرة ورقم واحد على الأقل",
         ));
       }
       await user?.updatePassword(newPassword);
@@ -60,8 +59,8 @@ class AuthProvider with ChangeNotifier {
     } on Exception catch (e) {
       if (e.toString() ==
           "[firebase_auth/requires-recent-login] This operation is sensitive and requires recent authentication. Log in again before retrying this request.") {
-        return Left(
-            Exception(AppConstants.sensitive_change_password_process_key.tr));
+        return Left(Exception(
+            "هذه العملية حساسة، لذلك يجب عليك تسجيل الدخول مرة أخرى قبل محاولة تغيير كلمة المرور مرة أخرى"));
       }
 
       return Left(e);
@@ -92,14 +91,12 @@ class AuthProvider with ChangeNotifier {
 
         if (!user.emailVerified) {
           await user.sendEmailVerification();
-          CustomSnackBar.showSuccess(
-              AppConstants.the_email_in_its_way_to_you_key.tr);
+          CustomSnackBar.showSuccess("البريد الإلكتروني في طريقه إليك");
           return const Right(false);
         }
         return const Right(true);
       }
-      throw Exception(
-          AppConstants.there_is_no_user_logging_in_or_sign_up_key.tr);
+      throw Exception("لا يوجد مستخدم في التطبيق");
     } on Exception catch (e) {
       dev.log("error");
       return Left(e);
@@ -118,8 +115,7 @@ class AuthProvider with ChangeNotifier {
         }
         return const Right(false);
       }
-      throw Exception(
-          AppConstants.there_is_no_user_logging_in_or_sign_up_key.tr);
+      throw Exception("لا يوجد مستخدم في التطبيق");
     } on Exception catch (e) {
       dev.log(e.toString());
       return Left(e);
@@ -183,35 +179,24 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
-//     // Create a credential from the access token
-//     final OAuthCredential facebookAuthCredential =
-//         FacebookAuthProvider.credential(loginResult.accessToken!.token);
-//     return facebookAuthCredential;
-//   }
-
-  //* it works
   AuthCredential getEmailCredential(
       {required String email, required String password}) {
-    // Email and password sign-in
     final AuthCredential credential =
         EmailAuthProvider.credential(email: email, password: password);
     return credential;
   }
 
-  //* it works
   Future<OAuthCredential> getGooglecredential() async {
-    //Trigger the authentication
     final GoogleSignInAccount? googleUser =
         await GoogleSignIn(scopes: <String>["email"]).signIn();
     if (googleUser == null) {
-      // User did not select an account, handle the error case here
-      throw Exception(AppConstants
-          .Google_sign_in_was_canceled_or_no_account_was_selected_key.tr);
+      throw Exception(
+          "تم إلغاء تسجيل الدخول بواسطة Google أو لم يتم تحديد حساب");
     }
-//Obtin the auth detailes from request
+
     final GoogleSignInAuthentication googleAuth =
         await googleUser.authentication;
-//Create New Credential
+
     final OAuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
@@ -219,35 +204,24 @@ class AuthProvider with ChangeNotifier {
     return credential;
   }
 
-  // Future<void> convertAnonymousToFacebook() async {
-  //   OAuthCredential oAuthCredential = await getFacebookCredential();
-  //   await convertAnonymousToPermanent(credential: oAuthCredential);
-  // }
-
-  //* it works
   Future<void> convertAnonymousToGoogle() async {
     OAuthCredential credential = await getGooglecredential();
 
     await convertAnonymousToPermanent(
       credential: credential,
-      //authFormTypeParameter: AuthFormType.google
     );
   }
 
-  //* it works
   Future<void> convertAnonymousToEmailandPassword(
       {required String email, required String password}) async {
     final credential = getEmailCredential(email: email, password: password);
     await convertAnonymousToPermanent(
       credential: credential,
-      // authFormTypeParameter: AuthFormType.email
     );
   }
 
-  //* it works
   Future<void> convertAnonymousToPermanent({
     required credential,
-    // required AuthFormType authFormTypeParameter
   }) async {
     try {
       final userCredential =
@@ -268,48 +242,39 @@ class AuthProvider with ChangeNotifier {
 
       await updatFcmToken();
       firebaseAuth.currentUser!.reload();
-      //authFormType = authFormTypeParameter;
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case "provider-already-linked":
           if (kDebugMode) {
             CustomSnackBar.showError(
-              AppConstants
-                  .The_provider_has_already_been_linked_to_the_user_key.tr,
+              "تم ربط الموفر بالفعل بالمستخدم",
             );
           }
           break;
         case "invalid-credential":
           if (kDebugMode) {
             CustomSnackBar.showError(
-              AppConstants.The_providers_credential_is_not_valid_key.tr,
+              "اعتمادات الموفر غير صالحة",
             );
           }
           break;
         case "credential-already-in-use":
           if (kDebugMode) {
             CustomSnackBar.showError(
-              AppConstants
-                  .The_account_corresponding_to_the_credential_already_exists_or_is_already_linked_to_a_Firebase_User_key
-                  .tr,
+              "الحساب موجود بالفعل",
             );
           }
           break;
-        // See the API reference for the full list of error codes.
         default:
           if (kDebugMode) {}
       }
     }
   }
 
-  //* it works
-  EitherException<UserCredential> signInWithGoogle(
-      /*  {required void Function() updateFcmToken}
-    */
-      ) async {
+  EitherException<UserCredential> signInWithGoogle() async {
     try {
       final credential = await getGooglecredential();
-      //when sign in ,return the UserCredential
+
       UserCredential userCredential =
           await firebaseAuth.signInWithCredential(credential);
       await noUserMakeOne(userCredential: userCredential);
@@ -318,10 +283,8 @@ class AuthProvider with ChangeNotifier {
     } on Exception catch (e) {
       return Left(e);
     }
-    //authFormType = AuthFormType.google;
   }
 
-  //* it works
   EitherException<UserCredential> anonymosSignInMethod() async {
     try {
       final credential = await firebaseAuth.signInAnonymously();
@@ -332,10 +295,8 @@ class AuthProvider with ChangeNotifier {
       dev.log("left  $e");
       return Left(e);
     }
-    //  authFormType = AuthFormType.anonymous;
   }
 
-  //* it works
   Future<void> logOut() async {
     dev.log("remove");
     await userController.updateUser(data: {
@@ -343,7 +304,7 @@ class AuthProvider with ChangeNotifier {
     }, id: firebaseAuth.currentUser!.uid);
 
     await firebaseAuth.signOut();
-    //authFormType = AuthFormType.nothing;
+
     dev.log("remove");
   }
 }

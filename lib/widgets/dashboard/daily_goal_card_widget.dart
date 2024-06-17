@@ -130,7 +130,7 @@ class dailygoal extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              AppConstants.daily_goal_key.tr,
+              'الهدف اليومي',
               style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
                   fontSize: Utils.screenWidth * 0.05,
@@ -170,41 +170,12 @@ class dailygoal extends StatelessWidget {
             ),
             // AppSpaces.verticalSpace10,
             Text(
-              //    "${AppConstants.you_marked_key.tr}  $first $second $message  ${AppConstants.are_done_key.tr}  ",
-              "  $first  $message  ${AppConstants.are_done_key.tr}  ",
+              "  $first  $message  تم إنجازها 🎉  ",
               style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
                   fontSize: Utils.screenWidth * 0.040,
                   fontWeight: FontWeight.w500),
             ),
-//            AppSpaces.verticalSpace20,
-            // SizedBox(
-            //   width: Utils.screenWidth * 0.3, // Adjust the percentage as needed
-            //   height:
-            //       Utils.screenHeight * 0.08, // Adjust the percentage as needed
-            //   child: ElevatedButton(
-            //     onPressed: () {},
-            //     style: ButtonStyle(
-            //       backgroundColor: WidgetStateProperty.all<Color>(
-            //           HexColor.fromHex("C25FFF")),
-            //       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-            //         RoundedRectangleBorder(
-            //           borderRadius: BorderRadius.circular(50.0),
-            //           side: BorderSide(
-            //             color: HexColor.fromHex("C25FFF"),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //     child: Text(
-            //       AppConstants.all_task_key.tr,
-            //       style: GoogleFonts.lato(
-            //           fontSize: Utils.screenHeight * 0.04,
-            //           fontWeight: FontWeight.bold,
-            //           color: Colors.white),
-            //     ),
-            //   ),
-            // )
           ],
         ),
         Stack(

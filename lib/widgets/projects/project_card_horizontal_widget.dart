@@ -57,7 +57,7 @@ class ProjectCardHorizontal extends StatelessWidget {
                   Row(children: [
                     InkWell(
                       child: Text(
-                        "${AppConstants.team_key.tr} : ",
+                        "الفريق : ",
                         style: TextStyle(
                           color: HexColor.fromHex("246CFE"),
                         ),
@@ -73,7 +73,7 @@ class ProjectCardHorizontal extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "${AppConstants.status_key.tr} : ",
+                        "الحالة : ",
                         style: GoogleFonts.lato(
                           color: HexColor.fromHex("246CFE"),
                         ),
@@ -89,7 +89,7 @@ class ProjectCardHorizontal extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "${AppConstants.start_date_key.tr}  : ",
+                        "تاريخ البدء  : ",
                         style: GoogleFonts.lato(
                           color: HexColor.fromHex("246CFE"),
                         ),
@@ -105,7 +105,7 @@ class ProjectCardHorizontal extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "${AppConstants.end_date_key.tr} : ",
+                        "تاريخ الانتهاء : ",
                         style: GoogleFonts.lato(
                           color: HexColor.fromHex("246CFE"),
                         ),
@@ -133,7 +133,7 @@ String formatDateTime(DateTime dateTime) {
   if (dateTime.year == now.year &&
       dateTime.month == now.month &&
       dateTime.day == now.day) {
-    return "${AppConstants.today_key.tr} ${DateFormat('h:mm a').format(dateTime)}";
+    return "اليوم ${DateFormat('h:mm a').format(dateTime)}";
   } else {
     return DateFormat('dd/MM h:mm a').format(dateTime);
   }

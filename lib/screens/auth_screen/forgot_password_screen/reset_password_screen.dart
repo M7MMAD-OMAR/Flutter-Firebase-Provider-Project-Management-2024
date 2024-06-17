@@ -55,9 +55,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       const NavigationBack(),
                       const SizedBox(height: 40),
                       Text(
-                        AppConstants
-                            .Whats_your_email_address_to_send_reset_password_Link_key
-                            .tr,
+                        'ما هو عنوان بريدك الإلكتروني؟ لإرسال رابط إعادة تعيين كلمة المرور',
                         style: GoogleFonts.lato(
                             color: Colors.white,
                             fontSize: 40,
@@ -68,7 +66,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           autovalidateMode: AutovalidateMode.disabled,
                           validator: (value) {
                             if (!EmailValidator.validate(value!)) {
-                              return AppConstants.enter_valid_email_key.tr;
+                              return 'أدخل بريد إلكتروني صالح';
                             } else {
                               return null;
                             }
@@ -85,11 +83,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             });
                           },
                           readOnly: false,
-                          placeholder: AppConstants.email_key.tr,
+                          placeholder: ' البريد ',
                           keyboardType: "text",
                           controller: _emailController,
                           obscureText: obscureText,
-                          label: AppConstants.your_email_key.tr),
+                          label: 'بريدك الإلكتروني'),
                       AppSpaces.verticalSpace40,
                       SizedBox(
                         //width: 180,
@@ -102,9 +100,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 await AuthProvider.instance
                                     .resetPassword(email: email);
                                 Get.key.currentState!.pop();
-                                CustomSnackBar.showSuccess(AppConstants
-                                    .we_have_sent_the_reset_password_link_key
-                                    .tr);
+                                CustomSnackBar.showSuccess(
+                                    'لقد أرسلنا رابط إعادة تعيين كلمة المرور');
                               } on Exception catch (e) {
                                 Get.key.currentState!.pop();
                                 CustomSnackBar.showError(e.toString());
@@ -117,7 +114,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                             children: [
                               const Icon(Icons.email, color: Colors.white),
                               Text(
-                                AppConstants.send_reset_password_link_key.tr,
+                                'إرسال رابط إعادة تعيين كلمة المرور',
                                 style: GoogleFonts.lato(
                                     fontSize: 20, color: Colors.white),
                               ),

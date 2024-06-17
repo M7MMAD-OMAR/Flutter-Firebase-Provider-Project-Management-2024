@@ -36,7 +36,7 @@ class DashboardScreen extends StatelessWidget {
                 image: "assets/man-head.png",
                 notificationCount: "2",
                 page: Container(),
-                title: AppConstants.dashboard_key.tr,
+                title: 'لوحة التحكم',
                 onImageTapped: () async {
                   bool fcmStutas =
                       await FcmNotifications.getNotificationStatus();
@@ -55,10 +55,10 @@ class DashboardScreen extends StatelessWidget {
                     }
 
                     return Text(
-                      "${AppConstants.hello_n_key.tr}  ,\n ${snapshot.data!.data()!.name} 👋",
+                      "مرحبا   ,\n ${snapshot.data!.data()!.name} 👋",
                       style: GoogleFonts.lato(
                           color: Colors.white,
-                          fontSize: Utils.screenWidth * 0.12,
+                          fontSize: Utils.screenWidth * 0.09,
                           fontWeight: FontWeight.bold),
                     );
                   }),
@@ -71,11 +71,11 @@ class DashboardScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       PrimaryTabButton(
-                          buttonText: AppConstants.overview_key.tr,
+                          buttonText: 'نظرة عامة',
                           itemIndex: 0,
                           notifier: _buttonTrigger),
                       PrimaryTabButton(
-                          buttonText: AppConstants.productivity_key.tr,
+                          buttonText: 'الإنتاجية',
                           itemIndex: 1,
                           notifier: _buttonTrigger)
                     ],

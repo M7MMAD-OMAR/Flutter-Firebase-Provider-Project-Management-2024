@@ -1,37 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
 import 'task_model.dart';
-//TODO use the firebase time
 
-//الكلاس الخاص بالمهمة الأساسية في البروجيكت
 class ProjectMainTaskModel extends TaskClass {
-  //الباني الخاص بالكلاس
   ProjectMainTaskModel({
-    //الاي دي الخاص بالمشروع الذي تندرج تحته المهمة الأساسية
-    //foreign key
     required String projectIdParameter,
-    //وصف المهمة الأساسية في المشروع
     required String descriptionParameter,
-    //الاي دي الخاص بالمهمة الأساسية في المشروع
-    //primary key
     required String idParameter,
-    //اسم المهمة الأساسية في المشروع
     required String nameParameter,
-    //اي دي الحالة الخاصة بالمهمة الأساسية
-    //foreign key
     required String statusIdParameter,
-    //أهمية المشروع تتراوح بين واحد وخمسة
     required int importanceParameter,
-    //تاريخ إنشاء المهمة الأساسية
     required DateTime createdAtParameter,
-    //تاريخ تعديل المهمة الأساسية
     required DateTime updatedAtParameter,
-    //تاريخ بدء المهمة الأساسية
     required DateTime startDateParameter,
-    //تاريخ انتهاء المهمة الأساسية
     required DateTime endDateParameter,
     required String hexColorParameter,
   }) {
@@ -48,29 +31,17 @@ class ProjectMainTaskModel extends TaskClass {
     setEndDate = endDateParameter;
     setprojectId = projectIdParameter;
   }
+
   ProjectMainTaskModel.firestoreConstructor({
-    //الاي دي الخاص بالمشروع الذي تندرج تحته المهمة الأساسية
-    //foreign key
     required String projectIdParameter,
-    //وصف المهمة الأساسية في المشروع
     String? descriptionParameter,
-    //الاي دي الخاص بالمهمة الأساسية في المشروع
-    //primary key
     required String idParameter,
-    //اسم المهمة الأساسية في المشروع
     required String nameParameter,
-    //اي دي الحالة الخاصة بالمهمة الأساسية
-    //foreign key
     required String statusIdParameter,
-    //أهمية المشروع تتراوح بين واحد وخمسة
     required int importanceParameter,
-    //تاريخ إنشاء المهمة الأساسية
     required DateTime createdAtParameter,
-    //تاريخ تعديل المهمة الأساسية
     required DateTime updatedAtParameter,
-    //تاريخ بدء المهمة الأساسية
     required DateTime startDateParameter,
-    //تاريخ انتهاء المهمة الأساسية
     required DateTime endDateParameter,
     required String hexColorParameter,
   }) {
@@ -86,67 +57,54 @@ class ProjectMainTaskModel extends TaskClass {
     startDate = startDateParameter;
     endDate = endDateParameter;
   }
+
   late String projectId;
-  //اي دي الدوكيومنت الخاص بالمشروع الذي يتضمن المهمة الأساسية
+
   @override
   set setHexColor(String hexcolorParameter) {
     if (hexcolorParameter.isEmpty) {
-      throw Exception(AppConstants.main_task_color_empty_key);
+      throw Exception('لا يمكن أن يكون لون المهمة الرئيسية فارغًا');
     }
     hexcolor = hexcolorParameter;
   }
 
   @override
   set setId(String idParameter) {
-    //الشروط الخاصة بالدوكيومينت آي دي الخاص بالمهمة الأساسية
-
-    //لا يمكن أن يكون اي دي الدوكيومنت الخاص بالمهمة الأساسية فارغاً
     if (idParameter.isEmpty) {
-      throw Exception(AppConstants.project_main_task_id_empty_key);
+      throw Exception('لا يمكن أن يكون معرف المهمة الرئيسية للمشروع فارغًا');
     }
     id = idParameter;
   }
 
-  // TODO:this method is just for demo make the method to make a query in firebase to know that if the task name already been stored in the firebase for this project for this model
   bool taskExist(String taskName) {
     return true;
   }
 
   @override
   set setName(String nameParameter) {
-    //الشروط الخاصة باسم المهمة الأساسية في البروجيكت
-
-    //لا يمكن ان يكون اسم المهمة الأساسية الخاصة بالمشروع فارغاً
     if (nameParameter.isEmpty) {
-      throw Exception(AppConstants.project_main_task_name_empty_key);
+      throw Exception('لا يمكن أن يكون اسم المهمة الرئيسية للمشروع فارغًا');
     }
-    //لا يمكن أن تتواجد مهمتان أساسيتان بنفس الاسم في نفس البروجيكت
+
     name = nameParameter;
   }
 
   set setprojectId(String projectIdParameter) {
-    //قواعد إضافة الاي دي الخاص بالدوكيومنت الخاص بالبروجيكت الذي يحتوي المهمة
-
-    //لا يمكن لآي دي الدوكيومنت الخاص بالبروجيكت أن يكون فارغاُ
     if (projectIdParameter.isEmpty) {
-      throw Exception(AppConstants.project_id_empty_key);
+      throw Exception('لا يمكن أن يكون معرف المشروع فارغًا');
     }
     projectId = projectIdParameter;
   }
 
   @override
   set setDescription(String? descriptionParameter) {
-    //يمكن لقائد المشروع أن يضيف الوصف الذي يراه مناسباً بدون قيود
     description = descriptionParameter;
   }
 
   @override
   set setStatusId(String statusIdParameter) {
-    //الشروط الخاصة بالدوكيومينت آي دي الخاص بالحالة
-
-    //يتم رفض الدوكيومينت آي دي الخاص بالحالة اذا فارغاً
     if (statusIdParameter.isEmpty) {
-      throw Exception(AppConstants.main_task_status_id_empty_key);
+      throw Exception('لا يمكن أن يكون معرف حالة المهمة الرئيسية فارغًا');
     }
 
     statusId = statusIdParameter;
@@ -154,102 +112,81 @@ class ProjectMainTaskModel extends TaskClass {
 
   @override
   set setimportance(int importanceParameter) {
-    //تتراوح قيمة الأهمية بين ال1 وال5
-    //الشروط التي تنطبق على الأهمية
-
-    //الأهمية لا يمكن أن تكون أقل من صفر أو تساويه
     if (importanceParameter < 1) {
-      throw Exception(AppConstants.main_task_importance_min_invalid_key);
+      throw Exception('أهمية المهمة الرئيسية لا يمكن أن تكون أقل من 1');
     }
-    //لا يمكن أن تكون للأهمية قيمة أكبر من 5
+
     if (importanceParameter > 5) {
-      throw Exception(AppConstants.main_task_importance_max_invalid_key);
+      throw Exception('أهمية المهمة الرئيسية لا يمكن أن تكون أكبر من خمسة');
     }
     importance = importanceParameter;
   }
 
   @override
   set setCreatedAt(DateTime createdAtParameter) {
-    //الشروط الخاصة بتاريخ ووقت إضافة الدوكيومنت الخاص بالمهمة
-
-    // تاريخ إضافة المهمة يجب ان يكون بنفس تاريخ اليوم الأحسن بنفس الساعة مثل أدناه  تذكر المستخدم غبي المطور أغبى
     DateTime now = firebaseTime(DateTime.now());
     createdAtParameter = firebaseTime(createdAtParameter);
     if (createdAtParameter.isAfter(now)) {
-      throw Exception(
-          AppConstants.main_task_create_time_not_in_future_invalid_key);
+      throw Exception('وقت إنشاء المهمة الرئيسية لا يمكن أن يكون في المستقبل');
     }
-    //تاريخ إضافة الدوكيومنت لا يمكن أن يكون قبل الوقت الحالي تذكر المستخدم غبي المطور أغبى
+
     if (createdAtParameter.isBefore(now)) {
-      throw Exception(AppConstants.main_task_create_time_in_past_error_key);
+      throw Exception('وقت إنشاء المهمة الرئيسية لا يمكن أن يكون في الماضي');
     }
     createdAt = firebaseTime(createdAtParameter);
   }
 
   @override
   set setUpdatedAt(DateTime updatedAtParameter) {
-    //الشروط الخاصة بال التاريخ والوقت لتحديث المهمة الأساسية في البروجيكت
-
     updatedAtParameter = firebaseTime(updatedAtParameter);
-    //اذا كان تاريخ ووقت التحديث قبل تاريخ ووقت الإضافة يتم رفضه
+
     if (updatedAtParameter.isBefore(createdAt)) {
       throw Exception(
-          AppConstants.main_task_updating_time_not_in_future_invalid_key);
+          'تاريخ تحديث المهمة الرئيسية لا يمكن أن يكون قبل تاريخ الإنشاء');
     }
     updatedAt = (updatedAtParameter);
   }
 
-  // TODO:this method is just for demo make the method to make a query in firebase to know that if there is another task in the same time for this model
   bool dateduplicated(DateTime starttime) {
     return true;
   }
 
   @override
   set setStartDate(DateTime? startDateParameter) {
-    //الشروط الخاصة بتاريخ ووقت البداية
-
     if (startDateParameter == null) {
-      //كأيا شخص ذكي بتقول لحالك انو مالازم تاريخ ووقت البداية تقبل تكون عديمة القيمة
-      throw Exception(AppConstants.main_task_start_date_null_key);
+      throw Exception('تاريخ بدء المهمة الرئيسية لا يمكن أن يكون فارغًا');
     }
     startDateParameter = firebaseTime(startDateParameter);
     DateTime now = firebaseTime(DateTime.now());
-    //تاريخ ووقت البداية البداية لا يمكن أن يكون قبل التاريخ والوقت الحالي
-    //نذكر بأنه لا يمكن لأي شخص بالتفنيات الحالةي السفر عبر الزمن
 
     if (startDateParameter.isBefore(now)) {
-      throw Exception(AppConstants.main_task_start_date_past_error_key);
+      throw Exception('تاريخ بدء المهمة الرئيسية يجب ألا يكون في الماضي');
     }
-
-    //TODO check this line
-    //TODO هل يجب ان نحذر قائد الفريق  من وجود مهام في نفس الوقت
 
     startDate = (startDateParameter);
   }
 
   @override
   set setEndDate(DateTime? endDateParameter) {
-    //الشروط الخاصة بتاريخ ووقت نهاية المهمة الأساسية في البروجكت
-
-    //لا يمكن أن يكون تاريخ ووقت نهاية المهمة معدوم القيمة
     if (endDateParameter == null) {
-      throw Exception(AppConstants.main_task_end_date_null_key);
+      throw Exception('تاريخ انتهاء المهمة الرئيسية لا يمكن أن يكون فارغًا');
     }
     endDateParameter = firebaseTime(endDateParameter);
-    //تاريخ ووقت نهاية المهمة الأساسية لا يمكن أن يكون قبل تاريخ ووقت بداية المهمة بديهياً
+
     if (endDateParameter.isBefore(startDate)) {
-      throw Exception(AppConstants.main_task_start_after_end_error_key);
+      throw Exception(
+          'تاريخ بدء المهمة الرئيسية لا يمكن أن يكون بعد تاريخ الانتهاء');
     }
-    //لا يمكن أن يكون هناك فارق أقل من 5 دقائق بين بداية المهمة الأساسية ونهايتها
+
     Duration diff = endDateParameter.difference(getStartDate);
     if (diff.inMinutes < 5) {
-      throw Exception(AppConstants.main_task_date_difference_error_key);
+      throw Exception(
+          'الفرق بين تاريخ البدء وتاريخ الانتهاء للمهمة الرئيسية لا يمكن أن يكون أقل من 5 دقائق');
     }
-    //لا يمكن أن يكون تاريخ ووقت نهاية وبداية المهمة متساويين
-    //TODO check this line
+
     if (endDateParameter.isAtSameMomentAs(getStartDate)) {
       throw Exception(
-        AppConstants.main_task_start_same_as_end_error_key,
+        'تاريخ بدء المهمة الرئيسية لا يمكن أن يكون في نفس الوقت مع تاريخ الانتهاء',
       );
     }
 

@@ -72,22 +72,21 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
                           _currentPage = page;
                         });
                       },
-                      children: <Widget>[
+                      children: const <Widget>[
                         SliderCaptionedImage(
                           index: 0,
                           imageUrl: "assets/slider-background-1.png",
-                          caption: AppConstants.task_calendar_chat_key.tr,
+                          caption: "المهمة،\nالتقويم،\n",
                         ),
                         SliderCaptionedImage(
                           index: 1,
                           imageUrl: "assets/slider-background-3.png",
-                          caption: AppConstants.work_anywhere_easily_key.tr,
+                          caption: "اعمل\nمن أي مكان\nبسهولة",
                         ),
                         SliderCaptionedImage(
                           index: 2,
                           imageUrl: "assets/slider-background-2.png",
-                          caption:
-                              AppConstants.manage_everything_on_Phone_key.tr,
+                          caption: "ادارة\nكل شيء\nعلى الهاتف",
                         ),
                       ],
                     ),
@@ -129,7 +128,7 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
                               children: [
                                 const Icon(Icons.email, color: Colors.white),
                                 Text(
-                                  AppConstants.continue_with_email_key.tr,
+                                  'استمر بواسطة البريد الإلكتروني',
                                   style: GoogleFonts.lato(
                                       fontSize: 20, color: Colors.white),
                                 ),
@@ -188,9 +187,7 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
                         Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Text(
-                            AppConstants
-                                .by_continuing_you_agree_plans_to_dos_terms_of_services_privacy_policy_key
-                                .tr,
+                            'من خلال الاستمرار، فإنك توافق على شروط الخدمة وسياسة الخصوصية',
                             textAlign: TextAlign.center,
                             style: GoogleFonts.lato(
                                 fontSize: 15,

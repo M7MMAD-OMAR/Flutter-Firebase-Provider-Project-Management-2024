@@ -118,7 +118,7 @@ class _FatherTasksState extends State<FatherTasks> {
             child: SafeArea(
               child: TaskezAppHeader(
                 title:
-                    "${AppConstants.task_key.tr} :${widget.fatherTaskModel.name?.toUpperCase()}  المهام",
+                    "مهمة :${widget.fatherTaskModel.name?.toUpperCase()}  المهام",
                 widget: MySearchBarWidget(
                   searchWord:
                       "${widget.fatherTaskModel.name?.toUpperCase()} المهام",
@@ -368,7 +368,7 @@ class _FatherTasksState extends State<FatherTasks> {
               await UserTaskController()
                   .addUserLateTask(userTaskModel: userTaskModel);
               CustomSnackBar.showSuccess(
-                  "${AppConstants.the_task_key} ${userTaskModel.name} ${AppConstants.added_successfully_key}");
+                  "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
               Get.key.currentState!.pop();
             } catch (e) {
               CustomSnackBar.showError(e.toString());

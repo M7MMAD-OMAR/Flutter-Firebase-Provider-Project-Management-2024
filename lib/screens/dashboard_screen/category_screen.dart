@@ -38,11 +38,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
   String _getSortOptionText(CategorySortOption option) {
     switch (option) {
       case CategorySortOption.name:
-        return AppConstants.name_key.tr;
+        return "الاسم";
       case CategorySortOption.updatedDate:
-        return AppConstants.updated_Date_key.tr;
+        return "تاريح التحديث";
       case CategorySortOption.createDate:
-        return AppConstants.created_date_key.tr;
+        return "تاريخ الإنشاء";
       // Add cases for more sorting options if needed
       default:
         return '';
@@ -69,9 +69,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
       children: [
         SafeArea(
           child: TaskezAppHeader(
-            title: AppConstants.categories_key.tr,
+            title: "الفئات",
             widget: MySearchBarWidget(
-              searchWord: AppConstants.categories_key.tr,
+              searchWord: "الفئات",
               editingController: editingController,
               onChanged: (String value) {
                 setState(() {
@@ -242,7 +242,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         ),
                         child: Center(
                           child: Text(
-                            AppConstants.loading_key.tr,
+                            "جاري التحميل...",
                             style: GoogleFonts.fjallaOne(
                               color: Colors.white,
                               fontSize: Utils.screenWidth * 0.1,
@@ -278,7 +278,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         vertical: Utils.screenHeight * 0.05,
                       ),
                       child: Text(
-                        AppConstants.no_categories_found_key.tr,
+                        "لم يتم العثور على أي فئات",
                         style: GoogleFonts.lato(
                           color: Colors.white,
                           fontSize: Utils.screenWidth * 0.095,

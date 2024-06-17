@@ -108,8 +108,7 @@ class WatingSubTasksController extends TopController {
     required String waitingSubTaskId,
     required String rejectingMessage,
   }) async {
-    String reasonforRejection =
-        "${AppConstants.rejection_reason_key} $rejectingMessage";
+    String reasonforRejection = "سبب الرفض $rejectingMessage";
     await waitingTaskHandler(
       waitingSubTaskId: waitingSubTaskId,
       isAccepted: false,
@@ -123,9 +122,7 @@ class WatingSubTasksController extends TopController {
     required String memberMessage,
   }) async {
     try {
-      String status = isAccepted
-          ? "${AppConstants.accepted_key}"
-          : "${AppConstants.rejected_key}";
+      String status = isAccepted ? 'قبولها' : "رفضها";
       //user Controller to send the notification to the manager about whether the user acepted the invite or not
       UserController userController = Get.put(UserController());
       //to get the team model so we get the manager model and then get the manager user profile to sned the notification
@@ -166,9 +163,9 @@ class WatingSubTasksController extends TopController {
       FcmNotifications fcmNotifications = Get.put(FcmNotifications());
       await fcmNotifications.sendNotificationAsJson(
           fcmTokens: manager.tokenFcm,
-          title: "${AppConstants.task_got_key} $status",
+          title: "المهمة تم $status",
           body:
-              "${member.name} $status ${AppConstants.the_task_key} ${waitingSubTaskModel.projectSubTaskModel.name} ${AppConstants.in_project_key} ${projectModel.name} $memberMessage",
+              "${member.name} $status المهمة ${waitingSubTaskModel.projectSubTaskModel.name} في المشروع ${projectModel.name} $memberMessage",
           type: NotificationType.notification);
     } catch (e) {
       CustomSnackBar.showError(e.toString());

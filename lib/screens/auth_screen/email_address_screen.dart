@@ -58,8 +58,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                     children: [
                       const NavigationBack(),
                       SizedBox(height: Utils.screenHeight * 0.12),
-                      Text(AppConstants.whats_your_email_address_key.tr,
-                          //"What's your\nemail\naddress?",
+                      Text('ما هو عنوان بريدك الإلكتروني؟',
                           style: GoogleFonts.lato(
                               color: Colors.white,
                               fontSize: Utils.screenWidth * 0.12,
@@ -69,8 +68,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                           autovalidateMode: AutovalidateMode.disabled,
                           validator: (value) {
                             if (!EmailValidator.validate(value!)) {
-                              return AppConstants.enter_valid_email_key.tr;
-                              //"Enter Valid Email";
+                              return 'أدخل بريد إلكتروني صالح';
                             } else {
                               return null;
                             }
@@ -87,14 +85,13 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                             });
                           },
                           readOnly: false,
-                          placeholder: AppConstants.email_key.tr,
+                          placeholder: ' البريد ',
                           keyboardType: "text",
                           controller: _emailController,
                           obscureText: obscureText,
-                          label: AppConstants.your_email_key.tr),
+                          label: 'بريدك الإلكتروني'),
                       AppSpaces.verticalSpace40,
                       SizedBox(
-                        //width: 180,
                         height: Utils.screenWidth * 0.14,
                         child: ElevatedButton(
                           onPressed: () async {
@@ -111,17 +108,14 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(25),
                                       ),
-                                      child: Column(
+                                      child: const Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          const CircularProgressIndicator(),
-                                          const SizedBox(height: 16),
+                                          CircularProgressIndicator(),
+                                          SizedBox(height: 16),
                                           Text(
-                                            AppConstants
-                                                .Checking_Email_if_exsit_before_key
-                                                .tr,
-                                            //  'Checking Email if exsit before',
-                                            style: const TextStyle(
+                                            'التحقق من وجود الإيميل مسبقاً',
+                                            style: TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.black,
@@ -139,9 +133,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                   value: email)) {
                                 Navigator.of(context).pop();
                                 CustomSnackBar.showError(
-                                  AppConstants
-                                      .Sorry_But_Email_Already_In_Use_key.tr,
-                                  //  "Sorry But Email Already In Use"
+                                  'عذراً ولكن الإيميل موجود مسبقاً',
                                 );
                               } else {
                                 Navigator.of(context).pop();
@@ -158,8 +150,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                             children: [
                               const Icon(Icons.email, color: Colors.white),
                               Text(
-                                AppConstants.continue_with_email_key.tr,
-                                // '   Continue with Email',
+                                'استمر بواسطة البريد الإلكتروني',
                                 style: GoogleFonts.lato(
                                     fontSize: 20, color: Colors.white),
                               ),
@@ -190,7 +181,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                   Navigator.of(context).pop();
                                   CustomSnackBar.showSuccess("Done byby");
                                 });
-//   dev.log("message");
+
                                 Get.to(Get.to(() => const Timeline()));
                               }),
                           SquareButtonIcon(
@@ -231,7 +222,6 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                 await AuthProvider().anonymosSignInMethod();
                                 Navigator.of(context).pop();
 
-                                //    dev.log("message");
                                 Get.to(() => const Timeline());
                               }),
                         ],

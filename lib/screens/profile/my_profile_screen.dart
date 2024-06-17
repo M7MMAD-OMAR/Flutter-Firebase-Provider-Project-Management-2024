@@ -52,7 +52,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 children: [
                   DefaultNav(
                       userModel: widget.user,
-                      title: "$tabSpace ${AppConstants.profile_key.tr}",
+                      title: "$tabSpace الملف الشخصي",
                       type: ProfileDummyType.Button),
                   const SizedBox(height: 30),
                   StreamBuilder<DocumentSnapshot<UserModel>>(
@@ -85,7 +85,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             Text(
                               AuthProvider.instance.firebaseAuth.currentUser!
                                       .isAnonymous
-                                  ? AppConstants.sign_in_anonmouslly_key.tr
+                                  ? 'تسجيل الدخول بشكل مجهول'
                                   : snapshot.data!.data()!.email!,
                               style: GoogleFonts.lato(
                                 color: HexColor.fromHex("B0FFE1"),
@@ -96,7 +96,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               padding: const EdgeInsets.all(15.0),
                               child: OutlinedButtonWithText(
                                   width: 75,
-                                  content: AppConstants.edit_key.tr,
+                                  content: 'تعديل',
                                   onPressed: () {
                                     Get.to(
                                       () => EditProfilePage(
@@ -137,7 +137,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 body: ProjectScreen(),
                               ));
                         },
-                        label: '$tabSpace ${AppConstants.my_projects_key.tr}',
+                        label: '$tabSpace  مشاريعي ',
                         icon: Icons.cast,
                         margin: 5.0,
                       ),
@@ -153,20 +153,18 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             Navigator.of(context).pop();
                           }
                           Get.to(() => SelectTeamScreen(
-                              title: AppConstants.my_teams_key.tr,
-                              managerModel: userAsManger));
+                              title: 'فرقي', managerModel: userAsManger));
                         },
-                        label: '$tabSpace ${AppConstants.my_teams_key.tr}',
+                        label: '$tabSpace فرقي',
                         icon: Icons.group,
                         margin: 5.0,
                       ),
                       AppSpaces.verticalSpace10,
                       ProfileTextOption(
                         inTap: () {
-                          Get.to(() => SelectMyTeamScreen(
-                              title: AppConstants.manager_teams_key.tr));
+                          Get.to(() => SelectMyTeamScreen(title: 'إدارة الفرق'));
                         },
-                        label: '$tabSpace ${AppConstants.manager_teams_key.tr}',
+                        label: '$tabSpace إدارة الفرق',
                         icon: FeatherIcons.share2,
                         margin: 5.0,
                       ),

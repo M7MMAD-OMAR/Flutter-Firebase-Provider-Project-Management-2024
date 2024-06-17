@@ -72,8 +72,7 @@ class _EditUserCategoryState extends State<EditUserCategory> {
         createdAtK: widget.category.createdAt,
         updatedAtK: DateTime.now(),
       }, id: widget.category.id);
-      CustomSnackBar.showSuccess(
-          "${AppConstants.category_key.tr} $name ${AppConstants.updated_successfully_key.tr}");
+      CustomSnackBar.showSuccess("الفئة $name تم التحديث بنجاح");
       await Future.delayed(const Duration(seconds: 1));
       Get.key.currentState!.pop();
     } catch (e) {
@@ -157,10 +156,10 @@ class _EditUserCategoryState extends State<EditUserCategory> {
                             });
                           },
                           onChanged: onChanged,
-                          label: AppConstants.name_key.tr,
+                          label: "الاسم",
                           readOnly: false,
                           autovalidateMode: AutovalidateMode.always,
-                          placeholder: AppConstants.category_name_key.tr,
+                          placeholder: "اسم الفئة",
                           keyboardType: "text",
                           controller: _taskNameController,
                           obscureText: false,

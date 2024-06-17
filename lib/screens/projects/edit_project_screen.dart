@@ -53,12 +53,12 @@ class _EditProjectState extends State<EditProject> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(AppConstants.choose_an_image_key.tr),
+          title: Text('اختر صورة'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: Text(AppConstants.camera_key.tr),
+                  child: Text('الكاميرا'),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -66,7 +66,7 @@ class _EditProjectState extends State<EditProject> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.gallery_key.tr),
+                  child: Text('المعرض'),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -74,7 +74,7 @@ class _EditProjectState extends State<EditProject> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(AppConstants.cancel_key.tr),
+                  child: Text("إلغاء"),
                   onTap: () {
                     Navigator.of(context).pop();
                   },
@@ -278,12 +278,11 @@ class _EditProjectState extends State<EditProject> {
                         ///  value: name,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return AppConstants.name_can_not_be_empty_key.tr;
+                            return 'لا يمكن أن يكون الاسم فارغًا';
                           }
                           if (value.isNotEmpty) {
                             if (controller.isTaked.value) {
-                              return AppConstants
-                                  .please_use_another_project_name_key.tr;
+                              return 'يرجى استخدام اسم مشروع آخر';
                             }
                           }
                           return null;
@@ -295,9 +294,7 @@ class _EditProjectState extends State<EditProject> {
                           });
                         },
                         onChanged: (value) async {
-                          //setState(() {
                           name = value;
-                          //     });
 
                           if (await projectController.existByTow(
                                   reference: projectsRef,
@@ -315,10 +312,10 @@ class _EditProjectState extends State<EditProject> {
                             // controller.isTaked.value = false;
                           }
                         },
-                        label: AppConstants.name_key.tr,
+                        label: "الاسم",
                         readOnly: false,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        placeholder: "${AppConstants.project_name_key.tr} ....",
+                        placeholder: "اسم المشروع ....",
                         keyboardType: "text",
                         controller: _projectNameController,
                         obscureText: false,
@@ -331,8 +328,7 @@ class _EditProjectState extends State<EditProject> {
               LabelledFormInput(
                 validator: (p0) {
                   if (p0!.isEmpty) {
-                    return AppConstants
-                        .description_cannot_be_empty_spaces_key.tr;
+                    return 'لا يمكن أن يكون الوصف مساحات فارغة';
                   }
                   return null;
                 },
@@ -348,10 +344,10 @@ class _EditProjectState extends State<EditProject> {
                   _projectDescController.text = "";
                   //  });
                 },
-                label: AppConstants.description_key.tr,
+                label: 'وصف',
                 readOnly: false,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
-                placeholder: "${AppConstants.project_description_key.tr}....",
+                placeholder: "وصف المشروع....",
                 keyboardType: "text",
                 controller: _projectDescController,
                 obscureText: false,
@@ -364,7 +360,7 @@ class _EditProjectState extends State<EditProject> {
                   cardBackgroundColor: HexColor.fromHex("7DBA67"),
                   textAccentColor: HexColor.fromHex("A9F49C"),
                   value: formattedStartDate,
-                  label: AppConstants.start_date_key.tr,
+                  label: 'تاريخ البدء',
                 ),
                 NewSheetGoToCalendarWidget(
                   onSelectedDayChanged: handleDueDayChanged,
@@ -372,7 +368,7 @@ class _EditProjectState extends State<EditProject> {
                   cardBackgroundColor: HexColor.fromHex("BA67A3"),
                   textAccentColor: HexColor.fromHex("BA67A3"),
                   value: formattedDueDate,
-                  label: AppConstants.due_date_validation_key.tr,
+                  label: 'تاريخ الاستحقاق',
                 )
               ]),
               // Spacer(),
@@ -405,7 +401,7 @@ class _EditProjectState extends State<EditProject> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
+      return "اليوم ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }

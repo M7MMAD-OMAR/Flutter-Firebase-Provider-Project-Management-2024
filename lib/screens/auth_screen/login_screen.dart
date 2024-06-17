@@ -30,6 +30,7 @@ class _LoginState extends State<Login> {
   String email = "";
   String password = "";
   bool obscureText = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,18 +56,15 @@ class _LoginState extends State<Login> {
                         Column(
                           children: [
                             Text(
-                              AppConstants.login_key.tr,
-                              //'Login',
+                              'تسجيل الدخول',
                               style: GoogleFonts.lato(
                                   color: Colors.white,
                                   fontSize: 40,
                                   fontWeight: FontWeight.bold),
                             ),
-                            //say Hi
                             AppSpaces.verticalSpace20,
                             Text(
-                              AppConstants.nice_to_see_you_key.tr,
-                              // 'Nice to see You!',
+                              'سعيد برؤيتك! ',
                               style: GoogleFonts.pacifico(
                                 fontSize: 30,
                                 color: Colors.white,
@@ -81,8 +79,7 @@ class _LoginState extends State<Login> {
                       autovalidateMode: AutovalidateMode.disabled,
                       validator: (value) {
                         if (!EmailValidator.validate(value!)) {
-                          return AppConstants.enter_valid_email_key.tr;
-                          // "Enter Valid Email";
+                          return 'أدخل بريد إلكتروني صالح';
                         } else {
                           return null;
                         }
@@ -99,27 +96,22 @@ class _LoginState extends State<Login> {
                         });
                       },
                       readOnly: false,
-                      placeholder: AppConstants.email_key.tr,
-                      //"Email",
+                      placeholder: ' البريد ',
                       keyboardType: "text",
                       controller: _emailController,
                       obscureText: false,
-                      label: AppConstants.your_email_key.tr,
-                      //"Your Email"
+                      label: 'بريدك الإلكتروني',
                     ),
                     LabelledFormInput(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return AppConstants.password_can_not_be_empty_key.tr;
-                          // "Password Can not be Empty";
+                          return 'لا يمكن ترك حقل كلمة المرور فارغًا';
                         }
                         return null;
                       },
                       onClear: () {
                         setState(() {
                           obscureText = !obscureText;
-                          // password = "";
-                          // _passController.text = "";
                         });
                       },
                       onChanged: (value) {
@@ -129,13 +121,11 @@ class _LoginState extends State<Login> {
                       },
                       autovalidateMode: AutovalidateMode.disabled,
                       readOnly: false,
-                      placeholder: AppConstants.password_key.tr,
-                      //"Password",
+                      placeholder: 'كلمة المرور',
                       keyboardType: "text",
                       controller: _passController,
                       obscureText: obscureText,
-                      label: AppConstants.your_password_key.tr,
-                      //"Your Password"
+                      label: 'كلمة المرور الخاصة بك',
                     ),
                     AppSpaces.verticalSpace20,
                     GestureDetector(
@@ -148,8 +138,7 @@ class _LoginState extends State<Login> {
                           Padding(
                             padding: const EdgeInsets.only(right: 20),
                             child: Text(
-                              AppConstants.forget_Password_key.tr,
-                              // 'Forget Password?',
+                              'هل نسيت كلمة السر ؟',
                               style: TextStyle(
                                 color: Colors.grey[600],
                               ),
@@ -159,8 +148,6 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     AppSpaces.verticalSpace20,
-
-                    // const SizedBox(height: 20),
                     SizedBox(
                       width: double.infinity,
                       height: 60,
@@ -181,8 +168,6 @@ class _LoginState extends State<Login> {
                                           email: email, password: password);
                               Navigator.of(context).pop();
 
-                              // CustomSnackBar.showSuccess(
-                              //     "Sign IN Successfully");
                               if (userCredential.user!.emailVerified) {
                                 Get.offAll(() => const Timeline());
                               } else {
@@ -190,17 +175,11 @@ class _LoginState extends State<Login> {
                               }
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'user-not-found') {
-                                CustomSnackBar.showError(AppConstants
-                                        .no_user_found_for_that_email_key.tr
-                                    // "No user found for that email"
-                                    );
+                                CustomSnackBar.showError(
+                                    'لم يتم العثور على مستخدم بهذا البريد الإلكتروني');
                               }
                               if (e.code == 'wrong-password') {
-                                CustomSnackBar.showError(AppConstants
-                                        .wrong_password_provided_for_that_user_key
-                                        .tr
-                                    //  "Wrong password provided for that user"
-                                    );
+                                CustomSnackBar.showError('كلمة المرور خاطئة');
                               } else {
                                 CustomSnackBar.showError(
                                     e.code.replaceAll(RegExp(r'-'), " "));
@@ -217,8 +196,7 @@ class _LoginState extends State<Login> {
                         },
                         style: ButtonStyles.blueRounded,
                         child: Text(
-                          AppConstants.sign_in_key.tr,
-//                          'Sign In',
+                          'تسجيل الدخول',
                           style: GoogleFonts.lato(
                               fontSize: 20, color: Colors.white),
                         ),
@@ -228,19 +206,16 @@ class _LoginState extends State<Login> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          AppConstants.dont_have_an_account_key.tr,
-                          //     'Don\'t have an account? ',
-                          style: const TextStyle(color: Colors.white),
+                        const Text(
+                          'ليس لديك حساب؟',
+                          style: TextStyle(color: Colors.white),
                         ),
                         GestureDetector(
-                          //onTap: widget.onTap,
                           onTap: () {
                             Get.to(() => const EmailAddressScreen());
                           },
                           child: Text(
-                            AppConstants.make_one_key.tr,
-                            // 'Make One!',
+                            'أنشئ واحدًا!',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: AppColors.primaryAccentColor,

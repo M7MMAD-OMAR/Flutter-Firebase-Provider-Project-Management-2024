@@ -437,21 +437,20 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     }
     if (overlapped) {
       Get.defaultDialog(
-          title: AppConstants.task_time_error_key,
+          title: 'خطأ في وقت المهمة',
           middleText:
-              "${AppConstants.there_is_key} ${over} ${AppConstants.task_start_prompt_key}",
+          "هناك ${over} تبدأ في هذا الوقت هل تود إضافتها؟",
           onConfirm: () async {
             await addTask(
               reference: projectMainTasksRef,
               field: projectIdK,
               value: projectMainTaskModel.projectId,
               taskModel: projectMainTaskModel,
-              exception: Exception(
-                  AppConstants.main_task_already_exist_in_project_key),
+              exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
             );
             Get.key.currentState!.pop();
             CustomSnackBar.showSuccess(
-                "${AppConstants.task_key} ${projectMainTaskModel.name} ${AppConstants.added_successfully_key}");
+                "مهمة ${projectMainTaskModel.name} تمت الإضافة بنجاح");
           },
           onCancel: () {
             // SystemNavigator.pop();
@@ -464,12 +463,11 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         field: projectIdK,
         value: projectMainTaskModel.projectId,
         taskModel: projectMainTaskModel,
-        exception:
-            Exception(AppConstants.main_task_already_exist_in_project_key),
+        exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
       );
       Get.key.currentState!.pop();
       CustomSnackBar.showSuccess(
-          "${AppConstants.task_key} ${projectMainTaskModel.name} ${AppConstants.added_successfully_key}");
+          "مهمة ${projectMainTaskModel.name} تمت الإضافة بنجاح");
     }
     // await addTask(
     //   reference: projectMainTasksRef,
@@ -521,8 +519,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
           reference: projectSubTasksRef,
           data: data,
           id: id,
-          exception:
-              Exception(AppConstants.main_task_already_exist_in_project_key),
+          exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
           field: projectIdK,
           value: projectMainTaskModel.projectId);
       return;
@@ -551,20 +548,18 @@ class ProjectMainTaskController extends ProjectAndTaskController {
           GlobalKey<NavigatorState>();
       if (overlapped) {
         Get.defaultDialog(
-            title: AppConstants.task_time_error_key,
-            middleText:
-                "${AppConstants.there_is_key} ${over} ${AppConstants.task_start_prompt_key}",
+            title: 'خطأ في وقت المهمة',
+            middleText: "هناك ${over} تبدأ في هذا الوقت هل تود إضافتها؟",
             onConfirm: () async {
               await updateTask(
                   reference: projectSubTasksRef,
                   data: data,
                   id: id,
-                  exception: Exception(
-                      AppConstants.main_task_already_exist_in_project_key),
+                  exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
                   field: projectIdK,
                   value: projectMainTaskModel.projectId);
               CustomSnackBar.showSuccess(
-                  "${AppConstants.task_key} ${data[nameK]} ${AppConstants.updated_successfully_key}");
+                  "مهمة ${data[nameK]} تم التحديث بنجاح");
               Get.key.currentState!.pop();
             },
             onCancel: () {
@@ -577,12 +572,10 @@ class ProjectMainTaskController extends ProjectAndTaskController {
             reference: projectSubTasksRef,
             data: data,
             id: id,
-            exception:
-                Exception(AppConstants.main_task_already_exist_in_project_key),
+            exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
             field: projectIdK,
             value: projectMainTaskModel.projectId);
-        CustomSnackBar.showSuccess(
-            "${AppConstants.task_key} ${data[nameK]} ${AppConstants.updated_successfully_key}");
+        CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
         Get.key.currentState!.pop();
       }
     } else {
@@ -590,12 +583,10 @@ class ProjectMainTaskController extends ProjectAndTaskController {
           reference: projectSubTasksRef,
           data: data,
           id: id,
-          exception:
-              Exception(AppConstants.main_task_already_exist_in_project_key),
+          exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
           field: projectIdK,
           value: projectMainTaskModel.projectId);
-      CustomSnackBar.showSuccess(
-          "${AppConstants.task_key} ${data[nameK]} ${AppConstants.updated_successfully_key}");
+      CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
       Get.key.currentState!.pop();
     }
   }

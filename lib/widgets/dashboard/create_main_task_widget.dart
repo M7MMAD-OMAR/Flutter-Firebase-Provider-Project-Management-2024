@@ -118,8 +118,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(AppConstants.importance_key.tr,
-                    style: AppTextStyles.header2),
+                Text('الأهمية', style: AppTextStyles.header2),
                 AppSpaces.horizontalSpace10,
                 DropdownButton<String>(
                   icon: const Icon(Icons.label_important_outline_rounded),
@@ -171,12 +170,11 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                   child: LabelledFormInput(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return AppConstants.enter_name_key.tr;
+                        return 'الرجاء إدخال الاسم';
                       }
                       if (value.isNotEmpty) {
                         if (isTaked) {
-                          return AppConstants
-                              .please_use_another_taskName_key.tr;
+                          return 'يرجى استخدام اسم مهمة آخر';
                         }
                       }
                       return null;
@@ -188,10 +186,10 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                       });
                     },
                     onChanged: onChanged,
-                    label: AppConstants.name_key.tr,
+                    label: "الاسم",
                     readOnly: false,
                     autovalidateMode: AutovalidateMode.always,
-                    placeholder: AppConstants.task_name_key.tr,
+                    placeholder: "اسم المهمة",
                     keyboardType: "text",
                     controller: _taskNameController,
                     obscureText: false,
@@ -203,7 +201,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
             LabelledFormInput(
               validator: (p0) {
                 if (p0 == " ") {
-                  return AppConstants.description_cannot_be_empty_spaces_key.tr;
+                  return 'لا يمكن أن يكون الوصف مساحات فارغة';
                 }
                 return null;
               },
@@ -216,10 +214,10 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                   _taskDescController.text = "";
                 });
               },
-              label: AppConstants.description_key.tr,
+              label: 'وصف',
               readOnly: false,
               autovalidateMode: AutovalidateMode.always,
-              placeholder: "${AppConstants.task_description_key.tr}...",
+              placeholder: "وصف المهمة...",
               keyboardType: "text",
               controller: _taskDescController,
               obscureText: false,
@@ -232,7 +230,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                 cardBackgroundColor: HexColor.fromHex("7DBA67"),
                 textAccentColor: HexColor.fromHex("A9F49C"),
                 value: formattedStartDate,
-                label: AppConstants.start_date_key.tr,
+                label: 'تاريخ البدء',
               ),
               NewSheetGoToCalendarWidget(
                 onSelectedDayChanged: handleDueDayChanged,
@@ -240,7 +238,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
                 cardBackgroundColor: HexColor.fromHex("BA67A3"),
                 textAccentColor: HexColor.fromHex("BA67A3"),
                 value: formattedDueDate,
-                label: AppConstants.end_date_key.tr,
+                label: 'تاريخ الانتهاء',
               )
             ]),
             // Spacer(),
@@ -275,7 +273,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
+      return "اليوم ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }

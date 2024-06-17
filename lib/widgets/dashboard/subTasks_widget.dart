@@ -69,17 +69,17 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
   String _getSortOptionText(TaskSortOption option) {
     switch (option) {
       case TaskSortOption.name:
-        return AppConstants.name_key.tr;
+        return "الاسم";
       case TaskSortOption.updatedDate:
-        return AppConstants.updated_Date_key.tr;
+        return "تاريح التحديث";
       case TaskSortOption.createDate:
-        return AppConstants.created_date_key.tr;
+        return "تاريخ الإنشاء";
       case TaskSortOption.startDate:
-        return AppConstants.start_date_key.tr;
+        return 'تاريخ البدء';
       case TaskSortOption.endDate:
-        return AppConstants.end_date_key.tr;
+        return 'تاريخ الانتهاء';
       case TaskSortOption.importance:
-        return AppConstants.importance_key.tr;
+        return 'الأهمية';
       // Add cases for more sorting options if needed
       default:
         return '';
@@ -152,16 +152,11 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
       backgroundColor: HexColor.fromHex("#181a1f"),
       body: Column(
         children: [
-          // TextButton(
-          //     onPressed: () {
-          //       Get.to(() => NotificationScreen());
-          //     },
-          //     child: Text("gome")),
           SafeArea(
             child: TaskezAppHeader(
-              title: AppConstants.sub_tasks_key.tr,
+              title: 'المهام الفرعية',
               widget: MySearchBarWidget(
-                searchWord: AppConstants.sub_tasks_key.tr,
+                searchWord: 'المهام الفرعية',
                 editingController: editingController,
                 onChanged: (String value) {
                   setState(() {
@@ -352,7 +347,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                         ),
                         child: Center(
                           child: Text(
-                            AppConstants.no_sub_tasks_found_key.tr,
+                            'لا توجد مهام فرعية',
                             style: GoogleFonts.fjallaOne(
                               color: Colors.white,
                               fontSize: Utils.screenWidth * 0.1,
@@ -387,9 +382,8 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               required String userIdAssignedTo}) async {
             if (startDate.isAfter(dueDate) ||
                 startDate.isAtSameMomentAs(dueDate)) {
-              CustomSnackBar.showError(AppConstants
-                  .start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key
-                  .tr);
+              CustomSnackBar.showError(
+                  'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء أو في نفس الوقت أو قبل التاريخ الحالي');
               return;
             }
             ProjectMainTaskModel mainTask = await ProjectMainTaskController()
@@ -456,7 +450,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               final GlobalKey<NavigatorState> _navigatorKey =
                   GlobalKey<NavigatorState>();
               Get.defaultDialog(
-                  title: AppConstants.task_time_error_key.tr,
+                  title: 'خطأ في وقت المهمة',
                   middleText:
                       "There is ${over} That start in this time \n for the assigned user \n Would you Like To assign the Task Any Way?",
                   onConfirm: () async {
@@ -466,13 +460,13 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                         Get.put(FcmNotifications());
                     await fcmNotifications.sendNotificationAsJson(
                         fcmTokens: userModel.tokenFcm,
-                        title: AppConstants.you_have_a_task_key.tr,
+                        title: 'لديك مهمة',
                         data: {"id": waitingid},
                         body:
                             "the project ${projectModel?.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
                         type: NotificationType.taskRecieved);
                     CustomSnackBar.showSuccess(
-                        "${AppConstants.task_key.tr} ${taskName}  ${AppConstants.sent_to_member_successfully_key.tr}");
+                        "مهمة ${taskName}  تم إرسالها بنجاح إلى العضو");
                     Get.key.currentState!.pop();
                     Get.key.currentState!.pop();
                   },
@@ -487,13 +481,13 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               FcmNotifications fcmNotifications = Get.put(FcmNotifications());
               await fcmNotifications.sendNotificationAsJson(
                   fcmTokens: userModel.tokenFcm,
-                  title: AppConstants.you_have_a_task_key.tr,
+                  title: 'لديك مهمة',
                   data: {"id": waitingid},
                   body:
                       " ${projectModel?.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
                   type: NotificationType.taskRecieved);
               CustomSnackBar.showSuccess(
-                  "${AppConstants.task_key.tr} ${taskName} ${AppConstants.sent_to_member_successfully_key.tr}");
+                  "مهمة ${taskName} تم إرسالها بنجاح إلى العضو");
               Get.key.currentState!.pop();
             }
             // await waitingSubTaskController.addWatingSubTask(

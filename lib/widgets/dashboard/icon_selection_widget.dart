@@ -52,7 +52,7 @@ class _IconSelectionDialogState extends State<IconSelectionDialog> {
     return AlertDialog(
       backgroundColor: HexColor.fromHex("#181a1f"),
       title: Text(
-        AppConstants.choose_icon_key.tr,
+        'اختر رمزًا',
         style: AppTextStyles.header2,
       ),
       content: SingleChildScrollView(
@@ -96,7 +96,7 @@ class _IconSelectionDialogState extends State<IconSelectionDialog> {
                 Get.back();
               },
               child: Text(
-                AppConstants.close_key.tr,
+                'إغلاق',
                 style: GoogleFonts.lato(
                   color: HexColor.fromHex("616575"),
                   fontSize: 16,
@@ -106,7 +106,7 @@ class _IconSelectionDialogState extends State<IconSelectionDialog> {
             ),
             PrimaryProgressButton(
               width: Utils.screenWidth * 0.25,
-              label: AppConstants.oK_key.tr,
+              label: 'موافق',
               callback: () {
                 // Do something with the selected icon
                 widget.onSelectedIconChanged(getSelectedIcon());

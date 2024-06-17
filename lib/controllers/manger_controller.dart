@@ -14,7 +14,7 @@ class ManagerController extends TopController {
         collectionReference: usersRef, field: idK, value: model.userId)) {
       addDoc(reference: managersRef, model: model);
     } else {
-      throw Exception(AppConstants.Sorry_the_user_id_cannot_be_found_key.tr);
+      throw Exception('عذرا ، لا يمكن العثور على معرف المستخدم');
     }
   }
 
@@ -119,7 +119,7 @@ class ManagerController extends TopController {
 
   Future<void> updateManger(String id, Map<String, dynamic> data) async {
     if (data.containsKey(userIdK)) {
-      throw Exception(AppConstants.userId_update_error_key.tr);
+      throw Exception('خطأ في تحديث معرف المستخدم');
     }
     await updateNonRelationalFields(
         reference: managersRef, data: data, id: id, nameException: Exception());

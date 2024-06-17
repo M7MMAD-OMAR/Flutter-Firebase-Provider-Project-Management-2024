@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class BarChartSample1 extends StatefulWidget {
@@ -49,7 +48,7 @@ class BarChartSample1State extends State<BarChartSample1> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    AppConstants.completed_last_7_days_key.tr,
+                    'تمت في السبعة أيام الأخيرة',
                     style: GoogleFonts.lato(
                       color: HexColor.fromHex("616575"),
                       fontSize: Utils.screenWidth * 0.04,

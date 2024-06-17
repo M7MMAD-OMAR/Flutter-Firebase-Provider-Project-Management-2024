@@ -4,6 +4,7 @@ import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
+import '../../providers/auth_provider.dart';
 import '../tops/VarTopModel.dart';
 
 class UserModel extends VarTopModel {
@@ -64,13 +65,13 @@ class UserModel extends VarTopModel {
   @override
   set setName(String name) {
     if (name.isEmpty) {
-      throw Exception(AppConstants.name_not_empty_key.tr);
+      throw Exception('الاسم لا يمكن أن يكون فارغاً');
     }
     if (name.length <= 3) {
-      throw Exception(AppConstants.name_min_length_key.tr);
+      throw Exception('الاسم يجب أن لا يقل عن 3 أحرف');
     }
     if (regEx.hasMatch(name) || regEx2.hasMatch(name)) {
-      throw Exception(AppConstants.name_letters_only_key.tr);
+      throw Exception('الاسم يمكن أن يحتوي على أحرف فقط');
     }
 
     this.name = name;
@@ -82,20 +83,20 @@ class UserModel extends VarTopModel {
       return;
     }
     if (userName.isEmpty) {
-      throw Exception(AppConstants.username_not_empty_key.tr);
+      throw Exception('اسم المستخدم لا يمكن أن يكون فارغاً');
     }
     if (userName.length < 3) {
-      throw Exception(AppConstants.username_min_length_key.tr);
+      throw Exception('اسم المستخدم لا يمكن أن يكون أقل من 3 أحرف');
     }
     if (userName.length >= 20) {
-      throw Exception(AppConstants.username_max_length_key.tr);
+      throw Exception('اسم المستخدم لا يمكن أن يزيد عن 20 حرفًا');
     }
     this.userName = userName;
   }
 
   set setImageUrl(String imageUrl) {
     if (imageUrl.isEmpty) {
-      throw Exception(AppConstants.user_imageUrl_empty_key.tr);
+      throw Exception('لا يمكن أن يكون رابط صورة المستخدم فارغًا');
     }
     this.imageUrl = imageUrl;
   }
@@ -103,7 +104,7 @@ class UserModel extends VarTopModel {
   set setEmail(String? email) {
     if (email != null) {
       if (!EmailValidator.validate(email)) {
-        throw Exception(AppConstants.valid_email_error_key.tr);
+        throw Exception('أدخل بريدًا إلكترونيًا صحيحًا');
       }
       this.email = email;
     } else {
@@ -124,7 +125,7 @@ class UserModel extends VarTopModel {
   @override
   set setId(String id) {
     if (id.isEmpty) {
-      throw Exception(AppConstants.user_id_empty_error_key.tr);
+      throw Exception('لا يمكن أن يكون معرّف المستخدم فارغًا');
     }
     this.id = id;
   }
@@ -136,11 +137,11 @@ class UserModel extends VarTopModel {
 
     createdAtParameter = firebaseTime(createdAtParameter);
     if (createdAtParameter.isAfter(now)) {
-      throw Exception(AppConstants.user_creating_time_future_error_key.tr);
+      throw Exception('لا يمكن أن يكون وقت إنشاء المستخدم في المستقبل');
     }
 
     if (createdAtParameter.isBefore(now)) {
-      throw Exception(AppConstants.user_creating_time_past_error_key.tr);
+      throw Exception('لا يمكن أن يكون وقت إنشاء المستخدم في الماضي');
     }
     createdAt = createdAtParameter;
   }
@@ -151,7 +152,7 @@ class UserModel extends VarTopModel {
 
     if (updatedAtParameter.isBefore(createdAt)) {
       throw Exception(
-          AppConstants.user_account_updating_time_before_creating_error_key.tr);
+          'لا يمكن أن يكون وقت تحديث حساب المستخدم قبل وقت الإنشاء');
     }
     updatedAt = updatedAtParameter;
   }

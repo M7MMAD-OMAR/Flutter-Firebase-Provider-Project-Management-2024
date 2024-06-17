@@ -57,21 +57,21 @@ class TaskWidget extends StatelessWidget {
       case TaskStatus.notDone:
         icon = Icons.clear;
         color = Colors.red;
-        statusText = AppConstants.not_done_key.tr;
+        statusText = 'غير مكتمل';
         break;
       case TaskStatus.inProgress:
         icon = Icons.access_time;
         color = Colors.orange;
-        statusText = AppConstants.in_progress_key.tr;
+        statusText = 'قيد التنفيذ';
         break;
       case TaskStatus.done:
         icon = Icons.check;
         color = Colors.green;
-        statusText = AppConstants.done_key.tr;
+        statusText = 'تم';
       case TaskStatus.notStarted:
         icon = Icons.schedule;
         color = Colors.grey;
-        statusText = AppConstants.not_started_key.tr;
+        statusText = 'لم تبدأ بعد';
         break;
     }
 
@@ -257,9 +257,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                     }
                     if (startDate.isAfter(dueDate) ||
                         startDate.isAtSameMomentAs(dueDate)) {
-                      CustomSnackBar.showError(AppConstants
-                          .start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key
-                          .tr);
+                      CustomSnackBar.showError(
+                          'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء أو في نفس الوقت أو قبل التاريخ الحالي');
                       return;
                     }
                     if (memberModelold.id != newteamMemberModel.id) {
@@ -622,7 +621,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               ),
                               const SizedBox(height: 20),
                               buildLabel(
-                                  "${AppConstants.description_key.tr}: ${widget.task.description ?? "no description"}"),
+                                  "وصف: ${widget.task.description ?? "no description"}"),
                               StreamBuilder(
                                 stream: statusController
                                     .getStatusByIdStream(
@@ -643,9 +642,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                 },
                               ),
                               buildLabel(
-                                  "${AppConstants.start_date_key.tr}:${formatDateTime(widget.task.startDate)}"),
+                                  "تاريخ البدء:${formatDateTime(widget.task.startDate)}"),
                               buildLabel(
-                                  "${AppConstants.end_date_key.tr}:${formatDateTime(widget.task.endDate!)}"),
+                                  "تاريخ الانتهاء:${formatDateTime(widget.task.endDate!)}"),
                             ],
                           ),
                         ),
@@ -733,8 +732,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               ),
                             ),
                             const SizedBox(height: 20),
-                            buildLabel(
-                                "${AppConstants.description_key.tr}: ${widget.task.description}"),
+                            buildLabel("وصف: ${widget.task.description}"),
                             StreamBuilder(
                               stream: statusController
                                   .getStatusByIdStream(
@@ -755,9 +753,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               },
                             ),
                             buildLabel(
-                                "${AppConstants.start_date_key.tr}:${formatDateTime(widget.task.startDate)}"),
+                                "تاريخ البدء:${formatDateTime(widget.task.startDate)}"),
                             buildLabel(
-                                "${AppConstants.end_date_key.tr}:${formatDateTime(widget.task.endDate!)}"),
+                                "تاريخ الانتهاء:${formatDateTime(widget.task.endDate!)}"),
                           ],
                         ),
                       ),
@@ -863,7 +861,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
+      return "اليوم ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM/yy h:mma').format(dateTime);
     }

@@ -29,6 +29,7 @@ import '../dummy/profile_dummy_widget.dart';
 class ShowTeamMembers extends StatelessWidget {
   final TeamModel teamModel;
   final ManagerModel? userAsManager;
+
   const ShowTeamMembers({
     required this.userAsManager,
     required this.teamModel,
@@ -53,7 +54,7 @@ class ShowTeamMembers extends StatelessWidget {
                 right: Utils.screenWidth * 0.04,
               ),
               child: TaskezAppHeader(
-                title: AppConstants.members_key.tr,
+                title: "الأعضاء",
                 widget: GestureDetector(
                   onTap: () async {
                     //TODO:
@@ -75,7 +76,7 @@ class ShowTeamMembers extends StatelessWidget {
                         return GestureDetector(
                           onTap: () {
                             CustomDialog.userInfoDialog(
-                                title: AppConstants.team_leader_key.tr,
+                                title: "قائد الفريق",
                                 imageUrl: snapshot.data!.imageUrl,
                                 name: snapshot.data!.name!,
                                 userName: snapshot.data!.userName!,
@@ -180,18 +181,17 @@ class ShowTeamMembers extends StatelessWidget {
                                                     Padding(
                                                       padding:
                                                           EdgeInsets.symmetric(
-                                                        horizontal: Utils
-                                                                .screenWidth *
-                                                            0.1, // Adjust the percentage as needed
+                                                        horizontal:
+                                                            Utils.screenWidth *
+                                                                0.1,
+                                                        // Adjust the percentage as needed
                                                         vertical:
                                                             Utils.screenHeight *
                                                                 0.05,
                                                       ),
                                                       child: Center(
                                                         child: Text(
-                                                          AppConstants
-                                                              .no_any_members_yet_key
-                                                              .tr,
+                                                          'لا يوجد أي أعضاء حتى الآن',
                                                           style: GoogleFonts
                                                               .fjallaOne(
                                                             color: Colors.white,
@@ -253,9 +253,9 @@ class ShowTeamMembers extends StatelessWidget {
                                                                                       await TeamMemberController().deleteMember(id: snapshotTeamMembers.data!.docs[index].data().id);
                                                                                       Get.back();
                                                                                     },
-                                                                                    content: Text("${AppConstants.confirm_delete_key.tr} ${snapshotUsers.data!.docs[index].data().name} ${AppConstants.from_this_team_key.tr}"));
+                                                                                    content: Text("هل أنت متأكد من رغبتك في حذف هذه المهمة؟ ${snapshotUsers.data!.docs[index].data().name} من هذا الفريق ؟"));
                                                                               },
-                                                                              label: AppConstants.delete_key.tr,
+                                                                              label: "حذف",
                                                                               icon: FontAwesomeIcons.trash,
                                                                             ),
                                                                           ])
@@ -271,7 +271,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                                 await WaitingMamberController().deleteWaitingMamberDoc(waitingMemberId: snapShotWatingUsers.data!.docs[index].data().id);
                                                                                 Get.key.currentState!.pop();
                                                                               },
-                                                                              label: AppConstants.delete_key.tr,
+                                                                              label: 'حذف',
                                                                               icon: FontAwesomeIcons.trash,
                                                                             ),
                                                                           ])
@@ -294,9 +294,8 @@ class ShowTeamMembers extends StatelessWidget {
                                                                 ? ActiveEmployeeCard(
                                                                     onTap: () {
                                                                       CustomDialog.userInfoDialog(
-                                                                          title: AppConstants
-                                                                              .member_key
-                                                                              .tr,
+                                                                          title:
+                                                                              'عضو',
                                                                           imageUrl: snapshotUsers
                                                                               .data!
                                                                               .docs[
@@ -333,9 +332,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                             snapshotUsers.data!.docs[index]
                                                                                 .data()
                                                                                 .id
-                                                                        ? AppConstants
-                                                                            .you_key
-                                                                            .tr
+                                                                        ? 'أنت'
                                                                         : snapshotUsers
                                                                             .data!
                                                                             .docs[index]
@@ -360,16 +357,15 @@ class ShowTeamMembers extends StatelessWidget {
                                                                           () {
                                                                         CustomDialog.userInfoDialog(
                                                                             title:
-                                                                                AppConstants.invited_not_a_member_yet_key.tr,
-                                                                            imageUrl: snapshotUsers.data!.docs[index].data().imageUrl,
+                                                                                'مدعو (ليس عضوًا بعد)',
+                                                                            imageUrl:
+                                                                                snapshotUsers.data!.docs[index].data().imageUrl,
                                                                             name: snapshotUsers.data!.docs[index].data().name!,
                                                                             userName: snapshotUsers.data!.docs[index].data().userName!,
                                                                             bio: snapshotUsers.data!.docs[index].data().bio);
                                                                       },
                                                                       userName: AuthProvider.instance.firebaseAuth.currentUser!.uid == snapshotUsers.data!.docs[index].data().id
-                                                                          ? AppConstants
-                                                                              .you_key
-                                                                              .tr
+                                                                          ? 'أنت'
                                                                           : snapshotUsers
                                                                               .data!
                                                                               .docs[index]
@@ -414,7 +410,7 @@ class ShowTeamMembers extends StatelessWidget {
               child: AppPrimaryButton(
                   buttonHeight: 50,
                   buttonWidth: 150,
-                  buttonText: AppConstants.add_member_key.tr,
+                  buttonText: 'إضافة عضو',
                   callback: () {
                     Get.to(
                       () => SearchForMembers(
@@ -431,6 +427,4 @@ class ShowTeamMembers extends StatelessWidget {
       ]),
     );
   }
-
-//  void GoToCommon(String projectId, bool isManager) {}
 }

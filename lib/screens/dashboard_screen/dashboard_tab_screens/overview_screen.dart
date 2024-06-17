@@ -90,7 +90,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                           AuthProvider.instance.firebaseAuth.currentUser!.uid,
                     )
                     .asBroadcastStream(),
-                name: AppConstants.total_task_key.tr,
+                name: 'كل المهام',
                 colorHex: "EFA17D",
                 imageUrl: "assets/project.png"),
             triggerShow(
@@ -103,7 +103,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                             AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         status: statusNotStarted)
                     .asBroadcastStream(),
-                name: AppConstants.to_do_today_key.tr,
+                name: 'للقيام به اليوم',
                 colorHex: "EFA17D",
                 imageUrl: "assets/orange_pencil.png"),
             triggerShow(
@@ -115,7 +115,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                             AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         status: statusDoing)
                     .asBroadcastStream(),
-                name: AppConstants.working_on_key.tr,
+                name: 'تعمل على',
                 colorHex: "EFA17D",
                 imageUrl: "assets/working_on.png"),
             triggerShow(
@@ -127,7 +127,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                             AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         status: statusDone)
                     .asBroadcastStream(),
-                name: AppConstants.completed_tasks_key.tr,
+                name: 'المهام المكتملة',
                 colorHex: "7FBC69",
                 imageUrl: "assets/task_done.png"),
             triggerShow(
@@ -139,7 +139,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                             AuthProvider.instance.firebaseAuth.currentUser!.uid,
                         status: statusNotDone)
                     .asBroadcastStream(),
-                name: AppConstants.uncompleted_tasks_key.tr,
+                name: 'المهام غير المنجزة',
                 colorHex: "FF0000", 
                 imageUrl: "assets/task_done.png"),
             triggerShow(
@@ -150,7 +150,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                         userId:
                             AuthProvider.instance.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
-                name: AppConstants.total_categories_key.tr,
+                name: 'عدد الفئات الكلي',
                 colorHex: "EDA7FA",
                 imageUrl: "assets/category.png"),
             triggerShow(
@@ -161,7 +161,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                         userId:
                             AuthProvider.instance.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
-                name: AppConstants.total_projects_key.tr,
+                name: 'مجموع المشاريع',
                 colorHex: "EDA7FA",
                 imageUrl: "assets/project.png"),
             triggerShow(
@@ -172,7 +172,7 @@ class _DashboardOverviewState extends State<DashboardOverview> {
                         userId:
                             AuthProvider.instance.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
-                name: AppConstants.total_teams_key.tr,
+                name: 'مجموع الفرق',
                 colorHex: "EDA7FA",
                 imageUrl: "assets/team.png"),
           ],

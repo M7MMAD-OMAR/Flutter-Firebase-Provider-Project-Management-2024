@@ -95,6 +95,7 @@ class brogress extends StatefulWidget {
       required this.percento,
       required this.completed,
       required this.all});
+
   final ProjectMainTaskModel taskModel;
   final double percento;
   final double completed;
@@ -142,6 +143,7 @@ class _brogressState extends State<brogress> {
   }
 
   RxBool isManager = false.obs;
+
   @override
   Widget build(BuildContext context) {
     String taskStatus = "";
@@ -191,14 +193,14 @@ class _brogressState extends State<brogress> {
                     if ((userTaskModel.startDate != startDate ||
                             userTaskModel.endDate != dueDate) &&
                         taskStatus != statusNotStarted) {
-                      CustomSnackBar.showError(AppConstants
-                          .cannot_edit_time_of_done_or_doing_task_key.tr);
+                      CustomSnackBar.showError(
+                          'لا يمكن تحرير وقت بدء وانتهاء المهمة التي تم الانتهاء منها أو التي قيد التنفيذ');
                       return;
                     }
                     if (startDate.isAfter(dueDate) ||
                         startDate.isAtSameMomentAs(dueDate)) {
-                      CustomSnackBar.showError(AppConstants
-                          .start_date_cannot_be_after_end_date_key.tr);
+                      CustomSnackBar.showError(
+                          'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء');
                       return;
                     }
 
@@ -340,7 +342,8 @@ class _brogressState extends State<brogress> {
                               ),
                               const Spacer(),
                               Text(
-                                "${widget.percento}%", // Use the progressFigure property of taskModel
+                                "${widget.percento}%",
+                                // Use the progressFigure property of taskModel
                                 style: GoogleFonts.lato(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
@@ -348,12 +351,11 @@ class _brogressState extends State<brogress> {
                             ],
                           ),
                           //AppSpaces.verticalSpace10,
+                          buildLabel(" وصف: ${widget.taskModel.description}"),
                           buildLabel(
-                              "${AppConstants.description_key.tr} : ${widget.taskModel.description}"),
+                              " تاريخ البدء:${formatDateTime(widget.taskModel.startDate)}"),
                           buildLabel(
-                              "${AppConstants.start_date_key.tr}:${formatDateTime(widget.taskModel.startDate)}"),
-                          buildLabel(
-                              "${AppConstants.end_date_key.tr}:${formatDateTime(widget.taskModel.endDate!)}"),
+                              " تاريخ الانتهاء:${formatDateTime(widget.taskModel.endDate!)}"),
                         ],
                       ),
                     ),
@@ -441,7 +443,8 @@ class _brogressState extends State<brogress> {
                           ),
                           AppSpaces.verticalSpace10,
                           Text(
-                            '${widget.completed.toInt()}  ${widget.all.toInt()}  ${AppConstants.is_completed_key.tr}', // Use the rating property of taskModel
+                            '${widget.completed.toInt()}  ${widget.all.toInt()}  تم الانتهاء',
+                            // Use the rating property of taskModel
                             style: GoogleFonts.lato(
                               fontWeight: FontWeight.w500,
                               fontSize: Utils.screenWidth * 0.03,
@@ -483,7 +486,8 @@ class _brogressState extends State<brogress> {
                               ),
                               const Spacer(),
                               Text(
-                                "${widget.percento}%", // Use the progressFigure property of taskModel
+                                "${widget.percento}%",
+                                // Use the progressFigure property of taskModel
                                 style: GoogleFonts.lato(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
@@ -491,12 +495,11 @@ class _brogressState extends State<brogress> {
                             ],
                           ),
                           AppSpaces.verticalSpace10,
+                          buildLabel("وصف: ${widget.taskModel.description}"),
                           buildLabel(
-                              "${AppConstants.description_key.tr}: ${widget.taskModel.description}"),
+                              "تاريخ البدء:${formatDateTime(widget.taskModel.startDate)}"),
                           buildLabel(
-                              "${AppConstants.start_date_key.tr}:${formatDateTime(widget.taskModel.startDate)}"),
-                          buildLabel(
-                              "${AppConstants.end_date_key.tr}:${formatDateTime(widget.taskModel.endDate!)}"),
+                              "تاريخ الانتهاء:${formatDateTime(widget.taskModel.endDate!)}"),
                           const SizedBox(
                             height: 10,
                           ),
@@ -540,7 +543,7 @@ class _brogressState extends State<brogress> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
+      return "اليوم ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM/yy h:mma').format(dateTime);
     }
@@ -615,21 +618,21 @@ class TaskWidget extends StatelessWidget {
       case TaskStatus.notDone:
         icon = Icons.clear;
         color = Colors.red;
-        statusText = AppConstants.not_done_key.tr;
+        statusText = 'غير مكتمل';
         break;
       case TaskStatus.inProgress:
         icon = Icons.access_time;
         color = Colors.orange;
-        statusText = AppConstants.in_progress_key.tr;
+        statusText = 'قيد التنفيذ';
         break;
       case TaskStatus.done:
         icon = Icons.check;
         color = Colors.green;
-        statusText = AppConstants.done_key.tr;
+        statusText = 'تم';
       case TaskStatus.notstarted:
         icon = Icons.schedule;
         color = Colors.grey;
-        statusText = AppConstants.not_started_key.tr;
+        statusText = 'لم تبدأ بعد';
         break;
     }
 

@@ -52,17 +52,17 @@ class _CategoryTasksState extends State<CategoryTasks> {
   String _getSortOptionText(TaskSortOption option) {
     switch (option) {
       case TaskSortOption.name:
-        return AppConstants.name_key.tr;
+        return "الاسم";
       case TaskSortOption.updatedDate:
-        return AppConstants.updated_Date_key.tr;
+        return "تاريح التحديث";
       case TaskSortOption.createDate:
-        return AppConstants.created_date_key.tr;
+        return "تاريخ الإنشاء";
       case TaskSortOption.startDate:
-        return AppConstants.start_date_key.tr;
+        return 'تاريخ البدء';
       case TaskSortOption.endDate:
-        return AppConstants.end_date_key.tr;
+        return 'تاريخ الانتهاء';
       case TaskSortOption.importance:
-        return AppConstants.importance_key.tr;
+        return 'الأهمية';
       // Add cases for more sorting options if needed
       default:
         return '';
@@ -278,7 +278,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                               ),
                               AppSpaces.verticalSpace10,
                               Text(
-                                AppConstants.no_tasks_found_key.tr,
+                                'لم يتم العثور على أي مهام',
                                 style: GoogleFonts.poppins(
                                   textStyle: TextStyle(
                                     color: HexColor.fromHex("#999999"),
@@ -289,7 +289,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                               ),
                               AppSpaces.verticalSpace10,
                               Text(
-                                AppConstants.add_task_to_get_started_key.tr,
+                                'أضف مهمة للبدء',
                                 style: GoogleFonts.poppins(
                                   textStyle: TextStyle(
                                     color: HexColor.fromHex("#999999"),
@@ -335,7 +335,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
           if (startDate.isAfter(dueDate) ||
               startDate.isAtSameMomentAs(dueDate)) {
             CustomSnackBar.showError(
-                AppConstants.start_date_cannot_be_after_end_date_key.tr);
+                'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء');
             return;
           }
 
@@ -361,7 +361,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
             await UserTaskController()
                 .addUserLateTask(userTaskModel: userTaskModel);
             CustomSnackBar.showSuccess(
-                "${AppConstants.the_task_key.tr} ${userTaskModel.name} ${AppConstants.added_successfully_key.tr}");
+                "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
             Get.key.currentState!.pop();
           } catch (e) {
             CustomSnackBar.showError(e.toString());
@@ -386,7 +386,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
           if (startDate.isAfter(dueDate) ||
               startDate.isAtSameMomentAs(dueDate)) {
             CustomSnackBar.showError(
-                AppConstants.start_date_cannot_be_after_end_date_key.tr);
+                'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء');
             return;
           }
           try {

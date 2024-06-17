@@ -41,7 +41,7 @@ class StatusController extends TopController {
         value: statusModel.name,
         field: nameK);
     if (exist) {
-      throw Exception(AppConstants.status_name_already_added_key.tr);
+      throw Exception('اسم الحالة تمت إضافته بالفعل');
     }
     await addDoc(model: statusModel, reference: statusesRef);
   }
@@ -66,20 +66,20 @@ class StatusController extends TopController {
       await addDoc(model: statusModel, reference: statusesRef);
       return;
     } else {
-      throw Exception(AppConstants.status_name_already_added_key.tr);
+      throw Exception('اسم الحالة تمت إضافته بالفعل');
     }
   }
 
   Future<void> updateStatus2(
       {required id, required Map<String, dynamic> data}) async {
     if (data.containsKey(id)) {
-      throw Exception(AppConstants.status_id_update_error_key.tr);
+      throw Exception('عذرًا، لا يمكن تحديث معرّف الحالة');
     }
 
     await updateNonRelationalFields(
         reference: teamMembersRef,
         data: data,
         id: id,
-        nameException: Exception(AppConstants.status_already_added_key.tr));
+        nameException: Exception('الحالة تمت إضافتها بالفعل'));
   }
 }

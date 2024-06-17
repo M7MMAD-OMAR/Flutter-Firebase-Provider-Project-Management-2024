@@ -171,7 +171,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                         value: snapshot.data!.data()!.name!,
                         controller: managerNameController,
                         obscureText: false,
-                        label: AppConstants.team_manager_key.tr);
+                        label: "مدير الفريق");
                   }),
               AppSpaces.verticalSpace10,
               Form(
@@ -183,7 +183,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                     },
                     validator: (p0) {
                       if (p0!.isEmpty) {
-                        return AppConstants.name_can_not_be_empty_key.tr;
+                        return "لا يمكن أن يكون الاسم فارغًا";
                       }
                       return null;
                     },
@@ -198,10 +198,10 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                     keyboardType: "text",
                     controller: teamNameController,
                     obscureText: false,
-                    label: AppConstants.team_name_key.tr),
+                    label: "اسم الفريق"),
               ),
               AppSpaces.verticalSpace10,
-              ContainerLabel(label: AppConstants.members_key.tr),
+              const ContainerLabel(label: "الأعضاء"),
               AppSpaces.verticalSpace10,
               Transform.scale(
                 alignment: Alignment.centerLeft,
@@ -232,16 +232,6 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                       for (var member in snapshotMembers.data!.docs) {
                         listIds.add(member.data().userId);
                       }
-                      // if (listIds.isEmpty) {
-                      //   return buildStackedImages(
-                      //     addMore: true,
-                      //     numberOfMembers: 0.toString(),
-                      //     users: <UserModel>[],
-                      //     onTap: () {
-                      //
-                      //     },
-                      //   );
-                      // }
 
                       return StreamBuilder<QuerySnapshot<UserModel>>(
                           stream: UserController()
@@ -275,7 +265,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                   PrimaryProgressButton(
                     height: 50,
                     width: 150,
-                    label: AppConstants.edit_team_key.tr,
+                    label: "تعديل فريق",
                     callback: () async {
                       if (formKey.currentState!.validate()) {
                         name = name.trim();
@@ -310,13 +300,12 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                               field2: managerIdK);
                           if (res) {
                             Navigator.of(context).pop();
-                            CustomSnackBar.showError(AppConstants
-                                .team_has_same_name_in_your_teams_key.tr);
+                            CustomSnackBar.showError(
+                                'هناك فريق يحمل نفس الاسم في فرقك');
                           } else {
                             await TeamController()
                                 .updateTeam(widget.teamModel.id, {nameK: name});
-                            CustomSnackBar.showSuccess(
-                                AppConstants.team_updated_successfully_key.tr);
+                            CustomSnackBar.showSuccess("تم تحديث الفريق بنجاح");
                             Navigator.of(context).pop();
                           }
                           Get.key.currentState!.pop();

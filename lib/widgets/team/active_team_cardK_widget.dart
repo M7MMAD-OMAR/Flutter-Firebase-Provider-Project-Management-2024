@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
@@ -94,7 +93,7 @@ class ActiveTeamCard extends StatelessWidget {
                                         color: Colors.blue, width: 1),
                                     borderRadius: BorderRadius.circular(50.0)),
                                 child: Text(
-                                  "$numberOfMembers  ${AppConstants.members_key.tr}",
+                                  "$numberOfMembers  الأعضاء ",
                                   style: GoogleFonts.lato(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,

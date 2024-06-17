@@ -11,7 +11,6 @@ import '../models/team/project_model.dart';
 import '../models/team/teamModel.dart';
 import '../models/tops/top_model.dart';
 import '../services/collections_refrences.dart';
-//import 'package:rxdart/rxdart.dart';
 
 class TeamController extends TopController {
   Future<void> addTeam(TeamModel teamModel) async {
@@ -21,7 +20,7 @@ class TeamController extends TopController {
         value: teamModel.managerId)) {
       await addDoc(reference: teamsRef, model: teamModel);
     } else {
-      throw Exception(AppConstants.manager_not_found_error_key.tr);
+      throw Exception('عذرًا، مدير المشروع غير موجود');
     }
   }
 
@@ -75,7 +74,7 @@ class TeamController extends TopController {
     List<TeamMemberModel> listMembers =
         await teamMemberController.getMemberWhereUserIs(userId: userId);
     if (listMembers.isEmpty) {
-      throw Exception(AppConstants.not_member_in_any_team_error_key.tr);
+      throw Exception('أنت لست عضواً بعد في أي فريق');
     }
     List<String> teamsId = <String>[];
     for (TeamMemberModel member in listMembers) {
@@ -107,7 +106,6 @@ class TeamController extends TopController {
     yield* getTeamsOfManagerStream(managerId: managerModel.id);
   }
 
-//جلب جميع التيمات الخاصة بهل المانجر
   Future<List<TeamModel>> getTeamsOfManager({required String managerId}) async {
     List<Object?>? list = await getListDataWhere(
         collectionReference: teamsRef, field: managerIdK, value: managerId);
@@ -121,23 +119,12 @@ class TeamController extends TopController {
     return stream.cast<QuerySnapshot<TeamModel>>();
   }
 
-//getTeamOfProject(String teamIdOfproject) {}
-// هي نفسها يلي تحت لانو ببساطة وقت بدك مشروع بس بتعطيه الايدي تيم يلي موجود بالكوليكشين تبعو بيقوم بيجيبو
-//وهاد حسب تصميم الداتا بيز المتفق عليه
   Future<TeamModel> getTeamById({required String id}) async {
     DocumentSnapshot? documentSnapshot = await getDocSnapShotWhere(
         collectionReference: teamsRef, field: idK, value: id);
     return documentSnapshot?.data() as TeamModel;
   }
 
-  // Future<TeamModel> getTeamByName({required String name}) async {
-  //   DocumentSnapshot? doc = await getDocWhere(
-  //     collectionReference: teamsRef,
-  //     field: "name",
-  //     value: name,
-  //   );
-  //   return doc!.data() as TeamModel;
-  // }
   Future<TeamModel> getTeamByName(
       {required String name, required String managerId}) async {
     DocumentSnapshot? doc = await getDocSnapShotByNameInTow(
@@ -145,15 +132,6 @@ class TeamController extends TopController {
     return doc.data() as TeamModel;
   }
 
-  // Stream<DocumentSnapshot<TeamModel>> getUserbyUserNameStream(
-  //     {required String name}) async* {
-  //   Stream<DocumentSnapshot> stream = getDocWhereStream(
-  //     collectionReference: teamsRef,
-  //     field: "name",
-  //     value: name,
-  //   );
-  //   yield* stream.cast<DocumentSnapshot<TeamModel>>();
-  // }
   Stream<DocumentSnapshot<TeamModel>> getTeamByNameNameStream(
       {required String name, required String managerId}) async* {
     Stream<DocumentSnapshot> stream = getDocByNameInTowStream(
@@ -176,7 +154,7 @@ class TeamController extends TopController {
 
   Future<void> updateTeam(String id, Map<String, dynamic> data) async {
     if (data.containsKey(managerIdK)) {
-      throw Exception(AppConstants.manager_id_update_error_key.tr);
+      throw Exception('لا يمكن تحديث معرّف المدير');
     }
     ManagerController managerController = Get.put(ManagerController());
     ManagerModel managerModel =
@@ -188,44 +166,36 @@ class TeamController extends TopController {
         fatherField: managerIdK,
         fatherValue: managerModel.id,
         nameException: Exception(""));
-    // updateFields(reference: teamsRef, data: data, id: id);
   }
 
   deleteTeam({required String id, required List<String> projectIds}) async {
     WriteBatch batch = fireStore.batch();
-    //جلب التيم المحدد لهذا الايدي
+
     DocumentSnapshot team = await getDocById(reference: teamsRef, id: id);
-    //حذف ذلك التيم
+
     deleteDocUsingBatch(documentSnapshot: team, refbatch: batch);
     for (var projectId in projectIds) {
-      // Retrieve the project document snapshot
       DocumentSnapshot? project =
           await getDocById(reference: projectsRef, id: projectId);
 
-      // Delete the project document
       deleteDocUsingBatch(documentSnapshot: project, refbatch: batch);
 
-      // Retrieve all members of the current project
       List<DocumentSnapshot> projectMembers = await getDocsSnapShotWhere(
         collectionReference: teamMembersRef,
         field: projectIdK,
         value: projectId,
       );
 
-      // Delete the members associated with the current project
       deleteDocsUsingBatch(list: projectMembers, refBatch: batch);
 
-      // Retrieve all main tasks of the current project
       List<DocumentSnapshot> mainTasks = await getDocsSnapShotWhere(
         collectionReference: projectMainTasksRef,
         field: projectIdK,
         value: projectId,
       );
 
-      // Delete the main tasks of the current project
       deleteDocsUsingBatch(list: mainTasks, refBatch: batch);
 
-      // Retrieve all subtasks of the current project's members
       List<DocumentSnapshot> subTasks = [];
       for (var member in projectMembers) {
         List<DocumentSnapshot> memberSubTasks = await getDocsSnapShotWhere(
@@ -236,40 +206,9 @@ class TeamController extends TopController {
         subTasks.addAll(memberSubTasks);
       }
 
-      // Delete the subtasks of the current project's members
       deleteDocsUsingBatch(list: subTasks, refBatch: batch);
     }
 
-//     //جلب المشروع الذي مستلمه هذا الفريق
-//     //لانو حسب ماساوينا اخر شي انو الفريق بيستلم مشروع واحد\ حسب كلام راغب كمان
-//     DocumentSnapshot? project = await getDocSnapShotWhere(
-//         collectionReference: projectsRef, field: "teamId", value: id);
-//     //حذف هذا المشروع
-//     deleteDocUsingBatch(documentSnapshot: project, refbatch: batch);
-//     //جلب جميع الأعضاء التي من هذا الفريق
-//     List<DocumentSnapshot> listOfMembes = await getDocsSnapShotWhere(
-//         collectionReference: teamMembersRef, field: teamIdK, value: id);
-//     //حذف الأعضاء الذي ينمتون لهذا الفريق
-//     deleteDocsUsingBatch(list: listOfMembes, refBatch: batch);
-// //جلب جميع المهام الرئيسية التي تنتمي للمشروع السابق الذي تم جلبه
-//     List<DocumentSnapshot> listOfMainTasks = await getDocsSnapShotWhere(
-//         collectionReference: projectMainTasksRef,
-//         field: projectIdK,
-//         value: project!.id);
-//     //حذف المهام الرئيسية لهذا المشروع
-//     deleteDocsUsingBatch(list: listOfMainTasks, refBatch: batch);
-
-//     //جلب جميع المهمات الفرعية التي من احد اعضاء هذا الفريق
-//     List<DocumentSnapshot> listSubTasks = [];
-//     for (var member in listOfMembes) {
-//       List<DocumentSnapshot> subTasks = await getDocsSnapShotWhere(
-//           collectionReference: projectSubTasksRef,
-//           field: assignedToK,
-//           value: member.id);
-//       listSubTasks.addAll(subTasks);
-//     }
-    //حذف جميع هذه المهام
-    //  deleteDocsUsingBatch(list: listSubTasks, refBatch: batch);
     batch.commit();
   }
 }

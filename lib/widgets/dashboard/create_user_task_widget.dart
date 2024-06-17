@@ -132,8 +132,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(AppConstants.importance_key.tr,
-                      style: AppTextStyles.header2),
+                  Text('الأهمية', style: AppTextStyles.header2),
                   AppSpaces.horizontalSpace10,
                   DropdownButton<String>(
                     icon: const Icon(Icons.label_important_outline_rounded),
@@ -161,8 +160,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
                     (widget.isEditMode == false && widget.isUserTask == true),
                 child: Row(
                   children: [
-                    Text(AppConstants.checked_already_key.tr,
-                        style: AppTextStyles.header2),
+                    Text('تم التحقق بالفعل؟', style: AppTextStyles.header2),
                     Obx(
                       () => Checkbox(
                         value: checkboxController.isChecked.value,
@@ -202,12 +200,11 @@ class _CreateUserTaskState extends State<CreateUserTask> {
                     child: LabelledFormInput(
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return AppConstants.enter_name_key.tr;
+                          return 'الرجاء إدخال الاسم';
                         }
                         if (value.isNotEmpty) {
                           if (isTaked) {
-                            return AppConstants
-                                .please_use_another_taskName_key.tr;
+                            return 'يرجى استخدام اسم مهمة آخر';
                           }
                         }
                         return null;
@@ -221,10 +218,10 @@ class _CreateUserTaskState extends State<CreateUserTask> {
                       onChanged: (String name) async {
                         await onChanged(name);
                       },
-                      label: AppConstants.name_key.tr,
+                      label: "الاسم",
                       readOnly: false,
                       autovalidateMode: AutovalidateMode.always,
-                      placeholder: "  ${AppConstants.task_name_key.tr}...",
+                      placeholder: "  اسم المهمة...",
                       keyboardType: "text",
                       controller: _taskNameController,
                       obscureText: false,
@@ -236,8 +233,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
               LabelledFormInput(
                 validator: (p0) {
                   if (p0 == " ") {
-                    return AppConstants
-                        .description_cannot_be_empty_spaces_key.tr;
+                    return 'لا يمكن أن يكون الوصف مساحات فارغة';
                   }
                   return null;
                 },
@@ -250,10 +246,10 @@ class _CreateUserTaskState extends State<CreateUserTask> {
                     _taskDescController.text = "";
                   });
                 },
-                label: AppConstants.description_key.tr,
+                label: 'وصف',
                 readOnly: false,
                 autovalidateMode: AutovalidateMode.always,
-                placeholder: "${AppConstants.task_description_key.tr}....",
+                placeholder: "وصف المهمة....",
                 keyboardType: "text",
                 controller: _taskDescController,
                 obscureText: false,
@@ -266,7 +262,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
                   cardBackgroundColor: HexColor.fromHex("7DBA67"),
                   textAccentColor: HexColor.fromHex("A9F49C"),
                   value: formattedStartDate,
-                  label: AppConstants.start_date_key.tr,
+                  label: 'تاريخ البدء',
                 ),
                 NewSheetGoToCalendarWidget(
                   onSelectedDayChanged: handleDueDayChanged,
@@ -274,7 +270,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
                   cardBackgroundColor: HexColor.fromHex("BA67A3"),
                   textAccentColor: HexColor.fromHex("BA67A3"),
                   value: formattedDueDate,
-                  label: AppConstants.due_date_validation_key.tr,
+                  label: 'تاريخ الاستحقاق',
                 )
               ]),
               // Spacer(),
@@ -305,7 +301,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
     if (dateTime.year == now.year &&
         dateTime.month == now.month &&
         dateTime.day == now.day) {
-      return "${AppConstants.today_key.tr} ${DateFormat('h:mma').format(dateTime)}";
+      return "اليوم ${DateFormat('h:mma').format(dateTime)}";
     } else {
       return DateFormat('dd/MM h:mma').format(dateTime);
     }

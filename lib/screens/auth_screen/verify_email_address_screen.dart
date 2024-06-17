@@ -63,12 +63,10 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                         height: Utils.screenHeight *
                             0.04), // Adjust the percentage as needed
                     Text(
-                        AppConstants
-                            .check_your_an_email_messages_we_have_send_the_link_to_email_to_verify_key
-                            .tr,
+                        'تحقق من رسائل البريد الإلكتروني الخاص بك. لقد أرسلنا رابط التحقق إلى بريدك الإلكتروني',
                         style: GoogleFonts.lato(
                             color: Colors.white,
-                            fontSize: Utils.screenWidth * 0.11,
+                            fontSize: Utils.screenWidth * 0.09,
                             fontWeight: FontWeight.bold)),
                     AppSpaces.verticalSpace40,
                     SizedBox(
@@ -84,8 +82,8 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                               (right) => {
                                     if (right == true)
                                       {
-                                        CustomSnackBar.showSuccess(AppConstants
-                                            .the_mail_is_verifed_key.tr),
+                                        CustomSnackBar.showSuccess(
+                                            'تم التحقق من البريد الإلكتروني'),
                                         Get.offAll(() => const Timeline()),
                                       }
                                   });
@@ -95,7 +93,7 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Icon(Iconsax.link, color: Colors.white),
-                            Text(AppConstants.send_verify_link_key.tr,
+                            Text('إرسال رابط التحقق',
                                 style: GoogleFonts.lato(
                                     fontSize: Utils.screenWidth * 0.06,
                                     color: Colors.white)),
@@ -108,7 +106,7 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          AppConstants.verifed_key.tr,
+                          'محقق ؟',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: Utils.screenWidth * 0.055),
@@ -120,18 +118,16 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                               CustomSnackBar.showError(left.toString());
                             }, (right) {
                               if (right == true) {
-                                CustomSnackBar.showSuccess(
-                                    AppConstants.sucess_baby_key.tr);
+                                CustomSnackBar.showSuccess('نجاح');
                                 Get.offAll(() => const Timeline());
                               } else {
-                                CustomSnackBar.showError(AppConstants
-                                    .plese_verify_your_email_before_continue_key
-                                    .tr);
+                                CustomSnackBar.showError(
+                                    'يرجى التحقق من بريدك الإلكتروني قبل المتابعة');
                               }
                             });
                           },
                           child: Text(
-                            AppConstants.continue_key.tr,
+                            'استمرار',
                             style: TextStyle(
                                 color: Colors.blueAccent,
                                 fontSize: Utils.screenWidth * 0.055,

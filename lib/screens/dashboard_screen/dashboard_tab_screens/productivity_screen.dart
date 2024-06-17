@@ -32,7 +32,7 @@ class _DashboardProductivityState extends State<DashboardProductivity> {
       children: [
         // AppSpaces.verticalSpace10,
         DailyGoalCard(
-          message: AppConstants.task_key.tr,
+          message: 'مهمة',
           allStream: userTaskController.getUserTasksStartInADayForAStatusStream(
               date: DateTime.now(),
               userId: AuthProvider.instance.firebaseAuth.currentUser!.uid,
@@ -57,12 +57,12 @@ class _DashboardProductivityState extends State<DashboardProductivity> {
                 precentage = snapshot.data!;
                 return ProductivityChart(
                   percentages: precentage,
-                  message: AppConstants.task_key.tr,
+                  message: 'مهمة',
                 );
               }
               return ProductivityChart(
                 percentages: precentage,
-                message: AppConstants.task_key.tr,
+                message: 'مهمة',
               );
             }),
       ],

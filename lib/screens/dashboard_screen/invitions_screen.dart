@@ -44,7 +44,7 @@ class Invitions extends StatelessWidget {
             builder: (controller) {
               return Column(children: [
                 TaskezAppHeader(
-                  title: AppConstants.invitations_key.tr,
+                  title: 'الدعوات',
                   widget: GestureDetector(
                     onTap: () async {
                       bool fcmStutas =
@@ -59,7 +59,7 @@ class Invitions extends StatelessWidget {
                                 .instance.firebaseAuth.currentUser!.uid),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
-                            return Text(AppConstants.loading_key.tr);
+                            return const Text("جاري التحميل...");
                           }
                           if (snapshot.hasData) {
                             return ProfileDummy(
@@ -95,7 +95,7 @@ class Invitions extends StatelessWidget {
                                     settingsButtonTrigger.value =
                                         controller.selectedTabIndex.value;
                                   },
-                                  buttonText: AppConstants.task_in_box_key.tr,
+                                  buttonText: 'المهمة في الصندوق',
                                   itemIndex: 0,
                                   notifier: settingsButtonTrigger),
                               PrimaryTabButton(
@@ -104,8 +104,7 @@ class Invitions extends StatelessWidget {
                                     settingsButtonTrigger.value =
                                         controller.selectedTabIndex.value;
                                   },
-                                  buttonText:
-                                      AppConstants.join_requests_in_box_key.tr,
+                                  buttonText: 'طلبات الانضمام في الصندوق',
                                   itemIndex: 1,
                                   notifier: settingsButtonTrigger),
                             ],
@@ -169,7 +168,7 @@ class Invitions extends StatelessWidget {
                                     ),
                                     child: Center(
                                       child: Text(
-                                        AppConstants.loading_key.tr,
+                                        "جاري التحميل...",
                                         style: GoogleFonts.fjallaOne(
                                           color: Colors.white,
                                           fontSize: Utils.screenWidth * 0.1,
@@ -200,8 +199,7 @@ class Invitions extends StatelessWidget {
                                       ),
                                       child: Center(
                                         child: Text(
-                                          AppConstants
-                                              .not_member_to_get_tasks_key.tr,
+                                          'لست عضوًا في أي فريق حتى الآن للحصول على المهام',
                                           style: GoogleFonts.fjallaOne(
                                             color: Colors.white,
                                             fontSize: Utils.screenWidth * 0.1,
@@ -289,9 +287,7 @@ class Invitions extends StatelessWidget {
                                                 ),
                                                 child: Center(
                                                   child: Text(
-                                                    AppConstants
-                                                        .no_invitations_for_tasks_key
-                                                        .tr,
+                                                    'لا توجد دعوات للمهام',
                                                     style:
                                                         GoogleFonts.fjallaOne(
                                                       color: Colors.white,
@@ -430,7 +426,7 @@ class Invitions extends StatelessWidget {
                                         horizontal: 50, vertical: 40),
                                     child: Center(
                                       child: Text(
-                                        AppConstants.loading_key.tr,
+                                        "جاري التحميل...",
                                         style: GoogleFonts.fjallaOne(
                                           color: Colors.white,
                                           fontSize: Utils.screenWidth * 0.1,
@@ -464,7 +460,7 @@ class Invitions extends StatelessWidget {
                                           vertical: 20),
                                       child: Center(
                                         child: Text(
-                                          AppConstants.no_invitation_key.tr,
+                                          "لا توجد دعوة",
                                           style: GoogleFonts.fjallaOne(
                                             color: Colors.white,
                                             fontSize: Utils.screenWidth * 0.1,
@@ -504,7 +500,7 @@ class Invitions extends StatelessWidget {
                                               ),
                                               child: Center(
                                                 child: Text(
-                                                  AppConstants.loading_key.tr,
+                                                  "جاري التحميل...",
                                                   style: GoogleFonts.fjallaOne(
                                                     color: Colors.white,
                                                     fontSize:
@@ -553,8 +549,7 @@ class Invitions extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                         child: Text(
-                                                          AppConstants
-                                                              .loading_key.tr,
+                                                          "جاري التحميل...",
                                                           style: GoogleFonts
                                                               .fjallaOne(
                                                             color: Colors.white,
@@ -599,7 +594,7 @@ class Invitions extends StatelessWidget {
                                                     header: teamModel.name!,
                                                     //  header: "Team Name",
                                                     subHeader:
-                                                        "${AppConstants.manager_key.tr}  ${userModel!.name!}",
+                                                        "مدير :  ${userModel!.name!}",
                                                     //subHeader: "Manager Team Name",
                                                     imageUrl:
                                                         teamModel.imageUrl,

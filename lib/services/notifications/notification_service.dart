@@ -245,12 +245,12 @@ class FcmNotifications {
         buttons.addAll([
           NotificationActionButton(
             key: NotificationButtonskeys.markSubTaskDone.name,
-            label: AppConstants.done_key.tr,
+            label: 'تم',
             actionType: ActionType.KeepOnTop,
           ),
           NotificationActionButton(
             key: NotificationButtonskeys.markSubTaskNotDone.name,
-            label: AppConstants.not_done_key.tr,
+            label: 'غير مكتمل',
             actionType: ActionType.KeepOnTop,
             requireInputText: true,
           )

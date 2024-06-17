@@ -74,7 +74,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                       right: Utils.screenWidth * 0.04,
                       left: Utils.screenWidth * 0.04),
                   child: TaskezAppHeader(
-                    title: AppConstants.search_members_key.tr,
+                    title: 'البحث عن عضو',
                     widget: GestureDetector(
                       onTap: () async {
                         bool fcmStutas =
@@ -125,19 +125,12 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                 SearchBox2(
                                   onClear: () {
                                     controller.clearSearch();
-                                    // setState(() {
-                                    //   searchController.clear();
-                                    //   SearchForMembers.search = "";
-                                    // });
                                   },
                                   controller: controller.searchController,
-                                  placeholder: AppConstants.search_key.tr,
+                                  placeholder: 'بحث ....',
                                   onChanged: (value) {
                                     controller.searchQuery.value = value;
                                     controller.update();
-                                    // setState(() {
-                                    //   SearchForMembers.search = value;
-                                    // });
                                   },
                                 ),
                                 AppSpaces.verticalSpace20,
@@ -169,16 +162,10 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                               children: [
                                                 Icon(
                                                   Icons.search,
-                                                  //   Icons.heart_broken_outlined,
                                                   color: Colors.lightBlue,
                                                   size:
                                                       Utils.screenWidth * 0.27,
                                                 ),
-                                                //  AppSpaces.verticalSpace10,
-                                                // const Center(
-                                                //   child:
-                                                //       CircularProgressIndicator(),
-                                                // )
                                               ]);
                                         }
 
@@ -195,9 +182,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Center(
                                               child: Text(
-                                                AppConstants
-                                                    .please_enter_username_to_search_key
-                                                    .tr,
+                                                'الرجاء إدخال اسم مستخدم للبحث عنه',
                                                 style: TextStyle(
                                                     fontSize:
                                                         Utils.screenWidth *
@@ -215,8 +200,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
 
                                           return userName.contains(
                                                   controller.searchQuery
-                                                      //   searchController.text
-                                                      .toLowerCase()) &&
+                                                  .toLowerCase()) &&
                                               user.id !=
                                                   AuthProvider
                                                       .instance
@@ -230,10 +214,8 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
                                               children: [
-                                                //
                                                 Icon(
                                                   Icons.search_off,
-                                                  //   Icons.heart_broken_outlined,
                                                   color: Colors.red,
                                                   size:
                                                       Utils.screenWidth * 0.27,
@@ -241,17 +223,14 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(
                                                     horizontal: Utils
-                                                            .screenWidth *
-                                                        0.1, // Adjust the percentage as needed
+                                                            .screenWidth * 0.1,
                                                     vertical: Utils
                                                             .screenHeight *
-                                                        0.05, // Adjust the percentage as needed
+                                                            0.05,
                                                   ),
                                                   child: Center(
                                                     child: Text(
-                                                      AppConstants
-                                                          .no_user_found_with_username_key
-                                                          .tr,
+                                                      'لم يتم العثور على أي مستخدم بهذا الاسم',
                                                       style:
                                                           GoogleFonts.fjallaOne(
                                                         color: Colors.white,
@@ -308,8 +287,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                       addWatingMemberController
                                                           .update();
                                                     }
-                                                    // CustomSnackBar.showSuccess(
-                                                    //     "the user Invited Successfully");
+
                                                     addWatingMemberController
                                                         .update();
                                                     Get.close(1);
