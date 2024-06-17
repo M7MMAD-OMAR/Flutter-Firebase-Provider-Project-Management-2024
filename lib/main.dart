@@ -6,15 +6,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http_proxy/http_proxy.dart';
 import 'package:project_management_muhmad_omar/providers.dart';
-import 'package:project_management_muhmad_omar/providers/lang_provider.dart';
 import 'package:project_management_muhmad_omar/screens/auth_screen/auth_page_screen.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import 'firebase_options.dart';
-import 'utils/dep.dart' as dep;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,8 +20,6 @@ Future<void> main() async {
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
   }
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
@@ -34,7 +29,6 @@ Future<void> main() async {
   //     const Duration(seconds: 45), helloAlarmID, checkAuth,
   //     wakeup: true, rescheduleOnReboot: true);
   // await fcmHandler();
-  Map<String, Map<String, String>> languages = await dep.init();
   WidgetsFlutterBinding.ensureInitialized();
   HttpProxy httpProxy = await HttpProxy.createHttpProxy();
   HttpOverrides.global = httpProxy;
@@ -44,36 +38,22 @@ Future<void> main() async {
 
   runApp(
     MultiProvider(
-      providers: [
-        Provider<SharedPreferences>.value(value: sharedPreferences),
-        ...Providers.providers,
-      ],
-      child: MyApp(languages: languages),
+      providers: Providers.providers,
+      child: MyApp(),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  final Map<String, Map<String, String>> languages;
-
-  const MyApp({super.key, required this.languages});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return Consumer<LangProvider>(
-          builder: (context, localizationController, child) {
-            return MaterialApp(
-              locale: localizationController.locale,
-              supportedLocales: const [
-                Locale('en', 'US'),
-                Locale('ar', 'SY'),
-              ],
-              debugShowCheckedModeBanner: false,
-              home: const AuthPage(),
-            );
-          },
+        return const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: AuthPage(),
         );
       },
     );

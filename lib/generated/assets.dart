@@ -224,8 +224,6 @@ class Assets {
   static const String imagesGoogle2 = 'lib/images/google2.png';
   static const String imagesKAREM = 'lib/images/KAREM.jpg';
   static const String imagesLogo = 'lib/images/logo.png';
-  static const String langAr = 'assets/lang/ar.json';
-  static const String langEn = 'assets/lang/en.json';
   static const String langLangModel = 'lib/models/lang/lang_model.dart';
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
   static const String libMain = 'lib/main.dart';
@@ -342,8 +340,6 @@ class Assets {
   static const String providersAuthProvider =
       'lib/providers/auth_provider.dart';
   static const String providersBoxProvider = 'lib/providers/box_provider.dart';
-  static const String providersLangProvider =
-      'lib/providers/lang_provider.dart';
   static const String resApp = 'lib/widgets/calender/core/res/app.dart';
   static const String resColor = 'lib/widgets/calender/core/res/color.dart';
   static const String screensLanguageScreen =
@@ -361,7 +357,6 @@ class Assets {
       'lib/services/collections_refrences.dart';
   static const String servicesFirestoreServices =
       'lib/services/firestore_services.dart';
-  static const String servicesLangService = 'lib/services/lang_service.dart';
   static const String servicesTypesServices =
       'lib/services/types_services.dart';
   static const String shapesAppSettingsIconWidget =

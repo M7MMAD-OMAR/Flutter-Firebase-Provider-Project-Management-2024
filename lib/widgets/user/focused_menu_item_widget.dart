@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:focused_menu/focused_menu.dart';
 import 'package:focused_menu/modals.dart';
-import 'package:project_management_muhmad_omar/constants/app_constants.dart';
 
 class FocusedMenu extends StatelessWidget {
   final Widget widget;
