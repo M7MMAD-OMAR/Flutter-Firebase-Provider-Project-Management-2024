@@ -57,8 +57,8 @@ class TeamInfo {
   }
 }
 
-class SelectMyTeamScreen extends StatefulWidget {
-  SelectMyTeamScreen({Key? key, required this.title}) : super(key: key);
+class SelectMyTeamsScreen extends StatefulWidget {
+  SelectMyTeamsScreen({Key? key, required this.title}) : super(key: key);
   final String title;
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   DashboardMeetingDetailsScreenController controller =
@@ -67,10 +67,10 @@ class SelectMyTeamScreen extends StatefulWidget {
       Get.put(AddTeamToCreatProjectScreen());
 
   @override
-  State<SelectMyTeamScreen> createState() => _SelectMyTeamScreenState();
+  State<SelectMyTeamsScreen> createState() => _SelectMyTeamsScreenState();
 }
 
-class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
+class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
   @override
   void initState() {
     userController.users.clear();
@@ -136,7 +136,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                       onTap: () async {
                         bool fcmStutas =
                             await FcmNotifications.getNotificationStatus();
-                        Get.to(() => ProfileOverview(
+                        Get.to(() => ProfileOverviewScreen(
                               isSelected: fcmStutas,
                             ));
                       },

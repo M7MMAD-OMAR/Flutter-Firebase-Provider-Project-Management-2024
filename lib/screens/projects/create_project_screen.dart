@@ -17,7 +17,6 @@ import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
@@ -30,8 +29,8 @@ import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calen
 
 import '../../providers/projects/add_team_to_create_project_provider.dart';
 
-class CreateProject extends StatefulWidget {
-  CreateProject({
+class CreateProjectScreen extends StatefulWidget {
+  CreateProjectScreen({
     required this.managerModel,
     super.key,
     required this.isEditMode,
@@ -42,10 +41,10 @@ class CreateProject extends StatefulWidget {
   UserTaskModel? userTaskModel;
 
   @override
-  State<CreateProject> createState() => _CreateProjectState();
+  State<CreateProjectScreen> createState() => _CreateProjectScreenState();
 }
 
-class _CreateProjectState extends State<CreateProject> {
+class _CreateProjectScreenState extends State<CreateProjectScreen> {
   String? selectedImagePath;
 
   void _showImagePickerDialog(BuildContext context) {
@@ -223,7 +222,7 @@ class _CreateProjectState extends State<CreateProject> {
                                     addMore: true,
                                     numberOfMembers: 0.toString(),
                                     onTap: () {
-                                      Get.to(() => SelectMyTeamScreen(
+                                      Get.to(() => SelectMyTeamsScreen(
                                           title: 'اختر الفريق'));
                                     },
                                     teams: <TeamModel?>[]);
@@ -247,7 +246,7 @@ class _CreateProjectState extends State<CreateProject> {
                                     numberOfMembers:
                                         snapshot.data!.docs.length.toString(),
                                     onTap: () {
-                                      Get.to(() => SelectMyTeamScreen(
+                                      Get.to(() => SelectMyTeamsScreen(
                                           title: 'اختر الفريق'));
                                     },
                                     teams: snapshot.data?.docs

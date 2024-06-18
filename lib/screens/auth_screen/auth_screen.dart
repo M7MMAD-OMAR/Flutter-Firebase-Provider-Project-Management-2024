@@ -2,10 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_start_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 
-class AuthPage extends StatelessWidget {
-  const AuthPage({super.key});
+class AuthScreen extends StatelessWidget {
+  const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,19 +19,19 @@ class AuthPage extends StatelessWidget {
           }
           if (snapshot.hasData) {
             if (snapshot.data == null) {
-              return const OnboardingStart();
+              return const OnboardingStartScreen();
             }
             if (snapshot.data!.isAnonymous) {
-              return const Timeline();
+              return const TimelineScreen();
             }
             if (snapshot.data!.emailVerified && !snapshot.data!.isAnonymous) {
-              return const Timeline();
+              return const TimelineScreen();
             }
             if (!snapshot.data!.emailVerified && !snapshot.data!.isAnonymous) {
-              return const OnboardingStart();
+              return const OnboardingStartScreen();
             }
           } else {
-            return const OnboardingStart();
+            return const OnboardingStartScreen();
           }
           return const Center(child: CircularProgressIndicator());
         },

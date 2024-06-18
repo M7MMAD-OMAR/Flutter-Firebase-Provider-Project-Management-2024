@@ -13,14 +13,14 @@ import '../Projects/add_user_to_team_provider.dart';
 import '../profile/profile_overview_screen.dart';
 import 'dashboard_screen.dart';
 
-class Timeline extends StatefulWidget {
-  const Timeline({Key? key}) : super(key: key);
+class TimelineScreen extends StatefulWidget {
+  const TimelineScreen({super.key});
 
   @override
-  _TimelineState createState() => _TimelineState();
+  _TimelineScreenState createState() => _TimelineScreenState();
 }
 
-class _TimelineState extends State<Timeline> {
+class _TimelineScreenState extends State<TimelineScreen> {
   ValueNotifier<int> bottomNavigatorTrigger = ValueNotifier(0);
 
   AddTeamToCreatProjectScreen addTeamToCreatProjectScreen =

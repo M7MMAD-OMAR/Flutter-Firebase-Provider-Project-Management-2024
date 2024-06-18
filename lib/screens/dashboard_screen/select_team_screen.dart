@@ -9,7 +9,6 @@ import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/active_team_cardK_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
@@ -25,18 +24,16 @@ class SelectTeamScreen extends StatefulWidget {
     required this.title,
     required this.managerModel,
   });
+
   final ManagerModel? managerModel;
   final String title;
+
   @override
   State<SelectTeamScreen> createState() => _SelectTeamScreenState();
 }
 
 class _SelectTeamScreenState extends State<SelectTeamScreen> {
 
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +56,7 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                       onTap: () async {
                         bool fcmStutas =
                             await FcmNotifications.getNotificationStatus();
-                        Get.to(() => ProfileOverview(
+                        Get.to(() => ProfileOverviewScreen(
                               isSelected: fcmStutas,
                             ));
                       },
@@ -114,7 +111,7 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                                       imageType: ImageType.Network,
                                       onTap: () {
                                         //
-                                        Get.to(() => TeamDetails(
+                                        Get.to(() => TeamDetailsScreen(
                                               userAsManager:
                                                   widget.managerModel,
                                               title: team.name!,

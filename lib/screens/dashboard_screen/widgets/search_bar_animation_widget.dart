@@ -8,10 +8,9 @@ class MySearchBarWidget extends StatelessWidget {
   final Function? onChanged;
   const MySearchBarWidget(
       {required this.searchWord,
-      Key? key,
+      super.key,
       required this.editingController,
-      required this.onChanged})
-      : super(key: key);
+      required this.onChanged});
 
   @override
   Widget build(BuildContext context) {

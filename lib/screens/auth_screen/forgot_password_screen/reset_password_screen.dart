@@ -145,7 +145,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   CustomSnackBar.showSuccess("Done byby");
                                 });
 //   dev.log("message");
-                                Get.to(Get.to(() => const Timeline()));
+                                Get.to(Get.to(() => const TimelineScreen()));
                               }),
                           SquareButtonIcon(
                               imagePath: "lib/images/anonymos.png",
@@ -186,7 +186,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 Navigator.of(context).pop();
 
                                 //    dev.log("message");
-                                Get.to(() => const Timeline());
+                                Get.to(() => const TimelineScreen());
                               }),
                         ],
                       ),

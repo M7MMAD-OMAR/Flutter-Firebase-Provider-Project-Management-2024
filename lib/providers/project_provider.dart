@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:project_management_muhmad_omar/controllers/projectController.dart';
+import 'package:project_management_muhmad_omar/models/team/project_model.dart';
+import 'package:project_management_muhmad_omar/services/auth_service.dart';
 
-import '../../controllers/projectController.dart';
-import '../../models/team/project_model.dart';
-import '../../services/auth_service.dart';
-
-class InvitationScreenController extends GetxController {
+class ProjectProvider extends GetxController {
   RxInt selectedTab = 0.obs;
 
-  Stream<QuerySnapshot<ProjectModel?>> getInvitationStream() {
+  Stream<QuerySnapshot<ProjectModel?>> getProjectsStream() {
     if (selectedTab.value == 0) {
       return ProjectController().getProjectsOfMemberWhereUserIsStream(
           userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);

@@ -22,7 +22,7 @@ import 'edit_profile_screen.dart';
 class MyProfileScreen extends StatefulWidget {
   const MyProfileScreen({super.key, required this.user});
 
-  final UserModel user;
+  final UserModel? user;
 
   @override
   _MyProfileScreenState createState() => _MyProfileScreenState();
@@ -98,7 +98,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   content: 'تعديل',
                                   onPressed: () {
                                     Get.to(
-                                      () => EditProfilePage(
+                                      () => EditProfileScreen(
                                         user: snapshot.data?.data(),
                                       ),
                                     );
@@ -161,7 +161,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       AppSpaces.verticalSpace10,
                       ProfileTextOption(
                         inTap: () {
-                          Get.to(() => SelectMyTeamScreen(title: 'إدارة الفرق'));
+                          Get.to(
+                              () => SelectMyTeamsScreen(title: 'إدارة الفرق'));
                         },
                         label: '$tabSpace إدارة الفرق',
                         icon: FeatherIcons.share2,

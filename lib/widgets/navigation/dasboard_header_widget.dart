@@ -73,7 +73,7 @@ class DashboardNav extends StatelessWidget {
           child: GestureDetector(
             onTap: () async {
               bool fcmStutas = await FcmNotifications.getNotificationStatus();
-              Get.to(() => ProfileOverview(
+              Get.to(() => ProfileOverviewScreen(
                     isSelected: fcmStutas,
                   ));
             },

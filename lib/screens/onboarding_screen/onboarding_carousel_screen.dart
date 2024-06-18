@@ -13,14 +13,15 @@ import 'package:project_management_muhmad_omar/widgets/sqaure_button_widget.dart
 
 import '../../widgets/Onboarding/slider_captioned_image_widget.dart';
 
-class OnboardingCarousel extends StatefulWidget {
-  const OnboardingCarousel({super.key});
+class OnboardingCarouselScreen extends StatefulWidget {
+  const OnboardingCarouselScreen({super.key});
 
   @override
-  _OnboardingCarouselState createState() => _OnboardingCarouselState();
+  _OnboardingCarouselScreenState createState() =>
+      _OnboardingCarouselScreenState();
 }
 
-class _OnboardingCarouselState extends State<OnboardingCarousel> {
+class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
   final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
@@ -107,7 +108,7 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
                           height: 60,
                           child: ElevatedButton(
                             onPressed: () {
-                              Get.to(() => const Login());
+                              Get.to(() => const LoginScreen());
                             },
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -156,7 +157,7 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
                                   }, (right) {
                                     CustomSnackBar.showSuccess("Done byby");
                                     dev.log("message");
-                                    Get.offAll(() => const Timeline());
+                                    Get.offAll(() => const TimelineScreen());
                                   });
                                 }),
                             SquareButtonIcon(
@@ -177,7 +178,7 @@ class _OnboardingCarouselState extends State<OnboardingCarousel> {
                                     CustomSnackBar.showError(left.toString());
                                     return;
                                   }, (right) {
-                                    Get.offAll(() => const Timeline());
+                                    Get.offAll(() => const TimelineScreen());
                                   });
                                   dev.log("message");
                                 }),

@@ -24,7 +24,7 @@ import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';

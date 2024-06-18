@@ -138,7 +138,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                 Navigator.of(context).pop();
 
                                 Get.to(
-                                  () => SignUp(email: email),
+                                  () => SignUpScreen(email: email),
                                 );
                               }
                             }
@@ -181,7 +181,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                   CustomSnackBar.showSuccess("Done byby");
                                 });
 
-                                Get.to(Get.to(() => const Timeline()));
+                                Get.to(Get.to(() => const TimelineScreen()));
                               }),
                           SquareButtonIcon(
                               imagePath: "lib/images/anonymos.png",
@@ -221,7 +221,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                 await AuthProvider().anonymosSignInMethod();
                                 Navigator.of(context).pop();
 
-                                Get.to(() => const Timeline());
+                                Get.to(() => const TimelineScreen());
                               }),
                         ],
                       ),

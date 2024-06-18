@@ -16,7 +16,6 @@ import 'package:project_management_muhmad_omar/models/team/team_members_model.da
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../../models/team/project_model.dart';
@@ -28,9 +27,10 @@ import '../../widgets/navigation/app_header_widget.dart';
 import '../../widgets/search/active_task_card_widget.dart';
 import '../profile/profile_overview_screen.dart';
 
-class Invitions extends StatelessWidget {
-  Invitions({Key? key}) : super(key: key);
+class InvitationScreen extends StatelessWidget {
+  InvitationScreen({super.key});
   final BoxProvider boxController = Get.put(BoxProvider());
+
   @override
   Widget build(BuildContext context) {
     final settingsButtonTrigger = ValueNotifier(0);
@@ -48,7 +48,7 @@ class Invitions extends StatelessWidget {
                     onTap: () async {
                       bool fcmStutas =
                           await FcmNotifications.getNotificationStatus();
-                      Get.to(() => ProfileOverview(
+                      Get.to(() => ProfileOverviewScreen(
                             isSelected: fcmStutas,
                           ));
                     },

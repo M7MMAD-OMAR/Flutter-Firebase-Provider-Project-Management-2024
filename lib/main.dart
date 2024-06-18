@@ -6,7 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http_proxy/http_proxy.dart';
 import 'package:project_management_muhmad_omar/providers.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/auth_page_screen.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -51,9 +51,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return const MaterialApp(
+        return MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: AuthPage(),
+          // home: AuthScreen(),
+          initialRoute: Routes.authScreen,
+          routes: Routes.routes,
         );
       },
     );

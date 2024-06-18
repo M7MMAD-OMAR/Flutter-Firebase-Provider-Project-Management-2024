@@ -11,7 +11,7 @@ final List<Widget> dashBoardScreens = [
   DashboardScreen(),
   ProjectScreen(),
   CategoryScreen(),
-  Invitions()
+  InvitationScreen()
 ];
 
 List<Color> progressCardGradientList = [

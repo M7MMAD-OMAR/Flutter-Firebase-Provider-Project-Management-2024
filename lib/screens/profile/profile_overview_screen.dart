@@ -22,15 +22,15 @@ import 'package:project_management_muhmad_omar/widgets/profile/box_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/profile/text_outlined_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-class ProfileOverview extends StatefulWidget {
-  ProfileOverview({super.key, required this.isSelected});
+class ProfileOverviewScreen extends StatefulWidget {
+  ProfileOverviewScreen({super.key, required this.isSelected});
   late bool isSelected;
 
   @override
-  State<ProfileOverview> createState() => _ProfileOverviewState();
+  State<ProfileOverviewScreen> createState() => _ProfileOverviewScreenState();
 }
 
-class _ProfileOverviewState extends State<ProfileOverview> {
+class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
   ProfileOverviewController profileOverviewController =
       Get.put(ProfileOverviewController(), permanent: true);
 
@@ -211,7 +211,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                                   .convertAnonymousToGoogle();
                               Navigator.of(context).pop();
                               //  CustomSnackBar.showSuccess("its going good");
-                              Get.to(() => const Timeline());
+                              Get.to(() => const TimelineScreen());
                             } on Exception catch (e) {
                               Navigator.of(context).pop();
                               CustomSnackBar.showError(e.toString());
@@ -241,7 +241,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                 AppSpaces.verticalSpace20,
                 GestureDetector(
                   onTap: () async {
-                    Get.offAll(() => const OnboardingCarousel());
+                    Get.offAll(() => const OnboardingCarouselScreen());
                     await AuthProvider.instance.logOut();
                   },
                   child: Container(
@@ -368,7 +368,7 @@ void showPasswordAndEmailDialog(BuildContext context) {
                           email: email, password: password);
                   Navigator.of(context).pop();
                   Get.back();
-                  Get.offAll(() => const OnboardingCarousel());
+                  Get.offAll(() => const OnboardingCarouselScreen());
                   //اخر شي عدلتو وماجربتو
                   await AuthProvider.instance.logOut();
                 }

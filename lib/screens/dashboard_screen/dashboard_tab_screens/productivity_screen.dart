@@ -3,20 +3,20 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 
-import '../../../constants/app_constants.dart';
-import '../../../services/auth_service.dart';
 import '../../../widgets/Dashboard/daily_goal_card_widget.dart';
 import '../../../widgets/Dashboard/productivity_chart_widget.dart';
 
-class DashboardProductivity extends StatefulWidget {
-  const DashboardProductivity({Key? key}) : super(key: key);
+class DashboardProductivityScreen extends StatefulWidget {
+  const DashboardProductivityScreen({super.key});
   static String id = "/DashboardProductivityScreen";
 
   @override
-  State<DashboardProductivity> createState() => _DashboardProductivityState();
+  State<DashboardProductivityScreen> createState() =>
+      _DashboardProductivityScreenState();
 }
 
-class _DashboardProductivityState extends State<DashboardProductivity> {
+class _DashboardProductivityScreenState
+    extends State<DashboardProductivityScreen> {
   @override
   Widget build(BuildContext context) {
     List<double> precentage = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
@@ -26,7 +26,6 @@ class _DashboardProductivityState extends State<DashboardProductivity> {
       DateTime.now().day,
     );
     UserTaskController userTaskController = Get.put(UserTaskController());
-    
 
     return Column(
       children: [

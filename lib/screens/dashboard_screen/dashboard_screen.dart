@@ -39,7 +39,7 @@ class DashboardScreen extends StatelessWidget {
                 onImageTapped: () async {
                   bool fcmStutas =
                       await FcmNotifications.getNotificationStatus();
-                  Get.to(() => ProfileOverview(
+                  Get.to(() => ProfileOverviewScreen(
                         isSelected: fcmStutas,
                       ));
                 },
@@ -86,8 +86,8 @@ class DashboardScreen extends StatelessWidget {
                 valueListenable: _buttonTrigger,
                 builder: (BuildContext context, _, __) {
                   return _buttonTrigger.value == 0
-                      ? const DashboardOverview()
-                      : const DashboardProductivity();
+                      ? const DashboardOverviewScreen()
+                      : const DashboardProductivityScreen();
                 },
               )
             ],

@@ -24,7 +24,7 @@ class AppBackButton extends StatelessWidget {
             // if (user!=null && !user.isAnonymous) {
 
             // }
-            Get.offAll(() => const Timeline());
+            Get.offAll(() => const TimelineScreen());
           }
         },
         child: const RoundedBorderWithIcon(icon: Icons.arrow_back),

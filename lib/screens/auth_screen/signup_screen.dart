@@ -20,16 +20,16 @@ import 'package:project_management_muhmad_omar/widgets/forms/form_input_with_lab
 import 'package:project_management_muhmad_omar/widgets/navigation/back_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-class SignUp extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   final String email;
 
-  const SignUp({super.key, required this.email});
+  const SignUpScreen({super.key, required this.email});
 
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   final TextEditingController _confirmPassController = TextEditingController();

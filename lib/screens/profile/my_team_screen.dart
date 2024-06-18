@@ -7,16 +7,16 @@ import 'package:project_management_muhmad_omar/widgets/container_label_widget.da
 
 import 'team_details_screen.dart';
 
-class TeamStory extends StatelessWidget {
+class MyTeamScreen extends StatelessWidget {
   final String teamTitle;
   final String numberOfMembers;
   final String noImages;
-  final TeamModel teamModel;
+  final TeamModel? teamModel;
   final ManagerModel? userAsManager;
   final List<UserModel> users;
   final VoidCallback? onTap;
 
-  const TeamStory(
+  const MyTeamScreen(
       {super.key,
       required this.userAsManager,
       required this.onTap,
@@ -38,7 +38,7 @@ class TeamStory extends StatelessWidget {
         AppSpaces.verticalSpace10,
         InkWell(
           onTap: () {
-            Get.to(() => TeamDetails(
+            Get.to(() => TeamDetailsScreen(
                   userAsManager: userAsManager,
                   title: teamTitle,
                   team: teamModel,

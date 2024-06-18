@@ -33,8 +33,8 @@ class Assets {
   static const String assetsTaskDone = 'assets/task_done.png';
   static const String assetsTeam = 'assets/team.png';
   static const String assetsWorkingOn = 'assets/working_on.png';
-  static const String authScreenAuthPageScreen =
-      'lib/screens/auth_screen/auth_page_screen.dart';
+  static const String authScreenAuthScreen =
+      'lib/screens/auth_screen/auth_screen.dart';
   static const String authScreenChoosePlanScreen =
       'lib/screens/auth_screen/choose_plan_screen.dart';
   static const String authScreenEmailAddressScreen =
@@ -162,16 +162,12 @@ class Assets {
       'lib/screens/dashboard_screen/category_screen.dart';
   static const String dashboardScreenDashboardScreen =
       'lib/screens/dashboard_screen/dashboard_screen.dart';
-  static const String dashboardScreenInvitationsScreen =
-      'lib/screens/dashboard_screen/invitations_screen.dart';
   static const String dashboardScreenInvitionsScreen =
       'lib/screens/dashboard_screen/invitions_screen.dart';
   static const String dashboardScreenNotificationsScreen =
       'lib/screens/dashboard_screen/notifications_screen.dart';
   static const String dashboardScreenProjectsScreen =
       'lib/screens/dashboard_screen/projects_screen.dart';
-  static const String dashboardScreenSearchBarAnimationScreen =
-      'lib/screens/dashboard_screen/search_bar_animation_screen.dart';
   static const String dashboardScreenSelectMyTeamsScreen =
       'lib/screens/dashboard_screen/select_my_teams_screen.dart';
   static const String dashboardScreenSelectTeamScreen =
@@ -228,6 +224,7 @@ class Assets {
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
   static const String libMain = 'lib/main.dart';
   static const String libProviders = 'lib/providers.dart';
+  static const String libRoutes = 'lib/routes.dart';
   static const String logoAppLogoWidget =
       'lib/widgets/logo/app_logo_widget.dart';
   static const String logoTripletsContainerWidget =
@@ -317,8 +314,6 @@ class Assets {
       'lib/widgets/projects/project_card_vertical_widget.dart';
   static const String projectsProjectDetailAppbarWidget =
       'lib/widgets/projects/project_detail_appbar_widget.dart';
-  static const String projectsProjectScreenScreen =
-      'lib/screens/projects/project_screen_screen.dart';
   static const String projectsProjectSelectableContainerWidget =
       'lib/widgets/projects/project_selectable_container_widget.dart';
   static const String projectsProjectTaskActiveCardWidget =
@@ -340,11 +335,14 @@ class Assets {
   static const String providersAuthProvider =
       'lib/providers/auth_provider.dart';
   static const String providersBoxProvider = 'lib/providers/box_provider.dart';
+  static const String providersInvitationsProvider =
+      'lib/providers/invitations_provider.dart';
+  static const String providersProjectProvider =
+      'lib/providers/project_provider.dart';
   static const String resApp = 'lib/widgets/calender/core/res/app.dart';
   static const String resColor = 'lib/widgets/calender/core/res/color.dart';
   static const String screensLanguageScreen =
       'lib/screens/language_screen.dart';
-  static const String screensSplashPage = 'lib/screens/splashPage.dart';
   static const String screensSplashScreen = 'lib/screens/splash_screen.dart';
   static const String searchActiveTaskCardWidget =
       'lib/widgets/search/active_task_card_widget.dart';
@@ -458,6 +456,8 @@ class Assets {
       'lib/widgets/inactive_employee_card_widget.dart';
   static const String widgetsLanguageWidget =
       'lib/widgets/language_widget.dart';
+  static const String widgetsSearchBarAnimationWidget =
+      'lib/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
   static const String widgetsSizeConfigWidget =
       'lib/screens/auth_screen/forgot_password_screen/widgets/size_config_widget.dart';
   static const String widgetsSpaceWidget =

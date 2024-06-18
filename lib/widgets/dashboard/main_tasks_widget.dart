@@ -7,7 +7,7 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';

@@ -14,14 +14,14 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 import '../../widgets/forms/form_input_with_label_widget.dart';
 import '../../widgets/navigation/back_widget.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  _LoginState createState() => _LoginState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -168,7 +168,7 @@ class _LoginState extends State<Login> {
                               Navigator.of(context).pop();
 
                               if (userCredential.user!.emailVerified) {
-                                Get.offAll(() => const Timeline());
+                                Get.offAll(() => const TimelineScreen());
                               } else {
                                 Get.to(() => const VerifyEmailAddressScreen());
                               }

@@ -7,7 +7,7 @@ import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 

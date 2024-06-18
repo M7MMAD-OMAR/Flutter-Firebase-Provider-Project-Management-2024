@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/search_bar_animation_screen.dart';
+import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/task_widget.dart';

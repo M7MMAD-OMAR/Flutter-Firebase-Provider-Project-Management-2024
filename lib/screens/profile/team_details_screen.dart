@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -28,15 +27,15 @@ import 'package:project_management_muhmad_omar/widgets/table_calendar_widget.dar
 
 import 'my_team_screen.dart';
 
-class TeamDetails extends StatelessWidget {
+class TeamDetailsScreen extends StatelessWidget {
   final String title;
   TeamModel? team;
-  TeamDetails(
-      {Key? key,
+
+  TeamDetailsScreen(
+      {super.key,
       required this.title,
       required this.team,
-      required this.userAsManager})
-      : super(key: key);
+      required this.userAsManager});
   final ManagerModel? userAsManager;
 
   @override
@@ -113,7 +112,7 @@ class TeamDetails extends StatelessWidget {
                                 listIds.add(member.data().userId);
                               }
                               if (listIds.isEmpty) {
-                                return TeamStory(
+                                return MyTeamScreen(
                                     userAsManager: userAsManager,
                                     onTap: () {
                                       Get.to(() => ShowTeamMembers(
@@ -150,7 +149,7 @@ class TeamDetails extends StatelessWidget {
                                         in snapshotUsers.data!.docs) {
                                       users.add(element.data());
                                     }
-                                    return TeamStory(
+                                    return MyTeamScreen(
                                         userAsManager: userAsManager,
                                         onTap: () {
                                           Get.to(() => ShowTeamMembers(

@@ -6,8 +6,8 @@ import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radi
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/table_calendar_widget.dart';
 
-class TaskDueDate extends StatelessWidget {
-  const TaskDueDate({Key? key}) : super(key: key);
+class TaskDueDateScreen extends StatelessWidget {
+  const TaskDueDateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +108,8 @@ class ConditionText extends StatelessWidget {
     required this.label,
     required this.value,
     required this.color,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

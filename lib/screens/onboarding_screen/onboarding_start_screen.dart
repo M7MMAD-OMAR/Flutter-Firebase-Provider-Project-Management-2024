@@ -11,8 +11,8 @@ import '../../widgets/Onboarding/loading_stickers_widget.dart';
 import '../../widgets/Shapes/background_hexagon_widget.dart';
 import 'onboarding_carousel_screen.dart';
 
-class OnboardingStart extends StatelessWidget {
-  const OnboardingStart({super.key});
+class OnboardingStartScreen extends StatelessWidget {
+  const OnboardingStartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +125,7 @@ class OnboardingStart extends StatelessWidget {
               angle: -math.pi / 4,
               child: InkWell(
                 onTap: () {
-                  Get.to(() => const OnboardingCarousel());
+                  Get.to(() => const OnboardingCarouselScreen());
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -190,7 +190,7 @@ class OnboardingStart extends StatelessWidget {
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => const OnboardingCarousel());
+                        Get.to(() => const OnboardingCarouselScreen());
                       },
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(

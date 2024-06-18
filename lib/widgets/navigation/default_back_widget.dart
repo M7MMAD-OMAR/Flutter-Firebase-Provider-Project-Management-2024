@@ -44,7 +44,7 @@ class DefaultNav extends StatelessWidget {
             width: 75,
             content: 'تعديل',
             onPressed: () {
-              Get.to(() => EditProfilePage(
+              Get.to(() => EditProfileScreen(
                     user: userModel,
                   ));
             },

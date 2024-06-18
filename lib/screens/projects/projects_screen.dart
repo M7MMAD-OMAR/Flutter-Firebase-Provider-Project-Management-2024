@@ -4,8 +4,8 @@ import 'package:project_management_muhmad_omar/widgets/Chat/add_chat_icon_widget
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 
-class Projects extends StatelessWidget {
-  const Projects({Key? key}) : super(key: key);
+class ProjectsScreen extends StatelessWidget {
+  const ProjectsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

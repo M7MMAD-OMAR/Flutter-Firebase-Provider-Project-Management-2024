@@ -83,7 +83,8 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                                       {
                                         CustomSnackBar.showSuccess(
                                             'تم التحقق من البريد الإلكتروني'),
-                                        Get.offAll(() => const Timeline()),
+                                        Get.offAll(
+                                            () => const TimelineScreen()),
                                       }
                                   });
                         },
@@ -118,7 +119,7 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                             }, (right) {
                               if (right == true) {
                                 CustomSnackBar.showSuccess('نجاح');
-                                Get.offAll(() => const Timeline());
+                                Get.offAll(() => const TimelineScreen());
                               } else {
                                 CustomSnackBar.showError(
                                     'يرجى التحقق من بريدك الإلكتروني قبل المتابعة');

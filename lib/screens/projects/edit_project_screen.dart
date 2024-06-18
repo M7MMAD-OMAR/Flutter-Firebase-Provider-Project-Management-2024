@@ -28,8 +28,8 @@ import 'package:provider/provider.dart';
 
 import '../../providers/projects/add_team_to_create_project_provider.dart';
 
-class EditProject extends StatefulWidget {
-  EditProject({
+class EditProjectScreen extends StatefulWidget {
+  EditProjectScreen({
     required this.userAsManager,
     required this.teamModel,
     required this.projectModel,
@@ -41,10 +41,10 @@ class EditProject extends StatefulWidget {
   ManagerModel userAsManager;
 
   @override
-  State<EditProject> createState() => _EditProjectState();
+  State<EditProjectScreen> createState() => _EditProjectScreenState();
 }
 
-class _EditProjectState extends State<EditProject> {
+class _EditProjectScreenState extends State<EditProjectScreen> {
   String? selectedImagePath;
 
   void _showImagePickerDialog(BuildContext context) {

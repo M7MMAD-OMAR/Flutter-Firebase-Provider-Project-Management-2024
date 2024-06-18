@@ -7,8 +7,6 @@ import 'package:project_management_muhmad_omar/controllers/waitingMamberControll
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/screens/Projects/search_for_member_provider.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
@@ -21,30 +19,32 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 import '../../providers/projects/add_user_to_team_provider.dart';
 import '../profile/profile_overview_screen.dart';
 
-class SearchForMembers extends StatefulWidget {
+class SearchForMembersScreen extends StatefulWidget {
   final bool newTeam;
   final TeamModel? teamModel;
-  const SearchForMembers(
+
+  const SearchForMembersScreen(
       {Key? searchForMembersKey,
       this.teamModel,
       required List<UserModel?>? users,
       required this.newTeam})
       : super(key: searchForMembersKey);
   static String search = "";
+
   @override
-  State<SearchForMembers> createState() => _SearchForMembersState();
+  State<SearchForMembersScreen> createState() => _SearchForMembersScreenState();
 }
 
-class _SearchForMembersState extends State<SearchForMembers> {
+class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
   final searchController = TextEditingController();
-  final GlobalKey<_SearchForMembersState> searchForMembersKey =
-      GlobalKey<_SearchForMembersState>();
+  final GlobalKey<_SearchForMembersScreenState> searchForMembersKey =
+      GlobalKey<_SearchForMembersScreenState>();
   final DashboardMeetingDetailsProvider addWatingMemberController =
       Get.find<DashboardMeetingDetailsProvider>();
 
   void clearSearch() {
     setState(() {
-      SearchForMembers.search = "";
+      SearchForMembersScreen.search = "";
       searchController.clear();
     });
   }
@@ -78,7 +78,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                       onTap: () async {
                         bool fcmStutas =
                             await FcmNotifications.getNotificationStatus();
-                        Get.to(() => ProfileOverview(
+                        Get.to(() => ProfileOverviewScreen(
                               isSelected: fcmStutas,
                             ));
                       },
@@ -197,8 +197,8 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                               user.userName?.toLowerCase() ??
                                                   '';
 
-                                          return userName.contains(
-                                                  controller.searchQuery
+                                          return userName.contains(controller
+                                                  .searchQuery
                                                   .toLowerCase()) &&
                                               user.id !=
                                                   AuthProvider
@@ -221,10 +221,10 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsets.symmetric(
-                                                    horizontal: Utils
-                                                            .screenWidth * 0.1,
-                                                    vertical: Utils
-                                                            .screenHeight *
+                                                    horizontal:
+                                                        Utils.screenWidth * 0.1,
+                                                    vertical:
+                                                        Utils.screenHeight *
                                                             0.05,
                                                   ),
                                                   child: Center(

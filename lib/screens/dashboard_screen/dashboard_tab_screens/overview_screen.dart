@@ -9,20 +9,19 @@ import 'package:project_management_muhmad_omar/controllers/user_task_controller.
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/dashboard_settings_sheet_widget.dart';
 
-import '../../../constants/app_constants.dart';
-import '../../../services/auth_service.dart';
 import '../../../widgets/Dashboard/overview_task_container_widget.dart';
 import '../../../widgets/Shapes/app_settings_icon_widget.dart';
 
-class DashboardOverview extends StatefulWidget {
-  const DashboardOverview({Key? key}) : super(key: key);
+class DashboardOverviewScreen extends StatefulWidget {
+  const DashboardOverviewScreen({super.key});
   static String id = "/DashboardOverviewScreen";
 
   @override
-  State<DashboardOverview> createState() => _DashboardOverviewState();
+  State<DashboardOverviewScreen> createState() =>
+      _DashboardOverviewScreenState();
 }
 
-class _DashboardOverviewState extends State<DashboardOverview> {
+class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
   final ValueNotifier<bool> _totalTaskTrigger = ValueNotifier(true);
 
   final ValueNotifier<bool> _totalTaskToDoTrigger = ValueNotifier(true);

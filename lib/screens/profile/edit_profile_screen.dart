@@ -19,16 +19,16 @@ import 'package:project_management_muhmad_omar/widgets/forms/form_input_with_lab
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-class EditProfilePage extends StatefulWidget {
+class EditProfileScreen extends StatefulWidget {
   final UserModel? user;
 
-  const EditProfilePage({Key? key, required this.user}) : super(key: key);
+  const EditProfileScreen({Key? key, required this.user}) : super(key: key);
 
   @override
-  State<EditProfilePage> createState() => _EditProfilePageState();
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
-class _EditProfilePageState extends State<EditProfilePage> {
+class _EditProfileScreenState extends State<EditProfileScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String name = "";
   RegExp regExletters = RegExp(r"(?=.*[a-z])\w+");
@@ -159,7 +159,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     AuthProvider.instance.logOut();
                                     changes = true;
                                     Get.offAll(
-                                        () => const OnboardingCarousel());
+                                        () => const OnboardingCarouselScreen());
                                     return;
                                   });
                                 }
