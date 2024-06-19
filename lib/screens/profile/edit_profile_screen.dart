@@ -7,9 +7,9 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_progress_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
@@ -97,7 +97,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
                                   final resOfUpload = await uploadImageToStorge(
                                       selectedImagePath: selectedImagePath!,
-                                      imageName: AuthProvider.instance
+                                      imageName: AuthProvider
                                           .firebaseAuth.currentUser!.uid,
                                       folder: "Users");
                                   resOfUpload.fold((left) {
@@ -108,8 +108,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     right.then((value) async {
                                       String imageNetWork = value!;
                                       await UserController().updateUser(
-                                          id: AuthProvider.instance.firebaseAuth
-                                              .currentUser!.uid,
+                                          id: AuthProvider
+                                              .firebaseAuth.currentUser!.uid,
                                           data: {imageUrlK: imageNetWork});
                                       Navigator.pop(context);
                                     });
@@ -142,7 +142,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 if (email.isNotEmpty &&
                                     email.trim() != widget.user!.email) {
                                   email = email.trim();
-                                  var emailupdate = await AuthProvider.instance
+                                  var emailupdate = await AuthProvider()
                                       .updateEmail(email: email);
 
                                   emailupdate.fold((left) async {
@@ -156,7 +156,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     Navigator.of(context).pop();
                                     CustomSnackBar.showSuccess(
                                         'تم تحديث البريد الإلكتروني بنجاح..الرجاء تسجيل الدخول والتحقق من البريد الإلكتروني الجديد');
-                                    AuthProvider.instance.logOut();
+                                    AuthProvider().logOut();
                                     changes = true;
                                     Get.offAll(
                                         () => const OnboardingCarouselScreen());
@@ -271,7 +271,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           AppSpaces.verticalSpace20,
                           Visibility(
                             visible: !AuthProvider
-                                .instance.firebaseAuth.currentUser!.isAnonymous,
+                                .firebaseAuth.currentUser!.isAnonymous,
                             child: LabelledFormInput(
                                 onChanged: (value) {
                                   setState(() {
@@ -298,7 +298,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           AppSpaces.verticalSpace20,
                           Visibility(
                             visible: !AuthProvider
-                                .instance.firebaseAuth.currentUser!.isAnonymous,
+                                .firebaseAuth.currentUser!.isAnonymous,
                             child: LabelledFormInput(
                                 validator: (value) {
                                   if (!EmailValidator.validate(value!)) {
@@ -351,8 +351,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ],
                       ),
                       Visibility(
-                        visible: !AuthProvider
-                            .instance.firebaseAuth.currentUser!.isAnonymous,
+                        visible:
+                            !AuthProvider.firebaseAuth.currentUser!.isAnonymous,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 25),
                           child: AppPrimaryButton(

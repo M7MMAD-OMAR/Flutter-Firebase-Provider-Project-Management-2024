@@ -10,7 +10,7 @@ showAppBottomSheet(Widget widget,
     {bool isScrollControlled = false,
     bool popAndShow = false,
     double? height}) {
-  if (popAndShow) Get.back();
+  if (popAndShow) Navigator.pop(context);
   return Get.bottomSheet(
       height == null ? widget : SizedBox(height: height, child: widget),
       backgroundColor: AppColors.primaryBackgroundColor,

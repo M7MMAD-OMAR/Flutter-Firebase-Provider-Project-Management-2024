@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
-import '../../controllers/languageController.dart';
 import '../../models/lang/lang_model.dart';
 
 class Box extends StatelessWidget {
@@ -12,13 +11,11 @@ class Box extends StatelessWidget {
   final String iconpath;
   final VoidCallback? callback;
   LanguageModel? languageModel;
-  LocalizationController? localizationController;
   int? index;
 
   Box(
       {Key? key,
       this.languageModel,
-      this.localizationController,
       this.index,
       required this.iconColor,
       required this.iconpath,

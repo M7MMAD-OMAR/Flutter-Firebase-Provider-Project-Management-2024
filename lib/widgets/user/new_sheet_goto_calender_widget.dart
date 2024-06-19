@@ -12,14 +12,14 @@ class NewSheetGoToCalendarWidget extends StatelessWidget {
   final Function(DateTime) onSelectedDayChanged;
   final Color textAccentColor;
   NewSheetGoToCalendarWidget({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
     required this.cardBackgroundColor,
     required this.textAccentColor,
     required this.selectedDay,
     required this.onSelectedDayChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

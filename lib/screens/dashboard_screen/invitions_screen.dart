@@ -16,6 +16,7 @@ import 'package:project_management_muhmad_omar/models/team/team_members_model.da
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../../models/team/project_model.dart';
@@ -47,8 +48,8 @@ class InvitationScreen extends StatelessWidget {
                   title: 'الدعوات',
                   widget: GestureDetector(
                     onTap: () async {
-                      bool fcmStutas =
-                          await FcmNotifications.getNotificationStatus();
+                      bool fcmStutas = await FcmNotificationsProvider
+                          .getNotificationStatus();
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -58,8 +59,7 @@ class InvitationScreen extends StatelessWidget {
                     },
                     child: StreamBuilder<DocumentSnapshot<UserModel>>(
                         stream: UserController().getUserByIdStream(
-                            id: AuthProvider
-                                .instance.firebaseAuth.currentUser!.uid),
+                            id: AuthProvider.firebaseAuth.currentUser!.uid),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return const Text("جاري التحميل...");
@@ -122,7 +122,7 @@ class InvitationScreen extends StatelessWidget {
                           stream: TeamMemberController()
                               .getMemberWhereUserIsStream(
                                   userId: AuthProvider
-                                      .instance.firebaseAuth.currentUser!.uid),
+                                      .firebaseAuth.currentUser!.uid),
                           builder: (context, snapshotMembersforUser) {
                             if (snapshotMembersforUser.hasError) {
                               return Column(
@@ -408,7 +408,7 @@ class InvitationScreen extends StatelessWidget {
                           stream: WaitingMamberController()
                               .getWaitingMembersInUserIdStream(
                                   userId: AuthProvider
-                                      .instance.firebaseAuth.currentUser!.uid),
+                                      .firebaseAuth.currentUser!.uid),
                           builder: (context, snapshotOfWaithingMembers) {
                             if (!snapshotOfWaithingMembers.hasData) {
                               return Column(

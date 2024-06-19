@@ -19,10 +19,10 @@ import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
-import '../auth_service.dart';
 import '../collections_refrences.dart';
 import 'notification_controller_services.dart';
 import 'notification_service.dart';
@@ -33,8 +33,8 @@ Future<void> sendMainTaskNotification(
     required bool started,
     required List<String> token,
     required bool finished}) async {
-  FcmNotifications fcmNotifications =
-      Get.put(FcmNotifications(), permanent: true);
+  FcmNotificationsProvider fcmNotifications =
+      Get.put(FcmNotificationsProvider(), permanent: true);
   if (!finished) {
     String title = started
         ? "main task ${task.name} has Started"
@@ -64,8 +64,8 @@ Future<void> sendSubTaskNotification(
     required bool started,
     required List<String> token,
     required bool finished}) async {
-  FcmNotifications fcmNotifications =
-      Get.put(FcmNotifications(), permanent: true);
+  FcmNotificationsProvider fcmNotifications =
+      Get.put(FcmNotificationsProvider(), permanent: true);
   if (!finished) {
     String title = started
         ? "sub task ${task.name} has Started"
@@ -96,8 +96,8 @@ Future<void> sendTaskNotification(
     required bool started,
     required List<String> token,
     required bool finished}) async {
-  FcmNotifications fcmNotifications =
-      Get.put(FcmNotifications(), permanent: true);
+  FcmNotificationsProvider fcmNotifications =
+      Get.put(FcmNotificationsProvider(), permanent: true);
   if (!finished) {
     String title = started
         ? "${task.name} has Started"
@@ -127,8 +127,8 @@ Future<void> sendProjectNotification(
     required bool started,
     required List<String> token,
     required bool finished}) async {
-  FcmNotifications fcmNotifications =
-      Get.put(FcmNotifications(), permanent: true);
+  FcmNotificationsProvider fcmNotifications =
+      Get.put(FcmNotificationsProvider(), permanent: true);
   if (!finished) {
     String title = started
         ? "${project.name} has Started"
@@ -274,7 +274,7 @@ Future<void> checkTaskToSendNotification() async {
             id: element.id,
           );
           String title = "${element.name} has Ended";
-          await FcmNotifications().sendNotificationAsJson(
+          await FcmNotificationsProvider().sendNotificationAsJson(
               fcmTokens: [token],
               title: title,
               body: "🚀Task ${element.name} has Finished.📅.and got Done",
@@ -289,7 +289,7 @@ Future<void> checkTaskToSendNotification() async {
             id: element.id,
           );
           String title = "${element.name} has Ended";
-          await FcmNotifications().sendNotificationAsJson(
+          await FcmNotificationsProvider().sendNotificationAsJson(
               fcmTokens: [token],
               title: title,
               body: "🚀Task ${element.name} has Finished.📅.and got not Done",
@@ -403,14 +403,14 @@ checkProjectsToSendNotificationToMember() async {
   if (await TeamMemberController().existByOne(
           collectionReference: teamMembersRef,
           value: userIdK,
-          field: AuthProvider.instance.firebaseAuth.currentUser!.uid) ==
+          field: AuthProvider.firebaseAuth.currentUser!.uid) ==
       false) {
     return;
   }
   List<ProjectModel?>? projectList = [];
 
   projectList = await ProjectController().getProjectsOfMemberWhereUserIs2(
-      userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+      userId: AuthProvider.firebaseAuth.currentUser!.uid);
   await checkProjectsToSendNotification(
       ismanager: false, projectList: projectList);
 }
@@ -419,11 +419,11 @@ checkProjectMainTasksToSendNotificationToMembers() async {
   if (await TeamMemberController().existByOne(
           collectionReference: teamMembersRef,
           value: userIdK,
-          field: AuthProvider.instance.firebaseAuth.currentUser!.uid) ==
+          field: AuthProvider.firebaseAuth.currentUser!.uid) ==
       true) {
     List<ProjectModel?>? projectList = [];
     projectList = await ProjectController().getProjectsOfMemberWhereUserIs2(
-        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.firebaseAuth.currentUser!.uid);
     await checkProjectMainTasksToSendNotifications(
         manager: false, projectList: projectList);
   }
@@ -433,11 +433,11 @@ checkProjectMainTasksToSendNotificationToManager() async {
   if (await TeamMemberController().existByOne(
           collectionReference: managersRef,
           value: userIdK,
-          field: AuthProvider.instance.firebaseAuth.currentUser!.uid) ==
+          field: AuthProvider.firebaseAuth.currentUser!.uid) ==
       true) {
     List<ProjectModel?>? projectList = [];
-    projectList = await ProjectController().getProjectsOfUser(
-        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+    projectList = await ProjectController()
+        .getProjectsOfUser(userId: AuthProvider.firebaseAuth.currentUser!.uid);
     await checkProjectMainTasksToSendNotifications(
         manager: true, projectList: projectList);
   }
@@ -534,7 +534,7 @@ checkSubTasksToSendNotification() async {
   if (await teamMemberController.existByOne(
           collectionReference: teamMembersRef,
           value: userIdK,
-          field: AuthProvider.instance.firebaseAuth.currentUser!.uid) ==
+          field: AuthProvider.firebaseAuth.currentUser!.uid) ==
       true) {
     StatusModel statusDoneModel =
         await statusController.getStatusByName(status: statusDone);
@@ -547,7 +547,7 @@ checkSubTasksToSendNotification() async {
     List<ProjectSubTaskModel> allsubtasklist = [];
     List<TeamMemberModel> list =
         await teamMemberController.getMemberWhereUserIs(
-            userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+            userId: AuthProvider.firebaseAuth.currentUser!.uid);
     list.forEach((element) async {
       List<ProjectSubTaskModel> minisubtasklist = await projectSubTaskController
           .getMemberSubTasks(memberId: element.id);

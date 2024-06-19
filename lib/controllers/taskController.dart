@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/models/tops/Var2TopModel.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
+import '../constants/constants.dart';
 import '../models/status_model.dart';
 import '../models/team/task_model.dart';
 import '../models/tops/top_model.dart';
@@ -301,8 +304,9 @@ class ProjectAndTaskController extends TopController {
       0,
       0,
     );
+    BuildContext context = navigatorKey.currentContext!;
 
-    StatusController statusController = Get.put(StatusController());
+    StatusController statusController = Provider.of<StatusController>(context);
     StatusModel statusModel =
         await statusController.getStatusByName(status: status);
     return await getDocsWhereAndWhereForDate(
@@ -338,7 +342,9 @@ class ProjectAndTaskController extends TopController {
         .add(const Duration(days: 1))
         .subtract(const Duration(seconds: 1));
 
-    StatusController statusController = Get.put(StatusController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    StatusController statusController = Provider.of<StatusController>(context);
     yield* queryWhereForDateStream(
         reference: reference,
         field: field,
@@ -364,7 +370,9 @@ class ProjectAndTaskController extends TopController {
       0,
       0,
     );
-    StatusController statusController = Get.put(StatusController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    StatusController statusController = Provider.of<StatusController>(context);
     StatusModel statusModel =
         await statusController.getStatusByName(status: status);
     yield* queryWhereAndWhereForDateStream(

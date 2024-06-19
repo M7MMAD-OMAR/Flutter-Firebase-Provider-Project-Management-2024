@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 
 class ProjectProvider with ChangeNotifier {
   int _selectedTab = 0;
@@ -10,7 +10,7 @@ class ProjectProvider with ChangeNotifier {
   int get selectedTab => _selectedTab;
 
   Stream<QuerySnapshot<ProjectModel?>> getProjectsStream() {
-    final userId = AuthProvider.instance.firebaseAuth.currentUser!.uid;
+    final userId = AuthProvider.firebaseAuth.currentUser!.uid;
     if (_selectedTab == 0) {
       return ProjectController()
           .getProjectsOfMemberWhereUserIsStream(userId: userId);

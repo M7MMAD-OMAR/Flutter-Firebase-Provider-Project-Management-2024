@@ -13,8 +13,8 @@ import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/Projects/search_for_members_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/active_employee_card_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_widget.dart';
@@ -250,7 +250,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                                 CustomDialog.showConfirmDeleteDialog(
                                                                                     onDelete: () async {
                                                                                       await TeamMemberController().deleteMember(id: snapshotTeamMembers.data!.docs[index].data().id);
-                                                                                      Get.back();
+                                                                                      Navigator.pop(context);
                                                                                     },
                                                                                     content: Text("هل أنت متأكد من رغبتك في حذف هذه المهمة؟ ${snapshotUsers.data!.docs[index].data().name} من هذا الفريق ؟"));
                                                                               },
@@ -268,7 +268,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                               onPressed: (context) async {
                                                                                 showDialogMethod(context);
                                                                                 await WaitingMamberController().deleteWaitingMamberDoc(waitingMemberId: snapShotWatingUsers.data!.docs[index].data().id);
-                                                                                Get.key.currentState!.pop();
+                                                                                Navigator.pop(context);
                                                                               },
                                                                               label: 'حذف',
                                                                               icon: FontAwesomeIcons.trash,
@@ -327,7 +327,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                             index]
                                                                         .data()
                                                                         .imageUrl,
-                                                                    userName: AuthProvider.instance.firebaseAuth.currentUser!.uid ==
+                                                                    userName: AuthProvider.firebaseAuth.currentUser!.uid ==
                                                                             snapshotUsers.data!.docs[index]
                                                                                 .data()
                                                                                 .id
@@ -351,7 +351,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                         teamModel.managerId ==
                                                                             userAsManager?.id,
                                                                     child:
-                                                                        InactiveEmployeeCard(
+                                                                        InactiveEmployeeCardWidget(
                                                                       onTap:
                                                                           () {
                                                                         CustomDialog.userInfoDialog(
@@ -363,7 +363,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                             userName: snapshotUsers.data!.docs[index].data().userName!,
                                                                             bio: snapshotUsers.data!.docs[index].data().bio);
                                                                       },
-                                                                      userName: AuthProvider.instance.firebaseAuth.currentUser!.uid == snapshotUsers.data!.docs[index].data().id
+                                                                      userName: AuthProvider.firebaseAuth.currentUser!.uid == snapshotUsers.data!.docs[index].data().id
                                                                           ? 'أنت'
                                                                           : snapshotUsers
                                                                               .data!
@@ -411,13 +411,14 @@ class ShowTeamMembers extends StatelessWidget {
                   buttonWidth: 150,
                   buttonText: 'إضافة عضو',
                   callback: () {
-                    Get.to(
-                      () => SearchForMembers(
-                        teamModel: teamModel,
-                        users: null,
-                        newTeam: false,
-                      ),
-                    );
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => SearchForMembersScreen(
+                                  teamModel: teamModel,
+                                  users: null,
+                                  newTeam: false,
+                                )));
                   }),
             ),
             AppSpaces.verticalSpace20,

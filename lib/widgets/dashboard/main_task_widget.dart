@@ -12,6 +12,7 @@ import 'package:project_management_muhmad_omar/controllers/manger_controller.dar
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/subTasks_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
@@ -128,7 +129,7 @@ class _brogressState extends State<brogress> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthProvider.instance.firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
         } else {
           updatedIsManager = true;

@@ -85,7 +85,7 @@ class Routes {
     authScreen: (BuildContext context) => const AuthScreen(),
     loginScreen: (BuildContext context) => const LoginScreen(),
     dashboardMeetingDetailsScreen: (BuildContext context) =>
-        const DashboardMeetingDetailsScreen(),
+        const DashboardMeetingDetailsWidget(),
     signupScreen: (BuildContext context) => const SignUpScreen(email: ''),
     resetPassword: (BuildContext context) => const ResetPasswordScreen(),
     verifyEmailAddressScreen: (BuildContext context) =>

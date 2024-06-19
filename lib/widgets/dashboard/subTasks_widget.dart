@@ -25,7 +25,6 @@ import 'package:project_management_muhmad_omar/models/team/team_members_model.da
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
@@ -108,7 +107,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthProvider.instance.firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
@@ -455,8 +454,8 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                   onConfirm: () async {
                     await waitingSubTaskController.addWatingSubTask(
                         waitingSubTaskModel: waitingSubTaskModel);
-                    FcmNotifications fcmNotifications =
-                        Get.put(FcmNotifications());
+                    FcmNotificationsProvider fcmNotifications =
+                        Get.put(FcmNotificationsProvider());
                     await fcmNotifications.sendNotificationAsJson(
                         fcmTokens: userModel.tokenFcm,
                         title: 'لديك مهمة',
@@ -466,8 +465,8 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                         type: NotificationType.taskRecieved);
                     CustomSnackBar.showSuccess(
                         "مهمة ${taskName}  تم إرسالها بنجاح إلى العضو");
-                    Get.key.currentState!.pop();
-                    Get.key.currentState!.pop();
+                    Navigator.pop(context);
+                    Navigator.pop(context);
                   },
                   onCancel: () {
                     // SystemNavigator.pop();
@@ -477,7 +476,8 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
             } else {
               await waitingSubTaskController.addWatingSubTask(
                   waitingSubTaskModel: waitingSubTaskModel);
-              FcmNotifications fcmNotifications = Get.put(FcmNotifications());
+              FcmNotificationsProvider fcmNotifications =
+                  Get.put(FcmNotificationsProvider());
               await fcmNotifications.sendNotificationAsJson(
                   fcmTokens: userModel.tokenFcm,
                   title: 'لديك مهمة',
@@ -487,7 +487,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                   type: NotificationType.taskRecieved);
               CustomSnackBar.showSuccess(
                   "مهمة ${taskName} تم إرسالها بنجاح إلى العضو");
-              Get.key.currentState!.pop();
+              Navigator.pop(context);
             }
             // await waitingSubTaskController.addWatingSubTask(
             //     waitingSubTaskModel: waitingSubTaskModel);
@@ -501,7 +501,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
             //     type: NotificationType.taskRecieved);
             // CustomSnackBar.showSuccess(
             //     "task ${taskName} sended to member successfully");
-            // Get.key.currentState!.pop();
+            // Navigator.pop(context);
           },
           checkExist: ({required String name}) async {
             bool s;

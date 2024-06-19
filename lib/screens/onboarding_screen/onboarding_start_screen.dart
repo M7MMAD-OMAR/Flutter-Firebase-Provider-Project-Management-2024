@@ -2,11 +2,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../../constants/app_constants.dart';
 import '../../widgets/Onboarding/background_image_widget.dart';
 import '../../widgets/Onboarding/bubble_widget.dart';
 import '../../widgets/Onboarding/loading_stickers_widget.dart';

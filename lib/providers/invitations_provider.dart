@@ -11,7 +11,7 @@ class InvitationProvider with ChangeNotifier {
   int get selectedTab => _selectedTab;
 
   Stream<QuerySnapshot<ProjectModel?>> getInvitationStream() {
-    final userId = AuthProvider.instance.firebaseAuth.currentUser!.uid;
+    final userId = AuthProvider.firebaseAuth.currentUser!.uid;
     if (_selectedTab == 0) {
       return ProjectController()
           .getProjectsOfMemberWhereUserIsStream(userId: userId);

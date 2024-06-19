@@ -1,11 +1,10 @@
 import 'package:either_dart/either.dart';
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 
-import '../../constants/app_constants.dart';
 import '../forms/form_input_with_label_widget.dart';
 
 class CustomSnackBar {
@@ -110,8 +109,8 @@ class CustomDialog {
                 try {
                   if (formKey.currentState!.validate()) {
                     showDialogMethod(context);
-                    var updatePassword = AuthProvider.instance
-                        .updatePassword(newPassword: password);
+                    var updatePassword =
+                        AuthProvider().updatePassword(newPassword: password);
                     updatePassword.fold((left) {
                       Navigator.of(context).pop();
 
@@ -119,7 +118,7 @@ class CustomDialog {
                     }, (right) {
                       Navigator.of(context).pop();
                       CustomSnackBar.showSuccess('تم تحديث كلمة المرور بنجاح');
-                      Get.back();
+                      Navigator.pop(context);
                     });
                   }
                 } on Exception catch (e) {
@@ -203,14 +202,14 @@ class CustomDialog {
           ),
           AppSpaces.verticalSpace10,
 
-          Row(
+          const Row(
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AppSpaces.horizontalSpace20,
               Text(
                 " اسم المستخدم",
-                style: const TextStyle(
-                    color: Colors.grey, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
               )
             ],
           )
@@ -222,7 +221,7 @@ class CustomDialog {
         TextButton(
           onPressed: () {
             // Handle button action
-            Get.back(); // Close the dialog
+            Navigator.pop(context); // Close the dialog
           },
           child: Text('إغلاق'),
         ),
@@ -255,7 +254,7 @@ class CustomDialog {
           child: MaterialButton(
             color: Colors.white.withOpacity(.5),
             onPressed: () {
-              Get.back();
+              Navigator.pop(context);
             },
             child: const Text(
               "إلغاء",

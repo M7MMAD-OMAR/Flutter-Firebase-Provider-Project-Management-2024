@@ -330,7 +330,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.back();
+                      Navigator.pop(context);
                     },
                     child: Text(
                       "إلغاء",
@@ -350,7 +350,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                         widget.onSelectedUserChanged(
                             userModel: selectedUserNotifier.value!);
                       }
-                      Get.back();
+                      Navigator.pop(context);
                     },
                   )
                 ],

@@ -7,8 +7,8 @@ import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart'
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';
-import '../services/auth_service.dart';
-import '../widgets/snackbar/custom_snackber_widget.dart';
+import '../constants/constants.dart';
+import '../providers/auth_provider.dart';
 
 class UserTaskController extends ProjectAndTaskController {
   Future<List<UserTaskModel>> getAllUsersTasks() async {
@@ -391,13 +391,14 @@ class UserTaskController extends ProjectAndTaskController {
     required String userId,
   }) async* {
     final startOfDay = DateTime(date.year, date.month, date.day);
-    final endOfDay =
-        startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
+    final endOfDay = startOfDay
+        .add(const Duration(days: 1))
+        .subtract(const Duration(seconds: 1));
 
     Completer<List<String>> completer = Completer<List<String>>();
 
-    Stream<QuerySnapshot<UserTaskModel>> userTasksStream = getUserTasksStream(
-        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+    Stream<QuerySnapshot<UserTaskModel>> userTasksStream =
+        getUserTasksStream(userId: AuthProvider.firebaseAuth.currentUser!.uid);
 
     userTasksStream.listen((event) {
       List<QueryDocumentSnapshot<UserTaskModel>> list = event.docs;
@@ -583,8 +584,8 @@ class UserTaskController extends ProjectAndTaskController {
   Future<void> adddUserTask({required UserTaskModel userTaskModel}) async {
     bool overlapped = false;
     int over = 0;
-    List<UserTaskModel> list = await getUserTasks(
-        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+    List<UserTaskModel> list =
+        await getUserTasks(userId: AuthProvider.firebaseAuth.currentUser!.uid);
     for (UserTaskModel existingTask in list) {
       if (userTaskModel.startDate.isBefore(existingTask.endDate!) &&
           userTaskModel.endDate!.isAfter(existingTask.startDate)) {
@@ -592,27 +593,42 @@ class UserTaskController extends ProjectAndTaskController {
         over += 1;
       }
     }
-    final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+    BuildContext context = navigatorKey.currentContext!;
     if (overlapped) {
-      Get.defaultDialog(
-          title: 'خطأ في وقت المهمة',
-          middleText: " هناك $over تبدأ في هذا الوقت هل تود إضافتها؟",
-          onConfirm: () async {
-            await addTask(
-              reference: usersTasksRef,
-              field: folderIdK,
-              value: userTaskModel.folderId,
-              taskModel: userTaskModel,
-              exception: Exception('المهمة موجودة بالفعل في الفئة'),
-            );
-            CustomSnackBar.showSuccess(
-                "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
-            Get.key.currentState!.pop();
-          },
-          onCancel: () {
-            _navigatorKey.currentState?.pop();
-          },
-          navigatorKey: _navigatorKey);
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('خطأ في وقت المهمة'),
+          content: const Text('هناك مهمة تبدأ في هذا الوقت هل تود إضافتها؟'),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                await addTask(
+                  reference: usersTasksRef,
+                  field: folderIdK,
+                  value: userTaskModel.folderId,
+                  taskModel: userTaskModel,
+                  exception: Exception('المهمة موجودة بالفعل في الفئة'),
+                );
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content:
+                        Text('المهمة ${userTaskModel.name} تمت الإضافة بنجاح'),
+                  ),
+                );
+              },
+              child: const Text('نعم'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('لا'),
+            ),
+          ],
+        ),
+      );
     } else {
       await addTask(
         reference: usersTasksRef,
@@ -621,10 +637,11 @@ class UserTaskController extends ProjectAndTaskController {
         taskModel: userTaskModel,
         exception: Exception('المهمة موجودة بالفعل في الفئة'),
       );
-      Get.key.currentState!.pop();
-
-      CustomSnackBar.showSuccess(
-          "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('المهمة ${userTaskModel.name} تمت الإضافة بنجاح'),
+        ),
+      );
     }
   }
 
@@ -651,7 +668,7 @@ class UserTaskController extends ProjectAndTaskController {
       int over = 0;
 
       List<UserTaskModel> list = await getUserTasks(
-          userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+          userId: AuthProvider.firebaseAuth.currentUser!.uid);
       list.removeWhere((element) => element.id == id);
       for (UserTaskModel existingTask in list) {
         if (data[startDateK].isBefore(existingTask.endDate) &&
@@ -660,29 +677,28 @@ class UserTaskController extends ProjectAndTaskController {
           over += 1;
         }
       }
-      final GlobalKey<NavigatorState> _navigatorKey =
-          GlobalKey<NavigatorState>();
+      BuildContext context = navigatorKey.currentContext!;
+
       if (overlapped) {
-        Get.defaultDialog(
-            title: 'خطأ في وقت المهمة',
-            middleText: "هناك $overتبدأ في هذا الوقت هل تود إضافتها؟ ",
-            onConfirm: () async {
-              await updateTask(
-                reference: usersTasksRef,
-                data: data,
-                id: id,
-                field: folderIdK,
-                value: userTaskModel.folderId,
-                exception: Exception('المهمة موجودة بالفعل في الفئة'),
-              );
-              CustomSnackBar.showSuccess(
-                  "${AppConstants.task_key.reactive} ${data[nameK]} تم تحديث المهمة بنجاح");
-              Get.key.currentState!.pop();
-            },
-            onCancel: () {
-              _navigatorKey.currentState?.pop();
-            },
-            navigatorKey: _navigatorKey);
+        showErrorDialog(
+          title: 'خطأ في وقت المهمة',
+          middleText: "هناك مهمة تبدأ في هذا الوقت هل تود إضافتها؟",
+          onConfirm: () async {
+            await updateTask(
+              reference: usersTasksRef,
+              data: data,
+              id: id,
+              field: folderIdK,
+              value: userTaskModel.folderId,
+              exception: Exception('المهمة موجودة بالفعل في الفئة'),
+            );
+            showSuccessSnackBar("مهمة ${data[nameK]} تم تحديث المهمة بنجاح");
+            Navigator.of(context).pop();
+          },
+          onCancel: () {
+            Navigator.of(context).pop();
+          },
+        );
       } else {
         await updateTask(
           reference: usersTasksRef,
@@ -692,20 +708,9 @@ class UserTaskController extends ProjectAndTaskController {
           value: userTaskModel.folderId,
           exception: Exception('المهمة موجودة بالفعل في الفئة'),
         );
-        CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم تحديث المهمة بنجاح");
-        Get.key.currentState!.pop();
+        showSuccessSnackBar("مهمة ${data[nameK]} تم تحديث المهمة بنجاح");
+        Navigator.of(context).pop();
       }
-    } else {
-      await updateTask(
-        reference: usersTasksRef,
-        data: data,
-        id: id,
-        field: folderIdK,
-        value: userTaskModel.folderId,
-        exception: Exception('المهمة موجودة بالفعل في الفئة'),
-      );
-      CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم تحديث المهمة بنجاح");
-      Get.key.currentState!.pop();
     }
   }
 }

@@ -110,7 +110,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthProvider.instance.firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
         } else {
           updatedIsManager = true;

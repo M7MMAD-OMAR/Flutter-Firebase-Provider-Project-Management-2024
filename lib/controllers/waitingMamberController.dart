@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
@@ -6,16 +7,17 @@ import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
+import '../constants/constants.dart';
 import '../models/team/teamModel.dart';
 import '../models/team/team_members_model.dart';
 import '../models/user/user_model.dart';
-import '../services/auth_service.dart';
+import '../providers/auth_provider.dart';
 import '../services/notifications/notification_service.dart';
 
 class WaitingMamberController extends TopController {
-  //جبلي هل الشخص يلي لسع مو قبلان دعوة الانضمام
   Future<WaitingMemberModel> getWaitingMemberById(
       {required String watingmemberId}) async {
     DocumentSnapshot doc =
@@ -23,7 +25,6 @@ class WaitingMamberController extends TopController {
     return doc.data() as WaitingMemberModel;
   }
 
-//عرض جميع الأشخاص يلي بعتلن دعوة للانضمام لهل الفريق وماقبلوها لسع
   Future<List<WaitingMemberModel>> getWaitingMembersInTeamId(
       {required String teamId}) async {
     List<Object?>? list = await getListDataWhere(
@@ -32,7 +33,6 @@ class WaitingMamberController extends TopController {
     return listOfMembers;
   }
 
-//عرض  الشخص يلي بعتلو دعوة للانضمام لهل الفريق وماقبلهاا لسع
   Future<WaitingMemberModel> getWaitingMemberByTeamIdAndUserId(
       {required String teamId, required String userId}) async {
     DocumentSnapshot doc = await getDocSnapShotWhereAndWhere(
@@ -44,7 +44,6 @@ class WaitingMamberController extends TopController {
     return doc.data() as WaitingMemberModel;
   }
 
-//عرض  الشخص يلي بعتلو دعوة للانضمام لهل الفريق وماقبلهاا لسع
   Stream<DocumentSnapshot<WaitingMemberModel>>
       getWaitingMemberByTeamIdAndUserIdStream(
           {required String teamId, required String userId}) {
@@ -64,7 +63,6 @@ class WaitingMamberController extends TopController {
     return stream.cast<QuerySnapshot<WaitingMemberModel>>();
   }
 
-//عرض جميع الأشخاص يلي بعتلن دعوة للانضمام لهل الفريق وماقبلوها لسع
   Stream<QuerySnapshot<WaitingMemberModel>> getWaitingMembersInTeamIdStream(
       {required String teamId}) {
     Stream<QuerySnapshot> stream = queryWhereStream(
@@ -87,7 +85,7 @@ class WaitingMamberController extends TopController {
         secondFiled: idK,
         secondValue: waitingMemberModel.teamId)) {
       if (waitingMemberModel.userId ==
-          AuthProvider.instance.firebaseAuth.currentUser!.uid) {
+          AuthProvider.firebaseAuth.currentUser!.uid) {
         throw Exception('لا يمكن أن يكون المدير عضوا');
       }
       if (await existByTow(
@@ -127,11 +125,12 @@ class WaitingMamberController extends TopController {
     required bool isAccepted,
     required String memberMessage,
   }) async {
-   String status = isAccepted ? 'قبولها' : 'رفضها';
-    //user Controller to send the notification to the manager about whether the user acepted the invite or not
-    UserController userController = Get.put(UserController());
-    //to get the team model so we get the manager model and then get the manager user profile to sned the notification
-    TeamController teamController = Get.put(TeamController());
+    String status = isAccepted ? 'قبولها' : 'رفضها';
+    BuildContext context = navigatorKey.currentContext!;
+
+    UserController userController = Provider.of<UserController>(context);
+
+    TeamController teamController = Provider.of<TeamController>(context);
 
     WaitingMemberModel waitingMember =
         await getWaitingMemberById(watingmemberId: waitingMemberId);
@@ -139,9 +138,8 @@ class WaitingMamberController extends TopController {
     deleteWaitingMamberDoc(waitingMemberId: waitingMemberId);
 
     if (isAccepted) {
-      //to add the invited member to the team
-      TeamMemberController teamMemberController =
-          Get.put(TeamMemberController());
+      final TeamMemberController teamMemberController =
+          Provider.of<TeamMemberController>(context);
 
       TeamMemberModel teamMemberModel = TeamMemberModel(
         idParameter: teamMembersRef.doc().id,
@@ -159,11 +157,10 @@ class WaitingMamberController extends TopController {
     UserModel manager = await userController.getUserWhereMangerIs(
         mangerId: teamModel.managerId);
 
-    //to get the user name to tell the manager about his name in the notification
     UserModel member = await userController.getUserById(
-        id: AuthProvider.instance.firebaseAuth.currentUser!.uid);
-
-    FcmNotifications fcmNotifications = Get.put(FcmNotifications());
+        id: AuthProvider.firebaseAuth.currentUser!.uid);
+    FcmNotificationsProvider fcmNotifications =
+        Provider.of<FcmNotificationsProvider>(context);
     await fcmNotifications.sendNotification(
         fcmTokens: manager.tokenFcm,
         title: " الدعوة تم $status",
@@ -172,7 +169,6 @@ class WaitingMamberController extends TopController {
         type: NotificationType.notification);
   }
 
-//حذفو بعد الرفض او القبول والانضمام
   Future<void> deleteWaitingMamberDoc({required String waitingMemberId}) async {
     WriteBatch batch = fireStore.batch();
     deleteDocUsingBatch(

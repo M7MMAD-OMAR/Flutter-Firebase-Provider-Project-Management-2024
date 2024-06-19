@@ -6,8 +6,10 @@ import 'package:project_management_muhmad_omar/controllers/categoryController.da
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/dashboard_settings_sheet_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../../widgets/Dashboard/overview_task_container_widget.dart';
 import '../../../widgets/Shapes/app_settings_icon_widget.dart';
@@ -40,14 +42,16 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
   @override
   Widget build(BuildContext context) {
     TaskCategoryController taskCategoryController =
-        Get.put(TaskCategoryController());
-    UserTaskController userTaskController = Get.put(UserTaskController());
-    ProjectController projectController = Get.put(ProjectController());
-    TeamController teamController = Get.put(TeamController());
+        Provider.of<TaskCategoryController>(context);
+    UserTaskController userTaskController =
+        Provider.of<UserTaskController>(context);
+    ProjectController projectController =
+        Provider.of<ProjectController>(context);
+    TeamController teamController = Provider.of<TeamController>(context);
     int catNumber = 0;
     int totalTaskNumber = 0;
     int toDoTaskNumber = 0;
-    int NotDoneTaskNumber = 0;
+    int notDoneTaskNumber = 0;
     int completedtaskNumber = 0;
     int projectNumber = 0;
     int teamsNumber = 0;
@@ -85,8 +89,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 number: totalTaskNumber,
                 stream: userTaskController
                     .getUserTasksStream(
-                      userId:
-                          AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                      userId: AuthProvider.firebaseAuth.currentUser!.uid,
                     )
                     .asBroadcastStream(),
                 name: 'كل المهام',
@@ -98,8 +101,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 stream: userTaskController
                     .getUserTasksStartInADayForAStatusStream(
                         date: DateTime.now(),
-                        userId:
-                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid,
                         status: statusNotStarted)
                     .asBroadcastStream(),
                 name: 'للقيام به اليوم',
@@ -110,8 +112,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 number: workingOnNumber,
                 stream: userTaskController
                     .getUserTasksForAStatusStream(
-                        userId:
-                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid,
                         status: statusDoing)
                     .asBroadcastStream(),
                 name: 'تعمل على',
@@ -122,8 +123,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 number: completedtaskNumber,
                 stream: userTaskController
                     .getUserTasksForAStatusStream(
-                        userId:
-                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid,
                         status: statusDone)
                     .asBroadcastStream(),
                 name: 'المهام المكتملة',
@@ -131,11 +131,10 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 imageUrl: "assets/task_done.png"),
             triggerShow(
                 valueListenable: _totalNotDoneTrigger,
-                number: NotDoneTaskNumber,
+                number: notDoneTaskNumber,
                 stream: userTaskController
                     .getUserTasksForAStatusStream(
-                        userId:
-                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid,
                         status: statusNotDone)
                     .asBroadcastStream(),
                 name: 'المهام غير المنجزة',
@@ -146,8 +145,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 number: catNumber,
                 stream: taskCategoryController
                     .getUserCategoriesStream(
-                        userId:
-                            AuthProvider.instance.firebaseAuth.currentUser!.uid)
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
                 name: 'عدد الفئات الكلي',
                 colorHex: "EDA7FA",
@@ -157,8 +155,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 number: projectNumber,
                 stream: projectController
                     .getProjectsOfUserStream(
-                        userId:
-                            AuthProvider.instance.firebaseAuth.currentUser!.uid)
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
                 name: 'مجموع المشاريع',
                 colorHex: "EDA7FA",
@@ -168,8 +165,7 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
                 number: teamsNumber,
                 stream: teamController
                     .getTeamsOfUserStream(
-                        userId:
-                            AuthProvider.instance.firebaseAuth.currentUser!.uid)
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid)
                     .asBroadcastStream(),
                 name: 'مجموع الفرق',
                 colorHex: "EDA7FA",

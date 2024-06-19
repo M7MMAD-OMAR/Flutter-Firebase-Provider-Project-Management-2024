@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
+import '../constants/constants.dart';
 import '../models/team/project_model.dart';
 import '../models/team/teamModel.dart';
 import '../models/tops/top_model.dart';
@@ -85,7 +88,9 @@ class TeamController extends TopController {
   }
 
   Future<List<TeamModel>?> getTeamsOfUser({required String userId}) async {
-    ManagerController controller = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    ManagerController controller = Provider.of<ManagerController>(context);
     ManagerModel? managerModel =
         await controller.getMangerWhereUserIs(userId: userId);
     if (managerModel != null) {
@@ -96,7 +101,9 @@ class TeamController extends TopController {
 
   Stream<QuerySnapshot<TeamModel>?> getTeamsOfUserStream(
       {required String userId}) async* {
-    ManagerController controller = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    ManagerController controller = Provider.of<ManagerController>(context);
     ManagerModel? managerModel =
         await controller.getMangerWhereUserIs(userId: userId);
     if (managerModel == null) {
@@ -155,7 +162,10 @@ class TeamController extends TopController {
     if (data.containsKey(managerIdK)) {
       throw Exception('لا يمكن تحديث معرّف المدير');
     }
-    ManagerController managerController = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    ManagerController managerController =
+        Provider.of<ManagerController>(context);
     ManagerModel managerModel =
         await managerController.getMangerOfTeam(teamId: id);
     await updateRelationalFields(

@@ -7,6 +7,7 @@ import 'package:project_management_muhmad_omar/controllers/manger_controller.dar
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
@@ -55,8 +56,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   const SizedBox(height: 30),
                   StreamBuilder<DocumentSnapshot<UserModel>>(
                       stream: UserController().getUserByIdStream(
-                          id: AuthProvider
-                              .instance.firebaseAuth.currentUser!.uid),
+                          id: AuthProvider.firebaseAuth.currentUser!.uid),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -81,8 +81,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               ),
                             ),
                             Text(
-                              AuthProvider.instance.firebaseAuth.currentUser!
-                                      .isAnonymous
+                              AuthProvider.firebaseAuth.currentUser!.isAnonymous
                                   ? 'تسجيل الدخول بشكل مجهول'
                                   : snapshot.data!.data()!.email!,
                               style: GoogleFonts.lato(
@@ -152,7 +151,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           ManagerModel? userAsManger = await ManagerController()
                               .getMangerWhereUserIs(
                                   userId: AuthProvider
-                                      .instance.firebaseAuth.currentUser!.uid);
+                                      .firebaseAuth.currentUser!.uid);
                           if (mounted) {
                             Navigator.of(context).pop();
                           }

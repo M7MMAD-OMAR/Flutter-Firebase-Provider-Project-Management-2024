@@ -1,16 +1,19 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/taskController.dart';
 import 'package:project_management_muhmad_omar/controllers/teamController.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
 import '../models/team/manger_model.dart';
 import '../models/team/project_model.dart';
+import '../providers/auth_provider.dart';
 import '../services/collections_refrences.dart';
 import '../utils/back_utils.dart';
 import 'manger_controller.dart';
@@ -46,7 +49,9 @@ class ProjectController extends ProjectAndTaskController {
     if (data.containsKey(teamIdK)) {
       throw Exception('عذرًا، لا يمكن تحديث معرّف الفريق');
     }
-    ManagerController managerController = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+    final ManagerController managerController =
+        Provider.of<ManagerController>(context, listen: false);
     ManagerModel? managerModel =
         await managerController.getMangerOfProject(projectId: id);
     await updateRelationalFields(
@@ -196,9 +201,12 @@ class ProjectController extends ProjectAndTaskController {
 
   Future<List<ProjectModel?>?> getProjectsOfUser(
       {required String userId}) async {
-    ManagerController managerController = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    ManagerController managerController =
+        Provider.of<ManagerController>(context);
     ManagerModel? managerModel = await managerController.getMangerWhereUserIs(
-        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.firebaseAuth.currentUser!.uid);
     if (managerModel != null) {
       List<ProjectModel?>? list =
           await getProjectsOfManager(mangerId: managerModel.id);
@@ -210,7 +218,10 @@ class ProjectController extends ProjectAndTaskController {
 
   Stream<QuerySnapshot<ProjectModel>> getProjectsOfUserStream(
       {required String userId}) async* {
-    ManagerController managerController = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    ManagerController managerController =
+        Provider.of<ManagerController>(context);
     ManagerModel? managerModel =
         await managerController.getMangerWhereUserIs(userId: userId);
     if (managerModel == null) {
@@ -236,7 +247,7 @@ class ProjectController extends ProjectAndTaskController {
     return projectsStream.cast<QuerySnapshot<ProjectModel>>();
   }
 
-  Future<List<ProjectModel>> getProjectsOfTeamKarem(
+  Future<List<ProjectModel>> getProjectsOfTeams(
       {required String teamId}) async {
     List<Object?>? list = await getListDataWhere(
         collectionReference: projectsRef, field: teamIdK, value: teamId);
@@ -288,8 +299,9 @@ class ProjectController extends ProjectAndTaskController {
     required DateTime date,
   }) async* {
     final startOfDay = DateTime(date.year, date.month, date.day);
-    final endOfDay =
-        startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
+    final endOfDay = startOfDay
+        .add(const Duration(days: 1))
+        .subtract(const Duration(seconds: 1));
     List<String> projectsInTheDay = [];
 
     Completer<List<String>> completer = Completer<List<String>>();
@@ -314,8 +326,7 @@ class ProjectController extends ProjectAndTaskController {
     List<String> projectsFinal = await completer.future;
 
     if (projectsFinal.isEmpty) {
-      throw Exception(
-          "No projects I am a manager of that start in the given day");
+      throw Exception("لا توجد مشاريع أنا مدير لها تبدأ في يوم معين");
     }
 
     yield* getProjectsWhereIdsIN(listProjectsId: projectsFinal);
@@ -327,8 +338,9 @@ class ProjectController extends ProjectAndTaskController {
     required DateTime date,
   }) async* {
     final startOfDay = DateTime(date.year, date.month, date.day);
-    final endOfDay =
-        startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
+    final endOfDay = startOfDay
+        .add(const Duration(days: 1))
+        .subtract(const Duration(seconds: 1));
 
     List<String> projectsInTheDay = [];
     List<ProjectModel?> list =
@@ -344,7 +356,7 @@ class ProjectController extends ProjectAndTaskController {
     }
 
     if (projectsInTheDay.isEmpty) {
-      throw Exception("no projects I am a member of");
+      throw Exception("لا توجد مشاريع أنا عضو فيها");
     }
 
     yield* getProjectsWhereIdsIN(listProjectsId: projectsInTheDay);
@@ -383,7 +395,7 @@ class ProjectController extends ProjectAndTaskController {
       );
     }
     if (projects.isEmpty) {
-      throw Exception("no project iam member of");
+      throw Exception("لا توجد مشاريع أنا عضو فيها");
     }
     yield* getProjectsWhereIdsIN(listProjectsId: projects);
   }
@@ -546,7 +558,6 @@ class ProjectController extends ProjectAndTaskController {
       required ManagerModel managerModel,
       required Map<String, dynamic> data,
       required ProjectModel oldProject}) async {
-
     if (data.containsKey(startDateK)) {
       DateTime? newStartDate = data[startDateK] as DateTime;
       if (newStartDate.isAfter(oldProject.endDate!)) {

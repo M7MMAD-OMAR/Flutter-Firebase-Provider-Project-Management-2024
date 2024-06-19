@@ -9,6 +9,7 @@ import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/active_team_cardK_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
@@ -52,8 +53,8 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                     title: widget.title,
                     widget: GestureDetector(
                       onTap: () async {
-                        bool fcmStatus =
-                            await FcmNotifications.getNotificationStatus();
+                        bool fcmStatus = await FcmNotificationsProvider
+                            .getNotificationStatus();
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -63,8 +64,7 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
                           stream: UserController().getUserByIdStream(
-                              id: AuthProvider
-                                  .instance.firebaseAuth.currentUser!.uid),
+                              id: AuthProvider.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
@@ -85,8 +85,7 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                 Expanded(
                   child: StreamBuilder<QuerySnapshot<TeamModel>>(
                     stream: TeamController().getTeamsofMemberWhereUserIdStream(
-                        userId: AuthProvider
-                            .instance.firebaseAuth.currentUser!.uid),
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         final teams = snapshot.data!.docs

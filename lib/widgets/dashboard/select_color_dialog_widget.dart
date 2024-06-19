@@ -65,7 +65,7 @@ class _ColorSelectionDialogState extends State<ColorSelectionDialog> {
           children: [
             TextButton(
               onPressed: () {
-                Get.back();
+                Navigator.pop(context);
               },
               child: Text(
                 'إغلاق',

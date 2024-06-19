@@ -345,7 +345,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
 //           endDateParameter: dueDate);
 //       await userTaskController.addUserTask(userTaskModel: userTaskModel);
 //       CustomSnackBar.showSuccess("task ${name} added successfully");
-//       Get.key.currentState!.pop();
+//       Navigator.pop(context);
 //     } catch (e) {
 //       CustomSnackBar.showError(e.toString());
 //     }
@@ -359,7 +359,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
 //       endDateK: dueDate
 //     }, id: widget.userTaskModel!.id);
 //     CustomSnackBar.showSuccess("task ${name} Updated successfully");
-//     Get.key.currentState!.pop();
+//     Navigator.pop(context);
 //   }
 // }
 }

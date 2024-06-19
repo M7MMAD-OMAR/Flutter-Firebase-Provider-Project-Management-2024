@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class ColouredProjectBadge extends StatelessWidget {
   const ColouredProjectBadge({

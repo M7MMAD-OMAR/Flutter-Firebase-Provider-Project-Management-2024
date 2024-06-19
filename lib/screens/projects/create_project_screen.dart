@@ -16,6 +16,7 @@ import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
@@ -212,8 +213,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                   ),
                   StreamBuilder<QuerySnapshot<TeamModel?>?>(
                       stream: TeamController().getTeamsOfUserStream(
-                          userId: AuthProvider
-                              .instance.firebaseAuth.currentUser!.uid),
+                          userId: AuthProvider.firebaseAuth.currentUser!.uid),
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return GetBuilder<AddTeamToCreatProjectProvider>(
@@ -472,7 +472,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
         //   widget.managerModel = ManagerModel(
         //       idParameter: managersRef.doc().id,
         //       userIdParameter:
-        //           AuthService.instance.firebaseAuth.currentUser!.uid,
+        //           AuthService.firebaseAuth.currentUser!.uid,
         //       createdAtParameter: DateTime.now(),
         //       updatedAtParameter: DateTime.now());
         //   await managerController.addManger(widget.managerModel!);
@@ -533,7 +533,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
           Navigator.of(context).pop();
           CustomSnackBar.showSuccess("إنشاء مشروع $name تم الانتهاء بنجاح");
         }
-        //  Get.key.currentState!.pop();
+        //  Navigator.pop(context);
       } catch (e) {
         CustomSnackBar.showError(e.toString());
       }
@@ -547,7 +547,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
       //   endDateK: dueDate
       // }, id: widget.userTaskModel!.id);
       // CustomSnackBar.showSuccess("task $name Updated successfully");
-      // Get.key.currentState!.pop();
+      // Navigator.pop(context);
     }
   }
 }

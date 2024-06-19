@@ -6,8 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Shapes/background_hexagon_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/back_widget.dart';
@@ -85,8 +84,10 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                                       {
                                         CustomSnackBar.showSuccess(
                                             'تم التحقق من البريد الإلكتروني'),
-                                        Get.offAll(
-                                            () => const TimelineScreen()),
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context,
+                                            Routes.timelineScreen,
+                                            (Route<dynamic> route) => false),
                                       }
                                   });
                         },

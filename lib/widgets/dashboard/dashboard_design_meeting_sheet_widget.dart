@@ -91,7 +91,7 @@ class DashboardDesignMeetingSheet extends StatelessWidget {
 
   void _addMeetingDetails() {
     showAppBottomSheet(
-      const DashboardMeetingDetailsScreen(),
+      const DashboardMeetingDetailsWidget(),
       isScrollControlled: true,
       popAndShow: true,
     );

@@ -9,10 +9,11 @@ import 'package:project_management_muhmad_omar/models/team/team_members_model.da
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';
+import '../constants/constants.dart';
 import '../models/team/project_main_task_model.dart';
 import '../models/team/project_model.dart';
 import '../models/team/project_sub_task_model.dart';
-import '../widgets/snackbar/custom_snackber_widget.dart';
+import '../providers/auth_provider.dart';
 import 'taskController.dart';
 
 class ProjectMainTaskController extends ProjectAndTaskController {
@@ -262,7 +263,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
       }
     }
     if (mainTasksIds.isEmpty) {
-      throw Exception("No common tasks found");
+      throw Exception("لم يتم العثور على مهام شائعة");
     }
 
     yield* getMainTasksByListIdStream(mainTasks: mainTasksIds);
@@ -304,7 +305,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     firstMemberSubscription.cancel();
 
     if (mainTasksFinal.isEmpty) {
-      throw Exception("No main tasks the member is part of");
+      throw Exception("لا توجد مهام رئيسية للمشاريع التي فيها عضو ");
     }
 
     yield* getMainTasksByListIdStream(mainTasks: mainTasksFinal);
@@ -315,15 +316,16 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     required DateTime date,
   }) async* {
     final startOfDay = DateTime(date.year, date.month, date.day);
-    final endOfDay =
-        startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
+    final endOfDay = startOfDay
+        .add(const Duration(days: 1))
+        .subtract(const Duration(seconds: 1));
 
     String memberId = "";
     List<String> mainTaskIds = [];
     List<String> finalIds = [];
     List<TeamMemberModel> list = await TeamMemberController()
         .getMemberWhereUserIs(
-            userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+            userId: AuthProvider.firebaseAuth.currentUser!.uid);
     for (var element in list) {
       TeamMemberModel teamMemberModel = element;
       memberId = teamMemberModel.id;
@@ -338,7 +340,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     }
 
     if (mainTaskIds.isEmpty) {
-      throw Exception("no main tasks for projects I am a member of");
+      throw Exception("لا توجد مهام رئيسية للمشاريع التي أنا عضو فيها");
     }
 
     for (var element in mainTaskIds) {
@@ -352,7 +354,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     }
 
     if (finalIds.isEmpty) {
-      throw Exception("no main tasks for projects I am a member of");
+      throw Exception("لا توجد مهام رئيسية للمشاريع التي أنا عضو فيها");
     }
 
     yield* getMainTasksByListIdStream(mainTasks: finalIds);
@@ -369,20 +371,21 @@ class ProjectMainTaskController extends ProjectAndTaskController {
   Stream<QuerySnapshot<ProjectMainTaskModel>>
       getUserAsManagerMainTasksInADayStream({required DateTime date}) async* {
     final startOfDay = DateTime(date.year, date.month, date.day);
-    final endOfDay =
-        startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
-    List<ProjectMainTaskModel> MainTasksall = [];
+    final endOfDay = startOfDay
+        .add(const Duration(days: 1))
+        .subtract(const Duration(seconds: 1));
+    List<ProjectMainTaskModel> mainTasksall = [];
     List<String> idList = [];
-    List<ProjectModel?>? projects = await ProjectController().getProjectsOfUser(
-        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+    List<ProjectModel?>? projects = await ProjectController()
+        .getProjectsOfUser(userId: AuthProvider.firebaseAuth.currentUser!.uid);
     for (var element in projects!) {
       List<ProjectMainTaskModel> mainTasks =
           await getProjectMainTasks(projectId: element!.id);
       for (var element in mainTasks) {
-        MainTasksall.add(element);
+        mainTasksall.add(element);
       }
     }
-    for (var MainTaskelement in MainTasksall) {
+    for (var MainTaskelement in mainTasksall) {
       ProjectMainTaskModel mainTask = MainTaskelement;
       if (mainTask.startDate.isAfter(startOfDay) &&
           mainTask.startDate.isBefore(endOfDay)) {
@@ -392,7 +395,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
       }
     }
     if (idList.isEmpty) {
-      throw Exception("no main tasks of project iam manager of");
+      throw Exception("لا توجد مهام رئيسية لمدير مشروع IAM");
     }
     yield* getMainTasksByListIdStream(mainTasks: idList);
   }
@@ -424,7 +427,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     if (!projectMainTaskModel.startDate.isAfter(project!.startDate) ||
         !projectMainTaskModel.endDate!.isBefore(project.endDate!)) {
       throw Exception(
-          "main task start and end date should be between start and end date of the project");
+          "يجب أن يكون تاريخ بدء المهمة الرئيسية وتاريخ انتهائها بين تاريخ بدء وانتهاء المشروع");
     }
     for (ProjectMainTaskModel existingTask in list) {
       if (projectMainTaskModel.startDate.isBefore(existingTask.endDate!) &&
@@ -434,26 +437,25 @@ class ProjectMainTaskController extends ProjectAndTaskController {
       }
     }
     if (overlapped) {
-      Get.defaultDialog(
-          title: 'خطأ في وقت المهمة',
-          middleText: "هناك ${over} تبدأ في هذا الوقت هل تود إضافتها؟",
-          onConfirm: () async {
-            await addTask(
-              reference: projectMainTasksRef,
-              field: projectIdK,
-              value: projectMainTaskModel.projectId,
-              taskModel: projectMainTaskModel,
-              exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
-            );
-            Get.key.currentState!.pop();
-            CustomSnackBar.showSuccess(
-                "مهمة ${projectMainTaskModel.name} تمت الإضافة بنجاح");
-          },
-          onCancel: () {
-            // SystemNavigator.pop();
-            _navigatorKey.currentState?.pop();
-          },
-          navigatorKey: _navigatorKey);
+      showErrorDialog(
+        title: 'خطأ في وقت المهمة',
+        middleText: "هناك $over تبدأ في هذا الوقت هل تود إضافتها؟",
+        onConfirm: () async {
+          await addTask(
+            reference: projectMainTasksRef,
+            field: projectIdK,
+            value: projectMainTaskModel.projectId,
+            taskModel: projectMainTaskModel,
+            exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
+          );
+          _navigatorKey.currentState?.pop(); // Close the dialog
+          showSuccessSnackBar(
+              "مهمة ${projectMainTaskModel.name} تمت الإضافة بنجاح");
+        },
+        onCancel: () {
+          _navigatorKey.currentState?.pop(); // Close the dialog
+        },
+      );
     } else {
       await addTask(
         reference: projectMainTasksRef,
@@ -462,8 +464,8 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         taskModel: projectMainTaskModel,
         exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
       );
-      Get.key.currentState!.pop();
-      CustomSnackBar.showSuccess(
+      _navigatorKey.currentState?.pop(); // Close any existing context
+      showSuccessSnackBar(
           "مهمة ${projectMainTaskModel.name} تمت الإضافة بنجاح");
     }
     // await addTask(
@@ -525,7 +527,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
       if (!data[startDateK].isAfter(project!.startDate) ||
           !data[endDateK].isBefore(project.endDate!)) {
         throw Exception(
-            "main task start and end date should be between start and end date of the project");
+            "يجب أن يكون تاريخ بدء المهمة الرئيسية وتاريخ انتهائها بين تاريخ بدء وانتهاء المشروع");
       }
 
       bool overlapped = false;
@@ -544,48 +546,37 @@ class ProjectMainTaskController extends ProjectAndTaskController {
       final GlobalKey<NavigatorState> _navigatorKey =
           GlobalKey<NavigatorState>();
       if (overlapped) {
-        Get.defaultDialog(
-            title: 'خطأ في وقت المهمة',
-            middleText: "هناك ${over} تبدأ في هذا الوقت هل تود إضافتها؟",
-            onConfirm: () async {
-              await updateTask(
-                  reference: projectSubTasksRef,
-                  data: data,
-                  id: id,
-                  exception:
-                      Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
-                  field: projectIdK,
-                  value: projectMainTaskModel.projectId);
-              CustomSnackBar.showSuccess(
-                  "مهمة ${data[nameK]} تم التحديث بنجاح");
-              Get.key.currentState!.pop();
-            },
-            onCancel: () {
-              // SystemNavigator.pop();
-              _navigatorKey.currentState?.pop();
-            },
-            navigatorKey: _navigatorKey);
+        showErrorDialog(
+          title: 'خطأ في وقت المهمة',
+          middleText: "هناك $over تبدأ في هذا الوقت هل تود إضافتها؟",
+          onConfirm: () async {
+            await updateTask(
+              reference: projectSubTasksRef,
+              data: data,
+              id: id,
+              exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
+              field: projectIdK,
+              value: projectMainTaskModel.projectId,
+            );
+            showSuccessSnackBar("مهمة ${data[nameK]} تم التحديث بنجاح");
+            _navigatorKey.currentState?.pop(); // Close the dialog
+          },
+          onCancel: () {
+            _navigatorKey.currentState?.pop(); // Close the dialog
+          },
+        );
       } else {
         await updateTask(
-            reference: projectSubTasksRef,
-            data: data,
-            id: id,
-            exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
-            field: projectIdK,
-            value: projectMainTaskModel.projectId);
-        CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
-        Get.key.currentState!.pop();
-      }
-    } else {
-      await updateTask(
           reference: projectSubTasksRef,
           data: data,
           id: id,
           exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
           field: projectIdK,
-          value: projectMainTaskModel.projectId);
-      CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
-      Get.key.currentState!.pop();
+          value: projectMainTaskModel.projectId,
+        );
+        showSuccessSnackBar("مهمة ${data[nameK]} تم التحديث بنجاح");
+        _navigatorKey.currentState?.pop(); // Close any existing context
+      }
     }
   }
 }

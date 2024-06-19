@@ -1,24 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/category_card_vertical_widget.dart';
+import 'package:provider/provider.dart';
 
 enum CategorySortOption {
   name,
   createDate,
   updatedDate,
-  // Add more sorting options if needed
 }
 
 class CategoryScreen extends StatefulWidget {
-  CategoryScreen({Key? key}) : super(key: key);
+  const CategoryScreen({super.key});
+
   static String id = "/NotificationScreen";
 
   @override
@@ -26,13 +28,23 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  TaskCategoryController taskCategoryController =
-      Get.put(TaskCategoryController());
   TextEditingController editingController = TextEditingController();
-  UserTaskController taskController = Get.put(UserTaskController());
   String search = "";
   CategorySortOption selectedSortOption = CategorySortOption.name;
-  int crossAxisCount = 2; // Variable for crossAxisCount
+  int crossAxisCount = 2;
+
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+  late TaskCategoryController taskCategoryController;
+  late UserTaskController taskController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    taskCategoryController =
+        Provider.of<TaskCategoryController>(context, listen: false);
+    taskController = Provider.of<UserTaskController>(context, listen: false);
+  }
 
   String _getSortOptionText(CategorySortOption option) {
     switch (option) {
@@ -42,23 +54,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
         return "تاريح التحديث";
       case CategorySortOption.createDate:
         return "تاريخ الإنشاء";
-      // Add cases for more sorting options if needed
+
       default:
         return '';
     }
   }
 
-  bool sortAscending = true; // Variable for sort order
+  bool sortAscending = true;
   void toggleSortOrder() {
     setState(() {
-      sortAscending = !sortAscending; // Toggle the sort order
+      sortAscending = !sortAscending;
     });
   }
 
   void toggleCrossAxisCount() {
     setState(() {
-      crossAxisCount =
-          crossAxisCount == 2 ? 1 : 2; // Toggle the crossAxisCount value
+      crossAxisCount = crossAxisCount == 2 ? 1 : 2;
     });
   }
 
@@ -85,16 +96,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
           children: [
             Container(
               margin: EdgeInsets.only(
-                right:
-                    Utils.screenWidth * 0.05, // Adjust the percentage as needed
-                left:
-                    Utils.screenWidth * 0.05, // Adjust the percentage as needed
+                right: Utils.screenWidth * 0.05,
+                left: Utils.screenWidth * 0.05,
               ),
               padding: EdgeInsets.only(
-                right: Utils.screenWidth *
-                    0.04, // Adjust the 0percentage as needed
-                left:
-                    Utils.screenWidth * 0.04, // Adjust the percentage as needed
+                right: Utils.screenWidth * 0.04,
+                left: Utils.screenWidth * 0.04,
               ),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -105,7 +112,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 onChanged: (CategorySortOption? newValue) {
                   setState(() {
                     selectedSortOption = newValue!;
-                    // Implement the sorting logic here
                   });
                 },
                 items:
@@ -120,12 +126,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     ),
                   );
                 }).toList(),
-
-                // Add extra styling
                 icon: Icon(
                   Icons.arrow_drop_down,
-                  size: Utils.screenWidth *
-                      0.07, // Adjust the percentage as needed
+                  size: Utils.screenWidth * 0.07,
                 ),
                 underline: const SizedBox(),
               ),
@@ -141,12 +144,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ),
               child: IconButton(
                 icon: Icon(
-                  size: Utils.screenWidth *
-                      0.07, // Adjust the percentage as needed
+                  size: Utils.screenWidth * 0.07,
                   sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
                   color: Colors.white,
                 ),
-                onPressed: toggleSortOrder, // Toggle the sort order
+                onPressed: toggleSortOrder,
               ),
             ),
             IconButton(
@@ -154,8 +156,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 Icons.grid_view,
                 color: Colors.white,
               ),
-              onPressed:
-                  toggleCrossAxisCount, // Toggle the crossAxisCount value
+              onPressed: toggleCrossAxisCount,
             ),
           ],
         ),
@@ -165,7 +166,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             padding: EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
             child: StreamBuilder(
               stream: taskCategoryController.getUserCategoriesStream(
-                userId: AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                userId: AuthProvider.firebaseAuth.currentUser!.uid,
               ),
               builder: (BuildContext context,
                   AsyncSnapshot<QuerySnapshot<UserTaskCategoryModel>>
@@ -199,16 +200,13 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         break;
                       case CategorySortOption.updatedDate:
                         list.sort((a, b) => b.updatedAt.compareTo(a.updatedAt));
-                      // Add cases for more sorting options if needed
                     }
                     if (!sortAscending) {
-                      list = list.reversed
-                          .toList(); // Reverse the list for descending order
+                      list = list.reversed.toList();
                     }
                     return GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            crossAxisCount, // Use the variable for crossAxisCount
+                        crossAxisCount: crossAxisCount,
                         mainAxisSpacing: 10,
                         mainAxisExtent: 220,
                         crossAxisSpacing: 10,
@@ -226,17 +224,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      //
                       Icon(
                         Icons.search_off,
-                        //   Icons.heart_broken_outlined,
                         color: Colors.lightBlue,
                         size: Utils.screenWidth * 0.27,
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          horizontal: Utils.screenWidth *
-                              0.1, // Adjust the percentage as needed
+                          horizontal: Utils.screenWidth * 0.1,
                           vertical: Utils.screenHeight * 0.05,
                         ),
                         child: Center(
@@ -266,14 +261,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   children: [
                     Icon(
                       Icons.search_off,
-                      //   Icons.heart_broken_outlined,
                       color: Colors.red,
                       size: Utils.screenWidth * 0.30,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
-                        horizontal: Utils.screenWidth *
-                            0.02, // Adjust the percentage as needed
+                        horizontal: Utils.screenWidth * 0.02,
                         vertical: Utils.screenHeight * 0.05,
                       ),
                       child: Text(

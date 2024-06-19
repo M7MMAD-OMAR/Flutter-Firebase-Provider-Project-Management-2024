@@ -9,15 +9,13 @@ class FocusedMenu extends StatelessWidget {
   final List<FocusedMenuItem>? menuItems;
   final Function deleteButton;
   final Function editButton;
-  const FocusedMenu(
-      {Key? key,
+  const FocusedMenu({super.key,
       required this.widget,
       this.menuWidth,
       required this.onClick,
       this.menuItems,
       required this.deleteButton,
-      required this.editButton})
-      : super(key: key);
+      required this.editButton});
 
   @override
   Widget build(BuildContext context) {

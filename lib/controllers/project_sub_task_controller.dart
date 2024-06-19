@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
@@ -13,15 +14,16 @@ import 'package:project_management_muhmad_omar/models/team/project_main_task_mod
 import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
 import '../models/status_model.dart';
 import '../models/team/project_model.dart';
 import '../models/team/teamModel.dart';
 import '../models/user/user_model.dart';
+import '../providers/auth_provider.dart';
 import '../services/notifications/notification_service.dart';
 import '../services/types_services.dart';
-import '../widgets/snackbar/custom_snackber_widget.dart';
 
 class ProjectSubTaskController extends ProjectAndTaskController {
   Future<List<ProjectSubTaskModel>> getMemberSubTasks(
@@ -53,7 +55,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
 
     List<TeamMemberModel> listMemberUser = await TeamMemberController()
         .getMemberWhereUserIs(
-            userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+            userId: AuthProvider.firebaseAuth.currentUser!.uid);
 
     for (var element in listMemberUser) {
       List<ProjectSubTaskModel> list =
@@ -618,11 +620,11 @@ class ProjectSubTaskController extends ProjectAndTaskController {
         await getDocById(reference: usersTasksRef, id: id);
     ProjectSubTaskModel projectsubTaskModel =
         snapshot.data() as ProjectSubTaskModel;
-    ProjectMainTaskModel? MainTask = await ProjectMainTaskController()
+    ProjectMainTaskModel? mainTask = await ProjectMainTaskController()
         .getProjectMainTaskById(id: projectsubTaskModel.mainTaskId);
     if (data.containsKey(startDateK) || data[endDateK]) {
-      if (!data[startDateK].isAfter(MainTask.startDate) ||
-          !data[endDateK].isBefore(MainTask.endDate!)) {
+      if (!data[startDateK].isAfter(mainTask.startDate) ||
+          !data[endDateK].isBefore(mainTask.endDate!)) {
         throw Exception(
             "sub task start and end date should be between start and end date of the main task");
       }
@@ -639,28 +641,31 @@ class ProjectSubTaskController extends ProjectAndTaskController {
           over += 1;
         }
       }
-      //"Task Time Error"
+      final GlobalKey<NavigatorState> _navigatorKey =
+          GlobalKey<NavigatorState>();
+
       if (overlapped) {
-        Get.defaultDialog(
+        showErrorDialog(
           title: 'خطأ في وقت المهمة',
-          middleText: "هناك ${over} تبدأ في هذا الوقت هل تود إضافتها؟",
+          middleText: "هناك $over تبدأ في هذا الوقت هل تود إضافتها؟",
           onConfirm: () async {
             DocumentSnapshot snapshot =
                 await getDocById(reference: projectSubTasksRef, id: id);
             ProjectSubTaskModel subTaskModel =
                 snapshot.data() as ProjectSubTaskModel;
-            updateTask(
-                reference: projectSubTasksRef,
-                data: data,
-                id: id,
-                exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
-                field: mainTaskIdK,
-                value: subTaskModel.mainTaskId);
-            CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
-            Navigator.pop(context);
+            await updateTask(
+              reference: projectSubTasksRef,
+              data: data,
+              id: id,
+              exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
+              field: mainTaskIdK,
+              value: subTaskModel.mainTaskId,
+            );
+            showSuccessSnackBar("مهمة ${data[nameK]} تم التحديث بنجاح");
+            _navigatorKey.currentState?.pop(); // Close the dialog
           },
           onCancel: () {
-            Navigator.pop(context);
+            _navigatorKey.currentState?.pop(); // Close the dialog
           },
         );
       } else {
@@ -668,61 +673,56 @@ class ProjectSubTaskController extends ProjectAndTaskController {
             await getDocById(reference: projectSubTasksRef, id: id);
         ProjectSubTaskModel subTaskModel =
             snapshot.data() as ProjectSubTaskModel;
-        updateTask(
-            reference: projectSubTasksRef,
-            data: data,
-            id: id,
-            exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
-            field: mainTaskIdK,
-            value: subTaskModel.mainTaskId);
-        CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
-        Navigator.pop(context);
-      }
-    } else {
-      DocumentSnapshot snapshot =
-          await getDocById(reference: projectSubTasksRef, id: id);
-      ProjectSubTaskModel subTaskModel = snapshot.data() as ProjectSubTaskModel;
-      updateTask(
+        await updateTask(
           reference: projectSubTasksRef,
           data: data,
           id: id,
           exception: Exception('المهمة موجودة بالفعل في المهمة الرئيسية'),
           field: mainTaskIdK,
-          value: subTaskModel.mainTaskId);
-      CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
-      Navigator.pop(context);
+          value: subTaskModel.mainTaskId,
+        );
+        showSuccessSnackBar("مهمة ${data[nameK]} تم التحديث بنجاح");
+        _navigatorKey.currentState?.pop(); // Close the dialog
+      }
     }
-  }
 
-  Future<void> markSubTaskeAndSendNotification(
-      String subtaskId, String status) async {
-    StatusController statusController = Get.put(StatusController());
-    UserController userController = Get.put(UserController());
-    TeamController teamController = Get.put(TeamController());
-    ProjectController projectController = Get.put(ProjectController());
-    FcmNotifications fcmNotifications = Get.put(FcmNotifications());
-    StatusModel s = await statusController.getStatusByName(status: status);
-    updateSubTask(data: {statusIdK: s.id}, id: subtaskId, isfromback: true);
-    ProjectSubTaskController projectTaskController =
-        Get.put(ProjectSubTaskController());
-    ProjectSubTaskModel projectSubTaskModel =
-        await projectTaskController.getProjectSubTaskById(id: subtaskId);
-    ProjectModel? projectModel = await projectController.getProjectById(
-        id: projectSubTaskModel.projectId);
-    TeamModel teamModel =
-        await teamController.getTeamOfProject(project: projectModel!);
-    UserModel manager = await userController.getUserWhereMangerIs(
-        mangerId: teamModel.managerId);
-    //to get the user name to tell the manager about his name in the notification
-    UserModel member = await userController.getUserById(
-        id: AuthProvider.instance.firebaseAuth.currentUser!.uid);
-    await fcmNotifications.sendNotification(
-      fcmTokens: manager.tokenFcm,
-      //"task $status"
-      title: "مهمة $status",
-      body:
-          "${member.name} $status المهمة ${projectSubTaskModel.name} ${projectSubTaskModel.projectId} في المشروع ${projectModel.name}",
-      type: NotificationType.notification,
-    );
+    Future<void> markSubTaskeAndSendNotification(
+        String subtaskId, String status) async {
+      BuildContext context = navigatorKey.currentContext!;
+
+      final StatusController statusController =
+          Provider.of<StatusController>(context);
+      final UserController userController =
+          Provider.of<UserController>(context);
+      final TeamController teamController =
+          Provider.of<TeamController>(context);
+      final ProjectController projectController =
+          Provider.of<ProjectController>(context);
+      final FcmNotificationsProvider fcmNotifications =
+          Provider.of<FcmNotificationsProvider>(context);
+      StatusModel s = await statusController.getStatusByName(status: status);
+      updateSubTask(data: {statusIdK: s.id}, id: subtaskId, isfromback: true);
+
+      final ProjectSubTaskController projectTaskController =
+          Provider.of<ProjectSubTaskController>(context);
+      ProjectSubTaskModel projectSubTaskModel =
+          await projectTaskController.getProjectSubTaskById(id: subtaskId);
+      ProjectModel? projectModel = await projectController.getProjectById(
+          id: projectSubTaskModel.projectId);
+      TeamModel teamModel =
+          await teamController.getTeamOfProject(project: projectModel!);
+      UserModel manager = await userController.getUserWhereMangerIs(
+          mangerId: teamModel.managerId);
+      //to get the user name to tell the manager about his name in the notification
+      UserModel member = await userController.getUserById(
+          id: AuthProvider.firebaseAuth.currentUser!.uid);
+      await fcmNotifications.sendNotification(
+        fcmTokens: manager.tokenFcm,
+        title: "مهمة $status",
+        body:
+            "${member.name} $status المهمة ${projectSubTaskModel.name} ${projectSubTaskModel.projectId} في المشروع ${projectModel.name}",
+        type: NotificationType.notification,
+      );
+    }
   }
 }

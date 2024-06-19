@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/models/tops/top_model.dart';
 
-import '../utils/back_utils.dart';
 import '../constants/back_constants.dart';
+import '../utils/back_utils.dart';
 
-class TopController extends GetxController {
-  //جلب الدوكبومنتس ضغري عن  طريق سناب شوت وبعتها مشان ماتعذب باخد الكويري بعدين واوصل للدوكز يلي بقلبها ضغري ببعتهن
+class TopController extends ChangeNotifier {
   Future<List<QueryDocumentSnapshot<Object?>>> getDocsSnapShotWhere(
       {required CollectionReference collectionReference,
       required String field,
@@ -17,7 +16,6 @@ class TopController extends GetxController {
     return list;
   }
 
-//جلب الدوك بشكل فوري
   Future<QueryDocumentSnapshot<Object?>?> getDocSnapShotWhere(
       {required CollectionReference collectionReference,
       required String field,
@@ -81,7 +79,6 @@ class TopController extends GetxController {
     return list.first;
   }
 
-  //جلب دوك واحد بشرطين
   Future<QueryDocumentSnapshot<Object?>> getDocSnapShotWhereAndWhere({
     required CollectionReference collectionReference,
     required String firstField,
@@ -478,7 +475,6 @@ class TopController extends GetxController {
         .snapshots();
   }
 
-  //ستريم جلب دوك واحد بشرطين
   Stream<DocumentSnapshot<Object?>> getDocWhereAndWhereStream(
       {required CollectionReference collectionReference,
       required String firstField,
@@ -608,13 +604,12 @@ class TopController extends GetxController {
     );
   }
 
-  //اضافة دوكيومنت
   Future<void> addDoc(
       {required CollectionReference reference, required TopModel model}) async {
     await reference.doc(model.id).set(model);
   }
 
-   void deleteDocUsingBatch(
+  void deleteDocUsingBatch(
       {required DocumentSnapshot? documentSnapshot,
       required WriteBatch refbatch}) {
     WriteBatch writeBatch = refbatch;
@@ -634,31 +629,6 @@ class TopController extends GetxController {
     }
   }
 
-  // Future<void> updateNonRelationalFields({
-  //   required CollectionReference reference,
-  //   required Map<String, dynamic> data,
-  //   required String id,
-  // }) async {
-  //   DocumentSnapshot doc = await getDocById(reference: reference, id: id);
-  //   if (data.containsKey(nameK)) {
-  //     if (await existByTow(
-  //           reference: reference,
-  //           value: data[nameK],
-  //           field: nameK,
-  //           value2: id,
-  //           field2: idK,
-  //         ) &&
-  //         data[nameK] != doc.get(nameK)) {}
-  //   }
-
-  //   if (data.containsKey(idK)) {
-  //     throw  Exception(
-  //         "id cannot be updated ...this method only for Update Non-Relational fields");
-  //
-  //   }
-  //   data['updatedAt'] = firebaseTime(DateTime.now());
-  //   reference.doc(id).update(data);
-  // }
   Future<void> updateRelationalFields({
     required CollectionReference reference,
     required Map<String, dynamic> data,
@@ -766,7 +736,6 @@ class TopController extends GetxController {
       return true;
     }
     return false;
-    // return querySnapshot.count;
   }
 
   Future<bool> existInTowPlaces({

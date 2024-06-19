@@ -13,9 +13,6 @@ class Assets {
   static const String assetsGreenPencil = 'assets/green_pencil.png';
   static const String assetsHeadCut = 'assets/head_cut.png';
   static const String assetsHeadCutR = 'assets/head_cut-R.png';
-  static const String assetsKarem = 'assets/karem.jpg';
-  static const String assetsKarem2 = 'assets/karem2.png';
-  static const String assetsKarem2R = 'assets/karem2R.png';
   static const String assetsManHead = 'assets/man-head.png';
   static const String assetsManHeadR = 'assets/man-head-R.png';
   static const String assetsOrangePencil = 'assets/orange_pencil.png';
@@ -72,8 +69,6 @@ class Assets {
   static const String chatAddChatIconWidget =
       'lib/widgets/chat/add_chat_icon_widget.dart';
   static const String constantsAppColors = 'lib/constants/app_colors.dart';
-  static const String constantsAppConstants =
-      'lib/constants/app_constants.dart';
   static const String constantsBackConstants =
       'lib/constants/back_constants.dart';
   static const String constantsBoxDecorationStyles =
@@ -86,8 +81,6 @@ class Assets {
   static const String constantsValues = 'lib/constants/values.dart';
   static const String controllersCategoryController =
       'lib/controllers/categoryController.dart';
-  static const String controllersLanguageController =
-      'lib/controllers/languageController.dart';
   static const String controllersMangerController =
       'lib/controllers/manger_controller.dart';
   static const String controllersProjectController =
@@ -220,7 +213,6 @@ class Assets {
   static const String imagesAnonymos = 'lib/images/anonymos.png';
   static const String imagesGoogle = 'lib/images/google.png';
   static const String imagesGoogle2 = 'lib/images/google2.png';
-  static const String imagesKAREM = 'lib/images/KAREM.jpg';
   static const String imagesLogo = 'lib/images/logo.png';
   static const String langLangModel = 'lib/models/lang/lang_model.dart';
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
@@ -435,7 +427,6 @@ class Assets {
       'lib/models/user/user_task_Model.dart';
   static const String utilsAppRoutes = 'lib/utils/app_routes.dart';
   static const String utilsBackUtils = 'lib/utils/back_utils.dart';
-  static const String utilsDep = 'lib/utils/dep.dart';
   static const String utilsMessages = 'lib/utils/messages.dart';
   static const String utilsUtils = 'lib/utils/utils.dart';
   static const String widgetsActiveEmployeeCardWidget =

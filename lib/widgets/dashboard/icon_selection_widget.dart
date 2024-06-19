@@ -92,7 +92,7 @@ class _IconSelectionDialogState extends State<IconSelectionDialog> {
           children: [
             TextButton(
               onPressed: () {
-                Get.back();
+                Navigator.pop(context);
               },
               child: Text(
                 'إغلاق',
@@ -109,7 +109,7 @@ class _IconSelectionDialogState extends State<IconSelectionDialog> {
               callback: () {
                 // Do something with the selected icon
                 widget.onSelectedIconChanged(getSelectedIcon());
-                Get.back();
+                Navigator.pop(context);
               },
             ),
           ],

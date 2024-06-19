@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 
@@ -174,7 +175,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
         fontfamilyParameter: icon.fontFamily,
         iconCodePointParameter: icon.codePoint,
         hexColorParameter: color,
-        userIdParameter: AuthProvider.instance.firebaseAuth.currentUser!.uid,
+        userIdParameter: AuthProvider.firebaseAuth.currentUser!.uid,
         idParameter: usersTasksRef.doc().id,
         nameParameter: name,
         createdAtParameter: DateTime.now(),
@@ -185,7 +186,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
 
       await Future.delayed(
           const Duration(seconds: 1)); // Delay closing the widget
-      Get.key.currentState!.pop();
+      Navigator.pop(context);
     } catch (e) {
       CustomSnackBar.showError(e.toString());
     }

@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
+import '../constants/constants.dart';
 import '../models/task/user_task_category_model.dart';
 import '../models/team/manger_model.dart';
 import '../models/team/team_members_model.dart';
@@ -66,8 +69,10 @@ class UserController extends TopController {
   }
 
   Future<UserModel> getUserOfCategory({required String categoryId}) async {
+    BuildContext context = navigatorKey.currentContext!;
+
     TaskCategoryController taskCategoryController =
-        Get.put(TaskCategoryController());
+        Provider.of<TaskCategoryController>(context);
     UserTaskCategoryModel userTaskCategoryModel =
         await taskCategoryController.getCategoryById(id: categoryId);
     UserModel userModel = await getUserById(id: userTaskCategoryModel.userId);
@@ -75,8 +80,10 @@ class UserController extends TopController {
   }
 
   getUserOfcategoryStream({required String categoryId}) async* {
+    BuildContext context = navigatorKey.currentContext!;
+
     TaskCategoryController taskCategoryController =
-        Get.put(TaskCategoryController());
+        Provider.of<TaskCategoryController>(context);
     UserTaskCategoryModel userTaskCategoryModel =
         await taskCategoryController.getCategoryById(id: categoryId);
     Stream<DocumentSnapshot> stream =
@@ -91,7 +98,10 @@ class UserController extends TopController {
   }
 
   Future<UserModel> getUserWhereMangerIs({required String mangerId}) async {
-    ManagerController mangerController = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    ManagerController mangerController =
+        Provider.of<ManagerController>(context);
     ManagerModel managerModel =
         await mangerController.getMangerById(id: mangerId);
     DocumentSnapshot userDoc =
@@ -101,7 +111,10 @@ class UserController extends TopController {
 
   Stream<DocumentSnapshot<UserModel>> getUserWhereMangerIsStream(
       {required String mangerId}) async* {
-    ManagerController mangerController = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    ManagerController mangerController =
+        Provider.of<ManagerController>(context);
     ManagerModel managerModel =
         await mangerController.getMangerById(id: mangerId);
     Stream<DocumentSnapshot> stream =
@@ -110,7 +123,10 @@ class UserController extends TopController {
   }
 
   Future<UserModel> getUserWhereMemberIs({required String memberId}) async {
-    TeamMemberController memberController = Get.put(TeamMemberController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    TeamMemberController memberController =
+        Provider.of<TeamMemberController>(context);
     TeamMemberModel member =
         await memberController.getMemberById(memberId: memberId);
     DocumentSnapshot userDoc =
@@ -120,7 +136,6 @@ class UserController extends TopController {
 
   Stream<QuerySnapshot<UserModel>> getUsersWhereInIdsStream(
       {required List<String> usersId}) {
-        
     Stream<QuerySnapshot<UserModel>> users =
         usersRef.where(idK, whereIn: usersId).snapshots();
     return users;
@@ -139,7 +154,10 @@ class UserController extends TopController {
 
   Stream<DocumentSnapshot<UserModel>> getUserWhereMemberIsStream(
       {required String memberId}) async* {
-    TeamMemberController memberController = Get.put(TeamMemberController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    TeamMemberController memberController =
+        Provider.of<TeamMemberController>(context);
     TeamMemberModel member =
         await memberController.getMemberById(memberId: memberId);
     Stream<DocumentSnapshot> stream =
@@ -168,7 +186,10 @@ class UserController extends TopController {
   }
 
   Future<void> deleteUser({required String id}) async {
-    ManagerController mangerController = Get.put(ManagerController());
+    BuildContext context = navigatorKey.currentContext!;
+
+    ManagerController mangerController =
+        Provider.of<ManagerController>(context);
     WriteBatch batch = fireStore.batch();
     List<DocumentSnapshot> membrs = await getDocsSnapShotWhere(
         collectionReference: teamMembersRef, field: userIdK, value: id);

@@ -15,7 +15,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'notification_controller_services.dart';
 
-class FcmNotifications {
+class FcmNotificationsProvider {
   static const String key = 'notification_status';
 
   static Future<bool> getNotificationStatus() async {
@@ -79,7 +79,7 @@ class FcmNotifications {
     NotificationContent content =
         getContent(title: title, body: body, type: type, data: data);
     List<Map<String, dynamic>> button =
-        FcmNotifications.getButtonsByNotificationType(type: type);
+        FcmNotificationsProvider.getButtonsByNotificationType(type: type);
     insidedata.addAll({
       "notification": {
         "content": content.toMap(),
@@ -162,7 +162,8 @@ class FcmNotifications {
 
   @pragma('vm:entry-point')
   static Future<void> handleMessage(RemoteMessage message) async {
-    FcmNotifications notifications = Get.put(FcmNotifications());
+    FcmNotificationsProvider notifications =
+        Get.put(FcmNotificationsProvider());
 
     Map<String, String> datapayload =
         Map<String, String>.from(message.data.cast<String, String>());

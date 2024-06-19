@@ -90,7 +90,7 @@ class HeaderWidget extends StatelessWidget {
             left: SizeConfig.screenWidth! * .1,
             child: CustomIconBackUp(
               onTap: () {
-                Get.back();
+                Navigator.pop(context);
               },
             ),
           ),

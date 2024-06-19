@@ -7,6 +7,7 @@ import 'package:project_management_muhmad_omar/controllers/waitingMamberControll
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
@@ -76,8 +77,8 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                     title: 'البحث عن عضو',
                     widget: GestureDetector(
                       onTap: () async {
-                        bool fcmStutas =
-                            await FcmNotifications.getNotificationStatus();
+                        bool fcmStutas = await FcmNotificationsProvider
+                            .getNotificationStatus();
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -87,8 +88,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
                           stream: UserController().getUserByIdStream(
-                              id: AuthProvider
-                                  .instance.firebaseAuth.currentUser!.uid),
+                              id: AuthProvider.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
@@ -204,9 +204,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                                   .searchQuery
                                                   .toLowerCase()) &&
                                               user.id !=
-                                                  AuthProvider
-                                                      .instance
-                                                      .firebaseAuth
+                                                  AuthProvider.firebaseAuth
                                                       .currentUser!
                                                       .uid;
                                         }).toList();
@@ -255,7 +253,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                             return Padding(
                                               padding:
                                                   const EdgeInsets.all(8.0),
-                                              child: InactiveEmployeeCard(
+                                              child: InactiveEmployeeCardWidget(
                                                 onTap: () async {
                                                   try {
                                                     if (!widget.newTeam) {

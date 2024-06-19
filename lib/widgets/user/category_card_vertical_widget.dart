@@ -16,11 +16,11 @@ class CategoryCardVertical extends StatefulWidget {
   final UserTaskCategoryModel userTaskCategoryModel;
 
   const CategoryCardVertical({
-    Key? key,
+    super.key,
     required this.userTaskCategoryModel,
     // required this.ratingsLowerNumber,
     // required this.ratingsUpperNumber
-  }) : super(key: key);
+  });
 
   @override
   State<CategoryCardVertical> createState() => _CategoryCardVerticalState();

@@ -11,7 +11,7 @@ class DashboardMeetingDetailsProvider extends ChangeNotifier {
     bool found = _users.any((element) => element.id == user.id);
 
     if (found) {
-      CustomSnackBar.showError("This User Already added");
+      CustomSnackBar.showError("هذا المستخدم مضاف بالفعل");
     } else {
       _users.add(user);
       notifyListeners(); // Notify listeners of the change

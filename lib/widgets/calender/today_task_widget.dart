@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/calender/widgets/circle_gradient_icon_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/calender/widgets/task_widget_widget.dart';
@@ -132,8 +133,7 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   ),
                   StreamBuilder<QuerySnapshot<UserTaskModel>>(
                     stream: UserTaskController().getUserTasksStartInADayStream(
-                        userId:
-                            AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid,
                         date: selectedDate),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
@@ -370,8 +370,7 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   StreamBuilder<QuerySnapshot<ProjectModel>>(
                     stream: ProjectController()
                         .getProjectsOfMemberWhereUserIsInADayStream(
-                            userId: AuthProvider
-                                .instance.firebaseAuth.currentUser!.uid,
+                            userId: AuthProvider.firebaseAuth.currentUser!.uid,
                             date: selectedDate),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
@@ -431,8 +430,7 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                   StreamBuilder<QuerySnapshot<ProjectModel>>(
                     stream: ProjectController()
                         .getProjectsOfManagerWhereUserIsInADayStream(
-                            userId: AuthProvider
-                                .instance.firebaseAuth.currentUser!.uid,
+                            userId: AuthProvider.firebaseAuth.currentUser!.uid,
                             date: selectedDate),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {

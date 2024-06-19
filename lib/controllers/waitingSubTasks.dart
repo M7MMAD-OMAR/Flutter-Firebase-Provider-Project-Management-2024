@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
@@ -6,8 +7,10 @@ import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
+import '../constants/constants.dart';
 import '../models/team/project_model.dart';
 import '../models/team/project_sub_task_model.dart';
 import '../models/user/user_model.dart';
@@ -122,21 +125,25 @@ class WatingSubTasksController extends TopController {
   }) async {
     try {
       String status = isAccepted ? 'قبولها' : "رفضها";
-      //user Controller to send the notification to the manager about whether the user acepted the invite or not
-      UserController userController = Get.put(UserController());
-      //to get the team model so we get the manager model and then get the manager user profile to sned the notification
-      WatingSubTasksController watingSubTasksController =
-          Get.put(WatingSubTasksController());
-      ProjectController projectController = Get.put(ProjectController());
-      ManagerController managerController = Get.put(ManagerController());
-      WaitingSubTaskModel waitingSubTaskModel = await watingSubTasksController
-          .getWatingSubTaskById(id: waitingSubTaskId);
+      BuildContext context = navigatorKey.currentContext!;
+
+      final UserController userController =
+          Provider.of<UserController>(context, listen: false);
+
+      final WatingSubTasksController watingSubTasksController =
+          Provider.of<WatingSubTasksController>(context, listen: false);
+      final ProjectController projectController =
+          Provider.of<ProjectController>(context, listen: false);
+      final ManagerController managerController =
+          Provider.of<ManagerController>(context, listen: false);
+      final WaitingSubTaskModel waitingSubTaskModel =
+          await watingSubTasksController.getWatingSubTaskById(
+              id: waitingSubTaskId);
 
       if (isAccepted) {
-        //to add the project sub task member to the project
         watingSubTasksController.deleteWatingSubTask(id: waitingSubTaskId);
         ProjectSubTaskController projectSubTaskController =
-            Get.put(ProjectSubTaskController());
+            Provider.of<ProjectSubTaskController>(context, listen: false);
         ProjectSubTaskModel projectSubTaskModel =
             waitingSubTaskModel.projectSubTaskModel;
         projectSubTaskController.addProjectSubTask(
@@ -153,13 +160,13 @@ class WatingSubTasksController extends TopController {
       UserModel manager =
           await userController.getUserWhereMangerIs(mangerId: managerModel.id);
 
-      //to get the user name to tell the manager about his name in the notification
       UserModel member = await userController.getUserWhereMemberIs(
         memberId: waitingSubTaskModel.projectSubTaskModel.assignedTo,
       );
 
       for (var element in manager.tokenFcm) {}
-      FcmNotifications fcmNotifications = Get.put(FcmNotifications());
+      FcmNotificationsProvider fcmNotifications =
+          Provider.of<FcmNotificationsProvider>(context, listen: false);
       await fcmNotifications.sendNotificationAsJson(
           fcmTokens: manager.tokenFcm,
           title: "المهمة تم $status",
@@ -171,7 +178,6 @@ class WatingSubTasksController extends TopController {
     }
   }
 
-  ///تعديل
   Stream<QuerySnapshot<WaitingSubTaskModel>> getWaitingSubTasksInMembersId(
       {required List<String> membersId}) {
     return watingSubTasksRef

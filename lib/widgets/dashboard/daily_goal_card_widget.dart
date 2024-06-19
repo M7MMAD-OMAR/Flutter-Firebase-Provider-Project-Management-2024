@@ -5,17 +5,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
-
-import '../../constants/app_constants.dart';
-import '../../services/auth_service.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 
 class DailyGoalCard extends StatefulWidget {
-  DailyGoalCard(
-      {Key? key,
+  DailyGoalCard({super.key,
       required this.message,
       required this.allStream,
-      required this.forStatusStram})
-      : super(key: key);
+      required this.forStatusStram});
   String message;
   Stream allStream;
   Stream forStatusStram;
@@ -53,7 +49,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
             secondDate: todayDate.add(
               const Duration(days: 1),
             ),
-            userId: AuthProvider.instance.firebaseAuth.currentUser!.uid),
+            userId: AuthProvider.firebaseAuth.currentUser!.uid),
         builder: (context, allTasks) {
           if (allTasks.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -66,8 +62,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
               stream:
                   userTaskController.getUserTasksStartInADayForAStatusStream(
                       date: DateTime.now(),
-                      userId:
-                          AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                      userId: AuthProvider.firebaseAuth.currentUser!.uid,
                       status: statusDone),
               builder: (context, doneTasks) {
                 if (doneTasks.hasData) {

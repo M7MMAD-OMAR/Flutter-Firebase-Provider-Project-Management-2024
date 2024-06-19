@@ -9,6 +9,7 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
@@ -284,11 +285,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       return const Center(
                                           child: CircularProgressIndicator());
                                     });
-                                User? user = AuthProvider
-                                    .instance.firebaseAuth.currentUser;
+                                User? user = AuthProvider.firebaseAuth.currentUser;
                                 if (user != null) {
-                                  await AuthProvider.instance.firebaseAuth
-                                      .signOut();
+                                  await AuthProvider.firebaseAuth.signOut();
                                 }
                                 if (selectedImagePath != null) {
                                   String? imagePathNetWork = "";

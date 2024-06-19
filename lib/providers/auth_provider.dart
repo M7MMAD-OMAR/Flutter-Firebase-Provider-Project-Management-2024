@@ -13,8 +13,8 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 import '../constants/back_constants.dart';
 import '../constants/values.dart';
 import '../controllers/topController.dart';
-import '../controllers/userController.dart';
 import '../models/user/user_model.dart';
+import '../services/collections_refrences.dart';
 
 typedef EitherException<T> = Future<Either<Exception, T>>;
 
@@ -24,7 +24,7 @@ Future<String> getFcmToken() async {
 }
 
 class AuthProvider with ChangeNotifier {
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  static FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   EitherException<bool> updateEmail({required String email}) async {
     final user = firebaseAuth.currentUser;

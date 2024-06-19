@@ -23,7 +23,7 @@ enum TaskStatus { notDone, inProgress, done, notStarted }
 class TaskWidget extends StatelessWidget {
   final TaskStatus status;
 
-  const TaskWidget({required this.status, Key? key}) : super(key: key);
+  const TaskWidget({required this.status, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +80,8 @@ class CardTask extends StatefulWidget {
     required this.onPrimary,
     required this.userTaskCategoryId,
     this.userFatherId,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String userTaskCategoryId;
   DocumentReference? userFatherId;
   final UserTaskModel task;
@@ -96,7 +96,6 @@ class _CardTaskState extends State<CardTask> {
   String taskStatus = "";
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getCat();
   }

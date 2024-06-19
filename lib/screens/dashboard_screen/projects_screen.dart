@@ -13,8 +13,7 @@ import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
-import 'package:project_management_muhmad_omar/screens/Projects/edit_project_screen.dart';
-import 'package:project_management_muhmad_omar/screens/Projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/main_tasks_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Projects/project_card_horizontal_widget.dart';
@@ -23,7 +22,8 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_tab_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/user/focused_menu_item_widget.dart';
+
+import '../../widgets/user/focused_menu_item_widget.dart';
 
 enum ProjectSortOption {
   name,
@@ -82,7 +82,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
 
   getUserAsManamger() async {
     userAsManager = await ManagerController().getMangerWhereUserIs(
-        userId: AuthProvider.instance.firebaseAuth.currentUser!.uid);
+        userId: AuthProvider.firebaseAuth.currentUser!.uid);
   }
 
   @override
@@ -204,7 +204,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                               ManagerModel? managerModel =
                                   await ManagerController()
                                       .getMangerWhereUserIs(
-                                          userId: AuthProvider.instance
+                                          userId: AuthProvider
                                               .firebaseAuth.currentUser!.uid);
 
                               Navigator.of(context).pop();

@@ -36,7 +36,7 @@ class EmployeeCard extends StatelessWidget {
                         userImage: employeeImage,
                         userName: employeeName,
                         bio: employeePosition)
-                    : InactiveEmployeeCard(
+                    : InactiveEmployeeCardWidget(
                         onTap: null,
                         color: backgroundColor,
                         notifier: totalDueTrigger,

@@ -11,6 +11,7 @@ import 'package:project_management_muhmad_omar/services/notifications/notificati
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import 'constants/constants.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -53,6 +54,8 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
+          navigatorKey: navigatorKey,
+
           // home: AuthScreen(),
           initialRoute: Routes.authScreen,
           routes: Routes.routes,
@@ -64,13 +67,15 @@ class MyApp extends StatelessWidget {
 
 @pragma('vm:entry-point')
 Future<void> fcmHandler() async {
-  FirebaseMessaging.onMessage.listen(FcmNotifications.handleMessageJson);
+  FirebaseMessaging.onMessage
+      .listen(FcmNotificationsProvider.handleMessageJson);
   FirebaseMessaging.onMessageOpenedApp
-      .listen(FcmNotifications.handleMessageJson);
-  FirebaseMessaging.onBackgroundMessage(FcmNotifications.handleMessageJson);
+      .listen(FcmNotificationsProvider.handleMessageJson);
+  FirebaseMessaging.onBackgroundMessage(
+      FcmNotificationsProvider.handleMessageJson);
   RemoteMessage? remoteMessage =
       await FirebaseMessaging.instance.getInitialMessage();
   if (remoteMessage != null) {
-    await FcmNotifications.handleMessageJson(remoteMessage);
+    await FcmNotificationsProvider.handleMessageJson(remoteMessage);
   }
 }

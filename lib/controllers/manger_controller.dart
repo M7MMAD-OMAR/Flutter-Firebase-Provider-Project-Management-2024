@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
+import '../constants/constants.dart';
 import '../models/team/manger_model.dart';
 import '../models/team/teamModel.dart';
 import '../services/collections_refrences.dart';
@@ -64,18 +67,23 @@ class ManagerController extends TopController {
   //       collectionReference: managersRef, field: idK, value: mangerId);
   //   return doc!.data() as ManagerModel;
   // }
-  //karem
+  //
   Future<ManagerModel> getMangerOfTeam({required String teamId}) async {
-    TeamController teamController = Get.put(TeamController());
-    TeamModel teamModel = await teamController.getTeamById(id: teamId);
+    BuildContext context = navigatorKey.currentContext!;
+    TeamController teamProvider =
+        Provider.of<TeamController>(context, listen: false);
+    TeamModel teamModel = await teamProvider.getTeamById(id: teamId);
     ManagerModel managerModel = await getMangerById(id: teamModel.managerId);
     return managerModel;
   }
 
   Stream<DocumentSnapshot<ManagerModel>> getMangerOfTeamStream(
       String teamId) async* {
-    TeamController teamController = Get.put(TeamController());
-    TeamModel teamModel = await teamController.getTeamById(id: teamId);
+    BuildContext context = navigatorKey.currentContext!;
+
+    TeamController teamProvider =
+        Provider.of<TeamController>(context, listen: false);
+    TeamModel teamModel = await teamProvider.getTeamById(id: teamId);
     Stream<DocumentSnapshot> docStream = getDocWhereStream(
       collectionReference: managersRef,
       field: idK,

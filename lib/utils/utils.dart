@@ -125,7 +125,8 @@ Widget buildStackedImages(
 
 final DashboardMeetingDetailsScreenController userController =
     Get.find<DashboardMeetingDetailsScreenController>();
-Widget buildStackedImagesKaremEdit(
+
+Widget buildStackedImagesEdit(
     {TextDirection direction = TextDirection.rtl, bool? addMore}) {
   const double size = 50;
   const double xShift = 20;

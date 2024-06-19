@@ -25,27 +25,25 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../../providers/auth_provider.dart';
-import '../../screens/Projects/add_user_to_team_provider.dart';
-import '../../services/auth_service.dart';
 import '../Buttons/primary_buttons_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
 import '../forms/form_input_with_label_widget.dart';
 import 'in_bottomsheet_subtitle_widget.dart';
 
-class DashboardMeetingDetailsScreen extends StatefulWidget {
+class DashboardMeetingDetailsWidget extends StatefulWidget {
   static List<UserModel?>? users = <UserModel?>[];
 
-  const DashboardMeetingDetailsScreen({
+  const DashboardMeetingDetailsWidget({
     super.key,
   });
 
   @override
-  State<DashboardMeetingDetailsScreen> createState() =>
-      _DashboardMeetingDetailsScreenState();
+  State<DashboardMeetingDetailsWidget> createState() =>
+      _DashboardMeetingDetailsWidgetState();
 }
 
-class _DashboardMeetingDetailsScreenState
-    extends State<DashboardMeetingDetailsScreen> {
+class _DashboardMeetingDetailsWidgetState
+    extends State<DashboardMeetingDetailsWidget> {
   String teamName = "";
   String? selectedImagePath;
 
@@ -222,7 +220,7 @@ class _DashboardMeetingDetailsScreenState
                           onTap: () {
                             Get.to(() => SearchForMembers(
                                   newTeam: true,
-                                  users: DashboardMeetingDetailsScreen.users,
+                                  users: DashboardMeetingDetailsWidget.users,
                                 ));
                           },
                           child: LabelledSelectableContainer(
@@ -235,7 +233,7 @@ class _DashboardMeetingDetailsScreenState
                       ),
                       AppSpaces.verticalSpace20,
                       Obx(
-                        () => buildStackedImagesKaremEdit(),
+                        () => buildStackedImagesEdit(),
                       ),
                       AppSpaces.verticalSpace40,
                       AppPrimaryButton(
@@ -254,7 +252,7 @@ class _DashboardMeetingDetailsScreenState
                                 ManagerModel managerModel =
                                     await ManagerController()
                                         .getManagerOrMakeOne(
-                                            userId: AuthProvider.instance
+                                            userId: AuthProvider
                                                 .firebaseAuth.currentUser!.uid);
                                 if (selectedImagePath != null) {
                                   String? imagePathNetWork = "";

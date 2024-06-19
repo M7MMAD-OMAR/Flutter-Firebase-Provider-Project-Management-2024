@@ -150,7 +150,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthProvider.instance.firebaseAuth.currentUser!.uid) {
+        if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
         } else {
           updatedIsManager = true;
@@ -319,8 +319,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                   Get.put(WatingSubTasksController());
                               await waitingSubTaskController.addWatingSubTask(
                                   waitingSubTaskModel: waitingSubTaskModel);
-                              FcmNotifications fcmNotifications =
-                                  Get.put(FcmNotifications());
+                              FcmNotificationsProvider fcmNotifications =
+                                  Get.put(FcmNotificationsProvider());
                               UserModel userModelnewAssigned =
                                   await UserController()
                                       .getUserById(id: userIdAssignedTo);
@@ -343,11 +343,11 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                   type: NotificationType.notification);
                               CustomSnackBar.showSuccess(
                                   "task ${taskName} sended to member successfully");
-                              Get.key.currentState!.pop();
-                              Get.key.currentState!.pop();
+                              Navigator.pop(context);
+                              Navigator.pop(context);
                             },
                             onCancel: () {
-                              Get.back();
+                              Navigator.pop(context);
                             },
                           );
                         } else {
@@ -385,8 +385,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               Get.put(WatingSubTasksController());
                           await waitingSubTaskController.addWatingSubTask(
                               waitingSubTaskModel: waitingSubTaskModel);
-                          FcmNotifications fcmNotifications =
-                              Get.put(FcmNotifications());
+                          FcmNotificationsProvider fcmNotifications =
+                              Get.put(FcmNotificationsProvider());
                           UserModel userModelnewAssigned =
                               await UserController()
                                   .getUserById(id: userIdAssignedTo);
@@ -409,7 +409,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               type: NotificationType.notification);
                           CustomSnackBar.showSuccess(
                               "task ${taskName} sended to member successfully");
-                          Get.key.currentState!.pop();
+                          Navigator.pop(context);
                         }
                         return;
                       } catch (e) {
@@ -449,8 +449,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                   importanceK: priority,
                                 },
                                 id: widget.task.id);
-                            FcmNotifications fcmNotifications =
-                                Get.put(FcmNotifications());
+                            FcmNotificationsProvider fcmNotifications =
+                                Get.put(FcmNotificationsProvider());
 
                             UserModel userModelOldAssigned =
                                 await UserController()
@@ -463,11 +463,11 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                 body:
                                     "the new start time is ${startDate} and the new due time is ${dueDate}",
                                 type: NotificationType.notification);
-                            Get.key.currentState!.pop();
-                            Get.key.currentState!.pop();
+                            Navigator.pop(context);
+                            Navigator.pop(context);
                           },
                           onCancel: () {
-                            Get.back();
+                            Navigator.pop(context);
                           },
                         );
                       } else {
@@ -482,8 +482,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               importanceK: priority,
                             },
                             id: widget.task.id);
-                        FcmNotifications fcmNotifications =
-                            Get.put(FcmNotifications());
+                        FcmNotificationsProvider fcmNotifications =
+                            Get.put(FcmNotificationsProvider());
 
                         UserModel userModelOldAssigned = await UserController()
                             .getUserById(id: memberModelold.userId);
@@ -498,7 +498,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
 
                         CustomSnackBar.showSuccess(
                             "task ${taskName} sended to member successfully");
-                        Get.key.currentState!.pop();
+                        Navigator.pop(context);
                       }
                     }
                     try {

@@ -8,9 +8,9 @@ import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
-import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
@@ -132,8 +132,8 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                     title: widget.title,
                     widget: GestureDetector(
                       onTap: () async {
-                        bool fcmStutas =
-                            await FcmNotifications.getNotificationStatus();
+                        bool fcmStutas = await FcmNotificationsProvider
+                            .getNotificationStatus();
                         Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -143,8 +143,7 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
                           stream: UserController().getUserByIdStream(
-                              id: AuthProvider
-                                  .instance.firebaseAuth.currentUser!.uid),
+                              id: AuthProvider.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
@@ -244,8 +243,7 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                 Expanded(
                   child: StreamBuilder<QuerySnapshot<TeamModel>?>(
                     stream: TeamController().getTeamsOfUserStream(
-                        userId: AuthProvider
-                            .instance.firebaseAuth.currentUser!.uid),
+                        userId: AuthProvider.firebaseAuth.currentUser!.uid),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         List<TeamModel> teams = snapshot.data!.docs
@@ -387,12 +385,12 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                                     //                   await ManagerController()
                                     //                       .getMangerWhereUserIs(
                                     //                           userId: AuthService
-                                    //                               .instance
+                                    //
                                     //                               .firebaseAuth
                                     //                               .currentUser!
                                     //                               .uid);
                                     //
-                                    //               Get.key.currentState!.pop();
+                                    //               Navigator.pop(context);
                                     //
                                     //               Get.to(() => TeamDetails(
                                     //                   title: team.name!,

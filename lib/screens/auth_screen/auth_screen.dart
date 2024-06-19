@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_start_screen.dart';
 
@@ -10,7 +11,7 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<User?>(
-        stream: AuthProvider.instance.firebaseAuth.authStateChanges(),
+        stream: AuthProvider.firebaseAuth.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Center(

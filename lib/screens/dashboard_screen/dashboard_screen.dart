@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_tab_screens/overview_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_tab_screens/productivity_screen.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
@@ -37,7 +38,7 @@ class DashboardScreen extends StatelessWidget {
                 title: 'لوحة التحكم',
                 onImageTapped: () async {
                   bool fcmStutas =
-                      await FcmNotifications.getNotificationStatus();
+                      await FcmNotificationsProvider.getNotificationStatus();
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -49,7 +50,7 @@ class DashboardScreen extends StatelessWidget {
               AppSpaces.verticalSpace20,
               StreamBuilder<DocumentSnapshot<UserModel>>(
                   stream: UserController().getUserByIdStream(
-                      id: AuthProvider.instance.firebaseAuth.currentUser!.uid),
+                      id: AuthProvider.firebaseAuth.currentUser!.uid),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return const CircularProgressIndicator();

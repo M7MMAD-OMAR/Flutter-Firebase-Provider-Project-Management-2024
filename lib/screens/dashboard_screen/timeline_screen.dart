@@ -8,9 +8,6 @@ import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_s
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../Projects/add_team_to_create_project_provider.dart';
-import '../Projects/add_user_to_team_provider.dart';
-import '../profile/profile_overview_screen.dart';
 import 'dashboard_screen.dart';
 
 class TimelineScreen extends StatefulWidget {

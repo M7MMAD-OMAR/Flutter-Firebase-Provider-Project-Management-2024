@@ -4,14 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/languageController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
-import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/progress_card_close_button_widget.dart';
@@ -38,7 +35,7 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
 
   Future<void> setvalue() async {
     profileOverviewController.isSelected.value =
-        await FcmNotifications.getNotificationStatus();
+        await FcmNotificationsProvider.getNotificationStatus();
   }
 
   @override
@@ -60,8 +57,7 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
               children: [
                 StreamBuilder<DocumentSnapshot<UserModel>>(
                     stream: UserController().getUserByIdStream(
-                        id: AuthProvider
-                            .instance.firebaseAuth.currentUser!.uid),
+                        id: AuthProvider.firebaseAuth.currentUser!.uid),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const CircularProgressIndicator();
@@ -88,8 +84,7 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                             ),
                           ),
                           Text(
-                            AuthProvider.instance.firebaseAuth.currentUser!
-                                    .isAnonymous
+                            AuthProvider.firebaseAuth.currentUser!.isAnonymous
                                 ? 'تسجيل الدخول بشكل مجهول'
                                 : snapshot.data!.data()!.email!,
                             style: GoogleFonts.lato(
@@ -196,15 +191,13 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                 // }),
                 AppSpaces.verticalSpace20,
                 Visibility(
-                    visible: AuthProvider
-                        .instance.firebaseAuth.currentUser!.isAnonymous,
+                    visible: AuthProvider.firebaseAuth.currentUser!.isAnonymous,
                     child: const ContainerLabel(
                       label: 'ترقية الحساب',
                     )),
                 AppSpaces.verticalSpace10,
                 Visibility(
-                  visible: AuthProvider
-                      .instance.firebaseAuth.currentUser!.isAnonymous,
+                  visible: AuthProvider.firebaseAuth.currentUser!.isAnonymous,
                   child: Row(children: [
                     Expanded(
                         flex: 1,
@@ -212,8 +205,7 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                           callback: () async {
                             try {
                               showDialogMethod(context);
-                              await AuthProvider.instance
-                                  .convertAnonymousToGoogle();
+                              await AuthProvider().convertAnonymousToGoogle();
                               Navigator.of(context).pop();
                               //  CustomSnackBar.showSuccess("its going good");
                               Navigator.pushNamed(
@@ -251,7 +243,7 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                       Routes.onboardingCarouselScreen,
                       (Route<dynamic> route) => false,
                     );
-                    await AuthProvider.instance.logOut();
+                    await AuthProvider().logOut();
                   },
                   child: Container(
                     width: double.infinity,
@@ -368,15 +360,14 @@ void showPasswordAndEmailDialog(BuildContext context) {
               try {
                 if (formKey.currentState!.validate()) {
                   showDialogMethod(context);
-                  await AuthProvider.instance
-                      .convertAnonymousToEmailandPassword(
+                  await AuthProvider().convertAnonymousToEmailandPassword(
                           email: email, password: password);
                   Navigator.pop(context);
                   Navigator.pushNamedAndRemoveUntil(
                       context,
                       Routes.onboardingCarouselScreen,
                       (Route<dynamic> route) => false);
-                  await AuthProvider.instance.logOut();
+                  await AuthProvider().logOut();
                 }
               } on Exception catch (e) {
                 Navigator.of(context).pop();

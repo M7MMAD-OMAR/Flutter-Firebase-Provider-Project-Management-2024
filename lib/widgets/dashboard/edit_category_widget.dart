@@ -73,7 +73,7 @@ class _EditUserCategoryState extends State<EditUserCategory> {
       }, id: widget.category.id);
       CustomSnackBar.showSuccess("الفئة $name تم التحديث بنجاح");
       await Future.delayed(const Duration(seconds: 1));
-      Get.key.currentState!.pop();
+      Navigator.pop(context);
     } catch (e) {
       CustomSnackBar.showError(e.toString());
     }

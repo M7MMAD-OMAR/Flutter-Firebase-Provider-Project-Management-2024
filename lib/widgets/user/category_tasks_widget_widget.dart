@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/task_widget.dart';
 
-import '../../constants/app_constants.dart';
 import '../../constants/back_constants.dart';
 import '../../controllers/categoryController.dart';
 import '../../controllers/statusController.dart';
@@ -34,6 +33,7 @@ enum TaskSortOption {
 
 class CategoryTasks extends StatefulWidget {
   CategoryTasks({super.key, required this.categoryModel});
+
   UserTaskCategoryModel categoryModel;
 
   @override
@@ -346,7 +346,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
 
             UserTaskModel userTaskModel = UserTaskModel.firestoreConstructor(
                 colorParameter: color,
-                userId: AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                userId: AuthProvider.firebaseAuth.currentUser!.uid,
                 folderId: widget.categoryModel.id,
                 taskFatherId: null,
                 descriptionParameter: desc!,
@@ -362,7 +362,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                 .addUserLateTask(userTaskModel: userTaskModel);
             CustomSnackBar.showSuccess(
                 "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
-            Get.key.currentState!.pop();
+            Navigator.pop(context);
           } catch (e) {
             CustomSnackBar.showError(e.toString());
           }
@@ -396,8 +396,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
 
             UserTaskModel userTaskModel = UserTaskModel(
                 hexColorParameter: color,
-                userIdParameter:
-                    AuthProvider.instance.firebaseAuth.currentUser!.uid,
+                userIdParameter: AuthProvider.firebaseAuth.currentUser!.uid,
                 folderIdParameter: widget.categoryModel.id,
                 taskFatherIdParameter: null,
                 descriptionParameter: desc!,
