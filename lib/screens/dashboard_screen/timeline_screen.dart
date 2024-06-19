@@ -28,8 +28,8 @@ class _TimelineScreenState extends State<TimelineScreen> {
   DashboardMeetingDetailsScreenController
       dashboardMeetingDetailsScreenController =
       Get.put(DashboardMeetingDetailsScreenController());
-        ProfileOverviewController profileOverviewController =
-      Get.put(ProfileOverviewController(), permanent: true);
+  ProfileOverviewProvider profileOverviewController =
+      Get.put(ProfileOverviewProvider(), permanent: true);
   StatelessWidget currentScreen = DashboardScreen();
 
   final PageStorageBucket bucket = PageStorageBucket();

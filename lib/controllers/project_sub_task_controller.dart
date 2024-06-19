@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/controllers/projectController.dart';
 import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
@@ -13,13 +14,11 @@ import 'package:project_management_muhmad_omar/models/team/project_sub_task_mode
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
-import '../constants/app_constants.dart';
 import '../constants/back_constants.dart';
 import '../models/status_model.dart';
 import '../models/team/project_model.dart';
 import '../models/team/teamModel.dart';
 import '../models/user/user_model.dart';
-import '../services/auth_service.dart';
 import '../services/notifications/notification_service.dart';
 import '../services/types_services.dart';
 import '../widgets/snackbar/custom_snackber_widget.dart';
@@ -658,10 +657,10 @@ class ProjectSubTaskController extends ProjectAndTaskController {
                 field: mainTaskIdK,
                 value: subTaskModel.mainTaskId);
             CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
-            Get.key.currentState!.pop();
+            Navigator.pop(context);
           },
           onCancel: () {
-            Get.back();
+            Navigator.pop(context);
           },
         );
       } else {
@@ -677,7 +676,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
             field: mainTaskIdK,
             value: subTaskModel.mainTaskId);
         CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
-        Get.key.currentState!.pop();
+        Navigator.pop(context);
       }
     } else {
       DocumentSnapshot snapshot =
@@ -691,7 +690,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
           field: mainTaskIdK,
           value: subTaskModel.mainTaskId);
       CustomSnackBar.showSuccess("مهمة ${data[nameK]} تم التحديث بنجاح");
-      Get.key.currentState!.pop();
+      Navigator.pop(context);
     }
   }
 

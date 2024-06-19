@@ -10,7 +10,6 @@ import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/default_back_widget.dart';
@@ -50,7 +49,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
               child: Column(
                 children: [
                   DefaultNav(
-                      userModel: widget.user,
+                      userModel: widget.user!,
                       title: "$tabSpace الملف الشخصي",
                       type: ProfileDummyType.Button),
                   const SizedBox(height: 30),
@@ -97,11 +96,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                   width: 75,
                                   content: 'تعديل',
                                   onPressed: () {
-                                    Get.to(
-                                      () => EditProfileScreen(
-                                        user: snapshot.data?.data(),
-                                      ),
-                                    );
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (_) => EditProfileScreen(
+                                                  user: snapshot.data?.data(),
+                                                )));
                                   }),
                             ),
                           ],
@@ -129,12 +129,17 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       AppSpaces.verticalSpace10,
                       ProfileTextOption(
                         inTap: () {
-                          Get.to(() => Scaffold(
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Scaffold(
                                 backgroundColor: HexColor.fromHex("#181a1f"),
                                 floatingActionButtonLocation:
                                     FloatingActionButtonLocation.centerFloat,
-                                body: ProjectScreen(),
-                              ));
+                                body: const ProjectScreen(),
+                              ),
+                            ),
+                          );
                         },
                         label: '$tabSpace  مشاريعي ',
                         icon: Icons.cast,
@@ -151,8 +156,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           if (mounted) {
                             Navigator.of(context).pop();
                           }
-                          Get.to(() => SelectTeamScreen(
-                              title: 'فرقي', managerModel: userAsManger));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => SelectTeamScreen(
+                                      title: 'فرقي',
+                                      managerModel: userAsManger)));
                         },
                         label: '$tabSpace فرقي',
                         icon: Icons.group,
@@ -161,8 +170,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       AppSpaces.verticalSpace10,
                       ProfileTextOption(
                         inTap: () {
-                          Get.to(
-                              () => SelectMyTeamsScreen(title: 'إدارة الفرق'));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => SelectMyTeamsScreen(
+                                      title: 'إدارة الفرق')));
                         },
                         label: '$tabSpace إدارة الفرق',
                         icon: FeatherIcons.share2,

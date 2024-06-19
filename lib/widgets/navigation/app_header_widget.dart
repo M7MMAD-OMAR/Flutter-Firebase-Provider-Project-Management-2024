@@ -16,7 +16,7 @@ class TaskezAppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        const AppBackButton(),
+        const AppBackButtonWidget(),
         (messagingPage != null)
             ? Row(children: [
                 Container(

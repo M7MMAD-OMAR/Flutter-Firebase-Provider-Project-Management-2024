@@ -6,6 +6,7 @@ class MySearchBarWidget extends StatelessWidget {
   final TextEditingController editingController;
   final String searchWord;
   final Function? onChanged;
+
   const MySearchBarWidget(
       {required this.searchWord,
       super.key,
@@ -14,14 +15,12 @@ class MySearchBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isArabic = Directionality.of(context) == TextDirection.rtl;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 7),
       child: SearchBarAnimation(
         hintText: "البحث في $searchWord",
         searchBoxColour: HexColor.fromHex("616575"),
-        searchBoxWidth: Get.width * 0.5,
+        searchBoxWidth: MediaQuery.of(context).size.width * 0.5,
         // isSearchBoxOnRightSide: isArabic,
         textEditingController: editingController,
         isOriginalAnimation: true,

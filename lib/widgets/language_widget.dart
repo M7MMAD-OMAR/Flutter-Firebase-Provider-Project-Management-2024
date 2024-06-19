@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/providers/lang_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../constants/app_constants.dart';
 import '../models/lang/lang_model.dart';
 
 class LanguageWidget extends StatelessWidget {

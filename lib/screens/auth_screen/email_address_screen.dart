@@ -6,8 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/forms/form_input_with_label_widget.dart';
@@ -32,6 +31,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
   final TextEditingController _emailController = TextEditingController();
   String email = "";
   bool obscureText = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,9 +137,11 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                               } else {
                                 Navigator.of(context).pop();
 
-                                Get.to(
-                                  () => SignUpScreen(email: email),
-                                );
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) =>
+                                            SignUpScreen(email: email)));
                               }
                             }
                           },
@@ -181,7 +183,8 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                   CustomSnackBar.showSuccess("Done byby");
                                 });
 
-                                Get.to(Get.to(() => const TimelineScreen()));
+                                Navigator.pushNamed(
+                                    context, Routes.timelineScreen);
                               }),
                           SquareButtonIcon(
                               imagePath: "lib/images/anonymos.png",
@@ -221,7 +224,8 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                 await AuthProvider().anonymosSignInMethod();
                                 Navigator.of(context).pop();
 
-                                Get.to(() => const TimelineScreen());
+                                Navigator.pushNamed(
+                                    context, Routes.timelineScreen);
                               }),
                         ],
                       ),

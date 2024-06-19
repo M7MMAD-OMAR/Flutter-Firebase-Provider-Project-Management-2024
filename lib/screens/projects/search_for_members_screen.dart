@@ -78,9 +78,12 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                       onTap: () async {
                         bool fcmStutas =
                             await FcmNotifications.getNotificationStatus();
-                        Get.to(() => ProfileOverviewScreen(
-                              isSelected: fcmStutas,
-                            ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => ProfileOverviewScreen(
+                                      isSelected: fcmStutas,
+                                    )));
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
                           stream: UserController().getUserByIdStream(
@@ -289,7 +292,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
 
                                                     addWatingMemberController
                                                         .update();
-                                                    Get.close(1);
+                                                    Navigator.of(context).pop();
                                                     addWatingMemberController
                                                         .update();
                                                   } on Exception catch (e) {

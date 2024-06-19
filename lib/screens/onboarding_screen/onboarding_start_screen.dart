@@ -3,13 +3,14 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
+import '../../constants/app_constants.dart';
 import '../../widgets/Onboarding/background_image_widget.dart';
 import '../../widgets/Onboarding/bubble_widget.dart';
 import '../../widgets/Onboarding/loading_stickers_widget.dart';
 import '../../widgets/Shapes/background_hexagon_widget.dart';
-import 'onboarding_carousel_screen.dart';
 
 class OnboardingStartScreen extends StatelessWidget {
   const OnboardingStartScreen({super.key});
@@ -125,7 +126,7 @@ class OnboardingStartScreen extends StatelessWidget {
               angle: -math.pi / 4,
               child: InkWell(
                 onTap: () {
-                  Get.to(() => const OnboardingCarouselScreen());
+                  Navigator.pushNamed(context, Routes.onboardingCarouselScreen);
                 },
                 child: Container(
                   alignment: Alignment.center,
@@ -190,7 +191,8 @@ class OnboardingStartScreen extends StatelessWidget {
                     height: 60,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => const OnboardingCarouselScreen());
+                        Navigator.pushNamed(
+                            context, Routes.onboardingCarouselScreen);
                       },
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(

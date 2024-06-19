@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_start_screen.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/logo/app_logo_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
   static String id = "SplashScreen";
 
   @override
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(() => const OnboardingStartScreen());
+      Navigator.pushNamed(context, Routes.onboardingStartScreen);
     });
   }
 

@@ -6,7 +6,6 @@ import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_tab_screens/overview_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_tab_screens/productivity_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_tab_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/dasboard_header_widget.dart';
@@ -39,9 +38,12 @@ class DashboardScreen extends StatelessWidget {
                 onImageTapped: () async {
                   bool fcmStutas =
                       await FcmNotifications.getNotificationStatus();
-                  Get.to(() => ProfileOverviewScreen(
-                        isSelected: fcmStutas,
-                      ));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => ProfileOverviewScreen(
+                                isSelected: fcmStutas,
+                              )));
                 },
               ),
               AppSpaces.verticalSpace20,

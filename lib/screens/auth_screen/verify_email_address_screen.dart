@@ -13,6 +13,8 @@ import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radi
 import 'package:project_management_muhmad_omar/widgets/navigation/back_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
+import '../../routes.dart';
+
 class VerifyEmailAddressScreen extends StatefulWidget {
   const VerifyEmailAddressScreen({super.key});
 
@@ -119,7 +121,10 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                             }, (right) {
                               if (right == true) {
                                 CustomSnackBar.showSuccess('نجاح');
-                                Get.offAll(() => const TimelineScreen());
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context,
+                                    Routes.timelineScreen,
+                                    (Route<dynamic> route) => false);
                               } else {
                                 CustomSnackBar.showError(
                                     'يرجى التحقق من بريدك الإلكتروني قبل المتابعة');

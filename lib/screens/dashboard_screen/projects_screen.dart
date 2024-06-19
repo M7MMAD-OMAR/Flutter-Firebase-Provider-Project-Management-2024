@@ -1,5 +1,3 @@
-import 'dart:developer' as dev;
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -20,15 +18,14 @@ import 'package:project_management_muhmad_omar/screens/Projects/project_provider
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/main_tasks_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Projects/project_card_horizontal_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Projects/project_card_vertical_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_tab_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/focused_menu_item_widget.dart';
 
-import '../../widgets/Projects/project_card_vertical_widget.dart';
-
-enum ProjecSortOption {
+enum ProjectSortOption {
   name,
   createDate,
   updatedDate,
@@ -49,19 +46,19 @@ class _ProjectScreenState extends State<ProjectScreen> {
   bool desc = false;
   String? orderByField = nameK;
   ManagerModel? userAsManager;
-  ProjecSortOption selectedSortOption = ProjecSortOption.name;
+  ProjectSortOption selectedSortOption = ProjectSortOption.name;
 
-  String _getSortOptionText(ProjecSortOption option) {
+  String _getSortOptionText(ProjectSortOption option) {
     switch (option) {
-      case ProjecSortOption.name:
+      case ProjectSortOption.name:
         return "الاسم";
-      case ProjecSortOption.updatedDate:
+      case ProjectSortOption.updatedDate:
         return "تاريح التحديث";
-      case ProjecSortOption.createDate:
+      case ProjectSortOption.createDate:
         return "تاريخ الإنشاء";
-      case ProjecSortOption.stauts:
+      case ProjectSortOption.stauts:
         return 'الحالة';
-      case ProjecSortOption.teamName:
+      case ProjectSortOption.teamName:
         return "اسم الفريق";
 
       default:
@@ -159,18 +156,18 @@ class _ProjectScreenState extends State<ProjectScreen> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: DropdownButton<ProjecSortOption>(
+                            child: DropdownButton<ProjectSortOption>(
                               value: selectedSortOption,
-                              onChanged: (ProjecSortOption? newValue) {
+                              onChanged: (ProjectSortOption? newValue) {
                                 setState(() {
                                   selectedSortOption = newValue!;
                                   settingsButtonTrigger.value =
                                       controller.selectedTab.value;
                                 });
                               },
-                              items: ProjecSortOption.values
-                                  .map((ProjecSortOption option) {
-                                return DropdownMenuItem<ProjecSortOption>(
+                              items: ProjectSortOption.values
+                                  .map((ProjectSortOption option) {
+                                return DropdownMenuItem<ProjectSortOption>(
                                   value: option,
                                   child: Text(
                                     _getSortOptionText(option),
@@ -211,11 +208,14 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                               .firebaseAuth.currentUser!.uid);
 
                               Navigator.of(context).pop();
-                              Get.to(() => SelectTeamScreen(
-                                    managerModel: managerModel,
-                                    title: 'اختر الفريق',
-                                  ));
-                              dev.log("Team Tap");
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => SelectTeamScreen(
+                                            managerModel: managerModel,
+                                            title: 'اختر الفريق',
+                                          )));
+
                               settingsButtonTrigger.value =
                                   controller.selectedTab.value;
                             },
@@ -344,22 +344,22 @@ class _ProjectScreenState extends State<ProjectScreen> {
                           }
 
                           switch (selectedSortOption) {
-                            case ProjecSortOption.name:
+                            case ProjectSortOption.name:
                               list.sort((a, b) => a!.name!.compareTo(b!.name!));
                               break;
-                            case ProjecSortOption.createDate:
+                            case ProjectSortOption.createDate:
                               list.sort((a, b) =>
                                   a!.createdAt.compareTo(b!.createdAt));
                               break;
-                            case ProjecSortOption.updatedDate:
+                            case ProjectSortOption.updatedDate:
                               list.sort((a, b) =>
                                   b!.updatedAt.compareTo(a!.updatedAt));
                               break;
-                            case ProjecSortOption.stauts:
+                            case ProjectSortOption.stauts:
                               list.sort(
                                   (a, b) => b!.statusId.compareTo(a!.statusId));
                               break;
-                            case ProjecSortOption.teamName:
+                            case ProjectSortOption.teamName:
                               list.sort(
                                   (a, b) => b!.teamId!.compareTo(a!.teamId!));
                               break;
@@ -453,10 +453,16 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                       list[index]!.startDate,
                                                 ),
                                                 onClick: () async {
-                                                  Get.to(MainTaskScreen(
-                                                    projectId:
-                                                        projects[index].id,
-                                                  ));
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              MainTaskScreen(
+                                                                projectId:
+                                                                    projects[
+                                                                            index]
+                                                                        .id,
+                                                              )));
                                                 },
                                                 deleteButton: () async {
                                                   try {
@@ -490,10 +496,16 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                 })
                                             : InkWell(
                                                 onTap: () async {
-                                                  Get.to(MainTaskScreen(
-                                                    projectId:
-                                                        projects[index].id,
-                                                  ));
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              MainTaskScreen(
+                                                                projectId:
+                                                                    projects[
+                                                                            index]
+                                                                        .id,
+                                                              )));
                                                 },
                                                 child: ProjectCardVertical(
                                                   idk: projects[index].id,
@@ -530,10 +542,16 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                       list[index]!.startDate,
                                                 ),
                                                 onClick: () async {
-                                                  Get.to(MainTaskScreen(
-                                                    projectId:
-                                                        projects[index].id,
-                                                  ));
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              MainTaskScreen(
+                                                                projectId:
+                                                                    projects[
+                                                                            index]
+                                                                        .id,
+                                                              )));
                                                 },
                                                 deleteButton: () async {
                                                   try {
@@ -568,10 +586,16 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                 })
                                             : InkWell(
                                                 onTap: () async {
-                                                  Get.to(MainTaskScreen(
-                                                    projectId:
-                                                        projects[index].id,
-                                                  ));
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              MainTaskScreen(
+                                                                projectId:
+                                                                    projects[
+                                                                            index]
+                                                                        .id,
+                                                              )));
                                                 },
                                                 child: ProjectCardHorizontal(
                                                   idk: projects[index].id,

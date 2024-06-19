@@ -39,7 +39,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
             label: 'إنشاء فريق',
             icon: Icons.people,
             callback: () {
-              Get.to(() => const DashboardMeetingDetails());
+              Get.to(() => const DashboardMeetingDetailsScreen());
             }),
         LabelledOption(
             label: 'إنشاء فئة',

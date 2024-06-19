@@ -9,6 +9,6 @@ class NavigationBack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppBackButton();
+    return const AppBackButtonWidget();
   }
 }

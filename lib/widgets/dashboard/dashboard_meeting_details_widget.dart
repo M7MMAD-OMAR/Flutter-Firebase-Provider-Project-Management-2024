@@ -24,6 +24,7 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_selectable_container_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
+import '../../providers/auth_provider.dart';
 import '../../screens/Projects/add_user_to_team_provider.dart';
 import '../../services/auth_service.dart';
 import '../Buttons/primary_buttons_widget.dart';
@@ -31,19 +32,20 @@ import '../dummy/profile_dummy_widget.dart';
 import '../forms/form_input_with_label_widget.dart';
 import 'in_bottomsheet_subtitle_widget.dart';
 
-class DashboardMeetingDetails extends StatefulWidget {
+class DashboardMeetingDetailsScreen extends StatefulWidget {
   static List<UserModel?>? users = <UserModel?>[];
 
-  const DashboardMeetingDetails({
-    Key? key,
-  }) : super(key: key);
+  const DashboardMeetingDetailsScreen({
+    super.key,
+  });
 
   @override
-  State<DashboardMeetingDetails> createState() =>
-      _DashboardMeetingDetailsState();
+  State<DashboardMeetingDetailsScreen> createState() =>
+      _DashboardMeetingDetailsScreenState();
 }
 
-class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
+class _DashboardMeetingDetailsScreenState
+    extends State<DashboardMeetingDetailsScreen> {
   String teamName = "";
   String? selectedImagePath;
 
@@ -52,7 +54,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('اختر صورة'),
+          title: const Text('اختر صورة'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
@@ -73,7 +75,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text(
+                  child: const Text(
                     "إلغاء",
                   ),
                   onTap: () {
@@ -220,7 +222,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                           onTap: () {
                             Get.to(() => SearchForMembers(
                                   newTeam: true,
-                                  users: DashboardMeetingDetails.users,
+                                  users: DashboardMeetingDetailsScreen.users,
                                 ));
                           },
                           child: LabelledSelectableContainer(

@@ -38,11 +38,14 @@ class MyTeamScreen extends StatelessWidget {
         AppSpaces.verticalSpace10,
         InkWell(
           onTap: () {
-            Get.to(() => TeamDetailsScreen(
-                  userAsManager: userAsManager,
-                  title: teamTitle,
-                  team: teamModel,
-                ));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (_) => TeamDetailsScreen(
+                          userAsManager: userAsManager,
+                          title: teamTitle,
+                          team: teamModel,
+                        )));
           },
           child: Transform.scale(
               alignment: Alignment.centerLeft,

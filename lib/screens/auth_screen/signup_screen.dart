@@ -9,8 +9,7 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/topController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/verify_email_address_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
@@ -346,8 +345,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             CustomSnackBar.showSuccess(
                                               'مرحبًا بك في فريقنا، يسعدنا وجودك',
                                             ),
-                                            Get.to(() =>
-                                                const VerifyEmailAddressScreen())
+                                            Navigator.pushNamed(context,
+                                                Routes.verifyEmailAddressScreen)
                                           });
                                 }
                               } on Exception catch (e) {

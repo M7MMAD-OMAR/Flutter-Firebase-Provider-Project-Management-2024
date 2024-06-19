@@ -72,6 +72,8 @@ class Assets {
   static const String chatAddChatIconWidget =
       'lib/widgets/chat/add_chat_icon_widget.dart';
   static const String constantsAppColors = 'lib/constants/app_colors.dart';
+  static const String constantsAppConstants =
+      'lib/constants/app_constants.dart';
   static const String constantsBackConstants =
       'lib/constants/back_constants.dart';
   static const String constantsBoxDecorationStyles =
@@ -337,6 +339,8 @@ class Assets {
   static const String providersBoxProvider = 'lib/providers/box_provider.dart';
   static const String providersInvitationsProvider =
       'lib/providers/invitations_provider.dart';
+  static const String providersProfileOverviewProvider =
+      'lib/providers/profile_overview_provider.dart';
   static const String providersProjectProvider =
       'lib/providers/project_provider.dart';
   static const String resApp = 'lib/widgets/calender/core/res/app.dart';

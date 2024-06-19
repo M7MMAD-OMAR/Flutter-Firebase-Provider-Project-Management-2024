@@ -29,6 +29,7 @@ import '../profile/profile_overview_screen.dart';
 
 class InvitationScreen extends StatelessWidget {
   InvitationScreen({super.key});
+
   final BoxProvider boxController = Get.put(BoxProvider());
 
   @override
@@ -48,9 +49,12 @@ class InvitationScreen extends StatelessWidget {
                     onTap: () async {
                       bool fcmStutas =
                           await FcmNotifications.getNotificationStatus();
-                      Get.to(() => ProfileOverviewScreen(
-                            isSelected: fcmStutas,
-                          ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => ProfileOverviewScreen(
+                                    isSelected: fcmStutas,
+                                  )));
                     },
                     child: StreamBuilder<DocumentSnapshot<UserModel>>(
                         stream: UserController().getUserByIdStream(
@@ -362,12 +366,9 @@ class InvitationScreen extends StatelessWidget {
                                                                           waitingSubTaskId:
                                                                               listWaitingSubTasks[index].id,
                                                                         );
-                                                                        Get.key
-                                                                            .currentState!
+
+                                                                        Navigator.of(context)
                                                                             .pop();
-                                                                        // Navigator.of(
-                                                                        //         context)
-                                                                        //     .pop();
                                                                       } on Exception catch (e) {
                                                                         Navigator.of(context)
                                                                             .pop();
@@ -576,7 +577,7 @@ class InvitationScreen extends StatelessWidget {
                                                                   listWaitingMembers[
                                                                           index]
                                                                       .id);
-                                                      Get.key.currentState!
+                                                      Navigator.of(context)
                                                           .pop();
                                                     },
                                                     onPressedStart: (p0) async {
@@ -587,8 +588,6 @@ class InvitationScreen extends StatelessWidget {
                                                                   listWaitingMembers[
                                                                           index]
                                                                       .id);
-                                                      // Navigator.of(context)
-                                                      //     .pop();
                                                     },
                                                     header: teamModel.name!,
                                                     //  header: "Team Name",

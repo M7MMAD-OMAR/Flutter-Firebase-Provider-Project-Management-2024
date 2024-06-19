@@ -26,6 +26,7 @@ import 'show_team_members_widget.dart';
 class MoreTeamDetailsSheet extends StatefulWidget {
   final TeamModel teamModel;
   final ManagerModel? userAsManager;
+
   const MoreTeamDetailsSheet(
       {Key? key, required this.userAsManager, required this.teamModel})
       : super(key: key);
@@ -37,6 +38,7 @@ class MoreTeamDetailsSheet extends StatefulWidget {
 class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
   TextEditingController teamNameController = TextEditingController();
   String name = "";
+
   @override
   @override
   void initState() {
@@ -220,10 +222,13 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                           numberOfMembers: 0.toString(),
                           users: <UserModel>[],
                           onTap: () {
-                            Get.to(() => ShowTeamMembers(
-                                  teamModel: widget.teamModel,
-                                  userAsManager: widget.userAsManager,
-                                ));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => ShowTeamMembers(
+                                          teamModel: widget.teamModel,
+                                          userAsManager: widget.userAsManager,
+                                        )));
                           },
                         );
                       }
@@ -247,10 +252,14 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                             }
                             return buildStackedImages(
                                 onTap: () {
-                                  Get.to(() => ShowTeamMembers(
-                                        teamModel: widget.teamModel,
-                                        userAsManager: widget.userAsManager,
-                                      ));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => ShowTeamMembers(
+                                                teamModel: widget.teamModel,
+                                                userAsManager:
+                                                    widget.userAsManager,
+                                              )));
                                 },
                                 users: users,
                                 numberOfMembers: users.length.toString(),
@@ -276,7 +285,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                               imageName: widget.teamModel.name!,
                               folder: "Teams");
                           resOfUpload.fold((left) {
-                            Get.key.currentState!.pop();
+                            Navigator.pop(context);
                             CustomSnackBar.showError("${left.toString()} ");
                           }, (right) async {
                             right.then((value) async {
@@ -284,7 +293,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                               await TeamController().updateTeam(
                                   widget.teamModel.id,
                                   {imageUrlK: imageNetWork});
-                              Get.key.currentState!.pop();
+                              Navigator.pop(context);
                             });
                           });
                         }
@@ -307,7 +316,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                             CustomSnackBar.showSuccess("تم تحديث الفريق بنجاح");
                             Navigator.of(context).pop();
                           }
-                          Get.key.currentState!.pop();
+                          Navigator.pop(context);
                         }
                       }
                     },

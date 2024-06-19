@@ -3,11 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/email_address_screen.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/forgot_password_screen/reset_password_screen.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/verify_email_address_screen.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
@@ -129,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     AppSpaces.verticalSpace20,
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => const ResetPasswordScreen());
+                        Navigator.pushNamed(context, Routes.resetPassword);
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -168,9 +164,13 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.of(context).pop();
 
                               if (userCredential.user!.emailVerified) {
-                                Get.offAll(() => const TimelineScreen());
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                  Routes.timelineScreen,
+                                  (Route<dynamic> route) => false,
+                                );
                               } else {
-                                Get.to(() => const VerifyEmailAddressScreen());
+                                Navigator.pushNamed(
+                                    context, Routes.verifyEmailAddressScreen);
                               }
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'user-not-found') {
@@ -211,7 +211,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Get.to(() => const EmailAddressScreen());
+                            Navigator.pushNamed(
+                                context, Routes.emailAddressScreen);
                           },
                           child: Text(
                             'أنشئ واحدًا!',

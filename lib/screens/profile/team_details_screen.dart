@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,6 +35,7 @@ class TeamDetailsScreen extends StatelessWidget {
       required this.title,
       required this.team,
       required this.userAsManager});
+
   final ManagerModel? userAsManager;
 
   @override
@@ -115,13 +115,17 @@ class TeamDetailsScreen extends StatelessWidget {
                                 return MyTeamScreen(
                                     userAsManager: userAsManager,
                                     onTap: () {
-                                      Get.to(() => ShowTeamMembers(
-                                            teamModel: team!,
-                                            userAsManager: userAsManager,
-                                          ));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => ShowTeamMembers(
+                                                    teamModel: team!,
+                                                    userAsManager:
+                                                        userAsManager,
+                                                  )));
                                     },
                                     teamModel: team!,
-                                    users: <UserModel>[],
+                                    users: const <UserModel>[],
                                     teamTitle: snapshotTeam.data!.data()!.name!,
                                     numberOfMembers: 0.toString(),
                                     noImages: 0.toString());
@@ -152,10 +156,15 @@ class TeamDetailsScreen extends StatelessWidget {
                                     return MyTeamScreen(
                                         userAsManager: userAsManager,
                                         onTap: () {
-                                          Get.to(() => ShowTeamMembers(
-                                                teamModel: team!,
-                                                userAsManager: userAsManager,
-                                              ));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      ShowTeamMembers(
+                                                        teamModel: team!,
+                                                        userAsManager:
+                                                            userAsManager,
+                                                      )));
                                         },
                                         teamModel: team!,
                                         users: users,
@@ -180,7 +189,7 @@ class TeamDetailsScreen extends StatelessWidget {
                               }
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
-                                return CircularProgressIndicator();
+                                return const CircularProgressIndicator();
                               }
 
                               return InBottomSheetSubtitle(
@@ -223,10 +232,11 @@ class TeamDetailsScreen extends StatelessWidget {
 
 class TeamProjectOverview extends StatelessWidget {
   final TeamModel teamModel;
+
   const TeamProjectOverview({
     required this.teamModel,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -238,7 +248,7 @@ class TeamProjectOverview extends StatelessWidget {
             return Center(
               child: Text(
                 'Error: ${snapshotProject.error}',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 39,
                 ),

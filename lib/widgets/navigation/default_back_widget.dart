@@ -7,19 +7,19 @@ import '../../screens/profile/edit_profile_screen.dart';
 import '../dummy/profile_dummy_widget.dart';
 import '../profile/text_outlined_button_widget.dart';
 import 'back_button.dart';
-  
+
 class DefaultNav extends StatelessWidget {
   final String title;
   final UserModel userModel;
   final ProfileDummyType? type;
+
   const DefaultNav(
-      {Key? key, this.type, required this.title, required this.userModel})
-      : super(key: key);
+      {super.key, this.type, required this.title, required this.userModel});
 
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      const AppBackButton(),
+      const AppBackButtonWidget(),
       Text(title,
           style: GoogleFonts.lato(
               fontSize: Utils.screenWidth * 0.07,
@@ -44,9 +44,12 @@ class DefaultNav extends StatelessWidget {
             width: 75,
             content: 'تعديل',
             onPressed: () {
-              Get.to(() => EditProfileScreen(
-                    user: userModel,
-                  ));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) => EditProfileScreen(
+                            user: userModel,
+                          )));
             },
           );
         } else {

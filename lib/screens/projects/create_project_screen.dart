@@ -26,7 +26,9 @@ import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widge
 import 'package:project_management_muhmad_omar/widgets/forms/form_input_with_label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calender_widget.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/invitations_provider.dart';
 import '../../providers/projects/add_team_to_create_project_provider.dart';
 
 class CreateProjectScreen extends StatefulWidget {
@@ -222,14 +224,22 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                                     addMore: true,
                                     numberOfMembers: 0.toString(),
                                     onTap: () {
-                                      Get.to(() => SelectMyTeamsScreen(
-                                          title: 'اختر الفريق'));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  SelectMyTeamsScreen(
+                                                      title: 'اختر الفريق')));
                                     },
                                     teams: <TeamModel?>[]);
                               } else {
-                                return Obx(
-                                  () => buildStackedImagesTeamEdit(
-                                      addMore: false),
+                                return Consumer<InvitationProvider>(
+                                  builder:
+                                      (context, invitationProvider, child) {
+                                    return buildStackedImagesTeamEdit(
+                                      addMore: false,
+                                    );
+                                  },
                                 );
                               }
                             },
@@ -246,16 +256,24 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                                     numberOfMembers:
                                         snapshot.data!.docs.length.toString(),
                                     onTap: () {
-                                      Get.to(() => SelectMyTeamsScreen(
-                                          title: 'اختر الفريق'));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) =>
+                                                  SelectMyTeamsScreen(
+                                                      title: 'اختر الفريق')));
                                     },
                                     teams: snapshot.data?.docs
                                         .map((doc) => doc.data())
                                         .toList());
                               } else {
-                                return Obx(
-                                  () => buildStackedImagesTeamEdit(
-                                      addMore: false),
+                                return Consumer<InvitationProvider>(
+                                  builder:
+                                      (context, invitationProvider, child) {
+                                    return buildStackedImagesTeamEdit(
+                                      addMore: false,
+                                    );
+                                  },
                                 );
                               }
                             },

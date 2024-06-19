@@ -1,12 +1,8 @@
-import 'dart:developer' as dev;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/auth_screen/login_screen.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/sqaure_button_widget.dart';
@@ -108,7 +104,7 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                           height: 60,
                           child: ElevatedButton(
                             onPressed: () {
-                              Get.to(() => const LoginScreen());
+                              Navigator.pushNamed(context, Routes.loginScreen);
                             },
                             style: ButtonStyle(
                               backgroundColor: WidgetStateProperty.all<Color>(
@@ -156,8 +152,11 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                                     CustomSnackBar.showError(left.toString());
                                   }, (right) {
                                     CustomSnackBar.showSuccess("Done byby");
-                                    dev.log("message");
-                                    Get.offAll(() => const TimelineScreen());
+                                    Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                      Routes.timelineScreen,
+                                      (Route<dynamic> route) => false,
+                                    );
                                   });
                                 }),
                             SquareButtonIcon(
@@ -178,9 +177,12 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                                     CustomSnackBar.showError(left.toString());
                                     return;
                                   }, (right) {
-                                    Get.offAll(() => const TimelineScreen());
+                                    Navigator.of(context)
+                                        .pushNamedAndRemoveUntil(
+                                      Routes.timelineScreen,
+                                      (Route<dynamic> route) => false,
+                                    );
                                   });
-                                  dev.log("message");
                                 }),
                           ],
                         ),

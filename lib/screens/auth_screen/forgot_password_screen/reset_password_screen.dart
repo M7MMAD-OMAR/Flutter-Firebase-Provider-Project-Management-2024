@@ -4,10 +4,9 @@ import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 
-import '../../../services/auth_service.dart';
 import '../../../widgets/Shapes/background_hexagon_widget.dart';
 import '../../../widgets/forms/form_input_with_label_widget.dart';
 import '../../../widgets/navigation/back_widget.dart';
@@ -28,6 +27,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController _emailController = TextEditingController();
   String email = "";
   bool obscureText = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,11 +98,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 showDialogMethod(context);
                                 await AuthProvider.instance
                                     .resetPassword(email: email);
-                                Get.key.currentState!.pop();
+                                Navigator.of(context).pop();
                                 CustomSnackBar.showSuccess(
                                     'لقد أرسلنا رابط إعادة تعيين كلمة المرور');
                               } on Exception catch (e) {
-                                Get.key.currentState!.pop();
+                                Navigator.of(context).pop();
                                 CustomSnackBar.showError(e.toString());
                               }
                             }
@@ -144,8 +144,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   Navigator.of(context).pop();
                                   CustomSnackBar.showSuccess("Done byby");
                                 });
-//   dev.log("message");
-                                Get.to(Get.to(() => const TimelineScreen()));
+                                Navigator.pushNamed(
+                                    context, Routes.timelineScreen);
                               }),
                           SquareButtonIcon(
                               imagePath: "lib/images/anonymos.png",
@@ -185,8 +185,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 await AuthProvider().anonymosSignInMethod();
                                 Navigator.of(context).pop();
 
-                                //    dev.log("message");
-                                Get.to(() => const TimelineScreen());
+                                Navigator.pushNamed(
+                                    context, Routes.timelineScreen);
                               }),
                         ],
                       ),

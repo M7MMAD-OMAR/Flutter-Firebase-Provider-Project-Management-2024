@@ -26,6 +26,7 @@ import 'package:project_management_muhmad_omar/screens/projects/projects_screen.
 import 'package:project_management_muhmad_omar/screens/projects/search_for_members_screen.dart';
 import 'package:project_management_muhmad_omar/screens/splash_screen.dart';
 import 'package:project_management_muhmad_omar/screens/task/task_due_date_screen.dart';
+import 'package:project_management_muhmad_omar/widgets/dashboard/dashboard_meeting_details_widget.dart';
 
 class Routes {
   Routes._();
@@ -77,10 +78,14 @@ class Routes {
   static const String selectMyTeamsScreen = '/select-my-team-screen';
   static const String selectTeamScreen = '/select-team-screen';
   static const String searchForMembersScreen = '/search-for-members-screen';
+  static const String dashboardMeetingDetailsScreen =
+      '/dashboard-meeting-details-screen';
 
   static final dynamic routes = <String, WidgetBuilder>{
     authScreen: (BuildContext context) => const AuthScreen(),
     loginScreen: (BuildContext context) => const LoginScreen(),
+    dashboardMeetingDetailsScreen: (BuildContext context) =>
+        const DashboardMeetingDetailsScreen(),
     signupScreen: (BuildContext context) => const SignUpScreen(email: ''),
     resetPassword: (BuildContext context) => const ResetPasswordScreen(),
     verifyEmailAddressScreen: (BuildContext context) =>

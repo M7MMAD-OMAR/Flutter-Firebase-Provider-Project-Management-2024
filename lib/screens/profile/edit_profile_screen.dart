@@ -101,7 +101,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           .firebaseAuth.currentUser!.uid,
                                       folder: "Users");
                                   resOfUpload.fold((left) {
-                                    Get.key.currentState!.pop();
+                                    Navigator.pop(context);
                                     CustomSnackBar.showError(
                                         "${left.toString()} ");
                                   }, (right) async {
@@ -111,7 +111,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           id: AuthProvider.instance.firebaseAuth
                                               .currentUser!.uid,
                                           data: {imageUrlK: imageNetWork});
-                                      Get.key.currentState!.pop();
+                                      Navigator.pop(context);
                                     });
                                   });
                                 }
@@ -165,8 +165,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 }
                                 if (!pop) {
                                   Navigator.of(context).pop();
-                                  Get.off(() =>
-                                      MyProfileScreen(user: widget.user!));
+
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) => MyProfileScreen(
+                                            user: widget.user!)),
+                                    (Route<dynamic> route) => false,
+                                  );
                                 }
                                 if (changes) {
                                   CustomSnackBar.showSuccess(

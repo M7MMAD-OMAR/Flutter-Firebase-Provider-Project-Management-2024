@@ -6,10 +6,8 @@ import 'package:project_management_muhmad_omar/controllers/projectController.dar
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
-import '../constants/app_constants.dart';
 import '../constants/back_constants.dart';
 import '../models/team/project_main_task_model.dart';
 import '../models/team/project_model.dart';
@@ -438,8 +436,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     if (overlapped) {
       Get.defaultDialog(
           title: 'خطأ في وقت المهمة',
-          middleText:
-          "هناك ${over} تبدأ في هذا الوقت هل تود إضافتها؟",
+          middleText: "هناك ${over} تبدأ في هذا الوقت هل تود إضافتها؟",
           onConfirm: () async {
             await addTask(
               reference: projectMainTasksRef,
@@ -555,7 +552,8 @@ class ProjectMainTaskController extends ProjectAndTaskController {
                   reference: projectSubTasksRef,
                   data: data,
                   id: id,
-                  exception: Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
+                  exception:
+                      Exception('المهمة الرئيسية موجودة بالفعل في المشروع'),
                   field: projectIdK,
                   value: projectMainTaskModel.projectId);
               CustomSnackBar.showSuccess(

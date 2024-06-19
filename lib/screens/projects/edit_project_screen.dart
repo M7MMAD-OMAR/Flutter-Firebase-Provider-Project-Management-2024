@@ -252,10 +252,14 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
                                 }
                                 return buildStackedImages(
                                     onTap: () {
-                                      Get.to(() => ShowTeamMembers(
-                                            teamModel: widget.teamModel,
-                                            userAsManager: widget.userAsManager,
-                                          ));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => ShowTeamMembers(
+                                                    teamModel: widget.teamModel,
+                                                    userAsManager:
+                                                        widget.userAsManager,
+                                                  )));
                                     },
                                     users: users,
                                     numberOfMembers: users.length.toString(),
@@ -452,7 +456,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
             },
             id: widget.projectModel.id);
         CustomSnackBar.showSuccess("Projec $name Updated successfully");
-        Get.key.currentState!.pop();
+        Navigator.pop(context);
       } else {
         CustomSnackBar.showError("No Chages to Update");
       }

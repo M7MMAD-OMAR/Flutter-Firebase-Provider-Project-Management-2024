@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 
+import '../../routes.dart';
 import '../Shapes/roundedborder_with_icon_widget.dart';
 
-class AppBackButton extends StatelessWidget {
-  const AppBackButton({Key? key}) : super(key: key);
+class AppBackButtonWidget extends StatelessWidget {
+  const AppBackButtonWidget({super.key});
 
-// dvd()async{
-//      final idtoken = await
-//         AuthService.instance.firebaseAuth.currentUser!.getIdTokenResult();
-
-// }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,13 +13,10 @@ class AppBackButton extends StatelessWidget {
       child: InkWell(
         onTap: () {
           if (Navigator.canPop(context)) {
-            Get.back();
+            Navigator.pop(context);
           } else {
-            // User? user=  AuthService.instance.firebaseAuth.currentUser;
-            // if (user!=null && !user.isAnonymous) {
-
-            // }
-            Get.offAll(() => const TimelineScreen());
+            Navigator.pushNamedAndRemoveUntil(context, Routes.timelineScreen,
+                (Route<dynamic> route) => false);
           }
         },
         child: const RoundedBorderWithIcon(icon: Icons.arrow_back),

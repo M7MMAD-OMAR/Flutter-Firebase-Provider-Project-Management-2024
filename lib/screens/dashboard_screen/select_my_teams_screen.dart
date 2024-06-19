@@ -8,7 +8,7 @@ import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
@@ -16,8 +16,6 @@ import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radi
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 
-import '../Projects/add_team_to_create_project_provider.dart';
-import '../Projects/add_user_to_team_provider.dart';
 import '../profile/profile_overview_screen.dart';
 
 enum TeamSortOption {
@@ -136,9 +134,12 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                       onTap: () async {
                         bool fcmStutas =
                             await FcmNotifications.getNotificationStatus();
-                        Get.to(() => ProfileOverviewScreen(
-                              isSelected: fcmStutas,
-                            ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => ProfileOverviewScreen(
+                                      isSelected: fcmStutas,
+                                    )));
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
                           stream: UserController().getUserByIdStream(
@@ -495,13 +496,8 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                   buttonText: 'إنشاء فريق جديد',
                   callback: () {
                     DashboardMeetingDetails.users = [];
-                    Get.to(() => const DashboardMeetingDetails());
-
-                    // Get.to(() => TeamDetails(
-                    //       title: "TEMaM",
-                    //     ));
-                    // int count = 0;
-                    // Navigator.of(context).popUntil((_) => count++ >= 2);
+                    Navigator.pushNamed(
+                        context, Routes.dashboardMeetingDetailsScreen);
                   },
                 ),
                 AppSpaces.verticalSpace20,

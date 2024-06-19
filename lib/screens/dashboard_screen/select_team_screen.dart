@@ -33,8 +33,6 @@ class SelectTeamScreen extends StatefulWidget {
 }
 
 class _SelectTeamScreenState extends State<SelectTeamScreen> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +52,14 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                     title: widget.title,
                     widget: GestureDetector(
                       onTap: () async {
-                        bool fcmStutas =
+                        bool fcmStatus =
                             await FcmNotifications.getNotificationStatus();
-                        Get.to(() => ProfileOverviewScreen(
-                              isSelected: fcmStutas,
-                            ));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => ProfileOverviewScreen(
+                                      isSelected: fcmStatus,
+                                    )));
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
                           stream: UserController().getUserByIdStream(
@@ -110,13 +111,16 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                                     return ActiveTeamCard(
                                       imageType: ImageType.Network,
                                       onTap: () {
-                                        //
-                                        Get.to(() => TeamDetailsScreen(
-                                              userAsManager:
-                                                  widget.managerModel,
-                                              title: team.name!,
-                                              team: team,
-                                            ));
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (_) =>
+                                                    TeamDetailsScreen(
+                                                      userAsManager:
+                                                          widget.managerModel,
+                                                      title: team.name!,
+                                                      team: team,
+                                                    )));
                                       },
                                       team: team,
                                       numberOfMembers: membersCount,

@@ -7,6 +7,7 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/languageController.dart';
 import 'package:project_management_muhmad_omar/controllers/userController.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/timeline_screen.dart';
 import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
@@ -24,6 +25,7 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 
 class ProfileOverviewScreen extends StatefulWidget {
   ProfileOverviewScreen({super.key, required this.isSelected});
+
   late bool isSelected;
 
   @override
@@ -31,8 +33,8 @@ class ProfileOverviewScreen extends StatefulWidget {
 }
 
 class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
-  ProfileOverviewController profileOverviewController =
-      Get.put(ProfileOverviewController(), permanent: true);
+  ProfileOverviewProvider profileOverviewController =
+      Get.put(ProfileOverviewProvider(), permanent: true);
 
   Future<void> setvalue() async {
     profileOverviewController.isSelected.value =
@@ -101,16 +103,19 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                               width: 150,
                               content: 'الملف الشخصي',
                               onPressed: () {
-                                Get.to(() => MyProfileScreen(
-                                    user: snapshot.data!.data()!));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => MyProfileScreen(
+                                            user: snapshot.data!.data()!)));
                               },
                             ),
                           ),
                         ],
                       );
                     }),
-                GetBuilder<ProfileOverviewController>(
-                  init: ProfileOverviewController(),
+                GetBuilder<ProfileOverviewProvider>(
+                  init: ProfileOverviewProvider(),
                   builder: (controller) {
                     return ListTile(
                       leading: Icon(
@@ -147,53 +152,53 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                   },
                 ),
                 AppSpaces.verticalSpace20,
-                ContainerLabel(label: 'اختار اللغة'),
-                AppSpaces.verticalSpace10,
-                GetBuilder<LocalizationController>(
-                    builder: (localizationController) {
-                  return Row(children: [
-                    Expanded(
-                        flex: 1,
-                        child: Box(
-                          callback: () {
-                            localizationController.setLanguage(
-                                locale: Locale(
-                              AppConstants.languages[0].languageCode,
-                              AppConstants.languages[0].countryCode,
-                            ));
-                            localizationController.setSelectIndex(index: 0);
-                          },
-                          iconColor: Colors.white,
-                          iconpath: "assets/icon/arabic.png",
-                          label: 'العربية',
-                          value: "3",
-                          badgeColor: "FFDE72",
-                        )),
-                    AppSpaces.horizontalSpace10,
-                    Expanded(
-                        flex: 1,
-                        child: Box(
-                          callback: () {
-                            localizationController.setLanguage(
-                                locale: Locale(
-                              AppConstants.languages[1].languageCode,
-                              AppConstants.languages[1].countryCode,
-                            ));
-                            localizationController.setSelectIndex(index: 1);
-                          },
-                          iconColor: null,
-                          iconpath: "assets/icon/english.png",
-                          label: "English",
-                          value: "3",
-                          badgeColor: "FFDE72",
-                        ))
-                  ]);
-                }),
+                // ContainerLabel(label: 'اختار اللغة'),
+                // AppSpaces.verticalSpace10,
+                // GetBuilder<LocalizationController>(
+                //     builder: (localizationController) {
+                //   return Row(children: [
+                //     Expanded(
+                //         flex: 1,
+                //         child: Box(
+                //           callback: () {
+                //             localizationController.setLanguage(
+                //                 locale: Locale(
+                //               AppConstants.languages[0].languageCode,
+                //               AppConstants.languages[0].countryCode,
+                //             ));
+                //             localizationController.setSelectIndex(index: 0);
+                //           },
+                //           iconColor: Colors.white,
+                //           iconpath: "assets/icon/arabic.png",
+                //           label: 'العربية',
+                //           value: "3",
+                //           badgeColor: "FFDE72",
+                //         )),
+                //     AppSpaces.horizontalSpace10,
+                //     Expanded(
+                //         flex: 1,
+                //         child: Box(
+                //           callback: () {
+                //             localizationController.setLanguage(
+                //                 locale: Locale(
+                //               AppConstants.languages[1].languageCode,
+                //               AppConstants.languages[1].countryCode,
+                //             ));
+                //             localizationController.setSelectIndex(index: 1);
+                //           },
+                //           iconColor: null,
+                //           iconpath: "assets/icon/english.png",
+                //           label: "English",
+                //           value: "3",
+                //           badgeColor: "FFDE72",
+                //         ))
+                //   ]);
+                // }),
                 AppSpaces.verticalSpace20,
                 Visibility(
                     visible: AuthProvider
                         .instance.firebaseAuth.currentUser!.isAnonymous,
-                    child: ContainerLabel(
+                    child: const ContainerLabel(
                       label: 'ترقية الحساب',
                     )),
                 AppSpaces.verticalSpace10,
@@ -211,7 +216,8 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                                   .convertAnonymousToGoogle();
                               Navigator.of(context).pop();
                               //  CustomSnackBar.showSuccess("its going good");
-                              Get.to(() => const TimelineScreen());
+                              Navigator.pushNamed(
+                                  context, Routes.timelineScreen);
                             } on Exception catch (e) {
                               Navigator.of(context).pop();
                               CustomSnackBar.showError(e.toString());
@@ -241,7 +247,10 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                 AppSpaces.verticalSpace20,
                 GestureDetector(
                   onTap: () async {
-                    Get.offAll(() => const OnboardingCarouselScreen());
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      Routes.onboardingCarouselScreen,
+                      (Route<dynamic> route) => false,
+                    );
                     await AuthProvider.instance.logOut();
                   },
                   child: Container(
@@ -272,14 +281,10 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
           child: Transform.scale(
               scale: 1.2,
               child: ProgressCardCloseButton(onPressed: () {
-                Get.back();
+                Navigator.pop(context);
               })))
     ]));
   }
-}
-
-class ProfileOverviewController extends GetxController {
-  var isSelected = true.obs; // Use RxBool to make it observable
 }
 
 void showPasswordAndEmailDialog(BuildContext context) {
@@ -366,10 +371,11 @@ void showPasswordAndEmailDialog(BuildContext context) {
                   await AuthProvider.instance
                       .convertAnonymousToEmailandPassword(
                           email: email, password: password);
-                  Navigator.of(context).pop();
-                  Get.back();
-                  Get.offAll(() => const OnboardingCarouselScreen());
-                  //اخر شي عدلتو وماجربتو
+                  Navigator.pop(context);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      Routes.onboardingCarouselScreen,
+                      (Route<dynamic> route) => false);
                   await AuthProvider.instance.logOut();
                 }
               } on Exception catch (e) {
