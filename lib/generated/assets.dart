@@ -80,33 +80,33 @@ class Assets {
   static const String constantsStyles = 'lib/constants/styles.dart';
   static const String constantsValues = 'lib/constants/values.dart';
   static const String controllersCategoryController =
-      'lib/controllers/categoryController.dart';
+      'lib/controllers/task_category_provider.dart';
   static const String controllersMangerController =
-      'lib/controllers/manger_controller.dart';
+      'lib/controllers/manger_provider.dart';
   static const String controllersProjectController =
-      'lib/controllers/projectController.dart';
+      'lib/controllers/project_provider.dart';
   static const String controllersProjectMainTaskController =
-      'lib/controllers/project_main_task_controller.dart';
+      'lib/controllers/project_main_task_provider.dart';
   static const String controllersProjectSubTaskController =
-      'lib/controllers/project_sub_task_controller.dart';
+      'lib/controllers/project_sub_task_provider.dart';
   static const String controllersStatusController =
-      'lib/controllers/statusController.dart';
+      'lib/controllers/status_provider.dart';
   static const String controllersTaskController =
-      'lib/controllers/taskController.dart';
+      'lib/controllers/task_provider.dart';
   static const String controllersTeamController =
-      'lib/controllers/teamController.dart';
+      'lib/controllers/team_provider.dart';
   static const String controllersTeamMemberController =
-      'lib/controllers/team_member_controller.dart';
+      'lib/controllers/team_member_provider.dart';
   static const String controllersTopController =
-      'lib/controllers/topController.dart';
+      'lib/controllers/top_provider.dart';
   static const String controllersUserController =
-      'lib/controllers/userController.dart';
+      'lib/controllers/user_provider.dart';
   static const String controllersUserTaskController =
-      'lib/controllers/user_task_controller.dart';
+      'lib/controllers/user_task_provider.dart';
   static const String controllersWaitingMamberController =
-      'lib/controllers/waitingMamberController.dart';
+      'lib/controllers/waiting_member_provider.dart';
   static const String controllersWaitingSubTasks =
-      'lib/controllers/waitingSubTasks.dart';
+      'lib/controllers/waiting_sub_tasks_provider.dart';
   static const String darkBackgroundDarkRadialBackgroundWidget =
       'lib/widgets/dark_background/dark_radial_background_widget.dart';
   static const String darkBackgroundDarkSplitBackgroundWidget =
@@ -115,6 +115,8 @@ class Assets {
       'lib/widgets/dashboard/bar_chart_widget.dart';
   static const String dashboardBottomNavigationItemWidget =
       'lib/widgets/dashboard/bottom_navigation_item_widget.dart';
+  static const String dashboardCheckboxProvider =
+      'lib/providers/dashboard/checkbox_provider.dart';
   static const String dashboardCreateCategoryWidget =
       'lib/widgets/dashboard/create_category_widget.dart';
   static const String dashboardCreateMainTaskWidget =
@@ -176,9 +178,9 @@ class Assets {
   static const String dashboardSheetGotoCalendarWidget =
       'lib/widgets/dashboard/sheet_goto_calendar_widget.dart';
   static const String dashboardSubTaskWidget =
-      'lib/widgets/dashboard/subTask_widget.dart';
+      'lib/widgets/dashboard/sub_task_widget.dart';
   static const String dashboardSubTasksWidget =
-      'lib/widgets/dashboard/subTasks_widget.dart';
+      'lib/widgets/dashboard/sub_tasks_widget.dart';
   static const String dashboardTabScreensOverviewScreen =
       'lib/screens/dashboard_screen/dashboard_tab_screens/overview_screen.dart';
   static const String dashboardTabScreensProductivityScreen =
@@ -333,8 +335,8 @@ class Assets {
       'lib/providers/invitations_provider.dart';
   static const String providersProfileOverviewProvider =
       'lib/providers/profile_overview_provider.dart';
-  static const String providersProjectProvider =
-      'lib/providers/project_provider.dart';
+  static const String providersTaskProvider =
+      'lib/providers/task_provider.dart';
   static const String resApp = 'lib/widgets/calender/core/res/app.dart';
   static const String resColor = 'lib/widgets/calender/core/res/color.dart';
   static const String screensLanguageScreen =

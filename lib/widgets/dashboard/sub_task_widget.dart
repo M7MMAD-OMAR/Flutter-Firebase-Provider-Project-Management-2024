@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingSubTasks.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_sub_tasks_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
@@ -31,6 +31,7 @@ import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/create_sub_task_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 
+import '../../providers/auth_provider.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import '../user/focused_menu_item_widget.dart';
 
@@ -135,9 +136,9 @@ class _SubTaskCardState extends State<SubTaskCard> {
 
   ismanagerStream() async {
     ProjectModel? projectModel =
-        await ProjectController().getProjectById(id: widget.task.projectId);
+    await ProjectProvider().getProjectById(id: widget.task.projectId);
     Stream<DocumentSnapshot<ManagerModel>> managerModelStream =
-        ManagerController().getMangerByIdStream(id: projectModel!.managerId);
+    ManagerProvider().getMangerByIdStream(id: projectModel!.managerId);
     Stream<DocumentSnapshot<UserModel>> userModelStream;
 
     StreamSubscription<DocumentSnapshot<ManagerModel>> managerSubscription;
@@ -146,7 +147,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
     managerSubscription = managerModelStream.listen((managerSnapshot) {
       ManagerModel manager = managerSnapshot.data()!;
       userModelStream =
-          UserController().getUserWhereMangerIsStream(mangerId: manager.id);
+          UserProvider().getUserWhereMangerIsStream(mangerId: manager.id);
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
@@ -176,10 +177,10 @@ class _SubTaskCardState extends State<SubTaskCard> {
 
   @override
   Widget build(BuildContext context) {
-    Stream<DocumentSnapshot<UserModel>> steam = UserController()
+    Stream<DocumentSnapshot<UserModel>> steam = UserProvider()
         .getUserWhereMemberIsStream(memberId: widget.task.assignedTo)
         .asBroadcastStream();
-    StatusController statusController = Get.put(StatusController());
+    StatusProvider statusController = Get.put(StatusProvider());
     StatusModel? statusModel;
 
     taskStatus = " ";
@@ -187,8 +188,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
         ? FocusedMenu(
             onClick: () {},
             deleteButton: () async {
-              ProjectSubTaskController userTaskController =
-                  Get.put(ProjectSubTaskController());
+              ProjectSubTaskProvider userTaskController =
+              Get.put(ProjectSubTaskProvider());
               await userTaskController.deleteProjectSubTask(id: widget.task.id);
             },
             editButton: () {
@@ -198,13 +199,13 @@ class _SubTaskCardState extends State<SubTaskCard> {
                   projectId: widget.task.projectId,
                   checkExist: ({required String name}) async {
                     bool s;
-                    s = await TopController().existByTow(
+                    s = await TopProvider().existByTow(
                         reference: projectSubTasksRef,
                         value: widget.task.mainTaskId,
                         field: mainTaskIdK,
                         value2: name,
                         field2: nameK);
-                    s = await TopController().existByTow(
+                    s = await TopProvider().existByTow(
                         reference: watingSubTasksRef,
                         value: widget.task.mainTaskId,
                         field: "subTask.$mainTaskIdK",
@@ -221,7 +222,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                       required String color,
                       required String userIdAssignedTo}) async {
                     ProjectSubTaskModel projectSubTaskModel =
-                        await ProjectSubTaskController()
+                    await ProjectSubTaskProvider()
                             .getProjectSubTaskById(id: widget.task.id);
                     ProjectMainTaskModel mainTask =
                         await ProjectMainTaskController()
@@ -235,18 +236,19 @@ class _SubTaskCardState extends State<SubTaskCard> {
                           "يجب أن تكون تواريخ بداية وانتهاء المهمة الفرعية بين تواريخ بداية وانتهاء المهمة الرئيسية");
                     }
                     TeamMemberModel memberModelold =
-                        await TeamMemberController().getMemberById(
+                    await TeamMemberProvider().getMemberById(
                             memberId: projectSubTaskModel.assignedTo);
-                    ProjectModel? projectModel = await ProjectController()
+                    ProjectModel? projectModel = await ProjectProvider()
                         .getProjectById(id: projectSubTaskModel.projectId);
 
                     String s = projectModel!.teamId!;
                     TeamModel teamModel =
                         await TeamController().getTeamById(id: s);
                     TeamMemberModel newteamMemberModel =
-                        await TeamMemberController().getMemberByTeamIdAndUserId(
-                            teamId: teamModel.id, userId: userIdAssignedTo);
-                    if ((projectSubTaskModel.startDate != startDate ||
+                        await TeamMemberProvider().getMemberByTeamIdAndUserId(
+                            teamId: teamModel.id,
+                            userId: userIdAssigTeamProvider if
+                            ((projectSubTaskModel.startDate != startDate ||
                             projectSubTaskModel.endDate != dueDate ||
                             memberModelold.id != newteamMemberModel.id) &&
                         taskStatus != statusNotStarted) {
@@ -265,7 +267,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                         bool overlapped = false;
                         int over = 0;
                         List<ProjectSubTaskModel> list =
-                            await ProjectSubTaskController().getMemberSubTasks(
+                        await ProjectSubTaskProvider().getMemberSubTasks(
                                 memberId: newteamMemberModel.id);
                         for (ProjectSubTaskModel existingTask in list) {
                           if (projectSubTaskModel.startDate
@@ -284,7 +286,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                             onConfirm: () async {
                               StatusModel statusModel = await statusController
                                   .getStatusByName(status: statusNotStarted);
-                              await ProjectSubTaskController()
+                    await ProjectSubTaskProvider()
                                   .deleteProjectSubTask(
                                       id: projectSubTaskModel.id);
                               ProjectSubTaskModel updatedprojectSubTaskModel =
@@ -314,18 +316,18 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                       updatedAt: DateTime.now(),
                                       id: waitingid,
                                       projectSubTaskModel: projectSubTaskModel);
-                              WatingSubTasksController
+                                      WaitingSubTasksProvider
                                   waitingSubTaskController =
-                                  Get.put(WatingSubTasksController());
+                                  Get.put(WaitingSubTasksProvider());
                               await waitingSubTaskController.addWatingSubTask(
                                   waitingSubTaskModel: waitingSubTaskModel);
                               FcmNotificationsProvider fcmNotifications =
                                   Get.put(FcmNotificationsProvider());
                               UserModel userModelnewAssigned =
-                                  await UserController()
+                    await UserProvider()
                                       .getUserById(id: userIdAssignedTo);
                               UserModel userModelOldAssigned =
-                                  await UserController()
+                    await UserProvider()
                                       .getUserById(id: memberModelold.userId);
                               await fcmNotifications.sendNotificationAsJson(
                                   fcmTokens: userModelnewAssigned.tokenFcm,
@@ -353,7 +355,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                         } else {
                           StatusModel statusModel = await statusController
                               .getStatusByName(status: statusNotStarted);
-                          await ProjectSubTaskController()
+                    await ProjectSubTaskProvider()
                               .deleteProjectSubTask(id: projectSubTaskModel.id);
                           ProjectSubTaskModel updatedprojectSubTaskModel =
                               ProjectSubTaskModel(
@@ -381,17 +383,17 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                   updatedAt: DateTime.now(),
                                   id: waitingid,
                                   projectSubTaskModel: projectSubTaskModel);
-                          WatingSubTasksController waitingSubTaskController =
-                              Get.put(WatingSubTasksController());
+                                  WaitingSubTasksProvider waitingSubTaskController =
+                    Get.put(WaitingSubTasksProvider());
                           await waitingSubTaskController.addWatingSubTask(
                               waitingSubTaskModel: waitingSubTaskModel);
                           FcmNotificationsProvider fcmNotifications =
                               Get.put(FcmNotificationsProvider());
                           UserModel userModelnewAssigned =
-                              await UserController()
+                    await UserProvider()
                                   .getUserById(id: userIdAssignedTo);
                           UserModel userModelOldAssigned =
-                              await UserController()
+                    await UserProvider()
                                   .getUserById(id: memberModelold.userId);
                           await fcmNotifications.sendNotificationAsJson(
                               fcmTokens: userModelnewAssigned.tokenFcm,
@@ -421,7 +423,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                       bool overlapped = false;
                       int over = 0;
                       List<ProjectSubTaskModel> list =
-                          await ProjectSubTaskController()
+                      await ProjectSubTaskProvider()
                               .getMemberSubTasks(memberId: memberModelold.id);
                       for (ProjectSubTaskModel existingTask in list) {
                         if (projectSubTaskModel.startDate
@@ -438,7 +440,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                           middleText:
                               "There is ${over} task That start in this time \n for the new assigned user \n Would you Like To assign the Task Any Way?",
                           onConfirm: () async {
-                            await ProjectSubTaskController().updateSubTask(
+                    await ProjectSubTaskProvider().updateSubTask(
                                 isfromback: false,
                                 data: {
                                   nameK: taskName,
@@ -453,7 +455,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                                 Get.put(FcmNotificationsProvider());
 
                             UserModel userModelOldAssigned =
-                                await UserController()
+                    await UserProvider()
                                     .getUserById(id: memberModelold.userId);
 
                             await fcmNotifications.sendNotificationAsJson(
@@ -471,7 +473,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                           },
                         );
                       } else {
-                        await ProjectSubTaskController().updateSubTask(
+                    await ProjectSubTaskProvider().updateSubTask(
                             isfromback: false,
                             data: {
                               nameK: taskName,
@@ -485,7 +487,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                         FcmNotificationsProvider fcmNotifications =
                             Get.put(FcmNotificationsProvider());
 
-                        UserModel userModelOldAssigned = await UserController()
+                    UserModel userModelOldAssigned = await UserProvider()
                             .getUserById(id: memberModelold.userId);
 
                         await fcmNotifications.sendNotificationAsJson(
@@ -502,7 +504,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                       }
                     }
                     try {
-                      await ProjectSubTaskController().updateSubTask(
+                    await ProjectSubTaskProvider().updateSubTask(
                           isfromback: false,
                           data: {
                             nameK: taskName,
@@ -679,7 +681,7 @@ class _SubTaskCardState extends State<SubTaskCard> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             StreamBuilder<DocumentSnapshot<UserModel>>(
-                              stream: UserController()
+                              stream: UserProvider()
                                   .getUserWhereMemberIsStream(
                                       memberId: widget.task.assignedTo)
                                   .asBroadcastStream(),

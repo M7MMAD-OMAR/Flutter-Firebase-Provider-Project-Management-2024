@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';
 
-class StatusController extends TopController {
+class StatusProvider extends TopProvider {
   Future<List<StatusModel>> getAllStatuses() async {
     List<Object?>? list = await getAllListDataForRef(refrence: statusesRef);
     return list!.cast<StatusModel>();

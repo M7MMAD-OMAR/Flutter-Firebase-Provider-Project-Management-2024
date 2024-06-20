@@ -3,32 +3,26 @@ import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../controllers/categoryController.dart';
-import '../../controllers/user_task_controller.dart';
+import '../../controllers/task_category_provider.dart';
+import '../../controllers/user_task_provider.dart';
 import '../../models/team/task_model.dart';
+import '../../providers/dashboard/checkbox_provider.dart';
 import '../add_sub_icon_widget.dart';
 import '../forms/form_input_with_label_widget.dart';
 import '../user/new_sheet_goto_calender_widget.dart';
 
-class CheckboxController extends GetxController {
-  RxBool isChecked = false.obs;
-
-  void toggleCheckbox() {
-    isChecked.toggle();
-  }
-}
-
 class CreateUserTask extends StatefulWidget {
   CreateUserTask(
       {required this.addTask,
-      Key? key,
+      super.key,
       this.userTaskModel,
       required this.addLateTask,
       required this.isEditMode,
       required this.checkExist,
-      required this.isUserTask})
-      : super(key: key);
+      required this.isUserTask});
+
   final bool isEditMode;
   TaskClass? userTaskModel;
   final bool isUserTask;
@@ -53,7 +47,8 @@ class CreateUserTask extends StatefulWidget {
 }
 
 class _CreateUserTaskState extends State<CreateUserTask> {
-  final CheckboxController checkboxController = Get.put(CheckboxController());
+  late CheckboxProvider checkboxController =
+      Provider.of<CheckboxProvider>(context);
 
   final TextEditingController _taskNameController = TextEditingController();
   final TextEditingController _taskDescController = TextEditingController();
@@ -66,11 +61,27 @@ class _CreateUserTaskState extends State<CreateUserTask> {
     4,
     5,
   ];
+  DateTime startDate = DateTime.now();
+  String color = "#FDA7FF";
+  DateTime dueDate = DateTime.now();
+  late UserTaskProvider userTaskController =
+      Provider.of<UserTaskProvider>(context);
+  late TaskCategoryProvider taskCategoryController =
+      Provider.of<TaskCategoryProvider>(context);
+
+  bool isTaked = false;
+  String name = "";
+  String desc = "";
+
   int? selectedDashboardOption;
+
   @override
   void initState() {
     super.initState();
+    checkboxController = Provider.of<CheckboxProvider>(context);
 
+    userTaskController = Provider.of<UserTaskProvider>(context);
+    taskCategoryController = Provider.of<TaskCategoryProvider>(context);
     if (widget.isEditMode && widget.userTaskModel != null) {
       _taskNameController.text = widget.userTaskModel!.name!;
       _taskDescController.text = widget.userTaskModel!.description!;
@@ -93,6 +104,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
 
   String formattedStartDate = "";
   String formattedDueDate = "";
+
   Future onChanged(String value) async {
     name = value;
 
@@ -105,16 +117,6 @@ class _CreateUserTaskState extends State<CreateUserTask> {
     }
   }
 
-  DateTime startDate = DateTime.now();
-  String color = "#FDA7FF";
-  DateTime dueDate = DateTime.now();
-  UserTaskController userTaskController = Get.put(UserTaskController());
-  TaskCategoryController taskCategoryController =
-      Get.put(TaskCategoryController());
-
-  bool isTaked = false;
-  String name = "";
-  String desc = "";
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -359,6 +361,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
 
 class BottomSheetIcon extends StatelessWidget {
   final IconData icon;
+
   const BottomSheetIcon({
     required this.icon,
     Key? key,

@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
@@ -34,16 +34,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
   int crossAxisCount = 2;
 
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
-  late TaskCategoryController taskCategoryController;
-  late UserTaskController taskController;
+  late TaskCategoryProvider taskCategoryController;
+  late UserTaskProvider taskController;
 
   @override
   void initState() {
     super.initState();
 
     taskCategoryController =
-        Provider.of<TaskCategoryController>(context, listen: false);
-    taskController = Provider.of<UserTaskController>(context, listen: false);
+        Provider.of<TaskCategoryProvider>(context, listen: false);
+    taskController = Provider.of<UserTaskProvider>(context, listen: false);
   }
 
   String _getSortOptionText(CategorySortOption option) {

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
@@ -17,11 +17,11 @@ import '../models/user/user_model.dart';
 import '../providers/auth_provider.dart';
 import '../services/notifications/notification_service.dart';
 
-class WaitingMamberController extends TopController {
+class WaitingMemberProvider extends TopProvider {
   Future<WaitingMemberModel> getWaitingMemberById(
-      {required String watingmemberId}) async {
+      {required String watingMemberId}) async {
     DocumentSnapshot doc =
-        await getDocById(reference: watingMamberRef, id: watingmemberId);
+        await getDocById(reference: watingMamberRef, id: watingMemberId);
     return doc.data() as WaitingMemberModel;
   }
 
@@ -128,18 +128,18 @@ class WaitingMamberController extends TopController {
     String status = isAccepted ? 'قبولها' : 'رفضها';
     BuildContext context = navigatorKey.currentContext!;
 
-    UserController userController = Provider.of<UserController>(context);
+    UserProvider userController = Provider.of<UserProvider>(context);
 
-    TeamController teamController = Provider.of<TeamController>(context);
+    TeamProvider teamController = Provider.of<TeamProvider>(context);
 
     WaitingMemberModel waitingMember =
-        await getWaitingMemberById(watingmemberId: waitingMemberId);
+        await getWaitingMemberById(watingMemberId: waitingMemberId);
 
     deleteWaitingMamberDoc(waitingMemberId: waitingMemberId);
 
     if (isAccepted) {
-      final TeamMemberController teamMemberController =
-          Provider.of<TeamMemberController>(context);
+      final TeamMemberProvider teamMemberController =
+          Provider.of<TeamMemberProvider>(context);
 
       TeamMemberModel teamMemberModel = TeamMemberModel(
         idParameter: teamMembersRef.doc().id,

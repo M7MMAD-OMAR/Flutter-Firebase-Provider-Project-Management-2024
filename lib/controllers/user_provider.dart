@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/back_constants.dart';
@@ -13,10 +13,12 @@ import '../models/user/user_model.dart';
 import '../models/user/user_task_Model.dart';
 import '../services/collections_refrences.dart';
 import '../utils/back_utils.dart';
-import 'categoryController.dart';
-import 'manger_controller.dart';
+import 'task_category_provider.dart';
+import 'manger_provider.dart';
 
-class UserController extends TopController {
+class UserProvider extends TopProvider {
+  static late List<UserModel> users;
+
   Future<UserModel> getUserById({required String id}) async {
     DocumentSnapshot doc = await getDocById(reference: usersRef, id: id);
     return doc.data() as UserModel;
@@ -25,8 +27,8 @@ class UserController extends TopController {
   Future<List<UserModel>> getAllUsers() async {
     List<Object?>? list = await getAllListDataForRef(refrence: usersRef);
     List<UserModel> users = list!.cast<UserModel>();
-
-    return list.cast<UserModel>();
+    UserProvider.users = users;
+    return users;
   }
 
   Stream<QuerySnapshot<UserModel>> getAllUsersStream() {
@@ -38,7 +40,7 @@ class UserController extends TopController {
   Future<UserModel> getUserOfTask({required String userTaskId}) async {
     DocumentSnapshot userTaskDoc = await usersTasksRef.doc(userTaskId).get();
     UserTaskModel userTaskModel = userTaskDoc.data() as UserTaskModel;
-    //القسم الفوقاني بهل الميثود بيستبدل بجلب الميثود عن طريق الايدي بس ليصير موجود كونترولر التاسك يوزر جاهز
+
     DocumentSnapshot userDoc =
         await getDocById(reference: usersRef, id: userTaskModel.userId);
     return userDoc.data() as UserModel;
@@ -48,7 +50,7 @@ class UserController extends TopController {
       {required String userTaskId}) async* {
     DocumentSnapshot userTaskDoc = await usersTasksRef.doc(userTaskId).get();
     UserTaskModel userTaskModel = userTaskDoc.data() as UserTaskModel;
-    //القسم الفوقاني بهل الميثود بيستبدل بجلب الميثود عن طريق الايدي بس ليصير موجود كونترولر التاسك يوزر جاهز
+
     Stream<DocumentSnapshot> stream =
         getDocByIdStream(reference: usersRef, id: userTaskModel.userId);
     yield* stream.cast<DocumentSnapshot<UserModel>>();
@@ -71,8 +73,8 @@ class UserController extends TopController {
   Future<UserModel> getUserOfCategory({required String categoryId}) async {
     BuildContext context = navigatorKey.currentContext!;
 
-    TaskCategoryController taskCategoryController =
-        Provider.of<TaskCategoryController>(context);
+    TaskCategoryProvider taskCategoryController =
+        Provider.of<TaskCategoryProvider>(context);
     UserTaskCategoryModel userTaskCategoryModel =
         await taskCategoryController.getCategoryById(id: categoryId);
     UserModel userModel = await getUserById(id: userTaskCategoryModel.userId);
@@ -82,8 +84,8 @@ class UserController extends TopController {
   getUserOfcategoryStream({required String categoryId}) async* {
     BuildContext context = navigatorKey.currentContext!;
 
-    TaskCategoryController taskCategoryController =
-        Provider.of<TaskCategoryController>(context);
+    TaskCategoryProvider taskCategoryController =
+        Provider.of<TaskCategoryProvider>(context);
     UserTaskCategoryModel userTaskCategoryModel =
         await taskCategoryController.getCategoryById(id: categoryId);
     Stream<DocumentSnapshot> stream =
@@ -100,8 +102,7 @@ class UserController extends TopController {
   Future<UserModel> getUserWhereMangerIs({required String mangerId}) async {
     BuildContext context = navigatorKey.currentContext!;
 
-    ManagerController mangerController =
-        Provider.of<ManagerController>(context);
+    ManagerProvider mangerController = Provider.of<ManagerProvider>(context);
     ManagerModel managerModel =
         await mangerController.getMangerById(id: mangerId);
     DocumentSnapshot userDoc =
@@ -113,8 +114,7 @@ class UserController extends TopController {
       {required String mangerId}) async* {
     BuildContext context = navigatorKey.currentContext!;
 
-    ManagerController mangerController =
-        Provider.of<ManagerController>(context);
+    ManagerProvider mangerController = Provider.of<ManagerProvider>(context);
     ManagerModel managerModel =
         await mangerController.getMangerById(id: mangerId);
     Stream<DocumentSnapshot> stream =
@@ -125,8 +125,8 @@ class UserController extends TopController {
   Future<UserModel> getUserWhereMemberIs({required String memberId}) async {
     BuildContext context = navigatorKey.currentContext!;
 
-    TeamMemberController memberController =
-        Provider.of<TeamMemberController>(context);
+    TeamMemberProvider memberController =
+        Provider.of<TeamMemberProvider>(context);
     TeamMemberModel member =
         await memberController.getMemberById(memberId: memberId);
     DocumentSnapshot userDoc =
@@ -156,8 +156,8 @@ class UserController extends TopController {
       {required String memberId}) async* {
     BuildContext context = navigatorKey.currentContext!;
 
-    TeamMemberController memberController =
-        Provider.of<TeamMemberController>(context);
+    TeamMemberProvider memberController =
+        Provider.of<TeamMemberProvider>(context);
     TeamMemberModel member =
         await memberController.getMemberById(memberId: memberId);
     Stream<DocumentSnapshot> stream =
@@ -172,12 +172,6 @@ class UserController extends TopController {
 
   Future<void> updateUser(
       {required Map<String, dynamic> data, required String id}) async {
-    // await updateNonRelationalFields(
-    //     reference: usersRef,
-    //     data: data,
-    //     id: id,
-    //     nameException: Exception("user name already been taken"));
-    // // await updateFields(reference: usersRef, data: data, id: id);
     if (data.containsKey(idK)) {
       throw Exception('خطأ في تحديث معرف المستخدم');
     }
@@ -188,8 +182,7 @@ class UserController extends TopController {
   Future<void> deleteUser({required String id}) async {
     BuildContext context = navigatorKey.currentContext!;
 
-    ManagerController mangerController =
-        Provider.of<ManagerController>(context);
+    ManagerProvider mangerController = Provider.of<ManagerProvider>(context);
     WriteBatch batch = fireStore.batch();
     List<DocumentSnapshot> membrs = await getDocsSnapShotWhere(
         collectionReference: teamMembersRef, field: userIdK, value: id);
@@ -203,8 +196,7 @@ class UserController extends TopController {
       listAllSubTasks.addAll(listOfSubTasks);
     }
     deleteDocsUsingBatch(list: listAllSubTasks, refBatch: batch);
-    //  UserModel userModel = await getUserById(id: id);
-    // firebaseStorage.refFromURL(userModel.imageUrl).delete();
+
     ManagerModel? managerModel =
         await mangerController.getMangerWhereUserIs(userId: id);
     deleteDocUsingBatch(

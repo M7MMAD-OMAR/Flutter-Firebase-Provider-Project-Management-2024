@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 
 import '../constants/back_constants.dart';
 import '../models/team/team_members_model.dart';
 import '../services/collections_refrences.dart';
 
-class TeamMemberController extends TopController {
+class TeamMemberProvider extends TopProvider {
   Future<List<TeamMemberModel>> getMemberWhereUserIs(
       {required String userId}) async {
     List<Object?>? list = await getListDataWhere(

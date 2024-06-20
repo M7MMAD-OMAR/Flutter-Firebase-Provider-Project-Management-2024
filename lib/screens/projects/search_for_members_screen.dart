@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
@@ -87,7 +87,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                     )));
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
-                          stream: UserController().getUserByIdStream(
+                          stream: UserProvider().getUserByIdStream(
                               id: AuthProvider.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -143,7 +143,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                     child:
                                         StreamBuilder<QuerySnapshot<UserModel>>(
                                       stream:
-                                          UserController().getAllUsersStream(),
+                                          UserProvider().getAllUsersStream(),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasError) {
                                           return Center(
@@ -276,7 +276,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                                               updatedAtParameter:
                                                                   DateTime
                                                                       .now());
-                                                      await WaitingMamberController()
+                                                      await WaitingMemberProvider()
                                                           .addWaitingMamber(
                                                               waitingMemberModel:
                                                                   waitingMemberModel);

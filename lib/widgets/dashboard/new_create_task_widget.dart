@@ -4,13 +4,13 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 
-import '../../controllers/categoryController.dart';
-import '../../controllers/projectController.dart';
-import '../../controllers/project_main_task_controller.dart';
-import '../../controllers/project_sub_task_controller.dart';
-import '../../controllers/team_member_controller.dart';
-import '../../controllers/userController.dart';
-import '../../controllers/user_task_controller.dart';
+import '../../controllers/task_category_provider.dart';
+import '../../controllers/project_provider.dart';
+import '../../controllers/project_main_task_provider.dart';
+import '../../controllers/project_sub_task_provider.dart';
+import '../../controllers/team_member_provider.dart';
+import '../../controllers/user_provider.dart';
+import '../../controllers/user_task_provider.dart';
 import '../../models/team/team_members_model.dart';
 import '../add_sub_icon_widget.dart';
 import '../forms/form_input_with_label_widget.dart';
@@ -50,16 +50,15 @@ class _NewCreateTaskBottomSheetState extends State<NewCreateTaskBottomSheet> {
   DateTime startDate = DateTime.now();
   String color = "#FDA7FF";
   DateTime dueDate = DateTime.now();
-  UserController userController = Get.put(UserController());
-  UserTaskController userTaskController = Get.put(UserTaskController());
+  UserProvider userController = Get.put(UserProvider());
+  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
   ProjectMainTaskController projectMainTaskController =
       Get.put(ProjectMainTaskController());
-  TaskCategoryController taskCategoryController =
-      Get.put(TaskCategoryController());
-  ProjectSubTaskController projectSubTaskController =
-      Get.put(ProjectSubTaskController());
-  ProjectController projectController = Get.put(ProjectController());
-  TeamMemberController teamMemberController = Get.put(TeamMemberController());
+  TaskCategoryProvider taskCategoryController = Get.put(TaskCategoryProvider());
+  ProjectSubTaskProvider projectSubTaskController =
+      Get.put(ProjectSubTaskProvider());
+  ProjectProvider projectController = Get.put(ProjectProvider());
+  TeamMemberProvider teamMemberController = Get.put(TeamMemberProvider());
   bool isTaked = false;
   String name = "";
   String desc = "";

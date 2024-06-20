@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
@@ -99,7 +99,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                 removeTop: true,
                                 child: StreamBuilder<
                                     QuerySnapshot<TeamMemberModel>>(
-                                  stream: TeamMemberController()
+                                  stream: TeamMemberProvider()
                                       .getMembersInTeamIdStream(
                                     teamId: widget.teamModel!.id,
                                   ),
@@ -149,8 +149,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                           QuerySnapshot<UserModel>>(
                                         stream: UserController()
                                             .getUsersWhereInIdsStream(
-                                          usersId: listIds,
-                                        ),
+                                          usersId: listIds, UserProvider),
                                         builder: (context, snapshotUsers) {
                                           if (snapshotUsers.hasData) {
                                             int taskCount =
@@ -343,7 +342,7 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                   ),
                   PrimaryProgressButton(
                     width: Utils.screenWidth * 0.25,
-                    height: Utils.screenHeight2 * 0.07,
+                    height: Utils.screenHeight * 0.07,
                     label: 'تم',
                     callback: () {
                       if (selectedUserNotifier.value != null) {

@@ -5,16 +5,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
+import 'package:project_management_muhmad_omar/screens/projects/edit_project_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/main_tasks_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Projects/project_card_horizontal_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Projects/project_card_vertical_widget.dart';
@@ -22,6 +23,7 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_tab_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/user/focused_menu_item_widget.dart';
 
@@ -81,7 +83,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
   }
 
   getUserAsManamger() async {
-    userAsManager = await ManagerController().getMangerWhereUserIs(
+    userAsManager = await ManagerProvider().getMangerWhereUserIs(
         userId: AuthProvider.firebaseAuth.currentUser!.uid);
   }
 
@@ -89,10 +91,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
   Widget build(BuildContext context) {
     ValueNotifier<int> settingsButtonTrigger = ValueNotifier(0);
     final switchGridLayout = ValueNotifier(false);
-    return GetBuilder<ProjectScreenController>(
-      init: ProjectScreenController(),
-      builder: (controller) {
-        settingsButtonTrigger.value = controller.selectedTab.value;
+    return Consumer<ProjectProvider>(
+      builder: (context, controller, child) {
+        settingsButtonTrigger.value = controller.selectedTab;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -162,7 +163,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                 setState(() {
                                   selectedSortOption = newValue!;
                                   settingsButtonTrigger.value =
-                                      controller.selectedTab.value;
+                                      controller.selectedTab;
                                 });
                               },
                               items: ProjectSortOption.values
@@ -186,9 +187,9 @@ class _ProjectScreenState extends State<ProjectScreen> {
                           ),
                           PrimaryTabButton(
                             callback: () {
-                              controller.selectTab(0);
+                              controller.updateSelectedTab(0);
                               settingsButtonTrigger.value =
-                                  controller.selectedTab.value;
+                                  controller.selectedTab;
                             },
                             buttonText: "الكل",
                             itemIndex: 0,
@@ -202,8 +203,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                     child: CircularProgressIndicator()),
                               );
                               ManagerModel? managerModel =
-                                  await ManagerController()
-                                      .getMangerWhereUserIs(
+                                  await ManagerProvider().getMangerWhereUserIs(
                                           userId: AuthProvider
                                               .firebaseAuth.currentUser!.uid);
 
@@ -217,7 +217,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                           )));
 
                               settingsButtonTrigger.value =
-                                  controller.selectedTab.value;
+                                  controller.selectedTab;
                             },
                             buttonText: 'بواسطة الفريق',
                             itemIndex: 1,
@@ -225,7 +225,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                           ),
                           PrimaryTabButton(
                             callback: () async {
-                              controller.selectTab(2);
+                              controller.updateSelectedTab(2);
                             },
                             buttonText: "مدير المشروع",
                             itemIndex: 2,
@@ -380,7 +380,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                             itemBuilder: (_, index) {
                               final teamId = list[index]!.teamId!;
                               return StreamBuilder<DocumentSnapshot<TeamModel>>(
-                                stream: TeamController()
+                                stream: TeamProvider()
                                     .getTeamByIdStream(id: teamId),
                                 builder: (context, snapshotTeam) {
                                   if (snapshotTeam.hasError) {
@@ -407,7 +407,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                   return StreamBuilder<
                                       DocumentSnapshot<StatusModel>>(
                                     stream:
-                                        StatusController().getStatusByIdStream(
+                                        StatusProvider().getStatusByIdStream(
                                       idk: list[index]!.statusId,
                                     ),
                                     builder: (context, snapshotStatus) {
@@ -467,7 +467,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                 deleteButton: () async {
                                                   try {
                                                     showDialogMethod(context);
-                                                    await ProjectController()
+                                                    await ProjectProvider()
                                                         .deleteProject(
                                                             projects[index].id);
                                                     Navigator.of(context).pop();
@@ -481,7 +481,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                 },
                                                 editButton: () {
                                                   showAppBottomSheet(
-                                                    EditProject(
+                                                    EditProjectScreen(
                                                         userAsManager:
                                                             userAsManager!,
                                                         teamModel: snapshotTeam
@@ -556,7 +556,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                 deleteButton: () async {
                                                   try {
                                                     showDialogMethod(context);
-                                                    await ProjectController()
+                                                    await ProjectProvider()
                                                         .deleteProject(
                                                             projects[index].id);
                                                     Navigator.of(context).pop();
@@ -571,7 +571,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                 },
                                                 editButton: () {
                                                   showAppBottomSheet(
-                                                    EditProject(
+                                                    EditProjectScreen(
                                                         userAsManager:
                                                             userAsManager!,
                                                         teamModel: snapshotTeam

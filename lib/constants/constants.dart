@@ -9,8 +9,8 @@ String tabSpace = "\t\t\t";
 
 final List<Widget> dashBoardScreens = [
   DashboardScreen(),
-  ProjectScreen(),
-  CategoryScreen(),
+  const ProjectScreen(),
+  const CategoryScreen(),
   InvitationScreen()
 ];
 

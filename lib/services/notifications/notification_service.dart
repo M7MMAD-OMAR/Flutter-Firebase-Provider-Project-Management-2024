@@ -4,11 +4,11 @@ import 'dart:math';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingSubTasks.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_sub_tasks_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -293,8 +293,8 @@ class FcmNotificationsProvider {
   static Future<void> onActionReceivedMethod(
     ReceivedAction receivedAction,
   ) async {
-    UserTaskController userTaskController = Get.put(UserTaskController());
-    StatusController statusController = Get.put(StatusController());
+    UserTaskProvider userTaskController = Get.put(UserTaskProvider());
+    StatusProvider statusController = Get.put(StatusProvider());
     NotificationButtonskeys type =
         NotificationButtonskeys.values.byName(receivedAction.buttonKeyPressed);
     switch (type) {
@@ -317,16 +317,16 @@ class FcmNotificationsProvider {
 
       case NotificationButtonskeys.acceptTeamInvite:
         String waitingMemberId = receivedAction.payload!["id"]!;
-        WaitingMamberController waitingMamberController =
-            Get.put(WaitingMamberController());
+        WaitingMemberProvider waitingMamberController =
+            Get.put(WaitingMemberProvider());
         await waitingMamberController.acceptTeamInvite(
             waitingMemberId: waitingMemberId);
         break;
 
       case NotificationButtonskeys.declineTeamInvite:
         String waitingMemberId = receivedAction.payload!["id"]!;
-        WaitingMamberController waitingMamberController =
-            Get.put(WaitingMamberController());
+        WaitingMemberProvider waitingMamberController =
+            Get.put(WaitingMemberProvider());
         String rejectingMessage = receivedAction.buttonKeyInput;
 
         await waitingMamberController.declineTeamInvite(
@@ -336,8 +336,8 @@ class FcmNotificationsProvider {
         break;
       case NotificationButtonskeys.acceptTask:
         String waitingSubTaskId = receivedAction.payload!["id"]!;
-        WatingSubTasksController watingSubTasksController =
-            Get.put(WatingSubTasksController());
+        WaitingSubTasksProvider watingSubTasksController =
+            Get.put(WaitingSubTasksProvider());
         await watingSubTasksController.accpetSubTask(
           waitingSubTaskId: waitingSubTaskId,
         );
@@ -345,8 +345,8 @@ class FcmNotificationsProvider {
 
       case NotificationButtonskeys.declineTask:
         String waitingSubTaskId = receivedAction.payload!["id"]!;
-        WatingSubTasksController watingSubTasksController =
-            Get.put(WatingSubTasksController());
+        WaitingSubTasksProvider watingSubTasksController =
+            Get.put(WaitingSubTasksProvider());
         String rejectingMessage = receivedAction.buttonKeyInput;
         await watingSubTasksController.rejectSubTask(
             waitingSubTaskId: waitingSubTaskId,
@@ -356,16 +356,16 @@ class FcmNotificationsProvider {
       case NotificationButtonskeys.markSubTaskDone:
         String subtaskId = receivedAction.payload!["id"]!;
 
-        ProjectSubTaskController projectSubTaskController =
-            Get.put(ProjectSubTaskController());
+        ProjectSubTaskProvider projectSubTaskController =
+            Get.put(ProjectSubTaskProvider());
         projectSubTaskController.markSubTaskeAndSendNotification(
             subtaskId, statusDone);
         break;
       case NotificationButtonskeys.markSubTaskNotDone:
         String subtaskId = receivedAction.payload!["id"]!;
 
-        ProjectSubTaskController projectSubTaskController =
-            Get.put(ProjectSubTaskController());
+        ProjectSubTaskProvider projectSubTaskController =
+            Get.put(ProjectSubTaskProvider());
         projectSubTaskController.markSubTaskeAndSendNotification(
             subtaskId, statusNotDone);
         break;

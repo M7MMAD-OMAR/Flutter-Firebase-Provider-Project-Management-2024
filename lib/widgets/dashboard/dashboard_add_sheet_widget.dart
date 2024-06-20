@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/Projects/create_project_screen.dart';
@@ -75,8 +75,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
 
   Future<void> _createProject() async {
     try {
-      ManagerModel? managerModel = await ManagerController()
-          .getMangerWhereUserIs(
+      ManagerModel? managerModel = await ManagerProvider().getMangerWhereUserIs(
               userId: AuthProvider.firebaseAuth.currentUser!.uid);
       if (managerModel == null) {}
       showAppBottomSheet(

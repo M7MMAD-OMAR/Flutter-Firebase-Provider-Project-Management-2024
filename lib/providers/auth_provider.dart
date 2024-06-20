@@ -12,7 +12,7 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 
 import '../constants/back_constants.dart';
 import '../constants/values.dart';
-import '../controllers/topController.dart';
+import '../controllers/top_provider.dart';
 import '../models/user/user_model.dart';
 import '../services/collections_refrences.dart';
 
@@ -149,7 +149,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> noUserMakeOne({required UserCredential userCredential}) async {
     dev.log("check not here");
-    TopController topController = TopController();
+    TopProvider topController = TopProvider();
     if (userCredential.user!.isAnonymous) {
       UserModel userModel = UserModel(
           nameParameter: "Anynonmous",

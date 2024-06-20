@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 
 class DailyGoalCard extends StatefulWidget {
@@ -22,7 +22,7 @@ class DailyGoalCard extends StatefulWidget {
 class _DailyGoalCardState extends State<DailyGoalCard> {
   @override
   Widget build(BuildContext context) {
-    UserTaskController userTaskController = Get.put(UserTaskController());
+    UserTaskProvider userTaskController = Get.put(UserTaskProvider());
     DateTime nowDate = DateTime.now();
     int first = 0;
     int second = 0;
@@ -39,7 +39,8 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(13.0),
-      height: Utils.screenHeight2 * 0.2, // Adjust percentage as needed,
+      height: Utils.screenHeight * 0.2,
+      // Adjust percentage as needed,
       decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
           color: AppColors.primaryBackgroundColor),

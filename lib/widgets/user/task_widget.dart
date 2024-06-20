@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/tasks_tasks_widget.dart';
 
 import '../../constants/back_constants.dart';
-import '../../controllers/topController.dart';
+import '../../controllers/top_provider.dart';
 import '../../models/task/user_task_category_model.dart';
 import '../../models/user/user_task_Model.dart';
 import '../../services/collections_refrences.dart';
@@ -101,14 +101,14 @@ class _CardTaskState extends State<CardTask> {
   }
 
   getCat() async {
-    userTaskCategoryModel = await TaskCategoryController()
+    userTaskCategoryModel = await TaskCategoryProvider()
         .getCategoryById(id: widget.userTaskCategoryId);
   }
 
   UserTaskCategoryModel? userTaskCategoryModel;
   @override
   Widget build(BuildContext context) {
-    StatusController statusController = Get.put(StatusController());
+    StatusProvider statusController = Get.put(StatusProvider());
     StatusModel? statusModel;
 
     taskStatus = " ";
@@ -135,7 +135,7 @@ class _CardTaskState extends State<CardTask> {
         //
       },
       deleteButton: () async {
-        UserTaskController userTaskController = Get.put(UserTaskController());
+        UserTaskProvider userTaskController = Get.put(UserTaskProvider());
         await userTaskController.deleteUserTask(id: widget.task.id);
       },
       editButton: () {
@@ -151,14 +151,14 @@ class _CardTaskState extends State<CardTask> {
             isUserTask: true,
             checkExist: ({required String name}) async {
               if (widget.userFatherId != null) {
-                return TopController().existByTow(
+                return TopProvider().existByTow(
                     reference: usersTasksRef,
                     value: name,
                     field: nameK,
                     value2: widget.userFatherId,
                     field2: taskFatherIdK);
               } else {
-                return TopController().existByTow(
+                return TopProvider().existByTow(
                     reference: usersTasksRef,
                     value: name,
                     field: nameK,
@@ -173,8 +173,8 @@ class _CardTaskState extends State<CardTask> {
                 required DateTime dueDate,
                 required String? desc,
                 required String color}) async {
-              UserTaskModel userTaskModel = await UserTaskController()
-                  .getUserTaskById(id: widget.task.id);
+              UserTaskModel userTaskModel =
+                  await UserTaskProvider().getUserTaskById(id: widget.task.id);
               if ((userTaskModel.startDate != startDate ||
                       userTaskModel.endDate != dueDate) &&
                   taskStatus != statusNotStarted) {
@@ -190,7 +190,7 @@ class _CardTaskState extends State<CardTask> {
               }
 
               try {
-                await UserTaskController().updateUserTask(
+                await UserTaskProvider().updateUserTask(
                     isfromback: false,
                     data: {
                       nameK: taskName,

@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/taskController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:provider/provider.dart';
@@ -16,9 +16,37 @@ import '../models/team/project_model.dart';
 import '../providers/auth_provider.dart';
 import '../services/collections_refrences.dart';
 import '../utils/back_utils.dart';
-import 'manger_controller.dart';
+import 'manger_provider.dart';
 
-class ProjectController extends ProjectAndTaskController {
+class ProjectProvider extends TaskProvider {
+  int _selectedTab = 0;
+
+  int get selectedTab => _selectedTab;
+
+  Stream<QuerySnapshot<ProjectModel?>> getProjectsStream() {
+    final userId = AuthProvider.firebaseAuth.currentUser!.uid;
+    if (_selectedTab == 0) {
+      return ProjectProvider()
+          .getProjectsOfMemberWhereUserIsStream(userId: userId);
+    } else if (_selectedTab == 1) {
+      return ProjectProvider()
+          .getProjectsOfMemberWhereUserIsStream(userId: userId);
+    }
+
+    return ProjectProvider().getProjectsOfUserStream(userId: userId);
+    // Return an empty stream or another default stream if needed
+  }
+
+  void selectTab(int tab) {
+    _selectedTab = tab;
+    notifyListeners();
+  }
+
+  void updateSelectedTab(int newValue) {
+    _selectedTab = newValue;
+    notifyListeners();
+  }
+
   Future<List<ProjectModel>> getAllManagersProjects() async {
     List<Object?>? list = await getAllListDataForRef(refrence: projectsRef);
 
@@ -50,8 +78,8 @@ class ProjectController extends ProjectAndTaskController {
       throw Exception('عذرًا، لا يمكن تحديث معرّف الفريق');
     }
     BuildContext context = navigatorKey.currentContext!;
-    final ManagerController managerController =
-        Provider.of<ManagerController>(context, listen: false);
+    final ManagerProvider managerController =
+        Provider.of<ManagerProvider>(context, listen: false);
     ManagerModel? managerModel =
         await managerController.getMangerOfProject(projectId: id);
     await updateRelationalFields(
@@ -103,7 +131,7 @@ class ProjectController extends ProjectAndTaskController {
             field2: managerIdK,
             value2: projectModel.managerId)) {
           StatusModel statusModel =
-              await StatusController().getStatusByName(status: statusDone);
+              await StatusProvider().getStatusByName(status: statusDone);
 
           QuerySnapshot anotherProjects = await projectsRef
               .where(teamIdK, isEqualTo: projectModel.teamId)
@@ -132,7 +160,7 @@ class ProjectController extends ProjectAndTaskController {
 
   Future<ProjectModel?> getProjectOfTeam({required String teamId}) async {
     StatusModel statusModel =
-        await StatusController().getStatusByName(status: statusNotDone);
+        await StatusProvider().getStatusByName(status: statusNotDone);
     DocumentSnapshot? porjectDoc = await getDocSnapShotWhereAndWhere(
         secondField: statusIdK,
         secondValue: statusModel.id,
@@ -203,8 +231,7 @@ class ProjectController extends ProjectAndTaskController {
       {required String userId}) async {
     BuildContext context = navigatorKey.currentContext!;
 
-    ManagerController managerController =
-        Provider.of<ManagerController>(context);
+    ManagerProvider managerController = Provider.of<ManagerProvider>(context);
     ManagerModel? managerModel = await managerController.getMangerWhereUserIs(
         userId: AuthProvider.firebaseAuth.currentUser!.uid);
     if (managerModel != null) {
@@ -220,8 +247,7 @@ class ProjectController extends ProjectAndTaskController {
       {required String userId}) async* {
     BuildContext context = navigatorKey.currentContext!;
 
-    ManagerController managerController =
-        Provider.of<ManagerController>(context);
+    ManagerProvider managerController = Provider.of<ManagerProvider>(context);
     ManagerModel? managerModel =
         await managerController.getMangerWhereUserIs(userId: userId);
     if (managerModel == null) {
@@ -364,7 +390,7 @@ class ProjectController extends ProjectAndTaskController {
 
   Future<List<ProjectModel?>> getProjectsOfMemberWhereUserIs2(
       {required String userId}) async {
-    TeamController teamController = TeamController();
+    TeamProvider teamController = TeamProvider();
     List<TeamModel> teams =
         await teamController.getTeamsofMemberWhereUserId(userId: userId);
     List<ProjectModel?> projects = <ProjectModel>[];
@@ -380,7 +406,7 @@ class ProjectController extends ProjectAndTaskController {
 
   Stream<QuerySnapshot<ProjectModel?>> getProjectsOfMemberWhereUserIs2Stream(
       {required String userId}) async* {
-    TeamController teamController = TeamController();
+    TeamProvider teamController = TeamProvider();
     List<TeamModel> teams =
         await teamController.getTeamsofMemberWhereUserId(userId: userId);
     List<String> projects = [];
@@ -402,7 +428,7 @@ class ProjectController extends ProjectAndTaskController {
 
   Future<List<ProjectModel?>> getProjectsOfMemberWhereUserIs(
       {required String userId}) async {
-    TeamController teamController = TeamController();
+    TeamProvider teamController = TeamProvider();
     List<TeamModel> teams =
         await teamController.getTeamsofMemberWhereUserId(userId: userId);
     List<ProjectModel?> projects = <ProjectModel>[];
@@ -418,7 +444,7 @@ class ProjectController extends ProjectAndTaskController {
           {required String userId,
           required String field,
           required bool descending}) async* {
-    TeamController teamController = TeamController();
+    TeamProvider teamController = TeamProvider();
     List<TeamModel> teams =
         await teamController.getTeamsofMemberWhereUserId(userId: userId);
     List<String> teamsId = <String>[];
@@ -435,7 +461,7 @@ class ProjectController extends ProjectAndTaskController {
 
   Stream<QuerySnapshot<ProjectModel?>> getProjectsOfMemberWhereUserIsStream(
       {required String userId}) async* {
-    TeamController teamController = TeamController();
+    TeamProvider teamController = TeamProvider();
 
     List<TeamModel> teams =
         await teamController.getTeamsofMemberWhereUserId(userId: userId);

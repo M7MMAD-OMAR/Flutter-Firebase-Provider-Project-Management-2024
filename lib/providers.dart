@@ -1,4 +1,4 @@
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/providers/box_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
@@ -13,8 +13,8 @@ class Providers {
     ChangeNotifierProvider<AuthProvider>(
       create: (context) => AuthProvider(),
     ),
-    ChangeNotifierProvider<TopController>(
-      create: (context) => TopController(),
+    ChangeNotifierProvider<TopProvider>(
+      create: (context) => TopProvider(),
     ),
 
     // Start Project Provider

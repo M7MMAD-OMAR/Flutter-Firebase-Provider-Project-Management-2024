@@ -5,7 +5,7 @@ import 'package:project_management_muhmad_omar/models/tops/top_model.dart';
 import '../constants/back_constants.dart';
 import '../utils/back_utils.dart';
 
-class TopController extends ChangeNotifier {
+class TopProvider extends ChangeNotifier {
   Future<List<QueryDocumentSnapshot<Object?>>> getDocsSnapShotWhere(
       {required CollectionReference collectionReference,
       required String field,

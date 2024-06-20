@@ -5,22 +5,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../controllers/manger_controller.dart';
-import '../../controllers/projectController.dart';
-import '../../controllers/project_main_task_controller.dart';
-import '../../controllers/statusController.dart';
-import '../../controllers/userController.dart';
+import '../../controllers/manger_provider.dart';
+import '../../controllers/project_provider.dart';
+import '../../controllers/project_main_task_provider.dart';
+import '../../controllers/status_provider.dart';
+import '../../controllers/user_provider.dart';
 import '../../models/status_model.dart';
 import '../../models/team/manger_model.dart';
 import '../../models/team/project_model.dart';
 import '../../models/user/user_model.dart';
+import '../../providers/auth_provider.dart';
+import '../../providers/task_provider.dart';
 import '../../widgets/navigation/app_header_widget.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import 'create_user_task_widget.dart';
@@ -38,7 +41,7 @@ enum TaskSortOption {
 }
 
 class MainTaskScreen extends StatefulWidget {
-  MainTaskScreen({Key? key, required this.projectId}) : super(key: key);
+  MainTaskScreen({super.key, required this.projectId});
 
   // ProjectModel projectModel;
   String projectId;
@@ -95,9 +98,9 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
 
   ismanagerStream() async {
     ProjectModel? projectModel =
-        await ProjectController().getProjectById(id: widget.projectId);
+    await ProjectProvider().getProjectById(id: widget.projectId);
     Stream<DocumentSnapshot<ManagerModel>> managerModelStream =
-        ManagerController().getMangerByIdStream(id: projectModel!.managerId);
+    ManagerProvider().getMangerByIdStream(id: projectModel!.managerId);
     Stream<DocumentSnapshot<UserModel>> userModelStream;
 
     StreamSubscription<DocumentSnapshot<ManagerModel>> managerSubscription;
@@ -107,8 +110,8 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
       ManagerModel manager = managerSnapshot.data()!;
       userModelStream =
           UserController().getUserWhereMangerIsStream(mangerId: manager.id);
-      userSubscription = userModelStream.listen((userSnapshot) {
-        UserModel user = userSnapshot.data()!;
+      userSubscription = userModelStream.listen(
+          (userSnUserProvider UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
         if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
@@ -116,268 +119,284 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
           updatedIsManager = true;
         }
 
-        isManager.value = updatedIsManager;
+      context.read<TaskProvider>().setManager(
+      updatedIsManager
+      );
       });
     });
   }
 
   // bool isManager = false;
-  RxBool isManager = false.obs;
+TaskProvider isManager = TaskProvider();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: Obx(
-        () => Visibility(
-          visible: isManager.value,
-          child: DashboardAddButton(
-            iconTapped: (() {
-              _createTask2();
-            }),
-          ),
-        ),
-      ),
-      backgroundColor: HexColor.fromHex("#181a1f"),
-      body: Column(
-        children: [
-          SafeArea(
-            child: TaskezAppHeader(
-              title: 'المهام الرئيسية',
-              widget: MySearchBarWidget(
-                searchWord: 'المهام الرئيسية',
-                editingController: editingController,
-                onChanged: (String value) {
-                  setState(() {
-                    search = value;
-                  });
+    return ChangeNotifierProvider<TaskProvider>(
+      create: (_) => TaskProvider(),
+      child: Scaffold(
+        floatingActionButton: Consumer<TaskProvider>(
+          builder: (context, taskProvider, child) {
+            return Visibility(
+              visible: taskProvider.isManager,
+              child: FloatingActionButton(
+                onPressed: () {
+                  // استدعاء الدالة التي تريدها هنا
+                  _createTask2();
                 },
+                child: const Icon(Icons.add),
               ),
-            ),
-          ),
-          SizedBox(
-            height: Utils.screenHeight * 0.04,
-          ),
-          StreamBuilder<DocumentSnapshot<ProjectModel>>(
-            stream:
-                ProjectController().getProjectByIdStream(id: widget.projectId),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                ProjectModel projectModel = snapshot.data!.data()!;
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Utils.screenWidth * 0.04),
-                  child: SingleChildScrollView(
-                    physics: const AlwaysScrollableScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(projectModel.name!,
-                            style: AppTextStyles.header2_2),
-                        Text(projectModel.description!,
-                            style: AppTextStyles.header2_2),
-                      ],
-                    ),
-                  ),
-                );
-              }
-              if (!snapshot.hasData) {}
-              return const CircularProgressIndicator();
-            },
-          ),
-          SizedBox(
-            height: Utils.screenHeight * 0.04,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                margin: EdgeInsets.only(
-                  right: Utils.screenWidth *
-                      0.05, // Adjust the percentage as needed
-                  left: Utils.screenWidth *
-                      0.05, // Adjust the percentage as needed
-                ),
-                padding: EdgeInsets.only(
-                  right: Utils.screenWidth *
-                      0.04, // Adjust the 0percentage as needed
-                  left: Utils.screenWidth *
-                      0.04, // Adjust the percentage as needed
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: DropdownButton<TaskSortOption>(
-                  value: selectedSortOption,
-                  onChanged: (TaskSortOption? newValue) {
+            );
+          },
+        ),
+        backgroundColor: HexColor.fromHex("#181a1f"),
+        body: Column(
+          children: [
+            SafeArea(
+              child: TaskezAppHeader(
+                title: 'المهام الرئيسية',
+                widget: MySearchBarWidget(
+                  searchWord: 'المهام الرئيسية',
+                  editingController: editingController,
+                  onChanged: (String value) {
                     setState(() {
-                      selectedSortOption = newValue!;
-                      // Implement the sorting logic here
+                      search = value;
                     });
                   },
-                  items: TaskSortOption.values.map((TaskSortOption option) {
-                    return DropdownMenuItem<TaskSortOption>(
-                      value: option,
-                      child: Text(
-                        _getSortOptionText(option),
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                    );
-                  }).toList(),
-
-                  // Add extra styling
-                  icon: Icon(
-                    Icons.arrow_drop_down,
-                    size: Utils.screenWidth * 0.07,
-                  ),
-                  underline: const SizedBox(),
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.transparent,
-                  border: Border.all(
-                    width: 2,
-                    color: HexColor.fromHex("616575"),
+            ),
+            SizedBox(
+              height: Utils.screenHeight * 0.04,
+            ),
+            StreamBuilder<DocumentSnapshot<ProjectModel>>(
+              stream: ProjectProvider()
+                  .getProjectByIdStream(id: widget.projectId),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  ProjectModel projectModel = snapshot.data!.data()!;
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Utils.screenWidth * 0.04),
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(projectModel.name!,
+                              style: AppTextStyles.header2_2),
+                          Text(projectModel.description!,
+                              style: AppTextStyles.header2_2),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+                if (!snapshot.hasData) {}
+                return const CircularProgressIndicator();
+              },
+            ),
+            SizedBox(
+              height: Utils.screenHeight * 0.04,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(
+                    right: Utils.screenWidth *
+                        0.05, // Adjust the percentage as needed
+                    left: Utils.screenWidth *
+                        0.05, // Adjust the percentage as needed
+                  ),
+                  padding: EdgeInsets.only(
+                    right: Utils.screenWidth *
+                        0.04, // Adjust the 0percentage as needed
+                    left: Utils.screenWidth *
+                        0.04, // Adjust the percentage as needed
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: DropdownButton<TaskSortOption>(
+                    value: selectedSortOption,
+                    onChanged: (TaskSortOption? newValue) {
+                      setState(() {
+                        selectedSortOption = newValue!;
+                        // Implement the sorting logic here
+                      });
+                    },
+                    items: TaskSortOption.values.map((TaskSortOption option) {
+                      return DropdownMenuItem<TaskSortOption>(
+                        value: option,
+                        child: Text(
+                          _getSortOptionText(option),
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+
+                    // Add extra styling
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      size: Utils.screenWidth * 0.07,
+                    ),
+                    underline: const SizedBox(),
                   ),
                 ),
-                child: IconButton(
+                Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.transparent,
+                    border: Border.all(
+                      width: 2,
+                      color: HexColor.fromHex("616575"),
+                    ),
+                  ),
+                  child: IconButton(
+                    icon: Icon(
+                      size: Utils.screenWidth * 0.07,
+                      sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
+                      color: Colors.white,
+                    ),
+                    onPressed: toggleSortOrder, // Toggle the sort order
+                  ),
+                ),
+                IconButton(
                   icon: Icon(
-                    size: Utils.screenWidth * 0.07,
-                    sortAscending ? Icons.arrow_upward : Icons.arrow_downward,
+                    size: Utils.screenWidth * 0.09,
+                    Icons.grid_view,
                     color: Colors.white,
                   ),
-                  onPressed: toggleSortOrder, // Toggle the sort order
+                  onPressed:
+                  toggleCrossAxisCount, // Toggle the crossAxisCount value
                 ),
-              ),
-              IconButton(
-                icon: Icon(
-                  size: Utils.screenWidth * 0.09,
-                  Icons.grid_view,
-                  color: Colors.white,
-                ),
-                onPressed:
-                    toggleCrossAxisCount, // Toggle the crossAxisCount value
-              ),
-            ],
-          ),
-          SizedBox(height: Utils.screenHeight * 0.04),
-          Expanded(
-            child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
-              child: StreamBuilder(
-                stream: ProjectMainTaskController()
-                    .getProjectMainTasksStream(projectId: widget.projectId),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot<ProjectMainTaskModel>>
-                        snapshot) {
-                  if (snapshot.hasData) {
-                    int taskCount = snapshot.data!.docs.length;
-                    List<ProjectMainTaskModel> list = [];
-                    if (taskCount > 0) {
-                      if (search.isNotEmpty) {
-                        snapshot.data!.docs.forEach((element) {
-                          ProjectMainTaskModel taskCategoryModel =
-                              element.data();
-                          if (taskCategoryModel.name!
-                              .toLowerCase()
-                              .contains(search)) {
+              ],
+            ),
+            SizedBox(height: Utils.screenHeight * 0.04),
+            Expanded(
+              child: Padding(
+                padding:
+                EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
+                child: StreamBuilder(
+                  stream: ProjectMainTaskController()
+                      .getProjectMainTasksStream(projectId: widget.projectId),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot<ProjectMainTaskModel>>
+                      snapshot) {
+                    if (snapshot.hasData) {
+                      int taskCount = snapshot.data!.docs.length;
+                      List<ProjectMainTaskModel> list = [];
+                      if (taskCount > 0) {
+                        if (search.isNotEmpty) {
+                          snapshot.data!.docs.forEach((element) {
+                            ProjectMainTaskModel taskCategoryModel =
+                            element.data();
+                            if (taskCategoryModel.name!
+                                .toLowerCase()
+                                .contains(search)) {
+                              list.add(taskCategoryModel);
+                            }
+                          });
+                        } else {
+                          snapshot.data!.docs.forEach((element) {
+                            ProjectMainTaskModel taskCategoryModel =
+                            element.data();
                             list.add(taskCategoryModel);
-                          }
-                        });
-                      } else {
-                        snapshot.data!.docs.forEach((element) {
-                          ProjectMainTaskModel taskCategoryModel =
-                              element.data();
-                          list.add(taskCategoryModel);
-                        });
-                      }
-                      switch (selectedSortOption) {
-                        case TaskSortOption.name:
-                          list.sort((a, b) => a.name!.compareTo(b.name!));
-                          break;
-                        case TaskSortOption.createDate:
-                          list.sort(
-                              (a, b) => a.createdAt.compareTo(b.createdAt));
-                          break;
-                        case TaskSortOption.updatedDate:
-                          list.sort(
-                              (a, b) => b.updatedAt.compareTo(a.updatedAt));
-                        case TaskSortOption.endDate:
-                          list.sort((a, b) => b.endDate!.compareTo(a.endDate!));
-                        case TaskSortOption.startDate:
-                          list.sort(
-                              (a, b) => b.startDate.compareTo(a.startDate));
-                        case TaskSortOption.importance:
-                          list.sort(
-                              (a, b) => b.importance.compareTo(a.importance));
-                          break;
+                          });
+                        }
+                        switch (selectedSortOption) {
+                          case TaskSortOption.name:
+                            list.sort((a, b) => a.name!.compareTo(b.name!));
+                            break;
+                          case TaskSortOption.createDate:
+                            list.sort(
+                                    (a, b) =>
+                                    a.createdAt.compareTo(b.createdAt));
+                            break;
+                          case TaskSortOption.updatedDate:
+                            list.sort(
+                                    (a, b) =>
+                                    b.updatedAt.compareTo(a.updatedAt));
+                          case TaskSortOption.endDate:
+                            list.sort(
+                                    (a, b) => b.endDate!.compareTo(a.endDate!));
+                          case TaskSortOption.startDate:
+                            list.sort(
+                                    (a, b) =>
+                                    b.startDate.compareTo(a.startDate));
+                          case TaskSortOption.importance:
+                            list.sort(
+                                    (a, b) =>
+                                    b.importance.compareTo(a.importance));
+                            break;
                         // Add cases for more sorting options if needed
+                        }
+                        if (!sortAscending) {
+                          list = list.reversed
+                              .toList(); // Reverse the list for descending order
+                        }
+                        return GridView.builder(
+                          gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: crossAxisCount,
+                            // Use the variable for crossAxisCount
+                            mainAxisSpacing: 10,
+                            mainAxisExtent: 260,
+                            crossAxisSpacing: 10,
+                          ),
+                          itemBuilder: (_, index) {
+                            return MainTaskProgressCard(
+                              taskModel: list[index],
+                            );
+                          },
+                          itemCount: list.length,
+                        );
                       }
-                      if (!sortAscending) {
-                        list = list.reversed
-                            .toList(); // Reverse the list for descending order
-                      }
-                      return GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount:
-                              crossAxisCount, // Use the variable for crossAxisCount
-                          mainAxisSpacing: 10,
-                          mainAxisExtent: 260,
-                          crossAxisSpacing: 10,
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.lightMauveBackgroundColor,
+                          backgroundColor: AppColors.primaryBackgroundColor,
                         ),
-                        itemBuilder: (_, index) {
-                          return MainTaskProgressCard(
-                            taskModel: list[index],
-                          );
-                        },
-                        itemCount: list.length,
                       );
                     }
-                  }
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(
-                      child: CircularProgressIndicator(
-                        color: AppColors.lightMauveBackgroundColor,
-                        backgroundColor: AppColors.primaryBackgroundColor,
-                      ),
-                    );
-                  }
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //
-                      Icon(
-                        Icons.search_off,
-                        //   Icons.heart_broken_outlined,
-                        color: Colors.red,
-                        size: Utils.screenWidth * 0.40,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: Utils.screenWidth * 0.10, vertical: 10),
-                        child: Center(
-                          child: Text(
-                            'لا توجد مهام رئيسية',
-                            style: GoogleFonts.fjallaOne(
-                              color: Colors.white,
-                              fontSize: Utils.screenWidth * 0.1,
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        //
+                        Icon(
+                          Icons.search_off,
+                          //   Icons.heart_broken_outlined,
+                          color: Colors.red,
+                          size: Utils.screenWidth * 0.40,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: Utils.screenWidth * 0.10,
+                              vertical: 10),
+                          child: Center(
+                            child: Text(
+                              'لا توجد مهام رئيسية',
+                              style: GoogleFonts.fjallaOne(
+                                color: Colors.white,
+                                fontSize: Utils.screenWidth * 0.1,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -406,7 +425,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
         }
 
         try {
-          StatusController statusController = Get.put(StatusController());
+          StatusProvider statusController = Get.put(StatusProvider());
           StatusModel statusModel =
               await statusController.getStatusByName(status: statusNotStarted);
 
@@ -429,7 +448,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
         }
       },
       checkExist: ({required String name}) async {
-        return TopController().existByTow(
+        return TopProvider().existByTow(
             reference: projectMainTasksRef,
             value: projectIdK,
             field: widget.projectId,

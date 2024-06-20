@@ -3,14 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/firebase_options.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
@@ -154,8 +154,8 @@ Future<void> sendProjectNotification(
 
 @pragma('vm:entry-point')
 Future<void> checkProjectsToSendNotificationToManager() async {
-  ManagerController managerController = Get.put(ManagerController());
-  UserTaskController userTaskController = Get.put(UserTaskController());
+  ManagerProvider managerController = Get.put(ManagerProvider());
+  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
   String userId = FirebaseAuth.instance.currentUser!.uid;
   if (await userTaskController.existByOne(
     collectionReference: managersRef,
@@ -172,7 +172,7 @@ Future<void> checkProjectsToSendNotificationToManager() async {
 
 @pragma('vm:entry-point')
 Future<void> checkProjectsForManager({required String managerId}) async {
-  ProjectController projectController = Get.put(ProjectController());
+  ProjectProvider projectController = Get.put(ProjectProvider());
   String token = await getFcmToken();
   if (await projectController.existByOne(
         collectionReference: projectsRef,
@@ -183,15 +183,15 @@ Future<void> checkProjectsForManager({required String managerId}) async {
     return;
   }
   List<ProjectModel?>? projectList =
-      await ProjectController().getProjectsOfManager(mangerId: managerId);
+      await ProjectProvider().getProjectsOfManager(mangerId: managerId);
   await checkProjectsToSendNotification(
       ismanager: true, projectList: projectList);
 }
 
 @pragma('vm:entry-point')
 Future<void> checkTaskToSendNotification() async {
-  UserTaskController userTaskController = Get.put(UserTaskController());
-  StatusController statusController = Get.put(StatusController());
+  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
+  StatusProvider statusController = Get.put(StatusProvider());
   String token = await getFcmToken();
   String userId = FirebaseAuth.instance.currentUser!.uid;
   if (await userTaskController.existByOne(
@@ -237,9 +237,9 @@ Future<void> checkTaskToSendNotification() async {
         await sendTaskNotification(
             task: element, started: false, token: [token], finished: false);
       }
-      DocumentSnapshot documentSnapshot = await TopController()
+      DocumentSnapshot documentSnapshot = await TopProvider()
           .getDocById(reference: usersTasksRef, id: element.id);
-      bool isFather = await TopController().existByOne(
+      bool isFather = await TopProvider().existByOne(
           collectionReference: usersTasksRef,
           value: documentSnapshot.reference,
           field: taskFatherIdK);
@@ -256,7 +256,7 @@ Future<void> checkTaskToSendNotification() async {
           element.statusId == statusDoingModel.id &&
           isFather == true) {
         bool isDone = true;
-        List<UserTaskModel> childTasks = await UserTaskController()
+        List<UserTaskModel> childTasks = await UserTaskProvider()
             .getChildTasks(taskFatherId: documentSnapshot.reference);
         for (var childElement in childTasks) {
           UserTaskModel child = childElement;
@@ -266,7 +266,7 @@ Future<void> checkTaskToSendNotification() async {
           }
         }
         if (isDone) {
-          UserTaskController().updateUserTask(
+          UserTaskProvider().updateUserTask(
             isfromback: true,
             data: {
               statusIdK: statusDoneModel.id,
@@ -281,7 +281,7 @@ Future<void> checkTaskToSendNotification() async {
               data: {"id": element.id},
               type: NotificationType.userTaskTimeFinished);
         } else {
-          UserTaskController().updateUserTask(
+          UserTaskProvider().updateUserTask(
             isfromback: true,
             data: {
               statusIdK: statusNotDoneModel.id,
@@ -329,7 +329,7 @@ checkProjectsToSendNotification(
     {required List<ProjectModel?>? projectList,
     required bool ismanager}) async {
   String token = await getFcmToken();
-  StatusController statusController = Get.put(StatusController());
+  StatusProvider statusController = Get.put(StatusProvider());
   StatusModel statusDoneModel =
       await statusController.getStatusByName(status: statusDone);
   StatusModel statusNotStartedModel =
@@ -350,7 +350,7 @@ checkProjectsToSendNotification(
           DateTime firebaseNow = firebaseTime(DateTime.now());
           if (taskStartdate.isAtSameMomentAs(firebaseNow) &&
               element.statusId == statusNotStartedModel.id) {
-            await ProjectController().updateProject2(
+            await ProjectProvider().updateProject2(
                 data: {statusIdK: statusDoingModel.id}, id: element.id);
 
             await sendProjectNotification(
@@ -380,10 +380,10 @@ checkProjectsToSendNotification(
             }
 
             if (isDone) {
-              await ProjectController().updateProject2(
+              await ProjectProvider().updateProject2(
                   data: {statusIdK: statusDoneModel.id}, id: element.id);
             } else {
-              await ProjectController().updateProject2(
+              await ProjectProvider().updateProject2(
                   data: {statusIdK: statusNotDoneModel.id}, id: element.id);
             }
 
@@ -400,7 +400,7 @@ checkProjectsToSendNotification(
 }
 
 checkProjectsToSendNotificationToMember() async {
-  if (await TeamMemberController().existByOne(
+  if (await TeamMemberProvider().existByOne(
           collectionReference: teamMembersRef,
           value: userIdK,
           field: AuthProvider.firebaseAuth.currentUser!.uid) ==
@@ -409,20 +409,20 @@ checkProjectsToSendNotificationToMember() async {
   }
   List<ProjectModel?>? projectList = [];
 
-  projectList = await ProjectController().getProjectsOfMemberWhereUserIs2(
+  projectList = await ProjectProvider().getProjectsOfMemberWhereUserIs2(
       userId: AuthProvider.firebaseAuth.currentUser!.uid);
   await checkProjectsToSendNotification(
       ismanager: false, projectList: projectList);
 }
 
 checkProjectMainTasksToSendNotificationToMembers() async {
-  if (await TeamMemberController().existByOne(
+  if (await TeamMemberProvider().existByOne(
           collectionReference: teamMembersRef,
           value: userIdK,
           field: AuthProvider.firebaseAuth.currentUser!.uid) ==
       true) {
     List<ProjectModel?>? projectList = [];
-    projectList = await ProjectController().getProjectsOfMemberWhereUserIs2(
+    projectList = await ProjectProvider().getProjectsOfMemberWhereUserIs2(
         userId: AuthProvider.firebaseAuth.currentUser!.uid);
     await checkProjectMainTasksToSendNotifications(
         manager: false, projectList: projectList);
@@ -430,13 +430,13 @@ checkProjectMainTasksToSendNotificationToMembers() async {
 }
 
 checkProjectMainTasksToSendNotificationToManager() async {
-  if (await TeamMemberController().existByOne(
+  if (await TeamMemberProvider().existByOne(
           collectionReference: managersRef,
           value: userIdK,
           field: AuthProvider.firebaseAuth.currentUser!.uid) ==
       true) {
     List<ProjectModel?>? projectList = [];
-    projectList = await ProjectController()
+    projectList = await ProjectProvider()
         .getProjectsOfUser(userId: AuthProvider.firebaseAuth.currentUser!.uid);
     await checkProjectMainTasksToSendNotifications(
         manager: true, projectList: projectList);
@@ -447,8 +447,8 @@ checkProjectMainTasksToSendNotifications(
     {List<ProjectModel?>? projectList, required bool manager}) async {
   String token = await getFcmToken();
   StatusModel statusDoneModel =
-      await StatusController().getStatusByName(status: statusDone);
-  StatusController statusController = Get.put(StatusController());
+      await StatusProvider().getStatusByName(status: statusDone);
+  StatusProvider statusController = Get.put(StatusProvider());
   StatusModel statusNotStartedModel =
       await statusController.getStatusByName(status: statusNotStarted);
   StatusModel statusNotDoneModel =
@@ -495,9 +495,8 @@ checkProjectMainTasksToSendNotifications(
           if (taskEnddate.isAtSameMomentAs(firebaseNow) &&
               element.statusId == statusDoingModel.id) {
             bool isDone = true;
-            List<ProjectSubTaskModel> subtasks =
-                await ProjectSubTaskController()
-                    .getSubTasksForAMainTask(mainTaskId: element.id);
+            List<ProjectSubTaskModel> subtasks = await ProjectSubTaskProvider()
+                .getSubTasksForAMainTask(mainTaskId: element.id);
             for (var element in subtasks) {
               if (element.statusId == statusNotDoneModel.id) {
                 isDone = false;
@@ -505,12 +504,12 @@ checkProjectMainTasksToSendNotifications(
             }
 
             if (isDone) {
-              await ProjectSubTaskController().updateSubTask(
+              await ProjectSubTaskProvider().updateSubTask(
                   isfromback: true,
                   data: {statusIdK: statusDoneModel.id},
                   id: element.id);
             } else {
-              await ProjectSubTaskController().updateSubTask(
+              await ProjectSubTaskProvider().updateSubTask(
                   isfromback: true,
                   data: {statusIdK: statusNotDoneModel.id},
                   id: element.id);
@@ -526,10 +525,10 @@ checkProjectMainTasksToSendNotifications(
 }
 
 checkSubTasksToSendNotification() async {
-  StatusController statusController = Get.put(StatusController());
-  TeamMemberController teamMemberController = Get.put(TeamMemberController());
-  ProjectSubTaskController projectSubTaskController =
-      Get.put(ProjectSubTaskController());
+  StatusProvider statusController = Get.put(StatusProvider());
+  TeamMemberProvider teamMemberController = Get.put(TeamMemberProvider());
+  ProjectSubTaskProvider projectSubTaskController =
+      Get.put(ProjectSubTaskProvider());
   String token = await getFcmToken();
   if (await teamMemberController.existByOne(
           collectionReference: teamMembersRef,
@@ -583,7 +582,7 @@ checkSubTasksToSendNotification() async {
 
         if (taskEnddate!.isAtSameMomentAs(firebaseNow) &&
             element.statusId == statusDoingModel.id) {
-          await ProjectSubTaskController().updateSubTask(
+          await ProjectSubTaskProvider().updateSubTask(
               isfromback: true,
               data: {statusIdK: statusNotDoneModel.id},
               id: element.id);

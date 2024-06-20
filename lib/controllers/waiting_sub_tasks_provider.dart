@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
@@ -17,9 +17,9 @@ import '../models/user/user_model.dart';
 import '../services/notifications/notification_service.dart';
 import '../services/types_services.dart';
 import '../widgets/snackbar/custom_snackber_widget.dart';
-import 'manger_controller.dart';
+import 'manger_provider.dart';
 
-class WatingSubTasksController extends TopController {
+class WaitingSubTasksProvider extends TopProvider {
   Future<void> addWatingSubTask(
       {required WaitingSubTaskModel waitingSubTaskModel}) async {
     await addDoc(reference: watingSubTasksRef, model: waitingSubTaskModel);
@@ -127,23 +127,23 @@ class WatingSubTasksController extends TopController {
       String status = isAccepted ? 'قبولها' : "رفضها";
       BuildContext context = navigatorKey.currentContext!;
 
-      final UserController userController =
-          Provider.of<UserController>(context, listen: false);
+      final UserProvider userController =
+          Provider.of<UserProvider>(context, listen: false);
 
-      final WatingSubTasksController watingSubTasksController =
-          Provider.of<WatingSubTasksController>(context, listen: false);
-      final ProjectController projectController =
-          Provider.of<ProjectController>(context, listen: false);
-      final ManagerController managerController =
-          Provider.of<ManagerController>(context, listen: false);
+      final WaitingSubTasksProvider watingSubTasksController =
+          Provider.of<WaitingSubTasksProvider>(context, listen: false);
+      final ProjectProvider projectController =
+          Provider.of<ProjectProvider>(context, listen: false);
+      final ManagerProvider managerController =
+          Provider.of<ManagerProvider>(context, listen: false);
       final WaitingSubTaskModel waitingSubTaskModel =
           await watingSubTasksController.getWatingSubTaskById(
               id: waitingSubTaskId);
 
       if (isAccepted) {
         watingSubTasksController.deleteWatingSubTask(id: waitingSubTaskId);
-        ProjectSubTaskController projectSubTaskController =
-            Provider.of<ProjectSubTaskController>(context, listen: false);
+        ProjectSubTaskProvider projectSubTaskController =
+            Provider.of<ProjectSubTaskProvider>(context, listen: false);
         ProjectSubTaskModel projectSubTaskModel =
             waitingSubTaskModel.projectSubTaskModel;
         projectSubTaskController.addProjectSubTask(

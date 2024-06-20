@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../controllers/projectController.dart';
+import '../controllers/project_provider.dart';
 import '../models/team/project_model.dart';
 import 'auth_provider.dart';
 
@@ -13,14 +13,14 @@ class InvitationProvider with ChangeNotifier {
   Stream<QuerySnapshot<ProjectModel?>> getInvitationStream() {
     final userId = AuthProvider.firebaseAuth.currentUser!.uid;
     if (_selectedTab == 0) {
-      return ProjectController()
+      return ProjectProvider()
           .getProjectsOfMemberWhereUserIsStream(userId: userId);
     } else if (_selectedTab == 1) {
-      return ProjectController()
+      return ProjectProvider()
           .getProjectsOfMemberWhereUserIsStream(userId: userId);
     }
 
-    return ProjectController().getProjectsOfUserStream(userId: userId);
+    return ProjectProvider().getProjectsOfUserStream(userId: userId);
     // Return an empty stream or another default stream if needed
   }
 

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +14,7 @@ import '../models/team/teamModel.dart';
 import '../models/tops/top_model.dart';
 import '../services/collections_refrences.dart';
 
-class TeamController extends TopController {
+class TeamProvider extends TopProvider {
   Future<void> addTeam(TeamModel teamModel) async {
     if (await existByOne(
         collectionReference: managersRef,
@@ -46,7 +46,7 @@ class TeamController extends TopController {
   }
 
   Future<List<TeamModel>> getTeamsofMemberWhereUserId({required userId}) async {
-    TeamMemberController teamMemberController = TeamMemberController();
+    TeamMemberProvider teamMemberController = TeamMemberProvider();
     List<TeamMemberModel> listMembers =
         await teamMemberController.getMemberWhereUserIs(userId: userId);
 
@@ -72,7 +72,7 @@ class TeamController extends TopController {
 
   Stream<QuerySnapshot<TeamModel>> getTeamsofMemberWhereUserIdStream(
       {required userId}) async* {
-    TeamMemberController teamMemberController = TeamMemberController();
+    TeamMemberProvider teamMemberController = TeamMemberProvider();
     List<TeamMemberModel> listMembers =
         await teamMemberController.getMemberWhereUserIs(userId: userId);
     if (listMembers.isEmpty) {
@@ -90,7 +90,7 @@ class TeamController extends TopController {
   Future<List<TeamModel>?> getTeamsOfUser({required String userId}) async {
     BuildContext context = navigatorKey.currentContext!;
 
-    ManagerController controller = Provider.of<ManagerController>(context);
+    ManagerProvider controller = Provider.of<ManagerProvider>(context);
     ManagerModel? managerModel =
         await controller.getMangerWhereUserIs(userId: userId);
     if (managerModel != null) {
@@ -103,7 +103,7 @@ class TeamController extends TopController {
       {required String userId}) async* {
     BuildContext context = navigatorKey.currentContext!;
 
-    ManagerController controller = Provider.of<ManagerController>(context);
+    ManagerProvider controller = Provider.of<ManagerProvider>(context);
     ManagerModel? managerModel =
         await controller.getMangerWhereUserIs(userId: userId);
     if (managerModel == null) {
@@ -164,8 +164,7 @@ class TeamController extends TopController {
     }
     BuildContext context = navigatorKey.currentContext!;
 
-    ManagerController managerController =
-        Provider.of<ManagerController>(context);
+    ManagerProvider managerController = Provider.of<ManagerProvider>(context);
     ManagerModel managerModel =
         await managerController.getMangerOfTeam(teamId: id);
     await updateRelationalFields(

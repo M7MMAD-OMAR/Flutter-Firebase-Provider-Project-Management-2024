@@ -3,13 +3,13 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/taskController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
@@ -25,7 +25,7 @@ import '../providers/auth_provider.dart';
 import '../services/notifications/notification_service.dart';
 import '../services/types_services.dart';
 
-class ProjectSubTaskController extends ProjectAndTaskController {
+class ProjectSubTaskProvider extends TaskProvider {
   Future<List<ProjectSubTaskModel>> getMemberSubTasks(
       {required String memberId}) async {
     List<Object?>? list = await getListDataWhere(
@@ -53,7 +53,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
 
     List<String> subTasksIds = [];
 
-    List<TeamMemberModel> listMemberUser = await TeamMemberController()
+    List<TeamMemberModel> listMemberUser = await TeamMemberProvider()
         .getMemberWhereUserIs(
             userId: AuthProvider.firebaseAuth.currentUser!.uid);
 
@@ -690,21 +690,19 @@ class ProjectSubTaskController extends ProjectAndTaskController {
         String subtaskId, String status) async {
       BuildContext context = navigatorKey.currentContext!;
 
-      final StatusController statusController =
-          Provider.of<StatusController>(context);
-      final UserController userController =
-          Provider.of<UserController>(context);
-      final TeamController teamController =
-          Provider.of<TeamController>(context);
-      final ProjectController projectController =
-          Provider.of<ProjectController>(context);
+      final StatusProvider statusController =
+          Provider.of<StatusProvider>(context);
+      final UserProvider userController = Provider.of<UserProvider>(context);
+      final TeamProvider teamController = Provider.of<TeamProvider>(context);
+      final ProjectProvider projectController =
+          Provider.of<ProjectProvider>(context);
       final FcmNotificationsProvider fcmNotifications =
           Provider.of<FcmNotificationsProvider>(context);
       StatusModel s = await statusController.getStatusByName(status: status);
       updateSubTask(data: {statusIdK: s.id}, id: subtaskId, isfromback: true);
 
-      final ProjectSubTaskController projectTaskController =
-          Provider.of<ProjectSubTaskController>(context);
+      final ProjectSubTaskProvider projectTaskController =
+          Provider.of<ProjectSubTaskProvider>(context);
       ProjectSubTaskModel projectSubTaskModel =
           await projectTaskController.getProjectSubTaskById(id: subtaskId);
       ProjectModel? projectModel = await projectController.getProjectById(

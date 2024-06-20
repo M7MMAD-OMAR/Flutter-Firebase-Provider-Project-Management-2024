@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
@@ -52,7 +52,7 @@ class TeamDetailsScreen extends StatelessWidget {
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: SafeArea(
             child: StreamBuilder<DocumentSnapshot<TeamModel>>(
-                stream: TeamController().getTeamByIdStream(id: team!.id),
+                stream: TeamProvider().getTeamByIdStream(id: team!.id),
                 builder: (context, snapshotTeam) {
                   if (snapshotTeam.hasError) {
                     return Center(
@@ -98,7 +98,7 @@ class TeamDetailsScreen extends StatelessWidget {
                         ),
                         AppSpaces.verticalSpace40,
                         StreamBuilder<QuerySnapshot<TeamMemberModel>>(
-                            stream: TeamMemberController()
+                            stream: TeamMemberProvider()
                                 .getMembersInTeamIdStream(teamId: team!.id),
                             builder: (context, snapshotMembers) {
                               List<String> listIds = [];
@@ -139,7 +139,7 @@ class TeamDetailsScreen extends StatelessWidget {
                                 // );
                               }
                               return StreamBuilder<QuerySnapshot<UserModel>>(
-                                  stream: UserController()
+                                  stream: UserProvider()
                                       .getUsersWhereInIdsStream(
                                           usersId: listIds),
                                   builder: (context, snapshotUsers) {
@@ -180,7 +180,7 @@ class TeamDetailsScreen extends StatelessWidget {
                             }),
                         AppSpaces.verticalSpace10,
                         FutureBuilder<UserModel>(
-                            future: UserController().getUserWhereMangerIs(
+                            future: UserProvider().getUserWhereMangerIs(
                                 mangerId: team!.managerId),
                             builder: (context, snapshot) {
                               if (snapshot.hasError) {
@@ -241,8 +241,7 @@ class TeamProjectOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<ProjectModel>>(
-        stream:
-            ProjectController().getProjectsOfTeamStream(teamId: teamModel.id),
+        stream: ProjectProvider().getProjectsOfTeamStream(teamId: teamModel.id),
         builder: (context, snapshotProject) {
           if (snapshotProject.hasError) {
             return Center(
@@ -298,7 +297,7 @@ class TeamProjectOverview extends StatelessWidget {
               itemBuilder: (_, index) {
                 final teamId = snapshotProject.data!.docs[index].data().teamId!;
                 return StreamBuilder<DocumentSnapshot<TeamModel>>(
-                    stream: TeamController().getTeamByIdStream(id: teamId),
+                    stream: TeamProvider().getTeamByIdStream(id: teamId),
                     builder: (context, snapshotTeam) {
                       if (snapshotTeam.hasError) {
                         return Center(
@@ -320,7 +319,7 @@ class TeamProjectOverview extends StatelessWidget {
                       final teamName = snapshotTeam.data?.data()?.name ?? '';
 
                       return StreamBuilder<DocumentSnapshot<StatusModel>>(
-                        stream: StatusController().getStatusByIdStream(
+                        stream: StatusProvider().getStatusByIdStream(
                           idk:
                               snapshotProject.data!.docs[index].data().statusId,
                         ),

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/models/tops/Var2TopModel.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +13,7 @@ import '../models/tops/top_model.dart';
 import '../services/collections_refrences.dart';
 import '../utils/back_utils.dart';
 
-class ProjectAndTaskController extends TopController {
+class TaskProvider extends TopProvider {
   Future<List<Object?>?> getTasksForStatus<t extends TopModel>({
     required String status,
     required CollectionReference reference,
@@ -306,7 +306,7 @@ class ProjectAndTaskController extends TopController {
     );
     BuildContext context = navigatorKey.currentContext!;
 
-    StatusController statusController = Provider.of<StatusController>(context);
+    StatusProvider statusController = Provider.of<StatusProvider>(context);
     StatusModel statusModel =
         await statusController.getStatusByName(status: status);
     return await getDocsWhereAndWhereForDate(
@@ -344,7 +344,7 @@ class ProjectAndTaskController extends TopController {
 
     BuildContext context = navigatorKey.currentContext!;
 
-    StatusController statusController = Provider.of<StatusController>(context);
+    StatusProvider statusController = Provider.of<StatusProvider>(context);
     yield* queryWhereForDateStream(
         reference: reference,
         field: field,
@@ -372,7 +372,7 @@ class ProjectAndTaskController extends TopController {
     );
     BuildContext context = navigatorKey.currentContext!;
 
-    StatusController statusController = Provider.of<StatusController>(context);
+    StatusProvider statusController = Provider.of<StatusProvider>(context);
     StatusModel statusModel =
         await statusController.getStatusByName(status: status);
     yield* queryWhereAndWhereForDateStream(

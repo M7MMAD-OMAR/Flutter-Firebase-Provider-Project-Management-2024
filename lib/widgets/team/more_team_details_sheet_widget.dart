@@ -4,9 +4,9 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
@@ -14,7 +14,7 @@ import 'package:project_management_muhmad_omar/services/collections_refrences.da
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-import '../../controllers/team_member_controller.dart';
+import '../../controllers/team_member_provider.dart';
 import '../../models/team/team_members_model.dart';
 import '../Buttons/primary_progress_button_widget.dart';
 import '../Dashboard/dashboard_meeting_details_widget.dart';
@@ -158,7 +158,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               StreamBuilder<DocumentSnapshot<UserModel>>(
-                  stream: UserController().getUserWhereMangerIsStream(
+                  stream: UserProvider().getUserWhereMangerIsStream(
                       mangerId: widget.teamModel.managerId),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
@@ -208,7 +208,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                 alignment: Alignment.centerLeft,
                 scale: 0.7,
                 child: StreamBuilder<QuerySnapshot<TeamMemberModel>>(
-                    stream: TeamMemberController()
+                    stream: TeamMemberProvider()
                         .getMembersInTeamIdStream(teamId: widget.teamModel.id),
                     builder: (context, snapshotMembers) {
                       List<String> listIds = [];
@@ -238,7 +238,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                       }
 
                       return StreamBuilder<QuerySnapshot<UserModel>>(
-                          stream: UserController()
+                          stream: UserProvider()
                               .getUsersWhereInIdsStream(usersId: listIds),
                           builder: (context, snapshotUsers) {
                             if (snapshotUsers.connectionState ==
@@ -290,7 +290,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                           }, (right) async {
                             right.then((value) async {
                               String imageNetWork = value!;
-                              await TeamController().updateTeam(
+                              await TeamProvider().updateTeam(
                                   widget.teamModel.id,
                                   {imageUrlK: imageNetWork});
                               Navigator.pop(context);
@@ -300,7 +300,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                         if (name != widget.teamModel.name) {
                           showDialogMethod(context);
 
-                          bool res = await TopController().existByTow(
+                          bool res = await TopProvider().existByTow(
                               reference: teamsRef,
                               value: name,
                               field: nameK,
@@ -311,7 +311,7 @@ class _MoreTeamDetailsSheetState extends State<MoreTeamDetailsSheet> {
                             CustomSnackBar.showError(
                                 'هناك فريق يحمل نفس الاسم في فرقك');
                           } else {
-                            await TeamController()
+                            await TeamProvider()
                                 .updateTeam(widget.teamModel.id, {nameK: name});
                             CustomSnackBar.showSuccess("تم تحديث الفريق بنجاح");
                             Navigator.of(context).pop();

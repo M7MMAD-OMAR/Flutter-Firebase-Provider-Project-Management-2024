@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/category_tasks_widget_widget.dart';
@@ -37,15 +37,15 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
   void initState() {
     super.initState();
     //TaskCategoryController userTaskCategoryController =
-    Get.put(TaskCategoryController());
+    Get.put(TaskCategoryProvider());
     //UserTaskController userTaskController = Get.put(UserTaskController());
   }
 
   @override
   Widget build(BuildContext context) {
-    UserTaskController userTaskController = Get.find();
+    UserTaskProvider userTaskController = Get.find();
 
-    TaskCategoryController userTaskCategoryController = Get.find();
+    TaskCategoryProvider userTaskCategoryController = Get.find();
     // _streamZip = StreamZip([
     //   userTaskController.getCategoryTasksStream(
     //       folderId: widget.userTaskCategoryModel.id),

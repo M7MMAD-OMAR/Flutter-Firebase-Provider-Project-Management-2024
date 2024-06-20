@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
@@ -127,7 +127,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                   );
                                 },
                               );
-                              if (await TopController().existByOne(
+                              if (await TopProvider().existByOne(
                                   collectionReference: usersRef,
                                   field: emailK,
                                   value: email)) {

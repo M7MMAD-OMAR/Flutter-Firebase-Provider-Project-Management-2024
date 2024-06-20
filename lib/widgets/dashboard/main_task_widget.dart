@@ -2,37 +2,36 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_glow/flutter_glow.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
-import 'package:project_management_muhmad_omar/widgets/Dashboard/subTasks_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/sub_tasks_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../controllers/projectController.dart';
-import '../../controllers/project_main_task_controller.dart';
-import '../../controllers/statusController.dart';
-import '../../controllers/topController.dart';
+import '../../controllers/project_provider.dart';
+import '../../controllers/project_main_task_provider.dart';
+import '../../controllers/status_provider.dart';
+import '../../controllers/top_provider.dart';
 import '../../models/status_model.dart';
 import '../../models/team/project_main_task_model.dart';
 import '../../models/team/project_model.dart';
 import '../../models/user/user_model.dart';
-import '../../services/auth_service.dart';
+import '../../providers/task_provider.dart';
 import '../../services/collections_refrences.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import '../user/focused_menu_item_widget.dart';
 import 'create_user_task_widget.dart';
 
 class MainTaskProgressCard extends StatefulWidget {
-  final ProjectMainTaskModel
-      taskModel; // Update the type to ProjectMainTaskModel
+  final ProjectMainTaskModel taskModel;
+
   const MainTaskProgressCard({super.key, required this.taskModel});
 
   @override
@@ -46,12 +45,12 @@ class _MainTaskProgressCardState extends State<MainTaskProgressCard> {
     double second = 0;
     double percento = 0;
     return StreamBuilder(
-      stream: ProjectSubTaskController()
+      stream: ProjectSubTaskProvider()
           .getSubTasksForAMainTaskStream(mainTaskId: widget.taskModel.id),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return StreamBuilder(
-            stream: ProjectSubTaskController()
+            stream: ProjectSubTaskProvider()
                 .getMainTaskSubTasksForAStatusStream(
                     mainTaskId: widget.taskModel.id, status: statusDone),
             builder: (context, snapshot2) {
@@ -113,10 +112,10 @@ class _brogressState extends State<brogress> {
   }
 
   ismanagerStream() async {
-    ProjectModel? projectModel = await ProjectController()
-        .getProjectById(id: widget.taskModel.projectId);
+    ProjectModel? projectModel =
+        await ProjectProvider().getProjectById(id: widget.taskModel.projectId);
     Stream<DocumentSnapshot<ManagerModel>> managerModelStream =
-        ManagerController().getMangerByIdStream(id: projectModel!.managerId);
+        ManagerProvider().getMangerByIdStream(id: projectModel!.managerId);
     Stream<DocumentSnapshot<UserModel>> userModelStream;
 
     StreamSubscription<DocumentSnapshot<ManagerModel>> managerSubscription;
@@ -127,7 +126,7 @@ class _brogressState extends State<brogress> {
       userModelStream =
           UserController().getUserWhereMangerIsStream(mangerId: manager.id);
       userSubscription = userModelStream.listen((userSnapshot) {
-        UserModel user = userSnapshot.data()!;
+        UseUserProvideruserSnapshot.data()!;
         bool updatedIsManager;
         if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
           updatedIsManager = false;
@@ -135,76 +134,83 @@ class _brogressState extends State<brogress> {
           updatedIsManager = true;
         }
 
-        // Update the state and trigger a rebuild
-
-        isManager.value = updatedIsManager;
+        context.read<TaskProvider>().setManager(updatedIsManager);
       });
     });
   }
 
-  RxBool isManager = false.obs;
+  TaskProvider isManager = TaskProvider();
 
   @override
   Widget build(BuildContext context) {
     String taskStatus = "";
-    return Obx(() => isManager.value
-        ? FocusedMenu(
-            onClick: () {
-              Get.to(() => SubTaskScreen(
-                    projectId: widget.taskModel.projectId,
-                    mainTaskId: widget.taskModel.id,
-                  ));
-            },
-            deleteButton: () async {
-              ProjectMainTaskController userTaskController =
-                  Get.put(ProjectMainTaskController());
-              await userTaskController.deleteProjectMainTask(
-                  mainTaskId: widget.taskModel.id);
-            },
-            editButton: () {
-              showAppBottomSheet(
-                CreateUserTask(
-                  addLateTask: (
-                      {required int priority,
-                      required String taskName,
-                      required DateTime startDate,
-                      required DateTime dueDate,
-                      required String? desc,
-                      required String color}) async {},
-                  isUserTask: false,
-                  checkExist: ({required String name}) async {
-                    return TopController().existByTow(
-                        reference: projectMainTasksRef,
-                        value: name,
-                        field: nameK,
-                        value2: widget.taskModel.projectId,
-                        field2: projectIdK);
+    return ChangeNotifierProvider<TaskProvider>(
+      create: (_) => TaskProvider(),
+      child: Consumer<TaskProvider>(
+        builder: (context, taskProvider, child) {
+          return taskProvider.isManager
+              ? FocusedMenu(
+                  onClick: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => SubTaskScreen(
+                                  projectId: widget.taskModel.projectId,
+                                  mainTaskId: widget.taskModel.id,
+                                )));
                   },
-                  addTask: (
-                      {required int priority,
-                      required String taskName,
-                      required DateTime startDate,
-                      required DateTime dueDate,
-                      required String? desc,
-                      required String color}) async {
-                    ProjectMainTaskModel userTaskModel =
-                        await ProjectMainTaskController()
-                            .getProjectMainTaskById(id: widget.taskModel.id);
-                    if ((userTaskModel.startDate != startDate ||
-                            userTaskModel.endDate != dueDate) &&
-                        taskStatus != statusNotStarted) {
-                      CustomSnackBar.showError(
-                          'لا يمكن تحرير وقت بدء وانتهاء المهمة التي تم الانتهاء منها أو التي قيد التنفيذ');
-                      return;
-                    }
-                    if (startDate.isAfter(dueDate) ||
-                        startDate.isAtSameMomentAs(dueDate)) {
-                      CustomSnackBar.showError(
-                          'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء');
-                      return;
-                    }
+                  deleteButton: () async {
+                    ProjectMainTaskController userTaskController =
+                        Provider.of<ProjectMainTaskController>(context,
+                            listen: false);
+                    await userTaskController.deleteProjectMainTask(
+                        mainTaskId: widget.taskModel.id);
+                  },
+                  editButton: () {
+                    showAppBottomSheet(
+                      CreateUserTask(
+                        addLateTask: (
+                            {required int priority,
+                            required String taskName,
+                            required DateTime startDate,
+                            required DateTime dueDate,
+                            required String? desc,
+                            required String color}) async {},
+                        isUserTask: false,
+                        checkExist: ({required String name}) async {
+                          return TopProvider().existByTow(
+                              reference: projectMainTasksRef,
+                              value: name,
+                              field: nameK,
+                              value2: widget.taskModel.projectId,
+                              field2: projectIdK);
+                        },
+                        addTask: (
+                            {required int priority,
+                            required String taskName,
+                            required DateTime startDate,
+                            required DateTime dueDate,
+                            required String? desc,
+                            required String color}) async {
+                          ProjectMainTaskModel userTaskModel =
+                              await ProjectMainTaskController()
+                                  .getProjectMainTaskById(
+                                      id: widget.taskModel.id);
+                          if ((userTaskModel.startDate != startDate ||
+                                  userTaskModel.endDate != dueDate) &&
+                              taskStatus != statusNotStarted) {
+                            CustomSnackBar.showError(
+                                'لا يمكن تحرير وقت بدء وانتهاء المهمة التي تم الانتهاء منها أو التي قيد التنفيذ');
+                            return;
+                          }
+                          if (startDate.isAfter(dueDate) ||
+                              startDate.isAtSameMomentAs(dueDate)) {
+                            CustomSnackBar.showError(
+                                'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء');
+                            return;
+                          }
 
-                    try {
+                          try {
                       await ProjectMainTaskController().updateMainTask(
                           isfromback: false,
                           data: {
@@ -235,19 +241,13 @@ class _brogressState extends State<brogress> {
                       .withOpacity(0.9),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: HexColor.fromHex(widget.taskModel
-                        .hexcolor), // Set the second color for the border
-                    width: 6, // Adjust the width of the border as needed
+                    color: HexColor.fromHex(widget.taskModel.hexcolor),
+                    width: 6,
                   ),
                 ),
                 height: 100,
                 child: Stack(
                   children: [
-                    // const Positioned(
-                    //   top: 10,
-                    //   right: 10,
-                    //   child: Icon(Icons.task_alt_sharp),
-                    // ),
                     Positioned(
                       top: 10,
                       bottom: 20,
@@ -258,14 +258,15 @@ class _brogressState extends State<brogress> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SingleChildScrollView(
-                            physics: const AlwaysScrollableScrollPhysics(),
+                            physics:
+                            const AlwaysScrollableScrollPhysics(),
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  widget.taskModel
-                                      .name!, // Use the name property of taskModel
+                                  widget.taskModel.name!,
                                   style: GoogleFonts.lato(
                                       fontWeight: FontWeight.bold,
                                       fontSize: Utils.screenWidth * 0.06,
@@ -273,17 +274,19 @@ class _brogressState extends State<brogress> {
                                 ),
                                 AppSpaces.horizontalSpace10,
                                 StreamBuilder(
-                                  stream: StatusController()
+                                  stream: StatusProvider()
                                       .getStatusByIdStream(
-                                          idk: widget.taskModel.statusId)
+                                      idk: widget.taskModel.statusId)
                                       .asBroadcastStream(),
                                   builder: (context,
                                       AsyncSnapshot<
-                                              DocumentSnapshot<StatusModel>>
-                                          snapshot) {
+                                          DocumentSnapshot<
+                                              StatusModel>>
+                                      snapshot) {
                                     if (snapshot.hasData) {
                                       StatusModel statusModel =
-                                          snapshot.data!.data() as StatusModel;
+                                      snapshot.data!.data()
+                                      as StatusModel;
                                       taskStatus = statusModel.name!;
                                       return TaskWidget(
                                           status: getStatus(taskStatus));
@@ -297,24 +300,23 @@ class _brogressState extends State<brogress> {
                               ],
                             ),
                           ),
-                          //AppSpaces.verticalSpace10,
                           Text(
-                            '${widget.completed.toInt()} من أصل ${widget.all.toInt()} تم الانتهاء',
-                            // Use the rating property of taskModel
+                            '${widget.completed.toInt()} من أصل ${widget.all
+                                .toInt()} تم الانتهاء',
                             style: GoogleFonts.lato(
                               fontWeight: FontWeight.w500,
                               fontSize: Utils.screenWidth * 0.04,
                             ),
                           ),
-                          //  AppSpaces.verticalSpace10,
                           Row(
                             children: [
                               Expanded(
                                 flex: 3,
                                 child: Container(
-                                  height: Utils.screenHeight2 * 0.03,
+                                  height: Utils.screenHeight * 0.03,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius:
+                                      BorderRadius.circular(25),
                                       color: Colors.white),
                                   child: Row(
                                     children: [
@@ -323,10 +325,11 @@ class _brogressState extends State<brogress> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(25),
+                                            BorderRadius.circular(25),
                                             gradient: LinearGradient(
                                               colors: [
-                                                HexColor.fromHex("343840"),
+                                                HexColor.fromHex(
+                                                    "343840"),
                                                 HexColor.fromHex("343840")
                                               ],
                                             ),
@@ -334,7 +337,8 @@ class _brogressState extends State<brogress> {
                                         ),
                                       ),
                                       Expanded(
-                                          flex: 100 - widget.percento.toInt(),
+                                          flex: 100 -
+                                              widget.percento.toInt(),
                                           child: const SizedBox())
                                     ],
                                   ),
@@ -343,19 +347,20 @@ class _brogressState extends State<brogress> {
                               const Spacer(),
                               Text(
                                 "${widget.percento}%",
-                                // Use the progressFigure property of taskModel
                                 style: GoogleFonts.lato(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
                               ),
                             ],
                           ),
-                          //AppSpaces.verticalSpace10,
-                          buildLabel(" وصف: ${widget.taskModel.description}"),
                           buildLabel(
-                              " تاريخ البدء:${formatDateTime(widget.taskModel.startDate)}"),
+                              " وصف: ${widget.taskModel.description}"),
                           buildLabel(
-                              " تاريخ الانتهاء:${formatDateTime(widget.taskModel.endDate!)}"),
+                              " تاريخ البدء:${formatDateTime(
+                                  widget.taskModel.startDate)}"),
+                          buildLabel(
+                              " تاريخ الانتهاء:${formatDateTime(
+                                  widget.taskModel.endDate!)}"),
                         ],
                       ),
                     ),
@@ -364,12 +369,16 @@ class _brogressState extends State<brogress> {
               ),
             ),
           )
-        : InkWell(
+              : InkWell(
             onTap: () {
-              Get.to(SubTaskScreen(
-                projectId: widget.taskModel.projectId,
-                mainTaskId: widget.taskModel.id,
-              ));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (_) =>
+                          SubTaskScreen(
+                            projectId: widget.taskModel.projectId,
+                            mainTaskId: widget.taskModel.id,
+                          )));
             },
             child: Opacity(
               opacity: getOpacity(widget.taskModel.importance),
@@ -379,19 +388,13 @@ class _brogressState extends State<brogress> {
                       .withOpacity(0.5),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: HexColor.fromHex(widget.taskModel
-                        .hexcolor), // Set the second color for the border
-                    width: 5, // Adjust the width of the border as needed
+                    color: HexColor.fromHex(widget.taskModel.hexcolor),
+                    width: 5,
                   ),
                 ),
                 height: 150,
                 child: Stack(
                   children: [
-                    // const Positioned(
-                    //   top: 10,
-                    //   right: 10,
-                    //   child: Icon(Icons.task_alt_sharp),
-                    // ),
                     Positioned(
                       top: 10,
                       bottom: 20,
@@ -405,11 +408,11 @@ class _brogressState extends State<brogress> {
                             physics: AlwaysScrollableScrollPhysics(),
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  widget.taskModel
-                                      .name!, // Use the name property of taskModel
+                                  widget.taskModel.name!,
                                   style: GoogleFonts.lato(
                                       fontWeight: FontWeight.bold,
                                       fontSize: Utils.screenWidth * 0.06,
@@ -417,17 +420,19 @@ class _brogressState extends State<brogress> {
                                 ),
                                 AppSpaces.horizontalSpace10,
                                 StreamBuilder(
-                                  stream: StatusController()
+                                  stream: StatusProvider()
                                       .getStatusByIdStream(
-                                          idk: widget.taskModel.statusId)
+                                      idk: widget.taskModel.statusId)
                                       .asBroadcastStream(),
                                   builder: (context,
                                       AsyncSnapshot<
-                                              DocumentSnapshot<StatusModel>>
-                                          snapshot) {
+                                          DocumentSnapshot<
+                                              StatusModel>>
+                                      snapshot) {
                                     if (snapshot.hasData) {
                                       StatusModel statusModel =
-                                          snapshot.data!.data() as StatusModel;
+                                      snapshot.data!.data()
+                                      as StatusModel;
                                       taskStatus = statusModel.name!;
                                       return TaskWidget(
                                           status: getStatus(taskStatus));
@@ -443,8 +448,8 @@ class _brogressState extends State<brogress> {
                           ),
                           AppSpaces.verticalSpace10,
                           Text(
-                            '${widget.completed.toInt()}  ${widget.all.toInt()}  تم الانتهاء',
-                            // Use the rating property of taskModel
+                            '${widget.completed.toInt()}  ${widget.all
+                                .toInt()}  تم الانتهاء',
                             style: GoogleFonts.lato(
                               fontWeight: FontWeight.w500,
                               fontSize: Utils.screenWidth * 0.03,
@@ -458,7 +463,8 @@ class _brogressState extends State<brogress> {
                                 child: Container(
                                   height: 15,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25),
+                                      borderRadius:
+                                      BorderRadius.circular(25),
                                       color: Colors.white),
                                   child: Row(
                                     children: [
@@ -467,10 +473,11 @@ class _brogressState extends State<brogress> {
                                         child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius.circular(25),
+                                            BorderRadius.circular(25),
                                             gradient: LinearGradient(
                                               colors: [
-                                                HexColor.fromHex("343840"),
+                                                HexColor.fromHex(
+                                                    "343840"),
                                                 HexColor.fromHex("343840")
                                               ],
                                             ),
@@ -478,7 +485,8 @@ class _brogressState extends State<brogress> {
                                         ),
                                       ),
                                       Expanded(
-                                          flex: 100 - widget.percento.toInt(),
+                                          flex: 100 -
+                                              widget.percento.toInt(),
                                           child: const SizedBox())
                                     ],
                                   ),
@@ -487,7 +495,6 @@ class _brogressState extends State<brogress> {
                               const Spacer(),
                               Text(
                                 "${widget.percento}%",
-                                // Use the progressFigure property of taskModel
                                 style: GoogleFonts.lato(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black),
@@ -495,11 +502,14 @@ class _brogressState extends State<brogress> {
                             ],
                           ),
                           AppSpaces.verticalSpace10,
-                          buildLabel("وصف: ${widget.taskModel.description}"),
                           buildLabel(
-                              "تاريخ البدء:${formatDateTime(widget.taskModel.startDate)}"),
+                              "وصف: ${widget.taskModel.description}"),
                           buildLabel(
-                              "تاريخ الانتهاء:${formatDateTime(widget.taskModel.endDate!)}"),
+                              "تاريخ البدء:${formatDateTime(
+                                  widget.taskModel.startDate)}"),
+                          buildLabel(
+                              "تاريخ الانتهاء:${formatDateTime(
+                                  widget.taskModel.endDate!)}"),
                           const SizedBox(
                             height: 10,
                           ),
@@ -510,7 +520,10 @@ class _brogressState extends State<brogress> {
                 ),
               ),
             ),
-          ));
+          );
+        },
+      ),
+    );
   }
 
   double getOpacity(int importance) {
@@ -561,27 +574,15 @@ class _brogressState extends State<brogress> {
 }
 
 Widget _buildStatus(int importance) {
-  final maxOpacity = 0.9; // Maximum opacity for the task
-  final minOpacity = 0.3; // Minimum opacity for the task
-  final opacityStep =
-      (maxOpacity - minOpacity) / 4; // Step size for opacity calculation
+  final maxOpacity = 0.9;
+  final minOpacity = 0.3;
+  final opacityStep = (maxOpacity - minOpacity) / 4;
   return Row(
     children: List.generate(5, (index) {
       final isFilledStar = index < importance;
-      final opacity = isFilledStar
-          ? minOpacity + (importance - 1) * opacityStep
-          : 1.0; // Set opacity to 1.0 for empty stars
+      final opacity =
+          isFilledStar ? minOpacity + (importance - 1) * opacityStep : 1.0;
       return Text("jj");
-
-      // return GlowContainer(
-      //   glowColor: isFilledStar
-      //       ? Colors.yellow.withOpacity(opacity)
-      //       : Colors.transparent,
-      //   child: Icon(
-      //     isFilledStar ? Icons.star_rate_rounded : Icons.star_border_rounded,
-      //     color: Colors.yellow.withOpacity(opacity),
-      //   ),
-      // );
     }),
   );
 }
@@ -638,24 +639,7 @@ class TaskWidget extends StatelessWidget {
 
     return Row(
       children: [
-        // GlowContainer(
-        //   glowColor: color.withOpacity(0.7),
-        //   child: Icon(
-        //     icon,
-        //     color: color,
-        //   ),
-        // ),
         SizedBox(width: 8),
-        // GlowContainer(
-        //   glowColor: color.withOpacity(0.7),
-        //   child: Text(
-        //     statusText,
-        //     style: TextStyle(
-        //       color: color,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

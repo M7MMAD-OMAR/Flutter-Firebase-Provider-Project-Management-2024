@@ -10,9 +10,9 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
@@ -218,10 +218,14 @@ class _DashboardMeetingDetailsWidgetState
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
                           onTap: () {
-                            Get.to(() => SearchForMembers(
-                                  newTeam: true,
-                                  users: DashboardMeetingDetailsWidget.users,
-                                ));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => SearchForMembersScreen(
+                                          newTeam: true,
+                                          users: DashboardMeetingDetailsWidget
+                                              .users,
+                                        )));
                           },
                           child: LabelledSelectableContainer(
                             label: "الأعضاء",
@@ -250,8 +254,7 @@ class _DashboardMeetingDetailsWidgetState
                               } else {
                                 showDialogMethod(context);
                                 ManagerModel managerModel =
-                                    await ManagerController()
-                                        .getManagerOrMakeOne(
+                                    await ManagerProvider().getManagerOrMakeOne(
                                             userId: AuthProvider
                                                 .firebaseAuth.currentUser!.uid);
                                 if (selectedImagePath != null) {
@@ -349,7 +352,7 @@ EitherException<Future<String?>> uploadImageToStorge({
 }
 
 createTheTeam({required TeamModel teamModel}) async {
-  await TeamController().addTeam(teamModel);
+  await TeamProvider().addTeam(teamModel);
   for (var user in userController.users) {
     WaitingMemberModel waitingMemberModel = WaitingMemberModel(
         idParameter: watingMamberRef.doc().id,
@@ -358,7 +361,7 @@ createTheTeam({required TeamModel teamModel}) async {
         createdAtParameter: DateTime.now(),
         updatedAtParameter: DateTime.now());
 
-    await WaitingMamberController()
+    await WaitingMemberProvider()
         .addWaitingMamber(waitingMemberModel: waitingMemberModel);
   }
 }

@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/add_user_to_team_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/bottom_navigation_item_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_icon_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_sheet_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/profile_overview_provider.dart';
 import 'dashboard_screen.dart';
 
 class TimelineScreen extends StatefulWidget {
@@ -20,16 +24,18 @@ class TimelineScreen extends StatefulWidget {
 class _TimelineScreenState extends State<TimelineScreen> {
   ValueNotifier<int> bottomNavigatorTrigger = ValueNotifier(0);
 
-  AddTeamToCreatProjectScreen addTeamToCreatProjectScreen =
-      Get.put(AddTeamToCreatProjectScreen());
-  DashboardMeetingDetailsScreenController
-      dashboardMeetingDetailsScreenController =
-      Get.put(DashboardMeetingDetailsScreenController());
+  AddTeamToCreatProjectProvider addTeamToCreatProjectScreen =
+      Provider.of<AddTeamToCreatProjectProvider>(context);
+
+  DashboardMeetingDetailsProvider dashboardMeetingDetailsScreenController =
+      Provider.of<DashboardMeetingDetailsProvider>(context);
+
   ProfileOverviewProvider profileOverviewController =
-      Get.put(ProfileOverviewProvider(), permanent: true);
+      Provider.of<ProfileOverviewProvider>(context);
   StatelessWidget currentScreen = DashboardScreen();
 
   final PageStorageBucket bucket = PageStorageBucket();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

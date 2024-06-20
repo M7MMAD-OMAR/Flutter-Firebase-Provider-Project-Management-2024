@@ -4,16 +4,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/task_widget.dart';
 
 import '../../constants/back_constants.dart';
-import '../../controllers/categoryController.dart';
-import '../../controllers/statusController.dart';
-import '../../controllers/user_task_controller.dart';
+import '../../controllers/task_category_provider.dart';
+import '../../controllers/status_provider.dart';
+import '../../controllers/user_task_provider.dart';
 import '../../models/status_model.dart';
 import '../../models/task/user_task_category_model.dart';
 import '../../services/collections_refrences.dart';
@@ -86,10 +86,10 @@ class _FatherTasksState extends State<FatherTasks> {
     });
   }
 
-  TaskCategoryController userTaskCategoryController =
-      Get.put(TaskCategoryController());
+  TaskCategoryProvider userTaskCategoryController =
+      Get.put(TaskCategoryProvider());
   TextEditingController editingController = TextEditingController();
-  UserTaskController taskController = Get.put(UserTaskController());
+  UserTaskProvider taskController = Get.put(UserTaskProvider());
   String search = "";
 
   @override
@@ -346,7 +346,7 @@ class _FatherTasksState extends State<FatherTasks> {
             }
 
             try {
-              StatusController statusController = Get.put(StatusController());
+              StatusProvider statusController = Get.put(StatusProvider());
               StatusModel statusModel = await statusController.getStatusByName(
                   status: statusNotStarted);
 
@@ -364,7 +364,7 @@ class _FatherTasksState extends State<FatherTasks> {
                   updatedAtParameter: DateTime.now(),
                   startDateParameter: startDate,
                   endDateParameter: dueDate);
-              await UserTaskController()
+              await UserTaskProvider()
                   .addUserLateTask(userTaskModel: userTaskModel);
               CustomSnackBar.showSuccess(
                   "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
@@ -388,7 +388,7 @@ class _FatherTasksState extends State<FatherTasks> {
               return;
             }
             try {
-              StatusController statusController = Get.put(StatusController());
+              StatusProvider statusController = Get.put(StatusProvider());
               StatusModel statusModel = await statusController.getStatusByName(
                   status: statusNotStarted);
               DocumentReference? taskfatherid;
@@ -418,7 +418,7 @@ class _FatherTasksState extends State<FatherTasks> {
                   updatedAtParameter: DateTime.now(),
                   startDateParameter: startDate,
                   endDateParameter: dueDate);
-              await UserTaskController()
+              await UserTaskProvider()
                   .adddUserTask(userTaskModel: userTaskModel);
             } catch (e) {
               CustomSnackBar.showError(e.toString());
@@ -431,7 +431,7 @@ class _FatherTasksState extends State<FatherTasks> {
             //     .getDocById(
             //         reference: usersTasksRef, id: widget.fatherTaskModel.id);
             // taskfatherid = documentReference.reference;
-            return TopController().existByTow(
+            return TopProvider().existByTow(
                 reference: usersTasksRef,
                 value: name,
                 field: nameK,

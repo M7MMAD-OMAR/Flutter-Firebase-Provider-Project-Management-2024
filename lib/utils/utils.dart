@@ -1,9 +1,11 @@
-part of values;
+part of '../constants/values.dart';
 
 class Utils {
-  static final double screenWidth = Get.width;
-  static final double screenHeight = Get.width;
- static final screenHeight2 = Get.size.height;
+  static BuildContext context = navigatorKey.currentContext!;
+
+  static double get screenWidth => MediaQuery.of(context).size.width;
+
+  static double get screenHeight => MediaQuery.of(context).size.height;
 }
 
 class SineCurve extends Curve {
@@ -123,8 +125,10 @@ Widget buildStackedImages(
   );
 }
 
-final DashboardMeetingDetailsScreenController userController =
-    Get.find<DashboardMeetingDetailsScreenController>();
+final BuildContext context = navigatorKey.currentContext!;
+
+final UserProvider userController =
+    Provider.of<UserProvider>(context, listen: false);
 
 Widget buildStackedImagesEdit(
     {TextDirection direction = TextDirection.rtl, bool? addMore}) {
@@ -137,7 +141,7 @@ Widget buildStackedImagesEdit(
     decoration:
         const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
     child: Center(
-      child: Text(userController.users.length.toString(),
+      child: Text(UserProvider.users.length.toString(),
           style: GoogleFonts.lato(
               color: HexColor.fromHex("226AFD"),
               fontSize: 20,
@@ -153,12 +157,12 @@ Widget buildStackedImagesEdit(
       child: const Icon(Icons.add, color: Colors.white));
 
   final items = List.generate(
-      userController.users.length,
+      UserProvider.users.length,
       (index) => ProfileDummy(
           imageType: ImageType.Network,
           color: Colors.white,
           dummyType: ProfileDummyType.Image,
-          image: userController.users[index].imageUrl,
+          image: UserProvider.users[index].imageUrl,
           scale: 1.0));
 
   return StackedWidgets(
@@ -173,8 +177,9 @@ Widget buildStackedImagesEdit(
   );
 }
 
-final AddTeamToCreatProjectScreen addTeamToCreatProjectScreen =
-    Get.find<AddTeamToCreatProjectScreen>();
+final AddTeamToCreatProjectProvider addTeamToCreatProjectScreen =
+    Provider.of<AddTeamToCreatProjectProvider>(context);
+
 Widget buildStackedImagesTeamEdit(
     {TextDirection direction = TextDirection.rtl, bool? addMore}) {
   const double size = 50;

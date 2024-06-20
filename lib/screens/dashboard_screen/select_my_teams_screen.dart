@@ -2,19 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/add_user_to_team_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../profile/profile_overview_screen.dart';
 
@@ -56,13 +60,14 @@ class TeamInfo {
 }
 
 class SelectMyTeamsScreen extends StatefulWidget {
-  SelectMyTeamsScreen({Key? key, required this.title}) : super(key: key);
+  SelectMyTeamsScreen({super.key, required this.title});
   final String title;
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  DashboardMeetingDetailsScreenController controller =
-      Get.put(DashboardMeetingDetailsScreenController(), permanent: true);
-  AddTeamToCreatProjectScreen addTeamToCreatProjectScreen =
-      Get.put(AddTeamToCreatProjectScreen());
+  DashboardMeetingDetailsProvider controller =
+      Provider.of<DashboardMeetingDetailsProvider>(context);
+
+  AddTeamToCreatProjectProvider addTeamToCreatProjectScreen =
+      Provider.of<AddTeamToCreatProjectProvider>(context);
 
   @override
   State<SelectMyTeamsScreen> createState() => _SelectMyTeamsScreenState();
@@ -71,18 +76,12 @@ class SelectMyTeamsScreen extends StatefulWidget {
 class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
   @override
   void initState() {
-    userController.users.clear();
+    UserProvider.users.clear();
     addTeamToCreatProjectScreen.teams.clear();
 
     super.initState();
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-
-    super.dispose();
-  }
 
   TeamSortOption selectedSortOption = TeamSortOption.name;
 
@@ -142,7 +141,7 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                                     )));
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
-                          stream: UserController().getUserByIdStream(
+                          stream: UserProvider().getUserByIdStream(
                               id: AuthProvider.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -242,7 +241,7 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                 AppSpaces.verticalSpace20,
                 Expanded(
                   child: StreamBuilder<QuerySnapshot<TeamModel>?>(
-                    stream: TeamController().getTeamsOfUserStream(
+                    stream: TeamProvider().getTeamsOfUserStream(
                         userId: AuthProvider.firebaseAuth.currentUser!.uid),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
@@ -300,7 +299,7 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                               final team = teams[index];
                               return StreamBuilder<
                                   QuerySnapshot<TeamMemberModel>>(
-                                stream: TeamMemberController()
+                                stream: TeamMemberProvider()
                                     .getMembersInTeamIdStream(teamId: team.id),
                                 builder: (context, memberSnapshot) {
                                   if (memberSnapshot.hasData) {
@@ -493,7 +492,7 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                   buttonWidth: Utils.screenWidth * 0.4,
                   buttonText: 'إنشاء فريق جديد',
                   callback: () {
-                    DashboardMeetingDetails.users = [];
+                    DashboardMeetingDetailsWidget.users = [];
                     Navigator.pushNamed(
                         context, Routes.dashboardMeetingDetailsScreen);
                   },

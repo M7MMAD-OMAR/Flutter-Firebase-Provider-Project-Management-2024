@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
@@ -55,7 +55,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       type: ProfileDummyType.Button),
                   const SizedBox(height: 30),
                   StreamBuilder<DocumentSnapshot<UserModel>>(
-                      stream: UserController().getUserByIdStream(
+                      stream: UserProvider().getUserByIdStream(
                           id: AuthProvider.firebaseAuth.currentUser!.uid),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
@@ -148,7 +148,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       ProfileTextOption(
                         inTap: () async {
                           showDialogMethod(context);
-                          ManagerModel? userAsManger = await ManagerController()
+                          ManagerModel? userAsManger = await ManagerProvider()
                               .getMangerWhereUserIs(
                                   userId: AuthProvider
                                       .firebaseAuth.currentUser!.uid);

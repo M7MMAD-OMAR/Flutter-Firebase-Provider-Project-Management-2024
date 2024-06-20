@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
@@ -14,9 +14,9 @@ import '../models/team/project_main_task_model.dart';
 import '../models/team/project_model.dart';
 import '../models/team/project_sub_task_model.dart';
 import '../providers/auth_provider.dart';
-import 'taskController.dart';
+import 'task_provider.dart';
 
-class ProjectMainTaskController extends ProjectAndTaskController {
+class ProjectMainTaskController extends TaskProvider {
   Future<ProjectMainTaskModel> getProjectMainTaskById(
       {required String id}) async {
     DocumentSnapshot mainTaskDoc =
@@ -247,10 +247,10 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     List<ProjectSubTaskModel> firstMemberMainTasks = [];
     List<ProjectSubTaskModel> secondMemberMainTasks = [];
     List<String> mainTasksIds = [];
-    firstMemberMainTasks = await ProjectSubTaskController()
-        .getMemberSubTasks(memberId: firstMember);
+    firstMemberMainTasks =
+        await ProjectSubTaskProvider().getMemberSubTasks(memberId: firstMember);
 
-    secondMemberMainTasks = await ProjectSubTaskController()
+    secondMemberMainTasks = await ProjectSubTaskProvider()
         .getMemberSubTasks(memberId: secondMember);
 
     for (var firstMemberMainTask in firstMemberMainTasks) {
@@ -279,7 +279,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     Completer<List<String>> completer = Completer<List<String>>();
 
     Stream<QuerySnapshot<ProjectSubTaskModel>> firstMemberSubTasksStream =
-        ProjectSubTaskController().getMemberSubTasksForAProjectStream(
+        ProjectSubTaskProvider().getMemberSubTasksForAProjectStream(
             memberId: firstMember, projectId: projectId);
 
     StreamSubscription<QuerySnapshot<ProjectSubTaskModel>>
@@ -323,14 +323,14 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     String memberId = "";
     List<String> mainTaskIds = [];
     List<String> finalIds = [];
-    List<TeamMemberModel> list = await TeamMemberController()
+    List<TeamMemberModel> list = await TeamMemberProvider()
         .getMemberWhereUserIs(
             userId: AuthProvider.firebaseAuth.currentUser!.uid);
     for (var element in list) {
       TeamMemberModel teamMemberModel = element;
       memberId = teamMemberModel.id;
-      List<ProjectSubTaskModel> subTasksList = await ProjectSubTaskController()
-          .getMemberSubTasks(memberId: memberId);
+      List<ProjectSubTaskModel> subTasksList =
+          await ProjectSubTaskProvider().getMemberSubTasks(memberId: memberId);
 
       for (var subTaskModel in subTasksList) {
         if (!mainTaskIds.contains(subTaskModel.mainTaskId)) {
@@ -376,7 +376,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         .subtract(const Duration(seconds: 1));
     List<ProjectMainTaskModel> mainTasksall = [];
     List<String> idList = [];
-    List<ProjectModel?>? projects = await ProjectController()
+    List<ProjectModel?>? projects = await ProjectProvider()
         .getProjectsOfUser(userId: AuthProvider.firebaseAuth.currentUser!.uid);
     for (var element in projects!) {
       List<ProjectMainTaskModel> mainTasks =
@@ -422,7 +422,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
     final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
     List<ProjectMainTaskModel> list =
         await getProjectMainTasks(projectId: projectMainTaskModel.projectId);
-    ProjectModel? project = await ProjectController()
+    ProjectModel? project = await ProjectProvider()
         .getProjectById(id: projectMainTaskModel.projectId);
     if (!projectMainTaskModel.startDate.isAfter(project!.startDate) ||
         !projectMainTaskModel.endDate!.isBefore(project.endDate!)) {
@@ -511,7 +511,7 @@ class ProjectMainTaskController extends ProjectAndTaskController {
         await getDocById(reference: projectMainTasksRef, id: id);
     ProjectMainTaskModel projectMainTaskModel =
         snapshot.data() as ProjectMainTaskModel;
-    ProjectModel? project = await ProjectController()
+    ProjectModel? project = await ProjectProvider()
         .getProjectById(id: projectMainTaskModel.projectId);
     if (isfromback) {
       await updateTask(

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/src/intl/date_format.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingSubTasks.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_sub_tasks_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
@@ -18,6 +18,7 @@ import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_mod
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/team/project_model.dart';
 import '../../providers/box_provider.dart';
@@ -31,20 +32,22 @@ import '../profile/profile_overview_screen.dart';
 class InvitationScreen extends StatelessWidget {
   InvitationScreen({super.key});
 
-  final BoxProvider boxController = Get.put(BoxProvider());
+  final BoxProvider boxProvider = Provider.of<BoxProvider>(context);
 
   @override
   Widget build(BuildContext context) {
     final settingsButtonTrigger = ValueNotifier(0);
-    boxController.selectTab(0);
-    return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SafeArea(
-          child: GetBuilder<BoxProvider>(
-            init: BoxProvider(),
-            builder: (controller) {
-              return Column(children: [
-                TaskezAppHeader(
+    // boxProvider.selectTab(0);
+    return ChangeNotifierProvider<BoxProvider>(
+        create: (_) => BoxProvider(),
+        child: Scaffold(
+            body: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SafeArea(
+                  child: Consumer<BoxProvider>(
+                    builder: (context, boxProvider, child) {
+                      return Column(children: [
+                        TaskezAppHeader(
                   title: 'الدعوات',
                   widget: GestureDetector(
                     onTap: () async {
@@ -58,8 +61,8 @@ class InvitationScreen extends StatelessWidget {
                                   )));
                     },
                     child: StreamBuilder<DocumentSnapshot<UserModel>>(
-                        stream: UserController().getUserByIdStream(
-                            id: AuthProvider.firebaseAuth.currentUser!.uid),
+                                stream: UserProvider().getUserByIdStream(
+                                    id: AuthProvider.firebaseAuth.currentUser!.uid),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return const Text("جاري التحميل...");
@@ -94,19 +97,19 @@ class InvitationScreen extends StatelessWidget {
                             children: [
                               PrimaryTabButton(
                                   callback: () {
-                                    boxController.selectTab(0);
-                                    settingsButtonTrigger.value =
-                                        controller.selectedTabIndex.value;
-                                  },
+                                            boxProvider.selectTab(0);
+                                            settingsButtonTrigger.value =
+                                                boxProvider.selectedTabIndex;
+                                          },
                                   buttonText: 'المهمة في الصندوق',
                                   itemIndex: 0,
                                   notifier: settingsButtonTrigger),
                               PrimaryTabButton(
                                   callback: () {
-                                    boxController.selectTab(1);
-                                    settingsButtonTrigger.value =
-                                        controller.selectedTabIndex.value;
-                                  },
+                                            boxProvider.selectTab(1);
+                                            settingsButtonTrigger.value =
+                                                boxProvider.selectedTabIndex;
+                                          },
                                   buttonText: 'طلبات الانضمام في الصندوق',
                                   itemIndex: 1,
                                   notifier: settingsButtonTrigger),
@@ -117,10 +120,10 @@ class InvitationScreen extends StatelessWidget {
                 ),
                 AppSpaces.verticalSpace20,
                 Expanded(
-                  child: controller.selectedTabIndex.value == 0
-                      ? StreamBuilder<QuerySnapshot<TeamMemberModel>>(
-                          stream: TeamMemberController()
-                              .getMemberWhereUserIsStream(
+                          child: boxProvider.selectedTabIndex == 0
+                              ? StreamBuilder<QuerySnapshot<TeamMemberModel>>(
+                                  stream: TeamMemberProvider()
+                                      .getMemberWhereUserIsStream(
                                   userId: AuthProvider
                                       .firebaseAuth.currentUser!.uid),
                           builder: (context, snapshotMembersforUser) {
@@ -224,8 +227,8 @@ class InvitationScreen extends StatelessWidget {
                               if (snapshotMembersforUser.hasData) {
                                 return StreamBuilder<
                                         QuerySnapshot<WaitingSubTaskModel>>(
-                                    stream: WatingSubTasksController()
-                                        .getWaitingSubTasksInMembersId(
+                                            stream: WaitingSubTasksProvider()
+                                                .getWaitingSubTasksInMembersId(
                                             membersId: membersId),
                                     builder:
                                         (context, snapshotOfWaitngSubTasks) {
@@ -311,8 +314,8 @@ class InvitationScreen extends StatelessWidget {
                                               StreamBuilder<
                                                       DocumentSnapshot<
                                                           ProjectModel>>(
-                                                  stream: ProjectController()
-                                                      .getProjectByIdStream(
+                                                      stream: ProjectProvider()
+                                                          .getProjectByIdStream(
                                                           id: listWaitingSubTasks[
                                                                   index]
                                                               .projectSubTaskModel
@@ -345,8 +348,8 @@ class InvitationScreen extends StatelessWidget {
                                                                       try {
                                                                         showDialogMethod(
                                                                             context);
-                                                                        await WatingSubTasksController().rejectSubTask(
-                                                                            waitingSubTaskId:
+                                                                            await WaitingSubTasksProvider().rejectSubTask(
+                                                                                waitingSubTaskId:
                                                                                 listWaitingSubTasks[index].id,
                                                                             rejectingMessage: "rejectingMessage");
                                                                         Navigator.of(context)
@@ -361,8 +364,7 @@ class InvitationScreen extends StatelessWidget {
                                                                       try {
                                                                         showDialogMethod(
                                                                             context);
-                                                                        await WatingSubTasksController()
-                                                                            .accpetSubTask(
+                                                                            await WaitingSubTasksProvider().accpetSubTask(
                                                                           waitingSubTaskId:
                                                                               listWaitingSubTasks[index].id,
                                                                         );
@@ -405,8 +407,8 @@ class InvitationScreen extends StatelessWidget {
                                 child: CircularProgressIndicator());
                           })
                       : StreamBuilder<QuerySnapshot<WaitingMemberModel>>(
-                          stream: WaitingMamberController()
-                              .getWaitingMembersInUserIdStream(
+                                  stream: WaitingMemberProvider()
+                                      .getWaitingMembersInUserIdStream(
                                   userId: AuthProvider
                                       .firebaseAuth.currentUser!.uid),
                           builder: (context, snapshotOfWaithingMembers) {
@@ -475,8 +477,9 @@ class InvitationScreen extends StatelessWidget {
                                 itemCount: snapshotOfWaithingMembers.data!.size,
                                 itemBuilder: (context, index) => StreamBuilder<
                                         DocumentSnapshot<TeamModel>>(
-                                    stream: TeamController().getTeamByIdStream(
-                                        id: listWaitingMembers[index].teamId),
+                                                stream: TeamProvider()
+                                                    .getTeamByIdStream(
+                                                        id: listWaitingMembers[index].teamId),
                                     builder: (context, snapshotTeam) {
                                       if (!snapshotTeam.hasData) {
                                         return Column(
@@ -517,8 +520,8 @@ class InvitationScreen extends StatelessWidget {
                                             snapshotTeam.data!.data()!;
                                         return StreamBuilder<
                                                 DocumentSnapshot<UserModel>>(
-                                            stream: UserController()
-                                                .getUserWhereMangerIsStream(
+                                                        stream: UserProvider()
+                                                            .getUserWhereMangerIsStream(
                                                     mangerId: snapshotTeam.data!
                                                         .data()!
                                                         .managerId),
@@ -569,8 +572,7 @@ class InvitationScreen extends StatelessWidget {
                                                 ActiveTaskCard(
                                                     onPressedEnd: (p0) async {
                                                       showDialogMethod(context);
-                                                      await WaitingMamberController()
-                                                          .declineTeamInvite(
+                                                                      await WaitingMemberProvider().declineTeamInvite(
                                                               rejectingMessage:
                                                                   "i dont like it",
                                                               waitingMemberId:
@@ -582,8 +584,7 @@ class InvitationScreen extends StatelessWidget {
                                                     },
                                                     onPressedStart: (p0) async {
                                                       showDialogMethod(context);
-                                                      await WaitingMamberController()
-                                                          .acceptTeamInvite(
+                                                                      await WaitingMemberProvider().acceptTeamInvite(
                                                               waitingMemberId:
                                                                   listWaitingMembers[
                                                                           index]
@@ -615,7 +616,7 @@ class InvitationScreen extends StatelessWidget {
               ]);
             },
           ),
-        ));
+                ))));
   }
 }
 

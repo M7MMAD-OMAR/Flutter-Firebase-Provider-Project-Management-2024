@@ -9,10 +9,10 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/user/task_widget.dart';
 
 import '../../constants/back_constants.dart';
-import '../../controllers/categoryController.dart';
-import '../../controllers/statusController.dart';
-import '../../controllers/topController.dart';
-import '../../controllers/user_task_controller.dart';
+import '../../controllers/task_category_provider.dart';
+import '../../controllers/status_provider.dart';
+import '../../controllers/top_provider.dart';
+import '../../controllers/user_task_provider.dart';
 import '../../models/status_model.dart';
 import '../../models/task/user_task_category_model.dart';
 import '../../services/collections_refrences.dart';
@@ -41,10 +41,10 @@ class CategoryTasks extends StatefulWidget {
 }
 
 class _CategoryTasksState extends State<CategoryTasks> {
-  TaskCategoryController userTaskCategoryController =
-      Get.put(TaskCategoryController());
+  TaskCategoryProvider userTaskCategoryController =
+      Get.put(TaskCategoryProvider());
   TextEditingController editingController = TextEditingController();
-  UserTaskController taskController = Get.put(UserTaskController());
+  UserTaskProvider taskController = Get.put(UserTaskProvider());
   String search = "";
   TaskSortOption selectedSortOption = TaskSortOption.name;
   int crossAxisCount = 1; // Variable for crossAxisCount
@@ -340,7 +340,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
           }
 
           try {
-            StatusController statusController = Get.put(StatusController());
+            StatusProvider statusController = Get.put(StatusProvider());
             StatusModel statusModel = await statusController.getStatusByName(
                 status: statusNotStarted);
 
@@ -358,7 +358,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                 updatedAtParameter: DateTime.now(),
                 startDateParameter: startDate,
                 endDateParameter: dueDate);
-            await UserTaskController()
+            await UserTaskProvider()
                 .addUserLateTask(userTaskModel: userTaskModel);
             CustomSnackBar.showSuccess(
                 "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
@@ -369,7 +369,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
         },
         isUserTask: true,
         checkExist: ({required String name}) async {
-          return TopController().existByTow(
+          return TopProvider().existByTow(
               reference: usersTasksRef,
               value: name,
               field: nameK,
@@ -390,7 +390,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
             return;
           }
           try {
-            StatusController statusController = Get.put(StatusController());
+            StatusProvider statusController = Get.put(StatusProvider());
             StatusModel statusModel = await statusController.getStatusByName(
                 status: statusNotStarted);
 
@@ -408,8 +408,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                 updatedAtParameter: DateTime.now(),
                 startDateParameter: startDate,
                 endDateParameter: dueDate);
-            await UserTaskController()
-                .adddUserTask(userTaskModel: userTaskModel);
+            await UserTaskProvider().adddUserTask(userTaskModel: userTaskModel);
           } catch (e) {
             CustomSnackBar.showError(e.toString());
           }

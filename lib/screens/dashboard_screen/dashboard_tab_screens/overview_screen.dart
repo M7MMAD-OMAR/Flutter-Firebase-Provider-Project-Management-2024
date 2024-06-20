@@ -2,10 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/dashboard_settings_sheet_widget.dart';
@@ -41,13 +41,12 @@ class _DashboardOverviewScreenState extends State<DashboardOverviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    TaskCategoryController taskCategoryController =
-        Provider.of<TaskCategoryController>(context);
-    UserTaskController userTaskController =
-        Provider.of<UserTaskController>(context);
-    ProjectController projectController =
-        Provider.of<ProjectController>(context);
-    TeamController teamController = Provider.of<TeamController>(context);
+    TaskCategoryProvider taskCategoryController =
+        Provider.of<TaskCategoryProvider>(context);
+    UserTaskProvider userTaskController =
+        Provider.of<UserTaskProvider>(context);
+    ProjectProvider projectController = Provider.of<ProjectProvider>(context);
+    TeamProvider teamController = Provider.of<TeamProvider>(context);
     int catNumber = 0;
     int totalTaskNumber = 0;
     int toDoTaskNumber = 0;

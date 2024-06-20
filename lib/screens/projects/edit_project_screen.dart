@@ -5,11 +5,11 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
@@ -140,10 +140,10 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
   DateTime startDate = DateTime.now();
 
   DateTime dueDate = DateTime.now();
-  ProjectController projectController = Get.put(ProjectController());
-  TeamController teamController = Get.put(TeamController());
-  TeamMemberController teamMemberController = Get.put(TeamMemberController());
-  ManagerController managerController = Get.put(ManagerController());
+  ProjectProvider projectController = Get.put(ProjectProvider());
+  TeamProvider teamController = Get.put(TeamProvider());
+  TeamMemberProvider teamMemberController = Get.put(TeamMemberProvider());
+  ManagerProvider managerController = Get.put(ManagerProvider());
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String name = "";
   String desc = "";
@@ -201,7 +201,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   StreamBuilder<DocumentSnapshot<TeamModel>>(
-                    stream: TeamController()
+                    stream: TeamProvider()
                         .getTeamByIdStream(id: widget.projectModel.teamId!),
                     builder: (context, snapshotTeam) {
                       return Text(
@@ -214,7 +214,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
                     },
                   ),
                   StreamBuilder<QuerySnapshot<TeamMemberModel>>(
-                      stream: TeamMemberController().getMembersInTeamIdStream(
+                      stream: TeamMemberProvider().getMembersInTeamIdStream(
                           teamId: widget.projectModel.teamId!),
                       builder: (context, snapshotMembers) {
                         List<String> listIds = [];
@@ -238,7 +238,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
                             );
                           }
                           return StreamBuilder<QuerySnapshot<UserModel>>(
-                              stream: UserController()
+                              stream: UserProvider()
                                   .getUsersWhereInIdsStream(usersId: listIds),
                               builder: (context, snapshotUsers) {
                                 if (snapshotUsers.connectionState ==
@@ -445,7 +445,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
           desc != widget.projectModel.description ||
           startDate != widget.projectModel.startDate ||
           dueDate != widget.projectModel.endDate) {
-        await ProjectController().updateProject(
+        await ProjectProvider().updateProject(
             managerModel: widget.userAsManager,
             oldProject: widget.projectModel,
             data: {

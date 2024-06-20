@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/categoryController.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
@@ -105,7 +105,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
     UserModel userModel =
         await UserController().getUserWhereMemberIs(memberId: memberId);
     setState(() {
-      assignedToUserId = userModel.id;
+      assignedToUserId = useUserProvider
     });
   }
 
@@ -118,9 +118,9 @@ class _CreateSubTaskState extends State<CreateSubTask> {
   DateTime startDate = DateTime.now();
   String color = "#FDA7FF";
   DateTime dueDate = DateTime.now();
-  UserTaskController userTaskController = Get.put(UserTaskController());
-  TaskCategoryController taskCategoryController =
-      Get.put(TaskCategoryController());
+  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
+  TaskCategoryProvider taskCategoryController =
+  Get.put(TaskCategoryProvider());
 
   bool isTaked = false;
   String name = "";
@@ -144,13 +144,13 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   stream:
                       UserController().getUserByIdStream(id: assignedToUserId!),
                   builder: (context, snapshot) {
-                    UserModel? userModel = snapshot.data?.data()!;
+                    UserModel? userModel = sUserProviderdata()!;
                     if (snapshot.hasData) {
                       return InactiveEmployeeCardSubTask(
                         onTap: () async {
-                          ProjectModel? projectModel = await ProjectController()
+                          ProjectModel? projectModel = await ProjectProvider()
                               .getProjectById(id: widget.projectId);
-                          TeamModel? teamModel = await TeamController()
+                          TeamModel? teamModel = await TeamProvider()
                               .getTeamById(id: projectModel!.teamId!);
                           Get.to(SearchForMembersSubTask(
                             userModel: userModel,
@@ -191,10 +191,10 @@ class _CreateSubTaskState extends State<CreateSubTask> {
               if (assignedToUserId == null)
                 InkWell(
                   onTap: () async {
-                    ProjectModel? projectModel = await ProjectController()
+                    ProjectModel? projectModel = await ProjectProvider()
                         .getProjectById(id: widget.projectId);
 
-                    TeamModel teamModel = await TeamController()
+                    TeamModel teamModel = await TeamProvider()
                         .getTeamById(id: projectModel!.teamId!);
 
                     Get.to(() => SearchForMembersSubTask(

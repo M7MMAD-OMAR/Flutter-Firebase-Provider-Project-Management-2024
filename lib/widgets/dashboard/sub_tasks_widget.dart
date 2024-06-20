@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingSubTasks.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_sub_tasks_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
@@ -28,10 +28,12 @@ import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
-import 'package:project_management_muhmad_omar/widgets/Dashboard/subTask_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/sub_task_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 
+import '../../providers/auth_provider.dart';
+import '../../providers/task_provider.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import 'create_sub_task_widget.dart';
 import 'dashboard_add_icon_widget.dart';
@@ -92,9 +94,9 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
 
   ismanagerStream() async {
     ProjectModel? projectModel =
-        await ProjectController().getProjectById(id: widget.projectId);
+        await ProjectProvider().getProjectById(id: widget.projectId);
     Stream<DocumentSnapshot<ManagerModel>> managerModelStream =
-        ManagerController().getMangerByIdStream(id: projectModel!.managerId);
+        ManagerProvider().getMangerByIdStream(id: projectModel!.managerId);
     Stream<DocumentSnapshot<UserModel>> userModelStream;
 
     StreamSubscription<DocumentSnapshot<ManagerModel>> managerSubscription;
@@ -103,7 +105,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
     managerSubscription = managerModelStream.listen((managerSnapshot) {
       ManagerModel manager = managerSnapshot.data()!;
       userModelStream =
-          UserController().getUserWhereMangerIsStream(mangerId: manager.id);
+          UserProvider().getUserWhereMangerIsStream(mangerId: manager.id);
       userSubscription = userModelStream.listen((userSnapshot) {
         UserModel user = userSnapshot.data()!;
         bool updatedIsManager;
@@ -114,12 +116,12 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
         }
 
         // Update the state and trigger a rebuild
-        isManager.value = updatedIsManager;
+        context.read<TaskProvider>().setManager(updatedIsManager);
       });
     });
   }
 
-  RxBool isManager = false.obs;
+  TaskProvider isManager = TaskProvider();
   bool sortAscending = true; // Variable for sort order
   void toggleSortOrder() {
     setState(() {
@@ -247,8 +249,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               padding:
                   EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
               child: StreamBuilder(
-                stream: ProjectSubTaskController()
-                    .getSubTasksForAMainTaskStream(
+                stream: ProjectSubTaskProvider().getSubTasksForAMainTaskStream(
                         mainTaskId: widget.mainTaskId),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot<ProjectSubTaskModel>>
@@ -393,17 +394,16 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
               return;
             }
             UserModel userModel =
-                await UserController().getUserById(id: userIdAssignedTo);
+                await UserProvider().getUserById(id: userIdAssignedTo);
             StatusController statusController = Get.put(StatusController());
             StatusModel statusModel = await statusController.getStatusByName(
                 status: statusNotStarted);
             ProjectModel? projectModel =
-                await ProjectController().getProjectById(id: widget.projectId);
+                await ProjectProvider().getProjectById(id: widget.projectId);
 
             String? s = projectModel?.teamId!;
-            TeamModel teamModel =
-                await TeamController().getTeamById(id: s ?? "");
-            TeamMemberModel teamMemberModel = await TeamMemberController()
+            TeamModel teamModel = await TeStatusProviderTeamById(id: s ?? "");
+            StatusProviderrModel teamMemberModel = await TeamMemberProvider()
                 .getMemberByTeamIdAndUserId(
                     teamId: teamModel.id, userId: userIdAssignedTo);
             ProjectSubTaskModel projectSubTaskModel = ProjectSubTaskModel(
@@ -428,12 +428,12 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                 updatedAt: DateTime.now(),
                 id: waitingid,
                 projectSubTaskModel: projectSubTaskModel);
-            WatingSubTasksController waitingSubTaskController =
-                Get.put(WatingSubTasksController());
+            WaitingSubTasksProvider waitingSubTaskController =
+                Get.put(WaitingSubTasksProvider());
 
             bool overlapped = false;
             int over = 0;
-            List<ProjectSubTaskModel> list = await ProjectSubTaskController()
+            List<ProjectSubTaskModel> list = await ProjectSubTaskProvider()
                 .getMemberSubTasks(memberId: teamMemberModel.id);
             for (ProjectSubTaskModel existingTask in list) {
               if (projectSubTaskModel.startDate
@@ -505,13 +505,13 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
           },
           checkExist: ({required String name}) async {
             bool s;
-            s = await TopController().existByTow(
+            s = await TopProvider().existByTow(
                 reference: projectSubTasksRef,
                 value: widget.mainTaskId,
                 field: mainTaskIdK,
                 value2: name,
                 field2: nameK);
-            s = await TopController().existByTow(
+            s = await TopProvider().existByTow(
                 reference: watingSubTasksRef,
                 value: widget.mainTaskId,
                 field: "subTask.$mainTaskIdK",

@@ -5,10 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
-import 'package:project_management_muhmad_omar/screens/onboarding_screen/onboarding_carousel_screen.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_progress_button_widget.dart';
@@ -22,7 +22,7 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 class EditProfileScreen extends StatefulWidget {
   final UserModel? user;
 
-  const EditProfileScreen({Key? key, required this.user}) : super(key: key);
+  const EditProfileScreen({super.key, required this.user});
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -107,7 +107,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   }, (right) async {
                                     right.then((value) async {
                                       String imageNetWork = value!;
-                                      await UserController().updateUser(
+                                      await UserProvider().updateUser(
                                           id: AuthProvider
                                               .firebaseAuth.currentUser!.uid,
                                           data: {imageUrlK: imageNetWork});
@@ -118,14 +118,14 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
                                 if (name.trim() != widget.user!.name) {
                                   name = name.trim();
-                                  await UserController().updateUser(
+                                  await UserProvider().updateUser(
                                       data: {nameK: name}, id: widget.user!.id);
                                   changes = true;
                                 }
                                 if (userName.isNotEmpty &&
                                     userName.trim() != widget.user!.userName) {
                                   userName = userName.trim();
-                                  await UserController().updateUser(
+                                  await UserProvider().updateUser(
                                       data: {userNameK: userName},
                                       id: widget.user!.id);
                                   changes = true;
@@ -134,7 +134,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 if (bio.isNotEmpty &&
                                     bio.trim() != widget.user!.bio) {
                                   bio = bio.trim();
-                                  await UserController().updateUser(
+                                  await UserProvider().updateUser(
                                       data: {bioK: bio}, id: widget.user!.id);
                                   changes = true;
                                 }
@@ -148,7 +148,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   emailupdate.fold((left) async {
                                     CustomSnackBar.showError(left.toString());
                                   }, (right) async {
-                                    await UserController().updateUser(
+                                    await UserProvider().updateUser(
                                         data: {emailK: email},
                                         id: widget.user!.id);
 
@@ -158,8 +158,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         'تم تحديث البريد الإلكتروني بنجاح..الرجاء تسجيل الدخول والتحقق من البريد الإلكتروني الجديد');
                                     AuthProvider().logOut();
                                     changes = true;
-                                    Get.offAll(
-                                        () => const OnboardingCarouselScreen());
+                                    Navigator.pushNamedAndRemoveUntil(
+                                        context,
+                                        Routes.onboardingCarouselScreen,
+                                        (Route<dynamic> route) => false);
+
                                     return;
                                   });
                                 }

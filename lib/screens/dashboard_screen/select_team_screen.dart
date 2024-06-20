@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
@@ -63,7 +63,7 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                                     )));
                       },
                       child: StreamBuilder<DocumentSnapshot<UserModel>>(
-                          stream: UserController().getUserByIdStream(
+                          stream: UserProvider().getUserByIdStream(
                               id: AuthProvider.firebaseAuth.currentUser!.uid),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -84,7 +84,7 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                 AppSpaces.verticalSpace40,
                 Expanded(
                   child: StreamBuilder<QuerySnapshot<TeamModel>>(
-                    stream: TeamController().getTeamsofMemberWhereUserIdStream(
+                    stream: TeamProvider().getTeamsofMemberWhereUserIdStream(
                         userId: AuthProvider.firebaseAuth.currentUser!.uid),
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
@@ -101,7 +101,7 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
 
                               return StreamBuilder<
                                   QuerySnapshot<TeamMemberModel>>(
-                                stream: TeamMemberController()
+                                stream: TeamMemberProvider()
                                     .getMembersInTeamIdStream(teamId: team.id),
                                 builder: (context, memberSnapshot) {
                                   if (memberSnapshot.hasData) {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../widgets/Dashboard/daily_goal_card_widget.dart';
 import '../../../widgets/Dashboard/productivity_chart_widget.dart';
@@ -26,7 +27,8 @@ class _DashboardProductivityScreenState
       DateTime.now().month,
       DateTime.now().day,
     );
-    UserTaskController userTaskController = Get.put(UserTaskController());
+    UserTaskProvider userTaskController =
+        Provider.of<UserTaskProvider>(context);
 
     return Column(
       children: [

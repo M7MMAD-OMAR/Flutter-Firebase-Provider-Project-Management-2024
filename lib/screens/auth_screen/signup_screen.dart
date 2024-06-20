@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/topController.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
@@ -192,7 +192,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             setState(() {
                               userName = value;
                             });
-                            if (await TopController().existByOne(
+                            if (await TopProvider().existByOne(
                                 collectionReference: usersRef,
                                 value: userName,
                                 field: userNameK)) {

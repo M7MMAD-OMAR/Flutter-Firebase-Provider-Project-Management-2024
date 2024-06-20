@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +5,9 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/userController.dart';
-import 'package:project_management_muhmad_omar/controllers/waitingMamberController.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
@@ -32,8 +31,8 @@ class ShowTeamMembers extends StatelessWidget {
   const ShowTeamMembers({
     required this.userAsManager,
     required this.teamModel,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +65,7 @@ class ShowTeamMembers extends StatelessWidget {
                   },
                   child: FutureBuilder<UserModel>(
                       future: UserController()
-                          .getUserWhereMangerIs(mangerId: teamModel.managerId),
+                          .getUserWhereMangerIs(manUserProviderel.managerId),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
@@ -117,7 +116,7 @@ class ShowTeamMembers extends StatelessWidget {
                                 child:
                                     StreamBuilder<
                                             QuerySnapshot<TeamMemberModel>>(
-                                        stream: TeamMemberController()
+                                        stream: TeamMemberProvider()
                                             .getMembersInTeamIdStream(
                                                 teamId: teamModel.id),
                                         builder:
@@ -146,7 +145,7 @@ class ShowTeamMembers extends StatelessWidget {
                                           return StreamBuilder<
                                               QuerySnapshot<
                                                   WaitingMemberModel>>(
-                                            stream: WaitingMamberController()
+                                            stream: WaitingMemberProvider()
                                                 .getWaitingMembersInTeamIdStream(
                                                     teamId: teamModel.id),
                                             builder:
@@ -209,7 +208,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                   stream: UserController()
                                                       .getUsersWhereInIdsStream(
                                                           usersId: usersId),
-                                                  builder:
+                                                  UserProviderbuilder:
                                                       (context, snapshotUsers) {
                                                     if (snapshotUsers
                                                             .connectionState ==
@@ -249,7 +248,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                               onPressed: (context) {
                                                                                 CustomDialog.showConfirmDeleteDialog(
                                                                                     onDelete: () async {
-                                                                                      await TeamMemberController().deleteMember(id: snapshotTeamMembers.data!.docs[index].data().id);
+                                                                                      await TeamMemberProvider().deleteMember(id: snapshotTeamMembers.data!.docs[index].data().id);
                                                                                       Navigator.pop(context);
                                                                                     },
                                                                                     content: Text("هل أنت متأكد من رغبتك في حذف هذه المهمة؟ ${snapshotUsers.data!.docs[index].data().name} من هذا الفريق ؟"));
@@ -267,7 +266,7 @@ class ShowTeamMembers extends StatelessWidget {
                                                                               borderRadius: BorderRadius.circular(16),
                                                                               onPressed: (context) async {
                                                                                 showDialogMethod(context);
-                                                                                await WaitingMamberController().deleteWaitingMamberDoc(waitingMemberId: snapShotWatingUsers.data!.docs[index].data().id);
+                                                                                await WaitingMemberProvider().deleteWaitingMamberDoc(waitingMemberId: snapShotWatingUsers.data!.docs[index].data().id);
                                                                                 Navigator.pop(context);
                                                                               },
                                                                               label: 'حذف',

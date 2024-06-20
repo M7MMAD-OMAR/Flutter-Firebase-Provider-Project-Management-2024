@@ -5,11 +5,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_controller.dart';
-import 'package:project_management_muhmad_omar/controllers/projectController.dart';
-import 'package:project_management_muhmad_omar/controllers/statusController.dart';
-import 'package:project_management_muhmad_omar/controllers/teamController.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+ import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
@@ -17,8 +16,7 @@ import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_my_teams_screen.dart';
-import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
+ import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/add_sub_icon_widget.dart';
@@ -105,8 +103,8 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
     }
   }
 
-  final AddTeamToCreatProjectProvider addTeamToCreatProjectScreen =
-      Get.find<AddTeamToCreatProjectProvider>();
+  final AddTeamToCreatProjectProvider addTeamToCreatProjectScreen = Provider.of<
+      AddTeamToCreatProjectProvider>(context);
   final TextEditingController _projectNameController = TextEditingController();
   final TextEditingController _projectDescController = TextEditingController();
   int? selectedDashboardOption;
@@ -135,10 +133,11 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
   DateTime startDate = DateTime.now();
 
   DateTime dueDate = DateTime.now();
-  ProjectController projectController = Get.put(ProjectController());
-  TeamController teamController = Get.put(TeamController());
-  TeamMemberController teamMemberController = Get.put(TeamMemberController());
-  ManagerController managerController = Get.put(ManagerController());
+  ProjectProvider projectController = Provider.of<ProjectProvider>(context);
+  TeamController teamController = Provider.of<TeamController>(context);
+  TeamMemberProvider teamMemberController = ProviTeamProviderberController >
+      (context);
+  TeamProviderller managerController = Provider.of<ManagerProvider>(context);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isTaked = false;
   bool noChangeOnTime = false;
@@ -214,8 +213,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                   StreamBuilder<QuerySnapshot<TeamModel?>?>(
                       stream: TeamController().getTeamsOfUserStream(
                           userId: AuthProvider.firebaseAuth.currentUser!.uid),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
+    builder: (context, snapsTeamProvider if (snapshot.hasError) {
                           return GetBuilder<AddTeamToCreatProjectProvider>(
                             init: AddTeamToCreatProjectProvider(),
                             builder: (controller) {
@@ -473,8 +471,10 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
         //       idParameter: managersRef.doc().id,
         //       userIdParameter:
         //           AuthService.firebaseAuth.currentUser!.uid,
-        //       createdAtParameter: DateTime.now(),
-        //       updatedAtParameter: DateTime.now());
+        //  StatusProviderrameter: DateTime.now(),
+        StatusProviderdatedAtParameter:
+        DateTime.now()
+    );
         //   await managerController.addManger(widget.managerModel!);
         // }
         // setState(() {

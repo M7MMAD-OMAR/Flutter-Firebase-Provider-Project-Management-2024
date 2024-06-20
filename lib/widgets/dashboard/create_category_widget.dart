@@ -4,8 +4,8 @@ import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 
-import '../../controllers/categoryController.dart';
-import '../../controllers/user_task_controller.dart';
+import '../../controllers/task_category_provider.dart';
+import '../../controllers/user_task_provider.dart';
 import '../../models/task/user_task_category_model.dart';
 import '../../services/auth_service.dart';
 import '../../services/collections_refrences.dart';
@@ -47,9 +47,8 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
   }
 
   String color = "#FDA7FF";
-  UserTaskController userTaskController = Get.put(UserTaskController());
-  TaskCategoryController taskCategoryController =
-      Get.put(TaskCategoryController());
+  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
+  TaskCategoryProvider taskCategoryController = Get.put(TaskCategoryProvider());
   IconData icon = Icons.home;
   bool isTaked = false;
   String name = "";
