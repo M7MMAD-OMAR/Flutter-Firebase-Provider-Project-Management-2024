@@ -4,14 +4,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/waiting_sub_tasks_provider.dart';
@@ -24,6 +25,8 @@ import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/task_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
@@ -31,9 +34,8 @@ import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/sub_task_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../providers/auth_provider.dart';
-import '../../providers/task_provider.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import 'create_sub_task_widget.dart';
 import 'dashboard_add_icon_widget.dart';
@@ -139,15 +141,17 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Obx(
-        () => Visibility(
-          visible: isManager.value,
-          child: DashboardAddButton(
-            iconTapped: (() {
-              _createTask2();
-            }),
-          ),
-        ),
+      floatingActionButton: Consumer<TaskProvider>(
+        builder: (context, taskProvider, child) {
+          return Visibility(
+            visible: taskProvider.isManager,
+            child: DashboardAddButton(
+              iconTapped: (() {
+                _createTask2();
+              }),
+            ),
+          );
+        },
       ),
       backgroundColor: HexColor.fromHex("#181a1f"),
       body: Column(
@@ -243,14 +247,13 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
             ],
           ),
           SizedBox(height: Utils.screenHeight * 0.04),
-
           Expanded(
             child: Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
               child: StreamBuilder(
                 stream: ProjectSubTaskProvider().getSubTasksForAMainTaskStream(
-                        mainTaskId: widget.mainTaskId),
+                    mainTaskId: widget.mainTaskId),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot<ProjectSubTaskModel>>
                         snapshot) {
@@ -385,7 +388,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                   'لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء أو في نفس الوقت أو قبل التاريخ الحالي');
               return;
             }
-            ProjectMainTaskModel mainTask = await ProjectMainTaskController()
+            ProjectMainTaskModel mainTask = await ProjectMainTaskProvider()
                 .getProjectMainTaskById(id: widget.mainTaskId);
             if (!startDate.isAfter(mainTask.startDate) ||
                 !dueDate.isBefore(mainTask.endDate!)) {
@@ -395,15 +398,16 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
             }
             UserModel userModel =
                 await UserProvider().getUserById(id: userIdAssignedTo);
-            StatusController statusController = Get.put(StatusController());
+            StatusProvider statusController =
+                Provider.of<StatusProvider>(context, listen: false);
             StatusModel statusModel = await statusController.getStatusByName(
                 status: statusNotStarted);
             ProjectModel? projectModel =
                 await ProjectProvider().getProjectById(id: widget.projectId);
 
             String? s = projectModel?.teamId!;
-            TeamModel teamModel = await TeStatusProviderTeamById(id: s ?? "");
-            StatusProviderrModel teamMemberModel = await TeamMemberProvider()
+            TeamModel teamModel = await TeamProvider().getTeamById(id: s ?? "");
+            TeamMemberModel teamMemberModel = await TeamMemberProvider()
                 .getMemberByTeamIdAndUserId(
                     teamId: teamModel.id, userId: userIdAssignedTo);
             ProjectSubTaskModel projectSubTaskModel = ProjectSubTaskModel(
@@ -429,7 +433,7 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                 id: waitingid,
                 projectSubTaskModel: projectSubTaskModel);
             WaitingSubTasksProvider waitingSubTaskController =
-                Get.put(WaitingSubTasksProvider());
+                Provider.of<WaitingSubTasksProvider>(context);
 
             bool overlapped = false;
             int over = 0;
@@ -447,21 +451,21 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
             if (overlapped) {
               final GlobalKey<NavigatorState> _navigatorKey =
                   GlobalKey<NavigatorState>();
-              Get.defaultDialog(
+              showErrorDialog(
                   title: 'خطأ في وقت المهمة',
                   middleText:
-                      "There is ${over} That start in this time \n for the assigned user \n Would you Like To assign the Task Any Way?",
+                      "هناك ${over} التي تبدأ في هذا الوقت \n للمستخدم المعين \n هل ترغب في تعيين المهمة بأي طريقة؟",
                   onConfirm: () async {
                     await waitingSubTaskController.addWatingSubTask(
                         waitingSubTaskModel: waitingSubTaskModel);
                     FcmNotificationsProvider fcmNotifications =
-                        Get.put(FcmNotificationsProvider());
+                        Provider.of<FcmNotificationsProvider>(context);
                     await fcmNotifications.sendNotificationAsJson(
                         fcmTokens: userModel.tokenFcm,
                         title: 'لديك مهمة',
                         data: {"id": waitingid},
                         body:
-                            "the project ${projectModel?.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
+                            "المشروع ${projectModel?.name}. المهمة بعنوان ${projectSubTaskModel.name}. يرجى مراجعة تفاصيل المهمة واتخاذ الإجراءات اللازمة.",
                         type: NotificationType.taskRecieved);
                     CustomSnackBar.showSuccess(
                         "مهمة ${taskName}  تم إرسالها بنجاح إلى العضو");
@@ -471,19 +475,18 @@ class _SubTaskScreenState extends State<SubTaskScreen> {
                   onCancel: () {
                     // SystemNavigator.pop();
                     _navigatorKey.currentState?.pop();
-                  },
-                  navigatorKey: _navigatorKey);
+                  });
             } else {
               await waitingSubTaskController.addWatingSubTask(
                   waitingSubTaskModel: waitingSubTaskModel);
               FcmNotificationsProvider fcmNotifications =
-                  Get.put(FcmNotificationsProvider());
+                  Provider.of<FcmNotificationsProvider>(context);
               await fcmNotifications.sendNotificationAsJson(
                   fcmTokens: userModel.tokenFcm,
                   title: 'لديك مهمة',
                   data: {"id": waitingid},
                   body:
-                      " ${projectModel?.name}. The task is titled ${projectSubTaskModel.name}. Please review the task details and take necessary action.",
+                      " ${projectModel?.name}. المهمة بعنوان ${projectSubTaskModel.name}. يرجى مراجعة تفاصيل المهمة واتخاذ الإجراءات اللازمة.",
                   type: NotificationType.taskRecieved);
               CustomSnackBar.showSuccess(
                   "مهمة ${taskName} تم إرسالها بنجاح إلى العضو");

@@ -3,20 +3,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
+import 'package:project_management_muhmad_omar/models/status_model.dart';
+import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/user/task_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../constants/back_constants.dart';
-import '../../controllers/task_category_provider.dart';
-import '../../controllers/status_provider.dart';
-import '../../controllers/user_task_provider.dart';
-import '../../models/status_model.dart';
-import '../../models/task/user_task_category_model.dart';
-import '../../services/collections_refrences.dart';
 import '../Dashboard/create_user_task_widget.dart';
 import '../Dashboard/dashboard_add_icon_widget.dart';
 import '../Navigation/app_header_widget.dart';
@@ -87,9 +88,10 @@ class _FatherTasksState extends State<FatherTasks> {
   }
 
   TaskCategoryProvider userTaskCategoryController =
-      Get.put(TaskCategoryProvider());
+      Provider.of<TaskCategoryProvider>(context, listen: false);
   TextEditingController editingController = TextEditingController();
-  UserTaskProvider taskController = Get.put(UserTaskProvider());
+  UserTaskProvider taskController =
+      Provider.of<UserTaskProvider>(context, listen: false);
   String search = "";
 
   @override
@@ -346,7 +348,8 @@ class _FatherTasksState extends State<FatherTasks> {
             }
 
             try {
-              StatusProvider statusController = Get.put(StatusProvider());
+              StatusProvider statusController =
+                  Provider.of<StatusProvider>(context, listen: false);
               StatusModel statusModel = await statusController.getStatusByName(
                   status: statusNotStarted);
 
@@ -388,7 +391,8 @@ class _FatherTasksState extends State<FatherTasks> {
               return;
             }
             try {
-              StatusProvider statusController = Get.put(StatusProvider());
+              StatusProvider statusController =
+                  Provider.of<StatusProvider>(context, listen: false);
               StatusModel statusModel = await statusController.getStatusByName(
                   status: statusNotStarted);
               DocumentReference? taskfatherid;

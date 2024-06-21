@@ -11,6 +11,7 @@ class NewSheetGoToCalendarWidget extends StatelessWidget {
   DateTime selectedDay;
   final Function(DateTime) onSelectedDayChanged;
   final Color textAccentColor;
+
   NewSheetGoToCalendarWidget({
     super.key,
     required this.label,
@@ -25,13 +26,16 @@ class NewSheetGoToCalendarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(
-            () => NewTaskDueDate(
-                  title: label,
-                  selectedDay: selectedDay,
-                  onSelectedDayChanged: onSelectedDayChanged,
-                ),
-            fullscreenDialog: true);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => NewTaskDueDate(
+              title: label,
+              selectedDay: selectedDay,
+              onSelectedDayChanged: onSelectedDayChanged,
+            ),
+            fullscreenDialog: true,
+          ),
+        );
       },
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         CircularCalendarCard(color: cardBackgroundColor),
@@ -48,14 +52,15 @@ class NewSheetGoToCalendarWidget extends StatelessWidget {
 
 class CircularCalendarCard extends StatelessWidget {
   final Color color;
+
   const CircularCalendarCard({
     required this.color,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final maxWidth = Get.width;
+    final maxWidth = MediaQuery.of(context).size.width;
     final isSmallScreen = maxWidth < 600;
     return Container(
         width: isSmallScreen ? 40 : 60,
@@ -69,16 +74,17 @@ class CircularCardLabel extends StatelessWidget {
   final String? label;
   final String? value;
   final Color? color;
+
   const CircularCardLabel({
-    Key? key,
+    super.key,
     this.label,
     this.color,
     this.value,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    final maxWidth = Get.width;
+    final maxWidth = MediaQuery.of(context).size.width;
     final isSmallScreen = maxWidth < 600;
     return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

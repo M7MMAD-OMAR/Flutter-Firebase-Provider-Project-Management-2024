@@ -1,19 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
+import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/calender/widgets/circle_gradient_icon_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/calender/widgets/task_widget_widget.dart';
 
-import '../../controllers/project_provider.dart';
-import '../../controllers/project_main_task_provider.dart';
-import '../../controllers/user_task_provider.dart';
-import '../../models/team/project_main_task_model.dart';
-import '../../models/team/project_model.dart';
-import '../../models/team/project_sub_task_model.dart';
-import '../../models/user/user_task_Model.dart';
 import '../Navigation/app_header_widget.dart';
 import 'core/res/color.dart';
 
@@ -250,7 +249,7 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                     height: 20,
                   ),
                   StreamBuilder<QuerySnapshot<ProjectMainTaskModel>>(
-                    stream: ProjectMainTaskController()
+                    stream: ProjectMainTaskProvider()
                         .getUserAsMemberMainTasksInADayStream(
                             date: selectedDate),
                     builder: (context, snapshot) {
@@ -309,7 +308,7 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
                     height: 20,
                   ),
                   StreamBuilder<QuerySnapshot<ProjectMainTaskModel>>(
-                    stream: ProjectMainTaskController()
+                    stream: ProjectMainTaskProvider()
                         .getUserAsManagerMainTasksInADayStream(
                             date: selectedDate),
                     builder: (context, snapshot) {

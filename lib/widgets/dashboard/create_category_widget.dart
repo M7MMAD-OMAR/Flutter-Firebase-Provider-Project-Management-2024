@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
+import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../controllers/task_category_provider.dart';
-import '../../controllers/user_task_provider.dart';
-import '../../models/task/user_task_category_model.dart';
-import '../../services/auth_service.dart';
-import '../../services/collections_refrences.dart';
 import '../add_sub_icon_widget.dart';
 import '../forms/form_input_with_label_widget.dart';
 import '../snackbar/custom_snackber_widget.dart';
@@ -47,8 +47,10 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
   }
 
   String color = "#FDA7FF";
-  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
-  TaskCategoryProvider taskCategoryController = Get.put(TaskCategoryProvider());
+  UserTaskProvider userTaskController =
+      Provider.of<UserTaskProvider>(context, listen: false);
+  TaskCategoryProvider taskCategoryController =
+      Provider.of<TaskCategoryProvider>(context, listen: false);
   IconData icon = Icons.home;
   bool isTaked = false;
   String name = "";

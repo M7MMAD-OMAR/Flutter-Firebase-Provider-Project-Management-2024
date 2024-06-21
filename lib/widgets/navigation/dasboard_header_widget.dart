@@ -74,9 +74,12 @@ class DashboardNav extends StatelessWidget {
             onTap: () async {
               bool fcmStutas =
                   await FcmNotificationsProvider.getNotificationStatus();
-              Get.to(() => ProfileOverviewScreen(
-                    isSelected: fcmStutas,
-                  ));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfileOverviewScreen(
+                            isSelected: fcmStutas,
+                          )));
             },
             child: StreamBuilder<DocumentSnapshot<UserModel>>(
                 stream: UserProvider().getUserByIdStream(

@@ -20,17 +20,17 @@ class FocusedMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FocusedMenuHolder(
-      menuWidth: menuWidth ?? Get.width * 0.5,
+      menuWidth: menuWidth ?? MediaQuery.of(context).size.width * 0.5,
       menuItems: menuItems ??
           [
             FocusedMenuItem(
               backgroundColor: Colors.grey,
-              title: Text('تعديل'),
+              title: const Text('تعديل'),
               trailingIcon: const Icon(Icons.edit),
               onPressed: editButton,
             ),
             FocusedMenuItem(
-              title: Text(
+              title: const Text(
                 'حذف',
                 // ignore: prefer_const_constructors
                 style: TextStyle(color: Colors.white),

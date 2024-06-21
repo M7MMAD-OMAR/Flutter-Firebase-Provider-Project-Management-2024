@@ -7,7 +7,7 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
- import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
@@ -16,7 +16,8 @@ import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
- import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
+import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/add_sub_icon_widget.dart';
@@ -27,8 +28,9 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calender_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../../controllers/team_provider.dart';
 import '../../providers/invitations_provider.dart';
-import '../../providers/projects/add_team_to_create_project_provider.dart';
+import '../dashboard_screen/select_my_teams_screen.dart';
 
 class CreateProjectScreen extends StatefulWidget {
   CreateProjectScreen({
@@ -53,12 +55,12 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('اختر صورة'),
+          title: const Text('اختر صورة'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: Text('الكاميرا'),
+                  child: const Text('الكاميرا'),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -66,7 +68,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text('المعرض'),
+                  child: const Text('المعرض'),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -74,7 +76,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text("إلغاء"),
+                  child: const Text("إلغاء"),
                   onTap: () {
                     Navigator.of(context).pop();
                   },
@@ -103,8 +105,8 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
     }
   }
 
-  final AddTeamToCreatProjectProvider addTeamToCreatProjectScreen = Provider.of<
-      AddTeamToCreatProjectProvider>(context);
+  final AddTeamToCreatProjectProvider addTeamToCreatProjectScreen =
+      Provider.of<AddTeamToCreatProjectProvider>(context);
   final TextEditingController _projectNameController = TextEditingController();
   final TextEditingController _projectDescController = TextEditingController();
   int? selectedDashboardOption;
@@ -134,10 +136,10 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
 
   DateTime dueDate = DateTime.now();
   ProjectProvider projectController = Provider.of<ProjectProvider>(context);
-  TeamController teamController = Provider.of<TeamController>(context);
-  TeamMemberProvider teamMemberController = ProviTeamProviderberController >
-      (context);
-  TeamProviderller managerController = Provider.of<ManagerProvider>(context);
+  TeamProvider teamController = Provider.of<TeamProvider>(context);
+  TeamMemberProvider teamMemberController =
+      Provider.of<TeamMemberProvider>(context);
+  ManagerProvider managerController = Provider.of<ManagerProvider>(context);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool isTaked = false;
   bool noChangeOnTime = false;
@@ -194,221 +196,233 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               AppSpaces.verticalSpace10,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GetBuilder<AddTeamToCreatProjectProvider>(
-                    init: AddTeamToCreatProjectProvider(),
-                    builder: (controller) => Text(
-                      controller.teams.isEmpty
-                          ? 'اختر الفريق'
-                          : controller.teams.first.name!,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: Utils.screenWidth *
-                              0.05, // Adjust the percentage as needed
-                          fontWeight: FontWeight.bold),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+                Consumer<AddTeamToCreatProjectProvider>(
+                  builder: (context, controller, child) => Text(
+                    controller.teams.isEmpty
+                        ? 'اختر الفريق'
+                        : controller.teams.first.name ?? "",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                      // Adjust the percentage as needed
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  StreamBuilder<QuerySnapshot<TeamModel?>?>(
-                      stream: TeamController().getTeamsOfUserStream(
-                          userId: AuthProvider.firebaseAuth.currentUser!.uid),
-    builder: (context, snapsTeamProvider if (snapshot.hasError) {
-                          return GetBuilder<AddTeamToCreatProjectProvider>(
-                            init: AddTeamToCreatProjectProvider(),
-                            builder: (controller) {
-                              if (controller.teams.isEmpty) {
-                                return buildStackedImagesOfTeams(
-                                    addMore: true,
-                                    numberOfMembers: 0.toString(),
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) =>
-                                                  SelectMyTeamsScreen(
-                                                      title: 'اختر الفريق')));
-                                    },
-                                    teams: <TeamModel?>[]);
-                              } else {
-                                return Consumer<InvitationProvider>(
-                                  builder:
-                                      (context, invitationProvider, child) {
-                                    return buildStackedImagesTeamEdit(
-                                      addMore: false,
-                                    );
-                                  },
-                                );
-                              }
-                            },
-                          );
-                        }
+                ),
 
-                        if (snapshot.hasData) {
-                          return GetBuilder<AddTeamToCreatProjectProvider>(
-                            init: AddTeamToCreatProjectProvider(),
-                            builder: (controller) {
-                              if (controller.teams.isEmpty) {
-                                return buildStackedImagesOfTeams(
-                                    addMore: true,
-                                    numberOfMembers:
-                                        snapshot.data!.docs.length.toString(),
-                                    onTap: () {
-                                      Navigator.push(
+                StreamBuilder<QuerySnapshot<TeamModel?>?>(
+                  stream: TeamProvider().getTeamsOfUserStream(
+                    userId: AuthProvider.firebaseAuth.currentUser!.uid,
+                  ),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Consumer<AddTeamToCreatProjectProvider>(
+                        builder: (context, controller, child) {
+                          if (controller.teams.isEmpty) {
+                            return buildStackedImagesOfTeams(
+                              addMore: true,
+                              numberOfMembers: '0',
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => SelectMyTeamsScreen(
+                                        title: 'اختر الفريق'),
+                                  ),
+                                );
+                              },
+                              teams: <TeamModel?>[],
+                            );
+                          } else {
+                            return Consumer<InvitationProvider>(
+                              builder: (context, invitationProvider, child) {
+                                return buildStackedImagesTeamEdit(
+                                  addMore: false,
+                                );
+                              },
+                            );
+                          }
+                        },
+                      );
+                    }
+
+                    if (snapshot.hasData) {
+                              return Consumer<AddTeamToCreatProjectProvider>(
+                                builder: (context, controller, child) {
+                                  if (controller.teams.isEmpty) {
+                                    return buildStackedImagesOfTeams(
+                                      addMore: true,
+                                      numberOfMembers:
+                                      snapshot.data!.docs.length.toString(),
+                                      onTap: () {
+                                        Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (_) =>
-                                                  SelectMyTeamsScreen(
-                                                      title: 'اختر الفريق')));
-                                    },
-                                    teams: snapshot.data?.docs
-                                        .map((doc) => doc.data())
-                                        .toList());
-                              } else {
-                                return Consumer<InvitationProvider>(
-                                  builder:
-                                      (context, invitationProvider, child) {
-                                    return buildStackedImagesTeamEdit(
-                                      addMore: false,
+                                            builder: (_) =>
+                                                SelectMyTeamsScreen(
+                                                    title: 'اختر الفريق'),
+                                          ),
+                                        );
+                                      },
+                                      teams: snapshot.data?.docs
+                                          .map((doc) => doc.data())
+                                          .toList() ??
+                                          [],
                                     );
-                                  },
-                                );
-                              }
-                            },
-                          );
-                        }
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }),
-                ],
-              ),
-              AppSpaces.verticalSpace10,
-              Row(
-                children: [
-                  AppSpaces.horizontalSpace20,
-                  Expanded(
-                    child: LabelledFormInput(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'لا يمكن أن يكون الاسم فارغًا';
-                        }
-                        if (value.isNotEmpty) {
-                          if (isTaked) {
-                            return 'يرجى استخدام اسم مشروع آخر';
-                          }
-                        }
-                        return null;
-                      },
-                      onClear: () {
-                        setState(() {
-                          name = "";
-                          _projectNameController.text = "";
-                        });
-                      },
-                      onChanged: (value) async {
-                        setState(() {
-                          name = value;
-                        });
-                        if (widget.managerModel != null) {
-                          if (await projectController.existByTow(
-                              reference: projectsRef,
-                              value: name,
-                              field: nameK,
-                              field2: managerIdK,
-                              value2: widget.managerModel!.id)) {
+                                  } else {
+                                    return Consumer<InvitationProvider>(
+                                      builder: (context, invitationProvider,
+                                          child) {
+                                        return buildStackedImagesTeamEdit(
+                                          addMore: false,
+                                        );
+                                      },
+                                    );
+                                  }
+                                },
+                              );
+                            }
+
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          },
+                        ),
+                        AppSpaces.verticalSpace10,
+                        Row(
+                          children: [
+                            AppSpaces.horizontalSpace20,
+                            Expanded(
+                              child: LabelledFormInput(
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'لا يمكن أن يكون الاسم فارغًا';
+                                  }
+                                  if (value.isNotEmpty) {
+                                    if (isTaked) {
+                                      return 'يرجى استخدام اسم مشروع آخر';
+                                    }
+                                  }
+                                  return null;
+                                },
+                                onClear: () {
+                                  setState(() {
+                                    name = "";
+                                    _projectNameController.text = "";
+                                  });
+                                },
+                                onChanged: (value) async {
+                                  setState(() {
+                                    name = value;
+                                  });
+                                  if (widget.managerModel != null) {
+                                    if (await projectController.existByTow(
+                                        reference: projectsRef,
+                                        value: name,
+                                        field: nameK,
+                                        field2: managerIdK,
+                                        value2: widget.managerModel!.id)) {
+                                      setState(() {
+                                        isTaked = true;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        isTaked = false;
+                                      });
+                                    }
+                                  } else {
+                                    setState(() {
+                                      isTaked = false;
+                                    });
+                                  }
+                                },
+                                label: "الاسم",
+                                readOnly: false,
+                                autovalidateMode: AutovalidateMode
+                                    .onUserInteraction,
+                                placeholder: 'اسم المشروع',
+                                keyboardType: "text",
+                                controller: _projectNameController,
+                                obscureText: false,
+                              ),
+                            ),
+                          ],
+                        ),
+                        AppSpaces.verticalSpace20,
+                        LabelledFormInput(
+                          validator: (p0) {
+                            if (p0!.isEmpty) {
+                              return 'لا يمكن أن يكون الوصف مساحات فارغة';
+                            }
+                            return null;
+                          },
+                          onChanged: (p0) {
                             setState(() {
-                              isTaked = true;
+                              desc = p0;
                             });
-                          } else {
+                          },
+                          onClear: () {
                             setState(() {
-                              isTaked = false;
+                              desc = "";
+                              _projectDescController.text = "";
                             });
-                          }
-                        } else {
-                          setState(() {
-                            isTaked = false;
-                          });
-                        }
-                      },
-                      label: "الاسم",
-                      readOnly: false,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      placeholder: 'اسم المشروع',
-                      keyboardType: "text",
-                      controller: _projectNameController,
-                      obscureText: false,
-                    ),
-                  ),
-                ],
-              ),
-              AppSpaces.verticalSpace20,
-              LabelledFormInput(
-                validator: (p0) {
-                  if (p0!.isEmpty) {
-                    return 'لا يمكن أن يكون الوصف مساحات فارغة';
-                  }
-                  return null;
-                },
-                onChanged: (p0) {
-                  setState(() {
-                    desc = p0;
-                  });
-                },
-                onClear: () {
-                  setState(() {
-                    desc = "";
-                    _projectDescController.text = "";
-                  });
-                },
-                label: 'وصف',
-                readOnly: false,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                placeholder: "وصف المشروع",
-                keyboardType: "text",
-                controller: _projectDescController,
-                obscureText: false,
-              ),
-              AppSpaces.verticalSpace20,
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                NewSheetGoToCalendarWidget(
-                  selectedDay: startDate,
-                  onSelectedDayChanged: handleStartDayChanged,
-                  cardBackgroundColor: HexColor.fromHex("7DBA67"),
-                  textAccentColor: HexColor.fromHex("A9F49C"),
-                  value: formattedStartDate,
-                  label: 'تاريخ البدء',
-                ),
-                NewSheetGoToCalendarWidget(
-                  onSelectedDayChanged: handleDueDayChanged,
-                  selectedDay: dueDate,
-                  cardBackgroundColor: HexColor.fromHex("BA67A3"),
-                  textAccentColor: HexColor.fromHex("BA67A3"),
-                  value: formattedDueDate,
-                  label: 'تاريخ الاستحقاق',
-                )
-              ]),
-              // Spacer(),
-              AppSpaces.verticalSpace20,
-              AppSpaces.verticalSpace20,
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                AddSubIcon(
-                  icon: const Icon(Icons.add, color: Colors.white),
-                  scale: 1,
-                  color: AppColors.primaryAccentColor,
-                  callback: () async {
-                    if (formKey.currentState!.validate()) {
-                      if (addTeamToCreatProjectScreen.teams.isNotEmpty) {
-                        showDialogMethod(context);
-                        await addProject();
-                        Navigator.of(context).pop();
-                      } else {
-                        CustomSnackBar.showError("اختر الفريق أولاً للمشروع");
-                      }
-                    }
-                  },
-                ),
-              ])
+                          },
+                          label: 'وصف',
+                          readOnly: false,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          placeholder: "وصف المشروع",
+                          keyboardType: "text",
+                          controller: _projectDescController,
+                          obscureText: false,
+                        ),
+                        AppSpaces.verticalSpace20,
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              NewSheetGoToCalendarWidget(
+                                selectedDay: startDate,
+                                onSelectedDayChanged: handleStartDayChanged,
+                                cardBackgroundColor: HexColor.fromHex("7DBA67"),
+                                textAccentColor: HexColor.fromHex("A9F49C"),
+                                value: formattedStartDate,
+                                label: 'تاريخ البدء',
+                              ),
+                              NewSheetGoToCalendarWidget(
+                                onSelectedDayChanged: handleDueDayChanged,
+                                selectedDay: dueDate,
+                                cardBackgroundColor: HexColor.fromHex("BA67A3"),
+                                textAccentColor: HexColor.fromHex("BA67A3"),
+                                value: formattedDueDate,
+                                label: 'تاريخ الاستحقاق',
+                              )
+                            ]),
+                        // Spacer(),
+                        AppSpaces.verticalSpace20,
+                        AppSpaces.verticalSpace20,
+                        Row(mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              AddSubIcon(
+                                icon: const Icon(Icons.add,
+                                    color: Colors.white),
+                                scale: 1,
+                                color: AppColors.primaryAccentColor,
+                                callback: () async {
+                                  if (formKey.currentState!.validate()) {
+                                    if (addTeamToCreatProjectScreen.teams
+                                        .isNotEmpty) {
+                                      showDialogMethod(context);
+                                      await addProject();
+                                      Navigator.of(context).pop();
+                                    } else {
+                                      CustomSnackBar.showError(
+                                          "اختر الفريق أولاً للمشروع");
+                                    }
+                                  }
+                                },
+                              ),
+                            ])
+                      ]),
             ]),
           ),
         ]),
@@ -462,7 +476,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
 
     if (widget.isEditMode == false) {
       try {
-        StatusController statusController = Get.put(StatusController());
+        StatusProvider statusController = Provider.of<StatusProvider>(context);
         StatusModel statusModel =
             await statusController.getStatusByName(status: statusNotDone);
 
@@ -473,8 +487,8 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
         //           AuthService.firebaseAuth.currentUser!.uid,
         //  StatusProviderrameter: DateTime.now(),
         StatusProviderdatedAtParameter:
-        DateTime.now()
-    );
+        DateTime.now();
+        // );
         //   await managerController.addManger(widget.managerModel!);
         // }
         // setState(() {

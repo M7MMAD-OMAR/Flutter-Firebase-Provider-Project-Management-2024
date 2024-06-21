@@ -8,12 +8,11 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
 import '../../controllers/project_provider.dart';
 import '../../controllers/project_main_task_provider.dart';
 import '../../controllers/status_provider.dart';
@@ -22,12 +21,10 @@ import '../../models/status_model.dart';
 import '../../models/team/manger_model.dart';
 import '../../models/team/project_model.dart';
 import '../../models/user/user_model.dart';
-import '../../providers/auth_provider.dart';
 import '../../providers/task_provider.dart';
 import '../../widgets/navigation/app_header_widget.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import 'create_user_task_widget.dart';
-import 'dashboard_add_icon_widget.dart';
 import 'main_task_widget.dart';
 
 enum TaskSortOption {
@@ -109,25 +106,25 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
     managerSubscription = managerModelStream.listen((managerSnapshot) {
       ManagerModel manager = managerSnapshot.data()!;
       userModelStream =
-          UserController().getUserWhereMangerIsStream(mangerId: manager.id);
-      userSubscription = userModelStream.listen(
-          (userSnUserProvider UserModel user = userSnapshot.data()!;
-        bool updatedIsManager;
-        if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
-          updatedIsManager = false;
-        } else {
-          updatedIsManager = true;
-        }
-
-      context.read<TaskProvider>().setManager(
-      updatedIsManager
-      );
-      });
+          UserProvider().getUserWhereMangerIsStream(mangerId: manager.id);
+      // userSubscription = userModelStream.listen(
+      //     (UserProvider UserModel user = userSnapshot.data()!;
+      //     bool updatedIsManager;
+      //     if (user.id != AuthProvider.firebaseAuth.currentUser!.uid)
+      // {
+      //   updatedIsManager = false;
+      // } else {
+      // updatedIsManager = true;
+      // }
+      //
+      // context.read<TaskProvider>().setManager(
+      // updatedIsManager
+      // );
     });
   }
 
   // bool isManager = false;
-TaskProvider isManager = TaskProvider();
+  TaskProvider isManager = TaskProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -282,7 +279,7 @@ TaskProvider isManager = TaskProvider();
                 padding:
                 EdgeInsets.symmetric(horizontal: Utils.screenWidth * 0.04),
                 child: StreamBuilder(
-                  stream: ProjectMainTaskController()
+                  stream: ProjectMainTaskProvider()
                       .getProjectMainTasksStream(projectId: widget.projectId),
                   builder: (BuildContext context,
                       AsyncSnapshot<QuerySnapshot<ProjectMainTaskModel>>
@@ -425,7 +422,8 @@ TaskProvider isManager = TaskProvider();
         }
 
         try {
-          StatusProvider statusController = Get.put(StatusProvider());
+          StatusProvider statusController =
+              Provider.of<StatusProvider>(context, listen: false);
           StatusModel statusModel =
               await statusController.getStatusByName(status: statusNotStarted);
 
@@ -441,7 +439,7 @@ TaskProvider isManager = TaskProvider();
               updatedAtParameter: DateTime.now(),
               startDateParameter: startDate,
               endDateParameter: dueDate);
-          await ProjectMainTaskController()
+          await ProjectMainTaskProvider()
               .addProjectMainTask(projectMainTaskModel: userTaskModel);
         } catch (e) {
           CustomSnackBar.showError(e.toString());

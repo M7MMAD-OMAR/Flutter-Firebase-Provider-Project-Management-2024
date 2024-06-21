@@ -12,6 +12,11 @@ class SearchForMembersProvider extends ChangeNotifier {
     notifyListeners(); // Notify listeners of the change
   }
 
+  set searchQuery(String value) {
+    _searchQuery = value;
+    notifyListeners();
+  }
+
   @override
   void dispose() {
     searchController.dispose();

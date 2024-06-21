@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
-import 'package:project_management_muhmad_omar/providers/projects/add_user_to_team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/dashboard_meeting_details_provider.dart';
 // ignore: unused_import
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
 import 'package:provider/provider.dart';

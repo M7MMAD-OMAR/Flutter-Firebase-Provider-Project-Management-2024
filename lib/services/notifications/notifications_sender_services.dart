@@ -3,9 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
@@ -22,6 +23,7 @@ import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart'
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
+import 'package:provider/provider.dart';
 
 import '../collections_refrences.dart';
 import 'notification_controller_services.dart';
@@ -34,7 +36,7 @@ Future<void> sendMainTaskNotification(
     required List<String> token,
     required bool finished}) async {
   FcmNotificationsProvider fcmNotifications =
-      Get.put(FcmNotificationsProvider(), permanent: true);
+      Provider.of<FcmNotificationsProvider>(navigatorKey.currentContext!);
   if (!finished) {
     String title = started
         ? "main task ${task.name} has Started"
@@ -65,7 +67,7 @@ Future<void> sendSubTaskNotification(
     required List<String> token,
     required bool finished}) async {
   FcmNotificationsProvider fcmNotifications =
-      Get.put(FcmNotificationsProvider(), permanent: true);
+      Provider.of<FcmNotificationsProvider>(navigatorKey.currentContext!);
   if (!finished) {
     String title = started
         ? "sub task ${task.name} has Started"
@@ -97,7 +99,7 @@ Future<void> sendTaskNotification(
     required List<String> token,
     required bool finished}) async {
   FcmNotificationsProvider fcmNotifications =
-      Get.put(FcmNotificationsProvider(), permanent: true);
+      Provider.of<FcmNotificationsProvider>(navigatorKey.currentContext!);
   if (!finished) {
     String title = started
         ? "${task.name} has Started"
@@ -128,7 +130,7 @@ Future<void> sendProjectNotification(
     required List<String> token,
     required bool finished}) async {
   FcmNotificationsProvider fcmNotifications =
-      Get.put(FcmNotificationsProvider(), permanent: true);
+      Provider.of<FcmNotificationsProvider>(navigatorKey.currentContext!);
   if (!finished) {
     String title = started
         ? "${project.name} has Started"
@@ -154,8 +156,10 @@ Future<void> sendProjectNotification(
 
 @pragma('vm:entry-point')
 Future<void> checkProjectsToSendNotificationToManager() async {
-  ManagerProvider managerController = Get.put(ManagerProvider());
-  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
+  ManagerProvider managerController =
+      Provider.of<ManagerProvider>(navigatorKey.currentContext!);
+  UserTaskProvider userTaskController =
+      Provider.of<UserTaskProvider>(navigatorKey.currentContext!);
   String userId = FirebaseAuth.instance.currentUser!.uid;
   if (await userTaskController.existByOne(
     collectionReference: managersRef,
@@ -172,7 +176,8 @@ Future<void> checkProjectsToSendNotificationToManager() async {
 
 @pragma('vm:entry-point')
 Future<void> checkProjectsForManager({required String managerId}) async {
-  ProjectProvider projectController = Get.put(ProjectProvider());
+  ProjectProvider projectController =
+      Provider.of<ProjectProvider>(navigatorKey.currentContext!);
   String token = await getFcmToken();
   if (await projectController.existByOne(
         collectionReference: projectsRef,
@@ -190,8 +195,10 @@ Future<void> checkProjectsForManager({required String managerId}) async {
 
 @pragma('vm:entry-point')
 Future<void> checkTaskToSendNotification() async {
-  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
-  StatusProvider statusController = Get.put(StatusProvider());
+  UserTaskProvider userTaskController =
+      Provider.of<UserTaskProvider>(navigatorKey.currentContext!);
+  StatusProvider statusController =
+      Provider.of<StatusProvider>(navigatorKey.currentContext!);
   String token = await getFcmToken();
   String userId = FirebaseAuth.instance.currentUser!.uid;
   if (await userTaskController.existByOne(
@@ -304,13 +311,14 @@ Future<void> checkTaskToSendNotification() async {
 @pragma('vm:entry-point')
 void checkAuth(int x, Map<String, dynamic> map) async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-      .then((value) => Get.put(/*() =>  */ AuthProvider()));
+      .then((value) =>
+          Provider.of<FcmNotificationsProvider>(navigatorKey.currentContext!));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await NotificationController.initializeNotification();
-  AuthProvider authSXervice = Get.put(AuthProvider());
+  // AuthProvider authSXervice =  Provider.of<AuthProvider>(navigatorKey.currentContext!);
   FirebaseAuth.instance.authStateChanges().listen(
     (User? user) async {
       if (user != null) {
@@ -329,7 +337,8 @@ checkProjectsToSendNotification(
     {required List<ProjectModel?>? projectList,
     required bool ismanager}) async {
   String token = await getFcmToken();
-  StatusProvider statusController = Get.put(StatusProvider());
+  StatusProvider statusController =
+      Provider.of<StatusProvider>(navigatorKey.currentContext!);
   StatusModel statusDoneModel =
       await statusController.getStatusByName(status: statusDone);
   StatusModel statusNotStartedModel =
@@ -371,7 +380,7 @@ checkProjectsToSendNotification(
           if (taskEnddate.isAtSameMomentAs(firebaseNow) &&
               element.statusId == statusDoingModel.id) {
             bool isDone = true;
-            List<ProjectMainTaskModel> list = await ProjectMainTaskController()
+            List<ProjectMainTaskModel> list = await ProjectMainTaskProvider()
                 .getProjectMainTasks(projectId: element.id);
             for (var element in list) {
               if (element.statusId == statusNotDoneModel.id) {
@@ -448,7 +457,8 @@ checkProjectMainTasksToSendNotifications(
   String token = await getFcmToken();
   StatusModel statusDoneModel =
       await StatusProvider().getStatusByName(status: statusDone);
-  StatusProvider statusController = Get.put(StatusProvider());
+  StatusProvider statusController =
+      Provider.of<StatusProvider>(navigatorKey.currentContext!);
   StatusModel statusNotStartedModel =
       await statusController.getStatusByName(status: statusNotStarted);
   StatusModel statusNotDoneModel =
@@ -460,7 +470,7 @@ checkProjectMainTasksToSendNotifications(
     for (ProjectModel? element in projectList) {
       if (element != null) {
         List<ProjectMainTaskModel> mainTasksListmini = [];
-        mainTasksListmini = await ProjectMainTaskController()
+        mainTasksListmini = await ProjectMainTaskProvider()
             .getProjectMainTasks(projectId: element.id);
         mainTasksList.addAll(mainTasksListmini);
       }
@@ -478,7 +488,7 @@ checkProjectMainTasksToSendNotifications(
           if (taskStartdate.isAtSameMomentAs(firebaseNow) &&
               element.statusId == statusNotStartedModel.id) {
             if (manager) {
-              await ProjectMainTaskController().updateMainTask(
+              await ProjectMainTaskProvider().updateMainTask(
                   isfromback: true,
                   data: {statusIdK: statusDoingModel.id},
                   id: element.id);
@@ -525,10 +535,12 @@ checkProjectMainTasksToSendNotifications(
 }
 
 checkSubTasksToSendNotification() async {
-  StatusProvider statusController = Get.put(StatusProvider());
-  TeamMemberProvider teamMemberController = Get.put(TeamMemberProvider());
+  StatusProvider statusController =
+      Provider.of<StatusProvider>(navigatorKey.currentContext!);
+  TeamMemberProvider teamMemberController =
+      Provider.of<TeamMemberProvider>(navigatorKey.currentContext!);
   ProjectSubTaskProvider projectSubTaskController =
-      Get.put(ProjectSubTaskProvider());
+      Provider.of<ProjectSubTaskProvider>(navigatorKey.currentContext!);
   String token = await getFcmToken();
   if (await teamMemberController.existByOne(
           collectionReference: teamMembersRef,

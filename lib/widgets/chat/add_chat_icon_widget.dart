@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class AppAddIcon extends StatelessWidget {
@@ -8,17 +7,22 @@ class AppAddIcon extends StatelessWidget {
   final double? scale;
 
   const AppAddIcon({
-    Key? key,
+    super.key,
     this.page,
     this.scale,
     this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (page != null) Get.to(() => page!);
+        if (page != null) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => page!),
+          );
+        }
       },
       child: Container(
           width: 50 * (scale == null ? 1.0 : scale!),

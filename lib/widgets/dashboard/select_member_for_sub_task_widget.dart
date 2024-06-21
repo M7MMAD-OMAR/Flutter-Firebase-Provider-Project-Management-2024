@@ -147,9 +147,9 @@ class _SearchForMembersSubTaskState extends State<SearchForMembersSubTask> {
                                       }
                                       return StreamBuilder<
                                           QuerySnapshot<UserModel>>(
-                                        stream: UserController()
+                                        stream: UserProvider()
                                             .getUsersWhereInIdsStream(
-                                          usersId: listIds, UserProvider),
+                                                usersId: listIds),
                                         builder: (context, snapshotUsers) {
                                           if (snapshotUsers.hasData) {
                                             int taskCount =

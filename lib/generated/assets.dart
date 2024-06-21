@@ -79,33 +79,31 @@ class Assets {
   static const String constantsSpacing = 'lib/constants/spacing.dart';
   static const String constantsStyles = 'lib/constants/styles.dart';
   static const String constantsValues = 'lib/constants/values.dart';
-  static const String controllersCategoryController =
-      'lib/controllers/task_category_provider.dart';
-  static const String controllersMangerController =
+  static const String controllersMangerProvider =
       'lib/controllers/manger_provider.dart';
-  static const String controllersProjectController =
-      'lib/controllers/project_provider.dart';
-  static const String controllersProjectMainTaskController =
+  static const String controllersProjectMainTaskProvider =
       'lib/controllers/project_main_task_provider.dart';
-  static const String controllersProjectSubTaskController =
+  static const String controllersProjectProvider =
+      'lib/controllers/project_provider.dart';
+  static const String controllersProjectSubTaskProvider =
       'lib/controllers/project_sub_task_provider.dart';
-  static const String controllersStatusController =
+  static const String controllersStatusProvider =
       'lib/controllers/status_provider.dart';
-  static const String controllersTaskController =
-      'lib/controllers/task_provider.dart';
-  static const String controllersTeamController =
-      'lib/controllers/team_provider.dart';
-  static const String controllersTeamMemberController =
+  static const String controllersTaskCategoryProvider =
+      'lib/controllers/task_category_provider.dart';
+  static const String controllersTeamMemberProvider =
       'lib/controllers/team_member_provider.dart';
-  static const String controllersTopController =
+  static const String controllersTeamProvider =
+      'lib/controllers/team_provider.dart';
+  static const String controllersTopProvider =
       'lib/controllers/top_provider.dart';
-  static const String controllersUserController =
+  static const String controllersUserProvider =
       'lib/controllers/user_provider.dart';
-  static const String controllersUserTaskController =
+  static const String controllersUserTaskProvider =
       'lib/controllers/user_task_provider.dart';
-  static const String controllersWaitingMamberController =
+  static const String controllersWaitingMemberProvider =
       'lib/controllers/waiting_member_provider.dart';
-  static const String controllersWaitingSubTasks =
+  static const String controllersWaitingSubTasksProvider =
       'lib/controllers/waiting_sub_tasks_provider.dart';
   static const String darkBackgroundDarkRadialBackgroundWidget =
       'lib/widgets/dark_background/dark_radial_background_widget.dart';
@@ -292,10 +290,10 @@ class Assets {
       'lib/widgets/projects/active_project_selectable_container_widget.dart';
   static const String projectsAddTeamToCreateProjectProvider =
       'lib/providers/projects/add_team_to_create_project_provider.dart';
-  static const String projectsAddUserToTeamProvider =
-      'lib/providers/projects/add_user_to_team_provider.dart';
   static const String projectsCreateProjectScreen =
       'lib/screens/projects/create_project_screen.dart';
+  static const String projectsDashboardMeetingDetailsProvider =
+      'lib/providers/projects/dashboard_meeting_details_provider.dart';
   static const String projectsEditProjectScreen =
       'lib/screens/projects/edit_project_screen.dart';
   static const String projectsInactiveProjectSelectableContainerWidget =

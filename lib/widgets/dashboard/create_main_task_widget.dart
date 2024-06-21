@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../controllers/task_category_provider.dart';
 import '../../controllers/user_task_provider.dart';
 import '../../models/team/project_main_task_model.dart';
 import '../../models/team/project_model.dart';
@@ -95,8 +96,10 @@ class _CreateMainTaskState extends State<CreateMainTask> {
   DateTime startDate = DateTime.now();
   String color = "#FDA7FF";
   DateTime dueDate = DateTime.now();
-  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
-  TaskCategoryProvider taskCategoryController = Get.put(TaskCategoryProvider());
+  UserTaskProvider userTaskController =
+      Provider.of<UserTaskProvider>(context, listen: false);
+  TaskCategoryProvider taskCategoryController =
+      Provider.of<TaskCategoryProvider>(context, listen: false);
 
   bool isTaked = false;
   String name = "";

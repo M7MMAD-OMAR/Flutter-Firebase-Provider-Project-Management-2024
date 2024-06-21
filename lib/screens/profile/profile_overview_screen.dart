@@ -20,7 +20,7 @@ import 'package:project_management_muhmad_omar/widgets/profile/text_outlined_but
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/profile_overview_provider.dart';
+import 'package:project_management_muhmad_omar/providers/profile_overview_provider.dart';
 
 class ProfileOverviewScreen extends StatefulWidget {
   ProfileOverviewScreen({super.key, required this.isSelected});

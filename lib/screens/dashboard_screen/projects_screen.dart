@@ -25,7 +25,7 @@ import 'package:project_management_muhmad_omar/widgets/navigation/app_header_wid
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/user/focused_menu_item_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/user/focused_menu_item_widget.dart';
 
 enum ProjectSortOption {
   name,

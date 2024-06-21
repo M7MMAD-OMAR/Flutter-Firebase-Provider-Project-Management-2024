@@ -8,6 +8,7 @@ import 'package:project_management_muhmad_omar/models/task/user_task_category_mo
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/category_tasks_widget_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/colured_category_badge_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../Dashboard/edit_category_widget.dart';
 import 'focused_menu_item_widget.dart';
@@ -36,16 +37,18 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
   @override
   void initState() {
     super.initState();
-    //TaskCategoryController userTaskCategoryController =
-    Get.put(TaskCategoryProvider());
-    //UserTaskController userTaskController = Get.put(UserTaskController());
+    TaskCategoryProvider userTaskCategoryController =
+        Provider.of<TaskCategoryProvider>(context, listen: false);
+    UserTaskProvider userTaskController =
+        Provider.of<UserTaskProvider>(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    UserTaskProvider userTaskController = Get.find();
-
-    TaskCategoryProvider userTaskCategoryController = Get.find();
+    TaskCategoryProvider userTaskCategoryController =
+        Provider.of<TaskCategoryProvider>(context, listen: false);
+    UserTaskProvider userTaskController =
+        Provider.of<UserTaskProvider>(context);
     // _streamZip = StreamZip([
     //   userTaskController.getCategoryTasksStream(
     //       folderId: widget.userTaskCategoryModel.id),
@@ -61,9 +64,12 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
     // );
     return FocusedMenu(
       onClick: () {
-        Get.to(() => CategoryTasks(
-              categoryModel: widget.userTaskCategoryModel,
-            ));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (_) => CategoryTasks(
+                      categoryModel: widget.userTaskCategoryModel,
+                    )));
       },
       deleteButton: () async {
         await userTaskCategoryController

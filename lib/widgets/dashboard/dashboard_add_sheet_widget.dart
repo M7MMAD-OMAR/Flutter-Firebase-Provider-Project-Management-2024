@@ -3,15 +3,14 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/Projects/create_project_screen.dart';
-import 'package:project_management_muhmad_omar/services/auth_service.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
 import '../Onboarding/labelled_option_widget.dart';
 import 'create_category_widget.dart';
-import 'dashboard_meeting_details_widget.dart';
 
 class DashboardAddBottomSheet extends StatelessWidget {
   const DashboardAddBottomSheet({Key? key}) : super(key: key);
@@ -40,7 +39,8 @@ class DashboardAddBottomSheet extends StatelessWidget {
             label: 'إنشاء فريق',
             icon: Icons.people,
             callback: () {
-              Get.to(() => const DashboardMeetingDetailsWidget());
+              Navigator.pushNamed(
+                  context, Routes.dashboardMeetingDetailsWidget);
             }),
         LabelledOption(
             label: 'إنشاء فئة',
@@ -76,10 +76,10 @@ class DashboardAddBottomSheet extends StatelessWidget {
   Future<void> _createProject() async {
     try {
       ManagerModel? managerModel = await ManagerProvider().getMangerWhereUserIs(
-              userId: AuthProvider.firebaseAuth.currentUser!.uid);
+          userId: AuthProvider.firebaseAuth.currentUser!.uid);
       if (managerModel == null) {}
       showAppBottomSheet(
-        CreateProject(
+        CreateProjectScreen(
           managerModel: managerModel,
           //   userTaskCategoryModel: widget.categoryModel,
           isEditMode: false,

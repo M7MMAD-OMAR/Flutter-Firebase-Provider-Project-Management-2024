@@ -15,36 +15,39 @@ class NotificationController {
   static void requestPermission() {
     BuildContext context = navigatorKey.currentContext!;
 
-    Get.dialog(
-      AlertDialog(
-        title: const Text('Allow Notifications'),
-        content: const Text(
-            'Never miss an important task or deadline again! Enable notifications to receive timely reminders about your upcoming tasks, projects, and more'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(Get.context!);
-            },
-            child: const Text(
-              'Don\'t Allow',
-              style: TextStyle(color: Colors.grey, fontSize: 18),
-            ),
-          ),
-          TextButton(
-            onPressed: () => AwesomeNotifications()
-                .requestPermissionToSendNotifications()
-                .then((_) => Navigator.pop(Get.context!)),
-            child: const Text(
-              'Allow',
-              style: TextStyle(
-                color: Colors.teal,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('السماح بالإشعارات'),
+          content: const Text(
+              'لا تفوت مهمة مهمة أو موعد نهائي مرة أخرى! تمكين الإشعارات لتلقي تذكيرات في الوقت المناسب حول مهامك ومشاريعك القادمة والمزيد'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text(
+                'Don\'t Allow',
+                style: TextStyle(color: Colors.grey, fontSize: 18),
               ),
             ),
-          ),
-        ],
-      ),
+            TextButton(
+              onPressed: () => AwesomeNotifications()
+                  .requestPermissionToSendNotifications()
+                  .then((_) => Navigator.pop(context)),
+              child: const Text(
+                'Allow',
+                style: TextStyle(
+                  color: Colors.teal,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 

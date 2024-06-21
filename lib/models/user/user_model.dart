@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 
-import '../../providers/auth_provider.dart';
 import '../tops/VarTopModel.dart';
 
 class UserModel extends VarTopModel {

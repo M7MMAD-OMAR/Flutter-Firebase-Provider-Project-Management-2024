@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/buttons/primary_progress_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 
-import '../../widgets/buttons/primary_progress_button_widget.dart';
-import '../../widgets/navigation/app_header_widget.dart';
 import 'new_table_cal_widget.dart';
 
 class NewTaskDueDate extends StatefulWidget {
@@ -154,8 +154,15 @@ class _NewTaskDueDateState extends State<NewTaskDueDate> {
                                       ),
                                     ),
                                     PrimaryProgressButton(
-                                      width: Get.width > 600 ? 110 : 120,
-                                      height: Get.height > 500 ? 70 : 90,
+                                      width: MediaQuery.of(context).size.width >
+                                              600
+                                          ? 110
+                                          : 120,
+                                      height:
+                                          MediaQuery.of(context).size.height >
+                                                  500
+                                              ? 70
+                                              : 90,
                                       label: 'تم',
                                       callback: () {
                                         //

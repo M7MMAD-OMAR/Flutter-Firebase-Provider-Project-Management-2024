@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/task_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
@@ -620,7 +620,7 @@ class ProjectSubTaskProvider extends TaskProvider {
         await getDocById(reference: usersTasksRef, id: id);
     ProjectSubTaskModel projectsubTaskModel =
         snapshot.data() as ProjectSubTaskModel;
-    ProjectMainTaskModel? mainTask = await ProjectMainTaskController()
+    ProjectMainTaskModel? mainTask = await ProjectMainTaskProvider()
         .getProjectMainTaskById(id: projectsubTaskModel.mainTaskId);
     if (data.containsKey(startDateK) || data[endDateK]) {
       if (!data[startDateK].isAfter(mainTask.startDate) ||
@@ -685,42 +685,42 @@ class ProjectSubTaskProvider extends TaskProvider {
         _navigatorKey.currentState?.pop(); // Close the dialog
       }
     }
+  }
 
-    Future<void> markSubTaskeAndSendNotification(
-        String subtaskId, String status) async {
-      BuildContext context = navigatorKey.currentContext!;
+  Future<void> markSubTaskeAndSendNotification(
+      String subtaskId, String status) async {
+    BuildContext context = navigatorKey.currentContext!;
 
-      final StatusProvider statusController =
-          Provider.of<StatusProvider>(context);
-      final UserProvider userController = Provider.of<UserProvider>(context);
-      final TeamProvider teamController = Provider.of<TeamProvider>(context);
-      final ProjectProvider projectController =
-          Provider.of<ProjectProvider>(context);
-      final FcmNotificationsProvider fcmNotifications =
-          Provider.of<FcmNotificationsProvider>(context);
-      StatusModel s = await statusController.getStatusByName(status: status);
-      updateSubTask(data: {statusIdK: s.id}, id: subtaskId, isfromback: true);
+    final StatusProvider statusController =
+        Provider.of<StatusProvider>(context);
+    final UserProvider userController = Provider.of<UserProvider>(context);
+    final TeamProvider teamController = Provider.of<TeamProvider>(context);
+    final ProjectProvider projectController =
+        Provider.of<ProjectProvider>(context);
+    final FcmNotificationsProvider fcmNotifications =
+        Provider.of<FcmNotificationsProvider>(context);
+    StatusModel s = await statusController.getStatusByName(status: status);
+    updateSubTask(data: {statusIdK: s.id}, id: subtaskId, isfromback: true);
 
-      final ProjectSubTaskProvider projectTaskController =
-          Provider.of<ProjectSubTaskProvider>(context);
-      ProjectSubTaskModel projectSubTaskModel =
-          await projectTaskController.getProjectSubTaskById(id: subtaskId);
-      ProjectModel? projectModel = await projectController.getProjectById(
-          id: projectSubTaskModel.projectId);
-      TeamModel teamModel =
-          await teamController.getTeamOfProject(project: projectModel!);
-      UserModel manager = await userController.getUserWhereMangerIs(
-          mangerId: teamModel.managerId);
-      //to get the user name to tell the manager about his name in the notification
-      UserModel member = await userController.getUserById(
-          id: AuthProvider.firebaseAuth.currentUser!.uid);
-      await fcmNotifications.sendNotification(
-        fcmTokens: manager.tokenFcm,
-        title: "مهمة $status",
-        body:
-            "${member.name} $status المهمة ${projectSubTaskModel.name} ${projectSubTaskModel.projectId} في المشروع ${projectModel.name}",
-        type: NotificationType.notification,
-      );
-    }
+    final ProjectSubTaskProvider projectTaskController =
+        Provider.of<ProjectSubTaskProvider>(context);
+    ProjectSubTaskModel projectSubTaskModel =
+        await projectTaskController.getProjectSubTaskById(id: subtaskId);
+    ProjectModel? projectModel = await projectController.getProjectById(
+        id: projectSubTaskModel.projectId);
+    TeamModel teamModel =
+        await teamController.getTeamOfProject(project: projectModel!);
+    UserModel manager = await userController.getUserWhereMangerIs(
+        mangerId: teamModel.managerId);
+    //to get the user name to tell the manager about his name in the notification
+    UserModel member = await userController.getUserById(
+        id: AuthProvider.firebaseAuth.currentUser!.uid);
+    await fcmNotifications.sendNotification(
+      fcmTokens: manager.tokenFcm,
+      title: "مهمة $status",
+      body:
+          "${member.name} $status المهمة ${projectSubTaskModel.name} ${projectSubTaskModel.projectId} في المشروع ${projectModel.name}",
+      type: NotificationType.notification,
+    );
   }
 }

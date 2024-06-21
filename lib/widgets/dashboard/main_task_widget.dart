@@ -7,24 +7,23 @@ import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
-import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/task_provider.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/sub_tasks_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../controllers/project_provider.dart';
-import '../../controllers/project_main_task_provider.dart';
-import '../../controllers/status_provider.dart';
-import '../../controllers/top_provider.dart';
-import '../../models/status_model.dart';
-import '../../models/team/project_main_task_model.dart';
-import '../../models/team/project_model.dart';
-import '../../models/user/user_model.dart';
-import '../../providers/task_provider.dart';
-import '../../services/collections_refrences.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import '../user/focused_menu_item_widget.dart';
 import 'create_user_task_widget.dart';
@@ -124,15 +123,15 @@ class _brogressState extends State<brogress> {
     managerSubscription = managerModelStream.listen((managerSnapshot) {
       ManagerModel manager = managerSnapshot.data()!;
       userModelStream =
-          UserController().getUserWhereMangerIsStream(mangerId: manager.id);
+          UserProvider().getUserWhereMangerIsStream(mangerId: manager.id);
       userSubscription = userModelStream.listen((userSnapshot) {
-        UseUserProvideruserSnapshot.data()!;
+        userSnapshot.data()!;
         bool updatedIsManager;
-        if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
-          updatedIsManager = false;
-        } else {
-          updatedIsManager = true;
-        }
+        // if (user.id != AuthProvider.firebaseAuth.currentUser!.uid) {
+        //   updatedIsManager = false;
+        // } else {
+        updatedIsManager = true;
+        // }
 
         context.read<TaskProvider>().setManager(updatedIsManager);
       });
@@ -160,10 +159,10 @@ class _brogressState extends State<brogress> {
                                 )));
                   },
                   deleteButton: () async {
-                    ProjectMainTaskController userTaskController =
-                        Provider.of<ProjectMainTaskController>(context,
+                    ProjectMainTaskProvider projectMainTaskProvider =
+                        Provider.of<ProjectMainTaskProvider>(context,
                             listen: false);
-                    await userTaskController.deleteProjectMainTask(
+                    await projectMainTaskProvider.deleteProjectMainTask(
                         mainTaskId: widget.taskModel.id);
                   },
                   editButton: () {
@@ -193,7 +192,7 @@ class _brogressState extends State<brogress> {
                             required String? desc,
                             required String color}) async {
                           ProjectMainTaskModel userTaskModel =
-                              await ProjectMainTaskController()
+                              await ProjectMainTaskProvider()
                                   .getProjectMainTaskById(
                                       id: widget.taskModel.id);
                           if ((userTaskModel.startDate != startDate ||
@@ -211,316 +210,309 @@ class _brogressState extends State<brogress> {
                           }
 
                           try {
-                      await ProjectMainTaskController().updateMainTask(
-                          isfromback: false,
-                          data: {
-                            nameK: taskName,
-                            descriptionK: desc,
-                            startDateK: startDate,
-                            endDateK: dueDate,
-                            colorK: color,
-                            importanceK: priority,
-                          },
-                          id: widget.taskModel.id);
-                    } catch (e) {
-                      CustomSnackBar.showError(e.toString());
-                    }
+                            await ProjectMainTaskProvider().updateMainTask(
+                                isfromback: false,
+                                data: {
+                                  nameK: taskName,
+                                  descriptionK: desc,
+                                  startDateK: startDate,
+                                  endDateK: dueDate,
+                                  colorK: color,
+                                  importanceK: priority,
+                                },
+                                id: widget.taskModel.id);
+                          } catch (e) {
+                            CustomSnackBar.showError(e.toString());
+                          }
+                        },
+                        isEditMode: true,
+                        userTaskModel: widget.taskModel,
+                      ),
+                      isScrollControlled: true,
+                      popAndShow: false,
+                    );
                   },
-                  isEditMode: true,
-                  userTaskModel: widget.taskModel,
-                ),
-                isScrollControlled: true,
-                popAndShow: false,
-              );
-            },
-            widget: Opacity(
-              opacity: getOpacity(widget.taskModel.importance),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: HexColor.fromHex(widget.taskModel.hexcolor)
-                      .withOpacity(0.9),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: HexColor.fromHex(widget.taskModel.hexcolor),
-                    width: 6,
-                  ),
-                ),
-                height: 100,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 10,
-                      bottom: 20,
-                      right: 10,
-                      left: 20,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  widget: Opacity(
+                    opacity: getOpacity(widget.taskModel.importance),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: HexColor.fromHex(widget.taskModel.hexcolor)
+                            .withOpacity(0.9),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: HexColor.fromHex(widget.taskModel.hexcolor),
+                          width: 6,
+                        ),
+                      ),
+                      height: 100,
+                      child: Stack(
                         children: [
-                          SingleChildScrollView(
-                            physics:
-                            const AlwaysScrollableScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
+                          Positioned(
+                            top: 10,
+                            bottom: 20,
+                            right: 10,
+                            left: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  widget.taskModel.name!,
-                                  style: GoogleFonts.lato(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: Utils.screenWidth * 0.06,
-                                      color: Colors.black),
-                                ),
-                                AppSpaces.horizontalSpace10,
-                                StreamBuilder(
-                                  stream: StatusProvider()
-                                      .getStatusByIdStream(
-                                      idk: widget.taskModel.statusId)
-                                      .asBroadcastStream(),
-                                  builder: (context,
-                                      AsyncSnapshot<
-                                          DocumentSnapshot<
-                                              StatusModel>>
-                                      snapshot) {
-                                    if (snapshot.hasData) {
-                                      StatusModel statusModel =
-                                      snapshot.data!.data()
-                                      as StatusModel;
-                                      taskStatus = statusModel.name!;
-                                      return TaskWidget(
-                                          status: getStatus(taskStatus));
-                                    }
-                                    return TaskWidget(
-                                        status: getStatus(taskStatus));
-                                  },
-                                ),
-                                AppSpaces.horizontalSpace10,
-                                _buildStatus(widget.taskModel.importance),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            '${widget.completed.toInt()} من أصل ${widget.all
-                                .toInt()} تم الانتهاء',
-                            style: GoogleFonts.lato(
-                              fontWeight: FontWeight.w500,
-                              fontSize: Utils.screenWidth * 0.04,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  height: Utils.screenHeight * 0.03,
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(25),
-                                      color: Colors.white),
+                                SingleChildScrollView(
+                                  physics:
+                                      const AlwaysScrollableScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Expanded(
-                                        flex: widget.percento.toInt(),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(25),
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                HexColor.fromHex(
-                                                    "343840"),
-                                                HexColor.fromHex("343840")
-                                              ],
-                                            ),
-                                          ),
-                                        ),
+                                      Text(
+                                        widget.taskModel.name!,
+                                        style: GoogleFonts.lato(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: Utils.screenWidth * 0.06,
+                                            color: Colors.black),
                                       ),
-                                      Expanded(
-                                          flex: 100 -
-                                              widget.percento.toInt(),
-                                          child: const SizedBox())
+                                      AppSpaces.horizontalSpace10,
+                                      StreamBuilder(
+                                        stream: StatusProvider()
+                                            .getStatusByIdStream(
+                                                idk: widget.taskModel.statusId)
+                                            .asBroadcastStream(),
+                                        builder: (context,
+                                            AsyncSnapshot<
+                                                    DocumentSnapshot<
+                                                        StatusModel>>
+                                                snapshot) {
+                                          if (snapshot.hasData) {
+                                            StatusModel statusModel =
+                                                snapshot.data!.data()
+                                                    as StatusModel;
+                                            taskStatus = statusModel.name!;
+                                            return TaskWidget(
+                                                status: getStatus(taskStatus));
+                                          }
+                                          return TaskWidget(
+                                              status: getStatus(taskStatus));
+                                        },
+                                      ),
+                                      AppSpaces.horizontalSpace10,
+                                      _buildStatus(widget.taskModel.importance),
                                     ],
                                   ),
                                 ),
-                              ),
-                              const Spacer(),
-                              Text(
-                                "${widget.percento}%",
-                                style: GoogleFonts.lato(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ),
-                            ],
+                                Text(
+                                  '${widget.completed.toInt()} من أصل ${widget.all.toInt()} تم الانتهاء',
+                                  style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: Utils.screenWidth * 0.04,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        height: Utils.screenHeight * 0.03,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            color: Colors.white),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              flex: widget.percento.toInt(),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      HexColor.fromHex(
+                                                          "343840"),
+                                                      HexColor.fromHex("343840")
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                                flex: 100 -
+                                                    widget.percento.toInt(),
+                                                child: const SizedBox())
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      "${widget.percento}%",
+                                      style: GoogleFonts.lato(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                                buildLabel(
+                                    " وصف: ${widget.taskModel.description}"),
+                                buildLabel(
+                                    " تاريخ البدء:${formatDateTime(widget.taskModel.startDate)}"),
+                                buildLabel(
+                                    " تاريخ الانتهاء:${formatDateTime(widget.taskModel.endDate!)}"),
+                              ],
+                            ),
                           ),
-                          buildLabel(
-                              " وصف: ${widget.taskModel.description}"),
-                          buildLabel(
-                              " تاريخ البدء:${formatDateTime(
-                                  widget.taskModel.startDate)}"),
-                          buildLabel(
-                              " تاريخ الانتهاء:${formatDateTime(
-                                  widget.taskModel.endDate!)}"),
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-          )
+                  ),
+                )
               : InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) =>
-                          SubTaskScreen(
-                            projectId: widget.taskModel.projectId,
-                            mainTaskId: widget.taskModel.id,
-                          )));
-            },
-            child: Opacity(
-              opacity: getOpacity(widget.taskModel.importance),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: HexColor.fromHex(widget.taskModel.hexcolor)
-                      .withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: HexColor.fromHex(widget.taskModel.hexcolor),
-                    width: 5,
-                  ),
-                ),
-                height: 150,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      top: 10,
-                      bottom: 20,
-                      right: 10,
-                      left: 20,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => SubTaskScreen(
+                                  projectId: widget.taskModel.projectId,
+                                  mainTaskId: widget.taskModel.id,
+                                )));
+                  },
+                  child: Opacity(
+                    opacity: getOpacity(widget.taskModel.importance),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: HexColor.fromHex(widget.taskModel.hexcolor)
+                            .withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: HexColor.fromHex(widget.taskModel.hexcolor),
+                          width: 5,
+                        ),
+                      ),
+                      height: 150,
+                      child: Stack(
                         children: [
-                          SingleChildScrollView(
-                            physics: AlwaysScrollableScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
+                          Positioned(
+                            top: 10,
+                            bottom: 20,
+                            right: 10,
+                            left: 20,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  widget.taskModel.name!,
-                                  style: GoogleFonts.lato(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: Utils.screenWidth * 0.06,
-                                      color: Colors.black),
-                                ),
-                                AppSpaces.horizontalSpace10,
-                                StreamBuilder(
-                                  stream: StatusProvider()
-                                      .getStatusByIdStream(
-                                      idk: widget.taskModel.statusId)
-                                      .asBroadcastStream(),
-                                  builder: (context,
-                                      AsyncSnapshot<
-                                          DocumentSnapshot<
-                                              StatusModel>>
-                                      snapshot) {
-                                    if (snapshot.hasData) {
-                                      StatusModel statusModel =
-                                      snapshot.data!.data()
-                                      as StatusModel;
-                                      taskStatus = statusModel.name!;
-                                      return TaskWidget(
-                                          status: getStatus(taskStatus));
-                                    }
-                                    return TaskWidget(
-                                        status: getStatus(taskStatus));
-                                  },
-                                ),
-                                AppSpaces.horizontalSpace10,
-                                _buildStatus(widget.taskModel.importance),
-                              ],
-                            ),
-                          ),
-                          AppSpaces.verticalSpace10,
-                          Text(
-                            '${widget.completed.toInt()}  ${widget.all
-                                .toInt()}  تم الانتهاء',
-                            style: GoogleFonts.lato(
-                              fontWeight: FontWeight.w500,
-                              fontSize: Utils.screenWidth * 0.03,
-                            ),
-                          ),
-                          AppSpaces.verticalSpace10,
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  height: 15,
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                      BorderRadius.circular(25),
-                                      color: Colors.white),
+                                SingleChildScrollView(
+                                  physics: AlwaysScrollableScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Expanded(
-                                        flex: widget.percento.toInt(),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(25),
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                HexColor.fromHex(
-                                                    "343840"),
-                                                HexColor.fromHex("343840")
-                                              ],
-                                            ),
-                                          ),
-                                        ),
+                                      Text(
+                                        widget.taskModel.name!,
+                                        style: GoogleFonts.lato(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: Utils.screenWidth * 0.06,
+                                            color: Colors.black),
                                       ),
-                                      Expanded(
-                                          flex: 100 -
-                                              widget.percento.toInt(),
-                                          child: const SizedBox())
+                                      AppSpaces.horizontalSpace10,
+                                      StreamBuilder(
+                                        stream: StatusProvider()
+                                            .getStatusByIdStream(
+                                                idk: widget.taskModel.statusId)
+                                            .asBroadcastStream(),
+                                        builder: (context,
+                                            AsyncSnapshot<
+                                                    DocumentSnapshot<
+                                                        StatusModel>>
+                                                snapshot) {
+                                          if (snapshot.hasData) {
+                                            StatusModel statusModel =
+                                                snapshot.data!.data()
+                                                    as StatusModel;
+                                            taskStatus = statusModel.name!;
+                                            return TaskWidget(
+                                                status: getStatus(taskStatus));
+                                          }
+                                          return TaskWidget(
+                                              status: getStatus(taskStatus));
+                                        },
+                                      ),
+                                      AppSpaces.horizontalSpace10,
+                                      _buildStatus(widget.taskModel.importance),
                                     ],
                                   ),
                                 ),
-                              ),
-                              const Spacer(),
-                              Text(
-                                "${widget.percento}%",
-                                style: GoogleFonts.lato(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
-                              ),
-                            ],
-                          ),
-                          AppSpaces.verticalSpace10,
-                          buildLabel(
-                              "وصف: ${widget.taskModel.description}"),
-                          buildLabel(
-                              "تاريخ البدء:${formatDateTime(
-                                  widget.taskModel.startDate)}"),
-                          buildLabel(
-                              "تاريخ الانتهاء:${formatDateTime(
-                                  widget.taskModel.endDate!)}"),
-                          const SizedBox(
-                            height: 10,
+                                AppSpaces.verticalSpace10,
+                                Text(
+                                  '${widget.completed.toInt()}  ${widget.all.toInt()}  تم الانتهاء',
+                                  style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: Utils.screenWidth * 0.03,
+                                  ),
+                                ),
+                                AppSpaces.verticalSpace10,
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 3,
+                                      child: Container(
+                                        height: 15,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            color: Colors.white),
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              flex: widget.percento.toInt(),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      HexColor.fromHex(
+                                                          "343840"),
+                                                      HexColor.fromHex("343840")
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Expanded(
+                                                flex: 100 -
+                                                    widget.percento.toInt(),
+                                                child: const SizedBox())
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    Text(
+                                      "${widget.percento}%",
+                                      style: GoogleFonts.lato(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                                AppSpaces.verticalSpace10,
+                                buildLabel(
+                                    "وصف: ${widget.taskModel.description}"),
+                                buildLabel(
+                                    "تاريخ البدء:${formatDateTime(widget.taskModel.startDate)}"),
+                                buildLabel(
+                                    "تاريخ الانتهاء:${formatDateTime(widget.taskModel.endDate!)}"),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-          );
+                  ),
+                );
         },
       ),
     );

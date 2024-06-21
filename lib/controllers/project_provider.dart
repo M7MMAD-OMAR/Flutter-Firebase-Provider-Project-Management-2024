@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/task_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';

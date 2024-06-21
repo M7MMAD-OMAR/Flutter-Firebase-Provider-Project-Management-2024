@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../controllers/task_category_provider.dart';
-import '../../controllers/user_task_provider.dart';
 import '../../models/team/task_model.dart';
 import '../../providers/dashboard/checkbox_provider.dart';
 import '../add_sub_icon_widget.dart';
@@ -162,13 +162,15 @@ class _CreateUserTaskState extends State<CreateUserTask> {
                 child: Row(
                   children: [
                     Text('تم التحقق بالفعل؟', style: AppTextStyles.header2),
-                    Obx(
-                      () => Checkbox(
-                        value: checkboxController.isChecked.value,
-                        onChanged: (value) {
-                          checkboxController.toggleCheckbox();
-                        },
-                      ),
+                    Consumer<CheckboxProvider>(
+                      builder: (context, checkboxProvider, child) {
+                        return Checkbox(
+                          value: checkboxProvider.isChecked,
+                          onChanged: (value) {
+                            checkboxProvider.toggleCheckbox();
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -336,7 +338,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
     if (formKey.currentState!.validate()) {
       if (widget.isUserTask == true &&
           widget.isEditMode == false &&
-          checkboxController.isChecked.value == true) {
+          checkboxController.isChecked == true) {
         await widget.addLateTask(
           color: color,
           desc: desc,
@@ -392,7 +394,7 @@ class BottomSheetIcon extends StatelessWidget {
 //                                 listIds.add(member.data().userId);
 //                               }
 //                               return StreamBuilder<QuerySnapshot<UserModel>>(
-//                                   stream: UserController()
+//                                   stream: UserProvider()
 //                                       .getUsersWhereInIdsStream(
 //                                           usersId: listIds),
 //                                   builder: (context, snapshotUsers) {

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../controllers/task_category_provider.dart';
-import '../../controllers/project_provider.dart';
 import '../../controllers/project_main_task_provider.dart';
+import '../../controllers/project_provider.dart';
 import '../../controllers/project_sub_task_provider.dart';
 import '../../controllers/team_member_provider.dart';
 import '../../controllers/user_provider.dart';
@@ -20,6 +21,7 @@ class NewCreateTaskBottomSheet extends StatefulWidget {
   NewCreateTaskBottomSheet({
     Key? key,
   }) : super(key: key);
+
   @override
   State<NewCreateTaskBottomSheet> createState() =>
       _NewCreateTaskBottomSheetState();
@@ -39,6 +41,7 @@ class _NewCreateTaskBottomSheetState extends State<NewCreateTaskBottomSheet> {
   int? selectedDashboardOption;
   List<TeamMemberModel> membersList = [];
   String? teamMemberId;
+
   @override
   void initState() {
     super.initState();
@@ -50,18 +53,24 @@ class _NewCreateTaskBottomSheetState extends State<NewCreateTaskBottomSheet> {
   DateTime startDate = DateTime.now();
   String color = "#FDA7FF";
   DateTime dueDate = DateTime.now();
-  UserProvider userController = Get.put(UserProvider());
-  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
-  ProjectMainTaskController projectMainTaskController =
-      Get.put(ProjectMainTaskController());
-  TaskCategoryProvider taskCategoryController = Get.put(TaskCategoryProvider());
+  UserProvider userController =
+      Provider.of<UserProvider>(context, listen: false);
+  UserTaskProvider userTaskController =
+      Provider.of<UserTaskProvider>(context, listen: false);
+  ProjectMainTaskProvider projectMainTaskController =
+      Provider.of<ProjectMainTaskProvider>(context, listen: false);
+  TaskCategoryProvider taskCategoryController =
+      Provider.of<TaskCategoryProvider>(context, listen: false);
   ProjectSubTaskProvider projectSubTaskController =
-      Get.put(ProjectSubTaskProvider());
-  ProjectProvider projectController = Get.put(ProjectProvider());
-  TeamMemberProvider teamMemberController = Get.put(TeamMemberProvider());
+      Provider.of<ProjectSubTaskProvider>(context, listen: false);
+  ProjectProvider projectController =
+      Provider.of<ProjectProvider>(context, listen: false);
+  TeamMemberProvider teamMemberController =
+      Provider.of<TeamMemberProvider>(context, listen: false);
   bool isTaked = false;
   String name = "";
   String desc = "";
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -253,38 +262,39 @@ class _NewCreateTaskBottomSheetState extends State<NewCreateTaskBottomSheet> {
   }
 
   void _addProject() {}
-  // void _addProject() async {
-  //   if (widget.taskType == "userTask") {
-  //     StatusController statusController = Get.put(StatusController());
-  //     StatusModel statusModel =
-  //         await statusController.getStatusByName(status: "notDone");
-  //     DocumentReference? taskfatherid;
-  //     if (widget.fathertask != null) {
-  //       DocumentSnapshot documentReference = await statusController.getDocById(
-  //           reference: usersTasksRef, id: widget.fathertask!.id);
-  //       taskfatherid = documentReference.reference;
-  //     }
-  //     UserTaskModel userTaskModel = UserTaskModel(
-  //         userIdParameter: firebaseAuth.currentUser!.uid,
-  //         folderIdParameter: widget.userTaskCategoryModel!.id,
-  //         taskFatherIdParameter: taskfatherid,
-  //         descriptionParameter: desc,
-  //         idParameter: usersTasksRef.doc().id,
-  //         nameParameter: name,
-  //         statusIdParameter: statusModel.id,
-  //         importanceParameter: selectedDashboardOption!,
-  //         createdAtParameter: DateTime.now(),
-  //         updatedAtParameter: DateTime.now(),
-  //         startDateParameter: startDate,
-  //         endDateParameter: dueDate);
-  //     userTaskController.addUserTask(userTaskModel: userTaskModel);
-  //   } else if (widget.taskType == "mainTask") {
-  //   } else if (widget.taskType == "subTask") {}
-  // }
+// void _addProject() async {
+//   if (widget.taskType == "userTask") {
+//     StatusController statusController = Get.put(StatusController());
+//     StatusModel statusModel =
+//         await statusController.getStatusByName(status: "notDone");
+//     DocumentReference? taskfatherid;
+//     if (widget.fathertask != null) {
+//       DocumentSnapshot documentReference = await statusController.getDocById(
+//           reference: usersTasksRef, id: widget.fathertask!.id);
+//       taskfatherid = documentReference.reference;
+//     }
+//     UserTaskModel userTaskModel = UserTaskModel(
+//         userIdParameter: firebaseAuth.currentUser!.uid,
+//         folderIdParameter: widget.userTaskCategoryModel!.id,
+//         taskFatherIdParameter: taskfatherid,
+//         descriptionParameter: desc,
+//         idParameter: usersTasksRef.doc().id,
+//         nameParameter: name,
+//         statusIdParameter: statusModel.id,
+//         importanceParameter: selectedDashboardOption!,
+//         createdAtParameter: DateTime.now(),
+//         updatedAtParameter: DateTime.now(),
+//         startDateParameter: startDate,
+//         endDateParameter: dueDate);
+//     userTaskController.addUserTask(userTaskModel: userTaskModel);
+//   } else if (widget.taskType == "mainTask") {
+//   } else if (widget.taskType == "subTask") {}
+// }
 }
 
 class BottomSheetIcon extends StatelessWidget {
   final IconData icon;
+
   const BottomSheetIcon({
     required this.icon,
     Key? key,

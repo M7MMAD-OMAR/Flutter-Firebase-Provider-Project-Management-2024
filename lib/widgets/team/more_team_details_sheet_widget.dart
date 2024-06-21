@@ -14,8 +14,8 @@ import 'package:project_management_muhmad_omar/services/collections_refrences.da
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-import '../../controllers/team_member_provider.dart';
-import '../../models/team/team_members_model.dart';
+import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import '../Buttons/primary_progress_button_widget.dart';
 import '../Dashboard/dashboard_meeting_details_widget.dart';
 import '../container_label_widget.dart';

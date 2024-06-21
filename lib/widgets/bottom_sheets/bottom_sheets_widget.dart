@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
-class TaskezBottomSheet {
-  // static const MethodChannel _channel = MethodChannel('taskezBottomSheet');
-}
+// class TaskezBottomSheet {
+//   // static const MethodChannel _channel = MethodChannel('taskezBottomSheet');
+// }
 
-
-showAppBottomSheet(Widget widget,
+void showAppBottomSheet(Widget widget,
     {bool isScrollControlled = false,
     bool popAndShow = false,
     double? height}) {
   if (popAndShow) Navigator.pop(context);
-  return Get.bottomSheet(
-      height == null ? widget : SizedBox(height: height, child: widget),
-      backgroundColor: AppColors.primaryBackgroundColor,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(20),
-        ),
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: isScrollControlled,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(
+        top: Radius.circular(20),
       ),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      isScrollControlled: isScrollControlled);
+    ),
+    backgroundColor: AppColors.primaryBackgroundColor,
+    builder: (BuildContext context) {
+      return height == null ? widget : SizedBox(height: height, child: widget);
+    },
+  );
 }

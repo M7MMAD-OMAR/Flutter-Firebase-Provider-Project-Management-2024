@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
-import 'package:project_management_muhmad_omar/providers/projects/add_user_to_team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/dashboard_meeting_details_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
@@ -494,7 +494,7 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                   callback: () {
                     DashboardMeetingDetailsWidget.users = [];
                     Navigator.pushNamed(
-                        context, Routes.dashboardMeetingDetailsScreen);
+                        context, Routes.dashboardMeetingDetailsWidget);
                   },
                 ),
                 AppSpaces.verticalSpace20,

@@ -8,6 +8,8 @@ import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/dashboard_meeting_details_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/search_for_member_provider.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
@@ -16,8 +18,8 @@ import 'package:project_management_muhmad_omar/widgets/forms/search_box2_widget.
 import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../providers/projects/add_user_to_team_provider.dart';
 import '../profile/profile_overview_screen.dart';
 
 class SearchForMembersScreen extends StatefulWidget {
@@ -40,8 +42,8 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
   final searchController = TextEditingController();
   final GlobalKey<_SearchForMembersScreenState> searchForMembersKey =
       GlobalKey<_SearchForMembersScreenState>();
-  final DashboardMeetingDetailsProvider addWatingMemberController =
-      Get.find<DashboardMeetingDetailsProvider>();
+  final DashboardMeetingDetailsProvider dashboardMeetingDetails =
+      Provider.of<DashboardMeetingDetailsProvider>(context);
 
   void clearSearch() {
     setState(() {
@@ -119,9 +121,9 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                         decoration: BoxDecorationStyles.fadingInnerDecor,
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
-                          child: GetBuilder<SearchForMembersController>(
-                            init: SearchForMembersController(),
-                            builder: (controller) => Column(
+                          child: Consumer<SearchForMembersProvider>(
+                            // init: SearchForMembersProvider(),
+                            builder: (context, controller, child) => Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SearchBox2(
@@ -131,8 +133,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                   controller: controller.searchController,
                                   placeholder: 'بحث ....',
                                   onChanged: (value) {
-                                    controller.searchQuery.value = value;
-                                    controller.update();
+                                    controller.searchQuery = value;
                                   },
                                 ),
                                 AppSpaces.verticalSpace20,
@@ -176,8 +177,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                             in snapshot.data!.docs) {
                                           users.add(element.data());
                                         }
-                                        if (controller
-                                                .searchQuery.value.isEmpty ||
+                                        if (controller.searchQuery.isEmpty ||
                                             controller.searchController.text
                                                 .isEmpty) {
                                           return Padding(
@@ -205,8 +205,7 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                                   .toLowerCase()) &&
                                               user.id !=
                                                   AuthProvider.firebaseAuth
-                                                      .currentUser!
-                                                      .uid;
+                                                      .currentUser!.uid;
                                         }).toList();
                                         if (filteredUsers.isEmpty) {
                                           return SingleChildScrollView(
@@ -282,17 +281,11 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
                                                                   waitingMemberModel);
                                                     }
                                                     if (widget.newTeam) {
-                                                      addWatingMemberController
+                                                      dashboardMeetingDetails
                                                           .addUser(user);
-                                                      addWatingMemberController
-                                                          .update();
                                                     }
 
-                                                    addWatingMemberController
-                                                        .update();
                                                     Navigator.of(context).pop();
-                                                    addWatingMemberController
-                                                        .update();
                                                   } on Exception catch (e) {
                                                     CustomSnackBar.showError(
                                                         e.toString());

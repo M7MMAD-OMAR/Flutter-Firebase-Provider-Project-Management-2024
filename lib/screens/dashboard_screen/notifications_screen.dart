@@ -1,10 +1,10 @@
 // import 'package:flutter/material.dart';
 
-// import '../../Data/data_model.dart';
+// import 'package:project_management_muhmad_omar/Data/data_model.dart';
 // import 'package:project_management_muhmad_omar/constants/values.dart';
-// import '../../widgets/navigation/default_back_widget.dart';
-// import '../../widgets/Notification/notification_card.dart';
-// import '../../widgets/dummy/profile_dummy_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/navigation/default_back_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/Notification/notification_card.dart';
+// import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
 
 // class NotificationScreen extends StatelessWidget {
 //   const NotificationScreen({Key? key}) : super(key: key);

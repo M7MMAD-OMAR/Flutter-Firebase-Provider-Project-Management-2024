@@ -12,17 +12,20 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/projects/dashboard_meeting_details_provider.dart';
 import 'package:project_management_muhmad_omar/screens/Projects/search_for_members_screen.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_selectable_container_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../providers/auth_provider.dart';
 import '../Buttons/primary_buttons_widget.dart';
@@ -102,15 +105,14 @@ class _DashboardMeetingDetailsWidgetState
   }
 
   TextEditingController teamNameCobtroller = TextEditingController();
-  final DashboardMeetingDetailsScreenController userController =
-      Get.find<DashboardMeetingDetailsScreenController>();
+  final DashboardMeetingDetailsProvider userController =
+      Provider.of<DashboardMeetingDetailsProvider>(context, listen: false);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   void clearUsers() {
     userController.users.clear();
   }
 
-  @override
   @override
   void dispose() {
     clearUsers();
@@ -236,8 +238,13 @@ class _DashboardMeetingDetailsWidgetState
                         ),
                       ),
                       AppSpaces.verticalSpace20,
-                      Obx(
-                        () => buildStackedImagesEdit(),
+                      // Obx(
+                      //   () => buildStackedImagesEdit(),
+                      // ),
+                      Consumer<DashboardMeetingDetailsProvider>(
+                        builder: (context, stackedImagesProvider, child) {
+                          return buildStackedImagesEdit();
+                        },
                       ),
                       AppSpaces.verticalSpace40,
                       AppPrimaryButton(
@@ -303,8 +310,7 @@ class _DashboardMeetingDetailsWidgetState
                                       "إنشاء فريق ${teamModel.name} تم الانتهاء بنجاح");
                                 }
 
-                                dev.log("message Ysss");
-                                Get.close(1);
+                                Navigator.pop(context);
                               }
                             } on Exception catch (e) {
                               CustomSnackBar.showError(e.toString());
@@ -353,7 +359,7 @@ EitherException<Future<String?>> uploadImageToStorge({
 
 createTheTeam({required TeamModel teamModel}) async {
   await TeamProvider().addTeam(teamModel);
-  for (var user in userController.users) {
+  for (var user in UserProvider.users) {
     WaitingMemberModel waitingMemberModel = WaitingMemberModel(
         idParameter: watingMamberRef.doc().id,
         userIdParameter: user.id,

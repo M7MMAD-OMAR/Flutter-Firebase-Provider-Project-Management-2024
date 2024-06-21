@@ -1,12 +1,12 @@
 // import 'package:flutter/material.dart';
 
-// import '../../Data/data_model.dart';
+// import 'package:project_management_muhmad_omar/Data/data_model.dart';
 // import 'package:project_management_muhmad_omar/constants/values.dart';
-// import '../../widgets/buttons/primary_buttons_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 // import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
-// import '../../widgets/forms/search_box_widget.dart';
-// import '../../widgets/navigation/app_header_widget.dart';
-// import '../../widgets/employee_card_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/forms/search_box_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
+// import 'package:project_management_muhmad_omar/widgets/employee_card_widget.dart';
 
 // class SelectMembersScreen extends StatelessWidget {
 //   const SelectMembersScreen({Key? key}) : super(key: key);

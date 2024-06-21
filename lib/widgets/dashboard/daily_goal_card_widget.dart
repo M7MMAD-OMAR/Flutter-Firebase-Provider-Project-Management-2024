@@ -6,6 +6,7 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class DailyGoalCard extends StatefulWidget {
   DailyGoalCard({super.key,
@@ -22,7 +23,8 @@ class DailyGoalCard extends StatefulWidget {
 class _DailyGoalCardState extends State<DailyGoalCard> {
   @override
   Widget build(BuildContext context) {
-    UserTaskProvider userTaskController = Get.put(UserTaskProvider());
+    UserTaskProvider userTaskController =
+        Provider.of<UserTaskProvider>(context, listen: false);
     DateTime nowDate = DateTime.now();
     int first = 0;
     int second = 0;

@@ -78,13 +78,13 @@ class Routes {
   static const String selectMyTeamsScreen = '/select-my-team-screen';
   static const String selectTeamScreen = '/select-team-screen';
   static const String searchForMembersScreen = '/search-for-members-screen';
-  static const String dashboardMeetingDetailsScreen =
-      '/dashboard-meeting-details-screen';
+  static const String dashboardMeetingDetailsWidget =
+      '/dashboard-meeting-details-widget';
 
   static final dynamic routes = <String, WidgetBuilder>{
     authScreen: (BuildContext context) => const AuthScreen(),
     loginScreen: (BuildContext context) => const LoginScreen(),
-    dashboardMeetingDetailsScreen: (BuildContext context) =>
+    dashboardMeetingDetailsWidget: (BuildContext context) =>
         const DashboardMeetingDetailsWidget(),
     signupScreen: (BuildContext context) => const SignUpScreen(email: ''),
     resetPassword: (BuildContext context) => const ResetPasswordScreen(),

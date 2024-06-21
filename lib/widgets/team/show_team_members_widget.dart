@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -10,18 +9,18 @@ import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
+import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/screens/Projects/search_for_members_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/active_employee_card_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/inactive_employee_card_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 
-import '../../models/team/team_members_model.dart';
-import '../../widgets/buttons/primary_buttons_widget.dart';
-import '../../widgets/navigation/app_header_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
 
 class ShowTeamMembers extends StatelessWidget {
@@ -64,12 +63,12 @@ class ShowTeamMembers extends StatelessWidget {
                     //     ));
                   },
                   child: FutureBuilder<UserModel>(
-                      future: UserController()
-                          .getUserWhereMangerIs(manUserProviderel.managerId),
+                      future: UserProvider().getUserWhereMangerIs(
+                          mangerId: userAsManager?.id ?? ""),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState ==
                             ConnectionState.waiting) {
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         }
                         return GestureDetector(
                           onTap: () {
@@ -125,7 +124,7 @@ class ShowTeamMembers extends StatelessWidget {
                                           if (snapshotTeamMembers
                                                   .connectionState ==
                                               ConnectionState.waiting) {
-                                            return CircularProgressIndicator();
+                                            return const CircularProgressIndicator();
                                           }
 
                                           if (snapshotTeamMembers.hasError) {
@@ -133,7 +132,7 @@ class ShowTeamMembers extends StatelessWidget {
                                               child: Text(
                                                   snapshotTeamMembers.error
                                                       .toString(),
-                                                  style: TextStyle(
+                                                  style: const TextStyle(
                                                       backgroundColor:
                                                           Colors.red)),
                                             );
@@ -205,16 +204,16 @@ class ShowTeamMembers extends StatelessWidget {
                                               }
                                               return StreamBuilder<
                                                       QuerySnapshot<UserModel>>(
-                                                  stream: UserController()
+                                                  stream: UserProvider()
                                                       .getUsersWhereInIdsStream(
                                                           usersId: usersId),
-                                                  UserProviderbuilder:
+                                                  builder:
                                                       (context, snapshotUsers) {
                                                     if (snapshotUsers
                                                             .connectionState ==
                                                         ConnectionState
                                                             .waiting) {
-                                                      return CircularProgressIndicator();
+                                                      return const CircularProgressIndicator();
                                                     }
                                                     return ListView.builder(
                                                       itemCount: snapshotUsers

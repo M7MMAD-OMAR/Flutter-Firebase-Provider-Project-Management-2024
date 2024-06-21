@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-
-import '../../models/lang/lang_model.dart';
+import 'package:project_management_muhmad_omar/models/lang/lang_model.dart';
 
 class Box extends StatelessWidget {
   final String label;

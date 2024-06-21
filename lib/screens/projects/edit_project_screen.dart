@@ -7,14 +7,15 @@ import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Team/show_team_members_widget.dart';
@@ -26,7 +27,7 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calender_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/projects/add_team_to_create_project_provider.dart';
+import '../../providers/projects/stx_provider.dart';
 
 class EditProjectScreen extends StatefulWidget {
   EditProjectScreen({
@@ -140,13 +141,15 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
   DateTime startDate = DateTime.now();
 
   DateTime dueDate = DateTime.now();
-  ProjectProvider projectController = Get.put(ProjectProvider());
-  TeamProvider teamController = Get.put(TeamProvider());
-  TeamMemberProvider teamMemberController = Get.put(TeamMemberProvider());
-  ManagerProvider managerController = Get.put(ManagerProvider());
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  ProjectProvider projectController = Provider.of<ProjectProvider>(context);
+  final TeamProvider teamController = Provider.of<TeamProvider>(context);
+  final TeamMemberProvider teamMemberController =
+      Provider.of<TeamMemberProvider>(context);
+  final ManagerProvider managerController =
+      Provider.of<ManagerProvider>(context);
   String name = "";
   String desc = "";
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -275,16 +278,17 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
                 children: [
                   AppSpaces.horizontalSpace20,
                   Expanded(
-                    child: GetBuilder<STXProvider>(
-                      init: STXProvider(),
-                      builder: (controller) => LabelledFormInput(
+                    child: Consumer<STXProvider>(
+                      // init: STXProvider(),
+                      builder: (context, controller, child) =>
+                          LabelledFormInput(
                         ///  value: name,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'لا يمكن أن يكون الاسم فارغًا';
                           }
                           if (value.isNotEmpty) {
-                            if (controller.isTaked.value) {
+                            if (controller.isTaked) {
                               return 'يرجى استخدام اسم مشروع آخر';
                             }
                           }

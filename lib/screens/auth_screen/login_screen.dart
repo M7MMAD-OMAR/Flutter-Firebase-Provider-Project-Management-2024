@@ -3,13 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/forms/form_input_with_label_widget.dart';
+import 'package:project_management_muhmad_omar/widgets/navigation/back_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
-
-import '../../providers/auth_provider.dart';
-import '../../widgets/forms/form_input_with_label_widget.dart';
-import '../../widgets/navigation/back_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

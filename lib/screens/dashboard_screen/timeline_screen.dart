@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/providers/profile_overview_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
-import 'package:project_management_muhmad_omar/providers/projects/add_user_to_team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/dashboard_meeting_details_provider.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/bottom_navigation_item_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_icon_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_add_sheet_widget.dart';
@@ -11,7 +12,6 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/profile_overview_provider.dart';
 import 'dashboard_screen.dart';
 
 class TimelineScreen extends StatefulWidget {

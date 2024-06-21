@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
@@ -15,6 +15,7 @@ import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_member_for_sub_task_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../add_sub_icon_widget.dart';
 import '../forms/form_input_with_label_widget.dart';
@@ -101,11 +102,12 @@ class _CreateSubTaskState extends State<CreateSubTask> {
     }
   }
 
+  late UserModel userModel;
+
   Future<void> inisiateUserId({required memberId}) async {
-    UserModel userModel =
-        await UserController().getUserWhereMemberIs(memberId: memberId);
+    userModel = await UserProvider().getUserWhereMemberIs(memberId: memberId);
     setState(() {
-      assignedToUserId = useUserProvider
+      assignedToUserId = userModel.id;
     });
   }
 
@@ -118,9 +120,10 @@ class _CreateSubTaskState extends State<CreateSubTask> {
   DateTime startDate = DateTime.now();
   String color = "#FDA7FF";
   DateTime dueDate = DateTime.now();
-  UserTaskProvider userTaskController = Get.put(UserTaskProvider());
+  UserTaskProvider userTaskController =
+      Provider.of<UserTaskProvider>(context, listen: false);
   TaskCategoryProvider taskCategoryController =
-  Get.put(TaskCategoryProvider());
+      Provider.of<TaskCategoryProvider>(context, listen: false);
 
   bool isTaked = false;
   String name = "";
@@ -142,9 +145,9 @@ class _CreateSubTaskState extends State<CreateSubTask> {
               if (assignedToUserId != null)
                 StreamBuilder<DocumentSnapshot<UserModel>>(
                   stream:
-                      UserController().getUserByIdStream(id: assignedToUserId!),
+                      UserProvider().getUserByIdStream(id: assignedToUserId!),
                   builder: (context, snapshot) {
-                    UserModel? userModel = sUserProviderdata()!;
+                    UserModel? userModel = this.userModel;
                     if (snapshot.hasData) {
                       return InactiveEmployeeCardSubTask(
                         onTap: () async {
@@ -152,11 +155,15 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                               .getProjectById(id: widget.projectId);
                           TeamModel? teamModel = await TeamProvider()
                               .getTeamById(id: projectModel!.teamId!);
-                          Get.to(SearchForMembersSubTask(
-                            userModel: userModel,
-                            teamModel: teamModel,
-                            onSelectedUserChanged: onSelectedUserChanged,
-                          ));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => SearchForMembersSubTask(
+                                        userModel: userModel,
+                                        teamModel: teamModel,
+                                        onSelectedUserChanged:
+                                            onSelectedUserChanged,
+                                      )));
                         },
                         color: Colors.white,
                         userImage: userModel!.imageUrl,
@@ -197,11 +204,14 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                     TeamModel teamModel = await TeamProvider()
                         .getTeamById(id: projectModel!.teamId!);
 
-                    Get.to(() => SearchForMembersSubTask(
-                          onSelectedUserChanged: onSelectedUserChanged,
-                          userModel: null,
-                          teamModel: teamModel,
-                        ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => SearchForMembersSubTask(
+                                  onSelectedUserChanged: onSelectedUserChanged,
+                                  userModel: null,
+                                  teamModel: teamModel,
+                                )));
                   },
                   child: Container(
                     width: double.infinity,

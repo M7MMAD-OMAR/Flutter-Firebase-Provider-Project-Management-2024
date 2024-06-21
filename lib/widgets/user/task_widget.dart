@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/task_category_provider.dart';
+import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
+import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/tasks_tasks_widget.dart';
+import 'package:provider/provider.dart';
 
-import '../../constants/back_constants.dart';
-import '../../controllers/top_provider.dart';
-import '../../models/task/user_task_category_model.dart';
-import '../../models/user/user_task_Model.dart';
-import '../../services/collections_refrences.dart';
 import '../Dashboard/create_user_task_widget.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import 'focused_menu_item_widget.dart';
@@ -108,7 +109,8 @@ class _CardTaskState extends State<CardTask> {
   UserTaskCategoryModel? userTaskCategoryModel;
   @override
   Widget build(BuildContext context) {
-    StatusProvider statusController = Get.put(StatusProvider());
+    StatusProvider statusController =
+        Provider.of<StatusProvider>(context, listen: false);
     StatusModel? statusModel;
 
     taskStatus = " ";
@@ -135,7 +137,8 @@ class _CardTaskState extends State<CardTask> {
         //
       },
       deleteButton: () async {
-        UserTaskProvider userTaskController = Get.put(UserTaskProvider());
+        UserTaskProvider userTaskController =
+            Provider.of<UserTaskProvider>(context, listen: false);
         await userTaskController.deleteUserTask(id: widget.task.id);
       },
       editButton: () {

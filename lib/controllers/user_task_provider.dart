@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_management_muhmad_omar/controllers/task_provider.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
+import 'package:project_management_muhmad_omar/providers/task_provider.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 
 import '../constants/back_constants.dart';
