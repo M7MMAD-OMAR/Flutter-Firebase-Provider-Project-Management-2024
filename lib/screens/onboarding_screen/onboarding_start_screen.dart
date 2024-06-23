@@ -36,7 +36,9 @@ class OnboardingStartScreen extends StatelessWidget {
             left: AppConstants.dir['ar']["big_picture_L"],
             child: BackgroundImage(
               scale: 1.0,
-              image: 'ar' == 'ar' ? "assets/karem2R.png" : "assets/karem2.png",
+              image: 'ar' == 'ar'
+                  ? "assets/man-head-R.png"
+                  : "assets/man-head.png",
               gradient: [
                 HexColor.fromHex("92ECEC"),
                 HexColor.fromHex("92ECEC"),

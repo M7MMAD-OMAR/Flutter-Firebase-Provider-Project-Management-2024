@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/models/lang/lang_model.dart';
 
 class Box extends StatelessWidget {
   final String label;
@@ -9,20 +8,16 @@ class Box extends StatelessWidget {
   final Color? iconColor;
   final String iconpath;
   final VoidCallback? callback;
-  LanguageModel? languageModel;
   int? index;
 
-  Box(
-      {Key? key,
-      this.languageModel,
+  Box({super.key,
       this.index,
       required this.iconColor,
       required this.iconpath,
       required this.label,
       required this.value,
       required this.badgeColor,
-      this.callback})
-      : super(key: key);
+      this.callback});
 
   @override
   Widget build(BuildContext context) {

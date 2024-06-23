@@ -214,7 +214,6 @@ class Assets {
   static const String imagesGoogle = 'lib/images/google.png';
   static const String imagesGoogle2 = 'lib/images/google2.png';
   static const String imagesLogo = 'lib/images/logo.png';
-  static const String langLangModel = 'lib/models/lang/lang_model.dart';
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
   static const String libMain = 'lib/main.dart';
   static const String libProviders = 'lib/providers.dart';

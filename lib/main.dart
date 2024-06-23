@@ -33,9 +33,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   HttpProxy httpProxy = await HttpProxy.createHttpProxy();
   HttpOverrides.global = httpProxy;
-  // runApp(MyApp(
-  //   languages: languages,
-  // ));
 
   runApp(
     MultiProvider(
