@@ -210,7 +210,7 @@ class OnboardingStartScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'ابدأ الإن',
+                          'ابدأ الآن',
                           style: GoogleFonts.lato(
                             fontSize: 20,
                             color: Colors.white,

@@ -215,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context, Routes.emailAddressScreen);
                           },
                           child: Text(
-                            'أنشئ واحدًا!',
+                            'قم بإنشاء حساب جديد',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: AppColors.primaryAccentColor,

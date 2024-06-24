@@ -1,13 +1,9 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:http_proxy/http_proxy.dart';
 import 'package:project_management_muhmad_omar/providers.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
-import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -30,9 +26,6 @@ Future<void> main() async {
   //     const Duration(seconds: 45), helloAlarmID, checkAuth,
   //     wakeup: true, rescheduleOnReboot: true);
   // await fcmHandler();
-  WidgetsFlutterBinding.ensureInitialized();
-  HttpProxy httpProxy = await HttpProxy.createHttpProxy();
-  HttpOverrides.global = httpProxy;
 
   runApp(
     MultiProvider(
@@ -62,17 +55,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-@pragma('vm:entry-point')
-Future<void> fcmHandler() async {
-  FirebaseMessaging.onMessage
-      .listen(FcmNotificationsProvider.handleMessageJson);
-  FirebaseMessaging.onMessageOpenedApp
-      .listen(FcmNotificationsProvider.handleMessageJson);
-  FirebaseMessaging.onBackgroundMessage(
-      FcmNotificationsProvider.handleMessageJson);
-  RemoteMessage? remoteMessage =
-      await FirebaseMessaging.instance.getInitialMessage();
-  if (remoteMessage != null) {
-    await FcmNotificationsProvider.handleMessageJson(remoteMessage);
-  }
-}
+// @pragma('vm:entry-point')
+// Future<void> fcmHandler() async {
+//   FirebaseMessaging.onMessage
+//       .listen(FcmNotificationsProvider.handleMessageJson);
+//   FirebaseMessaging.onMessageOpenedApp
+//       .listen(FcmNotificationsProvider.handleMessageJson);
+//   FirebaseMessaging.onBackgroundMessage(
+//       FcmNotificationsProvider.handleMessageJson);
+//   RemoteMessage? remoteMessage =
+//       await FirebaseMessaging.instance.getInitialMessage();
+//   if (remoteMessage != null) {
+//     await FcmNotificationsProvider.handleMessageJson(remoteMessage);
+//   }
+// }

@@ -151,7 +151,8 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                                         await AuthProvider().signInWithGoogle();
                                     Navigator.of(context).pop();
                                     authG.fold((left) {
-                                      CustomSnackBar.showError(left.toString());
+                                      CustomSnackBar.showError(
+                                          "لا يمكنك التسجيل بواسطة جوجل حاليا");
                                     }, (right) {
                                       CustomSnackBar.showSuccess("Done byby");
                                       Navigator.of(context)

@@ -26,7 +26,6 @@ dependencies:
   awesome_notifications: ^0.9.3+1
   firebase_messaging: ^14.4.0
   awesome_dialog: ^3.1.0
-  http_proxy: ^1.2.2
   responsive_builder: ^0.7.0
   font_awesome_flutter: ^10.2.1
   flutter_shapes: ^0.3.0
