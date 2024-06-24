@@ -274,7 +274,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(height: Utils.screenHeight * 0.04),
                       SizedBox(
                         width: double.infinity,
-                        height: Utils.screenHeight * 0.15,
+                        height: Utils.screenHeight * 0.08,
                         child: ElevatedButton(
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {

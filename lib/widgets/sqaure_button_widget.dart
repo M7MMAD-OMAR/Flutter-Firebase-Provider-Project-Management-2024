@@ -12,7 +12,7 @@ class SquareButtonIcon extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(
             horizontal: Utils.screenWidth * 0.16,
-            vertical: Utils.screenHeight * 0.025),
+            vertical: Utils.screenHeight * 0.020),
         decoration: BoxDecoration(
             color: null,
             borderRadius: BorderRadius.circular(30),
@@ -21,7 +21,7 @@ class SquareButtonIcon extends StatelessWidget {
             )),
         child: Image.asset(
           imagePath,
-          height: Utils.screenHeight * 0.08,
+          height: Utils.screenHeight * 0.03,
         ),
       ),
     );

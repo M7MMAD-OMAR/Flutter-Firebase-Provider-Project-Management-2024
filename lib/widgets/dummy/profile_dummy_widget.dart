@@ -15,16 +15,14 @@ class ProfileDummy extends StatelessWidget {
   final Color? color;
   final IconData? icon;
 
-  const ProfileDummy(
-      {Key? key,
+  const ProfileDummy({super.key,
       required this.imageType,
      
       required this.dummyType,
       required this.scale,
       required this.color,
       this.icon,
-      this.image})
-      : super(key: key);
+      this.image});
 
   @override
   Widget build(BuildContext context) {

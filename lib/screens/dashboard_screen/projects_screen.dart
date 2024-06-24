@@ -23,9 +23,8 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_tab_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/navigation/app_header_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
-import 'package:provider/provider.dart';
-
 import 'package:project_management_muhmad_omar/widgets/user/focused_menu_item_widget.dart';
+import 'package:provider/provider.dart';
 
 enum ProjectSortOption {
   name,
@@ -280,32 +279,34 @@ class _ProjectScreenState extends State<ProjectScreen> {
                         stream: controller.getProjectsStream(),
                         builder: (context, snapshotProject) {
                           if (snapshotProject.hasError) {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.search_off,
-                                  color: Colors.red,
-                                  size: Utils.screenWidth * 0.28,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: Utils.screenWidth * 0.1,
-                                    vertical: Utils.screenHeight * 0.05,
+                            return SingleChildScrollView(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.search_off,
+                                    color: Colors.red,
+                                    size: Utils.screenWidth * 0.28,
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      snapshotProject.error
-                                          .toString()
-                                          .substring(11),
-                                      style: GoogleFonts.fjallaOne(
-                                        color: Colors.white,
-                                        fontSize: Utils.screenWidth * 0.1,
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: Utils.screenWidth * 0.1,
+                                      vertical: Utils.screenHeight * 0.05,
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        snapshotProject.error
+                                            .toString()
+                                            .substring(11),
+                                        style: GoogleFonts.fjallaOne(
+                                          color: Colors.white,
+                                          fontSize: Utils.screenWidth * 0.1,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             );
                           }
 

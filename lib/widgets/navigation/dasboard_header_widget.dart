@@ -17,19 +17,23 @@ class DashboardNav extends StatelessWidget {
   final VoidCallback? onImageTapped;
   final String notificationCount;
 
-  const DashboardNav(
-      {Key? key,
+  const DashboardNav({super.key,
       required this.title,
       required this.image,
       required this.notificationCount,
       this.page,
-      this.onImageTapped})
-      : super(key: key);
+      this.onImageTapped});
 
   @override
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Text(title, style: AppTextStyles.header2),
+      Expanded(
+        child: Text(
+          title,
+          style: AppTextStyles.header2,
+          overflow: TextOverflow.ellipsis, // Add this line to handle overflow
+        ),
+      ),
       Row(mainAxisAlignment: MainAxisAlignment.end, children: [
         // InkWell(
         //   onTap: () {
@@ -83,7 +87,7 @@ class DashboardNav extends StatelessWidget {
             },
             child: StreamBuilder<DocumentSnapshot<UserModel>>(
                 stream: UserProvider().getUserByIdStream(
-                    id: AuthProvider.firebaseAuth.currentUser!.uid),
+                    id: AuthProvider.firebaseAuth.currentUser?.uid ?? ""),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const CircularProgressIndicator();
@@ -91,8 +95,10 @@ class DashboardNav extends StatelessWidget {
                   return ProfileDummy(
                     imageType: ImageType.Network,
                     color: Colors.white.withOpacity(0),
-                    dummyType: ProfileDummyType.Image,
-                    image: snapshot.data!.data()!.imageUrl,
+                    dummyType: snapshot.data?.data()?.imageUrl == null
+                        ? ProfileDummyType.Icon
+                        : ProfileDummyType.Image,
+                    image: snapshot.data?.data()?.imageUrl ?? "",
                     scale: Utils.screenWidth * 0.004,
                     //scale: 1.2,
                   );

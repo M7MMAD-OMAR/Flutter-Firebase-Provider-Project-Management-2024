@@ -37,7 +37,7 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: Providers.providers,
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }

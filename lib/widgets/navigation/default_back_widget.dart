@@ -22,7 +22,7 @@ class DefaultNav extends StatelessWidget {
       const AppBackButtonWidget(),
       Text(title,
           style: GoogleFonts.lato(
-              fontSize: Utils.screenWidth * 0.07,
+              fontSize: Utils.screenWidth * 0.1,
               color: Colors.white,
               fontWeight: FontWeight.bold)),
       Builder(builder: (context) {

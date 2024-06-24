@@ -25,7 +25,7 @@ class Box extends StatelessWidget {
       onTap: callback,
       child: Container(
         width: double.infinity,
-        height: Utils.screenHeight * 0.19,
+        height: Utils.screenHeight * 0.08,
         padding: const EdgeInsets.all(20.0),
         decoration: BoxDecoration(
             color: AppColors.primaryBackgroundColor,

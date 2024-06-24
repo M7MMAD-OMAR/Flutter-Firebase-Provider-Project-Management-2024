@@ -1,26 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/profile_overview_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
-import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/progress_card_close_button_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/container_label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dark_background/dark_radial_background_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/dummy/profile_dummy_widget.dart';
-import 'package:project_management_muhmad_omar/widgets/forms/form_input_with_label_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/profile/box_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/profile/text_outlined_button_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:provider/provider.dart';
-
-import 'package:project_management_muhmad_omar/providers/profile_overview_provider.dart';
 
 class ProfileOverviewScreen extends StatefulWidget {
   ProfileOverviewScreen({super.key, required this.isSelected});
@@ -106,7 +101,7 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                         Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: OutlinedButtonWithText(
-                            width: 150,
+                            width: 250,
                             content: 'الملف الشخصي',
                             onPressed: () {
                               Navigator.push(
@@ -153,12 +148,14 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                     );
                   },
                 ),
-                Visibility(
-                  visible: AuthProvider.firebaseAuth.currentUser!.isAnonymous,
-                  child: const ContainerLabel(
-                    label: 'ترقية الحساب',
-                  ),
-                ),
+                // Visibility(
+                //   visible: AuthProvider.firebaseAuth.currentUser!.isAnonymous,
+                //   child: const ContainerLabel(
+                //     label: 'ترقية الحساب',
+                //   ),
+                // ),verticalSpace20
+                AppSpaces.verticalSpace20,
+
                 Visibility(
                   visible: AuthProvider.firebaseAuth.currentUser!.isAnonymous,
                   child: Row(
@@ -188,7 +185,7 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                           badgeColor: "FFDE72",
                         ),
                       ),
-                      AppSpaces.horizontalSpace10,
+                      AppSpaces.verticalSpace10,
                       // Expanded(
                       //   flex: 1,
                       //   child: Box(
@@ -205,6 +202,8 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                     ],
                   ),
                 ),
+                AppSpaces.verticalSpace20,
+
                 GestureDetector(
                   onTap: () async {
                     Navigator.of(context).pushNamedAndRemoveUntil(
@@ -215,7 +214,7 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                   },
                   child: Container(
                     width: double.infinity,
-                    height: Utils.screenHeight * 0.15,
+                    height: Utils.screenHeight * 0.08,
                     decoration: BoxDecoration(
                       color: HexColor.fromHex("FF968E"),
                       borderRadius: BorderRadius.circular(12),
@@ -249,124 +248,3 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
   }
 }
 
-class PasswordEmailDialogProvider extends ChangeNotifier {
-  TextEditingController passController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String password = "";
-  String email = "";
-  RegExp regExletters = RegExp(r"(?=.*[a-z])\w+");
-  RegExp regExnumbers = RegExp(r"(?=.*[0-9])\w+");
-  RegExp regExbigletters = RegExp(r"(?=.*[A-Z])\w+");
-  bool obscureText = false;
-
-  void toggleObscureText() {
-    obscureText = !obscureText;
-    notifyListeners();
-  }
-
-  Future<void> showPasswordAndEmailDialog(BuildContext context) async {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          backgroundColor: AppColors.primaryBackgroundColor,
-          title: const Text('ادخل كلمة السر & البريد الإلكتروني',
-              style: TextStyle(color: Colors.white)),
-          content: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                LabelledFormInput(
-                  autovalidateMode: AutovalidateMode.disabled,
-                  validator: (value) {
-                    if (!EmailValidator.validate(value!)) {
-                      return 'يرجى إدخال بريد إلكتروني صالح';
-                    } else {
-                      return null;
-                    }
-                  },
-                  onClear: () {
-                    email = "";
-                    emailController.text = "";
-                  },
-                  onChanged: (value) {
-                    email = value;
-                  },
-                  readOnly: false,
-                  placeholder: ' البريد ',
-                  keyboardType: 'text',
-                  controller: emailController,
-                  obscureText: obscureText,
-                  label: 'بريدك الإلكتروني',
-                ),
-                const SizedBox(height: 20),
-                LabelledFormInput(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'يجب أن تحتوي كلمة المرور على أكثر من 7 أحرف';
-                    }
-                    if (regExletters.hasMatch(value) == false) {
-                      return 'يرجى إدخال حرف صغير واحد على الأقل';
-                    }
-                    if (regExnumbers.hasMatch(value) == false) {
-                      return 'الرجاء إدخال رقم واحد على الأقل';
-                    }
-                    if (regExbigletters.hasMatch(value) == false) {
-                      return 'الرجاء إدخال حرف كبير واحد على الأقل';
-                    }
-                    return null;
-                  },
-                  onClear: () {
-                    toggleObscureText();
-                  },
-                  onChanged: (value) {
-                    password = value;
-                  },
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  readOnly: false,
-                  placeholder: 'كلمة المرور',
-                  keyboardType: 'text',
-                  controller: passController,
-                  obscureText: obscureText,
-                  label: 'كلمة المرور الخاصة بك',
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: AppPrimaryButton(
-                callback: () async {
-                  try {
-                    if (formKey.currentState!.validate()) {
-                      showDialogMethod(context);
-                      await AuthProvider().convertAnonymousToEmailandPassword(
-                        email: email,
-                        password: password,
-                      );
-                      Navigator.pop(context);
-                      Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        Routes.onboardingCarouselScreen,
-                        (Route<dynamic> route) => false,
-                      );
-                      await AuthProvider().logOut();
-                    }
-                  } on Exception catch (e) {
-                    Navigator.of(context).pop();
-                    CustomSnackBar.showError(e.toString());
-                  }
-                },
-                buttonText: 'ترقية الحساب',
-                buttonHeight: Utils.screenHeight * 0.1,
-                buttonWidth: Utils.screenWidth * 0.33,
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}

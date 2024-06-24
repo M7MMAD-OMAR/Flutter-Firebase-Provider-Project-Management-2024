@@ -70,7 +70,7 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                     AppSpaces.verticalSpace40,
                     SizedBox(
                       //width: 180,
-                      height: Utils.screenHeight * 0.15,
+                      height: Utils.screenHeight * 0.08,
                       child: ElevatedButton(
                         onPressed: () async {
                           var verifyEmail =

@@ -22,7 +22,6 @@ import 'package:project_management_muhmad_omar/screens/profile/my_team_screen.da
 import 'package:project_management_muhmad_omar/screens/profile/profile_overview_screen.dart';
 import 'package:project_management_muhmad_omar/screens/profile/team_details_screen.dart';
 import 'package:project_management_muhmad_omar/screens/projects/create_project_screen.dart';
-import 'package:project_management_muhmad_omar/screens/projects/projects_screen.dart';
 import 'package:project_management_muhmad_omar/screens/projects/search_for_members_screen.dart';
 import 'package:project_management_muhmad_omar/screens/splash_screen.dart';
 import 'package:project_management_muhmad_omar/screens/task/task_due_date_screen.dart';
@@ -92,7 +91,7 @@ class Routes {
         const VerifyEmailAddressScreen(),
     emailAddressScreen: (BuildContext context) => const EmailAddressScreen(),
     splashScreen: (BuildContext context) => const SplashScreen(),
-    categoryScreen: (BuildContext context) => CategoryScreen(),
+    categoryScreen: (BuildContext context) => const CategoryScreen(),
     selectMyTeamsScreen: (BuildContext context) =>
         SelectMyTeamsScreen(title: ''),
     selectTeamScreen: (BuildContext context) =>
@@ -126,7 +125,7 @@ class Routes {
         TeamDetailsScreen(title: '', team: null, userAsManager: null),
     createProjectScreen: (BuildContext context) =>
         CreateProjectScreen(managerModel: null, isEditMode: false),
-    projectsScreen: (BuildContext context) => const ProjectsScreen(),
+    projectsScreen: (BuildContext context) => const ProjectScreen(),
     editProjectScreen: (BuildContext context) =>
         const EditProfileScreen(user: null),
     searchForMembersScreen: (BuildContext context) =>

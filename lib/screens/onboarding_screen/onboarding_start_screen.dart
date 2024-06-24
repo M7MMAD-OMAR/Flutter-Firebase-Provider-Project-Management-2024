@@ -85,7 +85,7 @@ class OnboardingStartScreen extends StatelessWidget {
             child: Bubble(0.6, HexColor.fromHex("FDA5FF")),
           ),
           Positioned(
-            top: Utils.screenHeight * 0.12,
+            top: Utils.screenHeight * 0.09,
             left: Utils.screenWidth * AppConstants.dir['ar']["one_sticker_L"],
             child: LoadingSticker(
               gradients: [

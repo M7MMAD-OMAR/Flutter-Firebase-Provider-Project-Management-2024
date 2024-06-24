@@ -136,54 +136,62 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SquareButtonIcon(
-                                imagePath: "lib/images/google2.png",
-                                onTap: () async {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return const Center(
-                                            child: CircularProgressIndicator());
-                                      });
-                                  var authG =
-                                      await AuthProvider().signInWithGoogle();
-                                  Navigator.of(context).pop();
-                                  authG.fold((left) {
-                                    CustomSnackBar.showError(left.toString());
-                                  }, (right) {
-                                    CustomSnackBar.showSuccess("Done byby");
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                      Routes.timelineScreen,
-                                      (Route<dynamic> route) => false,
-                                    );
-                                  });
-                                }),
-                            SquareButtonIcon(
-                                imagePath: "lib/images/anonymos.png",
-                                onTap: () async {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return const Center(
-                                            child: CircularProgressIndicator());
-                                      });
+                            Expanded(
+                              child: SquareButtonIcon(
+                                  imagePath: "lib/images/google2.png",
+                                  onTap: () async {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        });
+                                    var authG =
+                                        await AuthProvider().signInWithGoogle();
+                                    Navigator.of(context).pop();
+                                    authG.fold((left) {
+                                      CustomSnackBar.showError(left.toString());
+                                    }, (right) {
+                                      CustomSnackBar.showSuccess("Done byby");
+                                      Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                        Routes.timelineScreen,
+                                        (Route<dynamic> route) => false,
+                                      );
+                                    });
+                                  }),
+                            ),
+                            const SizedBox(width: 10),
+                            // Add some spacing between buttons
+                            Expanded(
+                              child: SquareButtonIcon(
+                                  imagePath: "lib/images/anonymos.png",
+                                  onTap: () async {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        });
 
-                                  var anonymousSignIN = await AuthProvider()
-                                      .anonymosSignInMethod();
+                                    var anonymousSignIN = await AuthProvider()
+                                        .anonymosSignInMethod();
 
-                                  Navigator.of(context).pop();
-                                  anonymousSignIN.fold((left) {
-                                    CustomSnackBar.showError(left.toString());
-                                    return;
-                                  }, (right) {
-                                    Navigator.of(context)
-                                        .pushNamedAndRemoveUntil(
-                                      Routes.timelineScreen,
-                                      (Route<dynamic> route) => false,
-                                    );
-                                  });
-                                }),
+                                    Navigator.of(context).pop();
+                                    anonymousSignIN.fold((left) {
+                                      CustomSnackBar.showError(left.toString());
+                                      return;
+                                    }, (right) {
+                                      Navigator.of(context)
+                                          .pushNamedAndRemoveUntil(
+                                        Routes.timelineScreen,
+                                        (Route<dynamic> route) => false,
+                                      );
+                                    });
+                                  }),
+                            ),
                           ],
                         ),
                         Padding(

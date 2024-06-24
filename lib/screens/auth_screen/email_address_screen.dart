@@ -57,7 +57,7 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const NavigationBack(),
-                      SizedBox(height: Utils.screenHeight * 0.12),
+                      SizedBox(height: Utils.screenHeight * 0.09),
                       Text('ما هو عنوان بريدك الإلكتروني؟',
                           style: GoogleFonts.lato(
                               color: Colors.white,
