@@ -2,21 +2,21 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
-import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/providers/task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
+import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/status_provider.dart';
+import 'package:project_management_muhmad_omar/providers/task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
+import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
+import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:provider/provider.dart';
 
-import '../constants/back_constants.dart';
-import '../models/team/manger_model.dart';
-import '../models/team/project_model.dart';
-import '../providers/auth_provider.dart';
-import '../services/collections_refrences.dart';
-import '../utils/back_utils.dart';
-import 'manger_provider.dart';
+import '../manger_provider.dart';
 
 class ProjectProvider extends TaskProvider {
   int _selectedTab = 0;

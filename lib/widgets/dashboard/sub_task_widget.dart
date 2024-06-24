@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/waiting_sub_tasks_provider.dart';
+import 'package:project_management_muhmad_omar/providers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/status_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/top_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_provider.dart';
+import 'package:project_management_muhmad_omar/providers/waiting_sub_tasks_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
@@ -33,7 +33,7 @@ import 'package:project_management_muhmad_omar/widgets/Dashboard/create_sub_task
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../constants/constants.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
 import '../snackbar/custom_snackber_widget.dart';
 import '../user/focused_menu_item_widget.dart';
 

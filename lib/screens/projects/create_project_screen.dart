@@ -5,10 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
@@ -16,7 +12,13 @@ import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/invitations_provider.dart';
+import 'package:project_management_muhmad_omar/providers/manger_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/status_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
@@ -28,8 +30,6 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 import 'package:project_management_muhmad_omar/widgets/user/new_sheet_goto_calender_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../controllers/team_provider.dart';
-import '../../providers/invitations_provider.dart';
 import '../dashboard_screen/select_my_teams_screen.dart';
 
 class CreateProjectScreen extends StatefulWidget {

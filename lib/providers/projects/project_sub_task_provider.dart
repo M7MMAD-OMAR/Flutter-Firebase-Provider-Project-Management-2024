@@ -3,27 +3,27 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/status_provider.dart';
 import 'package:project_management_muhmad_omar/providers/task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:provider/provider.dart';
 
-import '../constants/back_constants.dart';
-import '../models/status_model.dart';
-import '../models/team/project_model.dart';
-import '../models/team/teamModel.dart';
-import '../models/user/user_model.dart';
-import '../providers/auth_provider.dart';
-import '../services/notifications/notification_service.dart';
-import '../services/types_services.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/models/status_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_model.dart';
+import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
+import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
+import 'package:project_management_muhmad_omar/services/types_services.dart';
 
 class ProjectSubTaskProvider extends TaskProvider {
   Future<List<ProjectSubTaskModel>> getMemberSubTasks(

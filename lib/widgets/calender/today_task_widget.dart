@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';

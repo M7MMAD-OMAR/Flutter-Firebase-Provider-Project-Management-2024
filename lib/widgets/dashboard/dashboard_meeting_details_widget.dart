@@ -10,15 +10,16 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/manger_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/dashboard_meeting_details_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_provider.dart';
+import 'package:project_management_muhmad_omar/providers/waiting_member_provider.dart';
 import 'package:project_management_muhmad_omar/screens/Projects/search_for_members_screen.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
@@ -27,7 +28,6 @@ import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_shee
 import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/auth_provider.dart';
 import '../Buttons/primary_buttons_widget.dart';
 import '../dummy/profile_dummy_widget.dart';
 import '../forms/form_input_with_label_widget.dart';

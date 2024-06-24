@@ -5,12 +5,12 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
 
-import '../../constants/back_constants.dart';
 import 'notification_service.dart';
 
-class NotificationController {
+class NotificationProvider extends ChangeNotifier {
   @pragma('vm:entry-point')
   static void requestPermission() {
     BuildContext context = navigatorKey.currentContext!;

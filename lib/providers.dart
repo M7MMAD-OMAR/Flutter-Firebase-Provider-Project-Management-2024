@@ -1,29 +1,29 @@
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/providers/box_provider.dart';
 import 'package:project_management_muhmad_omar/providers/dashboard/checkbox_provider.dart';
 import 'package:project_management_muhmad_omar/providers/invitations_provider.dart';
+import 'package:project_management_muhmad_omar/providers/manger_provider.dart';
 import 'package:project_management_muhmad_omar/providers/password_email_dialog_provider.dart';
 import 'package:project_management_muhmad_omar/providers/profile_overview_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/dashboard_meeting_details_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_sub_task_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/search_for_member_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/stx_provider.dart';
+import 'package:project_management_muhmad_omar/providers/task_category_provider.dart';
 import 'package:project_management_muhmad_omar/providers/task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/top_provider.dart';
 import 'package:provider/provider.dart';
 
-import 'controllers/manger_provider.dart';
-import 'controllers/project_main_task_provider.dart';
-import 'controllers/project_provider.dart';
-import 'controllers/project_sub_task_provider.dart';
-import 'controllers/status_provider.dart';
-import 'controllers/task_category_provider.dart';
-import 'controllers/team_member_provider.dart';
-import 'controllers/user_provider.dart';
-import 'controllers/user_task_provider.dart';
-import 'controllers/waiting_member_provider.dart';
-import 'controllers/waiting_sub_tasks_provider.dart';
+import 'providers/projects/project_main_task_provider.dart';
+import 'providers/projects/project_provider.dart';
+import 'providers/status_provider.dart';
+import 'providers/team_member_provider.dart';
+import 'providers/user_provider.dart';
+import 'providers/user_task_provider.dart';
+import 'providers/waiting_member_provider.dart';
+import 'providers/waiting_sub_tasks_provider.dart';
 
 class Providers {
   Providers._();

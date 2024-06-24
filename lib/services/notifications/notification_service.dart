@@ -6,11 +6,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/waiting_member_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/waiting_sub_tasks_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/status_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/waiting_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/waiting_sub_tasks_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:provider/provider.dart';
@@ -46,7 +46,7 @@ class FcmNotificationsProvider {
     if (data != null) {
       insidedata.addAll(data);
     }
-    await NotificationController.sendPushMessage(
+    await NotificationProvider.sendPushMessage(
       fcmTokens: fcmTokens,
       title: title,
       body: body,
@@ -68,7 +68,7 @@ class FcmNotificationsProvider {
       data: data,
       title: title,
     );
-    await NotificationController.sendPushMessageJson(
+    await NotificationProvider.sendPushMessageJson(
         data: dataJson, fcmTokens: fcmTokens);
   }
 
@@ -190,7 +190,7 @@ class FcmNotificationsProvider {
     if (await getNotificationStatus() == true) {
       Map<String, dynamic> s = jsonDecode(message.data["data"]);
 
-      await NotificationController.showNotificationJson(s["notification"]);
+      await NotificationProvider.showNotificationJson(s["notification"]);
     }
   }
 
@@ -285,7 +285,7 @@ class FcmNotificationsProvider {
     required Map<String, String> payload,
     List<NotificationActionButton>? buttons,
   }) async {
-    await NotificationController.showNotification(
+    await NotificationProvider.showNotification(
       title: title,
       body: body,
       actionButtons: buttons,

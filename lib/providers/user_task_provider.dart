@@ -8,7 +8,7 @@ import 'package:project_management_muhmad_omar/services/collections_refrences.da
 
 import '../constants/back_constants.dart';
 import '../constants/constants.dart';
-import '../providers/auth_provider.dart';
+import 'auth_provider.dart';
 
 class UserTaskProvider extends TaskProvider {
   Future<List<UserTaskModel>> getAllUsersTasks() async {

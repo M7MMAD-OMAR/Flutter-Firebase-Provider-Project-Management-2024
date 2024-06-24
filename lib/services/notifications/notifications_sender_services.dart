@@ -4,14 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/constants.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_main_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/firebase_options.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
@@ -21,6 +13,14 @@ import 'package:project_management_muhmad_omar/models/team/project_sub_task_mode
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_main_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/status_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/top_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_task_provider.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
 import 'package:provider/provider.dart';
@@ -317,7 +317,7 @@ void checkAuth(int x, Map<String, dynamic> map) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await NotificationController.initializeNotification();
+  await NotificationProvider.initializeNotification();
   // AuthProvider authSXervice =  Provider.of<AuthProvider>(navigatorKey.currentContext!);
   FirebaseAuth.instance.authStateChanges().listen(
     (User? user) async {

@@ -5,15 +5,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/manger_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/status_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
 import 'package:project_management_muhmad_omar/models/status_model.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/project_model.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/manger_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/status_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/select_team_screen.dart';
 import 'package:project_management_muhmad_omar/screens/projects/edit_project_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/main_tasks_widget.dart';
@@ -203,8 +203,8 @@ class _ProjectScreenState extends State<ProjectScreen> {
                               );
                               ManagerModel? managerModel =
                                   await ManagerProvider().getMangerWhereUserIs(
-                                          userId: AuthProvider
-                                              .firebaseAuth.currentUser!.uid);
+                                      userId: AuthProvider
+                                          .firebaseAuth.currentUser!.uid);
 
                               Navigator.of(context).pop();
                               Navigator.push(

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_management_muhmad_omar/controllers/team_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/top_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
@@ -14,7 +14,7 @@ import '../constants/constants.dart';
 import '../models/team/teamModel.dart';
 import '../models/team/team_members_model.dart';
 import '../models/user/user_model.dart';
-import '../providers/auth_provider.dart';
+import 'auth_provider.dart';
 import '../services/notifications/notification_service.dart';
 
 class WaitingMemberProvider extends TopProvider {

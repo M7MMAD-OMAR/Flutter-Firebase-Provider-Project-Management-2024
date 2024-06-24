@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/screens/profile/profile_overview_screen.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 
-import '../../providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import '../dummy/profile_dummy_widget.dart';
 
 class DashboardNav extends StatelessWidget {

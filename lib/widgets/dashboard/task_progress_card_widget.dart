@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import '../../constants/constants.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
 import '../Buttons/progress_card_close_button_widget.dart';
 
 class TaskProgressCard extends StatelessWidget {

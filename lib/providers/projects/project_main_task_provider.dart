@@ -2,19 +2,18 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_sub_task_provider.dart';
 import 'package:project_management_muhmad_omar/providers/task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
-
-import '../constants/back_constants.dart';
-import '../constants/constants.dart';
-import '../models/team/project_main_task_model.dart';
-import '../models/team/project_model.dart';
-import '../models/team/project_sub_task_model.dart';
-import '../providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/constants/back_constants.dart';
+import 'package:project_management_muhmad_omar/constants/constants.dart';
+import 'package:project_management_muhmad_omar/models/team/project_main_task_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_model.dart';
+import 'package:project_management_muhmad_omar/models/team/project_sub_task_model.dart';
+import '../auth_provider.dart';
 
 class ProjectMainTaskProvider extends TaskProvider {
   Future<ProjectMainTaskModel> getProjectMainTaskById(

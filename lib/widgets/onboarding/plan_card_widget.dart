@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:project_management_muhmad_omar/constants/constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import '../../constants/constants.dart';
+
 import '../dummy/green_done_icon_widget.dart';
 
 class PlanCard extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_management_muhmad_omar/controllers/project_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/project_sub_task_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/top_provider.dart';
-import 'package:project_management_muhmad_omar/controllers/user_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
+import 'package:project_management_muhmad_omar/providers/projects/project_sub_task_provider.dart';
+import 'package:project_management_muhmad_omar/providers/top_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
@@ -17,7 +17,7 @@ import '../models/user/user_model.dart';
 import '../services/notifications/notification_service.dart';
 import '../services/types_services.dart';
 import '../widgets/snackbar/custom_snackber_widget.dart';
-import 'manger_provider.dart';
+import '../providers/manger_provider.dart';
 
 class WaitingSubTasksProvider extends TopProvider {
   Future<void> addWatingSubTask(

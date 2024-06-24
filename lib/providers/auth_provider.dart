@@ -12,8 +12,8 @@ import 'package:project_management_muhmad_omar/widgets/snackbar/custom_snackber_
 
 import '../constants/back_constants.dart';
 import '../constants/values.dart';
-import '../controllers/top_provider.dart';
 import '../models/user/user_model.dart';
+import '../providers/top_provider.dart';
 import '../services/collections_refrences.dart';
 
 typedef EitherException<T> = Future<Either<Exception, T>>;

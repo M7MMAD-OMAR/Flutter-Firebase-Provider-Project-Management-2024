@@ -79,32 +79,6 @@ class Assets {
   static const String constantsSpacing = 'lib/constants/spacing.dart';
   static const String constantsStyles = 'lib/constants/styles.dart';
   static const String constantsValues = 'lib/constants/values.dart';
-  static const String controllersMangerProvider =
-      'lib/controllers/manger_provider.dart';
-  static const String controllersProjectMainTaskProvider =
-      'lib/controllers/project_main_task_provider.dart';
-  static const String controllersProjectProvider =
-      'lib/controllers/project_provider.dart';
-  static const String controllersProjectSubTaskProvider =
-      'lib/controllers/project_sub_task_provider.dart';
-  static const String controllersStatusProvider =
-      'lib/controllers/status_provider.dart';
-  static const String controllersTaskCategoryProvider =
-      'lib/controllers/task_category_provider.dart';
-  static const String controllersTeamMemberProvider =
-      'lib/controllers/team_member_provider.dart';
-  static const String controllersTeamProvider =
-      'lib/controllers/team_provider.dart';
-  static const String controllersTopProvider =
-      'lib/controllers/top_provider.dart';
-  static const String controllersUserProvider =
-      'lib/controllers/user_provider.dart';
-  static const String controllersUserTaskProvider =
-      'lib/controllers/user_task_provider.dart';
-  static const String controllersWaitingMemberProvider =
-      'lib/controllers/waiting_member_provider.dart';
-  static const String controllersWaitingSubTasksProvider =
-      'lib/controllers/waiting_sub_tasks_provider.dart';
   static const String darkBackgroundDarkRadialBackgroundWidget =
       'lib/widgets/dark_background/dark_radial_background_widget.dart';
   static const String darkBackgroundDarkSplitBackgroundWidget =
@@ -308,8 +282,14 @@ class Assets {
       'lib/widgets/projects/project_card_vertical_widget.dart';
   static const String projectsProjectDetailAppbarWidget =
       'lib/widgets/projects/project_detail_appbar_widget.dart';
+  static const String projectsProjectMainTaskProvider =
+      'lib/providers/projects/project_main_task_provider.dart';
+  static const String projectsProjectProvider =
+      'lib/providers/projects/project_provider.dart';
   static const String projectsProjectSelectableContainerWidget =
       'lib/widgets/projects/project_selectable_container_widget.dart';
+  static const String projectsProjectSubTaskProvider =
+      'lib/providers/projects/project_sub_task_provider.dart';
   static const String projectsProjectTaskActiveCardWidget =
       'lib/widgets/projects/project_task_active_card_widget.dart';
   static const String projectsProjectTaskCardWidget =
@@ -331,12 +311,31 @@ class Assets {
   static const String providersBoxProvider = 'lib/providers/box_provider.dart';
   static const String providersInvitationsProvider =
       'lib/providers/invitations_provider.dart';
+  static const String providersMangerProvider =
+      'lib/providers/manger_provider.dart';
   static const String providersPasswordEmailDialogProvider =
       'lib/providers/password_email_dialog_provider.dart';
   static const String providersProfileOverviewProvider =
       'lib/providers/profile_overview_provider.dart';
+  static const String providersStatusProvider =
+      'lib/providers/status_provider.dart';
+  static const String providersTaskCategoryProvider =
+      'lib/providers/task_category_provider.dart';
   static const String providersTaskProvider =
       'lib/providers/task_provider.dart';
+  static const String providersTeamMemberProvider =
+      'lib/providers/team_member_provider.dart';
+  static const String providersTeamProvider =
+      'lib/providers/team_provider.dart';
+  static const String providersTopProvider = 'lib/providers/top_provider.dart';
+  static const String providersUserProvider =
+      'lib/providers/user_provider.dart';
+  static const String providersUserTaskProvider =
+      'lib/providers/user_task_provider.dart';
+  static const String providersWaitingMemberProvider =
+      'lib/providers/waiting_member_provider.dart';
+  static const String providersWaitingSubTasksProvider =
+      'lib/providers/waiting_sub_tasks_provider.dart';
   static const String resApp = 'lib/widgets/calender/core/res/app.dart';
   static const String resColor = 'lib/widgets/calender/core/res/color.dart';
   static const String screensLanguageScreen =
