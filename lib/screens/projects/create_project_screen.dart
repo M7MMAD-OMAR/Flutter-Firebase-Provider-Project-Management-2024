@@ -549,7 +549,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
         }
         //  Navigator.pop(context);
       } catch (e) {
-        CustomSnackBar.showError(e.toString());
+        CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
       }
     } else {
       // await userTaskController.(data: {

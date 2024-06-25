@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/category_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/dashboard_screen.dart';
-import 'package:project_management_muhmad_omar/screens/dashboard_screen/invitions_screen.dart';
 import 'package:project_management_muhmad_omar/screens/dashboard_screen/projects_screen.dart';
 
 String tabSpace = "\t\t\t";
@@ -11,7 +10,7 @@ final List<Widget> dashBoardScreens = [
   DashboardScreen(),
   const ProjectScreen(),
   const CategoryScreen(),
-  InvitationScreen()
+  // InvitationScreen()
 ];
 
 List<Color> progressCardGradientList = [
@@ -33,19 +32,23 @@ void showErrorDialog(
   showDialog(
     context: navigatorKey.currentContext!,
     builder: (context) {
-      return AlertDialog(
-        title: Text(title),
-        content: Text(middleText),
-        actions: [
-          TextButton(
-            onPressed: onCancel,
-            child: const Text('إالغاء'),
-          ),
-          TextButton(
-            onPressed: onConfirm,
-            child: const Text('تأكيد'),
-          ),
-        ],
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Container(), // Add your content here
+        bottomSheet: AlertDialog(
+          title: Text(title),
+          content: Text(middleText),
+          actions: [
+            TextButton(
+              onPressed: onCancel,
+              child: const Text('إالغاء'),
+            ),
+            TextButton(
+              onPressed: onConfirm,
+              child: const Text('تأكيد'),
+            ),
+          ],
+        ),
       );
     },
   );
@@ -53,8 +56,18 @@ void showErrorDialog(
 
 void showSuccessSnackBar(String message) {
   final context = navigatorKey.currentContext!;
-  final snackBar = SnackBar(content: Text(message));
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Container(), // Add your content here
+        bottomSheet: SnackBar(
+          content: Text(message),
+        ),
+      );
+    },
+  );
 }
 
 class AppConstants {

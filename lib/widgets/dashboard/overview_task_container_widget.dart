@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/widgets/Dashboard/task_container_image_widget.dart';
-
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/widgets/Dashboard/task_container_image_widget.dart';
 
 class OverviewTaskContainer extends StatelessWidget {
   final Color backgroundColor;
@@ -32,7 +31,7 @@ class OverviewTaskContainer extends StatelessWidget {
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.all(8),
-          height: Utils.screenHeight * 0.22,
+          height: Utils.screenHeight * 0.10,
           decoration: BoxDecoration(
             color: AppColors.primaryBackgroundColor,
             borderRadius: BorderRadius.circular(20.0),

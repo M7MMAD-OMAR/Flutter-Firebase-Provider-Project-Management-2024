@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:project_management_muhmad_omar/constants/values.dart';
 
 class BottomSheetHolder extends StatelessWidget {
-  const BottomSheetHolder({Key? key}) : super(key: key);
+  const BottomSheetHolder({super.key});
 
   @override
   Widget build(BuildContext context) {

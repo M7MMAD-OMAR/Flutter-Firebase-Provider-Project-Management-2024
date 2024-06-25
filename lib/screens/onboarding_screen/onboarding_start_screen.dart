@@ -161,10 +161,11 @@ class OnboardingStartScreen extends StatelessWidget {
             child: SizedBox(
               width: 300,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   RichText(
+                    textDirection: TextDirection.rtl,
                     text: TextSpan(
                       text: 'إدارة المهام',
                       style: GoogleFonts.lato(
@@ -178,14 +179,14 @@ class OnboardingStartScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text(
-                    'دعونا نخلق\nمساحة\nلسير العمل\nالخاص بك',
-                    style: GoogleFonts.lato(
-                      color: Colors.white,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  // Text(
+                  //   'دعونا نخلق\nمساحة\nلسير العمل\nالخاص بك',
+                  //   style: GoogleFonts.lato(
+                  //     color: Colors.white,
+                  //     fontSize: 35,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                   AppSpaces.verticalSpace20,
                   SizedBox(
                     width: 180,
@@ -210,7 +211,7 @@ class OnboardingStartScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          'ابدأ الآن',
+                          'ابدء الآن',
                           style: GoogleFonts.lato(
                             fontSize: 20,
                             color: Colors.white,

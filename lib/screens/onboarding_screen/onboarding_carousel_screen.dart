@@ -70,19 +70,19 @@ class _OnboardingCarouselScreenState extends State<OnboardingCarouselScreen> {
                       },
                       children: const <Widget>[
                         SliderCaptionedImage(
+                          index: 2,
+                          imageUrl: "assets/slider-background-2.png",
+                          caption: "ادارة كل شيء\nعلى الهاتف",
+                        ),
+                        SliderCaptionedImage(
                           index: 0,
                           imageUrl: "assets/slider-background-1.png",
-                          caption: "المهمة،\nالتقويم،\n",
+                          caption: "المهمة، التقويم \n",
                         ),
                         SliderCaptionedImage(
                           index: 1,
                           imageUrl: "assets/slider-background-3.png",
-                          caption: "اعمل\nمن أي مكان\nبسهولة",
-                        ),
-                        SliderCaptionedImage(
-                          index: 2,
-                          imageUrl: "assets/slider-background-2.png",
-                          caption: "ادارة\nكل شيء\nعلى الهاتف",
+                          caption: "اعمل من أي مكان\nبسهولة",
                         ),
                       ],
                     ),

@@ -104,7 +104,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     'لقد أرسلنا رابط إعادة تعيين كلمة المرور');
                               } on Exception catch (e) {
                                 Navigator.of(context).pop();
-                                CustomSnackBar.showError(e.toString());
+                                CustomSnackBar.showError(
+                                    "حدث خطأ ما , حاول لاحقا");
                               }
                             }
                           },

@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:project_management_muhmad_omar/providers/team_provider.dart';
+import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
 import 'package:project_management_muhmad_omar/providers/top_provider.dart';
 import 'package:project_management_muhmad_omar/providers/user_provider.dart';
-import 'package:project_management_muhmad_omar/models/team/waiting_member.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/services/types_services.dart';
 import 'package:provider/provider.dart';
@@ -14,8 +14,8 @@ import '../constants/constants.dart';
 import '../models/team/teamModel.dart';
 import '../models/team/team_members_model.dart';
 import '../models/user/user_model.dart';
-import 'auth_provider.dart';
 import '../services/notifications/notification_service.dart';
+import 'auth_provider.dart';
 
 class WaitingMemberProvider extends TopProvider {
   Future<WaitingMemberModel> getWaitingMemberById(
@@ -84,10 +84,10 @@ class WaitingMemberProvider extends TopProvider {
         secondCollectionReference: teamsRef,
         secondFiled: idK,
         secondValue: waitingMemberModel.teamId)) {
-      if (waitingMemberModel.userId ==
-          AuthProvider.firebaseAuth.currentUser!.uid) {
-        throw Exception('لا يمكن أن يكون المدير عضوا');
-      }
+      // if (waitingMemberModel.userId ==
+      //     AuthProvider.firebaseAuth.currentUser!.uid) {
+      //   throw Exception('لا يمكن أن يكون المدير عضوا');
+      // }
       if (await existByTow(
           reference: watingMamberRef,
           value: waitingMemberModel.userId,

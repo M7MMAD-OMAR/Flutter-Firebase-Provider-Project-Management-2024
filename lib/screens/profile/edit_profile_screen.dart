@@ -5,9 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/providers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/profile/my_profile_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/buttons/primary_buttons_widget.dart';
@@ -183,11 +183,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               }
                             } on Exception catch (e) {
                               Navigator.of(context).pop();
-                              CustomSnackBar.showError(e.toString());
+                              CustomSnackBar.showError(
+                                  "حدث خطأ ما , حاول لاحقا");
                             }
                           },
                           width: Utils.screenWidth * 0.2,
-                          height: Utils.screenHeight * 0.1,
+                          height: Utils.screenHeight * 0.05,
                           label: " حفظ",
                           textStyle: GoogleFonts.lato(
                               color: Colors.white, fontWeight: FontWeight.bold),

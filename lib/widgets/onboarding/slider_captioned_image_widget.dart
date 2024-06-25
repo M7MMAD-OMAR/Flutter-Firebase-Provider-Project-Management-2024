@@ -9,12 +9,10 @@ class SliderCaptionedImage extends StatelessWidget {
   final int index;
   final String caption;
   final String imageUrl;
-  const SliderCaptionedImage(
-      {Key? key,
+  const SliderCaptionedImage({super.key,
       required this.index,
       required this.caption,
-      required this.imageUrl})
-      : super(key: key);
+      required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +25,9 @@ class SliderCaptionedImage extends StatelessWidget {
               height: 450)),
       Positioned(
           bottom: 20,
-          left: 20,
+          right: 20,
           child: Text(caption,
+              textDirection: TextDirection.rtl,
               style: GoogleFonts.raleway(
                   fontWeight: FontWeight.bold,
                   fontSize: 50,

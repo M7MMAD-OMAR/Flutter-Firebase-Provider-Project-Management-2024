@@ -25,11 +25,11 @@ import '../snackbar/custom_snackber_widget.dart';
 
 class FatherTasks extends StatefulWidget {
   FatherTasks({
-    Key? key,
+    super.key,
     required this.categoryModel,
     required this.fatherTaskModel,
     required this.documentReference,
-  }) : super(key: key);
+  });
 
   final UserTaskCategoryModel categoryModel;
   final UserTaskModel fatherTaskModel;
@@ -313,7 +313,7 @@ class _FatherTasksState extends State<FatherTasks> {
                         child: Text("Error: ${snapshot.error}"),
                       );
                     } else {
-                      return Center(
+                      return const Center(
                         child: CircularProgressIndicator(),
                       );
                     }
@@ -343,7 +343,8 @@ class _FatherTasksState extends State<FatherTasks> {
               required String color}) async {
             if (startDate.isAfter(dueDate) ||
                 startDate.isAtSameMomentAs(dueDate)) {
-              CustomSnackBar.showError("start date cannot be after end date");
+              CustomSnackBar.showError(
+                  "لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء");
               return;
             }
 
@@ -373,7 +374,7 @@ class _FatherTasksState extends State<FatherTasks> {
                   "المهمة ${userTaskModel.name} تمت الإضافة بنجاح");
               Navigator.pop(context);
             } catch (e) {
-              CustomSnackBar.showError(e.toString());
+              CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
             }
           },
           isUserTask: true,
@@ -387,7 +388,8 @@ class _FatherTasksState extends State<FatherTasks> {
           }) async {
             if (startDate.isAfter(dueDate) ||
                 startDate.isAtSameMomentAs(dueDate)) {
-              CustomSnackBar.showError("start date cannot be after end date");
+              CustomSnackBar.showError(
+                  "لا يمكن أن يكون تاريخ البدء بعد تاريخ الانتهاء");
               return;
             }
             try {
@@ -425,7 +427,7 @@ class _FatherTasksState extends State<FatherTasks> {
               await UserTaskProvider()
                   .adddUserTask(userTaskModel: userTaskModel);
             } catch (e) {
-              CustomSnackBar.showError(e.toString());
+              CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
             }
           },
           checkExist: ({required String name}) async {

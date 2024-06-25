@@ -189,7 +189,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             } catch (e) {
                               Navigator.of(context).pop();
 
-                              CustomSnackBar.showError(e.toString());
+                              CustomSnackBar.showError(
+                                  "حدث خطأ ما , حاول لاحقا");
                             }
                           }
                         },

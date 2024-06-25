@@ -7,9 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/providers/top_provider.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
+import 'package:project_management_muhmad_omar/providers/top_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/utils/back_utils.dart';
@@ -350,7 +350,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 }
                               } on Exception catch (e) {
                                 Navigator.of(context).pop();
-                                CustomSnackBar.showError(e.toString());
+                                CustomSnackBar.showError(
+                                    "حدث خطأ ما , حاول لاحقا");
                               }
                             }
                             dev.log("message");

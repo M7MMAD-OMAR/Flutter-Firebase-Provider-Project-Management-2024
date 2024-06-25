@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
-import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
-import 'package:project_management_muhmad_omar/providers/team_provider.dart';
-import 'package:project_management_muhmad_omar/providers/user_provider.dart';
 import 'package:project_management_muhmad_omar/models/team/teamModel.dart';
 import 'package:project_management_muhmad_omar/models/team/team_members_model.dart';
 import 'package:project_management_muhmad_omar/models/user/user_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/add_team_to_create_project_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/dashboard_meeting_details_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_member_provider.dart';
+import 'package:project_management_muhmad_omar/providers/team_provider.dart';
+import 'package:project_management_muhmad_omar/providers/user_provider.dart';
 import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/services/notifications/notification_service.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/dashboard_meeting_details_widget.dart';
@@ -446,37 +446,39 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                           ),
                         );
                       } else if (snapshot.hasError) {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-//                             Container(
-// //width: 100,
-//                               height: 75,
-//                               child: Image.asset("assets/icon/error.png"),
-//                             ),
-                            Icon(
-                              Icons.search_off,
-                              //   Icons.heart_broken_outlined,
-                              color: Colors.red,
-                              size: Utils.screenWidth * 0.27,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: Utils.screenWidth *
-                                    0.1, // Adjust the percentage as needed
-                                vertical: Utils.screenHeight * 0.05,
+                        return SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              //                             Container(
+                              // //width: 100,
+                              //                               height: 75,
+                              //                               child: Image.asset("assets/icon/error.png"),
+                              //                             ),
+                              Icon(
+                                Icons.search_off,
+                                //   Icons.heart_broken_outlined,
+                                color: Colors.red,
+                                size: Utils.screenWidth * 0.27,
                               ),
-                              child: Center(
-                                child: Text(
-                                  snapshot.error.toString().substring(11),
-                                  style: GoogleFonts.fjallaOne(
-                                    color: Colors.white,
-                                    fontSize: Utils.screenWidth * 0.1,
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: Utils.screenWidth *
+                                      0.1, // Adjust the percentage as needed
+                                  vertical: Utils.screenHeight * 0.05,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    snapshot.error.toString().substring(11),
+                                    style: GoogleFonts.fjallaOne(
+                                      color: Colors.white,
+                                      fontSize: Utils.screenWidth * 0.1,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         );
                       } else {
                         return const Center(
@@ -488,7 +490,7 @@ class _SelectMyTeamsScreenState extends State<SelectMyTeamsScreen> {
                 ),
                 AppPrimaryButton(
                   buttonHeight: Utils.screenHeight *
-                      0.12, // Adjust the percentage as needed
+                      0.06, // Adjust the percentage as needed
                   buttonWidth: Utils.screenWidth * 0.4,
                   buttonText: 'إنشاء فريق جديد',
                   callback: () {

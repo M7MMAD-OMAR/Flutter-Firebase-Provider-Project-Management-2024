@@ -19,6 +19,14 @@ import 'manger_provider.dart';
 class UserProvider extends TopProvider {
   static late List<UserModel> users;
 
+  UserProvider() {
+    _initializeUsers();
+  }
+
+  Future<void> _initializeUsers() async {
+    users = await getAllUsers();
+  }
+
   Future<UserModel> getUserById({required String id}) async {
     DocumentSnapshot doc = await getDocById(reference: usersRef, id: id);
     return doc.data() as UserModel;
@@ -26,9 +34,9 @@ class UserProvider extends TopProvider {
 
   Future<List<UserModel>> getAllUsers() async {
     List<Object?>? list = await getAllListDataForRef(refrence: usersRef);
-    List<UserModel> users = list!.cast<UserModel>();
-    UserProvider.users = users;
-    return users;
+    List<UserModel> users1 = list!.cast<UserModel>();
+    users = users1;
+    return users1;
   }
 
   Stream<QuerySnapshot<UserModel>> getAllUsersStream() {

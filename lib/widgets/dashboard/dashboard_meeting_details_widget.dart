@@ -60,7 +60,7 @@ class _DashboardMeetingDetailsWidgetState
             child: ListBody(
               children: <Widget>[
                 GestureDetector(
-                  child: Text('الكاميرا'),
+                  child: const Text('الكاميرا'),
                   onTap: () {
                     _getImage(ImageSource.camera);
                     Navigator.of(context).pop();
@@ -68,7 +68,7 @@ class _DashboardMeetingDetailsWidgetState
                 ),
                 const Padding(padding: EdgeInsets.all(8.0)),
                 GestureDetector(
-                  child: Text('المعرض'),
+                  child: const Text('المعرض'),
                   onTap: () {
                     _getImage(ImageSource.gallery);
                     Navigator.of(context).pop();
@@ -241,11 +241,11 @@ class _DashboardMeetingDetailsWidgetState
                       // Obx(
                       //   () => buildStackedImagesEdit(),
                       // ),
-                      Consumer<DashboardMeetingDetailsProvider>(
-                        builder: (context, stackedImagesProvider, child) {
-                          return buildStackedImagesEdit();
-                        },
-                      ),
+                      // Consumer<DashboardMeetingDetailsProvider>(
+                      //   builder: (context, stackedImagesProvider, child) {
+                      //     return buildStackedImagesEdit();
+                      //   },
+                      // ),
                       AppSpaces.verticalSpace40,
                       AppPrimaryButton(
                         buttonHeight: 50,
@@ -313,7 +313,8 @@ class _DashboardMeetingDetailsWidgetState
                                 Navigator.pop(context);
                               }
                             } on Exception catch (e) {
-                              CustomSnackBar.showError(e.toString());
+                              CustomSnackBar.showError(
+                                  "حدث خطأ ما , حاول لاحقا");
                             }
                           } else {}
                         },

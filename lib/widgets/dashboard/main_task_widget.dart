@@ -222,7 +222,7 @@ class _brogressState extends State<brogress> {
                                 },
                                 id: widget.taskModel.id);
                           } catch (e) {
-                            CustomSnackBar.showError(e.toString());
+                            CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
                           }
                         },
                         isEditMode: true,

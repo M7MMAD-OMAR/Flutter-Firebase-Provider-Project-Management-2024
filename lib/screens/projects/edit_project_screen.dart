@@ -465,7 +465,7 @@ class _EditProjectScreenState extends State<EditProjectScreen> {
         CustomSnackBar.showError("No Chages to Update");
       }
     } catch (e) {
-      CustomSnackBar.showError(e.toString());
+      CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
     }
   }
 }

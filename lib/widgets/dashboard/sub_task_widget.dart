@@ -445,7 +445,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               }
                               return;
                             } catch (e) {
-                              CustomSnackBar.showError(e.toString());
+                              CustomSnackBar.showError(
+                                  "حدث خطأ ما , حاول لاحقا");
                             }
                           }
                           if (startDate != projectSubTaskModel.startDate ||
@@ -548,8 +549,8 @@ class _SubTaskCardState extends State<SubTaskCard> {
                               },
                               id: widget.task.id);
                         } catch (e) {
-                          CustomSnackBar.showError(e.toString());
-                        }
+                            CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
+                          }
                       },
                       isEditMode: true,
                     ),

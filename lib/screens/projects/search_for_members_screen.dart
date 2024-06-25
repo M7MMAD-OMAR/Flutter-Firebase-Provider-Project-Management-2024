@@ -61,6 +61,9 @@ class _SearchForMembersScreenState extends State<SearchForMembersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: HexColor.fromHex("#181a1f"),
+      // Change the background color to dark
+
       body: Stack(
         children: [
           DarkRadialBackground(

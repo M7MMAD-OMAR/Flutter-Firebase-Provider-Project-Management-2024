@@ -90,11 +90,11 @@ class _TimelineScreenState extends State<TimelineScreen> {
                 itemIndex: 2,
                 notifier: bottomNavigatorTrigger,
                 icon: Icons.category_rounded),
-            const Spacer(),
-            BottomNavigationItem(
-                itemIndex: 3,
-                notifier: bottomNavigatorTrigger,
-                icon: FeatherIcons.search)
+            // const Spacer(),
+            // BottomNavigationItem(
+            //     itemIndex: 3,
+            //     notifier: bottomNavigatorTrigger,
+            //     icon: FeatherIcons.search)
           ],
         ),
       ),

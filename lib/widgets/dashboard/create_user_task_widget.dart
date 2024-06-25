@@ -361,26 +361,7 @@ class _CreateUserTaskState extends State<CreateUserTask> {
   }
 }
 
-class BottomSheetIcon extends StatelessWidget {
-  final IconData icon;
 
-  const BottomSheetIcon({
-    required this.icon,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        icon,
-        color: Colors.white,
-      ),
-      iconSize: 32,
-      onPressed: null,
-    );
-  }
-}
 // StreamBuilder<QuerySnapshot<TeamMemberModel>>(
 //                             stream: TeamMemberController()
 //                                 .getMembersInTeamIdStream(teamId: team.id),

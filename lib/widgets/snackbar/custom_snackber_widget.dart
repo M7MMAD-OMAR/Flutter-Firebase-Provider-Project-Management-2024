@@ -14,6 +14,8 @@ class CustomSnackBar {
         content: Text(message),
         backgroundColor: Colors.greenAccent.withOpacity(.65),
         duration: const Duration(seconds: 3),
+        behavior: SnackBarBehavior.floating,
+        // margin: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
       ),
     );
   }
@@ -23,8 +25,14 @@ class CustomSnackBar {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text("خطأ: $message ... يرجى المحاولة مرة أخرى"),
-        backgroundColor: Colors.red.withOpacity(.65),
-        duration: const Duration(seconds: 3),
+        backgroundColor: Colors.red.withOpacity(.60),
+        duration: const Duration(seconds: 4),
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.only(
+          bottom: (Utils.screenHeight - 200),
+          left: 20,
+          right: 20,
+        ), // margin: const EdgeInsets.only(top: 100.0, ),
       ),
     );
   }
@@ -43,90 +51,98 @@ class CustomDialog {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: AppColors.primaryBackgroundColor,
-          title: const Text(
-            'أدخل كلمة المرور الجديدة',
-            style: TextStyle(color: Colors.white),
-          ),
-          content: Form(
-            key: formKey,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFormField(
-                  validator: (value) {
-                    if (value!.isEmpty || value.length < 8) {
-                      return 'يجب أن تحتوي كلمة المرور على أكثر من 7 أحرف';
-                    }
-                    if (!regExletters.hasMatch(value)) {
-                      return 'يرجى إدخال حرف صغير واحد على الأقل';
-                    }
-                    if (!regExnumbers.hasMatch(value)) {
-                      return 'الرجاء إدخال رقم واحد على الأقل';
-                    }
-                    if (!regExbigletters.hasMatch(value)) {
-                      return 'الرجاء إدخال حرف كبير واحد على الأقل';
-                    }
-                    return null;
-                  },
-                  onChanged: (value) {
-                    password = value;
-                  },
-                  obscureText: obscureText,
-                  controller: passController,
-                  decoration: InputDecoration(
-                    labelText: 'كلمة المرور الخاصة بك',
-                    labelStyle: const TextStyle(color: Colors.white),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        obscureText ? Icons.visibility : Icons.visibility_off,
-                        color: Colors.white,
+        return StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return AlertDialog(
+              backgroundColor: AppColors.primaryBackgroundColor,
+              title: const Text(
+                'أدخل كلمة المرور الجديدة',
+                style: TextStyle(color: Colors.white),
+              ),
+              content: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty || value.length < 8) {
+                          return 'يجب أن تحتوي كلمة المرور على أكثر من 7 أحرف';
+                        }
+                        if (!regExletters.hasMatch(value)) {
+                          return 'يرجى إدخال حرف صغير واحد على الأقل';
+                        }
+                        if (!regExnumbers.hasMatch(value)) {
+                          return 'الرجاء إدخال رقم واحد على الأقل';
+                        }
+                        if (!regExbigletters.hasMatch(value)) {
+                          return 'الرجاء إدخال حرف كبير واحد على الأقل';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        password = value;
+                      },
+                      obscureText: obscureText,
+                      controller: passController,
+                      decoration: InputDecoration(
+                        labelText: 'كلمة المرور الخاصة بك',
+                        labelStyle: const TextStyle(color: Colors.white),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            obscureText
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              obscureText = !obscureText;
+                            });
+                          },
+                        ),
                       ),
-                      onPressed: () {
-                        obscureText = !obscureText;
-                      },
                     ),
-                  ),
+                    const SizedBox(height: 15),
+                  ],
                 ),
-                const SizedBox(height: 15),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context); // Close the dialog
+                  },
+                  child: const Text('إلغاء'),
+                ),
+                TextButton(
+                  onPressed: () async {
+                    try {
+                      if (formKey.currentState!.validate()) {
+                        showDialogMethod(context);
+                        var updatePassword = AuthProvider()
+                            .updatePassword(newPassword: password);
+                        updatePassword.fold(
+                          (left) {
+                            Navigator.of(context).pop();
+                            CustomSnackBar.showError(left.toString());
+                          },
+                          (right) {
+                            Navigator.of(context).pop();
+                            CustomSnackBar.showSuccess(
+                                'تم تحديث كلمة المرور بنجاح');
+                          },
+                        );
+                      }
+                    } on Exception catch (e) {
+                      Navigator.of(context).pop();
+                      CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
+                    }
+                  },
+                  child: const Text('تغيير كلمة المرور'),
+                ),
               ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // Close the dialog
-              },
-              child: const Text('إلغاء'),
-            ),
-            TextButton(
-              onPressed: () async {
-                try {
-                  if (formKey.currentState!.validate()) {
-                    showDialogMethod(context);
-                    var updatePassword =
-                        AuthProvider().updatePassword(newPassword: password);
-                    updatePassword.fold(
-                      (left) {
-                        Navigator.of(context).pop();
-                        CustomSnackBar.showError(left.toString());
-                      },
-                      (right) {
-                        Navigator.of(context).pop();
-                        CustomSnackBar.showSuccess(
-                            'تم تحديث كلمة المرور بنجاح');
-                      },
-                    );
-                  }
-                } on Exception catch (e) {
-                  Navigator.of(context).pop();
-                  CustomSnackBar.showError(e.toString());
-                }
-              },
-              child: const Text('تغيير كلمة المرور'),
-            ),
-          ],
+            );
+          },
         );
       },
     );

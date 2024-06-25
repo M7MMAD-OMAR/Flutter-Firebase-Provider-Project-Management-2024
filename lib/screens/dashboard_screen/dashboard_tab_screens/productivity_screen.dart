@@ -5,7 +5,6 @@ import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/providers/user_task_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../widgets/Dashboard/daily_goal_card_widget.dart';
 import '../../../widgets/Dashboard/productivity_chart_widget.dart';
 
 class DashboardProductivityScreen extends StatefulWidget {
@@ -33,19 +32,19 @@ class _DashboardProductivityScreenState
     return Column(
       children: [
         // AppSpaces.verticalSpace10,
-        DailyGoalCard(
-          message: 'مهمة',
-          allStream: userTaskController.getUserTasksStartInADayForAStatusStream(
-              date: DateTime.now(),
-              userId: AuthProvider.firebaseAuth.currentUser!.uid,
-              status: statusDone),
-          forStatusStram: userTaskController.getUserTasksBetweenTowTimesStream(
-              firstDate: todayDate,
-              secondDate: todayDate.add(
-                const Duration(days: 1),
-              ),
-              userId: AuthProvider.firebaseAuth.currentUser!.uid),
-        ),
+        // DailyGoalCard(
+        //   message: 'مهمة',
+        //   allStream: userTaskController.getUserTasksStartInADayForAStatusStream(
+        //       date: DateTime.now(),
+        //       userId: AuthProvider.firebaseAuth.currentUser!.uid,
+        //       status: statusDone),
+        //   forStatusStram: userTaskController.getUserTasksBetweenTowTimesStream(
+        //       firstDate: todayDate,
+        //       secondDate: todayDate.add(
+        //         const Duration(days: 1),
+        //       ),
+        //       userId: AuthProvider.firebaseAuth.currentUser!.uid),
+        // ),
         AppSpaces.verticalSpace20,
         StreamBuilder(
             stream: userTaskController

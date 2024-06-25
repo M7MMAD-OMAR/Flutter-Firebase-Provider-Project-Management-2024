@@ -92,7 +92,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: OutlinedButtonWithText(
-                                  width: 75,
+                                  width: 100,
                                   content: 'تعديل',
                                   onPressed: () {
                                     Navigator.push(
@@ -159,10 +159,10 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (_) => SelectTeamScreen(
-                                      title: 'فرقي',
+                                      title: 'فريقي ',
                                       managerModel: userAsManger)));
                         },
-                        label: '$tabSpace فرقي',
+                        label: '$tabSpace فريقي ',
                         icon: Icons.group,
                         margin: 5.0,
                       ),

@@ -13,7 +13,7 @@ import '../Onboarding/labelled_option_widget.dart';
 import 'create_category_widget.dart';
 
 class DashboardAddBottomSheet extends StatelessWidget {
-  const DashboardAddBottomSheet({Key? key}) : super(key: key);
+  const DashboardAddBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
             icon: Icons.category,
             callback: () {
               showAppBottomSheet(
-                CreateUserCategory(),
+                const CreateUserCategory(),
                 isScrollControlled: true,
                 popAndShow: true,
               );
@@ -88,7 +88,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
         popAndShow: true,
       );
     } on Exception catch (e) {
-      CustomSnackBar.showError(e.toString());
+      CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
     }
   }
 }

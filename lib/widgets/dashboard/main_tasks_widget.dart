@@ -442,7 +442,7 @@ class _MainTaskScreenState extends State<MainTaskScreen> {
           await ProjectMainTaskProvider()
               .addProjectMainTask(projectMainTaskModel: userTaskModel);
         } catch (e) {
-          CustomSnackBar.showError(e.toString());
+          CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
         }
       },
       checkExist: ({required String name}) async {

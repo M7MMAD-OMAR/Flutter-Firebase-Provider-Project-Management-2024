@@ -285,17 +285,17 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   AppSpaces.horizontalSpace20,
                   Expanded(
                     child: LabelledFormInput(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'الرجاء إدخال الاسم';
-                        }
-                        if (value.isNotEmpty) {
-                          if (isTaked) {
-                            return 'يرجى استخدام اسم مهمة آخر';
-                          }
-                        }
-                        return null;
-                      },
+                      // validator: (value) {
+                      //   if (value!.isEmpty) {
+                      //     return 'الرجاء إدخال الاسم';
+                      //   }
+                      //   if (value.isNotEmpty) {
+                      //     if (isTaked) {
+                      //       return 'يرجى استخدام اسم مهمة آخر';
+                      //     }
+                      //   }
+                      //   return null;
+                      // },
                       onClear: () {
                         setState(() {
                           name = "";
@@ -318,12 +318,12 @@ class _CreateSubTaskState extends State<CreateSubTask> {
               ),
               AppSpaces.verticalSpace20,
               LabelledFormInput(
-                validator: (p0) {
-                  if (p0 == " ") {
-                    return 'لا يمكن أن يكون الوصف مساحات فارغة';
-                  }
-                  return null;
-                },
+                // validator: (p0) {
+                //   if (p0 == " ") {
+                //     return 'لا يمكن أن يكون الوصف مساحات فارغة';
+                //   }
+                //   return null;
+                // },
                 onChanged: (p0) {
                   desc = p0;
                 },
@@ -369,11 +369,11 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                   color: AppColors.primaryAccentColor,
                   callback: () {
                     if (formKey.currentState!.validate()) {
-                      if (assignedToUserId == null) {
-                        CustomSnackBar.showError(
-                            'الرجاء اختيار عضو لتكليف المهمة له');
-                        return;
-                      }
+                      // if (assignedToUserId == null) {
+                      //   CustomSnackBar.showError(
+                      //       'الرجاء اختيار عضو لتكليف المهمة له');
+                      //   return;
+                      // }
                       widget.addTask(
                           color: color,
                           priority: selectedDashboardOption!,
@@ -381,7 +381,7 @@ class _CreateSubTaskState extends State<CreateSubTask> {
                           desc: desc,
                           dueDate: dueDate,
                           startDate: startDate,
-                          userIdAssignedTo: assignedToUserId!);
+                          userIdAssignedTo: assignedToUserId ?? "");
                     }
                   },
                 ),

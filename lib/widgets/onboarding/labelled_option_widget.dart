@@ -11,15 +11,13 @@ class LabelledOption extends StatelessWidget {
   final VoidCallback? callback;
   final IconData icon;
 
-  const LabelledOption(
-      {Key? key,
+  const LabelledOption({super.key,
       this.color,
       this.link,
       this.callback,
       this.boxColor,
       required this.label,
-      required this.icon})
-      : super(key: key);
+      required this.icon});
 
   @override
   Widget build(BuildContext context) {

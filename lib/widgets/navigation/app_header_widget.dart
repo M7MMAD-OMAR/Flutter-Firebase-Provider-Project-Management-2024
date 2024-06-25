@@ -9,8 +9,7 @@ class TaskezAppHeader extends StatelessWidget {
   final bool? messagingPage;
   final Widget? widget;
   const TaskezAppHeader(
-      {Key? key, this.widget, required this.title, this.messagingPage})
-      : super(key: key);
+      {super.key, this.widget, required this.title, this.messagingPage});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +37,7 @@ class TaskezAppHeader extends StatelessWidget {
                     title,
                     style: GoogleFonts.lato(
                         fontSize: Utils.screenWidth *
-                            0.07, // Adjust the percentage as needed
+                            0.05, // Adjust the percentage as needed
 
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
@@ -52,7 +51,7 @@ class TaskezAppHeader extends StatelessWidget {
                   title,
                   style: GoogleFonts.lato(
                       fontSize: Utils.screenWidth *
-                          0.065, // Adjust the percentage as needed
+                          0.05, // Adjust the percentage as needed
 
                       color: Colors.white,
                       fontWeight: FontWeight.bold),

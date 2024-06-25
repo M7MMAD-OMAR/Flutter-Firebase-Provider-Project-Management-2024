@@ -175,7 +175,8 @@ class _ProfileOverviewScreenState extends State<ProfileOverviewScreen> {
                               );
                             } on Exception catch (e) {
                               Navigator.of(context).pop();
-                              CustomSnackBar.showError(e.toString());
+                              CustomSnackBar.showError(
+                                  "حدث خطأ ما , حاول لاحقا");
                             }
                           },
                           iconColor: null,

@@ -42,7 +42,7 @@ class LabelledFormInput extends StatelessWidget {
           style: GoogleFonts.lato(
             fontSize: 12,
             fontWeight: FontWeight.bold,
-            color: HexColor.fromHex("3C3E49"),
+            color: Colors.white70,
           ),
         ),
         TextFormField(
@@ -87,7 +87,7 @@ class LabelledFormInput extends StatelessWidget {
             hintStyle: GoogleFonts.lato(
                 fontWeight: FontWeight.bold,
                 fontSize: 18,
-                color: HexColor.fromHex("3C3E49")),
+                color: Colors.white70),
             filled: false,
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: HexColor.fromHex("3C3E49")),

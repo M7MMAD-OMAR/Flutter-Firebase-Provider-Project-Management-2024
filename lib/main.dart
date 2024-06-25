@@ -45,7 +45,23 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           navigatorKey: navigatorKey,
-
+          locale: const Locale('ar'),
+          // supportedLocales: const [
+          //   Locale('ar'),
+          // ],
+          // localizationsDelegates: const [
+          //   GlobalMaterialLocalizations.delegate,
+          //   GlobalWidgetsLocalizations.delegate,
+          //   GlobalCupertinoLocalizations.delegate,
+          // ],
+          // localeResolutionCallback: (locale, supportedLocales) {
+          //   for (var supportedLocale in supportedLocales) {
+          //     if (supportedLocale.languageCode == locale?.languageCode) {
+          //       return supportedLocale;
+          //     }
+          //   }
+          //   return supportedLocales.first;
+          // },
           // home: AuthScreen(),
           initialRoute: Routes.authScreen,
           routes: Routes.routes,

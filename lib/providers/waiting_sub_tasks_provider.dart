@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
+import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/providers/projects/project_provider.dart';
 import 'package:project_management_muhmad_omar/providers/projects/project_sub_task_provider.dart';
 import 'package:project_management_muhmad_omar/providers/top_provider.dart';
 import 'package:project_management_muhmad_omar/providers/user_provider.dart';
-import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
-import 'package:project_management_muhmad_omar/models/team/waiting_sub_tasks_model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:provider/provider.dart';
 
@@ -14,10 +14,10 @@ import '../constants/constants.dart';
 import '../models/team/project_model.dart';
 import '../models/team/project_sub_task_model.dart';
 import '../models/user/user_model.dart';
+import '../providers/manger_provider.dart';
 import '../services/notifications/notification_service.dart';
 import '../services/types_services.dart';
 import '../widgets/snackbar/custom_snackber_widget.dart';
-import '../providers/manger_provider.dart';
 
 class WaitingSubTasksProvider extends TopProvider {
   Future<void> addWatingSubTask(
@@ -174,7 +174,7 @@ class WaitingSubTasksProvider extends TopProvider {
               "${member.name} $status المهمة ${waitingSubTaskModel.projectSubTaskModel.name} في المشروع ${projectModel.name} $memberMessage",
           type: NotificationType.notification);
     } catch (e) {
-      CustomSnackBar.showError(e.toString());
+      CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
     }
   }
 

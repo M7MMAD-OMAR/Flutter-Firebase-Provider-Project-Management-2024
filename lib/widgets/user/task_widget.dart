@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
 import 'package:project_management_muhmad_omar/constants/values.dart';
+import 'package:project_management_muhmad_omar/models/status_model.dart';
+import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
+import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/providers/status_provider.dart';
 import 'package:project_management_muhmad_omar/providers/task_category_provider.dart';
 import 'package:project_management_muhmad_omar/providers/top_provider.dart';
 import 'package:project_management_muhmad_omar/providers/user_task_provider.dart';
-import 'package:project_management_muhmad_omar/models/status_model.dart';
-import 'package:project_management_muhmad_omar/models/task/user_task_category_model.dart';
-import 'package:project_management_muhmad_omar/models/user/user_task_Model.dart';
 import 'package:project_management_muhmad_omar/services/collections_refrences.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/user/tasks_tasks_widget.dart';
@@ -205,7 +205,7 @@ class _CardTaskState extends State<CardTask> {
                     },
                     id: widget.task.id);
               } catch (e) {
-                CustomSnackBar.showError(e.toString());
+                CustomSnackBar.showError("حدث خطأ ما , حاول لاحقا");
               }
             },
             isEditMode: true,

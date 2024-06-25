@@ -22,7 +22,7 @@ class DefaultNav extends StatelessWidget {
       const AppBackButtonWidget(),
       Text(title,
           style: GoogleFonts.lato(
-              fontSize: Utils.screenWidth * 0.1,
+              fontSize: Utils.screenWidth * 0.05,
               color: Colors.white,
               fontWeight: FontWeight.bold)),
       Builder(builder: (context) {
@@ -41,7 +41,7 @@ class DefaultNav extends StatelessWidget {
               scale: 1.0);
         } else if (type == ProfileDummyType.Button) {
           return OutlinedButtonWithText(
-            width: 75,
+            width: 100,
             content: 'تعديل',
             onPressed: () {
               Navigator.push(
