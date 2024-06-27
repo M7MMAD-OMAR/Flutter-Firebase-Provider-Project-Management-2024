@@ -1,7 +1,4 @@
-// ignore_for_file: avoid_print
 
-import 'dart:developer' as dev;
-import 'package:either_dart/either.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
@@ -97,13 +94,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             try {
                               bool pop = false;
                               bool changes = false;
-                              print(name.trim());
+
                               if (formKey.currentState!.validate()) {
                                 showDialogMethod(context);
 
                                 if (selectedImagePath != null) {
                                   showDialogMethod(context);
-                                  print("start");
+
                                   final resOfUpload = await uploadImageToStorge(
                                       selectedImagePath: selectedImagePath!,
                                       imageName: AuthService.instance
@@ -161,13 +158,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   emailupdate.fold((left) async {
                                     CustomSnackBar.showError(left.toString());
                                   }, (right) async {
-                                    print(email);
-                                    print(emailController.text);
-                                    print("email");
                                     await UserController().updateUser(
                                         data: {emailK: email},
                                         id: widget.user!.id);
-                                    print("email2");
+
                                     pop = true;
                                     Navigator.of(context).pop();
                                     CustomSnackBar.showSuccess(AppConstants

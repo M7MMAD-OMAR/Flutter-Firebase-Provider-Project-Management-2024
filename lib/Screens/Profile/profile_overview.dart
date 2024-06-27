@@ -150,8 +150,8 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                 //               !controller.isSelected.value);
                 //           controller.update();
                 //
-                //           print("status");
-                //           print(await FcmNotifications.getNotificationStatus());
+                //
+                //
                 //         },
                 //         value: !controller.isSelected.value,
                 //         activeColor: Colors.blueAccent.withOpacity(0.6),
@@ -176,7 +176,6 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                               AppConstants.languages[0].countryCode,
                             ));
                             localizationController.setSelectIndex(index: 0);
-                            print(0);
                           },
                           iconColor: Colors.white,
                           iconpath: "assets/icon/arabic.png",
@@ -195,7 +194,6 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                               AppConstants.languages[1].countryCode,
                             ));
                             localizationController.setSelectIndex(index: 1);
-                            print(1);
                           },
                           iconColor: null,
                           iconpath: "assets/icon/english.png",
@@ -228,7 +226,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                 //               Navigator.of(context).pop();
                 //               //  CustomSnackBar.showSuccess("its going good");
                 //               Get.to(() => const Timeline());
-                //               print(AuthService
+                //
                 //                   .instance.firebaseAuth.currentUser!.uid);
                 //             } on Exception catch (e) {
                 //               Navigator.of(context).pop();
@@ -247,7 +245,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                 //         child: Box(
                 //           callback: () {
                 //             showPasswordAndEmailDialog(context);
-                //             print("lll");
+                //
                 //           },
                 //           iconColor: null,
                 //           iconpath: "assets/icon/envelope.png",
@@ -291,7 +289,6 @@ class _ProfileOverviewState extends State<ProfileOverview> {
           child: Transform.scale(
               scale: 1.2,
               child: ProgressCardCloseButton(onPressed: () {
-                print("object");
                 Get.back();
               })))
     ]));

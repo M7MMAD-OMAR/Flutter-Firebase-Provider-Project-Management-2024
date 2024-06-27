@@ -73,7 +73,6 @@ class _TodaysTaskScreenState extends State<TodaysTaskScreen> {
     setState(() {
       selectedDate;
     });
-    print(selectedDate);
   }
 
   @override

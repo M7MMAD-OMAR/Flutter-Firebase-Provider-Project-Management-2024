@@ -124,8 +124,6 @@ class TeamDetails extends StatelessWidget {
                                 return TeamStory(
                                     userAsManager: userAsManager,
                                     onTap: () {
-                                      print("objectsdsad");
-
                                       Get.to(() => ShowTeamMembers(
                                             teamModel: team!,
                                             userAsManager: userAsManager,
@@ -141,7 +139,7 @@ class TeamDetails extends StatelessWidget {
                                 //   numberOfMembers: 0.toString(),
                                 //   users: <UserModel>[],
                                 //   onTap: () {
-                                //     print("dasdasd");
+                                //
                                 //   },
                                 // );
                               }
@@ -163,7 +161,6 @@ class TeamDetails extends StatelessWidget {
                                     return TeamStory(
                                         userAsManager: userAsManager,
                                         onTap: () {
-                                          print("objectsdsad");
                                           Get.to(() => ShowTeamMembers(
                                                 teamModel: team!,
                                                 userAsManager: userAsManager,

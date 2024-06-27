@@ -231,10 +231,7 @@ Future<void> checkTaskToSendNotification() async {
         taskStartdate.month == now.month &&
         taskStartdate.year == now.year) {
       DateTime firebaseNow = firebaseTime(DateTime.now());
-      print("start date" +
-          taskStartdat"حدث خطأ غير متوقع" +
-          "end date" +
-      taskEnddat"حدث خطأ غير متوقع");
+
       if (taskStartdate.isAtSameMomentAs(firebaseNow) &&
           element.statusId == statusNotStartedModel.id) {
         await userTaskController.updateUserTask(
@@ -489,10 +486,7 @@ checkProjectMainTasksToSendNotifications(
             taskStartdate.month == now.month &&
             taskStartdate.year == now.year) {
           DateTime firebaseNow = firebaseTime(DateTime.now());
-          print("start date" +
-              taskStartdat"حدث خطأ غير متوقع" +
-              "end date" +
-          taskEnddat"حدث خطأ غير متوقع");
+
           if (taskStartdate.isAtSameMomentAs(firebaseNow) &&
               element.statusId == statusNotStartedModel.id) {
             if (manager) {

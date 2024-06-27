@@ -99,11 +99,10 @@ class AuthService extends GetxController {
     } on Exception catch (e) {
       if ("حدث خطأ غير متوقع" ==
           "[firebase_auth/requires-recent-login] This operation is sensitive and requires recent authentication. Log in again before retrying this request.") {
-        print(202);
         return Left(
             Exception(AppConstants.sensitive_change_password_process_key.tr));
       }
-      print("حدث خطأ غير متوقع");
+
       return Left(e);
     }
   }
@@ -303,7 +302,6 @@ class AuthService extends GetxController {
   Future<void> convertAnonymousToGoogle() async {
     OAuthCredential credential = await getGooglecredential();
 
-    print("get credential done");
     await convertAnonymousToPermanent(
       credential: credential,
       //authFormTypeParameter: AuthFormType.google
@@ -349,7 +347,6 @@ class AuthService extends GetxController {
       switch (e.code) {
         case "provider-already-linked":
           if (kDebugMode) {
-            print("The provider has already been linked to the user.");
             CustomSnackBar.showError(
               AppConstants
                   .The_provider_has_already_been_linked_to_the_user_key.tr,
@@ -358,7 +355,6 @@ class AuthService extends GetxController {
           break;
         case "invalid-credential":
           if (kDebugMode) {
-            print("The provider's credential is not valid.");
             CustomSnackBar.showError(
               AppConstants.The_providers_credential_is_not_valid_key.tr,
             );
@@ -398,7 +394,6 @@ class AuthService extends GetxController {
       await updatFcmToken();
       return Right(userCredential);
     } on Exception catch (e) {
-      print(e);
       return Left(e);
     }
     //authFormType = AuthFormType.google;

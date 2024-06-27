@@ -57,9 +57,8 @@ class TeamController extends TopController {
 
     List<TeamModel> listOfTeams = <TeamModel>[];
     for (TeamMemberModel member in listMembers) {
-      print(" 1 member " + member.id);
       TeamModel team = await getTeamById(id: member.teamId);
-      print("the team id  " + team.id);
+
       listOfTeams.add(team);
     }
     return listOfTeams;
@@ -133,7 +132,7 @@ class TeamController extends TopController {
   Future<TeamModel> getTeamById({required String id}) async {
     DocumentSnapshot? documentSnapshot = await getDocSnapShotWhere(
         collectionReference: teamsRef, field: idK, value: id);
-    print("Team controller  " + documentSnapshot!.id);
+
     return documentSnapshot!.data() as TeamModel;
   }
 

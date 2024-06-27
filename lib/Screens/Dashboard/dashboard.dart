@@ -50,7 +50,6 @@ class Dashboard extends StatelessWidget {
                   Get.to(() => ProfileOverview(
                         isSelected: fcmStutas,
                       ));
-                  print(AuthService.instance.firebaseAuth.currentUser!.email);
                 },
               ),
               AppSpaces.verticalSpace20,

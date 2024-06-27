@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
@@ -105,7 +104,6 @@ class WatingSubTasksController extends TopController {
         waitingSubTaskId: waitingSubTaskId,
         isAccepted: true,
         memberMessage: '');
-    print("DFsdfsdfsd");
   }
 
   Future<void> rejectSubTask({
@@ -153,8 +151,7 @@ class WatingSubTasksController extends TopController {
       } else {
         watingSubTasksController.deleteWatingSubTask(id: waitingSubTaskId);
       }
-      print(
-          "${waitingSubTaskModel.projectSubTaskModel.projectId}project id is ");
+
       ProjectModel? projectModel = await projectController.getProjectById(
           id: waitingSubTaskModel.projectSubTaskModel.projectId);
       ManagerModel? managerModel =
@@ -166,11 +163,7 @@ class WatingSubTasksController extends TopController {
       UserModel member = await userController.getUserWhereMemberIs(
         memberId: waitingSubTaskModel.projectSubTaskModel.assignedTo,
       );
-      print("${member.userName!}member name");
-      print(manager.userName!);
-      for (var element in manager.tokenFcm) {
-        print(element);
-      }
+
       FcmNotifications fcmNotifications = Get.put(FcmNotifications());
       await fcmNotifications.sendNotificationAsJson(
           fcmTokens: manager.tokenFcm,

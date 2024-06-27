@@ -55,7 +55,7 @@ class _DashboardProductivityState extends State<DashboardProductivity> {
                     status: statusDone),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                //       print(snapshot.data);
+                //
                 precentage = snapshot.data!;
                 return ProductivityChart(
                   percentages: precentage,

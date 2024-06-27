@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/src/intl/date_format.dart';
@@ -20,19 +18,14 @@ import 'package:project_management_muhmad_omar/models/team/Team_model.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingMamber.dart';
 import 'package:project_management_muhmad_omar/models/team/waitingSubTasksModel.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-import 'package:project_management_muhmad_omar/services/collectionsrefrences.dart';
-import 'package:project_management_muhmad_omar/widgets/Profile/box.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
+
 import '../../Values/values.dart';
 import '../../models/team/Project_model.dart';
 import '../../services/notification_service.dart';
 import '../../widgets/Buttons/primary_tab_buttons.dart';
-import '../../widgets/Forms/search_box.dart';
 import '../../widgets/Navigation/app_header.dart';
-import '../../widgets/Navigation/dasboard_header.dart';
 import '../../widgets/Search/active_task_card.dart';
-import '../../widgets/Search/task_card.dart';
-import '../../widgets/Shapes/app_settings_icon.dart';
 import '../../widgets/dummy/profile_dummy.dart';
 import '../Profile/profile_overview.dart';
 import 'DashboardTabScreens/boxController.dart';
@@ -40,6 +33,7 @@ import 'DashboardTabScreens/boxController.dart';
 class Invitions extends StatelessWidget {
   Invitions({Key? key}) : super(key: key);
   final BoxController boxController = Get.put(BoxController());
+
   @override
   Widget build(BuildContext context) {
     final settingsButtonTrigger = ValueNotifier(0);
@@ -102,7 +96,6 @@ class Invitions extends StatelessWidget {
                                     boxController.selectTab(0);
                                     settingsButtonTrigger.value =
                                         controller.selectedTabIndex.value;
-                                    print("0");
                                   },
                                   buttonText: AppConstants.task_in_box_key.tr,
                                   itemIndex: 0,
@@ -112,7 +105,6 @@ class Invitions extends StatelessWidget {
                                     boxController.selectTab(1);
                                     settingsButtonTrigger.value =
                                         controller.selectedTabIndex.value;
-                                    print(1);
                                   },
                                   buttonText:
                                       AppConstants.join_requests_in_box_key.tr,
@@ -276,8 +268,7 @@ class Invitions extends StatelessWidget {
                                             snapshotOfWaitngSubTasks.data!.docs
                                                 .map((doc) => doc.data())
                                                 .toList();
-                                        print(
-                                            "numbers ${listWaitingSubTasks.length}");
+
                                         if (snapshotOfWaitngSubTasks
                                             .data!.docs.isEmpty) {
                                           return Column(
@@ -596,7 +587,6 @@ class Invitions extends StatelessWidget {
                                                                       .id);
                                                       Get.key.currentState!
                                                           .pop();
-                                                      print("end");
                                                     },
                                                     onPressedStart: (p0) async {
                                                       showDialogMethod(context);
@@ -608,7 +598,6 @@ class Invitions extends StatelessWidget {
                                                                       .id);
                                                       // Navigator.of(context)
                                                       //     .pop();
-                                                      print("start");
                                                     },
                                                     header: teamModel.name!,
                                                     //  header: "Team Name",

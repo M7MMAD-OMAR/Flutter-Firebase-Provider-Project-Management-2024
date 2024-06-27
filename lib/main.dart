@@ -39,7 +39,6 @@ Future<void> main() async {
 
 @pragma('vm:entry-point')
 Future<void> fcmHandler() async {
-  print("object");
   FirebaseMessaging.onMessage.listen(FcmNotifications.handleMessageJson);
   FirebaseMessaging.onMessageOpenedApp
       .listen(FcmNotifications.handleMessageJson);

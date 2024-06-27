@@ -126,7 +126,6 @@ class _FatherTasksState extends State<FatherTasks> {
                   editingController: editingController,
                   onChanged: (String value) {
                     setState(() {
-                      print(search);
                       search = value;
                     });
                   },

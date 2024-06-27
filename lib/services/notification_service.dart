@@ -178,12 +178,12 @@ class FcmNotifications extends GetxService {
     //even if you are only sending String,String
     Map<String, String> datapayload =
         Map<String, String>.from(message.data.cast<String, String>());
-    print(message.data);
+
     //the buttons to show to the user depending on the type of the notification
     List<NotificationActionButton>? buttons;
 
     //get the notification type from message and convert it to NotificationType
-    print(datapayload["type"]!);
+
     NotificationType type =
         NotificationType.values.byName(datapayload["type"]!);
     //we send the type to getButtonsByNotificationType function that checks the type and returns the

@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -236,7 +235,6 @@ class _CreateProjectState extends State<CreateProject> {
                                       Get.to(() => SelectMyTeamScreen(
                                           title:
                                               AppConstants.choose_team_key.tr));
-                                      print("object2");
                                     },
                                     teams: <TeamModel?>[]);
                               } else {
@@ -262,7 +260,6 @@ class _CreateProjectState extends State<CreateProject> {
                                       Get.to(() => SelectMyTeamScreen(
                                           title:
                                               AppConstants.choose_team_key.tr));
-                                      print("object2");
                                     },
                                     teams: snapshot.data?.docs
                                         .map((doc) => doc.data())
@@ -311,7 +308,6 @@ class _CreateProjectState extends State<CreateProject> {
                           name = value;
                         });
                         if (widget.managerModel != null) {
-                          print("dasdasd");
                           if (await projectController.existByTow(
                               reference: projectsRef,
                               value: name,
@@ -399,7 +395,6 @@ class _CreateProjectState extends State<CreateProject> {
                   scale: 1,
                   color: AppColors.primaryAccentColor,
                   callback: () async {
-                    print("fdasfasd");
                     if (formKey.currentState!.validate()) {
                       if (addTeamToCreatProjectScreen.teams.isNotEmpty) {
                         showDialogMethod(context);
@@ -410,7 +405,6 @@ class _CreateProjectState extends State<CreateProject> {
                             AppConstants.choose_team_first_for_project_key.tr);
                       }
                     }
-                    print("sadsda");
                   },
                 ),
               ])
@@ -444,7 +438,7 @@ class _CreateProjectState extends State<CreateProject> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print("${selectedDay}the selected day");
+
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
@@ -460,20 +454,18 @@ class _CreateProjectState extends State<CreateProject> {
             DateTime.now().add(const Duration(minutes: 2)),
           ),
         )) {
-      print("step 1");
       CustomSnackBar.showError(AppConstants
           .start_date_cannot_be_after_end_date_or_in_the_same_time_or_before_the_current_date_key
           .tr);
       return;
     }
-    print("step2");
+
     if (widget.isEditMode == false) {
       try {
-        print("creteing");
         StatusController statusController = Get.put(StatusController());
         StatusModel statusModel =
             await statusController.getStatusByName(status: statusNotDone);
-        print(statusModel.createdAt);
+
         // if (widget.managerModel == null) {
         //   widget.managerModel = ManagerModel(
         //       idParameter: managersRef.doc().id,
@@ -495,7 +487,7 @@ class _CreateProjectState extends State<CreateProject> {
           );
           resOfUpload.fold((left) {
             Navigator.of(context).pop();
-            print(left.toString());
+
             CustomSnackBar.showError("${left.toString()} ");
             return;
           }, (right) async {
@@ -513,7 +505,7 @@ class _CreateProjectState extends State<CreateProject> {
                   updatedAtParameter: DateTime.now(),
                   startDateParameter: startDate,
                   endDateParameter: dueDate);
-              print("creteing3");
+
               await projectController.addProject(projectModel: projectModel);
               if (mounted) {
                 Navigator.of(context).pop();
@@ -535,7 +527,7 @@ class _CreateProjectState extends State<CreateProject> {
               updatedAtParameter: DateTime.now(),
               startDateParameter: startDate,
               endDateParameter: dueDate);
-          print("creteing3");
+
           await projectController.addProject(projectModel: projectModel);
           Navigator.of(context).pop();
           CustomSnackBar.showSuccess(
@@ -543,8 +535,6 @@ class _CreateProjectState extends State<CreateProject> {
         }
         //  Get.key.currentState!.pop();
       } catch (e) {
-        print("error");
-        print("حدث خطأ غير متوقع");
         CustomSnackBar.showError("حدث خطأ غير متوقع");
       }
     } else {

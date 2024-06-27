@@ -47,7 +47,7 @@ class ProjectAndTaskController extends TopController {
       value: status,
     );
     final StatusModel statusModel = documentSnapshot!.data() as StatusModel;
-    print(statusModel.name);
+
     yield* queryWhereAndWhereStream(
       reference: reference,
       firstField: statusIdK,
@@ -308,7 +308,7 @@ class ProjectAndTaskController extends TopController {
       0,
       0,
     );
-    print(newDate);
+
     StatusController statusController = Get.put(StatusController());
     StatusModel statusModel =
         await statusController.getStatusByName(status: status);
@@ -344,7 +344,7 @@ class ProjectAndTaskController extends TopController {
     DateTime endDate = startDate
         .add(const Duration(days: 1))
         .subtract(const Duration(seconds: 1));
-    print(startDate);
+
     StatusController statusController = Get.put(StatusController());
     yield* queryWhereForDateStream(
         reference: reference,
@@ -422,19 +422,15 @@ class ProjectAndTaskController extends TopController {
     querySnapshot1.listen((event) {
       for (QueryDocumentSnapshot<Object?> element in event.docs) {
         s.add(element.data() as Var2TopModel);
-        print(element.data());
       }
     });
     querySnapshot.listen((event) {
       for (QueryDocumentSnapshot<Object?> element in event.docs) {
         s.add(element.data() as Var2TopModel);
-        print(element.data());
       }
     });
     List<Var2TopModel> ss = s.unique((s) => s.id);
-    for (var element in ss) {
-      print(element.name);
-    }
+    for (var element in ss) {}
     return ss;
   }
 
@@ -483,9 +479,7 @@ class ProjectAndTaskController extends TopController {
         }
       }
     }
-    finalList.forEach((element) {
-      print(element!.name! + "hello");
-    });
+    finalList.forEach((element) {});
     return finalList;
   }
 
@@ -688,8 +682,6 @@ class ProjectAndTaskController extends TopController {
     required CollectionReference reference,
     required Exception exception,
   }) async {
-    print(data);
-
     await updateRelationalFields(
       reference: reference,
       data: data,

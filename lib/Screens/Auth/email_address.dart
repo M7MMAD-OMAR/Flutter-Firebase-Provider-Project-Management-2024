@@ -147,7 +147,6 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                                 );
                               } else {
                                 Navigator.of(context).pop();
-                                print("sign up");
                                 Get.to(
                                   () => SignUp(email: email),
                                 );

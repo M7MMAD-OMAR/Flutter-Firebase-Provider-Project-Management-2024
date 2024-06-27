@@ -54,7 +54,6 @@ class StatusModel extends VarTopModel {
 
   @override
   set setId(String idParameter) {
-    print("${idParameter}id parameter");
     Exception exception;
 
     if (idParameter.isEmpty) {

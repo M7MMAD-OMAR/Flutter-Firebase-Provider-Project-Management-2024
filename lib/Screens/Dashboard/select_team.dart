@@ -122,7 +122,6 @@ class _SelectTeamScreenState extends State<SelectTeamScreen> {
                                     return ActiveTeamCard(
                                       imageType: ImageType.Network,
                                       onTap: () {
-                                        //print("object");
                                         Get.to(() => TeamDetails(
                                               userAsManager:
                                                   widget.managerModel,

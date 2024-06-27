@@ -46,7 +46,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
       getProjectSubTasksForAUserStartInADayStream({
     required DateTime date,
   }) async* {
-    print("sub task");
     final startOfDay = DateTime(date.year, date.month, date.day);
     final endOfDay =
         startOfDay.add(Duration(days: 1)).subtract(Duration(seconds: 1));
@@ -66,7 +65,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
       for (var subTask in list) {
         if (subTask.startDate.isAfter(startOfDay) &&
             subTask.startDate.isBefore(endOfDay)) {
-          print("hello sub task");
           subTasksIds.add(subTask.id);
         }
       }
@@ -597,7 +595,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
   }
 
   Future<void> deleteProjectSubTask({required String id}) async {
-    print(id);
     WriteBatch batch = fireStore.batch();
     DocumentSnapshot? documentSnapshot = await getDocSnapShotWhere(
         collectionReference: projectSubTasksRef, field: idK, value: id);
@@ -635,7 +632,7 @@ class ProjectSubTaskController extends ProjectAndTaskController {
         throw Exception(
             "sub task start and end date should be between start and end date of the main task");
       }
-      print(data[startDateK]);
+
       bool overlapped = false;
       int over = 0;
       List<ProjectSubTaskModel> list =
@@ -676,7 +673,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
           },
         );
       } else {
-        print(data[nameK]);
         DocumentSnapshot snapshot =
             await getDocById(reference: projectSubTasksRef, id: id);
         ProjectSubTaskModel subTaskModel =
@@ -694,7 +690,6 @@ class ProjectSubTaskController extends ProjectAndTaskController {
         Get.key.currentState!.pop();
       }
     } else {
-      print(data[nameK]);
       DocumentSnapshot snapshot =
           await getDocById(reference: projectSubTasksRef, id: id);
       ProjectSubTaskModel subTaskModel = snapshot.data() as ProjectSubTaskModel;

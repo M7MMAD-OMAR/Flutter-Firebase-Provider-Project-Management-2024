@@ -58,7 +58,6 @@ class TeamInfo {
       bool ascending = true}) {
     switch (sortOption) {
       case TeamSortOption.name:
-        print("objectsadsdsssssssssssss");
         teams.sort((a, b) => a.name!.compareTo(b.name!));
         break;
       case TeamSortOption.createDate:
@@ -125,7 +124,6 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
   bool sortAscending = true; // Variable for sort order
   void toggleSortOrder() {
     setState(() {
-      print("sdsdsd");
       sortAscending = !sortAscending; // Toggle the sort order
     });
   }
@@ -272,7 +270,6 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                             .toList();
                         switch (selectedSortOption) {
                           case TeamSortOption.name:
-                            print("objectsadsdsssssssssssss");
                             teams.sort((a, b) => a.name!.compareTo(b.name!));
                             break;
                           case TeamSortOption.createDate:
@@ -354,7 +351,6 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                                 icon: FontAwesomeIcons.trash,
                                                 onPressed: (context) async {
                                                   try {
-                                                    print("prdasdas");
                                                     // showDialogMethod(context);
 
                                                     List<ProjectModel>
@@ -376,7 +372,6 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                                             projectIds:
                                                                 projectsIds);
 
-                                                    print("delete");
                                                     CustomSnackBar.showSuccess(
                                                         AppConstants
                                                             .team_deleted_successfully_key
@@ -420,7 +415,6 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                                       team: team,
                                                       userAsManager:
                                                           userAsManger));
-                                                  print("projects");
                                                 },
                                               ),
                                             ]),
@@ -435,10 +429,8 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                               if (widget.title !=
                                                   AppConstants
                                                       .manager_teams_key.tr) {
-                                                print("objectsasa");
                                                 addTeamToCreatProjectScreen
                                                     .addUser(team);
-                                                print("objectssdadsdasa");
 
                                                 addTeamToCreatProjectScreen
                                                     .update();

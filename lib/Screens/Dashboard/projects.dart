@@ -318,8 +318,6 @@ class _ProjectScreenState extends State<ProjectScreen> {
                         stream: controller.getProjectsStream(),
                         builder: (context, snapshotProject) {
                           if (snapshotProject.hasError) {
-                            print(
-                                snapshotProject.error.toString().substring(11));
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

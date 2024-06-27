@@ -181,7 +181,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
                   if (taskCount > 0) {
                     if (search.isNotEmpty) {
-                      print(search + "helli");
                       for (var element in snapshot.data!.docs) {
                         UserTaskCategoryModel taskModel = element.data();
                         if (taskModel.name!.toLowerCase().contains(search)) {

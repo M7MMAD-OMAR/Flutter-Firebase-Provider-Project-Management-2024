@@ -304,7 +304,7 @@ class ProjectController extends ProjectAndTaskController {
 //       .where(teamIdK, whereIn: listteamsId)
 //       .get()
 //       .catchError((error) {
-//     print("Error getting projects: $error");
+//
 //     return null;
 //   });
 
@@ -467,11 +467,10 @@ class ProjectController extends ProjectAndTaskController {
     TeamController teamController = TeamController();
     List<TeamModel> teams =
         await teamController.getTeamsofMemberWhereUserId(userId: userId);
-    print("the tems is ${teams.length}");
+
     List<String> teamsId = <String>[];
     for (TeamModel team in teams) {
       teamsId.add(team.id);
-      print("   project controller ${team.id}");
     }
 
     yield* projectsRef
@@ -489,12 +488,10 @@ class ProjectController extends ProjectAndTaskController {
     List<TeamModel> teams =
         await teamController.getTeamsofMemberWhereUserId(userId: userId);
 
-    print("the tems is ${teams.length}");
     List<String> teamsId = <String>[];
     if (teams.isNotEmpty) {
       for (TeamModel team in teams) {
         teamsId.add(team.id);
-        print("   project controller ${team.id}");
       }
     } else {
       throw Exception(AppConstants.not_member_no_projects_error_key.tr);
@@ -610,8 +607,6 @@ class ProjectController extends ProjectAndTaskController {
       required ManagerModel managerModel,
       required Map<String, dynamic> data,
       required ProjectModel oldProject}) async {
-    print("update 1");
-
     if (data.containsKey(startDateK)) {
       DateTime? newStartDate = data[startDateK] as DateTime;
       if (newStartDate.isAfter(oldProject.endDate!)) {
@@ -619,7 +614,6 @@ class ProjectController extends ProjectAndTaskController {
             Exception(AppConstants.start_date_update_error_key.tr);
         throw exception;
       }
-      print("update 2");
 
       if (oldProject.endDate!.isBefore(firebaseTime(DateTime.now()))) {
         Exception exception =
@@ -634,13 +628,11 @@ class ProjectController extends ProjectAndTaskController {
             Exception(AppConstants.project_already_started_error_key.tr);
         throw exception;
       }
-      print("update 3");
     }
     if (data.containsKey(teamIdK)) {
       Exception exception = Exception(AppConstants.team_id_update_error_key.tr);
       throw exception;
     }
-    print("update 3");
 
     await updateRelationalFields(
       reference: projectsRef,

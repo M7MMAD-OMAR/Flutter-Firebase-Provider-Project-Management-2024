@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -243,9 +242,7 @@ class _EditProjectState extends State<EditProject> {
                         }
 
                         if (snapshotMembers.hasData) {
-                          print("objectsdsad");
                           if (snapshotMembers.data!.docs.isNotEmpty) {
-                            print("objectsdsadxczxczxcxzczxc");
                             for (var member in snapshotMembers.data!.docs) {
                               listIds.add(member.data().userId);
                             }
@@ -255,9 +252,7 @@ class _EditProjectState extends State<EditProject> {
                               addMore: true,
                               numberOfMembers: 0.toString(),
                               users: <UserModel>[],
-                              onTap: () {
-                                print("dasdasd");
-                              },
+                              onTap: () {},
                             );
                           }
                           return StreamBuilder<QuerySnapshot<UserModel>>(
@@ -321,7 +316,6 @@ class _EditProjectState extends State<EditProject> {
                           name = value;
                           //     });
 
-                          print("dasdasd");
                           if (await projectController.existByTow(
                                   reference: projectsRef,
                                   value: name,
@@ -330,11 +324,11 @@ class _EditProjectState extends State<EditProject> {
                                   value2: widget.projectModel.managerId) &&
                               name != widget.projectModel.name) {
                             controller.updateIsTaked(true);
-                            print(stx.isTaked.value);
+
                             //   controller.isTaked.value = true;
                           } else {
                             controller.updateIsTaked(false);
-                            print(stx.isTaked.value);
+
                             // controller.isTaked.value = false;
                           }
                         },
@@ -361,7 +355,7 @@ class _EditProjectState extends State<EditProject> {
                 },
                 onChanged: (p0) {
                   // setState(() {
-                  print(p0);
+
                   desc = p0;
                   //});
                 },
@@ -407,13 +401,11 @@ class _EditProjectState extends State<EditProject> {
                   scale: 1,
                   color: AppColors.primaryAccentColor,
                   callback: () async {
-                    print("fdasfasd");
                     if (formKey.currentState!.validate()) {
                       showDialogMethod(context);
                       await updateProjecr();
                       Navigator.of(context).pop();
                     }
-                    print("sadsda");
                   },
                 ),
               ])
@@ -447,7 +439,7 @@ class _EditProjectState extends State<EditProject> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print("${selectedDay}the selected day");
+
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
@@ -460,25 +452,17 @@ class _EditProjectState extends State<EditProject> {
     if (startDate != widget.projectModel.startDate ||
         dueDate != widget.projectModel.endDate) {
       if (startDate.isAfter(dueDate) || startDate.isAtSameMomentAs(dueDate)) {
-        print("step 1");
         CustomSnackBar.showError(
             "start date cannot be After end date Or in tha same Time");
         return;
       }
     }
 
-    print("step2");
-
     try {
-      print(name);
-      print(desc);
-      print(dueDate);
-      print(startDate);
       if (name != widget.projectModel.name ||
           desc != widget.projectModel.description ||
           startDate != widget.projectModel.startDate ||
           dueDate != widget.projectModel.endDate) {
-        print("creteing");
         await ProjectController().updateProject(
             managerModel: widget.userAsManager,
             oldProject: widget.projectModel,
@@ -495,7 +479,6 @@ class _EditProjectState extends State<EditProject> {
         CustomSnackBar.showError("No Chages to Update");
       }
     } catch (e) {
-      print("error");
       CustomSnackBar.showError("حدث خطأ غير متوقع");
     }
   }
