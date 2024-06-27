@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_management_muhmad_omar/Screens/Auth/ui%20forgot%20password/size_config.dart';
+import 'package:project_management_muhmad_omar/Screens/Auth/uiForgotPassword/size_config.dart';
 
 
 class CustomGeneralButton extends StatelessWidget {
