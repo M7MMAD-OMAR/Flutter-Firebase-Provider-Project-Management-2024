@@ -119,43 +119,43 @@ class ProjectProvider extends TaskProvider {
   }
 
   Future<void> addProject({required ProjectModel projectModel}) async {
-    if (await existByOne(
-        collectionReference: managersRef,
-        field: idK,
-        value: projectModel.managerId)) {
-      if (projectModel.teamId != null) {
-        if (await existByTow(
-            reference: teamsRef,
-            field: idK,
-            value: projectModel.teamId,
-            field2: managerIdK,
-            value2: projectModel.managerId)) {
-          StatusModel statusModel =
+    // if (await existByOne(
+    //     collectionReference: managersRef,
+    //     field: idK,
+    //     value: projectModel.managerId)) {
+    //   if (projectModel.teamId != null) {
+    //     if (await existByTow(
+    //         reference: teamsRef,
+    //         field: idK,
+    //         value: projectModel.teamId,
+    //         field2: managerIdK,
+    //         value2: projectModel.managerId)) {
+    StatusModel statusModel =
               await StatusProvider().getStatusByName(status: statusDone);
 
           QuerySnapshot anotherProjects = await projectsRef
-              .where(teamIdK, isEqualTo: projectModel.teamId)
-              .where(statusIdK, isNotEqualTo: statusModel.id)
+        // .where(teamIdK, isEqualTo: projectModel.teamId)
+        .where(statusIdK, isNotEqualTo: statusModel.id)
               .limit(1)
               .get();
 
-          if (anotherProjects.docs.isNotEmpty) {
-            throw Exception('خطأ تداخل مشروع الفريق');
-          } else {
-            await addDoc(reference: projectsRef, model: projectModel);
+    // if (anotherProjects.docs.isNotEmpty) {
+    //   throw Exception('خطأ تداخل مشروع الفريق');
+    // } else {
+    await addDoc(reference: projectsRef, model: projectModel);
             return;
-          }
-        } else {
-          throw Exception('عذرًا، هناك خطأ ما فيما يتعلق بالفريق أو المدير');
-        }
-      }
-      {
-        await addDoc(reference: projectsRef, model: projectModel);
-        return;
-      }
-    } else {
-      throw Exception('عذرًا، مدير المشروع غير موجود');
-    }
+    // }
+    // } else {
+    //   throw Exception('عذرًا، هناك خطأ ما فيما يتعلق بالفريق أو المدير');
+    // }
+    // }
+    // {
+    //   await addDoc(reference: projectsRef, model: projectModel);
+    //   return;
+    // }
+    // } else {
+    //   throw Exception('عذرًا، مدير المشروع غير موجود');
+    // }
   }
 
   Future<ProjectModel?> getProjectOfTeam({required String teamId}) async {

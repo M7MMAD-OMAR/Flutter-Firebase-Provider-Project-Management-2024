@@ -3,7 +3,6 @@ import 'package:project_management_muhmad_omar/constants/values.dart';
 import 'package:project_management_muhmad_omar/models/team/manger_model.dart';
 import 'package:project_management_muhmad_omar/providers/auth_provider.dart';
 import 'package:project_management_muhmad_omar/providers/manger_provider.dart';
-import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/Projects/create_project_screen.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
 import 'package:project_management_muhmad_omar/widgets/bottom_sheets/bottom_sheets_widget.dart';
@@ -35,13 +34,13 @@ class DashboardAddBottomSheet extends StatelessWidget {
             callback: () async {
               await _createProject();
             }),
-        LabelledOption(
-            label: 'إنشاء فريق',
-            icon: Icons.people,
-            callback: () {
-              Navigator.pushNamed(
-                  context, Routes.dashboardMeetingDetailsWidget);
-            }),
+        // LabelledOption(
+        //     label: 'إنشاء فريق',
+        //     icon: Icons.people,
+        //     callback: () {
+        //       Navigator.pushNamed(
+        //           context, Routes.dashboardMeetingDetailsWidget);
+        //     }),
         LabelledOption(
             label: 'إنشاء فئة',
             icon: Icons.category,
