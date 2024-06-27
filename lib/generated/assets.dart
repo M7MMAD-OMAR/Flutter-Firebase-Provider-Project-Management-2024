@@ -2,6 +2,9 @@
 class Assets {
   Assets._();
 
+  static const String appLogoAppLogo = 'lib/widgets/AppLogo/app_logo.dart';
+  static const String appLogoTriplets = 'lib/widgets/AppLogo/triplets.dart';
+  static const String appLogoTripletsContainer = 'lib/widgets/AppLogo/triplets_container.dart';
   static const String assetsCategory = 'assets/category.png';
   static const String assetsCone = 'assets/cone.png';
   static const String assetsDefaultGroup = 'assets/defaultGroup.png';
@@ -13,6 +16,9 @@ class Assets {
   static const String assetsGreenPencil = 'assets/green_pencil.png';
   static const String assetsHeadCut = 'assets/head_cut.png';
   static const String assetsHeadCutR = 'assets/head_cut-R.png';
+  static const String assetsKarem = 'assets/karem.jpg';
+  static const String assetsKarem2 = 'assets/karem2.png';
+  static const String assetsKarem2R = 'assets/karem2R.png';
   static const String assetsManHead = 'assets/man-head.png';
   static const String assetsManHeadR = 'assets/man-head-R.png';
   static const String assetsOrangePencil = 'assets/orange_pencil.png';
@@ -20,165 +26,116 @@ class Assets {
   static const String assetsProject = 'assets/project.png';
   static const String assetsProjectImage = 'assets/projectImage.jpg';
   static const String assetsProjectImage2 = 'assets/projectImage2.jpeg';
-  static const String assetsSliderBackground1 =
-      'assets/slider-background-1.png';
-  static const String assetsSliderBackground2 =
-      'assets/slider-background-2.png';
-  static const String assetsSliderBackground3 =
-      'assets/slider-background-3.png';
+  static const String assetsSliderBackground1 = 'assets/slider-background-1.png';
+  static const String assetsSliderBackground2 = 'assets/slider-background-2.png';
+  static const String assetsSliderBackground3 = 'assets/slider-background-3.png';
   static const String assetsSmallLogo = 'assets/small-logo.png';
   static const String assetsTaskDone = 'assets/task_done.png';
   static const String assetsTeam = 'assets/team.png';
   static const String assetsWorkingOn = 'assets/working_on.png';
-  static const String authScreenAuthScreen =
-      'lib/screens/auth_screen/auth_screen.dart';
-  static const String authScreenChoosePlanScreen =
-      'lib/screens/auth_screen/choose_plan_screen.dart';
-  static const String authScreenEmailAddressScreen =
-      'lib/screens/auth_screen/email_address_screen.dart';
-  static const String authScreenLoginScreen =
-      'lib/screens/auth_screen/login_screen.dart';
-  static const String authScreenNewWorkspaceScreen =
-      'lib/screens/auth_screen/new_workspace_screen.dart';
-  static const String authScreenSignupScreen =
-      'lib/screens/auth_screen/signup_screen.dart';
-  static const String authScreenVerifyEmailAddressScreen =
-      'lib/screens/auth_screen/verify_email_address_screen.dart';
-  static const String bottomSheetsBottomSheetHolderWidget =
-      'lib/widgets/bottom_sheets/bottom_sheet_holder_widget.dart';
-  static const String bottomSheetsBottomSheetSelectableContainerWidget =
-      'lib/widgets/bottom_sheets/bottom_sheet_selectable_container_widget.dart';
-  static const String bottomSheetsBottomSheetsWidget =
-      'lib/widgets/bottom_sheets/bottom_sheets_widget.dart';
-  static const String bottomSheetsDashboardSettingsSheetWidget =
-      'lib/widgets/bottom_sheets/dashboard_settings_sheet_widget.dart';
-  static const String buttonsPrimaryButtonsWidget =
-      'lib/widgets/buttons/primary_buttons_widget.dart';
-  static const String buttonsPrimaryProgressButtonWidget =
-      'lib/widgets/buttons/primary_progress_button_widget.dart';
-  static const String buttonsPrimaryTabButtonsWidget =
-      'lib/widgets/buttons/primary_tab_buttons_widget.dart';
-  static const String buttonsProgressCardCloseButtonWidget =
-      'lib/widgets/buttons/progress_card_close_button_widget.dart';
-  static const String buttonsRectPrimaryButtonWidget =
-      'lib/widgets/buttons/rect_primary_button_widget.dart';
-  static const String buttonsTextButtonWidget =
-      'lib/widgets/buttons/text_button_widget.dart';
-  static const String calenderTodayTaskWidget =
-      'lib/widgets/calender/today_task_widget.dart';
-  static const String chatAddChatIconWidget =
-      'lib/widgets/chat/add_chat_icon_widget.dart';
-  static const String constantsAppColors = 'lib/constants/app_colors.dart';
-  static const String constantsBackConstants =
-      'lib/constants/back_constants.dart';
-  static const String constantsBoxDecorationStyles =
-      'lib/constants/box_decoration_styles.dart';
-  static const String constantsButtonStyles =
-      'lib/constants/button_styles.dart';
+  static const String authAuthPage = 'lib/Screens/Auth/authPage.dart';
+  static const String authChoosePlan = 'lib/Screens/Auth/choose_plan.dart';
+  static const String authEmailAddress = 'lib/Screens/Auth/email_address.dart';
+  static const String authLogin = 'lib/Screens/Auth/login.dart';
+  static const String authNewWorkspace = 'lib/Screens/Auth/new_workspace.dart';
+  static const String authResetPassword = 'lib/Screens/Auth/resetPassword.dart';
+  static const String authSignup = 'lib/Screens/Auth/signup.dart';
+  static const String authVerifyEmailAddress = 'lib/Screens/Auth/verify_email_address.dart';
+  static const String bottomSheetsBottomSheetHolder = 'lib/widgets/BottomSheets/bottom_sheet_holder.dart';
+  static const String bottomSheetsBottomSheetSelectableContainer = 'lib/widgets/BottomSheets/bottom_sheet_selectable_container.dart';
+  static const String bottomSheetsBottomSheets = 'lib/BottomSheets/bottom_sheets.dart';
+  static const String bottomSheetsDashboardSettingsSheet = 'lib/widgets/BottomSheets/dashboard_settings_sheet.dart';
+  static const String buttonsPrimaryButtons = 'lib/widgets/Buttons/primary_buttons.dart';
+  static const String buttonsPrimaryProgressButton = 'lib/widgets/Buttons/primary_progress_button.dart';
+  static const String buttonsPrimaryTabButtons = 'lib/widgets/Buttons/primary_tab_buttons.dart';
+  static const String buttonsProgressCardCloseButton = 'lib/widgets/Buttons/progress_card_close_button.dart';
+  static const String buttonsRectPrimaryButton = 'lib/widgets/Buttons/rect_primary_button.dart';
+  static const String buttonsTextButton = 'lib/widgets/Buttons/text_button.dart';
+  static const String calenderTodayTask = 'lib/widgets/calender/today_task.dart';
+  static const String chatAddChatIcon = 'lib/widgets/Chat/add_chat_icon.dart';
+  static const String componentsLanguageWidget = 'lib/components/language_widget.dart';
+  static const String componentsSqaureButton = 'lib/components/sqaure_Button.dart';
+  static const String constantsAppConstans = 'lib/constants/app_constans.dart';
+  static const String constantsBackConstants = 'lib/constants/back_constants.dart';
   static const String constantsConstants = 'lib/constants/constants.dart';
-  static const String constantsSpacing = 'lib/constants/spacing.dart';
-  static const String constantsStyles = 'lib/constants/styles.dart';
-  static const String constantsValues = 'lib/constants/values.dart';
-  static const String darkBackgroundDarkRadialBackgroundWidget =
-      'lib/widgets/dark_background/dark_radial_background_widget.dart';
-  static const String darkBackgroundDarkSplitBackgroundWidget =
-      'lib/widgets/dark_background/dark_split_background_widget.dart';
-  static const String dashboardBarChartWidget =
-      'lib/widgets/dashboard/bar_chart_widget.dart';
-  static const String dashboardBottomNavigationItemWidget =
-      'lib/widgets/dashboard/bottom_navigation_item_widget.dart';
-  static const String dashboardCheckboxProvider =
-      'lib/providers/dashboard/checkbox_provider.dart';
-  static const String dashboardCreateCategoryWidget =
-      'lib/widgets/dashboard/create_category_widget.dart';
-  static const String dashboardCreateMainTaskWidget =
-      'lib/widgets/dashboard/create_main_task_widget.dart';
-  static const String dashboardCreateSubTaskWidget =
-      'lib/widgets/dashboard/create_sub_task_widget.dart';
-  static const String dashboardCreateUserTaskWidget =
-      'lib/widgets/dashboard/create_user_task_widget.dart';
-  static const String dashboardDailyGoalCardWidget =
-      'lib/widgets/dashboard/daily_goal_card_widget.dart';
-  static const String dashboardDashboardAddIconWidget =
-      'lib/widgets/dashboard/dashboard_add_icon_widget.dart';
-  static const String dashboardDashboardAddProjectSheetWidget =
-      'lib/widgets/dashboard/dashboard_add_project_sheet_widget.dart';
-  static const String dashboardDashboardAddSheetWidget =
-      'lib/widgets/dashboard/dashboard_add_sheet_widget.dart';
-  static const String dashboardDashboardDesignMeetingSheetWidget =
-      'lib/widgets/dashboard/dashboard_design_meeting_sheet_widget.dart';
-  static const String dashboardDashboardMeetingDetailsWidget =
-      'lib/widgets/dashboard/dashboard_meeting_details_widget.dart';
-  static const String dashboardEditCategoryWidget =
-      'lib/widgets/dashboard/edit_category_widget.dart';
-  static const String dashboardFilledSelectableContainerWidget =
-      'lib/widgets/dashboard/filled_selectable_container_widget.dart';
-  static const String dashboardIconSelectionWidget =
-      'lib/widgets/dashboard/icon_selection_widget.dart';
-  static const String dashboardInBottomsheetSubtitleWidget =
-      'lib/widgets/dashboard/in_bottomsheet_subtitle_widget.dart';
-  static const String dashboardMainTaskWidget =
-      'lib/widgets/dashboard/main_task_widget.dart';
-  static const String dashboardMainTasksWidget =
-      'lib/widgets/dashboard/main_tasks_widget.dart';
-  static const String dashboardNewCreateTaskWidget =
-      'lib/widgets/dashboard/new_create_task_widget.dart';
-  static const String dashboardOverviewTaskContainerWidget =
-      'lib/widgets/dashboard/overview_task_container_widget.dart';
-  static const String dashboardProductivityChartWidget =
-      'lib/widgets/dashboard/productivity_chart_widget.dart';
-  static const String dashboardScreenCategoryScreen =
-      'lib/screens/dashboard_screen/category_screen.dart';
-  static const String dashboardScreenDashboardScreen =
-      'lib/screens/dashboard_screen/dashboard_screen.dart';
-  static const String dashboardScreenInvitionsScreen =
-      'lib/screens/dashboard_screen/invitions_screen.dart';
-  static const String dashboardScreenNotificationsScreen =
-      'lib/screens/dashboard_screen/notifications_screen.dart';
-  static const String dashboardScreenProjectsScreen =
-      'lib/screens/dashboard_screen/projects_screen.dart';
-  static const String dashboardScreenSelectMyTeamsScreen =
-      'lib/screens/dashboard_screen/select_my_teams_screen.dart';
-  static const String dashboardScreenSelectTeamScreen =
-      'lib/screens/dashboard_screen/select_team_screen.dart';
-  static const String dashboardScreenTimelineScreen =
-      'lib/screens/dashboard_screen/timeline_screen.dart';
-  static const String dashboardSelectColorDialogWidget =
-      'lib/widgets/dashboard/select_color_dialog_widget.dart';
-  static const String dashboardSelectMemberForSubTaskWidget =
-      'lib/widgets/dashboard/select_member_for_sub_task_widget.dart';
-  static const String dashboardSheetGotoCalendarWidget =
-      'lib/widgets/dashboard/sheet_goto_calendar_widget.dart';
-  static const String dashboardSubTaskWidget =
-      'lib/widgets/dashboard/sub_task_widget.dart';
-  static const String dashboardSubTasksWidget =
-      'lib/widgets/dashboard/sub_tasks_widget.dart';
-  static const String dashboardTabScreensOverviewScreen =
-      'lib/screens/dashboard_screen/dashboard_tab_screens/overview_screen.dart';
-  static const String dashboardTabScreensProductivityScreen =
-      'lib/screens/dashboard_screen/dashboard_tab_screens/productivity_screen.dart';
-  static const String dashboardTaskContainerImageWidget =
-      'lib/widgets/dashboard/task_container_image_widget.dart';
-  static const String dashboardTaskProgressCardWidget =
-      'lib/widgets/dashboard/task_progress_card_widget.dart';
-  static const String dummyGreenDoneIconWidget =
-      'lib/widgets/dummy/green_done_icon_widget.dart';
-  static const String dummyImageBoxWidget =
-      'lib/widgets/dummy/Image_box_widget.dart';
-  static const String dummyProfileDummyWidget =
-      'lib/widgets/dummy/profile_dummy_widget.dart';
-  static const String forgotPasswordScreenResetPasswordScreen =
-      'lib/screens/auth_screen/forgot_password_screen/reset_password_screen.dart';
-  static const String formsFormInputUnlabelledWidget =
-      'lib/widgets/forms/form_input_unlabelled_widget.dart';
-  static const String formsFormInputWithLabelRxWidget =
-      'lib/widgets/forms/form_input_with_labelRx_widget.dart';
-  static const String formsFormInputWithLabelWidget =
-      'lib/widgets/forms/form_input_with_label_widget.dart';
-  static const String formsSearchBox2Widget =
-      'lib/widgets/forms/search_box2_widget.dart';
-  static const String formsSearchBoxWidget =
-      'lib/widgets/forms/search_box_widget.dart';
+  static const String controllersCategoryController = 'lib/controllers/categoryController.dart';
+  static const String controllersLanguageController = 'lib/controllers/languageController.dart';
+  static const String controllersMangerController = 'lib/controllers/manger_controller.dart';
+  static const String controllersProjectController = 'lib/controllers/projectController.dart';
+  static const String controllersProjectMainTaskController = 'lib/controllers/project_main_task_controller.dart';
+  static const String controllersProjectSubTaskController = 'lib/controllers/project_sub_task_controller.dart';
+  static const String controllersStatusController = 'lib/controllers/statusController.dart';
+  static const String controllersTaskController = 'lib/controllers/taskController.dart';
+  static const String controllersTeamController = 'lib/controllers/teamController.dart';
+  static const String controllersTeamMemberController = 'lib/controllers/team_member_controller.dart';
+  static const String controllersTopController = 'lib/controllers/topController.dart';
+  static const String controllersUserController = 'lib/controllers/userController.dart';
+  static const String controllersUserTaskController = 'lib/controllers/user_task_controller.dart';
+  static const String controllersWaitingMamberController = 'lib/controllers/waitingMamberController.dart';
+  static const String controllersWaitingSubTasks = 'lib/controllers/waitingSubTasks.dart';
+  static const String darkBackgroundDarkRadialBackground = 'lib/widgets/DarkBackground/darkRadialBackground.dart';
+  static const String darkBackgroundDarkSplitBackground = 'lib/widgets/DarkBackground/darkSplitBackground.dart';
+  static const String dashboardBarChart = 'lib/widgets/Dashboard/bar_chart.dart';
+  static const String dashboardBottomNavigationItem = 'lib/widgets/Dashboard/bottomNavigationItem.dart';
+  static const String dashboardCategory = 'lib/Screens/Dashboard/category.dart';
+  static const String dashboardCreateCategory = 'lib/widgets/Dashboard/create_category.dart';
+  static const String dashboardCreateMainTask = 'lib/widgets/Dashboard/create_main_task.dart';
+  static const String dashboardCreateSubTask = 'lib/widgets/Dashboard/create_sub_task.dart';
+  static const String dashboardCreateUserTask = 'lib/widgets/Dashboard/create_user_task.dart';
+  static const String dashboardDailyGoalCard = 'lib/widgets/Dashboard/daily_goal_card.dart';
+  static const String dashboardDashboard = 'lib/Screens/Dashboard/dashboard.dart';
+  static const String dashboardDashboardAddIcon = 'lib/widgets/Dashboard/dashboard_add_icon.dart';
+  static const String dashboardDashboardAddProjectSheet = 'lib/widgets/Dashboard/dashboard_add_project_sheet.dart';
+  static const String dashboardDashboardAddSheet = 'lib/widgets/Dashboard/dashboard_add_sheet.dart';
+  static const String dashboardDashboardDesignMeetingSheet = 'lib/widgets/Dashboard/dashboard_design_meeting_sheet.dart';
+  static const String dashboardDashboardMeetingDetails = 'lib/widgets/Dashboard/dashboard_meeting_details.dart';
+  static const String dashboardEditCategory = 'lib/widgets/Dashboard/edit_category.dart';
+  static const String dashboardFilledSelectableContainer = 'lib/widgets/Dashboard/filled_selectable_container.dart';
+  static const String dashboardIconSelection = 'lib/widgets/Dashboard/icon_selection.dart';
+  static const String dashboardInBottomsheetSubtitle = 'lib/widgets/Dashboard/in_bottomsheet_subtitle.dart';
+  static const String dashboardInvitationsScreenController = 'lib/Screens/Dashboard/invitationsScreenController.dart';
+  static const String dashboardInvitions = 'lib/Screens/Dashboard/invitions.dart';
+  static const String dashboardMainTask = 'lib/widgets/Dashboard/main_task.dart';
+  static const String dashboardMainTasks = 'lib/widgets/Dashboard/main_tasks.dart';
+  static const String dashboardNewCreateTask = 'lib/widgets/Dashboard/new_create_task.dart';
+  static const String dashboardNotifications = 'lib/Screens/Dashboard/notifications.dart';
+  static const String dashboardOverviewTaskContainer = 'lib/widgets/Dashboard/overview_task_container.dart';
+  static const String dashboardProductivityChart = 'lib/widgets/Dashboard/productivity_chart.dart';
+  static const String dashboardProjects = 'lib/Screens/Dashboard/projects.dart';
+  static const String dashboardSearchBarAnimation = 'lib/Screens/Dashboard/search_bar_animation.dart';
+  static const String dashboardSelectColorDialog = 'lib/widgets/Dashboard/select_color_dialog.dart';
+  static const String dashboardSelectMemberForSubTask = 'lib/widgets/Dashboard/select_member_for_sub_task.dart';
+  static const String dashboardSelectMyTeams = 'lib/Screens/Dashboard/selectMyTeams.dart';
+  static const String dashboardSelectTeam = 'lib/Screens/Dashboard/select_team.dart';
+  static const String dashboardSheetGotoCalendar = 'lib/widgets/Dashboard/sheet_goto_calendar.dart';
+  static const String dashboardSubTask = 'lib/widgets/Dashboard/subTask.dart';
+  static const String dashboardSubTasks = 'lib/widgets/Dashboard/subTasks.dart';
+  static const String dashboardTabScreensBoxController = 'lib/Screens/Dashboard/DashboardTabScreens/boxController.dart';
+  static const String dashboardTabScreensOverview = 'lib/Screens/Dashboard/DashboardTabScreens/overview.dart';
+  static const String dashboardTabScreensProductivity = 'lib/Screens/Dashboard/DashboardTabScreens/productivity.dart';
+  static const String dashboardTaskContainerImage = 'lib/widgets/Dashboard/task_container_image.dart';
+  static const String dashboardTaskProgressCard = 'lib/widgets/Dashboard/task_progress_card.dart';
+  static const String dashboardTimeline = 'lib/Screens/Dashboard/timeline.dart';
+  static const String dataMyTask = 'lib/Data/my_task.dart';
+  static const String dummyGreenDoneIcon = 'lib/widgets/dummy/green_done_icon.dart';
+  static const String dummyImageBox = 'lib/widgets/dummy/ImageBox.dart';
+  static const String dummyProfileDummy = 'lib/widgets/dummy/profile_dummy.dart';
+  static const String formsFormInputUnlabelled = 'lib/widgets/Forms/form_input_unlabelled.dart';
+  static const String formsFormInputWith
+
+  Label
+
+  =
+
+  '
+
+  lib/widgets/Forms/form_input_with _label.dart
+
+  ';
+
+  static const String formsFormInputWithLabelRx = 'lib/widgets/Forms/form_input_with_labelRx.dart';
+  static const String formsSearchBox = 'lib/widgets/Forms/search_box.dart';
+  static const String formsSearchBox2 = 'lib/widgets/Forms/search_box2.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
   static const String iconArabic = 'assets/icon/arabic.png';
   static const String iconEnglish = 'assets/icon/english.png';
@@ -187,285 +144,155 @@ class Assets {
   static const String imagesAnonymos = 'lib/images/anonymos.png';
   static const String imagesGoogle = 'lib/images/google.png';
   static const String imagesGoogle2 = 'lib/images/google2.png';
+  static const String imagesKAREM = 'lib/images/KAREM.jpg';
   static const String imagesLogo = 'lib/images/logo.png';
-  static const String langLangModel = 'lib/models/lang/lang_model.dart';
+  static const String langAr = 'assets/lang/ar.json';
+  static const String langEn = 'assets/lang/en.json';
+  static const String langLang = 'lib/models/lang/lang.dart';
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
   static const String libMain = 'lib/main.dart';
-  static const String libProviders = 'lib/providers.dart';
-  static const String libRoutes = 'lib/routes.dart';
-  static const String logoAppLogoWidget =
-      'lib/widgets/logo/app_logo_widget.dart';
-  static const String logoTripletsContainerWidget =
-      'lib/widgets/logo/triplets_container_widget.dart';
-  static const String logoTripletsWidget =
-      'lib/widgets/logo/triplets_widget.dart';
-  static const String modelsMyTaskModel = 'lib/models/my_task_model.dart';
-  static const String modelsStatusModel = 'lib/models/status_model.dart';
-  static const String navigationAppHeader2Widget =
-      'lib/widgets/navigation/app_header2_widget.dart';
-  static const String navigationAppHeaderWidget =
-      'lib/widgets/navigation/app_header_widget.dart';
-  static const String navigationBackButton =
-      'lib/widgets/navigation/back_button.dart';
-  static const String navigationBackWidget =
-      'lib/widgets/navigation/back_widget.dart';
-  static const String navigationDasboardHeaderWidget =
-      'lib/widgets/navigation/dasboard_header_widget.dart';
-  static const String navigationDefaultBackWidget =
-      'lib/widgets/navigation/default_back_widget.dart';
-  static const String notificationsNotificationControllerServices =
-      'lib/services/notifications/notification_controller_services.dart';
-  static const String notificationsNotificationService =
-      'lib/services/notifications/notification_service.dart';
-  static const String notificationsNotificationsSenderServices =
-      'lib/services/notifications/notifications_sender_services.dart';
-  static const String onboardingBackgroundImageWidget =
-      'lib/widgets/onboarding/background_image_widget.dart';
-  static const String onboardingBubbleWidget =
-      'lib/widgets/onboarding/bubble_widget.dart';
-  static const String onboardingGradientColorBallWidget =
-      'lib/widgets/onboarding/gradient_color_ball_widget.dart';
-  static const String onboardingImageOutlinedButtonWidget =
-      'lib/widgets/onboarding/image_outlined_button_widget.dart';
-  static const String onboardingLabelledOptionWidget =
-      'lib/widgets/onboarding/labelled_option_widget.dart';
-  static const String onboardingLoadingBarWidget =
-      'lib/widgets/onboarding/loading_bar_widget.dart';
-  static const String onboardingLoadingStickersWidget =
-      'lib/widgets/onboarding/loading_stickers_widget.dart';
-  static const String onboardingPlanCardWidget =
-      'lib/widgets/onboarding/plan_card_widget.dart';
-  static const String onboardingScreenOnboardingCarouselScreen =
-      'lib/screens/onboarding_screen/onboarding_carousel_screen.dart';
-  static const String onboardingScreenOnboardingStartScreen =
-      'lib/screens/onboarding_screen/onboarding_start_screen.dart';
-  static const String onboardingSliderCaptionedImageWidget =
-      'lib/widgets/onboarding/slider_captioned_image_widget.dart';
-  static const String onboardingToggleOptionWidget =
-      'lib/widgets/onboarding/toggle_option_widget.dart';
-  static const String profileBadgedContainerWidget =
-      'lib/widgets/profile/badged_container_widget.dart';
-  static const String profileBoxWidget = 'lib/widgets/profile/box_widget.dart';
-  static const String profileEditProfileScreen =
-      'lib/screens/profile/edit_profile_screen.dart';
-  static const String profileMyProfileScreen =
-      'lib/screens/profile/my_profile_screen.dart';
-  static const String profileMyTeamScreen =
-      'lib/screens/profile/my_team_screen.dart';
-  static const String profileProfileOverviewScreen =
-      'lib/screens/profile/profile_overview_screen.dart';
-  static const String profileProfileTextOptionWidget =
-      'lib/widgets/profile/profile_text_option_widget.dart';
-  static const String profileTeamDetailsScreen =
-      'lib/screens/profile/team_details_screen.dart';
-  static const String profileTextOutlinedButtonWidget =
-      'lib/widgets/profile/text_outlined_button_widget.dart';
-  static const String projectsActiveProjectSelectableContainerWidget =
-      'lib/widgets/projects/active_project_selectable_container_widget.dart';
-  static const String projectsAddTeamToCreateProjectProvider =
-      'lib/providers/projects/add_team_to_create_project_provider.dart';
-  static const String projectsCreateProjectScreen =
-      'lib/screens/projects/create_project_screen.dart';
-  static const String projectsDashboardMeetingDetailsProvider =
-      'lib/providers/projects/dashboard_meeting_details_provider.dart';
-  static const String projectsEditProjectScreen =
-      'lib/screens/projects/edit_project_screen.dart';
-  static const String projectsInactiveProjectSelectableContainerWidget =
-      'lib/widgets/projects/inactive_project_selectable_container_widget.dart';
-  static const String projectsLayoutListTileWidget =
-      'lib/widgets/projects/layout_list_tile_widget.dart';
-  static const String projectsProjectBadgeWidget =
-      'lib/widgets/projects/project_badge_widget.dart';
-  static const String projectsProjectCardHorizontalWidget =
-      'lib/widgets/projects/project_card_horizontal_widget.dart';
-  static const String projectsProjectCardVerticalWidget =
-      'lib/widgets/projects/project_card_vertical_widget.dart';
-  static const String projectsProjectDetailAppbarWidget =
-      'lib/widgets/projects/project_detail_appbar_widget.dart';
-  static const String projectsProjectMainTaskProvider =
-      'lib/providers/projects/project_main_task_provider.dart';
-  static const String projectsProjectProvider =
-      'lib/providers/projects/project_provider.dart';
-  static const String projectsProjectSelectableContainerWidget =
-      'lib/widgets/projects/project_selectable_container_widget.dart';
-  static const String projectsProjectSubTaskProvider =
-      'lib/providers/projects/project_sub_task_provider.dart';
-  static const String projectsProjectTaskActiveCardWidget =
-      'lib/widgets/projects/project_task_active_card_widget.dart';
-  static const String projectsProjectTaskCardWidget =
-      'lib/widgets/projects/project_task_card_widget.dart';
-  static const String projectsProjectTaskInactiveCardWidget =
-      'lib/widgets/projects/project_task_inactive_card_widget.dart';
-  static const String projectsProjectsScreen =
-      'lib/screens/projects/projects_screen.dart';
-  static const String projectsSearchForMemberProvider =
-      'lib/providers/projects/search_for_member_provider.dart';
-  static const String projectsSearchForMembersScreen =
-      'lib/screens/projects/search_for_members_screen.dart';
-  static const String projectsSetMembers =
-      'lib/screens/projects/set_members.dart';
-  static const String projectsStxProvider =
-      'lib/providers/projects/stx_provider.dart';
-  static const String providersAuthProvider =
-      'lib/providers/auth_provider.dart';
-  static const String providersBoxProvider = 'lib/providers/box_provider.dart';
-  static const String providersInvitationsProvider =
-      'lib/providers/invitations_provider.dart';
-  static const String providersMangerProvider =
-      'lib/providers/manger_provider.dart';
-  static const String providersPasswordEmailDialogProvider =
-      'lib/providers/password_email_dialog_provider.dart';
-  static const String providersProfileOverviewProvider =
-      'lib/providers/profile_overview_provider.dart';
-  static const String providersStatusProvider =
-      'lib/providers/status_provider.dart';
-  static const String providersTaskCategoryProvider =
-      'lib/providers/task_category_provider.dart';
-  static const String providersTaskProvider =
-      'lib/providers/task_provider.dart';
-  static const String providersTeamMemberProvider =
-      'lib/providers/team_member_provider.dart';
-  static const String providersTeamProvider =
-      'lib/providers/team_provider.dart';
-  static const String providersTopProvider = 'lib/providers/top_provider.dart';
-  static const String providersUserProvider =
-      'lib/providers/user_provider.dart';
-  static const String providersUserTaskProvider =
-      'lib/providers/user_task_provider.dart';
-  static const String providersWaitingMemberProvider =
-      'lib/providers/waiting_member_provider.dart';
-  static const String providersWaitingSubTasksProvider =
-      'lib/providers/waiting_sub_tasks_provider.dart';
+  static const String modelsStatusmodel = 'lib/models/statusmodel.dart';
+  static const String navigationAppHeader = 'lib/widgets/Navigation/app_header.dart';
+  static const String navigationAppHeader2 = 'lib/widgets/Navigation/app_header2.dart';
+  static const String navigationBack = 'lib/widgets/Navigation/back.dart';
+  static const String navigationBackButton = 'lib/widgets/Navigation/back_button.dart';
+  static const String navigationDasboardHeader = 'lib/widgets/Navigation/dasboard_header.dart';
+  static const String navigationDefaultBack = 'lib/widgets/Navigation/default_back.dart';
+  static const String onboardingBackgroundImage = 'lib/widgets/Onboarding/background_image.dart';
+  static const String onboardingBubble = 'lib/widgets/Onboarding/bubble.dart';
+  static const String onboardingGradientColorBall = 'lib/widgets/Onboarding/gradient_color_ball.dart';
+  static const String onboardingImageOutlinedButton = 'lib/widgets/Onboarding/image_outlined_button.dart';
+  static const String onboardingLabelledOption = 'lib/widgets/Onboarding/labelled_option.dart';
+  static const String onboardingLoadingBar = 'lib/widgets/Onboarding/loading_bar.dart';
+  static const String onboardingLoadingStickers = 'lib/widgets/Onboarding/loading_stickers.dart';
+  static const String onboardingOnboardingCarousel = 'lib/Screens/Onboarding/onboarding_carousel.dart';
+  static const String onboardingOnboardingStart = 'lib/Screens/Onboarding/onboarding_start.dart';
+  static const String onboardingPlanCard = 'lib/widgets/Onboarding/plan_card.dart';
+  static const String onboardingSliderCaptionedImage = 'lib/widgets/Onboarding/slider_captioned_image.dart';
+  static const String onboardingToggleOption = 'lib/widgets/Onboarding/toggle_option.dart';
+  static const String pagesLanguageScreen = 'lib/pages/languageScreen.dart';
+  static const String pagesSplashPage = 'lib/pages/splashPage.dart';
+  static const String profileBadgedContainer = 'lib/widgets/Profile/badged_container.dart';
+  static const String profileBox = 'lib/widgets/Profile/box.dart';
+  static const String profileEditProfile = 'lib/Screens/Profile/edit_profile.dart';
+  static const String profileMyProfile = 'lib/Screens/Profile/my_profile.dart';
+  static const String profileMyTeam = 'lib/Screens/Profile/my_team.dart';
+  static const String profileProfileOverview = 'lib/Screens/Profile/profile_overview.dart';
+  static const String profileProfileTextOption = 'lib/widgets/Profile/profile_text_option.dart';
+  static const String profileTeamDetails = 'lib/Screens/Profile/team_details.dart';
+  static const String profileTextOutlinedButton = 'lib/widgets/Profile/text_outlined_button.dart';
+  static const String projectsActiveProjectSelectableContainer = 'lib/widgets/Projects/active_project_selectable_container.dart';
+  static const String projectsAddTeamToCreateProjectScre = 'lib/Screens/Projects/addTeamToCreateProjectScre.dart';
+  static const String projectsAddUserToTeamScreenController = 'lib/Screens/Projects/addUserToTeamScreenController.dart';
+  static const String projectsCreateProject = 'lib/Screens/Projects/createProject.dart';
+  static const String projectsEditProject = 'lib/Screens/Projects/editProject.dart';
+  static const String projectsInactiveProjectSelectableContainer = 'lib/widgets/Projects/inactive_project_selectable_container.dart';
+  static const String projectsLayoutListTile = 'lib/widgets/Projects/layout_list_tile.dart';
+  static const String projectsProjectBadge = 'lib/widgets/Projects/project_badge.dart';
+  static const String projectsProjectCardHorizontal = 'lib/widgets/Projects/project_card_horizontal.dart';
+  static const String projectsProjectCardVertical = 'lib/widgets/Projects/project_card_vertical.dart';
+  static const String projectsProjectDetailAppbar = 'lib/widgets/Projects/project_detail_appbar.dart';
+  static const String projectsProjectScreenCotroller = 'lib/Screens/Projects/projectScreenCotroller.dart';
+  static const String projectsProjectSelectableContainer = 'lib/widgets/Projects/project_selectable_container.dart';
+  static const String projectsProjectTaskActiveCard = 'lib/widgets/Projects/project_task_active_card.dart';
+  static const String projectsProjectTaskCard = 'lib/widgets/Projects/project_task_card.dart';
+  static const String projectsProjectTaskInactiveCard = 'lib/widgets/Projects/project_task_inactive_card.dart';
+  static const String projectsProjects = 'lib/Screens/Projects/projects.dart';
+  static const String projectsSearchForMemberController = 'lib/Screens/Projects/searchForMemberController.dart';
+  static const String projectsSearchForMembers = 'lib/Screens/Projects/searchForMembers.dart';
+  static const String projectsSetMembers = 'lib/Screens/Projects/set_members.dart';
   static const String resApp = 'lib/widgets/calender/core/res/app.dart';
   static const String resColor = 'lib/widgets/calender/core/res/color.dart';
-  static const String screensLanguageScreen =
-      'lib/screens/language_screen.dart';
-  static const String screensSplashScreen = 'lib/screens/splash_screen.dart';
-  static const String searchActiveTaskCardWidget =
-      'lib/widgets/search/active_task_card_widget.dart';
-  static const String searchInactiveTaskCardWidget =
-      'lib/widgets/search/inactive_task_card_widget.dart';
-  static const String searchTaskCardWidget =
-      'lib/widgets/search/task_card_widget.dart';
+  static const String screensSplashScreen = 'lib/Screens/splash_screen.dart';
+  static const String searchActiveTaskCard = 'lib/widgets/Search/active_task_card.dart';
+  static const String searchInactiveTaskCard = 'lib/widgets/Search/inactive_task_card.dart';
+  static const String searchTaskCard = 'lib/widgets/Search/task_card.dart';
   static const String servicesAuthService = 'lib/services/auth_service.dart';
-  static const String servicesCollectionsRefrences =
-      'lib/services/collections_refrences.dart';
-  static const String servicesFirestoreServices =
-      'lib/services/firestore_services.dart';
-  static const String servicesTypesServices =
-      'lib/services/types_services.dart';
-  static const String shapesAppSettingsIconWidget =
-      'lib/widgets/shapes/app_settings_icon_widget.dart';
-  static const String shapesBackgroundHexagonWidget =
-      'lib/widgets/shapes/background_hexagon_widget.dart';
-  static const String shapesRoundedborderWithIconWidget =
-      'lib/widgets/shapes/roundedborder_with_icon_widget.dart';
-  static const String shapesSettingsStripWidget =
-      'lib/widgets/shapes/settings_strip_widget.dart';
-  static const String snackbarCustomSnackberWidget =
-      'lib/widgets/snackbar/custom_snackber_widget.dart';
-  static const String taskTaskDueDateScreen =
-      'lib/screens/task/task_due_date_screen.dart';
-  static const String taskUserTaskCategoryModel =
-      'lib/models/task/user_task_category_model.dart';
-  static const String teamActiveTeamCardKWidget =
-      'lib/widgets/team/active_team_cardK_widget.dart';
-  static const String teamInActiveTeamCardKWidget =
-      'lib/widgets/team/inActive_team_cardK_widget.dart';
-  static const String teamMangerModel = 'lib/models/team/manger_model.dart';
-  static const String teamMoreTeamDetailsSheetWidget =
-      'lib/widgets/team/more_team_details_sheet_widget.dart';
-  static const String teamProjectMainTaskModel =
-      'lib/models/team/project_main_task_model.dart';
-  static const String teamProjectModel = 'lib/models/team/project_model.dart';
-  static const String teamProjectSubTaskModel =
-      'lib/models/team/project_sub_task_model.dart';
-  static const String teamShowTeamMembersWidget =
-      'lib/widgets/team/show_team_members_widget.dart';
-  static const String teamTaskModel = 'lib/models/team/task_model.dart';
-  static const String teamTeamCardKWidget =
-      'lib/widgets/team/team_cardK_widget.dart';
-  static const String teamTeamMembersModel =
-      'lib/models/team/team_members_model.dart';
-  static const String teamTeamModel = 'lib/models/team/teamModel.dart';
-  static const String teamWaitingMember = 'lib/models/team/waiting_member.dart';
-  static const String teamWaitingSubTasksModel =
-      'lib/models/team/waiting_sub_tasks_model.dart';
-  static const String topsTopModel = 'lib/models/tops/top_model.dart';
+  static const String servicesCollectionsrefrences = 'lib/services/collectionsrefrences.dart';
+  static const String servicesFirestoreServices = 'lib/services/firestore_services.dart';
+  static const String servicesNotificationController = 'lib/services/notification_controller.dart';
+  static const String servicesNotificationService = 'lib/services/notification_service.dart';
+  static const String servicesNotificationsSender = 'lib/services/notifications_sender.dart';
+  static const String servicesTypes = 'lib/services/types.dart';
+  static const String shapesAppSettingsIcon = 'lib/widgets/Shapes/app_settings_icon.dart';
+  static const String shapesBackgroundHexagon = 'lib/widgets/Shapes/background_hexagon.dart';
+  static const String shapesRoundedborderWithIcon = 'lib/widgets/Shapes/roundedborder_with_icon.dart';
+  static const String shapesSettingsStrip = 'lib/widgets/Shapes/settings_strip.dart';
+  static const String snackbarCustomSnackber = 'lib/widgets/Snackbar/custom_snackber.dart';
+  static const String taskTaskDueDate = 'lib/Screens/Task/task_due_date.dart';
+  static const String taskUserTaskCategoryModel = 'lib/models/task/UserTaskCategory_model.dart';
+  static const String teamActiveTeamCardK = 'lib/widgets/Team/active_team_cardK.dart';
+  static const String teamInActiveTeamCardK = 'lib/widgets/Team/inActive_team_cardK.dart';
+  static const String teamMangerModel = 'lib/models/team/Manger_model.dart';
+  static const String teamMoreTeamDetailsSheet = 'lib/widgets/Team/more_team_details_sheet.dart';
+  static const String teamProjectMainTaskModel = 'lib/models/team/Project_main_task_Model.dart';
+  static const String teamProjectModel = 'lib/models/team/Project_model.dart';
+  static const String teamProjectSubTaskModel = 'lib/models/team/Project_sub_task_Model.dart';
+  static const String teamShowTeamMembers = 'lib/widgets/Team/show_team_members.dart';
+  static const String teamTaskModel = 'lib/models/team/Task_model.dart';
+  static const String teamTeamCardK = 'lib/widgets/Team/team_cardK.dart';
+  static const String teamTeamMembersModel = 'lib/models/team/TeamMembers_model.dart';
+  static const String teamTeamModel = 'lib/models/team/Team_model.dart';
+  static const String teamWaitingMamber = 'lib/models/team/waitingMamber.dart';
+  static const String teamWaitingSubTasksModel = 'lib/models/team/waitingSubTasksModel.dart';
+  static const String topsTopModelModel = 'lib/models/tops/TopModel_model.dart';
   static const String topsVar2TopModel = 'lib/models/tops/Var2TopModel.dart';
   static const String topsVarTopModel = 'lib/models/tops/VarTopModel.dart';
-  static const String userActiveEmployeeCardSubTaskWidget =
-      'lib/widgets/user/active_employee_card_sub_task_widget.dart';
-  static const String userAddButtonWidget =
-      'lib/widgets/user/add_button_widget.dart';
-  static const String userCategoryCardVerticalWidget =
-      'lib/widgets/user/category_card_vertical_widget.dart';
-  static const String userCategoryTasksWidgetWidget =
-      'lib/widgets/user/category_tasks_widget_widget.dart';
-  static const String userColuredCategoryBadgeWidget =
-      'lib/widgets/user/colured_category_badge_widget.dart';
-  static const String userEmployeeCardSubTaskWidget =
-      'lib/widgets/user/employee_card_sub_task_widget.dart';
-  static const String userFocusedMenuItemWidget =
-      'lib/widgets/user/focused_menu_item_widget.dart';
-  static const String userIconSelectionModalWidget =
-      'lib/widgets/user/icon_selection_modal_widget.dart';
-  static const String userInactiveEmployeeCardSubTaskWidget =
-      'lib/widgets/user/inactive_employee_card_sub_task_widget.dart';
-  static const String userMainTaskWidget =
-      'lib/widgets/user/main_task_widget.dart';
-  static const String userNewSheetGotoCalenderWidget =
-      'lib/widgets/user/new_sheet_goto_calender_widget.dart';
-  static const String userNewTableCalWidget =
-      'lib/widgets/user/new_table_cal_widget.dart';
-  static const String userNewTaskDueDateWidget =
-      'lib/widgets/user/new_task_due_date_widget.dart';
-  static const String userTaskWidget = 'lib/widgets/user/task_widget.dart';
-  static const String userTasksTasksWidget =
-      'lib/widgets/user/tasks_tasks_widget.dart';
-  static const String userUserModel = 'lib/models/user/user_model.dart';
-  static const String userUserTaskModel =
-      'lib/models/user/user_task_Model.dart';
+  static const String ui
+
+  forgot passwordCustomButton = 'lib/Screens/Auth/ui forgot password/custom_button.dart';
+  static const String ui
+
+  forgot passwordCustomHeaderWidget = 'lib/Screens/Auth/ui forgot password/custom_header_widget.dart';
+  static const String ui
+
+  forgot passwordHeaderWidget = 'lib/Screens/Auth/ui forgot password/header_widget.dart';
+  static const String ui
+
+  forgot passwordIconToBack = 'lib/Screens/Auth/ui forgot password/icon_to_back.dart';
+  static const String ui
+
+  forgot passwordSizeConfig = 'lib/Screens/Auth/ui forgot password/size_config.dart';
+  static const String ui
+
+  forgot passwordSpaceWidget = 'lib/Screens/Auth/ui forgot password/space_widget.dart';
+  static const String userActiveEmployeeCardSubTask = 'lib/widgets/User/active_employee_card_sub_task.dart';
+  static const String userAddButton = 'lib/widgets/User/add_button.dart';
+  static const String userCategoryCardVertical = 'lib/widgets/User/categoryCardVertical.dart';
+  static const String userCategoryTasks = 'lib/widgets/User/category_tasks.dart';
+  static const String userColuredCategoryBadge = 'lib/widgets/User/colured_category_badge.dart';
+  static const String userEmployeeCardSubTask = 'lib/widgets/User/employee_card_sub_task.dart';
+  static const String userFocusedMenuItem = 'lib/widgets/User/focused_menu_item.dart';
+  static const String userIconSelectionModal = 'lib/widgets/User/icon_selection_modal.dart';
+  static const String userInactiveEmployeeCardSubTask = 'lib/widgets/User/inactive_employee_card_sub_task.dart';
+  static const String userMainTask = 'lib/widgets/User/main_task.dart';
+  static const String userNewSheetGotoCalender = 'lib/widgets/User/new_sheet_goto_calender.dart';
+  static const String userNewTableCal = 'lib/widgets/User/new_table_cal.dart';
+  static const String userNewTaskDueDate = 'lib/widgets/User/new_task_due_date.dart';
+  static const String userTaskWidget = 'lib/widgets/User/task_widget.dart';
+  static const String userTasksTasks = 'lib/widgets/User/tasks_tasks.dart';
+  static const String userUserModel = 'lib/models/User/User_model.dart';
+  static const String userUserTaskModel = 'lib/models/User/User_task_Model.dart';
   static const String utilsAppRoutes = 'lib/utils/app_routes.dart';
   static const String utilsBackUtils = 'lib/utils/back_utils.dart';
+  static const String utilsDep = 'lib/utils/dep.dart';
   static const String utilsMessages = 'lib/utils/messages.dart';
   static const String utilsUtils = 'lib/utils/utils.dart';
-  static const String widgetsActiveEmployeeCardWidget =
-      'lib/widgets/active_employee_card_widget.dart';
-  static const String widgetsAddSubIconWidget =
-      'lib/widgets/add_sub_icon_widget.dart';
-  static const String widgetsCircleGradientIconWidget =
-      'lib/widgets/calender/widgets/circle_gradient_icon_widget.dart';
-  static const String widgetsContainerLabelWidget =
-      'lib/widgets/container_label_widget.dart';
-  static const String widgetsCustomButtonWidget =
-      'lib/screens/auth_screen/forgot_password_screen/widgets/custom_button_widget.dart';
-  static const String widgetsCustomHeaderWidget =
-      'lib/screens/auth_screen/forgot_password_screen/widgets/custom_header_widget.dart';
-  static const String widgetsEmployeeCardWidget =
-      'lib/widgets/employee_card_widget.dart';
-  static const String widgetsHeaderWidget =
-      'lib/screens/auth_screen/forgot_password_screen/widgets/header_widget.dart';
-  static const String widgetsIconToBackWidget =
-      'lib/screens/auth_screen/forgot_password_screen/widgets/icon_to_back_widget.dart';
-  static const String widgetsInactiveEmployeeCardWidget =
-      'lib/widgets/inactive_employee_card_widget.dart';
-  static const String widgetsLanguageWidget =
-      'lib/widgets/language_widget.dart';
-  static const String widgetsSearchBarAnimationWidget =
-      'lib/screens/dashboard_screen/widgets/search_bar_animation_widget.dart';
-  static const String widgetsSizeConfigWidget =
-      'lib/screens/auth_screen/forgot_password_screen/widgets/size_config_widget.dart';
-  static const String widgetsSpaceWidget =
-      'lib/screens/auth_screen/forgot_password_screen/widgets/space_widget.dart';
-  static const String widgetsSqaureButtonWidget =
-      'lib/widgets/sqaure_button_widget.dart';
-  static const String widgetsStackedImagesWidget =
-      'lib/widgets/stacked_images_widget.dart';
-  static const String widgetsTableCalendarWidget =
-      'lib/widgets/table_calendar_widget.dart';
-  static const String widgetsTaskGroup =
-      'lib/widgets/calender/widgets/task_group.dart';
-  static const String widgetsTaskWidgetWidget =
-      'lib/widgets/calender/widgets/task_widget_widget.dart';
+  static const String valuesAppColors = 'lib/Values/app-colors.dart';
+  static const String valuesBoxDecorationStyles = 'lib/Values/box_decoration_styles.dart';
+  static const String valuesButtonStyles = 'lib/Values/button_styles.dart';
+  static const String valuesSpacing = 'lib/Values/spacing.dart';
+  static const String valuesStyles = 'lib/Values/styles.dart';
+  static const String valuesValues = 'lib/Values/values.dart';
+  static const String widgetsActiveEmployeeCard = 'lib/widgets/active_employee_card.dart';
+  static const String widgetsAddSubIcon = 'lib/widgets/add_sub_icon.dart';
+  static const String widgetsCircleGradientIcon = 'lib/widgets/calender/widgets/circle_gradient_icon.dart';
+  static const String widgetsContainerLabel = 'lib/widgets/container_label.dart';
+  static const String widgetsEmployeeCard = 'lib/widgets/employee_card.dart';
+  static const String widgetsInactiveEmployeeCard = 'lib/widgets/inactive_employee_card.dart';
+  static const String widgetsStackedImages = 'lib/widgets/stacked_images.dart';
+  static const String widgetsTableCalendar = 'lib/widgets/table_calendar.dart';
+  static const String widgetsTask = 'lib/widgets/calender/widgets/task.dart';
+  static const String widgetsTaskGroup = 'lib/widgets/calender/widgets/task_group.dart';
+
 }

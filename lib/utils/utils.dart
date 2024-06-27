@@ -1,11 +1,9 @@
-part of '../constants/values.dart';
+part of values;
 
 class Utils {
-  static BuildContext context = navigatorKey.currentContext!;
-
-  static double get screenWidth => MediaQuery.of(context).size.width;
-
-  static double get screenHeight => MediaQuery.of(context).size.height;
+  static final double screenWidth = Get.width;
+  static final double screenHeight = Get.width;
+  static final screenHeight2 = Get.size.height;
 }
 
 class SineCurve extends Curve {
@@ -13,6 +11,7 @@ class SineCurve extends Curve {
 
   const SineCurve({this.count = 3});
 
+  // t = x
   @override
   double transformInternal(double t) {
     var val = sin(count * 2 * pi * t) * 0.5 + 0.5;
@@ -65,6 +64,7 @@ Widget buildStackedImagesOfTeams(
     direction: direction,
     items: [
       ...items,
+      //  lastContainer,
       addMore ? iconContainer : const SizedBox(),
     ],
     size: size,
@@ -125,12 +125,10 @@ Widget buildStackedImages(
   );
 }
 
-final BuildContext context = navigatorKey.currentContext!;
+final DashboardMeetingDetailsScreenController userController =
+    Get.find<DashboardMeetingDetailsScreenController>();
 
-final UserProvider userController =
-    Provider.of<UserProvider>(context, listen: false);
-
-Widget buildStackedImagesEdit(
+Widget buildStackedImagesKaremEdit(
     {TextDirection direction = TextDirection.rtl, bool? addMore}) {
   const double size = 50;
   const double xShift = 20;
@@ -141,7 +139,7 @@ Widget buildStackedImagesEdit(
     decoration:
         const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
     child: Center(
-      child: Text(UserProvider.users.length.toString(),
+      child: Text(userController.users.length.toString(),
           style: GoogleFonts.lato(
               color: HexColor.fromHex("226AFD"),
               fontSize: 20,
@@ -157,12 +155,12 @@ Widget buildStackedImagesEdit(
       child: const Icon(Icons.add, color: Colors.white));
 
   final items = List.generate(
-      UserProvider.users.length,
+      userController.users.length,
       (index) => ProfileDummy(
           imageType: ImageType.Network,
           color: Colors.white,
           dummyType: ProfileDummyType.Image,
-          image: UserProvider.users[index].imageUrl,
+          image: userController.users[index].imageUrl,
           scale: 1.0));
 
   return StackedWidgets(
@@ -177,9 +175,8 @@ Widget buildStackedImagesEdit(
   );
 }
 
-final AddTeamToCreatProjectProvider addTeamToCreatProjectScreen =
-    Provider.of<AddTeamToCreatProjectProvider>(context);
-
+final AddTeamToCreatProjectScreen addTeamToCreatProjectScreen =
+    Get.find<AddTeamToCreatProjectScreen>();
 Widget buildStackedImagesTeamEdit(
     {TextDirection direction = TextDirection.rtl, bool? addMore}) {
   const double size = 50;
