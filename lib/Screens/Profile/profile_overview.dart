@@ -110,9 +110,9 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(15.0),
+                            padding: const EdgeInsets.all(5.0),
                             child: OutlinedButtonWithText(
-                              width: 150,
+                              width: 180,
                               content: AppConstants.view_profile_key.tr,
                               onPressed: () {
                                 Get.to(() =>
@@ -123,43 +123,43 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                         ],
                       );
                     }),
-                GetBuilder<ProfileOverviewController>(
-                  init: ProfileOverviewController(),
-                  builder: (controller) {
-                    return ListTile(
-                      leading: Icon(
-                        controller.isSelected.value
-                            ? FontAwesomeIcons.bellSlash
-                            : FontAwesomeIcons.bell,
-                        color: Colors.yellowAccent.shade200,
-                        size: Utils.screenWidth * 0.1,
-                      ),
-                      title: Text(
-                        AppConstants.receive_notification_key.tr,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: Utils.screenWidth * 0.06),
-                      ),
-                      style: ListTileStyle.drawer,
-                      trailing: GlowSwitch(
-                        onChanged: (value) async {
-                          controller.isSelected.value =
-                              await FcmNotifications.getNotificationStatus();
-
-                          await FcmNotifications.setNotificationStatus(
-                              !controller.isSelected.value);
-                          controller.update();
-
-                          print("status");
-                          print(await FcmNotifications.getNotificationStatus());
-                        },
-                        value: !controller.isSelected.value,
-                        activeColor: Colors.blueAccent.withOpacity(0.6),
-                        blurRadius: 4,
-                      ),
-                    );
-                  },
-                ),
+                // GetBuilder<ProfileOverviewController>(
+                //   init: ProfileOverviewController(),
+                //   builder: (controller) {
+                //     return ListTile(
+                //       leading: Icon(
+                //         controller.isSelected.value
+                //             ? FontAwesomeIcons.bellSlash
+                //             : FontAwesomeIcons.bell,
+                //         color: Colors.yellowAccent.shade200,
+                //         size: Utils.screenWidth * 0.1,
+                //       ),
+                //       title: Text(
+                //         AppConstants.receive_notification_key.tr,
+                //         style: TextStyle(
+                //             color: Colors.white,
+                //             fontSize: Utils.screenWidth * 0.06),
+                //       ),
+                //       style: ListTileStyle.drawer,
+                //       trailing: GlowSwitch(
+                //         onChanged: (value) async {
+                //           controller.isSelected.value =
+                //               await FcmNotifications.getNotificationStatus();
+                //
+                //           await FcmNotifications.setNotificationStatus(
+                //               !controller.isSelected.value);
+                //           controller.update();
+                //
+                //           print("status");
+                //           print(await FcmNotifications.getNotificationStatus());
+                //         },
+                //         value: !controller.isSelected.value,
+                //         activeColor: Colors.blueAccent.withOpacity(0.6),
+                //         blurRadius: 4,
+                //       ),
+                //     );
+                //   },
+                // ),
                 AppSpaces.verticalSpace20,
                 ContainerLabel(label: AppConstants.select_language_key.tr),
                 AppSpaces.verticalSpace10,
@@ -206,57 +206,57 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                   ]);
                 }),
                 AppSpaces.verticalSpace20,
-                Visibility(
-                    visible: AuthService
-                        .instance.firebaseAuth.currentUser!.isAnonymous,
-                    child: ContainerLabel(
-                      label: AppConstants.make_an_account_by_key.tr,
-                    )),
+                // Visibility(
+                //     visible: AuthService
+                //         .instance.firebaseAuth.currentUser!.isAnonymous,
+                //     child: ContainerLabel(
+                //       label: AppConstants.make_an_account_by_key.tr,
+                //     )),
                 AppSpaces.verticalSpace10,
-                Visibility(
-                  visible: AuthService
-                      .instance.firebaseAuth.currentUser!.isAnonymous,
-                  child: Row(children: [
-                    Expanded(
-                        flex: 1,
-                        child: Box(
-                          callback: () async {
-                            try {
-                              showDialogMethod(context);
-                              await AuthService.instance
-                                  .convertAnonymousToGoogle();
-                              Navigator.of(context).pop();
-                              //  CustomSnackBar.showSuccess("its going good");
-                              Get.to(() => const Timeline());
-                              print(AuthService
-                                  .instance.firebaseAuth.currentUser!.uid);
-                            } on Exception catch (e) {
-                              Navigator.of(context).pop();
-                              CustomSnackBar.showError(e.toString());
-                            }
-                          },
-                          iconColor: null,
-                          iconpath: "lib/images/google2.png",
-                          label: AppConstants.google_key.tr,
-                          value: "3",
-                          badgeColor: "FFDE72",
-                        )),
-                    AppSpaces.horizontalSpace10,
-                    Expanded(
-                        flex: 1,
-                        child: Box(
-                          callback: () {
-                            showPasswordAndEmailDialog(context);
-                            print("lll");
-                          },
-                          iconColor: null,
-                          iconpath: "assets/icon/envelope.png",
-                          label: AppConstants.email_key.tr,
-                          value: "3",
-                          badgeColor: "FFDE72",
-                        ))
-                  ]),
-                ),
+                // Visibility(
+                //   visible: AuthService
+                //       .instance.firebaseAuth.currentUser!.isAnonymous,
+                //   child: Row(children: [
+                //     Expanded(
+                //         flex: 1,
+                //         child: Box(
+                //           callback: () async {
+                //             try {
+                //               showDialogMethod(context);
+                //               await AuthService.instance
+                //                   .convertAnonymousToGoogle();
+                //               Navigator.of(context).pop();
+                //               //  CustomSnackBar.showSuccess("its going good");
+                //               Get.to(() => const Timeline());
+                //               print(AuthService
+                //                   .instance.firebaseAuth.currentUser!.uid);
+                //             } on Exception catch (e) {
+                //               Navigator.of(context).pop();
+                //               CustomSnackBar.showError(e.toString());
+                //             }
+                //           },
+                //           iconColor: null,
+                //           iconpath: "lib/images/google2.png",
+                //           label: AppConstants.google_key.tr,
+                //           value: "3",
+                //           badgeColor: "FFDE72",
+                //         )),
+                //     AppSpaces.horizontalSpace10,
+                //     Expanded(
+                //         flex: 1,
+                //         child: Box(
+                //           callback: () {
+                //             showPasswordAndEmailDialog(context);
+                //             print("lll");
+                //           },
+                //           iconColor: null,
+                //           iconpath: "assets/icon/envelope.png",
+                //           label: AppConstants.email_key.tr,
+                //           value: "3",
+                //           badgeColor: "FFDE72",
+                //         ))
+                //   ]),
+                // ),
                 AppSpaces.verticalSpace20,
                 GestureDetector(
                   onTap: () async {
@@ -302,106 +302,106 @@ class ProfileOverviewController extends GetxController {
   var isSelected = true.obs; // Use RxBool to make it observable
 }
 
-void showPasswordAndEmailDialog(BuildContext context) {
-  final Rx<TextEditingController> passController = TextEditingController().obs;
-  final Rx<TextEditingController> emailController = TextEditingController().obs;
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String password = "";
-  String email = "";
-  RegExp regExletters = RegExp(r"(?=.*[a-z])\w+");
-  RegExp regExnumbers = RegExp(r"(?=.*[0-9])\w+");
-  RegExp regExbigletters = RegExp(r"(?=.*[A-Z])\w+");
-  final RxBool obscureText = false.obs;
-  Get.defaultDialog(
-      backgroundColor: AppColors.primaryBackgroundColor,
-      title: AppConstants.enter_email_password_key.tr,
-      titleStyle: const TextStyle(color: Colors.white),
-      content: Form(
-        key: formKey,
-        child: Column(
-          children: [
-            LabelledFormInput(
-                autovalidateMode: AutovalidateMode.disabled,
-                validator: (value) {
-                  if (!EmailValidator.validate(value!)) {
-                    return AppConstants.enter_valid_email_key.tr;
-                  } else {
-                    return null;
-                  }
-                },
-                onClear: () {
-                  email = "";
-                  emailController.value.text = "";
-                },
-                onChanged: (value) {
-                  email = value;
-                },
-                readOnly: false,
-                placeholder: AppConstants.email_key.tr,
-                keyboardType: "text",
-                controller: emailController.value,
-                obscureText: obscureText.value,
-                label: AppConstants.your_email_key.tr),
-            AppSpaces.verticalSpace20,
-            LabelledFormInput(
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return AppConstants
-                        .the_password_should_be_more_then_7_character_key.tr;
-                  }
-                  if (regExletters.hasMatch(value) == false) {
-                    return AppConstants
-                        .please_enter_at_least_one_small_character_key.tr;
-                  }
-                  if (regExnumbers.hasMatch(value) == false) {
-                    return AppConstants.please_enter_at_least_one_number_key.tr;
-                  }
-                  if (regExbigletters.hasMatch(value) == false) {
-                    return AppConstants
-                        .please_enter_at_least_one_big_character_key.tr;
-                  }
-                  return null;
-                },
-                onClear: (() {
-                  obscureText.value = !obscureText.value;
-                }),
-                onChanged: (value) {
-                  password = value;
-                },
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                readOnly: false,
-                placeholder: AppConstants.password_key.tr,
-                keyboardType: "text",
-                controller: passController.value,
-                obscureText: obscureText.value,
-                label: AppConstants.your_password_key.tr),
-            const SizedBox(height: 15),
-          ],
-        ),
-      ),
-      cancel: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: AppPrimaryButton(
-            callback: () async {
-              try {
-                if (formKey.currentState!.validate()) {
-                  showDialogMethod(context);
-                  await AuthService.instance.convertAnonymousToEmailandPassword(
-                      email: email, password: password);
-                  Navigator.of(context).pop();
-                  Get.back();
-                  Get.offAll(() => const OnboardingCarousel());
-                  //اخر شي عدلتو وماجربتو
-                  await AuthService.instance.logOut();
-                }
-              } on Exception catch (e) {
-                Navigator.of(context).pop();
-                CustomSnackBar.showError(e.toString());
-              }
-            },
-            buttonText: AppConstants.upgrade_account_key.tr,
-            buttonHeight:
-                Utils.screenHeight * 0.1, // Adjust the percentage as needed
-            buttonWidth: Utils.screenWidth * 0.33),
-      ));
-}
+// void showPasswordAndEmailDialog(BuildContext context) {
+//   final Rx<TextEditingController> passController = TextEditingController().obs;
+//   final Rx<TextEditingController> emailController = TextEditingController().obs;
+//   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+//   String password = "";
+//   String email = "";
+//   RegExp regExletters = RegExp(r"(?=.*[a-z])\w+");
+//   RegExp regExnumbers = RegExp(r"(?=.*[0-9])\w+");
+//   RegExp regExbigletters = RegExp(r"(?=.*[A-Z])\w+");
+//   final RxBool obscureText = false.obs;
+//   Get.defaultDialog(
+//       backgroundColor: AppColors.primaryBackgroundColor,
+//       title: AppConstants.enter_email_password_key.tr,
+//       titleStyle: const TextStyle(color: Colors.white),
+//       content: Form(
+//         key: formKey,
+//         child: Column(
+//           children: [
+//             LabelledFormInput(
+//                 autovalidateMode: AutovalidateMode.disabled,
+//                 validator: (value) {
+//                   if (!EmailValidator.validate(value!)) {
+//                     return AppConstants.enter_valid_email_key.tr;
+//                   } else {
+//                     return null;
+//                   }
+//                 },
+//                 onClear: () {
+//                   email = "";
+//                   emailController.value.text = "";
+//                 },
+//                 onChanged: (value) {
+//                   email = value;
+//                 },
+//                 readOnly: false,
+//                 placeholder: AppConstants.email_key.tr,
+//                 keyboardType: "text",
+//                 controller: emailController.value,
+//                 obscureText: obscureText.value,
+//                 label: AppConstants.your_email_key.tr),
+//             AppSpaces.verticalSpace20,
+//             LabelledFormInput(
+//                 validator: (value) {
+//                   if (value!.isEmpty) {
+//                     return AppConstants
+//                         .the_password_should_be_more_then_7_character_key.tr;
+//                   }
+//                   if (regExletters.hasMatch(value) == false) {
+//                     return AppConstants
+//                         .please_enter_at_least_one_small_character_key.tr;
+//                   }
+//                   if (regExnumbers.hasMatch(value) == false) {
+//                     return AppConstants.please_enter_at_least_one_number_key.tr;
+//                   }
+//                   if (regExbigletters.hasMatch(value) == false) {
+//                     return AppConstants
+//                         .please_enter_at_least_one_big_character_key.tr;
+//                   }
+//                   return null;
+//                 },
+//                 onClear: (() {
+//                   obscureText.value = !obscureText.value;
+//                 }),
+//                 onChanged: (value) {
+//                   password = value;
+//                 },
+//                 autovalidateMode: AutovalidateMode.onUserInteraction,
+//                 readOnly: false,
+//                 placeholder: AppConstants.password_key.tr,
+//                 keyboardType: "text",
+//                 controller: passController.value,
+//                 obscureText: obscureText.value,
+//                 label: AppConstants.your_password_key.tr),
+//             const SizedBox(height: 15),
+//           ],
+//         ),
+//       ),
+//       cancel: Padding(
+//         padding: const EdgeInsets.symmetric(vertical: 10),
+//         child: AppPrimaryButton(
+//             callback: () async {
+//               try {
+//                 if (formKey.currentState!.validate()) {
+//                   showDialogMethod(context);
+//                   await AuthService.instance.convertAnonymousToEmailandPassword(
+//                       email: email, password: password);
+//                   Navigator.of(context).pop();
+//                   Get.back();
+//                   Get.offAll(() => const OnboardingCarousel());
+//                   //اخر شي عدلتو وماجربتو
+//                   await AuthService.instance.logOut();
+//                 }
+//               } on Exception catch (e) {
+//                 Navigator.of(context).pop();
+//                 CustomSnackBar.showError(e.toString());
+//               }
+//             },
+//             buttonText: AppConstants.upgrade_account_key.tr,
+//             buttonHeight:
+//                 Utils.screenHeight * 0.1, // Adjust the percentage as needed
+//             buttonWidth: Utils.screenWidth * 0.33),
+//       ));
+// }

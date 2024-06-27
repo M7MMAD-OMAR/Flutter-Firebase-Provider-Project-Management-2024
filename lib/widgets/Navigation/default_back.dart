@@ -43,7 +43,7 @@ class DefaultNav extends StatelessWidget {
               scale: 1.0);
         } else if (type == ProfileDummyType.Button) {
           return OutlinedButtonWithText(
-            width: 75,
+            width: 100,
             content: AppConstants.edit_key.tr,
             onPressed: () {
               Get.to(() => EditProfilePage(

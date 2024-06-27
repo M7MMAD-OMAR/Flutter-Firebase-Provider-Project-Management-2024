@@ -184,7 +184,6 @@ class BarChartSample1State extends State<BarChartSample1> {
                   fontSize: 18,
                 ),
                 children: <TextSpan>[
-                  // the Developer karem saad (KaremSD)
                   TextSpan(
                     text: (rod.toY - 1).toString(),
                     style: TextStyle(

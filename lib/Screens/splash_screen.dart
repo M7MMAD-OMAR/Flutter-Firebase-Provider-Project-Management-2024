@@ -11,7 +11,6 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
   static String id = "SplashScreen";
 
-// the Developer karem saad
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

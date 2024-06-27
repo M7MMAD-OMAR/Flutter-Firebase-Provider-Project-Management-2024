@@ -41,7 +41,7 @@ dependencies:
   video_player: ^2.8.7
   rx_future: ^1.0.3
   firebase_storage: ^11.1.0
-  android_alarm_manager_plus: ^4.0.3
+  android_alarm_manager_plus: ^2.1.2
   shared_preferences: ^2.1.1
   either_dart: ^1.0.0
   #  flutter_facebook_auth: ^5.0.11

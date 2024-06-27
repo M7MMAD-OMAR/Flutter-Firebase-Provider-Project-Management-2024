@@ -54,13 +54,13 @@ class NotificationController {
       debug: true,
     );
 
-    await AwesomeNotifications().isNotificationAllowed().then(
-      (isAllowed) async {
-        if (!isAllowed) {
-          requestPermission();
-        }
-      },
-    );
+    // await AwesomeNotifications().isNotificationAllowed().then(
+    //   (isAllowed) async {
+    //     if (!isAllowed) {
+    //       requestPermission();
+    //     }
+    //   },
+    // );
 
     await AwesomeNotifications().setListeners(
       onActionReceivedMethod: onActionReceivedMethod,

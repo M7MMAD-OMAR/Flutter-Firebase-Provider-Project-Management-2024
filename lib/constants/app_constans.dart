@@ -159,7 +159,6 @@ class AppConstants {
   static const String by_team_key = "by_team";
   static const String status_key = "status";
 
-  // the Developer karem saad
   static const String projects_key = "projects";
   static const String member_key = "member";
   static const String task_assigned_successfully_key =
@@ -411,7 +410,6 @@ class AppConstants {
       "waiting_team_member_updating_time_before_create_error";
   static const String name_not_empty_key = "name_not_empty";
 
-  // the Developer karem saad
   static const String name_min_length_key = "name_min_length";
   static const String name_letters_only_key = "name_letters_only";
   static const String username_not_empty_key = "username_not_empty";
@@ -669,7 +667,7 @@ class AppConstants {
   static const String the_mail_is_verifed_key = "the_mail_is_verifed";
   static const String send_verify_link_key = "send_verify_link";
   static const String verifed_key = "verifed";
-  static const String sucess_baby_key = "sucess_baby";
+  static const String sucess_1_key = "sucess_1";
   static const String plese_verify_your_email_before_continue_key =
       "plese_verify_your_email_before_continue";
   static const String continue_key = "continue";

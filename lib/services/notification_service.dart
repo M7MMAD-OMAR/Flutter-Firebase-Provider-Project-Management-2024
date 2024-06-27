@@ -117,7 +117,7 @@ class FcmNotifications extends GetxService {
       displayOnBackground: true,
       // customSound: 'resource://raw/${getSoundByType(notificationType: type)}',
     );
-    // the Developer karem saad
+
     return content;
   }
 

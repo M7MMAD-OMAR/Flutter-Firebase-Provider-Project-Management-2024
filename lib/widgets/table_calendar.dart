@@ -8,7 +8,7 @@ const kBlueCircleForCalendar = BoxDecoration(
   color: Color(0xFF246CFD),
   shape: BoxShape.circle,
 );
-// the Developer karem saad (KaremSD)
+
 class CalendarView extends StatefulWidget {
   const CalendarView({super.key});
 

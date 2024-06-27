@@ -13,7 +13,6 @@ import 'package:project_management_muhmad_omar/models/User/User_model.dart';
 import 'package:project_management_muhmad_omar/models/team/Manger_model.dart';
 import 'package:project_management_muhmad_omar/widgets/Snackbar/custom_snackber.dart';
 
-// the Developer karem saad (KaremSD)
 import '../../Values/values.dart';
 import '../../controllers/userController.dart';
 import '../../services/auth_service.dart';
@@ -98,7 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: OutlinedButtonWithText(
-                                  width: 75,
+                                  width: 100,
                                   content: AppConstants.edit_key.tr,
                                   onPressed: () {
                                     Get.to(

@@ -185,9 +185,9 @@ class dailygoal extends StatelessWidget {
             //   child: ElevatedButton(
             //     onPressed: () {},
             //     style: ButtonStyle(
-            //       backgroundColor: MaterialStateProperty.all<Color>(
+            //       backgroundColor: WidgetStateProperty.all<Color>(
             //           HexColor.fromHex("C25FFF")),
-            //       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            //       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             //         RoundedRectangleBorder(
             //           borderRadius: BorderRadius.circular(50.0),
             //           side: BorderSide(

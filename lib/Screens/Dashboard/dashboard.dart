@@ -22,7 +22,7 @@ import 'DashboardTabScreens/productivity.dart';
 
 // ignore: must_be_immutable
 class Dashboard extends StatelessWidget {
-  Dashboard({Key? key}) : super(key: key);
+  Dashboard({super.key});
 
   // final ValueNotifier<bool> _totalTaskTrigger = ValueNotifier(true);
   // final ValueNotifier<bool> _totalDueTrigger = ValueNotifier(false);

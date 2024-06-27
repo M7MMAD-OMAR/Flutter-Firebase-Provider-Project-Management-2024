@@ -25,7 +25,7 @@ class FocusedMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FocusedMenuHolder(
-      menuWidth: menuWidth ?? Get.width * 0.5,
+      menuWidth: menuWidth ?? Get.width * 0.7,
       menuItems: menuItems ??
           [
             FocusedMenuItem(

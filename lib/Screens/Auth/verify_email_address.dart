@@ -127,7 +127,7 @@ class _VerifyEmailAddressScreenState extends State<VerifyEmailAddressScreen> {
                             }, (right) {
                               if (right == true) {
                                 CustomSnackBar.showSuccess(
-                                    AppConstants.sucess_baby_key.tr);
+                                    AppConstants.sucess_1_key.tr);
                                 Get.offAll(() => const Timeline());
                               } else {
                                 CustomSnackBar.showError(AppConstants

@@ -70,7 +70,7 @@ class ManagerController extends TopController {
   //       collectionReference: managersRef, field: idK, value: mangerId);
   //   return doc!.data() as ManagerModel;
   // }
-  //karem
+  //
   Future<ManagerModel> getMangerOfTeam({required String teamId}) async {
     TeamController teamController = Get.put(TeamController());
     TeamModel teamModel = await teamController.getTeamById(id: teamId);

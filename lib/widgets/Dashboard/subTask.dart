@@ -12,7 +12,6 @@ import 'package:project_management_muhmad_omar/controllers/project_sub_task_cont
 import 'package:project_management_muhmad_omar/controllers/statusController.dart';
 import 'package:project_management_muhmad_omar/controllers/team_member_controller.dart';
 
-// the Developer karem saad (KaremSD)
 import 'package:project_management_muhmad_omar/controllers/user_task_controller.dart';
 import 'package:project_management_muhmad_omar/models/statusmodel.dart';
 import 'package:project_management_muhmad_omar/models/team/Project_sub_task_Model.dart';

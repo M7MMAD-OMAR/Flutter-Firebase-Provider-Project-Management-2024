@@ -25,6 +25,3 @@ List<Color> progressCardGradientList = [
   //pink
   HexColor.fromHex("EEB2E8"),
 ];
-
-
-// the Developer karem saad

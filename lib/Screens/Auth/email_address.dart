@@ -67,7 +67,6 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                               fontSize: Utils.screenWidth * 0.12,
                               fontWeight: FontWeight.bold)),
                       AppSpaces.verticalSpace20,
-                      // the Developer karem saad
                       LabelledFormInput(
                           autovalidateMode: AutovalidateMode.disabled,
                           validator: (value) {

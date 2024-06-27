@@ -360,7 +360,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                                     List<ProjectModel>
                                                         projects =
                                                         await ProjectController()
-                                                            .getProjectsOfTeamKarem(
+                                                            .getProjectsOfTeams(
                                                                 teamId:
                                                                     team.id);
                                                     List<String> projectsIds =

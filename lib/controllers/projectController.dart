@@ -261,7 +261,7 @@ class ProjectController extends ProjectAndTaskController {
     return projectsStream.cast<QuerySnapshot<ProjectModel>>();
   }
 
-  Future<List<ProjectModel>> getProjectsOfTeamKarem(
+  Future<List<ProjectModel>> getProjectsOfTeams(
       {required String teamId}) async {
     List<Object?>? list = await getListDataWhere(
         collectionReference: projectsRef, field: teamIdK, value: teamId);

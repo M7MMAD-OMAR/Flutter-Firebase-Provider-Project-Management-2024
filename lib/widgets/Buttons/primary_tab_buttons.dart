@@ -7,13 +7,11 @@ class PrimaryTabButton extends StatelessWidget {
   final int itemIndex;
   final ValueNotifier<int> notifier;
   final VoidCallback? callback;
-  const PrimaryTabButton(
-      {Key? key,
+  const PrimaryTabButton({super.key,
       this.callback,
       required this.notifier,
       required this.buttonText,
-      required this.itemIndex})
-      : super(key: key);
+      required this.itemIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +29,11 @@ class PrimaryTabButton extends StatelessWidget {
                 },
                 style: ButtonStyle(
                     backgroundColor: notifier.value == itemIndex
-                        ? MaterialStateProperty.all<Color>(
+                        ? WidgetStateProperty.all<Color>(
                             HexColor.fromHex("246CFE"))
-                        : MaterialStateProperty.all<Color>(
+                        : WidgetStateProperty.all<Color>(
                             HexColor.fromHex("181A1F")),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50.0),
                             side: notifier.value == itemIndex
