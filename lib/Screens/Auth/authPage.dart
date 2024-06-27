@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:project_management_muhmad_omar/Screens/Auth/login.dart';
 import 'package:project_management_muhmad_omar/Screens/Dashboard/timeline.dart';
 import 'package:project_management_muhmad_omar/Screens/Onboarding/onboarding_start.dart';
 import 'package:project_management_muhmad_omar/services/auth_service.dart';
-
-import 'verify_email_address.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});

@@ -10,7 +10,6 @@ class AppColors2 {
 
   static ThemeData get getTheme => ThemeData(
         primaryColor: primaryColor,
-        primarySwatch: primarySwatch,
         appBarTheme: AppBarTheme(
           backgroundColor: bgColor,
           iconTheme: IconThemeData(
@@ -19,8 +18,6 @@ class AppColors2 {
           elevation: 0,
           foregroundColor: Colors.grey[600],
         ),
-        colorScheme: const ColorScheme.light(),
-        backgroundColor: bgColor,
         textTheme: TextTheme(
           displayMedium: TextStyle(
             color: Colors.blueGrey[800],
@@ -40,7 +37,7 @@ class AppColors2 {
         scaffoldBackgroundColor: bgColor,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: Colors.transparent,
-        ),
+        ), colorScheme: const ColorScheme.light().copyWith(background: bgColor),
       );
 
   static LinearGradient getLinearGradient(MaterialColor color) {

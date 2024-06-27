@@ -21,7 +21,7 @@ Future<void> main() async {
 
   if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp(
-            options: DefaultFirebaseOptions.currentPlatform)
+        options: DefaultFirebaseOptions.currentPlatform)
         .then((value) => Get.put(AuthService()));
   }
   await AndroidAlarmManager.initialize();
@@ -45,7 +45,7 @@ Future<void> fcmHandler() async {
       .listen(FcmNotifications.handleMessageJson);
   FirebaseMessaging.onBackgroundMessage(FcmNotifications.handleMessageJson);
   RemoteMessage? remoteMessage =
-      await FirebaseMessaging.instance.getInitialMessage();
+  await FirebaseMessaging.instance.getInitialMessage();
   if (remoteMessage != null) {
     await FcmNotifications.handleMessageJson(remoteMessage);
   }
@@ -55,20 +55,21 @@ class MyApp extends StatelessWidget {
   final Map<String, Map<String, String>> languages;
 
   const MyApp({super.key, required this.languages});
+
   @override
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) =>
           GetBuilder<LocalizationController>(builder: (localizationController) {
-        return GetMaterialApp(
-          locale: localizationController.locale,
-          translations: Messages(languages: languages),
-          fallbackLocale:
+            return GetMaterialApp(
+              locale: localizationController.locale,
+              translations: Messages(languages: languages),
+              fallbackLocale:
               Locale(AppConstants.languageCode[1], AppConstants.countryCode[1]),
-          debugShowCheckedModeBanner: false,
-          home: const AuthPage(),
-        );
-      }),
+              debugShowCheckedModeBanner: false,
+              home: const AuthPage(),
+            );
+          }),
     );
   }
 }

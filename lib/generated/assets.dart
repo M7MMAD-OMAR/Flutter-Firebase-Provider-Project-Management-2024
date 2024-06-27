@@ -121,18 +121,7 @@ class Assets {
   static const String dummyImageBox = 'lib/widgets/dummy/ImageBox.dart';
   static const String dummyProfileDummy = 'lib/widgets/dummy/profile_dummy.dart';
   static const String formsFormInputUnlabelled = 'lib/widgets/Forms/form_input_unlabelled.dart';
-  static const String formsFormInputWith
-
-  Label
-
-  =
-
-  '
-
-  lib/widgets/Forms/form_input_with _label.dart
-
-  ';
-
+  static const String formsFormInputWithLabel='lib/widgets/Forms/form_input_with_label.dart';
   static const String formsFormInputWithLabelRx = 'lib/widgets/Forms/form_input_with_labelRx.dart';
   static const String formsSearchBox = 'lib/widgets/Forms/search_box.dart';
   static const String formsSearchBox2 = 'lib/widgets/Forms/search_box2.dart';
@@ -238,24 +227,12 @@ class Assets {
   static const String topsTopModelModel = 'lib/models/tops/TopModel_model.dart';
   static const String topsVar2TopModel = 'lib/models/tops/Var2TopModel.dart';
   static const String topsVarTopModel = 'lib/models/tops/VarTopModel.dart';
-  static const String ui
-
-  forgot passwordCustomButton = 'lib/Screens/Auth/ui forgot password/custom_button.dart';
-  static const String ui
-
-  forgot passwordCustomHeaderWidget = 'lib/Screens/Auth/ui forgot password/custom_header_widget.dart';
-  static const String ui
-
-  forgot passwordHeaderWidget = 'lib/Screens/Auth/ui forgot password/header_widget.dart';
-  static const String ui
-
-  forgot passwordIconToBack = 'lib/Screens/Auth/ui forgot password/icon_to_back.dart';
-  static const String ui
-
-  forgot passwordSizeConfig = 'lib/Screens/Auth/ui forgot password/size_config.dart';
-  static const String ui
-
-  forgot passwordSpaceWidget = 'lib/Screens/Auth/ui forgot password/space_widget.dart';
+  static const String uiforgotpasswordCustomButton = 'lib/Screens/Auth/uiForgotPassword/custom_button.dart';
+  static const String uiforgotpasswordCustomHeaderWidget = 'lib/Screens/Auth/uiForgotPassword/custom_header_widget.dart';
+  static const String uiforgotpasswordHeaderWidget = 'lib/Screens/Auth/uiForgotPassword/header_widget.dart';
+  static const String uiforgotpasswordIconToBack = 'lib/Screens/Auth/uiForgotPassword/icon_to_back.dart';
+  static const String uiforgotpasswordSizeConfig = 'lib/Screens/Auth/uiForgotPassword/size_config.dart';
+  static const String uiforgotpasswordSpaceWidget = 'lib/Screens/Auth/uiForgotPassword/space_widget.dart';
   static const String userActiveEmployeeCardSubTask = 'lib/widgets/User/active_employee_card_sub_task.dart';
   static const String userAddButton = 'lib/widgets/User/add_button.dart';
   static const String userCategoryCardVertical = 'lib/widgets/User/categoryCardVertical.dart';

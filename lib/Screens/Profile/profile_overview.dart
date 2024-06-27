@@ -19,7 +19,7 @@ import '../../constants/app_constans.dart';
 import '../../widgets/Buttons/progress_card_close_button.dart';
 import '../../widgets/DarkBackground/darkRadialBackground.dart';
 
-import '../../widgets/Forms/form_input_with _label.dart';
+import '../../widgets/Forms/form_input_with_label.dart';
 import '../../widgets/Profile/box.dart';
 import '../../widgets/Profile/text_outlined_button.dart';
 import '../../widgets/Snackbar/custom_snackber.dart';
