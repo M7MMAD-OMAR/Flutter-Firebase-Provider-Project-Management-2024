@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -30,15 +29,15 @@ class EditUserCategory extends StatefulWidget {
 class _EditUserCategoryState extends State<EditUserCategory> {
   final TextEditingController _taskNameController = TextEditingController();
   String color = "";
-  IconData icon = Icons.home;
+  IconData icon = Icons.category_rounded;
   String name = "";
 
   @override
   void initState() {
     super.initState();
     color = widget.category.hexColor;
-    icon = IconData(widget.category.iconCodePoint,
-        fontFamily: widget.category.fontfamily);
+    // icon = IconData(widget.category.iconCodePoint,
+    //     fontFamily: widget.category.fontfamily);
     name = widget.category.name!;
     _taskNameController.text = name;
   }

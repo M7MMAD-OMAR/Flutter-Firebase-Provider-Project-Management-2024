@@ -1,22 +1,16 @@
-import 'dart:async';
-import 'dart:math' as math;
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:async/async.dart';
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project_management_muhmad_omar/constants/back_constants.dart';
-import 'package:project_management_muhmad_omar/widgets/User/colured_category_badge.dart';
 import 'package:project_management_muhmad_omar/widgets/User/category_tasks.dart';
+import 'package:project_management_muhmad_omar/widgets/User/colured_category_badge.dart';
+
 import '../../BottomSheets/bottom_sheets.dart';
 import '../../Values/values.dart';
 import '../../controllers/categoryController.dart';
 import '../../controllers/user_task_controller.dart';
 import '../../models/task/UserTaskCategory_model.dart';
 import '../Dashboard/edit_category.dart';
-import '../Dashboard/new_create_task.dart';
 import 'focused_menu_item.dart';
 
 class CategoryCardVertical extends StatefulWidget {
@@ -60,8 +54,8 @@ class _CategoryCardVerticalState extends State<CategoryCardVertical> {
     // ]).asBroadcastStream();
     int iconCodePoint = widget.userTaskCategoryModel.iconCodePoint;
     String? fontFamily = widget.userTaskCategoryModel.fontfamily;
-    Icon icon = Icon(
-      IconData(iconCodePoint, fontFamily: fontFamily),
+    Icon icon = const Icon(
+      Icons.category_outlined,
       color: Colors.white,
     );
     return FocusedMenu(
