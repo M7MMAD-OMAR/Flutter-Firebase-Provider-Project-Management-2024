@@ -6,7 +6,6 @@ import '../constants/back_constants.dart';
 import '../Utils/back_utils.dart';
 
 class TopController extends GetxController {
-  //جلب الدوكبومنتس ضغري عن  طريق سناب شوت وبعتها مشان ماتعذب باخد الكويري بعدين واوصل للدوكز يلي بقلبها ضغري ببعتهن
   Future<List<QueryDocumentSnapshot<Object?>>> getDocsSnapShotWhere(
       {required CollectionReference collectionReference,
       required String field,
@@ -17,7 +16,6 @@ class TopController extends GetxController {
     return list;
   }
 
-//جلب الدوك بشكل فوري
   Future<QueryDocumentSnapshot<Object?>?> getDocSnapShotWhere(
       {required CollectionReference collectionReference,
       required String field,
@@ -81,7 +79,6 @@ class TopController extends GetxController {
     return list.first;
   }
 
-  //جلب دوك واحد بشرطين
   Future<QueryDocumentSnapshot<Object?>> getDocSnapShotWhereAndWhere({
     required CollectionReference collectionReference,
     required String firstField,
@@ -478,7 +475,6 @@ class TopController extends GetxController {
         .snapshots();
   }
 
-  //ستريم جلب دوك واحد بشرطين
   Stream<DocumentSnapshot<Object?>> getDocWhereAndWhereStream(
       {required CollectionReference collectionReference,
       required String firstField,
@@ -608,7 +604,6 @@ class TopController extends GetxController {
     );
   }
 
-  //اضافة دوكيومنت
   Future<void> addDoc(
       {required CollectionReference reference, required TopModel model}) async {
     await reference.doc(model.id).set(model);

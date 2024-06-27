@@ -365,7 +365,7 @@ class Invitions extends StatelessWidget {
                                                                             .pop();
                                                                       } on Exception catch (e) {
                                                                         CustomSnackBar.showError(
-                                                                            e.toString());
+                                                                            "حدث خطأ غير متوقع");
                                                                       }
                                                                     },
                                                                     onPressedStart:
@@ -388,7 +388,7 @@ class Invitions extends StatelessWidget {
                                                                         Navigator.of(context)
                                                                             .pop();
                                                                         CustomSnackBar.showError(
-                                                                            e.toString());
+                                                                            "حدث خطأ غير متوقع");
                                                                       }
                                                                     },
                                                                     imageUrl:

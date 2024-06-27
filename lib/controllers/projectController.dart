@@ -97,20 +97,17 @@ class ProjectController extends ProjectAndTaskController {
   }
 
   Future<void> addProject({required ProjectModel projectModel}) async {
-    // الشرط الأول للتأكد من انو مدير هل المشروع موجود بالداتا بيز او لأ بجدول المانجرز
     if (await existByOne(
         collectionReference: managersRef,
         field: idK,
         value: projectModel.managerId)) {
       if (projectModel.teamId != null) {
-        //الشرط التاني انو اذا كان ضايف تتيم ضغري اول ماانشئ المشروع شوف انو هل التيم يلي ضفتو موجود بالداتا بيز اولا ويكون مدير المشروع هاد هو نفسو مدير هل التيم
         if (await existByTow(
             reference: teamsRef,
             field: idK,
             value: projectModel.teamId,
             field2: managerIdK,
             value2: projectModel.managerId)) {
-          //في حال تحقق الشرطين انو المانجر بالداتا بيز والفريق وموجود والمناجر نفسو للتنين بيضيف المشروع
           StatusModel statusModel =
               await StatusController().getStatusByName(status: statusDone);
 
@@ -129,26 +126,22 @@ class ProjectController extends ProjectAndTaskController {
             return;
           }
         } else {
-          //في حال كان المانجر موجود بالداتا بيز والمشروع الو فريق بس هل الفريق مالو بالداتا بيز او المدير تبع هل التيم غير مدير المشروع مابيسمحلو يضيف
           Exception exception =
               Exception(AppConstants.team_manager_error_key.tr);
           throw exception;
         }
       }
       {
-        //في حال موجود المانجر وتمام بس مافي فريق بيضيف ضغري لانو مسموح هل الشي
         await addDoc(reference: projectsRef, model: projectModel);
         return;
       }
     } else {
-      //في حال إعطاء ايدي لمانجر غير موجود بالداتا بيز اصلا
       Exception exception =
           Exception(AppConstants.manager_not_found_error_key.tr);
       throw exception;
     }
   }
 
-// لجلب المشروع الخاص بهل الفريق  إن وجد
   Future<ProjectModel?> getProjectOfTeam({required String teamId}) async {
     StatusModel statusModel =
         await StatusController().getStatusByName(status: statusNotDone);
@@ -169,7 +162,6 @@ class ProjectController extends ProjectAndTaskController {
     return projectDoc.cast<DocumentSnapshot<ProjectModel>>();
   }
 
-  //جلب جميع المشاريع الخاصة بهل المانجر
   Future<List<ProjectModel?>?> getProjectsOfManager(
       {required String mangerId}) async {
     List<Object?>? list = await getListDataWhere(
@@ -278,7 +270,6 @@ class ProjectController extends ProjectAndTaskController {
     return null;
   }
 
-//جلب المشروع بواسطة الايدي
   Future<ProjectModel?> getProjectById({required String id}) async {
     DocumentSnapshot projectDoc =
         await getDocById(reference: projectsRef, id: id);

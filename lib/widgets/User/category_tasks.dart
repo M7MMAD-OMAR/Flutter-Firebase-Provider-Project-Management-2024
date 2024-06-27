@@ -368,7 +368,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
                 "${AppConstants.the_task_key.tr} ${userTaskModel.name} ${AppConstants.added_successfully_key.tr}");
             Get.key.currentState!.pop();
           } catch (e) {
-            CustomSnackBar.showError(e.toString());
+            CustomSnackBar.showError("حدث خطأ غير متوقع");
           }
         },
         isUserTask: true,
@@ -416,7 +416,7 @@ class _CategoryTasksState extends State<CategoryTasks> {
             await UserTaskController()
                 .adddUserTask(userTaskModel: userTaskModel);
           } catch (e) {
-            CustomSnackBar.showError(e.toString());
+            CustomSnackBar.showError("حدث خطأ غير متوقع");
           }
         },
         isEditMode: false,

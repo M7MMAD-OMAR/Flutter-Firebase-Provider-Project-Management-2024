@@ -326,7 +326,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
                                                         .update();
                                                   } on Exception catch (e) {
                                                     CustomSnackBar.showError(
-                                                        e.toString());
+                                                        "حدث خطأ غير متوقع");
                                                   }
                                                 },
                                                 user: user,
@@ -558,7 +558,7 @@ class _SearchForMembersState extends State<SearchForMembers> {
 //                                                     "the user Invited Successfully");
 //                                               } on Exception catch (e) {
 //                                                 CustomSnackBar.showError(
-//                                                     e.toString());
+//                                                     "حدث خطأ غير متوقع");
 //                                               }
 //                                             },
 //                                             user: user,

@@ -200,7 +200,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               }
                             } on Exception catch (e) {
                               Navigator.of(context).pop();
-                              CustomSnackBar.showError(e.toString());
+                              CustomSnackBar.showError("حدث خطأ غير متوقع");
                             }
                           },
                           width: Utils.screenWidth * 0.2,

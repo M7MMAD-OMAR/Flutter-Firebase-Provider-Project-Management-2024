@@ -359,7 +359,7 @@ class _CreateMainTaskState extends State<CreateMainTask> {
 //       CustomSnackBar.showSuccess("task ${name} added successfully");
 //       Get.key.currentState!.pop();
 //     } catch (e) {
-//       CustomSnackBar.showError(e.toString());
+//       CustomSnackBar.showError("حدث خطأ غير متوقع");
 //     }
 //   } else {
 //     await userTaskController.updateUserTask(data: {

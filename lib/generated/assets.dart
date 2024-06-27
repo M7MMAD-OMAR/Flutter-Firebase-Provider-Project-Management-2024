@@ -16,9 +16,9 @@ class Assets {
   static const String assetsGreenPencil = 'assets/green_pencil.png';
   static const String assetsHeadCut = 'assets/head_cut.png';
   static const String assetsHeadCutR = 'assets/head_cut-R.png';
-  static const String assetsKarem = 'assets/karem.jpg';
-  static const String assetsKarem2 = 'assets/karem2.png';
-  static const String assetsKarem2R = 'assets/karem2R.png';
+  static const String assetsTest = 'assets/test.jpg';
+  static const String assetsTest2 = 'assets/test2.png';
+  static const String assetsTest2R = 'assets/test2R.png';
   static const String assetsManHead = 'assets/man-head.png';
   static const String assetsManHeadR = 'assets/man-head-R.png';
   static const String assetsOrangePencil = 'assets/orange_pencil.png';
@@ -133,7 +133,7 @@ class Assets {
   static const String imagesAnonymos = 'lib/images/anonymos.png';
   static const String imagesGoogle = 'lib/images/google.png';
   static const String imagesGoogle2 = 'lib/images/google2.png';
-  static const String imagesKAREM = 'lib/images/KAREM.jpg';
+  static const String imagesTest = 'lib/images/test.jpg';
   static const String imagesLogo = 'lib/images/logo.png';
   static const String langAr = 'assets/lang/ar.json';
   static const String langEn = 'assets/lang/en.json';

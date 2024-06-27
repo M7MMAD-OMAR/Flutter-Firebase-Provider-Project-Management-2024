@@ -77,7 +77,7 @@ class _EditUserCategoryState extends State<EditUserCategory> {
       await Future.delayed(const Duration(seconds: 1));
       Get.key.currentState!.pop();
     } catch (e) {
-      CustomSnackBar.showError(e.toString());
+      CustomSnackBar.showError("حدث خطأ غير متوقع");
     }
   }
 

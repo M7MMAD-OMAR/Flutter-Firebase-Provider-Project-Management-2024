@@ -98,7 +98,7 @@ class DashboardAddBottomSheet extends StatelessWidget {
         popAndShow: true,
       );
     } on Exception catch (e) {
-      CustomSnackBar.showError(e.toString());
+      CustomSnackBar.showError("حدث خطأ غير متوقع");
     }
   }
 }

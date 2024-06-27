@@ -33,7 +33,6 @@ class WaitingSubTaskModel with TopModel {
     this.updatedAt = updatedAt;
   }
 
-//لاخذ البيانات القادمة من الداتا بيز بشكل جيسون وتحويلها بشكل فوري إلى مودل
   factory WaitingSubTaskModel.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,

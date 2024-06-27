@@ -1,10 +1,7 @@
 import 'VarTopModel.dart';
 
-//كما حدث بعد إنشاء الصف الماضي بأن كان هناك صفوف مشتركة بحقول ولكن ليست كل الحقول مشتركة مع باقي الصفوف
-//حدث ذات الشيء هنا في الحقول الخاصة بال
-//الوصف ووقت البدء ووقت النهاية والاي دي الخاص بالحالة
 //description,start time,end time
-//الصفوف التي ترث من هذا الصف هي صف المشاريع وصف المهمة العام
+
 //task model class,projects model class
 abstract class Var2TopModel extends VarTopModel {
   @override
@@ -20,7 +17,6 @@ abstract class Var2TopModel extends VarTopModel {
   set setStartDate(DateTime? startDate);
   DateTime get getStartDate => startDate;
 
-  // // /////// thereis a comment
   DateTime? endDate;
   set setEndDate(DateTime? endDate);
   get getendDate => endDate;

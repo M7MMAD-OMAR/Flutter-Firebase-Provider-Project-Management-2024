@@ -43,8 +43,8 @@ class OnboardingStart extends StatelessWidget {
             child: BackgroundImage(
               scale: 1.0,
               image: AppConstants.dir_key.tr == 'ar'
-                  ? "assets/karem2R.png"
-                  : "assets/karem2.png",
+                  ? "assets/test2R.png"
+                  : "assets/test2.png",
               gradient: [
                 HexColor.fromHex("92ECEC"),
                 HexColor.fromHex("92ECEC"),

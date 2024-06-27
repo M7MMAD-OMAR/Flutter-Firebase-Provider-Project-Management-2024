@@ -18,7 +18,6 @@ import '../services/notification_service.dart';
 import '../services/types.dart';
 
 class WaitingMamberController extends TopController {
-  //جبلي هل الشخص يلي لسع مو قبلان دعوة الانضمام
   Future<WaitingMemberModel> getWaitingMemberById(
       {required String watingmemberId}) async {
     DocumentSnapshot doc =
@@ -26,7 +25,6 @@ class WaitingMamberController extends TopController {
     return doc.data() as WaitingMemberModel;
   }
 
-//عرض جميع الأشخاص يلي بعتلن دعوة للانضمام لهل الفريق وماقبلوها لسع
   Future<List<WaitingMemberModel>> getWaitingMembersInTeamId(
       {required String teamId}) async {
     List<Object?>? list = await getListDataWhere(
@@ -35,7 +33,6 @@ class WaitingMamberController extends TopController {
     return listOfMembers;
   }
 
-//عرض  الشخص يلي بعتلو دعوة للانضمام لهل الفريق وماقبلهاا لسع
   Future<WaitingMemberModel> getWaitingMemberByTeamIdAndUserId(
       {required String teamId, required String userId}) async {
     DocumentSnapshot doc = await getDocSnapShotWhereAndWhere(
@@ -47,7 +44,6 @@ class WaitingMamberController extends TopController {
     return doc.data() as WaitingMemberModel;
   }
 
-//عرض  الشخص يلي بعتلو دعوة للانضمام لهل الفريق وماقبلهاا لسع
   Stream<DocumentSnapshot<WaitingMemberModel>>
       getWaitingMemberByTeamIdAndUserIdStream(
           {required String teamId, required String userId}) {
@@ -67,7 +63,6 @@ class WaitingMamberController extends TopController {
     return stream.cast<QuerySnapshot<WaitingMemberModel>>();
   }
 
-//عرض جميع الأشخاص يلي بعتلن دعوة للانضمام لهل الفريق وماقبلوها لسع
   Stream<QuerySnapshot<WaitingMemberModel>> getWaitingMembersInTeamIdStream(
       {required String teamId}) {
     Stream<QuerySnapshot> stream = queryWhereStream(

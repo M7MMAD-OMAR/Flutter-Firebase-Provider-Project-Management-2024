@@ -496,7 +496,7 @@ class _EditProjectState extends State<EditProject> {
       }
     } catch (e) {
       print("error");
-      CustomSnackBar.showError(e.toString());
+      CustomSnackBar.showError("حدث خطأ غير متوقع");
     }
   }
 }

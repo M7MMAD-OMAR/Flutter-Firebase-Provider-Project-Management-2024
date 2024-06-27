@@ -43,8 +43,6 @@ class _SignUpState extends State<SignUp> {
 
   bool obscureText = false;
 
-  //يستخدم لجعل المستخدم قادر على إدخال احرف فقط اي بدون ارقام او محارف خاصة
-
   RegExp regExletters = RegExp(r"(?=.*[a-z])\w+");
   RegExp regExnumbers = RegExp(r"(?=.*[0-9])\w+");
   RegExp regExbigletters = RegExp(r"(?=.*[A-Z])\w+");
@@ -405,7 +403,7 @@ class _SignUpState extends State<SignUp> {
                                 }
                               } on Exception catch (e) {
                                 Navigator.of(context).pop();
-                                CustomSnackBar.showError(e.toString());
+                                CustomSnackBar.showError("حدث خطأ غير متوقع");
                               }
                             }
                             dev.log("message");

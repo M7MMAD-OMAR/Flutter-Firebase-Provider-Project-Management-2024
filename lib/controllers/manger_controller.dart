@@ -138,27 +138,26 @@ class ManagerController extends TopController {
       batch = writeBatch;
     }
 
-    //جلب المانجر
     DocumentSnapshot? doc = await getDocSnapShotWhere(
         collectionReference: managersRef, field: idK, value: id);
-    //جلب جميع التيمات يلي الهن المناجر هاد
+
     List<DocumentSnapshot?>? teams = await getDocsSnapShotWhere(
         collectionReference: teamsRef, field: managerIdK, value: id);
-    //حذف المانجر
+
     deleteDocUsingBatch(documentSnapshot: doc, refbatch: batch);
-    //حذف التيمات يلي جبناهن
+
     deleteDocsUsingBatch(list: teams, refBatch: batch);
 
     List<DocumentSnapshot> members = [];
-    //اضافة جميع اضاء هذه التيمات الى ليست الاعضاء
+
     for (var team in teams) {
       DocumentSnapshot? documentSnapshot = await getDocSnapShotWhere(
           collectionReference: teamMembersRef, field: teamIdK, value: team!.id);
       members.add(documentSnapshot!);
     }
-    //حذف جميع الاعضاء الذي تم جلبهم
+
     deleteDocsUsingBatch(list: members, refBatch: batch);
-    //جلب جميع البروجكتات يلي مشترك فيها واحد من التيمات يلي الها المانجر هاد
+
     List<DocumentSnapshot?> listProjects = [];
     for (var team in teams) {
       print("it passed");
@@ -166,9 +165,9 @@ class ManagerController extends TopController {
           collectionReference: projectsRef, field: teamIdK, value: team!.id);
       listProjects.addAll(projectDos);
     }
-    //حذف جميع البروجكتات التي تم جليها
+
     deleteDocsUsingBatch(list: listProjects, refBatch: batch);
-    //جلب جميع المهمات الرئيسية التي تنتمي لاحد المشاريع التي لها التيم الذي له هل المانجر الذي يحذف
+
     List<DocumentSnapshot> listMainTasks = [];
     for (var project in listProjects) {
       List<DocumentSnapshot> mainTasks = await getDocsSnapShotWhere(
@@ -177,9 +176,9 @@ class ManagerController extends TopController {
           value: project!.id);
       listMainTasks.addAll(mainTasks);
     }
-    //حذف جميع المهام الرئيسية التي تم جلبها قبل قليل
+
     deleteDocsUsingBatch(list: listMainTasks, refBatch: batch);
-    //جلب جميع المهام التي تتبع لأحد المهام الرئيسية التي سوف يتم حذفها
+
     List<DocumentSnapshot> listSubTasks = [];
     for (var mainTask in listMainTasks) {
       List<DocumentSnapshot> subTasks = await getDocsSnapShotWhere(
@@ -188,7 +187,7 @@ class ManagerController extends TopController {
           value: mainTask.id);
       listSubTasks.addAll(subTasks);
     }
-    //حذف جميع المهام الفرعية التي تتبع لأي مهمة رئيسة من المهام السابقة
+
     deleteDocsUsingBatch(list: listSubTasks, refBatch: batch);
     batch.commit();
   }

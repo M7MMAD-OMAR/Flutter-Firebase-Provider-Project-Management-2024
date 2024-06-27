@@ -519,7 +519,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                   } on Exception catch (e) {
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showError(
-                                                        "Delete Field : ${e.toString()}");
+                                                        "Delete Field : ${"حدث خطأ غير متوقع"}");
                                                   }
                                                 },
                                                 editButton: () {
@@ -599,7 +599,7 @@ class _ProjectScreenState extends State<ProjectScreen> {
                                                   } on Exception catch (e) {
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showError(
-                                                        "Delete Field : ${e.toString()}");
+                                                        "Delete Field : ${"حدث خطأ غير متوقع"}");
                                                   }
                                                 },
                                                 editButton: () {

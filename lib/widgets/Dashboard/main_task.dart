@@ -230,7 +230,7 @@ class _brogressState extends State<brogress> {
                           id: widget.taskModel.id);
                     } catch (e) {
                       print("edit main task error");
-                      CustomSnackBar.showError(e.toString());
+                      CustomSnackBar.showError("حدث خطأ غير متوقع");
                     }
                   },
                   isEditMode: true,

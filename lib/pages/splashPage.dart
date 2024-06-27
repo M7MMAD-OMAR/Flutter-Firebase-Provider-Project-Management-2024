@@ -42,7 +42,6 @@ class _SplashScreenState extends State<SplashScreen>
       key: _globalKey,
       backgroundColor: Colors.white,
       body: Column(
-        //crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ScaleTransition(

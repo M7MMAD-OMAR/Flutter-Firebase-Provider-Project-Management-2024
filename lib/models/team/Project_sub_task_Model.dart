@@ -5,39 +5,30 @@ import '../../constants/back_constants.dart';
 import '../../Utils/back_utils.dart';
 import 'Task_model.dart';
 
-//الكلاس الخاص بالمهمة الفرعية في البروجيكت
 // why used Datetime instead of this.
 // because we cant access to the fields in the sons from the abstract class that they inherit from
 // so instead of making too much work we did this
 class ProjectSubTaskModel extends TaskClass {
   ProjectSubTaskModel({
-    //الاي دي الخاص بالمشروع الذي تندرج تحته المهمة الفرعية
     //foreign key
     required String projectIdParameter,
-    //الاي دي الخاص بالمهمة الأساسية التي تندرج تحتها المهمة الفرعية
+
     //foreign key
     required String mainTaskIdParameter,
-    //وصف المهمة الفرعية
     required String descriptionParameter,
-    //الاي دي الخاص بالمهمة الفرعية يتم اعطاؤه تلقائياً من فاير ستور
+
     //primary key
     required String idParameter,
-    //اسم المهمة الفرعية
     required String nameParameter,
-    //الاي دي الخاص بحالة المهمة الفرعية
+
     //foreign key
     required String statusIdParameter,
-    //أهمية المهمة من واحد إلى 5
     required int importanceParameter,
-    //تاريخ إنشاء المهمة الفرعية
     required DateTime createdAtParameter,
-    //تاريخ تعديل المهمة الفرعية
     required DateTime updatedAtParameter,
-    //تاريخ بدأ المهمة الفرعية
     required DateTime startDateParameter,
-    //تاريخ نهاية المهمة الفرعية
     required DateTime endDateParameter,
-    //اي دي العضو المسندة له المهمة الفرعية
+
     //foreign key
     required String assignedToParameter,
     required String hexColorParameter,
@@ -58,33 +49,23 @@ class ProjectSubTaskModel extends TaskClass {
   }
 
   ProjectSubTaskModel.firestoreConstructor({
-    //الاي دي الخاص بالمشروع الذي تندرج تحته المهمة الفرعية
     //foreign key
     required String projectIdParameter,
-    //الاي دي الخاص بالمهمة الأساسية التي تندرج تحتها المهمة الفرعية
+
     //foreign key
     required String mainTaskIdParameter,
-    //وصف المهمة الفرعية
     String? descriptionParameter,
-    //الاي دي الخاص بالمهمة الفرعية يتم اعطاؤه تلقائياً من فاير ستور
+
     //primary key
     required String idParameter,
-    //اسم المهمة الفرعية
     required String nameParameter,
-    //الاي دي الخاص بحالة المهمة الفرعية
-    //foreign key
     required String statusIdParameter,
-    //أهمية المهمة من واحد إلى 5
     required int importanceParameter,
-    //تاريخ إنشاء المهمة الفرعية
     required DateTime createdAtParameter,
-    //تاريخ تعديل المهمة الفرعية
     required DateTime updatedAtParameter,
-    //تاريخ بدأ المهمة الفرعية
     required DateTime startDateParameter,
-    //تاريخ نهاية المهمة الفرعية
     required DateTime endDateParameter,
-    //اي دي العضو المسندة له المهمة الفرعية
+
     //foreign key
     required String assignedToParameter,
     required String hexColorParameter,
@@ -117,11 +98,9 @@ class ProjectSubTaskModel extends TaskClass {
     hexcolor = hexcolorParameter;
   }
 
-  //الدوكيومنت اي دي الخاص بالشخص الذي سيتم اسناد المهمة له
   set setAssignedTo(String assignedToParameter) {
-    //الشروط الخاصة بالدوكيومنت آي دي الخاص  بالشخص الذي سيتم اسناد المهمة له
     Exception exception;
-    //لا يمكن أن يكون الدوكيومنت آي دي الخاص  بالشخص الذي سيتم اسناد المهمة له فارغاً
+
     if (assignedToParameter.isEmpty) {
       exception =
           Exception(AppConstants.team_member_assigned_id_empty_error_key);
@@ -133,16 +112,14 @@ class ProjectSubTaskModel extends TaskClass {
 
   late String mainTaskId;
 
-  //الدوكيومنت آي دي الخاص بالمهمة الأساسية في المشروع التي تندرج بداخلها المهمة الفرعية
   set setMainTaskId(String mainTaskIdParameter) {
-    //الشروط الخاصة بالدوكيومنت آي دي الخاص بالمهمة الأساسية
     Exception exception;
-    //لا يمكن أن يكون  آي دي الخاص بالمهمة الأساسية فارغاً
+
     if (mainTaskIdParameter.isEmpty) {
       exception = Exception(AppConstants.sub_task_main_task_id_empty_error_key);
       throw exception;
     }
-    //التأكد من وجود المهمة الأساسية
+
     //TODO make this function
     // if (!checkExist("project_main_tasks", mainTaskIdParameter)) {
     //   exception = Exception("project Main Task id cannot be found");
@@ -153,32 +130,26 @@ class ProjectSubTaskModel extends TaskClass {
 
   late String projectId;
 
-  //اي دي الدوكيومنت الخاص بالمشروع الذي يتضمن المهمة الفرعية
   set setprojectId(String projectIdParameter) {
-    //قواعد إضافة الاي دي الخاص بالدوكيومنت الخاص بالبروجيكت الذي يحتوي المهمة
     Exception exception;
-    //لا يمكن لآي دي الدوكيومنت الخاص بالبروجيكت أن يكون فارغاُ
+
     if (projectIdParameter.isEmpty) {
       exception = Exception(AppConstants.sub_task_project_id_empty_error_key);
       throw exception;
     }
-
-    //التحقق من وجود المشروع في الداتا بيس
 
     projectId = projectIdParameter;
   }
 
   @override
   set setDescription(String? descriptionParameter) {
-    //يمكن لقائد المشروع أن يضيف الوصف الذي يراه مناسباً بدون قيود
     description = descriptionParameter;
   }
 
   @override
   set setId(String idParameter) {
-    //الشروط الخاصة بالدوكيومينت آي دي الخاص بالمهمة الفرعية
     Exception exception;
-    //لا يمكن أن يكون آي دي المهمة الفرعية للمشروع فارغاً
+
     if (idParameter.isEmpty) {
       exception = Exception(AppConstants.project_sub_task_id_empty_error_key);
       throw exception;
@@ -193,14 +164,13 @@ class ProjectSubTaskModel extends TaskClass {
 
   @override
   set setName(String? nameParameter) {
-    //الشروط الخاصة باسم المهمة الفرعية في المهمة الأساسية في البروجيكت
     Exception exception;
-    //لا يمكن أن يكون اسم المهمة الفرعية في المشروع بدون قيمة
+
     if (nameParameter == null) {
       exception = Exception(AppConstants.project_sub_task_name_null_error_key);
       throw exception;
     }
-    //لا يمكن أن يكون اسم المهمة الفرعية في المشروع فارغاُ
+
     if (nameParameter.isEmpty) {
       exception = Exception(AppConstants.project_sub_task_name_empty_error_key);
       throw exception;
@@ -211,9 +181,8 @@ class ProjectSubTaskModel extends TaskClass {
 
   @override
   set setStatusId(String statusIdParameter) {
-    //الشروط الخاصة بالدوكيومينت آي دي الخاص بالحالة
     Exception exception;
-    //يتم رفض الدوكيومينت آي دي الخاص بالحالة اذا فارغاً
+
     if (statusIdParameter.isEmpty) {
       exception =
           Exception(AppConstants.project_sub_task_status_id_empty_error_key);

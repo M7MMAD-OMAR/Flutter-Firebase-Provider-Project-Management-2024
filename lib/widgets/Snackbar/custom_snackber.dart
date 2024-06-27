@@ -132,7 +132,7 @@ class CustomDialog {
                 } on Exception catch (e) {
                   Navigator.of(context).pop();
 
-                  CustomSnackBar.showError(e.toString());
+                  CustomSnackBar.showError("حدث خطأ غير متوقع");
                 }
               },
               buttonText: AppConstants.change_password_key.tr,

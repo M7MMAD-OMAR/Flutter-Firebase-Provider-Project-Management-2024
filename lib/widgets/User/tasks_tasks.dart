@@ -373,7 +373,7 @@ class _FatherTasksState extends State<FatherTasks> {
                   "${AppConstants.the_task_key} ${userTaskModel.name} ${AppConstants.added_successfully_key}");
               Get.key.currentState!.pop();
             } catch (e) {
-              CustomSnackBar.showError(e.toString());
+              CustomSnackBar.showError("حدث خطأ غير متوقع");
             }
           },
           isUserTask: true,
@@ -425,7 +425,7 @@ class _FatherTasksState extends State<FatherTasks> {
               await UserTaskController()
                   .adddUserTask(userTaskModel: userTaskModel);
             } catch (e) {
-              CustomSnackBar.showError(e.toString());
+              CustomSnackBar.showError("حدث خطأ غير متوقع");
             }
           },
           checkExist: ({required String name}) async {

@@ -6,42 +6,31 @@ import '../../constants/back_constants.dart';
 import '../../Utils/back_utils.dart';
 import '../team/Task_model.dart';
 
-//الكلاس الخاصة بالمهمة الخاصة بالمستخدم
 class UserTaskModel extends TaskClass {
-  //باني خاص بالصف الخاص بمهمة المستخدم
   UserTaskModel({
-    //اي دي المستخدم صاحب المهمة
     //foriegn key
     required String userIdParameter,
-    //اي دي التصنيف الذي تندرج تحته المهمة
+
     //foriegn key
     required String folderIdParameter,
-    //اي دي المهمة الأب إن وجدت
+
     //foriegn key
     required DocumentReference? taskFatherIdParameter,
-    //الوصف الخاص بالمهمة
     required String descriptionParameter,
-    //الاي دي الخاص بالمهمة
+
     //primary key
     required String idParameter,
-    //الاسم الخاص بالمهمة
     required String nameParameter,
-    //الاي دي الخاص بحالة المهمة
+
     //foriegn key
     required String statusIdParameter,
-    //مستوى الأهمية الخاص بالمهمة من واحد إلى 5
     required int importanceParameter,
-    //وقت إنشاء المهمة
     required DateTime createdAtParameter,
-    //وقت تحديث المهمة
     required DateTime updatedAtParameter,
-    //الوقت الذي ستبدأ فيه المهمة
     required DateTime startDateParameter,
-    //الوقت الذي ستنتهي فيه المهمة
     required DateTime endDateParameter,
     required String hexColorParameter,
   }) {
-    //هنا نقوم بإسناد القيم إلى المتحولات لكن عبر عملية set
     setFolderId = folderIdParameter;
     setId = idParameter;
     setName = nameParameter;
@@ -88,34 +77,26 @@ class UserTaskModel extends TaskClass {
   }
 
   UserTaskModel.firestoreConstructor({
-    //اي دي المستخدم صاحب المهمة
     //foriegn key
     required this.userId,
-    //اي دي التصنيف الذي تندرج تحته المهمة
+
     //foriegn key
     required this.folderId,
-    //اي دي المهمة الأب إن وجدت
+
     //foriegn key
     this.taskFatherId,
-    //الوصف الخاص بالمهمة
     String? descriptionParameter,
-    //الاي دي الخاص بالمهمة
+
     //primary key
     required String idParameter,
-    //الاسم الخاص بالمهمة
     required String nameParameter,
-    //الاي دي الخاص بحالة المهمة
+
     //foriegn key
     required String statusIdParameter,
-    //مستوى الأهمية الخاص بالمهمة من واحد إلى 5
     required int importanceParameter,
-    //وقت إنشاء المهمة
     required DateTime createdAtParameter,
-    //وقت تحديث المهمة
     required DateTime updatedAtParameter,
-    //الوقت الذي ستبدأ فيه المهمة
     required DateTime startDateParameter,
-    //الوقت الذي ستنتهي فيه المهمة
     required DateTime endDateParameter,
     required String colorParameter,
   }) {
@@ -133,25 +114,17 @@ class UserTaskModel extends TaskClass {
 
   late String userId;
 
-  //اي دي الدوكيومينت الخاص المستخدم الذي يملك المهمة
-
   late String folderId;
-
-  //اي دي  الدوكيومينت الخاص بالمجلد التي تكون المهمة موجودة بداخله
 
   DocumentReference? taskFatherId;
 
-  //الريفرينس للمهمة الأب إن وجدت
-
   set setUserId(String userIdParameter) {
-    //قواعد إضافة الاي دي الخاص بالدوكيومنت الخاص بالمستخدم الذي يملك المهمة
     Exception exception;
-    //لا يمكن لآي دي الدوكيومنت الخاص بالمستخدم  أن يكون فارغ
+
     if (userIdParameter.isEmpty) {
       exception = Exception(AppConstants.task_user_id_empty_error_key);
       throw exception;
     }
-    //التحقق من وجود المستخدم الذي يتم إسناد المهمة له
 
     userId = userIdParameter;
   }

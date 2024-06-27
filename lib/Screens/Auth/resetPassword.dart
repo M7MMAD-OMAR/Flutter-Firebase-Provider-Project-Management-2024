@@ -115,7 +115,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     .tr);
                               } on Exception catch (e) {
                                 Get.key.currentState!.pop();
-                                CustomSnackBar.showError(e.toString());
+                                CustomSnackBar.showError("حدث خطأ غير متوقع");
                               }
                             }
                           },

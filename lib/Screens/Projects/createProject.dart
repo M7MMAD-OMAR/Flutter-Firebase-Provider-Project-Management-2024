@@ -544,8 +544,8 @@ class _CreateProjectState extends State<CreateProject> {
         //  Get.key.currentState!.pop();
       } catch (e) {
         print("error");
-        print(e.toString());
-        CustomSnackBar.showError(e.toString());
+        print("حدث خطأ غير متوقع");
+        CustomSnackBar.showError("حدث خطأ غير متوقع");
       }
     } else {
       // await userTaskController.(data: {

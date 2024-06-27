@@ -224,7 +224,6 @@ class ProjectAndTaskController extends TopController {
                 secondValue: value,
                 firstDateField: startDateK,
                 firstDate: firstDate,
-                //TODO
                 secondDateField: startDateK,
                 secondDate: secondDate))
             .length;
@@ -235,7 +234,6 @@ class ProjectAndTaskController extends TopController {
                 value: value,
                 firstDateField: startDateK,
                 firstDate: firstDate,
-                //TODO
                 secondDateField: startDateK,
                 secondDate: secondDate))
             .length;
@@ -691,7 +689,7 @@ class ProjectAndTaskController extends TopController {
     required Exception exception,
   }) async {
     print(data);
-    //TODO مرر البارمترات يلي بدك تضيفن حسب الحكي يلي حكيناه اخر مرة
+
     await updateRelationalFields(
       reference: reference,
       data: data,

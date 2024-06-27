@@ -250,7 +250,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                       ),
                       AppSpaces.verticalSpace20,
                       Obx(
-                        () => buildStackedImagesKaremEdit(),
+                        () => buildStackedImagesEdit(),
                       ),
                       AppSpaces.verticalSpace40,
                       AppPrimaryButton(
@@ -321,7 +321,7 @@ class _DashboardMeetingDetailsState extends State<DashboardMeetingDetails> {
                                 Get.close(1);
                               }
                             } on Exception catch (e) {
-                              CustomSnackBar.showError(e.toString());
+                              CustomSnackBar.showError("حدث خطأ غير متوقع");
                             }
                           } else {
                             print("Not vadsd");

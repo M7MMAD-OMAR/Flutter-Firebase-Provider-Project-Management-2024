@@ -37,7 +37,7 @@ class UserController extends TopController {
   Future<UserModel> getUserOfTask({required String userTaskId}) async {
     DocumentSnapshot userTaskDoc = await usersTasksRef.doc(userTaskId).get();
     UserTaskModel userTaskModel = userTaskDoc.data() as UserTaskModel;
-    //القسم الفوقاني بهل الميثود بيستبدل بجلب الميثود عن طريق الايدي بس ليصير موجود كونترولر التاسك يوزر جاهز
+
     DocumentSnapshot userDoc =
         await getDocById(reference: usersRef, id: userTaskModel.userId);
     return userDoc.data() as UserModel;
@@ -47,7 +47,7 @@ class UserController extends TopController {
       {required String userTaskId}) async* {
     DocumentSnapshot userTaskDoc = await usersTasksRef.doc(userTaskId).get();
     UserTaskModel userTaskModel = userTaskDoc.data() as UserTaskModel;
-    //القسم الفوقاني بهل الميثود بيستبدل بجلب الميثود عن طريق الايدي بس ليصير موجود كونترولر التاسك يوزر جاهز
+
     Stream<DocumentSnapshot> stream =
         getDocByIdStream(reference: usersRef, id: userTaskModel.userId);
     yield* stream.cast<DocumentSnapshot<UserModel>>();

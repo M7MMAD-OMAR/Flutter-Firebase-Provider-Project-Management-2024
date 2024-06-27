@@ -179,11 +179,10 @@ class WatingSubTasksController extends TopController {
               "${member.name} $status ${AppConstants.the_task_key} ${waitingSubTaskModel.projectSubTaskModel.name} ${AppConstants.in_project_key} ${projectModel.name} $memberMessage",
           type: NotificationType.notification);
     } catch (e) {
-      CustomSnackBar.showError(e.toString());
+      CustomSnackBar.showError("حدث خطأ غير متوقع");
     }
   }
 
-  ///تعديل
   Stream<QuerySnapshot<WaitingSubTaskModel>> getWaitingSubTasksInMembersId(
       {required List<String> membersId}) {
     return watingSubTasksRef

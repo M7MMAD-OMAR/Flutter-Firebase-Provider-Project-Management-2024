@@ -23,7 +23,7 @@ Future<Map<String, Map<String, String>>> init() async {
     Map<String, String> _json = {};
 
     _mappedJson.forEach((key, value) {
-      _json[key] = value.toString();
+      _json[key] = valu"حدث خطأ غير متوقع";
     });
     _languages['${languageModel.languageCode}_${languageModel.countryCode}'] =
         _json;

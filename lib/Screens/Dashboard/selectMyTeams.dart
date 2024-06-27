@@ -384,7 +384,7 @@ class _SelectMyTeamScreenState extends State<SelectMyTeamScreen> {
                                                   } on Exception catch (e) {
                                                     Navigator.of(context).pop();
                                                     CustomSnackBar.showError(
-                                                        e.toString());
+                                                        "حدث خطأ غير متوقع");
                                                     // TODO
                                                   }
                                                 },

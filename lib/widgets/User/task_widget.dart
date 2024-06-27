@@ -207,7 +207,7 @@ class _CardTaskState extends State<CardTask> {
                     },
                     id: widget.task.id);
               } catch (e) {
-                CustomSnackBar.showError(e.toString());
+                CustomSnackBar.showError("حدث خطأ غير متوقع");
               }
             },
             isEditMode: true,

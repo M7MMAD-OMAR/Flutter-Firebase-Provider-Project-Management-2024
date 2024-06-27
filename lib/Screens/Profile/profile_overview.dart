@@ -232,7 +232,7 @@ class _ProfileOverviewState extends State<ProfileOverview> {
                 //                   .instance.firebaseAuth.currentUser!.uid);
                 //             } on Exception catch (e) {
                 //               Navigator.of(context).pop();
-                //               CustomSnackBar.showError(e.toString());
+                //               CustomSnackBar.showError("حدث خطأ غير متوقع");
                 //             }
                 //           },
                 //           iconColor: null,
@@ -396,7 +396,7 @@ class ProfileOverviewController extends GetxController {
 //                 }
 //               } on Exception catch (e) {
 //                 Navigator.of(context).pop();
-//                 CustomSnackBar.showError(e.toString());
+//                 CustomSnackBar.showError("حدث خطأ غير متوقع");
 //               }
 //             },
 //             buttonText: AppConstants.upgrade_account_key.tr,

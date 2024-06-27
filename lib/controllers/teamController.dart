@@ -115,7 +115,6 @@ class TeamController extends TopController {
     yield* getTeamsOfManagerStream(managerId: managerModel.id);
   }
 
-//جلب جميع التيمات الخاصة بهل المانجر
   Future<List<TeamModel>> getTeamsOfManager({required String managerId}) async {
     List<Object?>? list = await getListDataWhere(
         collectionReference: teamsRef, field: managerIdK, value: managerId);
@@ -130,8 +129,7 @@ class TeamController extends TopController {
   }
 
 //getTeamOfProject(String teamIdOfproject) {}
-// هي نفسها يلي تحت لانو ببساطة وقت بدك مشروع بس بتعطيه الايدي تيم يلي موجود بالكوليكشين تبعو بيقوم بيجيبو
-//وهاد حسب تصميم الداتا بيز المتفق عليه
+
   Future<TeamModel> getTeamById({required String id}) async {
     DocumentSnapshot? documentSnapshot = await getDocSnapShotWhere(
         collectionReference: teamsRef, field: idK, value: id);
@@ -204,9 +202,9 @@ class TeamController extends TopController {
 
   deleteTeam({required String id, required List<String> projectIds}) async {
     WriteBatch batch = fireStore.batch();
-    //جلب التيم المحدد لهذا الايدي
+
     DocumentSnapshot team = await getDocById(reference: teamsRef, id: id);
-    //حذف ذلك التيم
+
     deleteDocUsingBatch(documentSnapshot: team, refbatch: batch);
     for (var projectId in projectIds) {
       // Retrieve the project document snapshot

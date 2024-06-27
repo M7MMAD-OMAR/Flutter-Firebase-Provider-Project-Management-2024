@@ -196,7 +196,7 @@ class _CreateUserCategoryState extends State<CreateUserCategory> {
           const Duration(seconds: 1)); // Delay closing the widget
       Get.key.currentState!.pop();
     } catch (e) {
-      CustomSnackBar.showError(e.toString());
+      CustomSnackBar.showError("حدث خطأ غير متوقع");
     }
   }
 }
