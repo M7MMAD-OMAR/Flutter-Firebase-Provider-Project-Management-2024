@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -6,21 +5,11 @@ import 'package:project_management_muhmad_omar/constants/app_constans.dart';
 import 'package:project_management_muhmad_omar/widgets/Dashboard/select_color_dialog.dart';
 
 import '../../Values/values.dart';
-import '../../constants/back_constants.dart';
 import '../../controllers/categoryController.dart';
-import '../../controllers/statusController.dart';
-import '../../controllers/topController.dart';
 import '../../controllers/user_task_controller.dart';
-import '../../models/User/User_task_Model.dart';
-import '../../models/statusmodel.dart';
-import '../../models/task/UserTaskCategory_model.dart';
 import '../../models/team/Task_model.dart';
-import '../../models/team/TeamMembers_model.dart';
-
-import '../../services/collectionsrefrences.dart';
 import '../BottomSheets/bottom_sheet_holder.dart';
 import '../Forms/form_input_with_label.dart';
-import '../Snackbar/custom_snackber.dart';
 import '../User/new_sheet_goto_calender.dart';
 import '../add_sub_icon.dart';
 
@@ -92,7 +81,6 @@ class _CreateUserTaskState extends State<CreateUserTask> {
       desc = widget.userTaskModel!.description!;
       startDate = widget.userTaskModel!.startDate;
       dueDate = widget.userTaskModel!.endDate!;
-      print(startDat"حدث خطأ غير متوقع");
       selectedDashboardOption = importancelist.singleWhere(
           (element) => element == widget.userTaskModel!.importance);
       color = widget.userTaskModel!.hexcolor;
@@ -109,11 +97,9 @@ class _CreateUserTaskState extends State<CreateUserTask> {
   String formattedDueDate = "";
   Future onChanged(String value) async {
     name = value;
-    print("hellli");
     if (name.isNotEmpty) {
       isTaked = await widget.checkExist(name: name);
 
-      print(isTaked);
       setState(() {
         isTaked;
       });
@@ -344,7 +330,6 @@ class _CreateUserTaskState extends State<CreateUserTask> {
   void handleStartDayChanged(DateTime selectedDay) {
     setState(() {
       // Update the selectedDay variable in the first screen
-      print(selectedDay.toString() + "the selected day");
       startDate = selectedDay;
       formattedStartDate = formatDateTime(startDate);
     });
@@ -352,7 +337,6 @@ class _CreateUserTaskState extends State<CreateUserTask> {
 
   Future _addUserTask() async {
     if (formKey.currentState!.validate()) {
-      print("late");
       if (widget.isUserTask == true &&
           widget.isEditMode == false &&
           checkboxController.isChecked.value == true) {
