@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  'Hello Again',
+                  'مرحبا مجددا',
                   style: GoogleFonts.raleway(
                       textStyle: const TextStyle(
                           color: Colors.black,
@@ -66,6 +66,13 @@ class LoginScreen extends StatelessWidget {
                 height: 50,
               ),
               _signin(context),
+              const SizedBox(
+                height: 50,
+              ),
+              ElevatedButton(
+                  onPressed: () async =>
+                      await AuthService().anonymousSignIn(context: context),
+                  child: Text('تسجيل الدخول بشكل مجهول'))
             ],
           ),
         ),
@@ -79,7 +86,7 @@ class LoginScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Email Address',
+          'عنوان البريد الإلكتروني',
           style: GoogleFonts.raleway(
               textStyle: const TextStyle(
                   color: Colors.black,
@@ -93,7 +100,7 @@ class LoginScreen extends StatelessWidget {
           controller: _emailController,
           decoration: InputDecoration(
               filled: true,
-              hintText: 'mahdiforwork@gmail.com',
+              hintText: 'muhmad@example.com',
               hintStyle: const TextStyle(
                   color: Color(0xff6A6A6A),
                   fontWeight: FontWeight.normal,
@@ -113,7 +120,7 @@ class LoginScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Password',
+          'كلمة المرور',
           style: GoogleFonts.raleway(
               textStyle: const TextStyle(
                   color: Colors.black,
@@ -153,7 +160,7 @@ class LoginScreen extends StatelessWidget {
             password: _passwordController.text,
             context: context);
       },
-      child: const Text("Sign In"),
+      child: const Text("تسجيل الدخول"),
     );
   }
 
@@ -164,14 +171,14 @@ class LoginScreen extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(children: [
             const TextSpan(
-              text: "New User? ",
+              text: "مستخدم جديد? ",
               style: TextStyle(
                   color: Color(0xff6A6A6A),
                   fontWeight: FontWeight.normal,
                   fontSize: 16),
             ),
             TextSpan(
-                text: "Create Account",
+                text: "إنشاء حساب",
                 style: const TextStyle(
                     color: Color(0xff1A1D1E),
                     fontWeight: FontWeight.normal,

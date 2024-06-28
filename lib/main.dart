@@ -22,9 +22,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [...Providers.providers],
       child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.deepPurple,
+        ),
         debugShowCheckedModeBanner: false,
         // home: AuthScreen(),
-        initialRoute: Routes.authScreen,
+        initialRoute: Routes.loginScreen,
         routes: Routes.routes,
       ),
     );

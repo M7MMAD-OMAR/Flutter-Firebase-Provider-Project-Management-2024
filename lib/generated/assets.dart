@@ -30,6 +30,7 @@ class Assets {
   static const String assetsTest2 = 'assets/test2.png';
   static const String assetsTest2R = 'assets/test2R.png';
   static const String assetsWorkingOn = 'assets/working_on.png';
+  static const String constantsConstants = 'lib/constants/constants.dart';
   static const String generatedAssets = 'lib/generated/assets.dart';
   static const String iconArabic = 'assets/icon/arabic.png';
   static const String iconEnglish = 'assets/icon/english.png';
@@ -46,10 +47,14 @@ class Assets {
   static const String libRoutes = 'lib/routes.dart';
   static const String loginScreenLoginScreen =
       'lib/screens/login_screen/login_screen.dart';
+  static const String profileScreenProfileScreen =
+      'lib/screens/profile_screen/profile_screen.dart';
   static const String projectsScreenProjectsScreen =
       'lib/screens/projects_screen/projects_screen.dart';
   static const String providersAuthProvider =
       'lib/providers/auth_provider.dart';
+  static const String redirectScreenRedirectScreen =
+      'lib/screens/redirect_screen/redirect_screen.dart';
   static const String registerScreenRegisterScreen =
       'lib/screens/register_screen/register_screen.dart';
   static const String servicesAuthService = 'lib/services/auth_service.dart';

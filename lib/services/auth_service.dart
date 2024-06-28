@@ -67,10 +67,40 @@ class AuthService {
     } catch (e) {}
   }
 
-  Future<void> signout({required BuildContext context}) async {
+  Future<void> signOut({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
     await Future.delayed(const Duration(seconds: 1));
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext context) => LoginScreen()));
+  }
+
+  Future<bool> checkUserLoggedIn() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    return user != null;
+  }
+
+  Future<UserCredential?> anonymousSignIn(
+      {required BuildContext context}) async {
+    try {
+      // استخدام Firebase Auth لتسجيل الدخول بشكل مجهول
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInAnonymously();
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const ProjectsScreen()));
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      String message = 'حدث خطأ ما أثناء عملية تسجيل الدخول بشكل مجهول';
+      Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.SNACKBAR,
+        backgroundColor: Colors.black54,
+        textColor: Colors.white,
+        fontSize: 14.0,
+      );
+    } catch (e) {}
+    return null;
   }
 }
