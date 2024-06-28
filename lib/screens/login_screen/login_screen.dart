@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  'مرحبا مجددا',
+                  'مرحبا بك',
                   style: GoogleFonts.raleway(
                       textStyle: const TextStyle(
                           color: Colors.black,
@@ -70,9 +70,27 @@ class LoginScreen extends StatelessWidget {
                 height: 50,
               ),
               ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.deepPurple[700],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
+                    minimumSize: const Size(double.infinity, 60),
+                    elevation: 0,
+                  ),
                   onPressed: () async =>
                       await AuthService().anonymousSignIn(context: context),
-                  child: Text('تسجيل الدخول بشكل مجهول'))
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Image(
+                        image: AssetImage('lib/images/anonymos.png'),
+                        width: 20,
+                      ),
+                      Text('تسجيل الدخول بشكل مجهول',
+                          style: TextStyle(color: Colors.white)),
+                    ],
+                  ))
             ],
           ),
         ),
@@ -147,7 +165,7 @@ class LoginScreen extends StatelessWidget {
   Widget _signin(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xff0D6EFD),
+        backgroundColor: Colors.deepPurple,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
         ),
@@ -160,7 +178,7 @@ class LoginScreen extends StatelessWidget {
             password: _passwordController.text,
             context: context);
       },
-      child: const Text("تسجيل الدخول"),
+      child: const Text("تسجيل الدخول", style: TextStyle(color: Colors.white)),
     );
   }
 
@@ -171,7 +189,7 @@ class LoginScreen extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(children: [
             const TextSpan(
-              text: "مستخدم جديد? ",
+              text: "مستخدم جديد؟ ",
               style: TextStyle(
                   color: Color(0xff6A6A6A),
                   fontWeight: FontWeight.normal,

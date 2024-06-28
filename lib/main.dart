@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [...Providers.providers],
+      providers: Providers.providers,
       child: MaterialApp(
         theme: ThemeData(
           primaryColor: Colors.deepPurple,

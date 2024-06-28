@@ -29,7 +29,7 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Text(
-                    'Register Account',
+                    'إنشاء حساب جديد',
                     style: GoogleFonts.raleway(
                         textStyle: const TextStyle(
                             color: Colors.black,
@@ -61,7 +61,7 @@ class RegisterScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Email Address',
+          'عنوان البريد الإلكتروني',
           style: GoogleFonts.raleway(
               textStyle: const TextStyle(
                   color: Colors.black,
@@ -75,7 +75,7 @@ class RegisterScreen extends StatelessWidget {
           controller: _emailController,
           decoration: InputDecoration(
               filled: true,
-              hintText: 'mahdiforwork@gmail.com',
+              hintText: 'muhmad@example.com',
               hintStyle: const TextStyle(
                   color: Color(0xff6A6A6A),
                   fontWeight: FontWeight.normal,
@@ -95,7 +95,7 @@ class RegisterScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Password',
+          'كلمة المرور',
           style: GoogleFonts.raleway(
               textStyle: const TextStyle(
                   color: Colors.black,
@@ -122,7 +122,7 @@ class RegisterScreen extends StatelessWidget {
   Widget _signup(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: const Color(0xff0D6EFD),
+        backgroundColor: Colors.deepPurple,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(14),
         ),
@@ -135,7 +135,10 @@ class RegisterScreen extends StatelessWidget {
             password: _passwordController.text,
             context: context);
       },
-      child: const Text("Sign Up"),
+      child: const Text(
+        "إنشاء حساب",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
@@ -146,14 +149,14 @@ class RegisterScreen extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(children: [
             const TextSpan(
-              text: "Already Have Account? ",
+              text: "هل لديك حساب بالفعل؟ ",
               style: TextStyle(
                   color: Color(0xff6A6A6A),
                   fontWeight: FontWeight.normal,
                   fontSize: 16),
             ),
             TextSpan(
-                text: "Log In",
+                text: "تسجيل الدخول",
                 style: const TextStyle(
                     color: Color(0xff1A1D1E),
                     fontWeight: FontWeight.normal,
