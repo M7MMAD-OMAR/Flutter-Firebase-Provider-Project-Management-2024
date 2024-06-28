@@ -1,5 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:project_management_muhmad_omar/providers.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
+import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 
@@ -8,7 +11,7 @@ Future<void> main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +19,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material();
+    return MultiProvider(
+      providers: [...Providers.providers],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        // home: AuthScreen(),
+        initialRoute: Routes.authScreen,
+        routes: Routes.routes,
+      ),
+    );
   }
 }
