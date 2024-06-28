@@ -9,14 +9,14 @@ class AppConstants {
   static List<LanguageModel> languages = [
     LanguageModel(
         imgUrl: null,
-        languageName: "Arabic",
-        languageCode: "ar",
-        countryCode: "sy"),
-    LanguageModel(
-        imgUrl: null,
         languageCode: "en",
         countryCode: "US",
         languageName: "English"),
+    LanguageModel(
+        imgUrl: null,
+        languageName: "Arabic",
+        languageCode: "ar",
+        countryCode: "sy"),
   ];
 
   static const String dir_key = "dir";
