@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_management_muhmad_omar/screens/login_screen/login_screen.dart';
 
+import '../../routes.dart';
 import '../../services/auth_service.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -160,10 +160,7 @@ class RegisterScreen extends StatelessWidget {
                     fontSize: 16),
                 recognizer: TapGestureRecognizer()
                   ..onTap = () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                    );
+                    Navigator.pushNamed(context, Routes.loginScreen);
                   }),
           ])),
     );

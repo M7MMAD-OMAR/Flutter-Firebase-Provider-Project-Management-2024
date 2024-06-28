@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:project_management_muhmad_omar/routes.dart';
 import 'package:project_management_muhmad_omar/screens/login_screen/login_screen.dart';
-import 'package:project_management_muhmad_omar/screens/projects_screen/projects_screen.dart';
 
 class AuthService {
   Future<void> register(
@@ -14,10 +14,7 @@ class AuthService {
           .createUserWithEmailAndPassword(email: email, password: password);
 
       await Future.delayed(const Duration(seconds: 1));
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const ProjectsScreen()));
+      Navigator.pushNamed(context, Routes.projectsScreen);
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'weak-password') {
@@ -45,10 +42,7 @@ class AuthService {
           .signInWithEmailAndPassword(email: email, password: password);
 
       await Future.delayed(const Duration(seconds: 1));
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const ProjectsScreen()));
+      Navigator.pushNamed(context, Routes.projectsScreen);
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'invalid-email') {
@@ -85,10 +79,8 @@ class AuthService {
       // استخدام Firebase Auth لتسجيل الدخول بشكل مجهول
       UserCredential userCredential =
           await FirebaseAuth.instance.signInAnonymously();
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const ProjectsScreen()));
+      Navigator.pushNamed(context, Routes.projectsScreen);
+
       return userCredential;
     } on FirebaseAuthException catch (e) {
       String message = 'حدث خطأ ما أثناء عملية تسجيل الدخول بشكل مجهول';
