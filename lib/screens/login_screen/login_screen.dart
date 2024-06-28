@@ -148,7 +148,7 @@ class LoginScreen extends StatelessWidget {
         elevation: 0,
       ),
       onPressed: () async {
-        await AuthService().signin(
+        await AuthService().login(
             email: _emailController.text,
             password: _passwordController.text,
             context: context);

@@ -5,7 +5,7 @@ import 'package:project_management_muhmad_omar/screens/login_screen/login_screen
 import 'package:project_management_muhmad_omar/screens/projects_screen/projects_screen.dart';
 
 class AuthService {
-  Future<void> signup(
+  Future<void> register(
       {required String email,
       required String password,
       required BuildContext context}) async {
@@ -36,7 +36,7 @@ class AuthService {
     } catch (e) {}
   }
 
-  Future<void> signin(
+  Future<void> login(
       {required String email,
       required String password,
       required BuildContext context}) async {

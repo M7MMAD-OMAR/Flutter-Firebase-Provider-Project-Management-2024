@@ -130,7 +130,7 @@ class RegisterScreen extends StatelessWidget {
         elevation: 0,
       ),
       onPressed: () async {
-        await AuthService().signup(
+        await AuthService().register(
             email: _emailController.text,
             password: _passwordController.text,
             context: context);
