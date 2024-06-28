@@ -33,7 +33,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace = "com.asalib.project_management_muhmad_omar"
+    namespace = "com.asalib.cactus_management"
     compileSdk = flutter.compileSdkVersion
     ndkVersion "25.1.8937393"
 
@@ -44,7 +44,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.asalib.project_management_muhmad_omar"
+        applicationId = "com.asalib.cactus_management"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = flutter.minSdkVersion

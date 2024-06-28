@@ -8,7 +8,7 @@
 PRODUCT_NAME = mytest
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.asalib.project_management_muhmad_omar
+PRODUCT_BUNDLE_IDENTIFIER = com.asalib.cactus_management
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 com.asalib. All rights reserved.
