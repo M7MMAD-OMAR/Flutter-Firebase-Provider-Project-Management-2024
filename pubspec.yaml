@@ -22,7 +22,7 @@ dependencies:
   awesome_dialog: ^3.1.0
   firebase_storage: ^11.1.0
   loading_animation_widget: ^1.2.1
-
+  fluttertoast: ^8.2.6
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1

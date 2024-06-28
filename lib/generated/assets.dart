@@ -30,13 +30,29 @@ class Assets {
   static const String assetsTest2 = 'assets/test2.png';
   static const String assetsTest2R = 'assets/test2R.png';
   static const String assetsWorkingOn = 'assets/working_on.png';
+  static const String generatedAssets = 'lib/generated/assets.dart';
   static const String iconArabic = 'assets/icon/arabic.png';
   static const String iconEnglish = 'assets/icon/english.png';
   static const String iconEnvelope = 'assets/icon/envelope.png';
   static const String iconLogo = 'assets/icon/logo.png';
+  static const String imagesAnonymos = 'lib/images/anonymos.png';
+  static const String imagesGoogle = 'lib/images/google.png';
+  static const String imagesLogo = 'lib/images/logo.png';
   static const String langAr = 'assets/lang/ar.json';
   static const String langEn = 'assets/lang/en.json';
   static const String libFirebaseOptions = 'lib/firebase_options.dart';
   static const String libMain = 'lib/main.dart';
-
+  static const String libProviders = 'lib/providers.dart';
+  static const String libRoutes = 'lib/routes.dart';
+  static const String loginScreenLoginScreen =
+      'lib/screens/login_screen/login_screen.dart';
+  static const String projectsScreenProjectsScreen =
+      'lib/screens/projects_screen/projects_screen.dart';
+  static const String providersAuthProvider =
+      'lib/providers/auth_provider.dart';
+  static const String registerScreenRegisterScreen =
+      'lib/screens/register_screen/register_screen.dart';
+  static const String servicesAuthService = 'lib/services/auth_service.dart';
+  static const String tasksScreenTasksScreen =
+      'lib/screens/tasks_screen/tasks_screen.dart';
 }
